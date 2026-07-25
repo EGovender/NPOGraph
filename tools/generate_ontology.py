@@ -7,6 +7,19 @@ Do not hand-edit the generated files under ontology/ -- edit
 ontology/source/concepts.json and ontology/source/relationships.json instead,
 then re-run this script. See docs/05-data-model.md for the full policy.
 """
+import os
+import sys
+
+# rdflib's RDF/XML serializer iterates a set() of subjects, whose order
+# depends on Python's per-process string hash randomization. Without a fixed
+# seed, two runs over identical input produce byte-different (but semantically
+# equivalent) npograph.rdf -- which breaks the CI drift check and makes diffs
+# noisy. Re-exec with a fixed seed if it isn't already set, so generation is
+# byte-reproducible regardless of how this script is invoked.
+if os.environ.get("PYTHONHASHSEED") != "0":
+    os.environ["PYTHONHASHSEED"] = "0"
+    os.execvpe(sys.executable, [sys.executable, __file__] + sys.argv[1:], os.environ)
+
 import json
 from pathlib import Path
 
