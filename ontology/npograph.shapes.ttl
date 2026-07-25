@@ -65,3 +65,67 @@ npo:RelationshipShape
         sh:maxCount 1 ;
         sh:message "Every relationship (owl:ObjectProperty) must have exactly one rdfs:range." ;
     ] .
+
+npo:PropertyShape
+    a sh:NodeShape ;
+    sh:targetClass owl:DatatypeProperty ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every property (owl:DatatypeProperty) must have an rdfs:label." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:message "Every property (owl:DatatypeProperty) must have an rdfs:comment describing it." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:domain ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every property (owl:DatatypeProperty) must have exactly one rdfs:domain." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:range ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every property (owl:DatatypeProperty) must have exactly one rdfs:range." ;
+    ] ;
+    sh:property [
+        sh:path npo:group ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every property (owl:DatatypeProperty) must be assigned exactly one npo:group." ;
+    ] ;
+    sh:property [
+        sh:path npo:required ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype <http://www.w3.org/2001/XMLSchema#boolean> ;
+        sh:message "Every property (owl:DatatypeProperty) must state npo:required as a boolean." ;
+    ] ;
+    sh:property [
+        sh:path npo:cardinality ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every property (owl:DatatypeProperty) must state exactly one npo:cardinality." ;
+    ] .
+
+npo:BusinessRuleShape
+    a sh:NodeShape ;
+    sh:targetClass npo:BusinessRule ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every npo:BusinessRule must have an rdfs:label." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:message "Every npo:BusinessRule must have an rdfs:comment with the rule's full text." ;
+    ] ;
+    sh:property [
+        sh:path npo:appliesTo ;
+        sh:minCount 1 ;
+        sh:message "Every npo:BusinessRule must name at least one concept it applies to via npo:appliesTo." ;
+    ] .

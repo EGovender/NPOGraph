@@ -3,14 +3,25 @@
     "@version": 1.1,
     "npo": "https://egovender.github.io/NPOGraph/ontology/",
     "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
+    "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
+    "nporule": "https://egovender.github.io/NPOGraph/ontology/rules/",
     "owl": "http://www.w3.org/2002/07/owl#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
     "label": "rdfs:label",
     "definition": "skos:definition",
     "altLabel": "skos:altLabel",
     "category": "npo:category",
     "comment": "rdfs:comment",
+    "version": "npo:version",
+    "group": "npo:group",
+    "required": {
+      "@id": "npo:required",
+      "@type": "xsd:boolean"
+    },
+    "cardinality": "npo:cardinality",
+    "allowedValues": "npo:allowedValue",
     "subClassOf": {
       "@id": "rdfs:subClassOf",
       "@type": "@id"
@@ -27,10 +38,22 @@
       "@id": "rdfs:isDefinedBy",
       "@type": "@id"
     },
+    "appliesTo": {
+      "@id": "npo:appliesTo",
+      "@type": "@id",
+      "@container": "@set"
+    },
     "type": "@type",
     "id": "@id"
   },
   "@graph": [
+    {
+      "id": "https://egovender.github.io/NPOGraph/ontology",
+      "type": "owl:Ontology",
+      "label": "NPOGraph Grantmaking Ontology",
+      "comment": "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md.",
+      "version": "0.2.0"
+    },
     {
       "id": "npo:amendment",
       "type": "owl:Class",
@@ -745,6 +768,784 @@
       "domain": "npo:review",
       "range": "npo:decision",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "npoprop:amendment-effective-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Effective Date",
+      "comment": "When the Amendment's changes take effect.",
+      "domain": "npo:amendment",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:amendment-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Amendment stands in its approval process.",
+      "domain": "npo:amendment",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "proposed",
+        "approved",
+        "executed"
+      ]
+    },
+    {
+      "id": "npoprop:application-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Application currently sits in the review process.",
+      "domain": "npo:application",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "draft",
+        "submitted",
+        "under-review",
+        "approved",
+        "declined"
+      ]
+    },
+    {
+      "id": "npoprop:application-submitted-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Submitted Date",
+      "comment": "When the Application was submitted, once it has been.",
+      "domain": "npo:application",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:audit-scheduled-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Scheduled Date",
+      "comment": "When the Audit is scheduled to occur.",
+      "domain": "npo:audit",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:audit-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Audit stands.",
+      "domain": "npo:audit",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "scheduled",
+        "in-progress",
+        "completed"
+      ]
+    },
+    {
+      "id": "npoprop:award-amount",
+      "type": "owl:DatatypeProperty",
+      "label": "Amount",
+      "comment": "The total amount committed under the Award.",
+      "domain": "npo:award",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:award-currency",
+      "type": "owl:DatatypeProperty",
+      "label": "Currency",
+      "comment": "The currency the Award amount is denominated in, if not implied by context.",
+      "domain": "npo:award",
+      "range": "xsd:string",
+      "group": "financial",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:award-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Award Date",
+      "comment": "When the Award was made.",
+      "domain": "npo:award",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:award-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Award currently sits in the grant lifecycle.",
+      "domain": "npo:award",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "proposed",
+        "approved",
+        "active",
+        "closed",
+        "terminated"
+      ]
+    },
+    {
+      "id": "npoprop:budget-modification-amount",
+      "type": "owl:DatatypeProperty",
+      "label": "Amount",
+      "comment": "The amount being moved between budget categories.",
+      "domain": "npo:budget-modification",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:budget-modification-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the funder has approved the requested Budget Modification.",
+      "domain": "npo:budget-modification",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "requested",
+        "approved",
+        "denied"
+      ]
+    },
+    {
+      "id": "npoprop:budget-total-amount",
+      "type": "owl:DatatypeProperty",
+      "label": "Total Amount",
+      "comment": "The sum of all budget categories in the proposed or funded Budget.",
+      "domain": "npo:budget",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:closeout-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Closeout Date",
+      "comment": "When Closeout was completed.",
+      "domain": "npo:closeout",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:closeout-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the Award's Closeout has been completed.",
+      "domain": "npo:closeout",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "pending",
+        "completed"
+      ]
+    },
+    {
+      "id": "npoprop:compliance-requirement-requirement-type",
+      "type": "owl:DatatypeProperty",
+      "label": "Requirement Type",
+      "comment": "The kind of obligation the Compliance Requirement imposes.",
+      "domain": "npo:compliance-requirement",
+      "range": "xsd:string",
+      "group": "governance",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "reporting",
+        "financial",
+        "insurance",
+        "other"
+      ]
+    },
+    {
+      "id": "npoprop:compliance-requirement-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the Grantee has met the Compliance Requirement.",
+      "domain": "npo:compliance-requirement",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "open",
+        "satisfied",
+        "overdue"
+      ]
+    },
+    {
+      "id": "npoprop:decision-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Decision Date",
+      "comment": "When the Decision was made.",
+      "domain": "npo:decision",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:decision-outcome",
+      "type": "owl:DatatypeProperty",
+      "label": "Outcome",
+      "comment": "The result of the review process for the Application.",
+      "domain": "npo:decision",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "approved",
+        "declined",
+        "approved-with-conditions"
+      ]
+    },
+    {
+      "id": "npoprop:evaluation-completed-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Completed Date",
+      "comment": "When the Evaluation was completed, once it has been.",
+      "domain": "npo:evaluation",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:evaluation-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Evaluation stands.",
+      "domain": "npo:evaluation",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "planned",
+        "in-progress",
+        "completed"
+      ]
+    },
+    {
+      "id": "npoprop:funding-cycle-end-date",
+      "type": "owl:DatatypeProperty",
+      "label": "End Date",
+      "comment": "When the Funding Cycle closes.",
+      "domain": "npo:funding-cycle",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:funding-cycle-start-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Start Date",
+      "comment": "When the Funding Cycle begins accepting applications.",
+      "domain": "npo:funding-cycle",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:funding-opportunity-application-deadline",
+      "type": "owl:DatatypeProperty",
+      "label": "Application Deadline",
+      "comment": "The date by which an Application must be submitted.",
+      "domain": "npo:funding-opportunity",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:funding-opportunity-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the Funding Opportunity is still accepting applications.",
+      "domain": "npo:funding-opportunity",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "draft",
+        "open",
+        "closed"
+      ]
+    },
+    {
+      "id": "npoprop:grant-agreement-effective-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Effective Date",
+      "comment": "When the Grant Agreement's terms take effect.",
+      "domain": "npo:grant-agreement",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:grant-agreement-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Grant Agreement stands in its own lifecycle.",
+      "domain": "npo:grant-agreement",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "draft",
+        "signed",
+        "active",
+        "closed"
+      ]
+    },
+    {
+      "id": "npoprop:grant-program-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Grant Program currently sits in its own lifecycle.",
+      "domain": "npo:grant-program",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "planning",
+        "open",
+        "closed"
+      ]
+    },
+    {
+      "id": "npoprop:grant-program-total-budget",
+      "type": "owl:DatatypeProperty",
+      "label": "Total Budget",
+      "comment": "The total amount set aside for this Grant Program, if the funder tracks one.",
+      "domain": "npo:grant-program",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:indirect-cost-rate-rate",
+      "type": "owl:DatatypeProperty",
+      "label": "Rate",
+      "comment": "The indirect cost rate, expressed as a percentage of direct costs.",
+      "domain": "npo:indirect-cost-rate",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:indirect-cost-rate-rate-type",
+      "type": "owl:DatatypeProperty",
+      "label": "Rate Type",
+      "comment": "Whether the rate was individually negotiated or is the de minimis rate.",
+      "domain": "npo:indirect-cost-rate",
+      "range": "xsd:string",
+      "group": "classification",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "negotiated",
+        "de-minimis"
+      ]
+    },
+    {
+      "id": "npoprop:installment-amount",
+      "type": "owl:DatatypeProperty",
+      "label": "Amount",
+      "comment": "The amount scheduled for this Installment.",
+      "domain": "npo:installment",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:installment-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the Installment has been disbursed, or is being held pending its Payment Condition.",
+      "domain": "npo:installment",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "scheduled",
+        "released",
+        "held"
+      ]
+    },
+    {
+      "id": "npoprop:letter-of-inquiry-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the Letter of Inquiry resulted in an invitation to submit a full Application.",
+      "domain": "npo:letter-of-inquiry",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "submitted",
+        "invited",
+        "declined"
+      ]
+    },
+    {
+      "id": "npoprop:matching-requirement-match-type",
+      "type": "owl:DatatypeProperty",
+      "label": "Match Type",
+      "comment": "Whether the required match must be cash or may be in-kind.",
+      "domain": "npo:matching-requirement",
+      "range": "xsd:string",
+      "group": "financial",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "cash",
+        "in-kind"
+      ]
+    },
+    {
+      "id": "npoprop:matching-requirement-required-ratio",
+      "type": "owl:DatatypeProperty",
+      "label": "Required Ratio",
+      "comment": "The match ratio the Grantee must meet, e.g. \"1:1\".",
+      "domain": "npo:matching-requirement",
+      "range": "xsd:string",
+      "group": "financial",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:output-unit",
+      "type": "owl:DatatypeProperty",
+      "label": "Unit",
+      "comment": "The unit the Output is counted in, e.g. \"workshops\" or \"people served\".",
+      "domain": "npo:output",
+      "range": "xsd:string",
+      "group": "classification",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:payment-amount",
+      "type": "owl:DatatypeProperty",
+      "label": "Amount",
+      "comment": "The actual amount transferred in this Payment.",
+      "domain": "npo:payment",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:payment-condition-condition-type",
+      "type": "owl:DatatypeProperty",
+      "label": "Condition Type",
+      "comment": "What kind of condition must be satisfied before the corresponding Payment is released.",
+      "domain": "npo:payment-condition",
+      "range": "xsd:string",
+      "group": "governance",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "report-required",
+        "milestone-required",
+        "none"
+      ]
+    },
+    {
+      "id": "npoprop:payment-currency",
+      "type": "owl:DatatypeProperty",
+      "label": "Currency",
+      "comment": "The currency the Payment was made in, if not implied by context.",
+      "domain": "npo:payment",
+      "range": "xsd:string",
+      "group": "financial",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:payment-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Payment Date",
+      "comment": "When the Payment was sent or received.",
+      "domain": "npo:payment",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:payment-schedule-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether all Installments in the Payment Schedule have been disbursed.",
+      "domain": "npo:payment-schedule",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "active",
+        "completed"
+      ]
+    },
+    {
+      "id": "npoprop:payment-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Payment stands in transit.",
+      "domain": "npo:payment",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "pending",
+        "sent",
+        "received"
+      ]
+    },
+    {
+      "id": "npoprop:report-due-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Due Date",
+      "comment": "When the Report is due per the Reporting Schedule.",
+      "domain": "npo:report",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:report-report-type",
+      "type": "owl:DatatypeProperty",
+      "label": "Report Type",
+      "comment": "Whether the Report covers narrative progress, financial use of funds, or both.",
+      "domain": "npo:report",
+      "range": "xsd:string",
+      "group": "classification",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "narrative",
+        "financial",
+        "both"
+      ]
+    },
+    {
+      "id": "npoprop:report-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Report stands with the funder.",
+      "domain": "npo:report",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "not-started",
+        "submitted",
+        "accepted",
+        "rejected"
+      ]
+    },
+    {
+      "id": "npoprop:report-submitted-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Submitted Date",
+      "comment": "When the Report was actually submitted, once it has been.",
+      "domain": "npo:report",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:reporting-schedule-frequency",
+      "type": "owl:DatatypeProperty",
+      "label": "Frequency",
+      "comment": "How often Reports are due under this Reporting Schedule.",
+      "domain": "npo:reporting-schedule",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "monthly",
+        "quarterly",
+        "annual",
+        "one-time"
+      ]
+    },
+    {
+      "id": "npoprop:review-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where the Review currently stands.",
+      "domain": "npo:review",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "pending",
+        "in-progress",
+        "completed"
+      ]
+    },
+    {
+      "id": "npoprop:site-visit-scheduled-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Scheduled Date",
+      "comment": "When the Site Visit is scheduled to occur.",
+      "domain": "npo:site-visit",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:site-visit-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the Site Visit has happened yet.",
+      "domain": "npo:site-visit",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "scheduled",
+        "completed",
+        "cancelled"
+      ]
+    },
+    {
+      "id": "npoprop:terms-and-conditions-restriction-type",
+      "type": "owl:DatatypeProperty",
+      "label": "Restriction Type",
+      "comment": "Whether the funding governed by these Terms and Conditions is Restricted or Unrestricted Funding.",
+      "domain": "npo:terms-and-conditions",
+      "range": "xsd:string",
+      "group": "governance",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "restricted",
+        "unrestricted"
+      ]
+    },
+    {
+      "id": "nporule:rule-amendment-not-retroactive",
+      "type": "npo:BusinessRule",
+      "label": "An Amendment is forward-looking, not retroactive",
+      "comment": "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "appliesTo": [
+        "npo:amendment",
+        "npo:grant-agreement",
+        "npo:payment",
+        "npo:report"
+      ]
+    },
+    {
+      "id": "nporule:rule-award-requires-approved-decision",
+      "type": "npo:BusinessRule",
+      "label": "An Award requires an approved Decision",
+      "comment": "An Award cannot exist without a Decision that approved an Application (or, in funder-initiated giving, an equivalent internal approval).",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "appliesTo": [
+        "npo:award",
+        "npo:decision",
+        "npo:application"
+      ]
+    },
+    {
+      "id": "nporule:rule-closeout-requires-payments-and-reports",
+      "type": "npo:BusinessRule",
+      "label": "Closeout requires both financial and reporting conditions",
+      "comment": "Closeout requires both financial conditions (all Payments made or the award formally reduced) and reporting conditions (all required Reports accepted) to be true.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "appliesTo": [
+        "npo:closeout",
+        "npo:payment",
+        "npo:report"
+      ]
+    },
+    {
+      "id": "nporule:rule-compliance-requirement-attaches-to-award",
+      "type": "npo:BusinessRule",
+      "label": "A Compliance Requirement attaches to a specific Award, not the Grantee in the abstract",
+      "comment": "A Compliance Requirement is always attached to a specific Award, not to the Grantee in the abstract -- the same organization can be in good standing on one award and delinquent on another.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "appliesTo": [
+        "npo:compliance-requirement",
+        "npo:award",
+        "npo:grantee"
+      ]
+    },
+    {
+      "id": "nporule:rule-installment-condition-before-payment",
+      "type": "npo:BusinessRule",
+      "label": "An Installment's Payment Condition must be met before release",
+      "comment": "An Installment's Payment Condition, if any, must be satisfied before its corresponding Payment is released.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "appliesTo": [
+        "npo:installment",
+        "npo:payment-condition",
+        "npo:payment"
+      ]
+    },
+    {
+      "id": "nporule:rule-payment-requires-award-and-agreement",
+      "type": "npo:BusinessRule",
+      "label": "A Payment requires an Award, typically with a Grant Agreement",
+      "comment": "A Payment cannot exist without an Award and, typically, a Grant Agreement -- though some funders disburse an initial installment before a fully signed agreement is in place.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "appliesTo": [
+        "npo:payment",
+        "npo:award",
+        "npo:grant-agreement"
+      ]
     }
   ]
 }

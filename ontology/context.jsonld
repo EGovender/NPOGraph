@@ -1,7 +1,14 @@
 {
   "@context": {
     "@version": 1.1,
+    "allowedValues": "npo:allowedValue",
     "altLabel": "skos:altLabel",
+    "appliesTo": {
+      "@container": "@set",
+      "@id": "npo:appliesTo",
+      "@type": "@id"
+    },
+    "cardinality": "npo:cardinality",
     "category": "npo:category",
     "comment": "rdfs:comment",
     "definition": "skos:definition",
@@ -9,6 +16,7 @@
       "@id": "rdfs:domain",
       "@type": "@id"
     },
+    "group": "npo:group",
     "id": "@id",
     "isDefinedBy": {
       "@id": "rdfs:isDefinedBy",
@@ -16,18 +24,26 @@
     },
     "label": "rdfs:label",
     "npo": "https://egovender.github.io/NPOGraph/ontology/",
+    "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
     "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
+    "nporule": "https://egovender.github.io/NPOGraph/ontology/rules/",
     "owl": "http://www.w3.org/2002/07/owl#",
     "range": {
       "@id": "rdfs:range",
       "@type": "@id"
     },
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "required": {
+      "@id": "npo:required",
+      "@type": "xsd:boolean"
+    },
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "subClassOf": {
       "@id": "rdfs:subClassOf",
       "@type": "@id"
     },
-    "type": "@type"
+    "type": "@type",
+    "version": "npo:version",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
   }
 }

@@ -1,3 +1,5 @@
+<https://egovender.github.io/NPOGraph/ontology/BusinessRule> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
+<https://egovender.github.io/NPOGraph/ontology/BusinessRule> <http://www.w3.org/2000/01/rdf-schema#label> "Business Rule" .
 <https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
 <https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/2000/01/rdf-schema#label> "Amendment" .
@@ -172,6 +174,503 @@
 <https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#label> "Program Officer" .
 <https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2004/02/skos/core#definition> "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards." .
 <https://egovender.github.io/NPOGraph/ontology/program-officer> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Amendment's changes take effect." .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/amendment> .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <http://www.w3.org/2000/01/rdf-schema#label> "Effective Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Amendment stands in its approval process." .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/amendment> .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "approved" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "executed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "proposed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/amendment-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Application currently sits in the review process." .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/application> .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "approved" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "declined" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "draft" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "submitted" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "under-review" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-submitted-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-submitted-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Application was submitted, once it has been." .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-submitted-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/application> .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-submitted-date> <http://www.w3.org/2000/01/rdf-schema#label> "Submitted Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-submitted-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-submitted-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-submitted-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/application-submitted-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-scheduled-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Audit is scheduled to occur." .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/audit> .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#label> "Scheduled Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-scheduled-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-scheduled-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-scheduled-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Audit stands." .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/audit> .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "completed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "in-progress" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "scheduled" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/audit-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-amount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-amount> <http://www.w3.org/2000/01/rdf-schema#comment> "The total amount committed under the Award." .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-amount> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-amount> <http://www.w3.org/2000/01/rdf-schema#label> "Amount" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-amount> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-amount> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-amount> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-amount> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-currency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-currency> <http://www.w3.org/2000/01/rdf-schema#comment> "The currency the Award amount is denominated in, if not implied by context." .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-currency> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-currency> <http://www.w3.org/2000/01/rdf-schema#label> "Currency" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-currency> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-currency> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-currency> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-currency> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Award was made." .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-date> <http://www.w3.org/2000/01/rdf-schema#label> "Award Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Award currently sits in the grant lifecycle." .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "active" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "approved" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "closed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "proposed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "terminated" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/award-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-amount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-amount> <http://www.w3.org/2000/01/rdf-schema#comment> "The amount being moved between budget categories." .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-amount> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/budget-modification> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-amount> <http://www.w3.org/2000/01/rdf-schema#label> "Amount" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-amount> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-amount> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-amount> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-amount> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the funder has approved the requested Budget Modification." .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/budget-modification> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "approved" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "denied" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "requested" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-modification-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-total-amount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-total-amount> <http://www.w3.org/2000/01/rdf-schema#comment> "The sum of all budget categories in the proposed or funded Budget." .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-total-amount> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/budget> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-total-amount> <http://www.w3.org/2000/01/rdf-schema#label> "Total Amount" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-total-amount> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-total-amount> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-total-amount> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/budget-total-amount> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When Closeout was completed." .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/closeout> .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-date> <http://www.w3.org/2000/01/rdf-schema#label> "Closeout Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the Award's Closeout has been completed." .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/closeout> .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "completed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "pending" .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/closeout-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <http://www.w3.org/2000/01/rdf-schema#comment> "The kind of obligation the Compliance Requirement imposes." .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <http://www.w3.org/2000/01/rdf-schema#label> "Requirement Type" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "insurance" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "other" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "reporting" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-requirement-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the Grantee has met the Compliance Requirement." .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "open" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "overdue" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "satisfied" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/compliance-requirement-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Decision was made." .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/decision> .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-date> <http://www.w3.org/2000/01/rdf-schema#label> "Decision Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-date> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <http://www.w3.org/2000/01/rdf-schema#comment> "The result of the review process for the Application." .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/decision> .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <http://www.w3.org/2000/01/rdf-schema#label> "Outcome" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "approved" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "approved-with-conditions" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "declined" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/decision-outcome> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-completed-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-completed-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Evaluation was completed, once it has been." .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-completed-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/evaluation> .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-completed-date> <http://www.w3.org/2000/01/rdf-schema#label> "Completed Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-completed-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-completed-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-completed-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-completed-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Evaluation stands." .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/evaluation> .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "completed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "in-progress" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "planned" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Funding Cycle closes." .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funding-cycle> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date> <http://www.w3.org/2000/01/rdf-schema#label> "End Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-start-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-start-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Funding Cycle begins accepting applications." .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-start-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funding-cycle> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-start-date> <http://www.w3.org/2000/01/rdf-schema#label> "Start Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-start-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-start-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-start-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-start-date> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-application-deadline> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-application-deadline> <http://www.w3.org/2000/01/rdf-schema#comment> "The date by which an Application must be submitted." .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-application-deadline> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funding-opportunity> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-application-deadline> <http://www.w3.org/2000/01/rdf-schema#label> "Application Deadline" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-application-deadline> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-application-deadline> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-application-deadline> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-application-deadline> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the Funding Opportunity is still accepting applications." .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funding-opportunity> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "closed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "draft" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "open" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/funding-opportunity-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-effective-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-effective-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Grant Agreement's terms take effect." .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-effective-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-effective-date> <http://www.w3.org/2000/01/rdf-schema#label> "Effective Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-effective-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-effective-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-effective-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-effective-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Grant Agreement stands in its own lifecycle." .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "active" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "closed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "draft" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "signed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-agreement-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Grant Program currently sits in its own lifecycle." .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-program> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "closed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "open" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "planning" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <http://www.w3.org/2000/01/rdf-schema#comment> "The total amount set aside for this Grant Program, if the funder tracks one." .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-program> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <http://www.w3.org/2000/01/rdf-schema#label> "Total Budget" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the rate was individually negotiated or is the de minimis rate." .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate> .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <http://www.w3.org/2000/01/rdf-schema#label> "Rate Type" .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "de-minimis" .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "negotiated" .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <https://egovender.github.io/NPOGraph/ontology/group> "classification" .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate> <http://www.w3.org/2000/01/rdf-schema#comment> "The indirect cost rate, expressed as a percentage of direct costs." .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate> .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate> <http://www.w3.org/2000/01/rdf-schema#label> "Rate" .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-amount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-amount> <http://www.w3.org/2000/01/rdf-schema#comment> "The amount scheduled for this Installment." .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-amount> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/installment> .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-amount> <http://www.w3.org/2000/01/rdf-schema#label> "Amount" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-amount> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-amount> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-amount> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-amount> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the Installment has been disbursed, or is being held pending its Payment Condition." .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/installment> .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "held" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "released" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "scheduled" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/installment-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the Letter of Inquiry resulted in an invitation to submit a full Application." .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "declined" .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "invited" .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "submitted" .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/letter-of-inquiry-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the required match must be cash or may be in-kind." .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/matching-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <http://www.w3.org/2000/01/rdf-schema#label> "Match Type" .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "cash" .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "in-kind" .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-match-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-required-ratio> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-required-ratio> <http://www.w3.org/2000/01/rdf-schema#comment> "The match ratio the Grantee must meet, e.g. \"1:1\"." .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-required-ratio> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/matching-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-required-ratio> <http://www.w3.org/2000/01/rdf-schema#label> "Required Ratio" .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-required-ratio> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-required-ratio> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-required-ratio> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/matching-requirement-required-ratio> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/output-unit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/output-unit> <http://www.w3.org/2000/01/rdf-schema#comment> "The unit the Output is counted in, e.g. \"workshops\" or \"people served\"." .
+<https://egovender.github.io/NPOGraph/ontology/properties/output-unit> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/output> .
+<https://egovender.github.io/NPOGraph/ontology/properties/output-unit> <http://www.w3.org/2000/01/rdf-schema#label> "Unit" .
+<https://egovender.github.io/NPOGraph/ontology/properties/output-unit> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/output-unit> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/output-unit> <https://egovender.github.io/NPOGraph/ontology/group> "classification" .
+<https://egovender.github.io/NPOGraph/ontology/properties/output-unit> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-amount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-amount> <http://www.w3.org/2000/01/rdf-schema#comment> "The actual amount transferred in this Payment." .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-amount> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-amount> <http://www.w3.org/2000/01/rdf-schema#label> "Amount" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-amount> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-amount> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-amount> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-amount> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <http://www.w3.org/2000/01/rdf-schema#comment> "What kind of condition must be satisfied before the corresponding Payment is released." .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/payment-condition> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <http://www.w3.org/2000/01/rdf-schema#label> "Condition Type" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "milestone-required" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "none" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "report-required" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-condition-condition-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-currency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-currency> <http://www.w3.org/2000/01/rdf-schema#comment> "The currency the Payment was made in, if not implied by context." .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-currency> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-currency> <http://www.w3.org/2000/01/rdf-schema#label> "Currency" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-currency> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-currency> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-currency> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-currency> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Payment was sent or received." .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-date> <http://www.w3.org/2000/01/rdf-schema#label> "Payment Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether all Installments in the Payment Schedule have been disbursed." .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/payment-schedule> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "active" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "completed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-schedule-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Payment stands in transit." .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "pending" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "received" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "sent" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/payment-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-due-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-due-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Report is due per the Reporting Schedule." .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-due-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-due-date> <http://www.w3.org/2000/01/rdf-schema#label> "Due Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-due-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-due-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-due-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-due-date> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the Report covers narrative progress, financial use of funds, or both." .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <http://www.w3.org/2000/01/rdf-schema#label> "Report Type" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "both" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "narrative" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <https://egovender.github.io/NPOGraph/ontology/group> "classification" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-report-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Report stands with the funder." .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "accepted" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "not-started" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "rejected" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "submitted" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Report was actually submitted, once it has been." .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <http://www.w3.org/2000/01/rdf-schema#label> "Submitted Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#comment> "How often Reports are due under this Reporting Schedule." .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/reporting-schedule> .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#label> "Frequency" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "annual" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "monthly" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "one-time" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "quarterly" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Review currently stands." .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/review> .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "completed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "in-progress" .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "pending" .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Site Visit is scheduled to occur." .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/site-visit> .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#label> "Scheduled Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the Site Visit has happened yet." .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/site-visit> .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "cancelled" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "completed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "scheduled" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the funding governed by these Terms and Conditions is Restricted or Unrestricted Funding." .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/2000/01/rdf-schema#label> "Restriction Type" .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "restricted" .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "unrestricted" .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
+<https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#comment> "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly." .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> .
@@ -436,6 +935,49 @@
 <https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2000/01/rdf-schema#label> "Reviewer" .
 <https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2004/02/skos/core#definition> "An individual (staff, board member, or external peer reviewer) who evaluates an application against review criteria." .
 <https://egovender.github.io/NPOGraph/ontology/reviewer> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <http://www.w3.org/2000/01/rdf-schema#comment> "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <http://www.w3.org/2000/01/rdf-schema#label> "An Amendment is forward-looking, not retroactive" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/amendment> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-award-requires-approved-decision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-award-requires-approved-decision> <http://www.w3.org/2000/01/rdf-schema#comment> "An Award cannot exist without a Decision that approved an Application (or, in funder-initiated giving, an equivalent internal approval)." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-award-requires-approved-decision> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-award-requires-approved-decision> <http://www.w3.org/2000/01/rdf-schema#label> "An Award requires an approved Decision" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-award-requires-approved-decision> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/application> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-award-requires-approved-decision> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-award-requires-approved-decision> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/decision> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-closeout-requires-payments-and-reports> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-closeout-requires-payments-and-reports> <http://www.w3.org/2000/01/rdf-schema#comment> "Closeout requires both financial conditions (all Payments made or the award formally reduced) and reporting conditions (all required Reports accepted) to be true." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-closeout-requires-payments-and-reports> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-closeout-requires-payments-and-reports> <http://www.w3.org/2000/01/rdf-schema#label> "Closeout requires both financial and reporting conditions" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-closeout-requires-payments-and-reports> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/closeout> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-closeout-requires-payments-and-reports> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-closeout-requires-payments-and-reports> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <http://www.w3.org/2000/01/rdf-schema#comment> "A Compliance Requirement is always attached to a specific Award, not to the Grantee in the abstract -- the same organization can be in good standing on one award and delinquent on another." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <http://www.w3.org/2000/01/rdf-schema#label> "A Compliance Requirement attaches to a specific Award, not the Grantee in the abstract" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/grantee> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <http://www.w3.org/2000/01/rdf-schema#comment> "An Installment's Payment Condition, if any, must be satisfied before its corresponding Payment is released." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <http://www.w3.org/2000/01/rdf-schema#label> "An Installment's Payment Condition must be met before release" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/installment> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/payment-condition> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <http://www.w3.org/2000/01/rdf-schema#comment> "A Payment cannot exist without an Award and, typically, a Grant Agreement -- though some funders disburse an initial installment before a fully signed agreement is in place." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <http://www.w3.org/2000/01/rdf-schema#label> "A Payment requires an Award, typically with a Grant Agreement" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/payment> .
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2000/01/rdf-schema#label> "Site Visit" .
@@ -457,5 +999,6 @@
 <https://egovender.github.io/NPOGraph/ontology/unrestricted-funding> <http://www.w3.org/2004/02/skos/core#definition> "Funding a grantee may use at its discretion in support of its general mission." .
 <https://egovender.github.io/NPOGraph/ontology/unrestricted-funding> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
 <https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-<https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/2000/01/rdf-schema#comment> "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md." .
+<https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/2000/01/rdf-schema#comment> "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md." .
 <https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/2000/01/rdf-schema#label> "NPOGraph Grantmaking Ontology" .
+<https://egovender.github.io/NPOGraph/ontology> <https://egovender.github.io/NPOGraph/ontology/version> "0.2.0" .

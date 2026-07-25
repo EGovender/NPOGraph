@@ -1,0 +1,44 @@
+[
+  {
+    "id": "rule-award-requires-approved-decision",
+    "label": "An Award requires an approved Decision",
+    "description": "An Award cannot exist without a Decision that approved an Application (or, in funder-initiated giving, an equivalent internal approval).",
+    "concepts": ["award", "decision", "application"],
+    "docRef": "docs/03-relationships.md#key-relationship-rules-draft"
+  },
+  {
+    "id": "rule-payment-requires-award-and-agreement",
+    "label": "A Payment requires an Award, typically with a Grant Agreement",
+    "description": "A Payment cannot exist without an Award and, typically, a Grant Agreement -- though some funders disburse an initial installment before a fully signed agreement is in place.",
+    "concepts": ["payment", "award", "grant-agreement"],
+    "docRef": "docs/03-relationships.md#key-relationship-rules-draft"
+  },
+  {
+    "id": "rule-installment-condition-before-payment",
+    "label": "An Installment's Payment Condition must be met before release",
+    "description": "An Installment's Payment Condition, if any, must be satisfied before its corresponding Payment is released.",
+    "concepts": ["installment", "payment-condition", "payment"],
+    "docRef": "docs/03-relationships.md#key-relationship-rules-draft"
+  },
+  {
+    "id": "rule-compliance-requirement-attaches-to-award",
+    "label": "A Compliance Requirement attaches to a specific Award, not the Grantee in the abstract",
+    "description": "A Compliance Requirement is always attached to a specific Award, not to the Grantee in the abstract -- the same organization can be in good standing on one award and delinquent on another.",
+    "concepts": ["compliance-requirement", "award", "grantee"],
+    "docRef": "docs/03-relationships.md#key-relationship-rules-draft"
+  },
+  {
+    "id": "rule-closeout-requires-payments-and-reports",
+    "label": "Closeout requires both financial and reporting conditions",
+    "description": "Closeout requires both financial conditions (all Payments made or the award formally reduced) and reporting conditions (all required Reports accepted) to be true.",
+    "concepts": ["closeout", "payment", "report"],
+    "docRef": "docs/03-relationships.md#key-relationship-rules-draft"
+  },
+  {
+    "id": "rule-amendment-not-retroactive",
+    "label": "An Amendment is forward-looking, not retroactive",
+    "description": "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms.",
+    "concepts": ["amendment", "grant-agreement", "payment", "report"],
+    "docRef": "docs/03-relationships.md#key-relationship-rules-draft"
+  }
+]
