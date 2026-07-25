@@ -182,6 +182,20 @@ nporel:mayRequireLetterOfInquiry a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:letter-of-inquiry .
 
+nporel:maySpecifyRestrictedFunding a owl:ObjectProperty ;
+    rdfs:label "may specify" ;
+    rdfs:comment "A Grant Agreement's Terms and Conditions may classify the award as Restricted Funding." ;
+    rdfs:domain npo:grant-agreement ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:range npo:restricted-funding .
+
+nporel:maySpecifyUnrestrictedFunding a owl:ObjectProperty ;
+    rdfs:label "may specify" ;
+    rdfs:comment "A Grant Agreement's Terms and Conditions may classify the award as Unrestricted Funding." ;
+    rdfs:domain npo:grant-agreement ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:range npo:unrestricted-funding .
+
 nporel:modifiesGrantAgreement a owl:ObjectProperty ;
     rdfs:label "modifies" ;
     rdfs:comment "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." ;
@@ -272,18 +286,6 @@ nporel:undergoesReview a owl:ObjectProperty ;
     rdfs:domain npo:application ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:review .
-
-npo:restricted-funding a owl:Class ;
-    rdfs:label "Restricted Funding" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
-    skos:definition "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement." ;
-    npo:category "award-and-agreement" .
-
-npo:unrestricted-funding a owl:Class ;
-    rdfs:label "Unrestricted Funding" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
-    skos:definition "Funding a grantee may use at its discretion in support of its general mission." ;
-    npo:category "award-and-agreement" .
 
 npo:amendment a owl:Class ;
     rdfs:label "Amendment" ;
@@ -398,6 +400,12 @@ npo:program-officer a owl:Class ;
     skos:definition "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards." ;
     npo:category "organizational-entities" .
 
+npo:restricted-funding a owl:Class ;
+    rdfs:label "Restricted Funding" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    skos:definition "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement." ;
+    npo:category "award-and-agreement" .
+
 npo:review-criteria a owl:Class ;
     rdfs:label "Review Criteria" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
@@ -427,6 +435,12 @@ npo:theory-of-change a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
     skos:definition "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change." ;
     npo:category "outcomes-and-closeout" .
+
+npo:unrestricted-funding a owl:Class ;
+    rdfs:label "Unrestricted Funding" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    skos:definition "Funding a grantee may use at its discretion in support of its general mission." ;
+    npo:category "award-and-agreement" .
 
 npo:decision a owl:Class ;
     rdfs:label "Decision" ;
@@ -521,14 +535,14 @@ npo:funding-opportunity a owl:Class ;
     skos:definition "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines." ;
     npo:category "funding-structure" .
 
-npo:grant-agreement a owl:Class ;
-    rdfs:label "Grant Agreement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
-    skos:definition "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations." ;
-    npo:category "award-and-agreement" .
-
 npo:review a owl:Class ;
     rdfs:label "Review" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
     skos:definition "The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers." ;
     npo:category "application-and-review" .
+
+npo:grant-agreement a owl:Class ;
+    rdfs:label "Grant Agreement" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    skos:definition "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations." ;
+    npo:category "award-and-agreement" .

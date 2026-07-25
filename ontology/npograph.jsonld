@@ -594,6 +594,24 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:maySpecifyRestrictedFunding",
+      "type": "owl:ObjectProperty",
+      "label": "may specify",
+      "comment": "A Grant Agreement's Terms and Conditions may classify the award as Restricted Funding.",
+      "domain": "npo:grant-agreement",
+      "range": "npo:restricted-funding",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:maySpecifyUnrestrictedFunding",
+      "type": "owl:ObjectProperty",
+      "label": "may specify",
+      "comment": "A Grant Agreement's Terms and Conditions may classify the award as Unrestricted Funding.",
+      "domain": "npo:grant-agreement",
+      "range": "npo:unrestricted-funding",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
       "id": "nporel:specifiesTermsAndConditions",
       "type": "owl:ObjectProperty",
       "label": "specifies",

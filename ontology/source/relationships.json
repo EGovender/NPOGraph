@@ -162,6 +162,24 @@
     "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
   },
   {
+    "id": "rel-grant-agreement-may-specify-restricted-funding",
+    "subject": "grant-agreement",
+    "predicate": "maySpecifyRestrictedFunding",
+    "object": "restricted-funding",
+    "label": "may specify",
+    "description": "A Grant Agreement's Terms and Conditions may classify the award as Restricted Funding.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-grant-agreement-may-specify-unrestricted-funding",
+    "subject": "grant-agreement",
+    "predicate": "maySpecifyUnrestrictedFunding",
+    "object": "unrestricted-funding",
+    "label": "may specify",
+    "description": "A Grant Agreement's Terms and Conditions may classify the award as Unrestricted Funding.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
     "id": "rel-award-has-payment-schedule",
     "subject": "award",
     "predicate": "hasPaymentSchedule",

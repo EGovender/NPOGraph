@@ -316,6 +316,18 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/2000/01/rdf-schema#label> "may require" .
 <https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyRestrictedFunding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyRestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Agreement's Terms and Conditions may classify the award as Restricted Funding." .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyRestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyRestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyRestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#label> "may specify" .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyRestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/restricted-funding> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Agreement's Terms and Conditions may classify the award as Unrestricted Funding." .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#label> "may specify" .
+<https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/unrestricted-funding> .
 <https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#comment> "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." .
 <https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/amendment> .

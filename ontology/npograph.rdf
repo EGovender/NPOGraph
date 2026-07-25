@@ -489,6 +489,22 @@
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/matching-requirement" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyRestrictedFunding">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>may specify</rdfs:label>
+    <rdfs:comment>A Grant Agreement's Terms and Conditions may classify the award as Restricted Funding.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/grant-agreement" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/restricted-funding" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/maySpecifyUnrestrictedFunding">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>may specify</rdfs:label>
+    <rdfs:comment>A Grant Agreement's Terms and Conditions may classify the award as Unrestricted Funding.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/grant-agreement" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/unrestricted-funding" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/specifiesTermsAndConditions">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>specifies</rdfs:label>
