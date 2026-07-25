@@ -1,0 +1,144 @@
+# The worked example from ontology/source/example.json, as RDF individuals.
+# Generated -- do not hand-edit. See docs/07-worked-example.md.
+
+@prefix ex: <https://egovender.github.io/NPOGraph/ontology/examples/> .
+@prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
+@prefix npoprop: <https://egovender.github.io/NPOGraph/ontology/properties/> .
+@prefix nporel: <https://egovender.github.io/NPOGraph/ontology/relations/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:coastal-watch-alliance a owl:NamedIndividual,
+        npo:grantee ;
+    rdfs:label "Coastal Watch Alliance" ;
+    nporel:submitsApplication ex:coastal-watch-fy26-application .
+
+ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
+        npo:evaluation ;
+    rdfs:label "Year 1 Outcomes Evaluation" ;
+    npoprop:evaluation-completed-date "2027-01-15"^^xsd:date ;
+    npoprop:evaluation-status "completed"^^xsd:string ;
+    nporel:assessesOutcome ex:coastal-watch-habitat-outcome ;
+    nporel:assessesOutput ex:coastal-watch-workshops-output .
+
+ex:ocean-conservation-fund a owl:NamedIndividual,
+        npo:funder ;
+    rdfs:label "Ocean Conservation Fund" ;
+    nporel:maintainsGrantProgram ex:marine-habitat-program .
+
+ex:coastal-watch-fy26-application a owl:NamedIndividual,
+        npo:application ;
+    rdfs:label "Coastal Watch Alliance FY26 Application" ;
+    npoprop:application-status "approved"^^xsd:string ;
+    npoprop:application-submitted-date "2026-02-15"^^xsd:date ;
+    nporel:respondsToFundingOpportunity ex:marine-habitat-2026-opportunity ;
+    nporel:undergoesReview ex:coastal-watch-fy26-review .
+
+ex:coastal-watch-fy26-award a owl:NamedIndividual,
+        npo:award ;
+    rdfs:label "Award to Coastal Watch Alliance" ;
+    npoprop:award-amount 250000.0 ;
+    npoprop:award-currency "USD"^^xsd:string ;
+    npoprop:award-date "2026-04-01"^^xsd:date ;
+    npoprop:award-status "active"^^xsd:string ;
+    nporel:formalizedByGrantAgreement ex:coastal-watch-grant-agreement ;
+    nporel:hasPaymentSchedule ex:coastal-watch-payment-schedule ;
+    nporel:reachesCloseout ex:coastal-watch-fy26-closeout .
+
+ex:coastal-watch-fy26-closeout a owl:NamedIndividual,
+        npo:closeout ;
+    rdfs:label "Coastal Watch Alliance FY26 Closeout" ;
+    npoprop:closeout-date "2027-02-01"^^xsd:date ;
+    npoprop:closeout-status "completed"^^xsd:string .
+
+ex:coastal-watch-fy26-decision a owl:NamedIndividual,
+        npo:decision ;
+    rdfs:label "Coastal Watch Alliance FY26 Decision" ;
+    npoprop:decision-date "2026-03-20"^^xsd:date ;
+    npoprop:decision-outcome "approved"^^xsd:string ;
+    nporel:resultsInAward ex:coastal-watch-fy26-award .
+
+ex:coastal-watch-fy26-review a owl:NamedIndividual,
+        npo:review ;
+    rdfs:label "Coastal Watch Alliance FY26 Review" ;
+    npoprop:review-status "completed"^^xsd:string ;
+    nporel:producesDecision ex:coastal-watch-fy26-decision .
+
+ex:coastal-watch-grant-agreement a owl:NamedIndividual,
+        npo:grant-agreement ;
+    rdfs:label "Grant Agreement with Coastal Watch Alliance" ;
+    npoprop:grant-agreement-effective-date "2026-04-01"^^xsd:date ;
+    npoprop:grant-agreement-status "signed"^^xsd:string ;
+    nporel:attachesComplianceRequirement ex:coastal-watch-reporting-requirement .
+
+ex:coastal-watch-habitat-outcome a owl:NamedIndividual,
+        npo:outcome ;
+    rdfs:label "Improved Coastal Habitat Health" .
+
+ex:coastal-watch-payment-schedule a owl:NamedIndividual,
+        npo:payment-schedule ;
+    rdfs:label "Coastal Watch Alliance Payment Schedule" ;
+    npoprop:payment-schedule-status "active"^^xsd:string ;
+    nporel:brokenIntoInstallment ex:coastal-watch-q2-installment .
+
+ex:coastal-watch-q2-installment a owl:NamedIndividual,
+        npo:installment ;
+    rdfs:label "Q2 2026 Installment" ;
+    npoprop:installment-amount 62500.0 ;
+    npoprop:installment-status "released"^^xsd:string ;
+    nporel:disbursedAsPayment ex:coastal-watch-q2-payment .
+
+ex:coastal-watch-q2-payment a owl:NamedIndividual,
+        npo:payment ;
+    rdfs:label "Q2 2026 Payment" ;
+    npoprop:payment-amount 62500.0 ;
+    npoprop:payment-currency "USD"^^xsd:string ;
+    npoprop:payment-date "2026-04-15"^^xsd:date ;
+    npoprop:payment-status "sent"^^xsd:string .
+
+ex:coastal-watch-q2-report a owl:NamedIndividual,
+        npo:report ;
+    rdfs:label "Q2 2026 Narrative & Financial Report" ;
+    npoprop:report-due-date "2026-07-15"^^xsd:date ;
+    npoprop:report-report-type "both"^^xsd:string ;
+    npoprop:report-status "accepted"^^xsd:string ;
+    npoprop:report-submitted-date "2026-07-10"^^xsd:date .
+
+ex:coastal-watch-reporting-requirement a owl:NamedIndividual,
+        npo:compliance-requirement ;
+    rdfs:label "Coastal Watch Alliance Quarterly Reporting Requirement" ;
+    npoprop:compliance-requirement-requirement-type "reporting"^^xsd:string ;
+    npoprop:compliance-requirement-status "satisfied"^^xsd:string ;
+    nporel:includesReportingSchedule ex:coastal-watch-reporting-schedule .
+
+ex:coastal-watch-reporting-schedule a owl:NamedIndividual,
+        npo:reporting-schedule ;
+    rdfs:label "Coastal Watch Alliance Reporting Schedule" ;
+    npoprop:reporting-schedule-frequency "quarterly"^^xsd:string ;
+    nporel:obligatesReport ex:coastal-watch-q2-report .
+
+ex:coastal-watch-workshops-output a owl:NamedIndividual,
+        npo:output ;
+    rdfs:label "12 Habitat Restoration Workshops Held" ;
+    npoprop:output-unit "workshops"^^xsd:string .
+
+ex:marine-habitat-2026-cycle a owl:NamedIndividual,
+        npo:funding-cycle ;
+    rdfs:label "2026 Cycle 1" ;
+    npoprop:funding-cycle-end-date "2026-03-01"^^xsd:date ;
+    npoprop:funding-cycle-start-date "2026-01-01"^^xsd:date .
+
+ex:marine-habitat-program a owl:NamedIndividual,
+        npo:grant-program ;
+    rdfs:label "Marine Habitat Protection Program" ;
+    npoprop:grant-program-status "open"^^xsd:string ;
+    npoprop:grant-program-total-budget 2000000.0 ;
+    nporel:issuesFundingOpportunity ex:marine-habitat-2026-opportunity .
+
+ex:marine-habitat-2026-opportunity a owl:NamedIndividual,
+        npo:funding-opportunity ;
+    rdfs:label "2026 Marine Habitat Protection Grants" ;
+    npoprop:funding-opportunity-application-deadline "2026-03-01"^^xsd:date ;
+    npoprop:funding-opportunity-status "open"^^xsd:string ;
+    nporel:occursDuringFundingCycle ex:marine-habitat-2026-cycle .

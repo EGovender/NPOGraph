@@ -1,0 +1,375 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "npo": "https://egovender.github.io/NPOGraph/ontology/",
+    "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
+    "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
+    "ex": "https://egovender.github.io/NPOGraph/ontology/examples/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "label": "rdfs:label",
+    "type": "@type",
+    "id": "@id"
+  },
+  "@graph": [
+    {
+      "id": "ex:coastal-watch-alliance",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:grantee"
+      ],
+      "label": "Coastal Watch Alliance",
+      "nporel:submitsApplication": {
+        "@id": "ex:coastal-watch-fy26-application"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-fy26-application",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:application"
+      ],
+      "label": "Coastal Watch Alliance FY26 Application",
+      "npoprop:application-status": {
+        "@value": "approved",
+        "@type": "xsd:string"
+      },
+      "npoprop:application-submitted-date": {
+        "@value": "2026-02-15",
+        "@type": "xsd:date"
+      },
+      "nporel:respondsToFundingOpportunity": {
+        "@id": "ex:marine-habitat-2026-opportunity"
+      },
+      "nporel:undergoesReview": {
+        "@id": "ex:coastal-watch-fy26-review"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-fy26-award",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:award"
+      ],
+      "label": "Award to Coastal Watch Alliance",
+      "npoprop:award-amount": {
+        "@value": "250000",
+        "@type": "xsd:decimal"
+      },
+      "npoprop:award-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-date": {
+        "@value": "2026-04-01",
+        "@type": "xsd:date"
+      },
+      "nporel:formalizedByGrantAgreement": {
+        "@id": "ex:coastal-watch-grant-agreement"
+      },
+      "nporel:hasPaymentSchedule": {
+        "@id": "ex:coastal-watch-payment-schedule"
+      },
+      "nporel:reachesCloseout": {
+        "@id": "ex:coastal-watch-fy26-closeout"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-fy26-closeout",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:closeout"
+      ],
+      "label": "Coastal Watch Alliance FY26 Closeout",
+      "npoprop:closeout-status": {
+        "@value": "completed",
+        "@type": "xsd:string"
+      },
+      "npoprop:closeout-date": {
+        "@value": "2027-02-01",
+        "@type": "xsd:date"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-fy26-decision",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:decision"
+      ],
+      "label": "Coastal Watch Alliance FY26 Decision",
+      "npoprop:decision-date": {
+        "@value": "2026-03-20",
+        "@type": "xsd:date"
+      },
+      "npoprop:decision-outcome": {
+        "@value": "approved",
+        "@type": "xsd:string"
+      },
+      "nporel:resultsInAward": {
+        "@id": "ex:coastal-watch-fy26-award"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-fy26-review",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:review"
+      ],
+      "label": "Coastal Watch Alliance FY26 Review",
+      "npoprop:review-status": {
+        "@value": "completed",
+        "@type": "xsd:string"
+      },
+      "nporel:producesDecision": {
+        "@id": "ex:coastal-watch-fy26-decision"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-grant-agreement",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:grant-agreement"
+      ],
+      "label": "Grant Agreement with Coastal Watch Alliance",
+      "npoprop:grant-agreement-status": {
+        "@value": "signed",
+        "@type": "xsd:string"
+      },
+      "npoprop:grant-agreement-effective-date": {
+        "@value": "2026-04-01",
+        "@type": "xsd:date"
+      },
+      "nporel:attachesComplianceRequirement": {
+        "@id": "ex:coastal-watch-reporting-requirement"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-habitat-outcome",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:outcome"
+      ],
+      "label": "Improved Coastal Habitat Health"
+    },
+    {
+      "id": "ex:coastal-watch-payment-schedule",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:payment-schedule"
+      ],
+      "label": "Coastal Watch Alliance Payment Schedule",
+      "npoprop:payment-schedule-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "nporel:brokenIntoInstallment": {
+        "@id": "ex:coastal-watch-q2-installment"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-q2-installment",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:installment"
+      ],
+      "label": "Q2 2026 Installment",
+      "npoprop:installment-amount": {
+        "@value": "62500",
+        "@type": "xsd:decimal"
+      },
+      "npoprop:installment-status": {
+        "@value": "released",
+        "@type": "xsd:string"
+      },
+      "nporel:disbursedAsPayment": {
+        "@id": "ex:coastal-watch-q2-payment"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-q2-payment",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:payment"
+      ],
+      "label": "Q2 2026 Payment",
+      "npoprop:payment-amount": {
+        "@value": "62500",
+        "@type": "xsd:decimal"
+      },
+      "npoprop:payment-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:payment-date": {
+        "@value": "2026-04-15",
+        "@type": "xsd:date"
+      },
+      "npoprop:payment-status": {
+        "@value": "sent",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-q2-report",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:report"
+      ],
+      "label": "Q2 2026 Narrative & Financial Report",
+      "npoprop:report-status": {
+        "@value": "accepted",
+        "@type": "xsd:string"
+      },
+      "npoprop:report-due-date": {
+        "@value": "2026-07-15",
+        "@type": "xsd:date"
+      },
+      "npoprop:report-submitted-date": {
+        "@value": "2026-07-10",
+        "@type": "xsd:date"
+      },
+      "npoprop:report-report-type": {
+        "@value": "both",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-reporting-requirement",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:compliance-requirement"
+      ],
+      "label": "Coastal Watch Alliance Quarterly Reporting Requirement",
+      "npoprop:compliance-requirement-requirement-type": {
+        "@value": "reporting",
+        "@type": "xsd:string"
+      },
+      "npoprop:compliance-requirement-status": {
+        "@value": "satisfied",
+        "@type": "xsd:string"
+      },
+      "nporel:includesReportingSchedule": {
+        "@id": "ex:coastal-watch-reporting-schedule"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-reporting-schedule",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:reporting-schedule"
+      ],
+      "label": "Coastal Watch Alliance Reporting Schedule",
+      "npoprop:reporting-schedule-frequency": {
+        "@value": "quarterly",
+        "@type": "xsd:string"
+      },
+      "nporel:obligatesReport": {
+        "@id": "ex:coastal-watch-q2-report"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-workshops-output",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:output"
+      ],
+      "label": "12 Habitat Restoration Workshops Held",
+      "npoprop:output-unit": {
+        "@value": "workshops",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-year1-evaluation",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:evaluation"
+      ],
+      "label": "Year 1 Outcomes Evaluation",
+      "npoprop:evaluation-status": {
+        "@value": "completed",
+        "@type": "xsd:string"
+      },
+      "npoprop:evaluation-completed-date": {
+        "@value": "2027-01-15",
+        "@type": "xsd:date"
+      },
+      "nporel:assessesOutcome": {
+        "@id": "ex:coastal-watch-habitat-outcome"
+      },
+      "nporel:assessesOutput": {
+        "@id": "ex:coastal-watch-workshops-output"
+      }
+    },
+    {
+      "id": "ex:marine-habitat-2026-cycle",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:funding-cycle"
+      ],
+      "label": "2026 Cycle 1",
+      "npoprop:funding-cycle-start-date": {
+        "@value": "2026-01-01",
+        "@type": "xsd:date"
+      },
+      "npoprop:funding-cycle-end-date": {
+        "@value": "2026-03-01",
+        "@type": "xsd:date"
+      }
+    },
+    {
+      "id": "ex:marine-habitat-2026-opportunity",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:funding-opportunity"
+      ],
+      "label": "2026 Marine Habitat Protection Grants",
+      "npoprop:funding-opportunity-status": {
+        "@value": "open",
+        "@type": "xsd:string"
+      },
+      "npoprop:funding-opportunity-application-deadline": {
+        "@value": "2026-03-01",
+        "@type": "xsd:date"
+      },
+      "nporel:occursDuringFundingCycle": {
+        "@id": "ex:marine-habitat-2026-cycle"
+      }
+    },
+    {
+      "id": "ex:marine-habitat-program",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:grant-program"
+      ],
+      "label": "Marine Habitat Protection Program",
+      "npoprop:grant-program-status": {
+        "@value": "open",
+        "@type": "xsd:string"
+      },
+      "npoprop:grant-program-total-budget": {
+        "@value": "2000000",
+        "@type": "xsd:decimal"
+      },
+      "nporel:issuesFundingOpportunity": {
+        "@id": "ex:marine-habitat-2026-opportunity"
+      }
+    },
+    {
+      "id": "ex:ocean-conservation-fund",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:funder"
+      ],
+      "label": "Ocean Conservation Fund",
+      "nporel:maintainsGrantProgram": {
+        "@id": "ex:marine-habitat-program"
+      }
+    }
+  ]
+}

@@ -10,19 +10,19 @@ npo:amendment-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:amendment ;
     sh:property [ sh:path npoprop:amendment-effective-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:amendment-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """proposed""" """approved""" """executed""" ) ] .
+        [ sh:path npoprop:amendment-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """proposed"""^^xsd:string """approved"""^^xsd:string """executed"""^^xsd:string ) ] .
 
 npo:application-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:application ;
-    sh:property [ sh:path npoprop:application-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """draft""" """submitted""" """under-review""" """approved""" """declined""" ) ] ,
+    sh:property [ sh:path npoprop:application-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """draft"""^^xsd:string """submitted"""^^xsd:string """under-review"""^^xsd:string """approved"""^^xsd:string """declined"""^^xsd:string ) ] ,
         [ sh:path npoprop:application-submitted-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] .
 
 npo:audit-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:audit ;
     sh:property [ sh:path npoprop:audit-scheduled-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:audit-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """scheduled""" """in-progress""" """completed""" ) ] .
+        [ sh:path npoprop:audit-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """scheduled"""^^xsd:string """in-progress"""^^xsd:string """completed"""^^xsd:string ) ] .
 
 npo:award-property-shape
     a sh:NodeShape ;
@@ -30,7 +30,7 @@ npo:award-property-shape
     sh:property [ sh:path npoprop:award-amount ; sh:datatype xsd:decimal ; sh:minCount 1 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:award-currency ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:award-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:award-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """proposed""" """approved""" """active""" """closed""" """terminated""" ) ] .
+        [ sh:path npoprop:award-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """proposed"""^^xsd:string """approved"""^^xsd:string """active"""^^xsd:string """closed"""^^xsd:string """terminated"""^^xsd:string ) ] .
 
 npo:budget-property-shape
     a sh:NodeShape ;
@@ -41,31 +41,31 @@ npo:budget-modification-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:budget-modification ;
     sh:property [ sh:path npoprop:budget-modification-amount ; sh:datatype xsd:decimal ; sh:minCount 1 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:budget-modification-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """requested""" """approved""" """denied""" ) ] .
+        [ sh:path npoprop:budget-modification-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """requested"""^^xsd:string """approved"""^^xsd:string """denied"""^^xsd:string ) ] .
 
 npo:closeout-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:closeout ;
     sh:property [ sh:path npoprop:closeout-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:closeout-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """pending""" """completed""" ) ] .
+        [ sh:path npoprop:closeout-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """pending"""^^xsd:string """completed"""^^xsd:string ) ] .
 
 npo:compliance-requirement-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:compliance-requirement ;
-    sh:property [ sh:path npoprop:compliance-requirement-requirement-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """reporting""" """financial""" """insurance""" """other""" ) ] ,
-        [ sh:path npoprop:compliance-requirement-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """open""" """satisfied""" """overdue""" ) ] .
+    sh:property [ sh:path npoprop:compliance-requirement-requirement-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """reporting"""^^xsd:string """financial"""^^xsd:string """insurance"""^^xsd:string """other"""^^xsd:string ) ] ,
+        [ sh:path npoprop:compliance-requirement-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """open"""^^xsd:string """satisfied"""^^xsd:string """overdue"""^^xsd:string ) ] .
 
 npo:decision-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:decision ;
     sh:property [ sh:path npoprop:decision-date ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:decision-outcome ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """approved""" """declined""" """approved-with-conditions""" ) ] .
+        [ sh:path npoprop:decision-outcome ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """approved"""^^xsd:string """declined"""^^xsd:string """approved-with-conditions"""^^xsd:string ) ] .
 
 npo:evaluation-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:evaluation ;
     sh:property [ sh:path npoprop:evaluation-completed-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:evaluation-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planned""" """in-progress""" """completed""" ) ] .
+        [ sh:path npoprop:evaluation-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planned"""^^xsd:string """in-progress"""^^xsd:string """completed"""^^xsd:string ) ] .
 
 npo:funding-cycle-property-shape
     a sh:NodeShape ;
@@ -77,41 +77,41 @@ npo:funding-opportunity-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:funding-opportunity ;
     sh:property [ sh:path npoprop:funding-opportunity-application-deadline ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:funding-opportunity-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """draft""" """open""" """closed""" ) ] .
+        [ sh:path npoprop:funding-opportunity-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """draft"""^^xsd:string """open"""^^xsd:string """closed"""^^xsd:string ) ] .
 
 npo:grant-agreement-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:grant-agreement ;
     sh:property [ sh:path npoprop:grant-agreement-effective-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:grant-agreement-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """draft""" """signed""" """active""" """closed""" ) ] .
+        [ sh:path npoprop:grant-agreement-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """draft"""^^xsd:string """signed"""^^xsd:string """active"""^^xsd:string """closed"""^^xsd:string ) ] .
 
 npo:grant-program-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:grant-program ;
-    sh:property [ sh:path npoprop:grant-program-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planning""" """open""" """closed""" ) ] ,
+    sh:property [ sh:path npoprop:grant-program-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planning"""^^xsd:string """open"""^^xsd:string """closed"""^^xsd:string ) ] ,
         [ sh:path npoprop:grant-program-total-budget ; sh:datatype xsd:decimal ; sh:minCount 0 ; sh:maxCount 1 ] .
 
 npo:indirect-cost-rate-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:indirect-cost-rate ;
     sh:property [ sh:path npoprop:indirect-cost-rate-rate ; sh:datatype xsd:decimal ; sh:minCount 1 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:indirect-cost-rate-rate-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """negotiated""" """de-minimis""" ) ] .
+        [ sh:path npoprop:indirect-cost-rate-rate-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """negotiated"""^^xsd:string """de-minimis"""^^xsd:string ) ] .
 
 npo:installment-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:installment ;
     sh:property [ sh:path npoprop:installment-amount ; sh:datatype xsd:decimal ; sh:minCount 1 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:installment-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """scheduled""" """released""" """held""" ) ] .
+        [ sh:path npoprop:installment-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """scheduled"""^^xsd:string """released"""^^xsd:string """held"""^^xsd:string ) ] .
 
 npo:letter-of-inquiry-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:letter-of-inquiry ;
-    sh:property [ sh:path npoprop:letter-of-inquiry-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """submitted""" """invited""" """declined""" ) ] .
+    sh:property [ sh:path npoprop:letter-of-inquiry-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """submitted"""^^xsd:string """invited"""^^xsd:string """declined"""^^xsd:string ) ] .
 
 npo:matching-requirement-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:matching-requirement ;
-    sh:property [ sh:path npoprop:matching-requirement-match-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """cash""" """in-kind""" ) ] ,
+    sh:property [ sh:path npoprop:matching-requirement-match-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """cash"""^^xsd:string """in-kind"""^^xsd:string ) ] ,
         [ sh:path npoprop:matching-requirement-required-ratio ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
 
 npo:output-property-shape
@@ -125,43 +125,43 @@ npo:payment-property-shape
     sh:property [ sh:path npoprop:payment-amount ; sh:datatype xsd:decimal ; sh:minCount 1 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:payment-currency ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:payment-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:payment-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """pending""" """sent""" """received""" ) ] .
+        [ sh:path npoprop:payment-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """pending"""^^xsd:string """sent"""^^xsd:string """received"""^^xsd:string ) ] .
 
 npo:payment-condition-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:payment-condition ;
-    sh:property [ sh:path npoprop:payment-condition-condition-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """report-required""" """milestone-required""" """none""" ) ] .
+    sh:property [ sh:path npoprop:payment-condition-condition-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """report-required"""^^xsd:string """milestone-required"""^^xsd:string """none"""^^xsd:string ) ] .
 
 npo:payment-schedule-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:payment-schedule ;
-    sh:property [ sh:path npoprop:payment-schedule-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active""" """completed""" ) ] .
+    sh:property [ sh:path npoprop:payment-schedule-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """completed"""^^xsd:string ) ] .
 
 npo:report-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:report ;
     sh:property [ sh:path npoprop:report-due-date ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:report-report-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """narrative""" """financial""" """both""" ) ] ,
-        [ sh:path npoprop:report-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """not-started""" """submitted""" """accepted""" """rejected""" ) ] ,
+        [ sh:path npoprop:report-report-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """narrative"""^^xsd:string """financial"""^^xsd:string """both"""^^xsd:string ) ] ,
+        [ sh:path npoprop:report-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """not-started"""^^xsd:string """submitted"""^^xsd:string """accepted"""^^xsd:string """rejected"""^^xsd:string ) ] ,
         [ sh:path npoprop:report-submitted-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] .
 
 npo:reporting-schedule-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:reporting-schedule ;
-    sh:property [ sh:path npoprop:reporting-schedule-frequency ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """monthly""" """quarterly""" """annual""" """one-time""" ) ] .
+    sh:property [ sh:path npoprop:reporting-schedule-frequency ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """monthly"""^^xsd:string """quarterly"""^^xsd:string """annual"""^^xsd:string """one-time"""^^xsd:string ) ] .
 
 npo:review-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:review ;
-    sh:property [ sh:path npoprop:review-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """pending""" """in-progress""" """completed""" ) ] .
+    sh:property [ sh:path npoprop:review-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """pending"""^^xsd:string """in-progress"""^^xsd:string """completed"""^^xsd:string ) ] .
 
 npo:site-visit-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:site-visit ;
     sh:property [ sh:path npoprop:site-visit-scheduled-date ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:site-visit-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """scheduled""" """completed""" """cancelled""" ) ] .
+        [ sh:path npoprop:site-visit-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """scheduled"""^^xsd:string """completed"""^^xsd:string """cancelled"""^^xsd:string ) ] .
 
 npo:terms-and-conditions-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:terms-and-conditions ;
-    sh:property [ sh:path npoprop:terms-and-conditions-restriction-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """restricted""" """unrestricted""" ) ] .
+    sh:property [ sh:path npoprop:terms-and-conditions-restriction-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """restricted"""^^xsd:string """unrestricted"""^^xsd:string ) ] .

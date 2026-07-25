@@ -22,6 +22,8 @@ from the sorted source data too, same as the RDF/XML and JSON-LD outputs.
 """
 import json
 import xml.etree.ElementTree as ET
+from datetime import date as date_cls
+from decimal import Decimal
 from pathlib import Path
 
 from rdflib import Graph, Literal, Namespace, OWL, RDF, RDFS, URIRef, XSD
@@ -35,10 +37,12 @@ BASE = "https://egovender.github.io/NPOGraph/ontology/"
 REL_BASE = BASE + "relations/"
 PROP_BASE = BASE + "properties/"
 RULE_BASE = BASE + "rules/"
+EXAMPLE_BASE = BASE + "examples/"
 NPO = Namespace(BASE)
 NPOREL = Namespace(REL_BASE)
 NPOPROP = Namespace(PROP_BASE)
 NPORULE = Namespace(RULE_BASE)
+NPOEX = Namespace(EXAMPLE_BASE)
 
 RDF_NS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 RDFS_NS = "http://www.w3.org/2000/01/rdf-schema#"
@@ -97,7 +101,70 @@ def load_source():
         for cid in r["concepts"]:
             assert cid in concept_ids, f"unknown concept in business rule {r['id']}"
 
-    return concepts, relationships, properties, business_rules, meta
+    example = json.loads((SOURCE_DIR / "example.json").read_text())
+    example["individuals"] = sorted(example["individuals"], key=lambda i: i["id"])
+    example["relationships"] = sorted(example["relationships"], key=lambda r: (r["predicate"], r["subject"]))
+    validate_example(example, concept_ids, properties, relationships)
+
+    return concepts, relationships, properties, business_rules, meta, example
+
+
+def validate_example(example, concept_ids, properties, relationships):
+    """Cross-checks ontology/source/example.json against the schema it claims to
+    instantiate -- every individual's concept must exist, every property name
+    must be defined for that concept (with a valid enum value if applicable),
+    every required property must be present, and every relationship must use a
+    real predicate between individuals of the types that predicate expects."""
+    properties_by_concept: dict[str, dict[str, dict]] = {}
+    for p in properties:
+        properties_by_concept.setdefault(p["concept"], {})[p["name"]] = p
+
+    individuals_by_id = {}
+    for ind in example["individuals"]:
+        assert ind["id"] not in individuals_by_id, f"duplicate example individual id {ind['id']}"
+        individuals_by_id[ind["id"]] = ind
+        assert ind["concept"] in concept_ids, f"unknown concept in example individual {ind['id']}"
+
+        concept_props = properties_by_concept.get(ind["concept"], {})
+        given = ind.get("properties", {})
+        for name, value in given.items():
+            assert name in concept_props, (
+                f"example individual '{ind['id']}': unknown property '{name}' "
+                f"for concept '{ind['concept']}'"
+            )
+            pdef = concept_props[name]
+            if pdef["datatype"] == "enum":
+                assert value in pdef["allowedValues"], (
+                    f"example individual '{ind['id']}': invalid value '{value}' for "
+                    f"enum property '{name}' (allowed: {pdef['allowedValues']})"
+                )
+        for name, pdef in concept_props.items():
+            if pdef["required"]:
+                assert name in given, (
+                    f"example individual '{ind['id']}' ({ind['concept']}) is missing "
+                    f"required property '{name}'"
+                )
+
+    relationships_by_predicate = {r["predicate"]: r for r in relationships}
+    for rel in example["relationships"]:
+        assert rel["predicate"] in relationships_by_predicate, (
+            f"example relationship uses unknown predicate '{rel['predicate']}'"
+        )
+        rel_def = relationships_by_predicate[rel["predicate"]]
+        for role in ("subject", "object"):
+            assert rel[role] in individuals_by_id, (
+                f"example relationship '{rel['predicate']}': unknown {role} individual '{rel[role]}'"
+            )
+        subj_concept = individuals_by_id[rel["subject"]]["concept"]
+        obj_concept = individuals_by_id[rel["object"]]["concept"]
+        assert subj_concept == rel_def["subject"], (
+            f"example relationship '{rel['predicate']}' expects a '{rel_def['subject']}' subject, "
+            f"but individual '{rel['subject']}' is a '{subj_concept}'"
+        )
+        assert obj_concept == rel_def["object"], (
+            f"example relationship '{rel['predicate']}' expects a '{rel_def['object']}' object, "
+            f"but individual '{rel['object']}' is a '{obj_concept}'"
+        )
 
 
 def doc_url(doc_ref: str) -> str:
@@ -118,6 +185,25 @@ def property_iri(property_id: str) -> URIRef:
 
 def rule_iri(rule_id: str) -> URIRef:
     return NPORULE[rule_id]
+
+
+def example_iri(individual_id: str) -> URIRef:
+    return NPOEX[individual_id]
+
+
+def property_value_literal(prop_def: dict, raw_value) -> Literal:
+    """Converts a JSON value from example.json into an RDF literal typed to
+    match the property's declared datatype, so it actually satisfies the
+    property's SHACL sh:datatype constraint (rather than defaulting to a
+    plain untyped/string literal)."""
+    datatype = prop_def["datatype"]
+    if datatype == "decimal":
+        return Literal(Decimal(raw_value))
+    if datatype == "date":
+        return Literal(date_cls.fromisoformat(raw_value))
+    if datatype == "boolean":
+        return Literal(bool(raw_value))
+    return Literal(str(raw_value), datatype=XSD.string)
 
 
 def build_graph(concepts, relationships, properties, business_rules, meta) -> Graph:
@@ -191,8 +277,12 @@ def build_graph(concepts, relationships, properties, business_rules, meta) -> Gr
 
 def turtle_string(s: str) -> str:
     """Turtle triple-quoted string literal, safe for text containing quotes
-    or apostrophes without needing per-character escaping."""
-    return '"""' + s.replace("\\", "\\\\") + '"""'
+    or apostrophes without needing per-character escaping. Explicitly typed
+    ^^xsd:string rather than left as a plain literal -- rdflib's Literal
+    equality treats a plain literal and an explicitly xsd:string-typed one as
+    UNEQUAL (even though RDF 1.1 defines them as equivalent), which silently
+    broke sh:in matching against explicitly-typed values elsewhere."""
+    return '"""' + s.replace("\\", "\\\\") + '"""^^xsd:string'
 
 
 def build_property_shapes_text(properties) -> str:
@@ -258,6 +348,98 @@ def write_property_shapes(properties):
     (OUT_DIR / "npograph.property-shapes.ttl").write_text(
         header + build_property_shapes_text(properties)
     )
+
+
+def build_example_graph(example, properties) -> Graph:
+    """The worked example (docs/07-worked-example.md) as real owl:NamedIndividual
+    instances -- kept in its own graph/namespace (.../ontology/examples/) so
+    schema (npograph.ttl) and illustrative instance data never mix in the file
+    someone would import to get the ontology itself. No blank nodes here, so
+    (like the main graph) rdflib's Turtle/N-Triples serialization is stable."""
+    properties_by_concept: dict[str, dict[str, dict]] = {}
+    for p in properties:
+        properties_by_concept.setdefault(p["concept"], {})[p["name"]] = p
+
+    g = Graph()
+    g.bind("npo", NPO)
+    g.bind("nporel", NPOREL)
+    g.bind("npoprop", NPOPROP)
+    g.bind("ex", NPOEX)
+
+    for ind in example["individuals"]:
+        iri = example_iri(ind["id"])
+        g.add((iri, RDF.type, OWL.NamedIndividual))
+        g.add((iri, RDF.type, concept_iri(ind["concept"])))
+        g.add((iri, RDFS.label, Literal(ind["label"])))
+        concept_props = properties_by_concept.get(ind["concept"], {})
+        for name, value in ind.get("properties", {}).items():
+            pdef = concept_props[name]
+            g.add((iri, property_iri(pdef["id"]), property_value_literal(pdef, value)))
+
+    for rel in example["relationships"]:
+        g.add((example_iri(rel["subject"]), relation_iri(rel["predicate"]), example_iri(rel["object"])))
+
+    return g
+
+
+def write_example_ttl_and_nt(g: Graph):
+    header = (
+        "# The worked example from ontology/source/example.json, as RDF individuals.\n"
+        "# Generated -- do not hand-edit. See docs/07-worked-example.md.\n\n"
+    )
+    ttl = g.serialize(format="turtle")
+    (OUT_DIR / "npograph.example.ttl").write_text(header + ttl.lstrip("\n").rstrip("\n") + "\n")
+
+    nt_lines = sorted(g.serialize(format="nt").strip().splitlines())
+    (OUT_DIR / "npograph.example.nt").write_text("\n".join(nt_lines) + "\n")
+
+
+def write_example_jsonld(example, properties):
+    properties_by_concept: dict[str, dict[str, dict]] = {}
+    for p in properties:
+        properties_by_concept.setdefault(p["concept"], {})[p["name"]] = p
+
+    context = {
+        "@version": 1.1,
+        "npo": BASE,
+        "nporel": REL_BASE,
+        "npoprop": PROP_BASE,
+        "ex": EXAMPLE_BASE,
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "xsd": XSD_NS,
+        "label": "rdfs:label",
+        "type": "@type",
+        "id": "@id",
+    }
+
+    graph_nodes = []
+    for ind in example["individuals"]:
+        node: dict = {
+            "id": "ex:" + ind["id"],
+            "type": ["owl:NamedIndividual", "npo:" + ind["concept"]],
+            "label": ind["label"],
+        }
+        concept_props = properties_by_concept.get(ind["concept"], {})
+        for name, value in ind.get("properties", {}).items():
+            pdef = concept_props[name]
+            key = "npoprop:" + pdef["id"]
+            if pdef["datatype"] == "decimal":
+                node[key] = {"@value": str(Decimal(value)), "@type": "xsd:decimal"}
+            elif pdef["datatype"] == "date":
+                node[key] = {"@value": value, "@type": "xsd:date"}
+            elif pdef["datatype"] == "boolean":
+                node[key] = {"@value": bool(value), "@type": "xsd:boolean"}
+            else:
+                node[key] = {"@value": str(value), "@type": "xsd:string"}
+        graph_nodes.append(node)
+
+    for rel in example["relationships"]:
+        subject_node = next(n for n in graph_nodes if n["id"] == "ex:" + rel["subject"])
+        subject_node["nporel:" + rel["predicate"]] = {"@id": "ex:" + rel["object"]}
+
+    document = {"@context": context, "@graph": graph_nodes}
+    (OUT_DIR / "npograph.example.jsonld").write_text(json.dumps(document, indent=2) + "\n")
 
 
 def write_rdf_xml(concepts, relationships, properties, business_rules, meta):
@@ -452,7 +634,7 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta):
 
 
 def main():
-    concepts, relationships, properties, business_rules, meta = load_source()
+    concepts, relationships, properties, business_rules, meta, example = load_source()
 
     g = build_graph(concepts, relationships, properties, business_rules, meta)
     write_turtle_and_ntriples(g)
@@ -461,11 +643,16 @@ def main():
 
     write_property_shapes(properties)
 
+    example_graph = build_example_graph(example, properties)
+    write_example_ttl_and_nt(example_graph)
+    write_example_jsonld(example, properties)
+
     print(f"Generated ontology from {len(concepts)} concepts, "
           f"{len(relationships)} relationships, {len(properties)} properties, "
-          f"and {len(business_rules)} business rules.")
+          f"{len(business_rules)} business rules, and a {len(example['individuals'])}-step worked example.")
     for name in ("npograph.ttl", "npograph.rdf", "npograph.nt", "context.jsonld",
-                 "npograph.jsonld", "npograph.property-shapes.ttl"):
+                 "npograph.jsonld", "npograph.property-shapes.ttl",
+                 "npograph.example.ttl", "npograph.example.nt", "npograph.example.jsonld"):
         print(f"  ontology/{name}")
 
 

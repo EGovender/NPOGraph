@@ -1,0 +1,167 @@
+{
+  "id": "coastal-watch-fy26",
+  "title": "Coastal Watch Alliance's FY26 grant from the Ocean Conservation Fund",
+  "summary": "A single, fictional grant followed end to end -- from the funder opening a grant program through closeout -- to show the ontology's concepts and properties filled in with concrete (illustrative, not real) values instead of just definitions.",
+  "individuals": [
+    {
+      "id": "ocean-conservation-fund",
+      "concept": "funder",
+      "label": "Ocean Conservation Fund",
+      "properties": {},
+      "narrative": "The Ocean Conservation Fund (fictional) is a foundation that funds marine habitat restoration work."
+    },
+    {
+      "id": "marine-habitat-program",
+      "concept": "grant-program",
+      "label": "Marine Habitat Protection Program",
+      "properties": { "status": "open", "totalBudget": "2000000" },
+      "narrative": "It maintains a standing Marine Habitat Protection Program with a $2,000,000 annual budget."
+    },
+    {
+      "id": "marine-habitat-2026-cycle",
+      "concept": "funding-cycle",
+      "label": "2026 Cycle 1",
+      "properties": { "startDate": "2026-01-01", "endDate": "2026-03-01" },
+      "narrative": "The program's first 2026 funding cycle runs January through early March."
+    },
+    {
+      "id": "marine-habitat-2026-opportunity",
+      "concept": "funding-opportunity",
+      "label": "2026 Marine Habitat Protection Grants",
+      "properties": { "status": "open", "applicationDeadline": "2026-03-01" },
+      "narrative": "Within that cycle, the Fund opens a Funding Opportunity with a March 1 deadline."
+    },
+    {
+      "id": "coastal-watch-alliance",
+      "concept": "grantee",
+      "label": "Coastal Watch Alliance",
+      "properties": {},
+      "narrative": "Coastal Watch Alliance (fictional), a coastal-habitat nonprofit, decides to apply."
+    },
+    {
+      "id": "coastal-watch-fy26-application",
+      "concept": "application",
+      "label": "Coastal Watch Alliance FY26 Application",
+      "properties": { "status": "approved", "submittedDate": "2026-02-15" },
+      "narrative": "Coastal Watch submits its Application on February 15, proposing a habitat restoration project."
+    },
+    {
+      "id": "coastal-watch-fy26-review",
+      "concept": "review",
+      "label": "Coastal Watch Alliance FY26 Review",
+      "properties": { "status": "completed" },
+      "narrative": "Two program staff review the application against the program's Review Criteria."
+    },
+    {
+      "id": "coastal-watch-fy26-decision",
+      "concept": "decision",
+      "label": "Coastal Watch Alliance FY26 Decision",
+      "properties": { "date": "2026-03-20", "outcome": "approved" },
+      "narrative": "On March 20, the review results in a Decision to approve the application."
+    },
+    {
+      "id": "coastal-watch-fy26-award",
+      "concept": "award",
+      "label": "Award to Coastal Watch Alliance",
+      "properties": { "amount": "250000", "currency": "USD", "status": "active", "date": "2026-04-01" },
+      "narrative": "The Fund makes a $250,000 Award, effective April 1."
+    },
+    {
+      "id": "coastal-watch-grant-agreement",
+      "concept": "grant-agreement",
+      "label": "Grant Agreement with Coastal Watch Alliance",
+      "properties": { "status": "signed", "effectiveDate": "2026-04-01" },
+      "narrative": "Both parties sign a Grant Agreement formalizing the award's terms."
+    },
+    {
+      "id": "coastal-watch-payment-schedule",
+      "concept": "payment-schedule",
+      "label": "Coastal Watch Alliance Payment Schedule",
+      "properties": { "status": "active" },
+      "narrative": "The agreement sets a Payment Schedule disbursing the award in four quarterly installments."
+    },
+    {
+      "id": "coastal-watch-q2-installment",
+      "concept": "installment",
+      "label": "Q2 2026 Installment",
+      "properties": { "amount": "62500", "status": "released" },
+      "narrative": "The first Installment, $62,500, is released for Q2 2026."
+    },
+    {
+      "id": "coastal-watch-q2-payment",
+      "concept": "payment",
+      "label": "Q2 2026 Payment",
+      "properties": { "amount": "62500", "currency": "USD", "date": "2026-04-15", "status": "sent" },
+      "narrative": "The corresponding Payment is sent on April 15."
+    },
+    {
+      "id": "coastal-watch-reporting-schedule",
+      "concept": "reporting-schedule",
+      "label": "Coastal Watch Alliance Reporting Schedule",
+      "properties": { "frequency": "quarterly" },
+      "narrative": "The agreement also attaches a quarterly Reporting Schedule."
+    },
+    {
+      "id": "coastal-watch-reporting-requirement",
+      "concept": "compliance-requirement",
+      "label": "Coastal Watch Alliance Quarterly Reporting Requirement",
+      "properties": { "requirementType": "reporting", "status": "satisfied" },
+      "narrative": "Timely reporting is a standing Compliance Requirement of the award."
+    },
+    {
+      "id": "coastal-watch-q2-report",
+      "concept": "report",
+      "label": "Q2 2026 Narrative & Financial Report",
+      "properties": { "status": "accepted", "dueDate": "2026-07-15", "submittedDate": "2026-07-10", "reportType": "both" },
+      "narrative": "Coastal Watch submits its first combined narrative and financial Report on July 10, ahead of the July 15 deadline; the Fund accepts it."
+    },
+    {
+      "id": "coastal-watch-workshops-output",
+      "concept": "output",
+      "label": "12 Habitat Restoration Workshops Held",
+      "properties": { "unit": "workshops" },
+      "narrative": "By year end, the project has produced a direct Output: 12 habitat restoration workshops held."
+    },
+    {
+      "id": "coastal-watch-habitat-outcome",
+      "concept": "outcome",
+      "label": "Improved Coastal Habitat Health",
+      "properties": {},
+      "narrative": "Those workshops contribute to the intended Outcome: measurably improved coastal habitat health."
+    },
+    {
+      "id": "coastal-watch-year1-evaluation",
+      "concept": "evaluation",
+      "label": "Year 1 Outcomes Evaluation",
+      "properties": { "status": "completed", "completedDate": "2027-01-15" },
+      "narrative": "A Year 1 Evaluation, completed January 15 2027, assesses both the output and the outcome."
+    },
+    {
+      "id": "coastal-watch-fy26-closeout",
+      "concept": "closeout",
+      "label": "Coastal Watch Alliance FY26 Closeout",
+      "properties": { "status": "completed", "date": "2027-02-01" },
+      "narrative": "With all payments disbursed and all reports accepted, the award reaches Closeout on February 1, 2027."
+    }
+  ],
+  "relationships": [
+    { "predicate": "maintainsGrantProgram", "subject": "ocean-conservation-fund", "object": "marine-habitat-program" },
+    { "predicate": "issuesFundingOpportunity", "subject": "marine-habitat-program", "object": "marine-habitat-2026-opportunity" },
+    { "predicate": "occursDuringFundingCycle", "subject": "marine-habitat-2026-opportunity", "object": "marine-habitat-2026-cycle" },
+    { "predicate": "submitsApplication", "subject": "coastal-watch-alliance", "object": "coastal-watch-fy26-application" },
+    { "predicate": "respondsToFundingOpportunity", "subject": "coastal-watch-fy26-application", "object": "marine-habitat-2026-opportunity" },
+    { "predicate": "undergoesReview", "subject": "coastal-watch-fy26-application", "object": "coastal-watch-fy26-review" },
+    { "predicate": "producesDecision", "subject": "coastal-watch-fy26-review", "object": "coastal-watch-fy26-decision" },
+    { "predicate": "resultsInAward", "subject": "coastal-watch-fy26-decision", "object": "coastal-watch-fy26-award" },
+    { "predicate": "formalizedByGrantAgreement", "subject": "coastal-watch-fy26-award", "object": "coastal-watch-grant-agreement" },
+    { "predicate": "hasPaymentSchedule", "subject": "coastal-watch-fy26-award", "object": "coastal-watch-payment-schedule" },
+    { "predicate": "brokenIntoInstallment", "subject": "coastal-watch-payment-schedule", "object": "coastal-watch-q2-installment" },
+    { "predicate": "disbursedAsPayment", "subject": "coastal-watch-q2-installment", "object": "coastal-watch-q2-payment" },
+    { "predicate": "attachesComplianceRequirement", "subject": "coastal-watch-grant-agreement", "object": "coastal-watch-reporting-requirement" },
+    { "predicate": "includesReportingSchedule", "subject": "coastal-watch-reporting-requirement", "object": "coastal-watch-reporting-schedule" },
+    { "predicate": "obligatesReport", "subject": "coastal-watch-reporting-schedule", "object": "coastal-watch-q2-report" },
+    { "predicate": "assessesOutput", "subject": "coastal-watch-year1-evaluation", "object": "coastal-watch-workshops-output" },
+    { "predicate": "assessesOutcome", "subject": "coastal-watch-year1-evaluation", "object": "coastal-watch-habitat-outcome" },
+    { "predicate": "reachesCloseout", "subject": "coastal-watch-fy26-award", "object": "coastal-watch-fy26-closeout" }
+  ]
+}
