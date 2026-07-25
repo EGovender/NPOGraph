@@ -20,6 +20,7 @@ for (const file of [
   'properties.json',
   'business-rules.json',
   'meta.json',
+  'example.json',
 ]) {
   copyFileSync(join(SOURCE_DIR, file), join(DEST_DIR, file));
   console.log(`synced ${file} -> src/data/generated/${file}`);

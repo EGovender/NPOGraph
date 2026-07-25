@@ -20,19 +20,23 @@ Node 22 (see `.nvmrc`) — the current Astro major version requires it. If you u
 
 ## How data flows in
 
-`src/data/ontology.ts` and `src/data/categories.ts` are the only modules that should know about the ontology's shape. Everything else — pages, components — imports from there. The underlying JSON is never hand-edited inside `site/`; it's synced from `../ontology/source/` by `scripts/sync-ontology-data.mjs` (see the repo root's `docs/05-data-model.md` for why).
+`src/data/ontology.ts` and `src/data/categories.ts` are the only modules that should know about the ontology's shape. Everything else — pages, components — imports from there. The underlying JSON is never hand-edited inside `site/`; it's synced from `../ontology/source/` by `scripts/sync-ontology-data.mjs` (see the repo root's `docs/05-data-model.md` for why). `src/data/design-questions.ts` is the one exception — it's application logic (a recommendation heuristic layered on top of the ontology), not ontology content, so it's hand-authored directly in `site/`; see its file header for why.
 
 ## Structure
 
 ```
 src/
 ├── data/          # typed data-access layer (ontology.ts, categories.ts) + generated/ (gitignored)
+│                  # + design-questions.ts (hand-authored site logic, not synced ontology data)
 ├── layouts/       # BaseLayout.astro
 ├── components/    # SearchBox, GraphExplorer (React + cytoscape, 'full' and 'mini' modes),
-│                  # PropertyInspector (Overview/Properties/Relationships/Rules/Technical tabs)
+│                  # PropertyInspector (Overview/Example/Properties/Relationships/Rules/Technical),
+│                  # DesignWizard
 └── pages/
     ├── index.astro              # home + search
     ├── explore.astro            # graph explorer + property inspector
+    ├── design.astro             # "Design mode" questionnaire -> recommended concept subset
+    ├── story.astro              # the worked example walked end to end
     └── concepts/
         ├── index.astro          # full concept list, grouped by category
         └── [id].astro           # one page per concept: mini neighborhood graph + property inspector

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { workedExample, getConcept } from '../data/ontology';
+import { getCategory } from '../data/categories';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Story" description={workedExample.summary}>
+  <h1 style="margin-bottom: 0.25rem;">{workedExample.title}</h1>
+  <p class="secondary" style="margin-top: 0; max-width: 65ch;">{workedExample.summary}</p>
+  <p class="muted" style="max-width: 65ch;">
+    Every name below is fictional. Each step is a real instance of a concept in the ontology — see{' '}
+    <a href="https://github.com/EGovender/NPOGraph/blob/main/docs/07-worked-example.md">docs/07-worked-example.md</a>{' '}
+    for how it was built and validated.
+  </p>
+
+  <ol class="story-timeline">
+    {
+      workedExample.individuals.map((individual) => {
+        const concept = getConcept(individual.concept);
+        if (!concept) return null;
+        const category = getCategory(concept.category);
+        const propertyEntries = Object.entries(individual.properties);
+        return (
+          <li class="story-step">
+            <div class="story-step-marker" style={`background: light-dark(${category.colorLight}, ${category.colorDark})`} />
+            <div class="story-step-body">
+              <div class="story-step-header">
+                <a class="story-step-concept" href={`${base}concepts/${concept.id}`}>
+                  {concept.label}
+                </a>
+                <span class="muted story-step-label">{individual.label}</span>
+              </div>
+              <p class="story-step-narrative">{individual.narrative}</p>
+              {propertyEntries.length > 0 && (
+                <div class="story-step-props">
+                  {propertyEntries.map(([name, value]) => (
+                    <span class="chip">
+                      {name}: {value}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </li>
+        );
+      })
+    }
+  </ol>
+</BaseLayout>

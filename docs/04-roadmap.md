@@ -33,9 +33,8 @@ This is a living plan, not a commitment with dates. Phases are ordered by depend
 ## Phase 3 — Learning and design tools
 
 - [x] Most of "Learn" mode landed early via the Phase 2 property inspector: purpose (Overview tab), business rules (Rules tab), and lifecycle position (Properties tab's Lifecycle group) are already on every concept page
-- [ ] Worked examples per concept (a concrete instance walked through, not just the schema)
-- [ ] "Design" mode: answer a series of questions about an organization's grantmaking practices and get back a recommended subset of the ontology relevant to them
-- [ ] Worked end-to-end example ("story mode") walking through a single grant from application to closeout
+- [x] Worked examples per concept and the end-to-end "story mode" walkthrough turned out to be one dataset viewed two ways — see [Worked Example](07-worked-example.md): a single fictional grant (`ontology/source/example.json`) generated as real, SHACL-validated `owl:NamedIndividual`s (`ontology/npograph.example.ttl`/`.jsonld`), surfaced as an Example tab on the concepts it touches and as the full sequence at `site/src/pages/story.astro`
+- [x] "Design" mode: a hybrid question set (`site/src/data/design-questions.ts`) — mostly independent yes/no toggles, plus a few `showIf`-gated follow-ups and one single-select branch where a real dependency exists — recommending a live-updating concept subset at `site/src/pages/design.astro`
 
 ## Phase 4 — Semantic search and AI assistant
 

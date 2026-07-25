@@ -33,25 +33,27 @@ NPOGraph/
 │   ├── 03-relationships.md
 │   ├── 04-roadmap.md
 │   ├── 05-data-model.md
-│   └── 06-properties-and-rules.md
+│   ├── 06-properties-and-rules.md
+│   └── 07-worked-example.md
 ├── ontology/
-│   ├── source/                     # hand-maintained canonical JSON (concepts, relationships, properties, business rules)
+│   ├── source/                     # hand-maintained canonical JSON (concepts, relationships, properties, business rules, example)
 │   ├── npograph.ttl                 # generated: OWL ontology (Turtle)
 │   ├── npograph.rdf                 # generated: RDF/XML
 │   ├── npograph.nt                  # generated: N-Triples
 │   ├── context.jsonld               # generated: JSON-LD context
 │   ├── npograph.jsonld              # generated: JSON-LD graph
 │   ├── npograph.shapes.ttl          # hand-authored SHACL shapes (structural completeness)
-│   └── npograph.property-shapes.ttl # generated SHACL (per-concept property constraints)
+│   ├── npograph.property-shapes.ttl # generated SHACL (per-concept property constraints)
+│   └── npograph.example.{ttl,nt,jsonld} # generated: the worked example as real owl:NamedIndividuals
 ├── tools/
-│   ├── generate_ontology.py    # ontology/source/*.json -> ontology/*.ttl,*.rdf,*.nt,*.jsonld,*.property-shapes.ttl
-│   └── validate_ontology.py    # validates npograph.ttl against both shapes files
+│   ├── generate_ontology.py    # ontology/source/*.json -> ontology/*.ttl,*.rdf,*.nt,*.jsonld,*.property-shapes.ttl,*.example.*
+│   └── validate_ontology.py    # validates npograph.ttl + npograph.example.ttl against both shapes files
 └── site/                      # Astro + React explorer app, deployed to GitHub Pages
     ├── scripts/sync-ontology-data.mjs  # copies ontology/source/*.json in at build time
     └── src/
-        ├── data/                        # typed data-access layer over the synced JSON
-        ├── components/                  # SearchBox, GraphExplorer (cytoscape.js), PropertyInspector, etc.
-        └── pages/                       # /, /explore, /concepts, /concepts/[id]
+        ├── data/                        # typed data-access layer over the synced JSON, + design-questions.ts
+        ├── components/                  # SearchBox, GraphExplorer (cytoscape.js), PropertyInspector, DesignWizard, etc.
+        └── pages/                       # /, /explore, /concepts, /concepts/[id], /design, /story
 ```
 
 - **[Vision](docs/00-vision.md)** — what NPOGraph is trying to be and why it matters.
@@ -61,8 +63,9 @@ NPOGraph/
 - **[Roadmap](docs/04-roadmap.md)** — what comes after the docs: machine-readable formats, an interactive explorer, search, and beyond.
 - **[Data Model](docs/05-data-model.md)** — how the prose docs become the machine-readable ontology, and how the two are kept in sync.
 - **[Properties & Rules](docs/06-properties-and-rules.md)** — concept attributes (amount, status, dates, ...) and the constraints on them, surfaced in the explorer's Properties and Rules tabs.
+- **[Worked Example](docs/07-worked-example.md)** — a single fictional grant, followed end to end as real (SHACL-validated) RDF individuals, behind the explorer's Example tab and Story page.
 
-The ontology (`ontology/npograph.ttl` and friends) is machine-generated from `ontology/source/*.json`, which is itself a hand-maintained mirror of the prose docs — see [Data Model](docs/05-data-model.md) before editing anything under `ontology/`. The `site/` explorer app reads that same `ontology/source/*.json` at build time, so the docs, the ontology, and the explorer never describe three different things. Every concept page and every node in the graph explorer opens a property inspector (Overview / Properties / Relationships / Rules / Technical tabs) — see [Properties & Rules](docs/06-properties-and-rules.md) for what backs the Properties and Rules tabs.
+The ontology (`ontology/npograph.ttl` and friends) is machine-generated from `ontology/source/*.json`, which is itself a hand-maintained mirror of the prose docs — see [Data Model](docs/05-data-model.md) before editing anything under `ontology/`. The `site/` explorer app reads that same `ontology/source/*.json` at build time, so the docs, the ontology, and the explorer never describe three different things. Every concept page and every node in the graph explorer opens a property inspector (Overview / Example / Properties / Relationships / Rules / Technical tabs) — see [Properties & Rules](docs/06-properties-and-rules.md) and [Worked Example](docs/07-worked-example.md) for what backs those tabs. `/design` recommends a subset of the ontology from a short questionnaire; `/story` walks the worked example end to end.
 
 ### Regenerating the ontology
 

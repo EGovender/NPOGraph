@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import type { BusinessRule, Concept, DisplayGroup, RelatedConcept } from '../data/ontology';
-import { conceptIri, conceptJsonLd, getConcept, machineFormats, ontologyVersion } from '../data/ontology';
+import {
+  conceptIri,
+  conceptJsonLd,
+  getConcept,
+  getExampleForConcept,
+  getPropertiesForConcept,
+  machineFormats,
+  ontologyVersion,
+} from '../data/ontology';
 import { getCategory } from '../data/categories';
 
-const TABS = ['Overview', 'Properties', 'Relationships', 'Rules', 'Technical'] as const;
-type Tab = (typeof TABS)[number];
+const ALL_TABS = ['Overview', 'Example', 'Properties', 'Relationships', 'Rules', 'Technical'] as const;
+type Tab = (typeof ALL_TABS)[number];
 
 interface Props {
   concept: Concept;
@@ -44,11 +52,14 @@ export default function PropertyInspector({
   showOpenPageLink = false,
   initialTab = 'Overview',
 }: Props) {
-  const [tab, setTab] = useState<Tab>(initialTab);
+  const example = getExampleForConcept(concept.id);
+  const tabs = ALL_TABS.filter((t) => t !== 'Example' || example);
+  const [tab, setTab] = useState<Tab>(tabs.includes(initialTab) ? initialTab : 'Overview');
   const relationshipCount = outgoing.length + incoming.length + (parent ? 1 : 0) + subtypes.length;
   const constraintFields = propertyGroups
     .flatMap((g) => g.fields)
     .filter((f) => f.property);
+  const exampleProps = getPropertiesForConcept(concept.id);
 
   return (
     <div className="inspector">
@@ -58,7 +69,7 @@ export default function PropertyInspector({
       </div>
 
       <div className="inspector-tabs" role="tablist">
-        {TABS.map((t) => (
+        {tabs.map((t) => (
           <button
             key={t}
             role="tab"
@@ -90,6 +101,29 @@ export default function PropertyInspector({
             <p className="secondary">
               Part of <strong>{getCategory(concept.category).label}</strong> in the grantmaking
               ontology.
+            </p>
+          </div>
+        )}
+
+        {tab === 'Example' && example && (
+          <div>
+            <p className="inspector-definition">{example.narrative}</p>
+            {Object.keys(example.properties).length > 0 && (
+              <dl className="inspector-fields">
+                {Object.entries(example.properties).map(([name, value]) => {
+                  const pdef = exampleProps.find((p) => p.name === name);
+                  return (
+                    <div key={name} className="inspector-field">
+                      <dt>{pdef?.label ?? name}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  );
+                })}
+              </dl>
+            )}
+            <p className="secondary" style={{ marginTop: '1.25rem' }}>
+              From the worked example "{example.label}" — part of a single grant followed{' '}
+              <a href={`${base}story`}>end to end in Story mode</a>.
             </p>
           </div>
         )}

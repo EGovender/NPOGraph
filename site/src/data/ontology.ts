@@ -8,6 +8,7 @@ import relationshipsData from './generated/relationships.json';
 import propertiesData from './generated/properties.json';
 import businessRulesData from './generated/business-rules.json';
 import metaData from './generated/meta.json';
+import exampleData from './generated/example.json';
 import { getCategory } from './categories';
 
 export interface Concept {
@@ -54,16 +55,54 @@ export interface BusinessRule {
   docRef: string;
 }
 
+export interface ExampleIndividual {
+  id: string;
+  concept: string;
+  label: string;
+  properties: Record<string, string>;
+  narrative: string;
+}
+
+export interface ExampleRelationshipEntry {
+  predicate: string;
+  subject: string;
+  object: string;
+}
+
+export interface WorkedExample {
+  id: string;
+  title: string;
+  summary: string;
+  individuals: ExampleIndividual[];
+  relationships: ExampleRelationshipEntry[];
+}
+
 export const concepts = conceptsData as Concept[];
 export const relationships = relationshipsData as Relationship[];
 export const properties = propertiesData as Property[];
 export const businessRules = businessRulesData as BusinessRule[];
 export const ontologyVersion: string = (metaData as { version: string }).version;
+export const workedExample = exampleData as WorkedExample;
 
 const CONCEPTS_BY_ID = new Map(concepts.map((c) => [c.id, c]));
 
 export function getConcept(id: string): Concept | undefined {
   return CONCEPTS_BY_ID.get(id);
+}
+
+const EXAMPLE_BY_CONCEPT = new Map(workedExample.individuals.map((i) => [i.concept, i]));
+
+/** The worked example's individual for this concept, if the scenario touches it. */
+export function getExampleForConcept(conceptId: string): ExampleIndividual | undefined {
+  return EXAMPLE_BY_CONCEPT.get(conceptId);
+}
+
+const EXAMPLE_INDIVIDUALS_BY_ID = new Map(workedExample.individuals.map((i) => [i.id, i]));
+
+export function requireExampleIndividual(id: string): ExampleIndividual {
+  const i = EXAMPLE_INDIVIDUALS_BY_ID.get(id);
+  if (!i) throw new Error(`Unknown example individual id: ${id}`);
+  return i;
 }
 
 export function requireConcept(id: string): Concept {
