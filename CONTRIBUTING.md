@@ -18,6 +18,7 @@ NPOGraph is an ontology and documentation project before it's a software project
    - Why the current version doesn't work (a concrete example is more useful than an abstract argument)
    - A proposed replacement, if you have one
 4. PRs that touch `docs/02-core-concepts.md` or `docs/03-relationships.md` should reference the issue that discussed the change.
+5. If your change adds, renames, or redefines a concept or relationship, also update the matching entry in `ontology/source/concepts.json` or `ontology/source/relationships.json`, then run `tools/generate_ontology.py` and `tools/validate_ontology.py` and commit the regenerated files under `ontology/`. See [Data Model](docs/05-data-model.md) for the full policy — CI will reject a PR where the generated ontology files are out of date. Never hand-edit `ontology/npograph.ttl`, `.rdf`, `.nt`, or `.jsonld` directly.
 
 ## Style for concept definitions
 

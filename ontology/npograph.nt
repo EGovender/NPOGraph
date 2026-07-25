@@ -1,0 +1,449 @@
+<https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/2000/01/rdf-schema#label> "Amendment" .
+<https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/2004/02/skos/core#altLabel> "Grant Amendment" .
+<https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/2004/02/skos/core#definition> "A formally agreed change to an existing grant agreement's terms, budget, timeline, or amount, made after the original agreement was signed." .
+<https://egovender.github.io/NPOGraph/ontology/amendment> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology/application> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/application> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
+<https://egovender.github.io/NPOGraph/ontology/application> <http://www.w3.org/2000/01/rdf-schema#label> "Application" .
+<https://egovender.github.io/NPOGraph/ontology/application> <http://www.w3.org/2004/02/skos/core#altLabel> "Grant Application" .
+<https://egovender.github.io/NPOGraph/ontology/application> <http://www.w3.org/2004/02/skos/core#definition> "A grantee's formal submission requesting funding under a specific funding opportunity, including a proposal narrative and budget." .
+<https://egovender.github.io/NPOGraph/ontology/application> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/audit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/audit> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> .
+<https://egovender.github.io/NPOGraph/ontology/audit> <http://www.w3.org/2000/01/rdf-schema#label> "Audit" .
+<https://egovender.github.io/NPOGraph/ontology/audit> <http://www.w3.org/2004/02/skos/core#definition> "A formal, independent examination of a grantee's financial records, either as a general organizational requirement or specific to a grant." .
+<https://egovender.github.io/NPOGraph/ontology/audit> <https://egovender.github.io/NPOGraph/ontology/category> "compliance-and-reporting" .
+<https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/2000/01/rdf-schema#label> "Award" .
+<https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/2004/02/skos/core#altLabel> "Grant Award" .
+<https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/2004/02/skos/core#definition> "A funder's formal commitment to provide a specific amount of funding to a grantee, following an approved application or decision." .
+<https://egovender.github.io/NPOGraph/ontology/award> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology/budget-modification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/budget-modification> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> .
+<https://egovender.github.io/NPOGraph/ontology/budget-modification> <http://www.w3.org/2000/01/rdf-schema#label> "Budget Modification" .
+<https://egovender.github.io/NPOGraph/ontology/budget-modification> <http://www.w3.org/2004/02/skos/core#definition> "A grantee-requested, funder-approved change to how awarded funds are allocated across budget categories, without changing the total award amount." .
+<https://egovender.github.io/NPOGraph/ontology/budget-modification> <https://egovender.github.io/NPOGraph/ontology/category> "disbursement" .
+<https://egovender.github.io/NPOGraph/ontology/budget> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/budget> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/budget> <http://www.w3.org/2000/01/rdf-schema#label> "Budget" .
+<https://egovender.github.io/NPOGraph/ontology/budget> <http://www.w3.org/2004/02/skos/core#definition> "A structured estimate of costs associated with a proposed or funded project, broken into categories (e.g., personnel, overhead, direct program costs)." .
+<https://egovender.github.io/NPOGraph/ontology/budget> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/closeout> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/closeout> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/NPOGraph/ontology/closeout> <http://www.w3.org/2000/01/rdf-schema#label> "Closeout" .
+<https://egovender.github.io/NPOGraph/ontology/closeout> <http://www.w3.org/2004/02/skos/core#definition> "The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied." .
+<https://egovender.github.io/NPOGraph/ontology/closeout> <https://egovender.github.io/NPOGraph/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> .
+<https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/2000/01/rdf-schema#label> "Compliance Requirement" .
+<https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/2004/02/skos/core#definition> "An obligation attached to an award that the grantee must satisfy to remain in good standing (e.g., timely reporting, allowable use of funds, insurance)." .
+<https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <https://egovender.github.io/NPOGraph/ontology/category> "compliance-and-reporting" .
+<https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
+<https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/2000/01/rdf-schema#label> "Decision" .
+<https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/2004/02/skos/core#definition> "The outcome of the review process for an application: approved, declined, or approved with conditions." .
+<https://egovender.github.io/NPOGraph/ontology/decision> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2000/01/rdf-schema#label> "Eligibility Criteria" .
+<https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2004/02/skos/core#definition> "The conditions an organization or project must meet to apply to a funding opportunity." .
+<https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/evaluation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/evaluation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/NPOGraph/ontology/evaluation> <http://www.w3.org/2000/01/rdf-schema#label> "Evaluation" .
+<https://egovender.github.io/NPOGraph/ontology/evaluation> <http://www.w3.org/2004/02/skos/core#definition> "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes." .
+<https://egovender.github.io/NPOGraph/ontology/evaluation> <https://egovender.github.io/NPOGraph/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/2000/01/rdf-schema#label> "Fiscal Sponsor" .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/organization> .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/2004/02/skos/core#definition> "An organization that accepts and administers grant funds on behalf of a project or group that isn't itself a legal entity able to receive grants directly." .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/funder> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/funder> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/funder> <http://www.w3.org/2000/01/rdf-schema#label> "Funder" .
+<https://egovender.github.io/NPOGraph/ontology/funder> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/organization> .
+<https://egovender.github.io/NPOGraph/ontology/funder> <http://www.w3.org/2004/02/skos/core#altLabel> "Grantmaker" .
+<https://egovender.github.io/NPOGraph/ontology/funder> <http://www.w3.org/2004/02/skos/core#definition> "An organization (foundation, government agency, corporation, or individual) that provides funding through grants." .
+<https://egovender.github.io/NPOGraph/ontology/funder> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/funding-cycle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/funding-cycle> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/funding-cycle> <http://www.w3.org/2000/01/rdf-schema#label> "Funding Cycle" .
+<https://egovender.github.io/NPOGraph/ontology/funding-cycle> <http://www.w3.org/2004/02/skos/core#definition> "A recurring period (e.g., quarterly, annual) within a grant program during which applications are accepted and decided." .
+<https://egovender.github.io/NPOGraph/ontology/funding-cycle> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <http://www.w3.org/2000/01/rdf-schema#label> "Funding Opportunity" .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <http://www.w3.org/2004/02/skos/core#altLabel> "NOFO" .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <http://www.w3.org/2004/02/skos/core#altLabel> "Notice of Funding Opportunity" .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <http://www.w3.org/2004/02/skos/core#altLabel> "RFP" .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <http://www.w3.org/2004/02/skos/core#altLabel> "Request for Proposals" .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <http://www.w3.org/2004/02/skos/core#definition> "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines." .
+<https://egovender.github.io/NPOGraph/ontology/funding-opportunity> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Administrator" .
+<https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/2004/02/skos/core#definition> "An individual at the grantee organization responsible for compliance, reporting, and financial management of an award." .
+<https://egovender.github.io/NPOGraph/ontology/grant-administrator> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/grant-agreement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/grant-agreement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/grant-agreement> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Agreement" .
+<https://egovender.github.io/NPOGraph/ontology/grant-agreement> <http://www.w3.org/2004/02/skos/core#definition> "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations." .
+<https://egovender.github.io/NPOGraph/ontology/grant-agreement> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology/grant-lifecycle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/grant-lifecycle> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#cross-cutting> .
+<https://egovender.github.io/NPOGraph/ontology/grant-lifecycle> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/grant-lifecycle> <http://www.w3.org/2004/02/skos/core#definition> "The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout." .
+<https://egovender.github.io/NPOGraph/ontology/grant-lifecycle> <https://egovender.github.io/NPOGraph/ontology/category> "cross-cutting" .
+<https://egovender.github.io/NPOGraph/ontology/grant-program> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/grant-program> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/grant-program> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Program" .
+<https://egovender.github.io/NPOGraph/ontology/grant-program> <http://www.w3.org/2004/02/skos/core#definition> "A funder's standing area of giving (e.g., \"Environmental Justice Grants\"), under which funding opportunities are issued over time." .
+<https://egovender.github.io/NPOGraph/ontology/grant-program> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2000/01/rdf-schema#label> "Grantee" .
+<https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/organization> .
+<https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2004/02/skos/core#altLabel> "Recipient" .
+<https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2004/02/skos/core#altLabel> "Subrecipient" .
+<https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2004/02/skos/core#definition> "An organization or individual that receives a grant award. Also called a recipient or subrecipient when funds are re-granted." .
+<https://egovender.github.io/NPOGraph/ontology/grantee> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> .
+<https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate> <http://www.w3.org/2000/01/rdf-schema#label> "Indirect Cost Rate" .
+<https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate> <http://www.w3.org/2004/02/skos/core#definition> "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award." .
+<https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate> <https://egovender.github.io/NPOGraph/ontology/category> "compliance-and-reporting" .
+<https://egovender.github.io/NPOGraph/ontology/installment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/installment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> .
+<https://egovender.github.io/NPOGraph/ontology/installment> <http://www.w3.org/2000/01/rdf-schema#label> "Installment" .
+<https://egovender.github.io/NPOGraph/ontology/installment> <http://www.w3.org/2004/02/skos/core#definition> "A single scheduled portion of an award's total funds, to be disbursed at a defined point or upon meeting a condition." .
+<https://egovender.github.io/NPOGraph/ontology/installment> <https://egovender.github.io/NPOGraph/ontology/category> "disbursement" .
+<https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
+<https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> <http://www.w3.org/2000/01/rdf-schema#label> "Letter of Inquiry" .
+<https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> <http://www.w3.org/2004/02/skos/core#altLabel> "LOI" .
+<https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> <http://www.w3.org/2004/02/skos/core#definition> "A brief, preliminary submission used by some funders to screen interest before inviting a full application." .
+<https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/logic-model> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/logic-model> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/NPOGraph/ontology/logic-model> <http://www.w3.org/2000/01/rdf-schema#label> "Logic Model" .
+<https://egovender.github.io/NPOGraph/ontology/logic-model> <http://www.w3.org/2004/02/skos/core#definition> "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project." .
+<https://egovender.github.io/NPOGraph/ontology/logic-model> <https://egovender.github.io/NPOGraph/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/NPOGraph/ontology/matching-requirement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/matching-requirement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/matching-requirement> <http://www.w3.org/2000/01/rdf-schema#label> "Matching Requirement" .
+<https://egovender.github.io/NPOGraph/ontology/matching-requirement> <http://www.w3.org/2004/02/skos/core#definition> "A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match)." .
+<https://egovender.github.io/NPOGraph/ontology/matching-requirement> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology/organization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/organization> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/organization> <http://www.w3.org/2000/01/rdf-schema#label> "Organization" .
+<https://egovender.github.io/NPOGraph/ontology/organization> <http://www.w3.org/2004/02/skos/core#definition> "Any legal entity participating in grantmaking, either as a funder or a recipient. The general category that Funder and Grantee specialize." .
+<https://egovender.github.io/NPOGraph/ontology/organization> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/outcome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/outcome> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/NPOGraph/ontology/outcome> <http://www.w3.org/2000/01/rdf-schema#label> "Outcome" .
+<https://egovender.github.io/NPOGraph/ontology/outcome> <http://www.w3.org/2004/02/skos/core#definition> "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output." .
+<https://egovender.github.io/NPOGraph/ontology/outcome> <https://egovender.github.io/NPOGraph/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/NPOGraph/ontology/output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/output> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/NPOGraph/ontology/output> <http://www.w3.org/2000/01/rdf-schema#label> "Output" .
+<https://egovender.github.io/NPOGraph/ontology/output> <http://www.w3.org/2004/02/skos/core#definition> "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served)." .
+<https://egovender.github.io/NPOGraph/ontology/output> <https://egovender.github.io/NPOGraph/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/NPOGraph/ontology/payment-condition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/payment-condition> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> .
+<https://egovender.github.io/NPOGraph/ontology/payment-condition> <http://www.w3.org/2000/01/rdf-schema#label> "Payment Condition" .
+<https://egovender.github.io/NPOGraph/ontology/payment-condition> <http://www.w3.org/2004/02/skos/core#definition> "A requirement (e.g., a submitted report, a milestone reached) that must be satisfied before a scheduled payment is released." .
+<https://egovender.github.io/NPOGraph/ontology/payment-condition> <https://egovender.github.io/NPOGraph/ontology/category> "disbursement" .
+<https://egovender.github.io/NPOGraph/ontology/payment-schedule> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/payment-schedule> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> .
+<https://egovender.github.io/NPOGraph/ontology/payment-schedule> <http://www.w3.org/2000/01/rdf-schema#label> "Payment Schedule" .
+<https://egovender.github.io/NPOGraph/ontology/payment-schedule> <http://www.w3.org/2004/02/skos/core#definition> "The agreed timing and amounts by which award funds will be disbursed to the grantee." .
+<https://egovender.github.io/NPOGraph/ontology/payment-schedule> <https://egovender.github.io/NPOGraph/ontology/category> "disbursement" .
+<https://egovender.github.io/NPOGraph/ontology/payment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/payment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> .
+<https://egovender.github.io/NPOGraph/ontology/payment> <http://www.w3.org/2000/01/rdf-schema#label> "Payment" .
+<https://egovender.github.io/NPOGraph/ontology/payment> <http://www.w3.org/2004/02/skos/core#definition> "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments." .
+<https://egovender.github.io/NPOGraph/ontology/payment> <https://egovender.github.io/NPOGraph/ontology/category> "disbursement" .
+<https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#label> "Program Officer" .
+<https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2004/02/skos/core#definition> "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards." .
+<https://egovender.github.io/NPOGraph/ontology/program-officer> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#comment> "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly." .
+<https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> .
+<https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> .
+<https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#label> "acts on behalf of" .
+<https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/grantee> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstLogicModel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstLogicModel> <http://www.w3.org/2000/01/rdf-schema#comment> "Reports are assessed against the project's Logic Model in terms of Outputs and Outcomes." .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstLogicModel> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstLogicModel> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstLogicModel> <http://www.w3.org/2000/01/rdf-schema#label> "is assessed against" .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstLogicModel> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/logic-model> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstTheoryOfChange> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#comment> "Reports are assessed against the project's Theory of Change in terms of Outputs and Outcomes." .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#label> "is assessed against" .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessedAgainstTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/theory-of-change> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutcome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutcome> <http://www.w3.org/2000/01/rdf-schema#comment> "An Evaluation assesses whether a grant-funded project achieved its intended Outcomes." .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutcome> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/evaluation> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutcome> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutcome> <http://www.w3.org/2000/01/rdf-schema#label> "assesses" .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutcome> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/outcome> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutput> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutput> <http://www.w3.org/2000/01/rdf-schema#comment> "An Evaluation assesses whether a grant-funded project achieved its intended Outputs." .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutput> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/evaluation> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutput> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutput> <http://www.w3.org/2000/01/rdf-schema#label> "assesses" .
+<https://egovender.github.io/NPOGraph/ontology/relations/assessesOutput> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/output> .
+<https://egovender.github.io/NPOGraph/ontology/relations/associatedWithGrantProgram> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/associatedWithGrantProgram> <http://www.w3.org/2000/01/rdf-schema#comment> "A Program Officer is associated with one or more Grant Programs and typically owns the Review and monitoring relationship for Awards made under them." .
+<https://egovender.github.io/NPOGraph/ontology/relations/associatedWithGrantProgram> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/program-officer> .
+<https://egovender.github.io/NPOGraph/ontology/relations/associatedWithGrantProgram> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> .
+<https://egovender.github.io/NPOGraph/ontology/relations/associatedWithGrantProgram> <http://www.w3.org/2000/01/rdf-schema#label> "is associated with" .
+<https://egovender.github.io/NPOGraph/ontology/relations/associatedWithGrantProgram> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/grant-program> .
+<https://egovender.github.io/NPOGraph/ontology/relations/attachesComplianceRequirement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/attachesComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Agreement attaches Compliance Requirements, including a Reporting Schedule." .
+<https://egovender.github.io/NPOGraph/ontology/relations/attachesComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/attachesComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/attachesComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#label> "attaches" .
+<https://egovender.github.io/NPOGraph/ontology/relations/attachesComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/2000/01/rdf-schema#comment> "A Payment Schedule is broken into Installments." .
+<https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/payment-schedule> .
+<https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/2000/01/rdf-schema#label> "is broken into" .
+<https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/installment> .
+<https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#comment> "A Review is conducted by one or more Reviewers." .
+<https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/review> .
+<https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#label> "is conducted by" .
+<https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/reviewer> .
+<https://egovender.github.io/NPOGraph/ontology/relations/disbursedAsPayment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/disbursedAsPayment> <http://www.w3.org/2000/01/rdf-schema#comment> "An Installment is disbursed as a Payment once any Payment Condition is satisfied." .
+<https://egovender.github.io/NPOGraph/ontology/relations/disbursedAsPayment> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/installment> .
+<https://egovender.github.io/NPOGraph/ontology/relations/disbursedAsPayment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/disbursedAsPayment> <http://www.w3.org/2000/01/rdf-schema#label> "is disbursed as" .
+<https://egovender.github.io/NPOGraph/ontology/relations/disbursedAsPayment> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#comment> "A Review evaluates an Application against published Review Criteria." .
+<https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/review> .
+<https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#label> "is evaluated against" .
+<https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/review-criteria> .
+<https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/2000/01/rdf-schema#comment> "An Award's progression from decision through closeout follows the Grant Lifecycle sequence." .
+<https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/2000/01/rdf-schema#label> "follows" .
+<https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/grant-lifecycle> .
+<https://egovender.github.io/NPOGraph/ontology/relations/formalizedByGrantAgreement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/formalizedByGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#comment> "An Award is formalized by a Grant Agreement." .
+<https://egovender.github.io/NPOGraph/ontology/relations/formalizedByGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/relations/formalizedByGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/formalizedByGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#label> "is formalized by" .
+<https://egovender.github.io/NPOGraph/ontology/relations/formalizedByGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/hasPaymentSchedule> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#comment> "An Award's funds are released according to a Payment Schedule." .
+<https://egovender.github.io/NPOGraph/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#label> "has" .
+<https://egovender.github.io/NPOGraph/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/payment-schedule> .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesBudget> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#comment> "An Application includes a proposed Budget." .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/application> .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#label> "includes" .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/budget> .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesReportingSchedule> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesReportingSchedule> <http://www.w3.org/2000/01/rdf-schema#comment> "A Compliance Requirement includes a Reporting Schedule that obligates the Grantee to submit Reports." .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesReportingSchedule> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesReportingSchedule> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesReportingSchedule> <http://www.w3.org/2000/01/rdf-schema#label> "includes" .
+<https://egovender.github.io/NPOGraph/ontology/relations/includesReportingSchedule> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/reporting-schedule> .
+<https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Program issues Funding Opportunities during defined Funding Cycles." .
+<https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-program> .
+<https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#label> "issues" .
+<https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/funding-opportunity> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#comment> "A Funder maintains one or more Grant Programs, each of which issues Funding Opportunities over time." .
+<https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funder> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#label> "maintains" .
+<https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/grant-program> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayHavePaymentCondition> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayHavePaymentCondition> <http://www.w3.org/2000/01/rdf-schema#comment> "An Installment may carry a Payment Condition that must be met before it is disbursed." .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayHavePaymentCondition> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/installment> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayHavePaymentCondition> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayHavePaymentCondition> <http://www.w3.org/2000/01/rdf-schema#label> "may have" .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayHavePaymentCondition> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/payment-condition> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeAudit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeAudit> <http://www.w3.org/2000/01/rdf-schema#comment> "A Compliance Requirement may include an Audit." .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeAudit> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeAudit> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeAudit> <http://www.w3.org/2000/01/rdf-schema#label> "may include" .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeAudit> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/audit> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeMatchingRequirement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeMatchingRequirement> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Agreement may include a Matching Requirement." .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeMatchingRequirement> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeMatchingRequirement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeMatchingRequirement> <http://www.w3.org/2000/01/rdf-schema#label> "may include" .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeMatchingRequirement> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/matching-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeSiteVisit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeSiteVisit> <http://www.w3.org/2000/01/rdf-schema#comment> "A Review may include a Site Visit before a Decision is made." .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeSiteVisit> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/review> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeSiteVisit> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeSiteVisit> <http://www.w3.org/2000/01/rdf-schema#label> "may include" .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayIncludeSiteVisit> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/site-visit> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequestBudgetModification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequestBudgetModification> <http://www.w3.org/2000/01/rdf-schema#comment> "Over the life of an Award, the Grantee may request a Budget Modification." .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequestBudgetModification> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grantee> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequestBudgetModification> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequestBudgetModification> <http://www.w3.org/2000/01/rdf-schema#label> "may request" .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequestBudgetModification> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/budget-modification> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/2000/01/rdf-schema#comment> "A Funding Opportunity may require a Letter of Inquiry before a full Application is invited." .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funding-opportunity> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/2000/01/rdf-schema#label> "may require" .
+<https://egovender.github.io/NPOGraph/ontology/relations/mayRequireLetterOfInquiry> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/letter-of-inquiry> .
+<https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#comment> "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." .
+<https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/amendment> .
+<https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
+<https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#label> "modifies" .
+<https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/obligatesReport> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/obligatesReport> <http://www.w3.org/2000/01/rdf-schema#comment> "A Reporting Schedule obligates the Grantee to submit Reports on a defined cadence." .
+<https://egovender.github.io/NPOGraph/ontology/relations/obligatesReport> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/reporting-schedule> .
+<https://egovender.github.io/NPOGraph/ontology/relations/obligatesReport> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/obligatesReport> <http://www.w3.org/2000/01/rdf-schema#label> "obligates" .
+<https://egovender.github.io/NPOGraph/ontology/relations/obligatesReport> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/2000/01/rdf-schema#comment> "A Funding Opportunity is issued within a defined Funding Cycle." .
+<https://egovender.github.io/NPOGraph/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funding-opportunity> .
+<https://egovender.github.io/NPOGraph/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/2000/01/rdf-schema#label> "occurs during" .
+<https://egovender.github.io/NPOGraph/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/funding-cycle> .
+<https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#comment> "A Review produces a Decision." .
+<https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/review> .
+<https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#label> "produces" .
+<https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/decision> .
+<https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#comment> "Once all Payments are disbursed and all Compliance Requirements are satisfied, the Award reaches Closeout." .
+<https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#label> "reaches" .
+<https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/closeout> .
+<https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#comment> "An Application is submitted in response to a specific Funding Opportunity." .
+<https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/application> .
+<https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#label> "responds to" .
+<https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/funding-opportunity> .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForComplianceRequirement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Administrator is typically responsible for tracking Compliance Requirements." .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-administrator> .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#label> "is responsible for" .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForComplianceRequirement> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForReport> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForReport> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Administrator is typically responsible for Report submission." .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForReport> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-administrator> .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForReport> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForReport> <http://www.w3.org/2000/01/rdf-schema#label> "is responsible for" .
+<https://egovender.github.io/NPOGraph/ontology/relations/responsibleForReport> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/report> .
+<https://egovender.github.io/NPOGraph/ontology/relations/resultsInAward> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/resultsInAward> <http://www.w3.org/2000/01/rdf-schema#comment> "An approved Decision results in an Award." .
+<https://egovender.github.io/NPOGraph/ontology/relations/resultsInAward> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/decision> .
+<https://egovender.github.io/NPOGraph/ontology/relations/resultsInAward> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/resultsInAward> <http://www.w3.org/2000/01/rdf-schema#label> "results in" .
+<https://egovender.github.io/NPOGraph/ontology/relations/resultsInAward> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/2000/01/rdf-schema#comment> "A Funding Opportunity specifies the Eligibility Criteria an applicant must meet." .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funding-opportunity> .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/2000/01/rdf-schema#label> "specifies" .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesTermsAndConditions> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesTermsAndConditions> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Agreement specifies Terms and Conditions, including whether funding is restricted or unrestricted." .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesTermsAndConditions> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesTermsAndConditions> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesTermsAndConditions> <http://www.w3.org/2000/01/rdf-schema#label> "specifies" .
+<https://egovender.github.io/NPOGraph/ontology/relations/specifiesTermsAndConditions> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> .
+<https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grantee (or a project operating under a Fiscal Sponsor) submits an Application in response to a Funding Opportunity." .
+<https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grantee> .
+<https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#label> "submits" .
+<https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/application> .
+<https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#comment> "An Application undergoes Review by one or more Reviewers." .
+<https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/application> .
+<https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#label> "undergoes" .
+<https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/review> .
+<https://egovender.github.io/NPOGraph/ontology/report> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/report> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> .
+<https://egovender.github.io/NPOGraph/ontology/report> <http://www.w3.org/2000/01/rdf-schema#label> "Report" .
+<https://egovender.github.io/NPOGraph/ontology/report> <http://www.w3.org/2004/02/skos/core#definition> "A grantee's submission to the funder describing progress, outcomes, and/or use of funds, per the reporting schedule. Narrative and financial reports are common subtypes." .
+<https://egovender.github.io/NPOGraph/ontology/report> <https://egovender.github.io/NPOGraph/ontology/category> "compliance-and-reporting" .
+<https://egovender.github.io/NPOGraph/ontology/reporting-schedule> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/reporting-schedule> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> .
+<https://egovender.github.io/NPOGraph/ontology/reporting-schedule> <http://www.w3.org/2000/01/rdf-schema#label> "Reporting Schedule" .
+<https://egovender.github.io/NPOGraph/ontology/reporting-schedule> <http://www.w3.org/2004/02/skos/core#definition> "The agreed cadence and due dates for narrative and financial reports over the life of an award." .
+<https://egovender.github.io/NPOGraph/ontology/reporting-schedule> <https://egovender.github.io/NPOGraph/ontology/category> "compliance-and-reporting" .
+<https://egovender.github.io/NPOGraph/ontology/restricted-funding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/restricted-funding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/restricted-funding> <http://www.w3.org/2000/01/rdf-schema#label> "Restricted Funding" .
+<https://egovender.github.io/NPOGraph/ontology/restricted-funding> <http://www.w3.org/2004/02/skos/core#definition> "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement." .
+<https://egovender.github.io/NPOGraph/ontology/restricted-funding> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology/review-criteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/review-criteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
+<https://egovender.github.io/NPOGraph/ontology/review-criteria> <http://www.w3.org/2000/01/rdf-schema#label> "Review Criteria" .
+<https://egovender.github.io/NPOGraph/ontology/review-criteria> <http://www.w3.org/2004/02/skos/core#definition> "The published or internal standards (e.g., alignment with mission, feasibility, budget reasonableness) against which applications are scored." .
+<https://egovender.github.io/NPOGraph/ontology/review-criteria> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/review> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/review> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
+<https://egovender.github.io/NPOGraph/ontology/review> <http://www.w3.org/2000/01/rdf-schema#label> "Review" .
+<https://egovender.github.io/NPOGraph/ontology/review> <http://www.w3.org/2004/02/skos/core#definition> "The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers." .
+<https://egovender.github.io/NPOGraph/ontology/review> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2000/01/rdf-schema#label> "Reviewer" .
+<https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2004/02/skos/core#definition> "An individual (staff, board member, or external peer reviewer) who evaluates an application against review criteria." .
+<https://egovender.github.io/NPOGraph/ontology/reviewer> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
+<https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2000/01/rdf-schema#label> "Site Visit" .
+<https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2004/02/skos/core#definition> "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision." .
+<https://egovender.github.io/NPOGraph/ontology/site-visit> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/2000/01/rdf-schema#label> "Terms and Conditions" .
+<https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/2004/02/skos/core#definition> "The specific obligations, restrictions, and expectations attached to an award (e.g., allowable uses of funds, reporting requirements)." .
+<https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology/theory-of-change> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/theory-of-change> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/NPOGraph/ontology/theory-of-change> <http://www.w3.org/2000/01/rdf-schema#label> "Theory of Change" .
+<https://egovender.github.io/NPOGraph/ontology/theory-of-change> <http://www.w3.org/2004/02/skos/core#definition> "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change." .
+<https://egovender.github.io/NPOGraph/ontology/theory-of-change> <https://egovender.github.io/NPOGraph/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/NPOGraph/ontology/unrestricted-funding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/unrestricted-funding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
+<https://egovender.github.io/NPOGraph/ontology/unrestricted-funding> <http://www.w3.org/2000/01/rdf-schema#label> "Unrestricted Funding" .
+<https://egovender.github.io/NPOGraph/ontology/unrestricted-funding> <http://www.w3.org/2004/02/skos/core#definition> "Funding a grantee may use at its discretion in support of its general mission." .
+<https://egovender.github.io/NPOGraph/ontology/unrestricted-funding> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
+<https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/2000/01/rdf-schema#comment> "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md." .
+<https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/2000/01/rdf-schema#label> "NPOGraph Grantmaking Ontology" .

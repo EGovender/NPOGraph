@@ -13,14 +13,13 @@ This is a living plan, not a commitment with dates. Phases are ordered by depend
 
 ## Phase 1 — Machine-readable ontology
 
-Once the plain-language concepts and relationships have had real review:
-
-- [ ] Canonical JSON representation of concepts and relationships
-- [ ] JSON-LD context
-- [ ] OWL ontology
-- [ ] RDF export
-- [ ] SHACL shapes for validation
-- [ ] A documented process for keeping formats in sync with the docs (docs are the source of truth, not the reverse)
+- [x] Canonical JSON representation of concepts and relationships (`ontology/source/*.json`)
+- [x] JSON-LD context and graph (`ontology/context.jsonld`, `ontology/npograph.jsonld`)
+- [x] OWL ontology (`ontology/npograph.ttl`)
+- [x] RDF export (`ontology/npograph.rdf`, `ontology/npograph.nt`)
+- [x] SHACL shapes for structural validation (`ontology/npograph.shapes.ttl`)
+- [x] A documented process for keeping formats in sync with the docs — see [Data Model](05-data-model.md); enforced in CI via `.github/workflows/ontology.yml`
+- [ ] SHACL/other validation of business rules once an event model exists (see Phase 0)
 
 ## Phase 2 — Interactive explorer
 

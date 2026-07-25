@@ -1,0 +1,39 @@
+name: ontology
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "ontology/**"
+      - "tools/**"
+      - ".github/workflows/ontology.yml"
+  pull_request:
+    paths:
+      - "ontology/**"
+      - "tools/**"
+      - ".github/workflows/ontology.yml"
+
+jobs:
+  generate-and-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r tools/requirements.txt
+
+      - name: Regenerate ontology from source
+        run: python tools/generate_ontology.py
+
+      - name: Fail if generated files are out of date
+        run: |
+          git diff --exit-code -- ontology/npograph.ttl ontology/npograph.rdf \
+            ontology/npograph.nt ontology/context.jsonld ontology/npograph.jsonld || \
+          (echo "::error::Generated ontology files are out of date. Run tools/generate_ontology.py and commit the result." && exit 1)
+
+      - name: Validate ontology against SHACL shapes
+        run: python tools/validate_ontology.py

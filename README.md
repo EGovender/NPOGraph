@@ -24,12 +24,24 @@ NPOGraph/
 ├── LICENSE
 ├── CONTRIBUTING.md
 ├── CODE_OF_CONDUCT.md
-└── docs/
-    ├── 00-vision.md
-    ├── 01-guiding-principles.md
-    ├── 02-core-concepts.md
-    ├── 03-relationships.md
-    └── 04-roadmap.md
+├── docs/
+│   ├── 00-vision.md
+│   ├── 01-guiding-principles.md
+│   ├── 02-core-concepts.md
+│   ├── 03-relationships.md
+│   ├── 04-roadmap.md
+│   └── 05-data-model.md
+├── ontology/
+│   ├── source/                # hand-maintained canonical JSON (concepts, relationships)
+│   ├── npograph.ttl            # generated: OWL ontology (Turtle)
+│   ├── npograph.rdf            # generated: RDF/XML
+│   ├── npograph.nt             # generated: N-Triples
+│   ├── context.jsonld          # generated: JSON-LD context
+│   ├── npograph.jsonld         # generated: JSON-LD graph
+│   └── npograph.shapes.ttl     # hand-authored SHACL shapes
+└── tools/
+    ├── generate_ontology.py    # ontology/source/*.json -> ontology/*.ttl,*.rdf,*.nt,*.jsonld
+    └── validate_ontology.py    # validates npograph.ttl against npograph.shapes.ttl
 ```
 
 - **[Vision](docs/00-vision.md)** — what NPOGraph is trying to be and why it matters.
@@ -37,8 +49,19 @@ NPOGraph/
 - **[Core Concepts](docs/02-core-concepts.md)** — the ~40 grantmaking concepts that make up the first version of the ontology.
 - **[Relationships](docs/03-relationships.md)** — how those concepts connect, including the end-to-end grant lifecycle.
 - **[Roadmap](docs/04-roadmap.md)** — what comes after the docs: machine-readable formats, an interactive explorer, search, and beyond.
+- **[Data Model](docs/05-data-model.md)** — how the prose docs become the machine-readable ontology, and how the two are kept in sync.
 
-There is no machine-readable ontology (JSON-LD, OWL, RDF, SHACL) or application code yet — that's deliberate. The plan is to get the concepts and relationships right in plain language first, since that's what most contributors can review and critique, before committing to formats and code.
+The ontology (`ontology/npograph.ttl` and friends) is machine-generated from `ontology/source/*.json`, which is itself a hand-maintained mirror of the prose docs — see [Data Model](docs/05-data-model.md) before editing anything under `ontology/`. There is no application code yet; that's still deliberate — see the [roadmap](docs/04-roadmap.md).
+
+### Regenerating the ontology
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install -r tools/requirements.txt
+.venv/bin/python tools/generate_ontology.py
+.venv/bin/python tools/validate_ontology.py
+```
+
+CI re-runs this on every change under `ontology/` or `tools/` and fails if the committed generated files don't match, or if SHACL validation fails.
 
 ## Contributing
 

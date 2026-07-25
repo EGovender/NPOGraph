@@ -1,0 +1,33 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "altLabel": "skos:altLabel",
+    "category": "npo:category",
+    "comment": "rdfs:comment",
+    "definition": "skos:definition",
+    "domain": {
+      "@id": "rdfs:domain",
+      "@type": "@id"
+    },
+    "id": "@id",
+    "isDefinedBy": {
+      "@id": "rdfs:isDefinedBy",
+      "@type": "@id"
+    },
+    "label": "rdfs:label",
+    "npo": "https://egovender.github.io/NPOGraph/ontology/",
+    "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "range": {
+      "@id": "rdfs:range",
+      "@type": "@id"
+    },
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "subClassOf": {
+      "@id": "rdfs:subClassOf",
+      "@type": "@id"
+    },
+    "type": "@type"
+  }
+}

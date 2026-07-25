@@ -1,0 +1,335 @@
+[
+  {
+    "id": "rel-funder-maintains-grant-program",
+    "subject": "funder",
+    "predicate": "maintainsGrantProgram",
+    "object": "grant-program",
+    "label": "maintains",
+    "description": "A Funder maintains one or more Grant Programs, each of which issues Funding Opportunities over time.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-grant-program-issues-funding-opportunity",
+    "subject": "grant-program",
+    "predicate": "issuesFundingOpportunity",
+    "object": "funding-opportunity",
+    "label": "issues",
+    "description": "A Grant Program issues Funding Opportunities during defined Funding Cycles.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-funding-opportunity-occurs-during-funding-cycle",
+    "subject": "funding-opportunity",
+    "predicate": "occursDuringFundingCycle",
+    "object": "funding-cycle",
+    "label": "occurs during",
+    "description": "A Funding Opportunity is issued within a defined Funding Cycle.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-funding-opportunity-specifies-eligibility-criteria",
+    "subject": "funding-opportunity",
+    "predicate": "specifiesEligibilityCriteria",
+    "object": "eligibility-criteria",
+    "label": "specifies",
+    "description": "A Funding Opportunity specifies the Eligibility Criteria an applicant must meet.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-funding-opportunity-may-require-letter-of-inquiry",
+    "subject": "funding-opportunity",
+    "predicate": "mayRequireLetterOfInquiry",
+    "object": "letter-of-inquiry",
+    "label": "may require",
+    "description": "A Funding Opportunity may require a Letter of Inquiry before a full Application is invited.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-grantee-submits-application",
+    "subject": "grantee",
+    "predicate": "submitsApplication",
+    "object": "application",
+    "label": "submits",
+    "description": "A Grantee (or a project operating under a Fiscal Sponsor) submits an Application in response to a Funding Opportunity.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-application-responds-to-funding-opportunity",
+    "subject": "application",
+    "predicate": "respondsToFundingOpportunity",
+    "object": "funding-opportunity",
+    "label": "responds to",
+    "description": "An Application is submitted in response to a specific Funding Opportunity.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-application-includes-budget",
+    "subject": "application",
+    "predicate": "includesBudget",
+    "object": "budget",
+    "label": "includes",
+    "description": "An Application includes a proposed Budget.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-fiscal-sponsor-acts-on-behalf-of-grantee",
+    "subject": "fiscal-sponsor",
+    "predicate": "actsOnBehalfOf",
+    "object": "grantee",
+    "label": "acts on behalf of",
+    "description": "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly.",
+    "docRef": "docs/03-relationships.md#organizational-relationships"
+  },
+  {
+    "id": "rel-application-undergoes-review",
+    "subject": "application",
+    "predicate": "undergoesReview",
+    "object": "review",
+    "label": "undergoes",
+    "description": "An Application undergoes Review by one or more Reviewers.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-review-conducted-by-reviewer",
+    "subject": "review",
+    "predicate": "conductedByReviewer",
+    "object": "reviewer",
+    "label": "is conducted by",
+    "description": "A Review is conducted by one or more Reviewers.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-review-evaluated-against-review-criteria",
+    "subject": "review",
+    "predicate": "evaluatedAgainstReviewCriteria",
+    "object": "review-criteria",
+    "label": "is evaluated against",
+    "description": "A Review evaluates an Application against published Review Criteria.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-review-may-include-site-visit",
+    "subject": "review",
+    "predicate": "mayIncludeSiteVisit",
+    "object": "site-visit",
+    "label": "may include",
+    "description": "A Review may include a Site Visit before a Decision is made.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-review-produces-decision",
+    "subject": "review",
+    "predicate": "producesDecision",
+    "object": "decision",
+    "label": "produces",
+    "description": "A Review produces a Decision.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-decision-results-in-award",
+    "subject": "decision",
+    "predicate": "resultsInAward",
+    "object": "award",
+    "label": "results in",
+    "description": "An approved Decision results in an Award.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-award-formalized-by-grant-agreement",
+    "subject": "award",
+    "predicate": "formalizedByGrantAgreement",
+    "object": "grant-agreement",
+    "label": "is formalized by",
+    "description": "An Award is formalized by a Grant Agreement.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-grant-agreement-specifies-terms-and-conditions",
+    "subject": "grant-agreement",
+    "predicate": "specifiesTermsAndConditions",
+    "object": "terms-and-conditions",
+    "label": "specifies",
+    "description": "A Grant Agreement specifies Terms and Conditions, including whether funding is restricted or unrestricted.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-grant-agreement-may-include-matching-requirement",
+    "subject": "grant-agreement",
+    "predicate": "mayIncludeMatchingRequirement",
+    "object": "matching-requirement",
+    "label": "may include",
+    "description": "A Grant Agreement may include a Matching Requirement.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-award-has-payment-schedule",
+    "subject": "award",
+    "predicate": "hasPaymentSchedule",
+    "object": "payment-schedule",
+    "label": "has",
+    "description": "An Award's funds are released according to a Payment Schedule.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-payment-schedule-broken-into-installment",
+    "subject": "payment-schedule",
+    "predicate": "brokenIntoInstallment",
+    "object": "installment",
+    "label": "is broken into",
+    "description": "A Payment Schedule is broken into Installments.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-installment-may-have-payment-condition",
+    "subject": "installment",
+    "predicate": "mayHavePaymentCondition",
+    "object": "payment-condition",
+    "label": "may have",
+    "description": "An Installment may carry a Payment Condition that must be met before it is disbursed.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-installment-disbursed-as-payment",
+    "subject": "installment",
+    "predicate": "disbursedAsPayment",
+    "object": "payment",
+    "label": "is disbursed as",
+    "description": "An Installment is disbursed as a Payment once any Payment Condition is satisfied.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-grantee-may-request-budget-modification",
+    "subject": "grantee",
+    "predicate": "mayRequestBudgetModification",
+    "object": "budget-modification",
+    "label": "may request",
+    "description": "Over the life of an Award, the Grantee may request a Budget Modification.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-amendment-modifies-grant-agreement",
+    "subject": "amendment",
+    "predicate": "modifiesGrantAgreement",
+    "object": "grant-agreement",
+    "label": "modifies",
+    "description": "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms.",
+    "docRef": "docs/03-relationships.md#key-relationship-rules-draft"
+  },
+  {
+    "id": "rel-grant-agreement-attaches-compliance-requirement",
+    "subject": "grant-agreement",
+    "predicate": "attachesComplianceRequirement",
+    "object": "compliance-requirement",
+    "label": "attaches",
+    "description": "A Grant Agreement attaches Compliance Requirements, including a Reporting Schedule.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-compliance-requirement-includes-reporting-schedule",
+    "subject": "compliance-requirement",
+    "predicate": "includesReportingSchedule",
+    "object": "reporting-schedule",
+    "label": "includes",
+    "description": "A Compliance Requirement includes a Reporting Schedule that obligates the Grantee to submit Reports.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-compliance-requirement-may-include-audit",
+    "subject": "compliance-requirement",
+    "predicate": "mayIncludeAudit",
+    "object": "audit",
+    "label": "may include",
+    "description": "A Compliance Requirement may include an Audit.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-reporting-schedule-obligates-report",
+    "subject": "reporting-schedule",
+    "predicate": "obligatesReport",
+    "object": "report",
+    "label": "obligates",
+    "description": "A Reporting Schedule obligates the Grantee to submit Reports on a defined cadence.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-report-assessed-against-logic-model",
+    "subject": "report",
+    "predicate": "assessedAgainstLogicModel",
+    "object": "logic-model",
+    "label": "is assessed against",
+    "description": "Reports are assessed against the project's Logic Model in terms of Outputs and Outcomes.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-report-assessed-against-theory-of-change",
+    "subject": "report",
+    "predicate": "assessedAgainstTheoryOfChange",
+    "object": "theory-of-change",
+    "label": "is assessed against",
+    "description": "Reports are assessed against the project's Theory of Change in terms of Outputs and Outcomes.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-evaluation-assesses-output",
+    "subject": "evaluation",
+    "predicate": "assessesOutput",
+    "object": "output",
+    "label": "assesses",
+    "description": "An Evaluation assesses whether a grant-funded project achieved its intended Outputs.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-evaluation-assesses-outcome",
+    "subject": "evaluation",
+    "predicate": "assessesOutcome",
+    "object": "outcome",
+    "label": "assesses",
+    "description": "An Evaluation assesses whether a grant-funded project achieved its intended Outcomes.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-award-reaches-closeout",
+    "subject": "award",
+    "predicate": "reachesCloseout",
+    "object": "closeout",
+    "label": "reaches",
+    "description": "Once all Payments are disbursed and all Compliance Requirements are satisfied, the Award reaches Closeout.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-award-follows-grant-lifecycle",
+    "subject": "award",
+    "predicate": "followsGrantLifecycle",
+    "object": "grant-lifecycle",
+    "label": "follows",
+    "description": "An Award's progression from decision through closeout follows the Grant Lifecycle sequence.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
+    "id": "rel-program-officer-associated-with-grant-program",
+    "subject": "program-officer",
+    "predicate": "associatedWithGrantProgram",
+    "object": "grant-program",
+    "label": "is associated with",
+    "description": "A Program Officer is associated with one or more Grant Programs and typically owns the Review and monitoring relationship for Awards made under them.",
+    "docRef": "docs/03-relationships.md#organizational-relationships"
+  },
+  {
+    "id": "rel-grant-administrator-responsible-for-report",
+    "subject": "grant-administrator",
+    "predicate": "responsibleForReport",
+    "object": "report",
+    "label": "is responsible for",
+    "description": "A Grant Administrator is typically responsible for Report submission.",
+    "docRef": "docs/03-relationships.md#organizational-relationships"
+  },
+  {
+    "id": "rel-grant-administrator-responsible-for-compliance-requirement",
+    "subject": "grant-administrator",
+    "predicate": "responsibleForComplianceRequirement",
+    "object": "compliance-requirement",
+    "label": "is responsible for",
+    "description": "A Grant Administrator is typically responsible for tracking Compliance Requirements.",
+    "docRef": "docs/03-relationships.md#organizational-relationships"
+  }
+]

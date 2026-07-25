@@ -1,0 +1,67 @@
+# Hand-authored SHACL shapes for NPOGraph.
+#
+# These validate the STRUCTURE of the generated ontology (ontology/npograph.ttl),
+# not instance/business-rule data -- see docs/05-data-model.md for why business
+# rules (e.g. "closeout requires all payments made") aren't encoded here.
+#
+# Run with: .venv/bin/python tools/validate_ontology.py
+
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
+
+npo:ConceptShape
+    a sh:NodeShape ;
+    sh:targetClass owl:Class ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+        sh:message "Every concept (owl:Class) must have exactly one rdfs:label." ;
+    ] ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype <http://www.w3.org/2001/XMLSchema#string> ;
+        sh:message "Every concept (owl:Class) must have exactly one skos:definition." ;
+    ] ;
+    sh:property [
+        sh:path npo:category ;
+        sh:minCount 1 ;
+        sh:message "Every concept (owl:Class) must be assigned a npo:category." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:isDefinedBy ;
+        sh:minCount 1 ;
+        sh:message "Every concept (owl:Class) must link back to its source doc via rdfs:isDefinedBy." ;
+    ] .
+
+npo:RelationshipShape
+    a sh:NodeShape ;
+    sh:targetClass owl:ObjectProperty ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "Every relationship (owl:ObjectProperty) must have an rdfs:label." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:comment ;
+        sh:minCount 1 ;
+        sh:message "Every relationship (owl:ObjectProperty) must have an rdfs:comment describing it." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:domain ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every relationship (owl:ObjectProperty) must have exactly one rdfs:domain." ;
+    ] ;
+    sh:property [
+        sh:path rdfs:range ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every relationship (owl:ObjectProperty) must have exactly one rdfs:range." ;
+    ] .
