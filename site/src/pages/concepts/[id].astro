@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryBadge from '../../components/CategoryBadge.astro';
+import {
+  concepts,
+  requireConcept,
+  getOutgoingRelationships,
+  getIncomingRelationships,
+  getSubtypes,
+  getConcept,
+  docUrl,
+  machineFormats,
+} from '../../data/ontology';
+
+export function getStaticPaths() {
+  return concepts.map((c) => ({ params: { id: c.id } }));
+}
+
+const { id } = Astro.params;
+const concept = requireConcept(id as string);
+const base = import.meta.env.BASE_URL;
+
+const outgoing = getOutgoingRelationships(concept.id);
+const incoming = getIncomingRelationships(concept.id);
+const subtypes = getSubtypes(concept.id);
+const parent = concept.subClassOf ? getConcept(concept.subClassOf) : undefined;
+---
+
+<BaseLayout title={concept.label} description={concept.definition}>
+  <p><a href={`${base}concepts`}>&larr; All concepts</a></p>
+
+  <h1 style="margin-bottom: 0.35rem;">{concept.label}</h1>
+  <div style="margin-bottom: 1rem;">
+    <CategoryBadge categoryId={concept.category} />
+  </div>
+
+  {
+    concept.aliases.length > 0 && (
+      <p class="muted">
+        Also known as: {concept.aliases.join(', ')}
+      </p>
+    )
+  }
+
+  <p style="font-size: 1.1rem;">{concept.definition}</p>
+
+  {
+    parent && (
+      <p class="secondary">
+        Is a specialization of{' '}
+        <a href={`${base}concepts/${parent.id}`}>
+          <strong>{parent.label}</strong>
+        </a>
+        .
+      </p>
+    )
+  }
+
+  {
+    subtypes.length > 0 && (
+      <p class="secondary">
+        Specializations:{' '}
+        {subtypes.map((s, i) => (
+          <>
+            {i > 0 && ', '}
+            <a href={`${base}concepts/${s.id}`}>{s.label}</a>
+          </>
+        ))}
+      </p>
+    )
+  }
+
+  {
+    outgoing.length > 0 && (
+      <section style="margin-top: 2rem;">
+        <h2 style="font-size: 1.05rem;">Relationships from {concept.label}</h2>
+        <ul style="padding-left: 1.1rem;">
+          {outgoing.map(({ relationship, concept: target }) => (
+            <li>
+              <strong>{concept.label}</strong> {relationship.label}{' '}
+              <a href={`${base}concepts/${target.id}`}>{target.label}</a>
+              <div class="muted" style="font-size: 0.85rem;">{relationship.description}</div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  {
+    incoming.length > 0 && (
+      <section style="margin-top: 1.5rem;">
+        <h2 style="font-size: 1.05rem;">Relationships to {concept.label}</h2>
+        <ul style="padding-left: 1.1rem;">
+          {incoming.map(({ relationship, concept: source }) => (
+            <li>
+              <a href={`${base}concepts/${source.id}`}>{source.label}</a> {relationship.label}{' '}
+              <strong>{concept.label}</strong>
+              <div class="muted" style="font-size: 0.85rem;">{relationship.description}</div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+
+  <section style="margin-top: 2rem;" class="card">
+    <h2 style="font-size: 0.95rem; margin-top: 0;">Source &amp; machine-readable formats</h2>
+    <p class="secondary" style="margin-bottom: 0.5rem;">
+      Defined in <a href={docUrl(concept.docRef)}>{concept.docRef}</a>. This concept is also
+      available as an <code>owl:Class</code> in:
+    </p>
+    <ul style="margin: 0; padding-left: 1.1rem;">
+      {machineFormats.map((f) => (
+        <li>
+          <a href={f.href}>{f.label}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

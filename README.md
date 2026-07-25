@@ -2,7 +2,9 @@
 
 **An open knowledge platform for understanding, designing, and improving how mission-driven organizations operate.**
 
-> Status: early-stage / pre-alpha. The ontology and documentation are the current focus — no application code exists yet. See the [roadmap](docs/04-roadmap.md).
+> Status: early-stage / pre-alpha. See the [roadmap](docs/04-roadmap.md).
+
+**[Explore the live ontology →](https://egovender.github.io/NPOGraph/)**
 
 ## What is NPOGraph?
 
@@ -39,9 +41,15 @@ NPOGraph/
 │   ├── context.jsonld          # generated: JSON-LD context
 │   ├── npograph.jsonld         # generated: JSON-LD graph
 │   └── npograph.shapes.ttl     # hand-authored SHACL shapes
-└── tools/
-    ├── generate_ontology.py    # ontology/source/*.json -> ontology/*.ttl,*.rdf,*.nt,*.jsonld
-    └── validate_ontology.py    # validates npograph.ttl against npograph.shapes.ttl
+├── tools/
+│   ├── generate_ontology.py    # ontology/source/*.json -> ontology/*.ttl,*.rdf,*.nt,*.jsonld
+│   └── validate_ontology.py    # validates npograph.ttl against npograph.shapes.ttl
+└── site/                      # Astro + React explorer app, deployed to GitHub Pages
+    ├── scripts/sync-ontology-data.mjs  # copies ontology/source/*.json in at build time
+    └── src/
+        ├── data/                        # typed data-access layer over the synced JSON
+        ├── components/                  # SearchBox, GraphExplorer (cytoscape.js), etc.
+        └── pages/                       # /, /explore, /concepts, /concepts/[id]
 ```
 
 - **[Vision](docs/00-vision.md)** — what NPOGraph is trying to be and why it matters.
@@ -51,7 +59,7 @@ NPOGraph/
 - **[Roadmap](docs/04-roadmap.md)** — what comes after the docs: machine-readable formats, an interactive explorer, search, and beyond.
 - **[Data Model](docs/05-data-model.md)** — how the prose docs become the machine-readable ontology, and how the two are kept in sync.
 
-The ontology (`ontology/npograph.ttl` and friends) is machine-generated from `ontology/source/*.json`, which is itself a hand-maintained mirror of the prose docs — see [Data Model](docs/05-data-model.md) before editing anything under `ontology/`. There is no application code yet; that's still deliberate — see the [roadmap](docs/04-roadmap.md).
+The ontology (`ontology/npograph.ttl` and friends) is machine-generated from `ontology/source/*.json`, which is itself a hand-maintained mirror of the prose docs — see [Data Model](docs/05-data-model.md) before editing anything under `ontology/`. The `site/` explorer app reads that same `ontology/source/*.json` at build time, so the docs, the ontology, and the explorer never describe three different things.
 
 ### Regenerating the ontology
 
@@ -62,6 +70,19 @@ python3 -m venv .venv && .venv/bin/pip install -r tools/requirements.txt
 ```
 
 CI re-runs this on every change under `ontology/` or `tools/` and fails if the committed generated files don't match, or if SHACL validation fails.
+
+### Running the explorer site locally
+
+The site is an [Astro](https://astro.build) + React app and requires Node 22 (see `site/.nvmrc`):
+
+```bash
+cd site
+nvm use   # or: nvm install 22
+npm install
+npm run dev
+```
+
+`npm run dev`/`npm run build` both sync `ontology/source/*.json` into `site/src/data/generated/` first (see `site/scripts/sync-ontology-data.mjs`) — that copy is generated, not committed. Pushes to `main` that touch `site/**` or `ontology/source/**` auto-deploy to GitHub Pages via `.github/workflows/deploy-site.yml`.
 
 ## Contributing
 

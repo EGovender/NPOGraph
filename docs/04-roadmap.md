@@ -23,9 +23,10 @@ This is a living plan, not a commitment with dates. Phases are ordered by depend
 
 ## Phase 2 — Interactive explorer
 
-- [ ] A static site (likely GitHub Pages) that renders the concepts and relationships as a browsable, linked knowledge graph
-- [ ] One page per concept, generated from the same source as the docs
-- [ ] Basic keyword search over concept names and definitions
+- [x] A static site (Astro + React, on GitHub Pages) that renders the concepts and relationships as a browsable, linked knowledge graph — see `site/`, live at [egovender.github.io/NPOGraph](https://egovender.github.io/NPOGraph/)
+- [x] One page per concept, generated from the same source as the docs (`site/src/pages/concepts/[id].astro`, reading `ontology/source/*.json`)
+- [x] Basic keyword search over concept names, aliases, and definitions (`site/src/components/SearchBox.tsx`)
+- [ ] Known gap: a handful of concepts (`indirect-cost-rate`, and the `evaluation`/`output`/`outcome` trio) have no documented relationships yet, so they appear disconnected in the graph explorer — that's an honest reflection of the current ontology, not a site bug. Worth revisiting when Phase 0's business-rules/event-model work happens.
 
 ## Phase 3 — Learning and design tools
 

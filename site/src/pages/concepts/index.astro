@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { concepts } from '../../data/ontology';
+import { CATEGORIES } from '../../data/categories';
+
+const base = import.meta.env.BASE_URL;
+
+const grouped = CATEGORIES.map((category) => ({
+  category,
+  concepts: concepts
+    .filter((c) => c.category === category.id)
+    .sort((a, b) => a.label.localeCompare(b.label)),
+}));
+---
+
+<BaseLayout title="Concepts" description="All core concepts in the NPOGraph grantmaking ontology.">
+  <h1>Core Concepts</h1>
+  <p class="secondary">
+    {concepts.length} concepts, grouped by category. See{' '}
+    <a href="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md">docs/02-core-concepts.md</a>{' '}
+    for the source, or <a href={`${base}explore`}>explore them as a graph</a>.
+  </p>
+
+  {
+    grouped.map(({ category, concepts: inCategory }) => (
+      <section style="margin-top: 2rem;">
+        <h2 style="display: flex; align-items: center; gap: 0.6rem; font-size: 1.15rem;">
+          <span
+            class="search-result-swatch"
+            style={`background: light-dark(${category.colorLight}, ${category.colorDark}); margin-top: 0;`}
+          />
+          {category.label}
+        </h2>
+        <ul style="list-style: none; padding: 0; display: grid; gap: 0.75rem;">
+          {inCategory.map((c) => (
+            <li class="card">
+              <a href={`${base}concepts/${c.id}`} style="font-weight: 600; text-decoration: none;">
+                {c.label}
+              </a>
+              <p class="secondary" style="margin: 0.35rem 0 0;">
+                {c.definition}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</BaseLayout>
