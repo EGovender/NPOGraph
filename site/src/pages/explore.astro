@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GraphExplorer from '../components/GraphExplorer';
-import { concepts, relationships } from '../data/ontology';
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -9,8 +8,8 @@ const base = import.meta.env.BASE_URL;
 <BaseLayout title="Explore" description="Browse the NPOGraph ontology as an interactive graph." wide>
   <h1 style="margin-bottom: 0.25rem;">Explore</h1>
   <p class="secondary" style="margin-top: 0;">
-    Every concept and relationship in the ontology, laid out as a graph. Click a node to see how
-    it connects.
+    Every concept and relationship in the ontology, laid out as a graph. Click a node to see its
+    Overview, Properties, Relationships, Rules, and Technical details.
   </p>
-  <GraphExplorer client:load concepts={concepts} relationships={relationships} base={base} />
+  <GraphExplorer client:load base={base} />
 </BaseLayout>

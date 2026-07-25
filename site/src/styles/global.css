@@ -203,7 +203,7 @@ pre {
 
 .graph-explorer {
   display: grid;
-  grid-template-columns: 220px 1fr 280px;
+  grid-template-columns: 220px 1fr 360px;
   gap: 1rem;
   height: calc(100vh - 220px);
   min-height: 480px;
@@ -216,10 +216,10 @@ pre {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--card-bg);
+  min-width: 0;
 }
 
-.graph-sidebar-title,
-.graph-detail-title {
+.graph-sidebar-title {
   margin-top: 0;
   font-size: 1rem;
 }
@@ -245,24 +245,47 @@ pre {
   font-size: 0.8rem;
 }
 
+.graph-canvas-wrap {
+  position: relative;
+  height: 100%;
+}
+
 .graph-canvas {
+  width: 100%;
+  height: 100%;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--surface);
 }
 
-.graph-detail-subhead {
-  font-size: 0.85rem;
-  margin: 1rem 0 0.35rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+.graph-canvas-mini {
+  height: 320px;
 }
 
-.graph-detail-list {
-  padding-left: 1.1rem;
-  margin: 0;
-  font-size: 0.9rem;
+.graph-controls {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  z-index: 2;
+}
+
+.graph-controls button {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.graph-controls button:hover {
+  background: var(--gridline);
 }
 
 .graph-detail-link {
@@ -276,5 +299,220 @@ pre {
     grid-template-columns: 1fr;
     grid-template-rows: auto 60vh auto;
     height: auto;
+  }
+}
+
+/* Property inspector (Overview / Properties / Relationships / Rules / Technical) */
+
+.inspector {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 0;
+}
+
+.inspector-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.inspector-title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.inspector-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+.inspector-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+}
+
+.inspector-tab:hover {
+  color: var(--text-primary);
+}
+
+.inspector-tab.active {
+  color: var(--text-primary);
+  border-bottom-color: var(--link);
+  font-weight: 600;
+}
+
+.inspector-tab-count {
+  font-size: 0.7rem;
+  background: var(--gridline);
+  color: var(--text-secondary);
+  border-radius: 999px;
+  padding: 0.05rem 0.4rem;
+}
+
+.inspector-body {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.inspector-definition {
+  font-size: 1.05rem;
+}
+
+.inspector-note {
+  font-size: 0.8rem;
+  margin-top: 0;
+}
+
+.inspector-group {
+  margin-top: 1.25rem;
+}
+
+.inspector-group:first-child {
+  margin-top: 0;
+}
+
+.inspector-group-title {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin: 0 0 0.5rem;
+}
+
+.inspector-fields {
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.inspector-field {
+  display: grid;
+  grid-template-columns: minmax(100px, 40%) 1fr;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.88rem;
+}
+
+.inspector-field dt {
+  color: var(--text-secondary);
+}
+
+.inspector-field dd {
+  margin: 0;
+}
+
+.inspector-code {
+  font-size: 0.8rem;
+  word-break: break-all;
+}
+
+.inspector-code-block {
+  font-size: 0.78rem;
+  background: var(--gridline);
+  border-radius: 6px;
+  padding: 0.75rem;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.inspector-chips {
+  display: inline-flex;
+  gap: 0.3rem;
+  margin-left: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: inline-block;
+  font-size: 0.72rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: var(--gridline);
+  color: var(--text-secondary);
+}
+
+.chip-required {
+  background: color-mix(in srgb, var(--link) 20%, var(--gridline));
+  color: var(--text-primary);
+}
+
+.chip-value {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.inspector-allowed-values {
+  margin-top: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: wrap;
+}
+
+.inspector-rel-list,
+.inspector-rules-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.inspector-rel-desc {
+  margin-top: 0.15rem;
+  font-size: 0.82rem;
+}
+
+/* Concept page: mini-graph + inspector, two columns */
+
+.concept-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+.concept-graph-col {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  padding: 1rem;
+}
+
+.concept-graph-hint {
+  font-size: 0.8rem;
+  margin: 0.6rem 0 0;
+}
+
+.concept-inspector-col {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+  padding: 1.25rem;
+  min-height: 420px;
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  .concept-layout {
+    grid-template-columns: 1fr;
   }
 }

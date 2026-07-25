@@ -14,7 +14,13 @@ const DEST_DIR = join(__dirname, '..', 'src', 'data', 'generated');
 
 mkdirSync(DEST_DIR, { recursive: true });
 
-for (const file of ['concepts.json', 'relationships.json']) {
+for (const file of [
+  'concepts.json',
+  'relationships.json',
+  'properties.json',
+  'business-rules.json',
+  'meta.json',
+]) {
   copyFileSync(join(SOURCE_DIR, file), join(DEST_DIR, file));
   console.log(`synced ${file} -> src/data/generated/${file}`);
 }

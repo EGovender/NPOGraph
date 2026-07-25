@@ -1,6 +1,6 @@
 # NPOGraph explorer
 
-The interactive explorer for the [NPOGraph](../README.md) grantmaking ontology — search, browse, and graph-visualize the concepts and relationships defined in `../ontology/source/*.json`. Built with [Astro](https://astro.build) (static output) and a React island for the interactive graph ([cytoscape.js](https://js.cytoscape.org/)).
+The interactive explorer for the [NPOGraph](../README.md) grantmaking ontology — search, browse, and graph-visualize the concepts, relationships, properties, and business rules defined in `../ontology/source/*.json`. Built with [Astro](https://astro.build) (static output) and React islands for the interactive graph ([cytoscape.js](https://js.cytoscape.org/)) and the property inspector.
 
 Live at [egovender.github.io/NPOGraph](https://egovender.github.io/NPOGraph/).
 
@@ -28,11 +28,12 @@ Node 22 (see `.nvmrc`) — the current Astro major version requires it. If you u
 src/
 ├── data/          # typed data-access layer (ontology.ts, categories.ts) + generated/ (gitignored)
 ├── layouts/       # BaseLayout.astro
-├── components/    # CategoryBadge, SearchBox (React), GraphExplorer (React + cytoscape)
+├── components/    # SearchBox, GraphExplorer (React + cytoscape, 'full' and 'mini' modes),
+│                  # PropertyInspector (Overview/Properties/Relationships/Rules/Technical tabs)
 └── pages/
     ├── index.astro              # home + search
-    ├── explore.astro            # graph explorer
+    ├── explore.astro            # graph explorer + property inspector
     └── concepts/
         ├── index.astro          # full concept list, grouped by category
-        └── [id].astro           # one page per concept
+        └── [id].astro           # one page per concept: mini neighborhood graph + property inspector
 ```
