@@ -1,728 +1,732 @@
 {
   "@context": {
     "@version": 1.1,
-    "altLabel": "skos:altLabel",
-    "category": "npo:category",
-    "comment": "rdfs:comment",
-    "definition": "skos:definition",
-    "domain": {
-      "@id": "rdfs:domain",
-      "@type": "@id"
-    },
-    "id": "@id",
-    "isDefinedBy": {
-      "@id": "rdfs:isDefinedBy",
-      "@type": "@id"
-    },
-    "label": "rdfs:label",
     "npo": "https://egovender.github.io/NPOGraph/ontology/",
     "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
     "owl": "http://www.w3.org/2002/07/owl#",
-    "range": {
-      "@id": "rdfs:range",
-      "@type": "@id"
-    },
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
+    "label": "rdfs:label",
+    "definition": "skos:definition",
+    "altLabel": "skos:altLabel",
+    "category": "npo:category",
+    "comment": "rdfs:comment",
     "subClassOf": {
       "@id": "rdfs:subClassOf",
       "@type": "@id"
     },
-    "type": "@type"
+    "domain": {
+      "@id": "rdfs:domain",
+      "@type": "@id"
+    },
+    "range": {
+      "@id": "rdfs:range",
+      "@type": "@id"
+    },
+    "isDefinedBy": {
+      "@id": "rdfs:isDefinedBy",
+      "@type": "@id"
+    },
+    "type": "@type",
+    "id": "@id"
   },
   "@graph": [
     {
-      "category": "organizational-entities",
-      "definition": "An individual (staff, board member, or external peer reviewer) who evaluates an application against review criteria.",
-      "id": "npo:reviewer",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
-      "label": "Reviewer",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "An Application includes a proposed Budget.",
-      "domain": "npo:application",
-      "id": "nporel:includesBudget",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "includes",
-      "range": "npo:budget",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "Reports are assessed against the project's Logic Model in terms of Outputs and Outcomes.",
-      "domain": "npo:report",
-      "id": "nporel:assessedAgainstLogicModel",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "is assessed against",
-      "range": "npo:logic-model",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "organizational-entities",
-      "definition": "An individual at the grantee organization responsible for compliance, reporting, and financial management of an award.",
-      "id": "npo:grant-administrator",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
-      "label": "Grant Administrator",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "An Application is submitted in response to a specific Funding Opportunity.",
-      "domain": "npo:application",
-      "id": "nporel:respondsToFundingOpportunity",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "responds to",
-      "range": "npo:funding-opportunity",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "disbursement",
-      "definition": "The agreed timing and amounts by which award funds will be disbursed to the grantee.",
-      "id": "npo:payment-schedule",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement",
-      "label": "Payment Schedule",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "A Funder maintains one or more Grant Programs, each of which issues Funding Opportunities over time.",
-      "domain": "npo:funder",
-      "id": "nporel:maintainsGrantProgram",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "maintains",
-      "range": "npo:grant-program",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "organizational-entities",
-      "definition": "Any legal entity participating in grantmaking, either as a funder or a recipient. The general category that Funder and Grantee specialize.",
-      "id": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
-      "label": "Organization",
-      "type": "owl:Class"
-    },
-    {
-      "category": "application-and-review",
-      "definition": "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision.",
-      "id": "npo:site-visit",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
-      "label": "Site Visit",
-      "type": "owl:Class"
-    },
-    {
-      "category": "outcomes-and-closeout",
-      "definition": "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output.",
-      "id": "npo:outcome",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
-      "label": "Outcome",
-      "type": "owl:Class"
-    },
-    {
-      "category": "compliance-and-reporting",
-      "definition": "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award.",
-      "id": "npo:indirect-cost-rate",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting",
-      "label": "Indirect Cost Rate",
-      "type": "owl:Class"
-    },
-    {
-      "category": "funding-structure",
-      "definition": "A recurring period (e.g., quarterly, annual) within a grant program during which applications are accepted and decided.",
-      "id": "npo:funding-cycle",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
-      "label": "Funding Cycle",
-      "type": "owl:Class"
-    },
-    {
-      "category": "outcomes-and-closeout",
-      "definition": "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes.",
-      "id": "npo:evaluation",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
-      "label": "Evaluation",
-      "type": "owl:Class"
-    },
-    {
-      "category": "funding-structure",
-      "definition": "A funder's standing area of giving (e.g., \"Environmental Justice Grants\"), under which funding opportunities are issued over time.",
-      "id": "npo:grant-program",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
-      "label": "Grant Program",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "A Grant Agreement may include a Matching Requirement.",
-      "domain": "npo:grant-agreement",
-      "id": "nporel:mayIncludeMatchingRequirement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "may include",
-      "range": "npo:matching-requirement",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly.",
-      "domain": "npo:fiscal-sponsor",
-      "id": "nporel:actsOnBehalfOf",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships",
-      "label": "acts on behalf of",
-      "range": "npo:grantee",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "A Review produces a Decision.",
-      "domain": "npo:review",
-      "id": "nporel:producesDecision",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "produces",
-      "range": "npo:decision",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "A Grantee (or a project operating under a Fiscal Sponsor) submits an Application in response to a Funding Opportunity.",
-      "domain": "npo:grantee",
-      "id": "nporel:submitsApplication",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "submits",
-      "range": "npo:application",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "award-and-agreement",
-      "definition": "A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match).",
-      "id": "npo:matching-requirement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
-      "label": "Matching Requirement",
-      "type": "owl:Class"
-    },
-    {
-      "category": "cross-cutting",
-      "definition": "The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout.",
-      "id": "npo:grant-lifecycle",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#cross-cutting",
-      "label": "Grant Lifecycle",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "A Grant Agreement attaches Compliance Requirements, including a Reporting Schedule.",
-      "domain": "npo:grant-agreement",
-      "id": "nporel:attachesComplianceRequirement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "attaches",
-      "range": "npo:compliance-requirement",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "A Funding Opportunity specifies the Eligibility Criteria an applicant must meet.",
-      "domain": "npo:funding-opportunity",
-      "id": "nporel:specifiesEligibilityCriteria",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "specifies",
-      "range": "npo:eligibility-criteria",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "award-and-agreement",
-      "definition": "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations.",
-      "id": "npo:grant-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
-      "label": "Grant Agreement",
-      "type": "owl:Class"
-    },
-    {
-      "category": "compliance-and-reporting",
-      "definition": "The agreed cadence and due dates for narrative and financial reports over the life of an award.",
-      "id": "npo:reporting-schedule",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting",
-      "label": "Reporting Schedule",
-      "type": "owl:Class"
-    },
-    {
-      "category": "award-and-agreement",
-      "definition": "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement.",
-      "id": "npo:restricted-funding",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
-      "label": "Restricted Funding",
-      "type": "owl:Class"
-    },
-    {
-      "category": "disbursement",
-      "definition": "A grantee-requested, funder-approved change to how awarded funds are allocated across budget categories, without changing the total award amount.",
-      "id": "npo:budget-modification",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement",
-      "label": "Budget Modification",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "An Application undergoes Review by one or more Reviewers.",
-      "domain": "npo:application",
-      "id": "nporel:undergoesReview",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "undergoes",
-      "range": "npo:review",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "A Grant Administrator is typically responsible for Report submission.",
-      "domain": "npo:grant-administrator",
-      "id": "nporel:responsibleForReport",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships",
-      "label": "is responsible for",
-      "range": "npo:report",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "A Funding Opportunity may require a Letter of Inquiry before a full Application is invited.",
-      "domain": "npo:funding-opportunity",
-      "id": "nporel:mayRequireLetterOfInquiry",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "may require",
-      "range": "npo:letter-of-inquiry",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "An Award's progression from decision through closeout follows the Grant Lifecycle sequence.",
-      "domain": "npo:award",
-      "id": "nporel:followsGrantLifecycle",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "follows",
-      "range": "npo:grant-lifecycle",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "award-and-agreement",
-      "definition": "Funding a grantee may use at its discretion in support of its general mission.",
-      "id": "npo:unrestricted-funding",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
-      "label": "Unrestricted Funding",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "A Grant Program issues Funding Opportunities during defined Funding Cycles.",
-      "domain": "npo:grant-program",
-      "id": "nporel:issuesFundingOpportunity",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "issues",
-      "range": "npo:funding-opportunity",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "altLabel": "Grant Amendment",
-      "category": "award-and-agreement",
-      "definition": "A formally agreed change to an existing grant agreement's terms, budget, timeline, or amount, made after the original agreement was signed.",
       "id": "npo:amendment",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
+      "type": "owl:Class",
       "label": "Amendment",
-      "type": "owl:Class"
+      "definition": "A formally agreed change to an existing grant agreement's terms, budget, timeline, or amount, made after the original agreement was signed.",
+      "category": "award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
+      "altLabel": [
+        "Grant Amendment"
+      ]
     },
     {
-      "category": "organizational-entities",
-      "definition": "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards.",
-      "id": "npo:program-officer",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
-      "label": "Program Officer",
-      "type": "owl:Class"
+      "id": "npo:application",
+      "type": "owl:Class",
+      "label": "Application",
+      "definition": "A grantee's formal submission requesting funding under a specific funding opportunity, including a proposal narrative and budget.",
+      "category": "application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
+      "altLabel": [
+        "Grant Application"
+      ]
     },
     {
-      "comment": "A Review may include a Site Visit before a Decision is made.",
-      "domain": "npo:review",
-      "id": "nporel:mayIncludeSiteVisit",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "may include",
-      "range": "npo:site-visit",
-      "type": "owl:ObjectProperty"
+      "id": "npo:audit",
+      "type": "owl:Class",
+      "label": "Audit",
+      "definition": "A formal, independent examination of a grantee's financial records, either as a general organizational requirement or specific to a grant.",
+      "category": "compliance-and-reporting",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
-      "category": "disbursement",
-      "definition": "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments.",
-      "id": "npo:payment",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement",
-      "label": "Payment",
-      "type": "owl:Class"
+      "id": "npo:award",
+      "type": "owl:Class",
+      "label": "Award",
+      "definition": "A funder's formal commitment to provide a specific amount of funding to a grantee, following an approved application or decision.",
+      "category": "award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
+      "altLabel": [
+        "Grant Award"
+      ]
     },
     {
-      "category": "outcomes-and-closeout",
-      "definition": "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served).",
-      "id": "npo:output",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
-      "label": "Output",
-      "type": "owl:Class"
-    },
-    {
-      "category": "funding-structure",
-      "definition": "The conditions an organization or project must meet to apply to a funding opportunity.",
-      "id": "npo:eligibility-criteria",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
-      "label": "Eligibility Criteria",
-      "type": "owl:Class"
-    },
-    {
-      "category": "funding-structure",
-      "definition": "A structured estimate of costs associated with a proposed or funded project, broken into categories (e.g., personnel, overhead, direct program costs).",
       "id": "npo:budget",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "type": "owl:Class",
       "label": "Budget",
-      "type": "owl:Class"
+      "definition": "A structured estimate of costs associated with a proposed or funded project, broken into categories (e.g., personnel, overhead, direct program costs).",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
     },
     {
-      "category": "application-and-review",
-      "definition": "The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers.",
-      "id": "npo:review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
-      "label": "Review",
-      "type": "owl:Class"
+      "id": "npo:budget-modification",
+      "type": "owl:Class",
+      "label": "Budget Modification",
+      "definition": "A grantee-requested, funder-approved change to how awarded funds are allocated across budget categories, without changing the total award amount.",
+      "category": "disbursement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
     },
     {
-      "comment": "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md.",
-      "id": "https://egovender.github.io/NPOGraph/ontology",
-      "label": "NPOGraph Grantmaking Ontology",
-      "type": "owl:Ontology"
+      "id": "npo:closeout",
+      "type": "owl:Class",
+      "label": "Closeout",
+      "definition": "The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
-      "comment": "Once all Payments are disbursed and all Compliance Requirements are satisfied, the Award reaches Closeout.",
-      "domain": "npo:award",
-      "id": "nporel:reachesCloseout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "reaches",
-      "range": "npo:closeout",
-      "type": "owl:ObjectProperty"
+      "id": "npo:compliance-requirement",
+      "type": "owl:Class",
+      "label": "Compliance Requirement",
+      "definition": "An obligation attached to an award that the grantee must satisfy to remain in good standing (e.g., timely reporting, allowable use of funds, insurance).",
+      "category": "compliance-and-reporting",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
-      "comment": "Reports are assessed against the project's Theory of Change in terms of Outputs and Outcomes.",
-      "domain": "npo:report",
-      "id": "nporel:assessedAgainstTheoryOfChange",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "is assessed against",
-      "range": "npo:theory-of-change",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "An Evaluation assesses whether a grant-funded project achieved its intended Outcomes.",
-      "domain": "npo:evaluation",
-      "id": "nporel:assessesOutcome",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "assesses",
-      "range": "npo:outcome",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "application-and-review",
-      "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
       "id": "npo:decision",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
+      "type": "owl:Class",
       "label": "Decision",
-      "type": "owl:Class"
+      "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
+      "category": "application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
     },
     {
-      "comment": "An Installment may carry a Payment Condition that must be met before it is disbursed.",
-      "domain": "npo:installment",
-      "id": "nporel:mayHavePaymentCondition",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "may have",
-      "range": "npo:payment-condition",
-      "type": "owl:ObjectProperty"
+      "id": "npo:eligibility-criteria",
+      "type": "owl:Class",
+      "label": "Eligibility Criteria",
+      "definition": "The conditions an organization or project must meet to apply to a funding opportunity.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
     },
     {
-      "comment": "A Review is conducted by one or more Reviewers.",
-      "domain": "npo:review",
-      "id": "nporel:conductedByReviewer",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "is conducted by",
-      "range": "npo:reviewer",
-      "type": "owl:ObjectProperty"
+      "id": "npo:evaluation",
+      "type": "owl:Class",
+      "label": "Evaluation",
+      "definition": "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
-      "comment": "A Review evaluates an Application against published Review Criteria.",
-      "domain": "npo:review",
-      "id": "nporel:evaluatedAgainstReviewCriteria",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "is evaluated against",
-      "range": "npo:review-criteria",
-      "type": "owl:ObjectProperty"
+      "id": "npo:fiscal-sponsor",
+      "type": "owl:Class",
+      "label": "Fiscal Sponsor",
+      "definition": "An organization that accepts and administers grant funds on behalf of a project or group that isn't itself a legal entity able to receive grants directly.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:organization"
     },
     {
+      "id": "npo:funder",
+      "type": "owl:Class",
+      "label": "Funder",
+      "definition": "An organization (foundation, government agency, corporation, or individual) that provides funding through grants.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "altLabel": [
+        "Grantmaker"
+      ],
+      "subClassOf": "npo:organization"
+    },
+    {
+      "id": "npo:funding-cycle",
+      "type": "owl:Class",
+      "label": "Funding Cycle",
+      "definition": "A recurring period (e.g., quarterly, annual) within a grant program during which applications are accepted and decided.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+    },
+    {
+      "id": "npo:funding-opportunity",
+      "type": "owl:Class",
+      "label": "Funding Opportunity",
+      "definition": "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "altLabel": [
+        "NOFO",
+        "Notice of Funding Opportunity",
+        "RFP",
+        "Request for Proposals"
+      ]
+    },
+    {
+      "id": "npo:grant-administrator",
+      "type": "owl:Class",
+      "label": "Grant Administrator",
+      "definition": "An individual at the grantee organization responsible for compliance, reporting, and financial management of an award.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+    },
+    {
+      "id": "npo:grant-agreement",
+      "type": "owl:Class",
+      "label": "Grant Agreement",
+      "definition": "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations.",
+      "category": "award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+    },
+    {
+      "id": "npo:grant-lifecycle",
+      "type": "owl:Class",
+      "label": "Grant Lifecycle",
+      "definition": "The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout.",
+      "category": "cross-cutting",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#cross-cutting"
+    },
+    {
+      "id": "npo:grant-program",
+      "type": "owl:Class",
+      "label": "Grant Program",
+      "definition": "A funder's standing area of giving (e.g., \"Environmental Justice Grants\"), under which funding opportunities are issued over time.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+    },
+    {
+      "id": "npo:grantee",
+      "type": "owl:Class",
+      "label": "Grantee",
+      "definition": "An organization or individual that receives a grant award. Also called a recipient or subrecipient when funds are re-granted.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
       "altLabel": [
         "Recipient",
         "Subrecipient"
       ],
+      "subClassOf": "npo:organization"
+    },
+    {
+      "id": "npo:indirect-cost-rate",
+      "type": "owl:Class",
+      "label": "Indirect Cost Rate",
+      "definition": "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award.",
+      "category": "compliance-and-reporting",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
+    },
+    {
+      "id": "npo:installment",
+      "type": "owl:Class",
+      "label": "Installment",
+      "definition": "A single scheduled portion of an award's total funds, to be disbursed at a defined point or upon meeting a condition.",
+      "category": "disbursement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+    },
+    {
+      "id": "npo:letter-of-inquiry",
+      "type": "owl:Class",
+      "label": "Letter of Inquiry",
+      "definition": "A brief, preliminary submission used by some funders to screen interest before inviting a full application.",
+      "category": "application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
+      "altLabel": [
+        "LOI"
+      ]
+    },
+    {
+      "id": "npo:logic-model",
+      "type": "owl:Class",
+      "label": "Logic Model",
+      "definition": "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
+      "id": "npo:matching-requirement",
+      "type": "owl:Class",
+      "label": "Matching Requirement",
+      "definition": "A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match).",
+      "category": "award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+    },
+    {
+      "id": "npo:organization",
+      "type": "owl:Class",
+      "label": "Organization",
+      "definition": "Any legal entity participating in grantmaking, either as a funder or a recipient. The general category that Funder and Grantee specialize.",
       "category": "organizational-entities",
-      "definition": "An organization or individual that receives a grant award. Also called a recipient or subrecipient when funds are re-granted.",
-      "id": "npo:grantee",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
-      "label": "Grantee",
-      "subClassOf": "npo:organization",
-      "type": "owl:Class"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
-      "altLabel": "Grantmaker",
+      "id": "npo:outcome",
+      "type": "owl:Class",
+      "label": "Outcome",
+      "definition": "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
+      "id": "npo:output",
+      "type": "owl:Class",
+      "label": "Output",
+      "definition": "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served).",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
+      "id": "npo:payment",
+      "type": "owl:Class",
+      "label": "Payment",
+      "definition": "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments.",
+      "category": "disbursement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+    },
+    {
+      "id": "npo:payment-condition",
+      "type": "owl:Class",
+      "label": "Payment Condition",
+      "definition": "A requirement (e.g., a submitted report, a milestone reached) that must be satisfied before a scheduled payment is released.",
+      "category": "disbursement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+    },
+    {
+      "id": "npo:payment-schedule",
+      "type": "owl:Class",
+      "label": "Payment Schedule",
+      "definition": "The agreed timing and amounts by which award funds will be disbursed to the grantee.",
+      "category": "disbursement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+    },
+    {
+      "id": "npo:program-officer",
+      "type": "owl:Class",
+      "label": "Program Officer",
+      "definition": "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards.",
       "category": "organizational-entities",
-      "definition": "An organization (foundation, government agency, corporation, or individual) that provides funding through grants.",
-      "id": "npo:funder",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
-      "label": "Funder",
-      "subClassOf": "npo:organization",
-      "type": "owl:Class"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
-      "comment": "An Award's funds are released according to a Payment Schedule.",
-      "domain": "npo:award",
-      "id": "nporel:hasPaymentSchedule",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "has",
-      "range": "npo:payment-schedule",
-      "type": "owl:ObjectProperty"
+      "id": "npo:report",
+      "type": "owl:Class",
+      "label": "Report",
+      "definition": "A grantee's submission to the funder describing progress, outcomes, and/or use of funds, per the reporting schedule. Narrative and financial reports are common subtypes.",
+      "category": "compliance-and-reporting",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
+      "id": "npo:reporting-schedule",
+      "type": "owl:Class",
+      "label": "Reporting Schedule",
+      "definition": "The agreed cadence and due dates for narrative and financial reports over the life of an award.",
+      "category": "compliance-and-reporting",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
+    },
+    {
+      "id": "npo:restricted-funding",
+      "type": "owl:Class",
+      "label": "Restricted Funding",
+      "definition": "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement.",
+      "category": "award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+    },
+    {
+      "id": "npo:review",
+      "type": "owl:Class",
+      "label": "Review",
+      "definition": "The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers.",
+      "category": "application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+    },
+    {
+      "id": "npo:review-criteria",
+      "type": "owl:Class",
+      "label": "Review Criteria",
+      "definition": "The published or internal standards (e.g., alignment with mission, feasibility, budget reasonableness) against which applications are scored.",
+      "category": "application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+    },
+    {
+      "id": "npo:reviewer",
+      "type": "owl:Class",
+      "label": "Reviewer",
+      "definition": "An individual (staff, board member, or external peer reviewer) who evaluates an application against review criteria.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+    },
+    {
+      "id": "npo:site-visit",
+      "type": "owl:Class",
+      "label": "Site Visit",
+      "definition": "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision.",
+      "category": "application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+    },
+    {
+      "id": "npo:terms-and-conditions",
+      "type": "owl:Class",
+      "label": "Terms and Conditions",
+      "definition": "The specific obligations, restrictions, and expectations attached to an award (e.g., allowable uses of funds, reporting requirements).",
+      "category": "award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+    },
+    {
+      "id": "npo:theory-of-change",
+      "type": "owl:Class",
+      "label": "Theory of Change",
+      "definition": "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
+      "id": "npo:unrestricted-funding",
+      "type": "owl:Class",
+      "label": "Unrestricted Funding",
+      "definition": "Funding a grantee may use at its discretion in support of its general mission.",
+      "category": "award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+    },
+    {
+      "id": "nporel:modifiesGrantAgreement",
+      "type": "owl:ObjectProperty",
+      "label": "modifies",
       "comment": "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms.",
       "domain": "npo:amendment",
-      "id": "nporel:modifiesGrantAgreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
-      "label": "modifies",
       "range": "npo:grant-agreement",
-      "type": "owl:ObjectProperty"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft"
     },
     {
-      "category": "award-and-agreement",
-      "definition": "The specific obligations, restrictions, and expectations attached to an award (e.g., allowable uses of funds, reporting requirements).",
-      "id": "npo:terms-and-conditions",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
-      "label": "Terms and Conditions",
-      "type": "owl:Class"
+      "id": "nporel:includesBudget",
+      "type": "owl:ObjectProperty",
+      "label": "includes",
+      "comment": "An Application includes a proposed Budget.",
+      "domain": "npo:application",
+      "range": "npo:budget",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:respondsToFundingOpportunity",
+      "type": "owl:ObjectProperty",
+      "label": "responds to",
+      "comment": "An Application is submitted in response to a specific Funding Opportunity.",
+      "domain": "npo:application",
+      "range": "npo:funding-opportunity",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:undergoesReview",
+      "type": "owl:ObjectProperty",
+      "label": "undergoes",
+      "comment": "An Application undergoes Review by one or more Reviewers.",
+      "domain": "npo:application",
+      "range": "npo:review",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:followsGrantLifecycle",
+      "type": "owl:ObjectProperty",
+      "label": "follows",
+      "comment": "An Award's progression from decision through closeout follows the Grant Lifecycle sequence.",
+      "domain": "npo:award",
+      "range": "npo:grant-lifecycle",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:formalizedByGrantAgreement",
+      "type": "owl:ObjectProperty",
+      "label": "is formalized by",
       "comment": "An Award is formalized by a Grant Agreement.",
       "domain": "npo:award",
-      "id": "nporel:formalizedByGrantAgreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "is formalized by",
       "range": "npo:grant-agreement",
-      "type": "owl:ObjectProperty"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
-      "comment": "A Grant Administrator is typically responsible for tracking Compliance Requirements.",
-      "domain": "npo:grant-administrator",
-      "id": "nporel:responsibleForComplianceRequirement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships",
-      "label": "is responsible for",
-      "range": "npo:compliance-requirement",
-      "type": "owl:ObjectProperty"
+      "id": "nporel:hasPaymentSchedule",
+      "type": "owl:ObjectProperty",
+      "label": "has",
+      "comment": "An Award's funds are released according to a Payment Schedule.",
+      "domain": "npo:award",
+      "range": "npo:payment-schedule",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
-      "comment": "A Compliance Requirement may include an Audit.",
-      "domain": "npo:compliance-requirement",
-      "id": "nporel:mayIncludeAudit",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "may include",
-      "range": "npo:audit",
-      "type": "owl:ObjectProperty"
+      "id": "nporel:reachesCloseout",
+      "type": "owl:ObjectProperty",
+      "label": "reaches",
+      "comment": "Once all Payments are disbursed and all Compliance Requirements are satisfied, the Award reaches Closeout.",
+      "domain": "npo:award",
+      "range": "npo:closeout",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
-      "comment": "A Grant Agreement specifies Terms and Conditions, including whether funding is restricted or unrestricted.",
-      "domain": "npo:grant-agreement",
-      "id": "nporel:specifiesTermsAndConditions",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "specifies",
-      "range": "npo:terms-and-conditions",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "application-and-review",
-      "definition": "The published or internal standards (e.g., alignment with mission, feasibility, budget reasonableness) against which applications are scored.",
-      "id": "npo:review-criteria",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
-      "label": "Review Criteria",
-      "type": "owl:Class"
-    },
-    {
-      "category": "compliance-and-reporting",
-      "definition": "An obligation attached to an award that the grantee must satisfy to remain in good standing (e.g., timely reporting, allowable use of funds, insurance).",
-      "id": "npo:compliance-requirement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting",
-      "label": "Compliance Requirement",
-      "type": "owl:Class"
-    },
-    {
-      "category": "outcomes-and-closeout",
-      "definition": "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change.",
-      "id": "npo:theory-of-change",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
-      "label": "Theory of Change",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "A Payment Schedule is broken into Installments.",
-      "domain": "npo:payment-schedule",
-      "id": "nporel:brokenIntoInstallment",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "is broken into",
-      "range": "npo:installment",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "disbursement",
-      "definition": "A single scheduled portion of an award's total funds, to be disbursed at a defined point or upon meeting a condition.",
-      "id": "npo:installment",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement",
-      "label": "Installment",
-      "type": "owl:Class"
-    },
-    {
-      "category": "outcomes-and-closeout",
-      "definition": "The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied.",
-      "id": "npo:closeout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
-      "label": "Closeout",
-      "type": "owl:Class"
-    },
-    {
-      "altLabel": "Grant Application",
-      "category": "application-and-review",
-      "definition": "A grantee's formal submission requesting funding under a specific funding opportunity, including a proposal narrative and budget.",
-      "id": "npo:application",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
-      "label": "Application",
-      "type": "owl:Class"
-    },
-    {
+      "id": "nporel:includesReportingSchedule",
+      "type": "owl:ObjectProperty",
+      "label": "includes",
       "comment": "A Compliance Requirement includes a Reporting Schedule that obligates the Grantee to submit Reports.",
       "domain": "npo:compliance-requirement",
-      "id": "nporel:includesReportingSchedule",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "includes",
       "range": "npo:reporting-schedule",
-      "type": "owl:ObjectProperty"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
-      "altLabel": "Grant Award",
-      "category": "award-and-agreement",
-      "definition": "A funder's formal commitment to provide a specific amount of funding to a grantee, following an approved application or decision.",
-      "id": "npo:award",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
-      "label": "Award",
-      "type": "owl:Class"
+      "id": "nporel:mayIncludeAudit",
+      "type": "owl:ObjectProperty",
+      "label": "may include",
+      "comment": "A Compliance Requirement may include an Audit.",
+      "domain": "npo:compliance-requirement",
+      "range": "npo:audit",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
-      "comment": "A Funding Opportunity is issued within a defined Funding Cycle.",
-      "domain": "npo:funding-opportunity",
-      "id": "nporel:occursDuringFundingCycle",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "occurs during",
-      "range": "npo:funding-cycle",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "compliance-and-reporting",
-      "definition": "A formal, independent examination of a grantee's financial records, either as a general organizational requirement or specific to a grant.",
-      "id": "npo:audit",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting",
-      "label": "Audit",
-      "type": "owl:Class"
-    },
-    {
-      "category": "outcomes-and-closeout",
-      "definition": "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project.",
-      "id": "npo:logic-model",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
-      "label": "Logic Model",
-      "type": "owl:Class"
-    },
-    {
-      "comment": "An Evaluation assesses whether a grant-funded project achieved its intended Outputs.",
-      "domain": "npo:evaluation",
-      "id": "nporel:assessesOutput",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "assesses",
-      "range": "npo:output",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "An Installment is disbursed as a Payment once any Payment Condition is satisfied.",
-      "domain": "npo:installment",
-      "id": "nporel:disbursedAsPayment",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "is disbursed as",
-      "range": "npo:payment",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "Over the life of an Award, the Grantee may request a Budget Modification.",
-      "domain": "npo:grantee",
-      "id": "nporel:mayRequestBudgetModification",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "may request",
-      "range": "npo:budget-modification",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "comment": "A Program Officer is associated with one or more Grant Programs and typically owns the Review and monitoring relationship for Awards made under them.",
-      "domain": "npo:program-officer",
-      "id": "nporel:associatedWithGrantProgram",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships",
-      "label": "is associated with",
-      "range": "npo:grant-program",
-      "type": "owl:ObjectProperty"
-    },
-    {
-      "category": "compliance-and-reporting",
-      "definition": "A grantee's submission to the funder describing progress, outcomes, and/or use of funds, per the reporting schedule. Narrative and financial reports are common subtypes.",
-      "id": "npo:report",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting",
-      "label": "Report",
-      "type": "owl:Class"
-    },
-    {
-      "altLabel": "LOI",
-      "category": "application-and-review",
-      "definition": "A brief, preliminary submission used by some funders to screen interest before inviting a full application.",
-      "id": "npo:letter-of-inquiry",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
-      "label": "Letter of Inquiry",
-      "type": "owl:Class"
-    },
-    {
-      "altLabel": [
-        "RFP",
-        "Request for Proposals",
-        "NOFO",
-        "Notice of Funding Opportunity"
-      ],
-      "category": "funding-structure",
-      "definition": "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines.",
-      "id": "npo:funding-opportunity",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
-      "label": "Funding Opportunity",
-      "type": "owl:Class"
-    },
-    {
-      "category": "disbursement",
-      "definition": "A requirement (e.g., a submitted report, a milestone reached) that must be satisfied before a scheduled payment is released.",
-      "id": "npo:payment-condition",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement",
-      "label": "Payment Condition",
-      "type": "owl:Class"
-    },
-    {
+      "id": "nporel:resultsInAward",
+      "type": "owl:ObjectProperty",
+      "label": "results in",
       "comment": "An approved Decision results in an Award.",
       "domain": "npo:decision",
-      "id": "nporel:resultsInAward",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "results in",
       "range": "npo:award",
-      "type": "owl:ObjectProperty"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
-      "category": "organizational-entities",
-      "definition": "An organization that accepts and administers grant funds on behalf of a project or group that isn't itself a legal entity able to receive grants directly.",
-      "id": "npo:fiscal-sponsor",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
-      "label": "Fiscal Sponsor",
-      "subClassOf": "npo:organization",
-      "type": "owl:Class"
+      "id": "nporel:assessesOutcome",
+      "type": "owl:ObjectProperty",
+      "label": "assesses",
+      "comment": "An Evaluation assesses whether a grant-funded project achieved its intended Outcomes.",
+      "domain": "npo:evaluation",
+      "range": "npo:outcome",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:assessesOutput",
+      "type": "owl:ObjectProperty",
+      "label": "assesses",
+      "comment": "An Evaluation assesses whether a grant-funded project achieved its intended Outputs.",
+      "domain": "npo:evaluation",
+      "range": "npo:output",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:actsOnBehalfOf",
+      "type": "owl:ObjectProperty",
+      "label": "acts on behalf of",
+      "comment": "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly.",
+      "domain": "npo:fiscal-sponsor",
+      "range": "npo:grantee",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+    },
+    {
+      "id": "nporel:maintainsGrantProgram",
+      "type": "owl:ObjectProperty",
+      "label": "maintains",
+      "comment": "A Funder maintains one or more Grant Programs, each of which issues Funding Opportunities over time.",
+      "domain": "npo:funder",
+      "range": "npo:grant-program",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:mayRequireLetterOfInquiry",
+      "type": "owl:ObjectProperty",
+      "label": "may require",
+      "comment": "A Funding Opportunity may require a Letter of Inquiry before a full Application is invited.",
+      "domain": "npo:funding-opportunity",
+      "range": "npo:letter-of-inquiry",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:occursDuringFundingCycle",
+      "type": "owl:ObjectProperty",
+      "label": "occurs during",
+      "comment": "A Funding Opportunity is issued within a defined Funding Cycle.",
+      "domain": "npo:funding-opportunity",
+      "range": "npo:funding-cycle",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:specifiesEligibilityCriteria",
+      "type": "owl:ObjectProperty",
+      "label": "specifies",
+      "comment": "A Funding Opportunity specifies the Eligibility Criteria an applicant must meet.",
+      "domain": "npo:funding-opportunity",
+      "range": "npo:eligibility-criteria",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:responsibleForComplianceRequirement",
+      "type": "owl:ObjectProperty",
+      "label": "is responsible for",
+      "comment": "A Grant Administrator is typically responsible for tracking Compliance Requirements.",
+      "domain": "npo:grant-administrator",
+      "range": "npo:compliance-requirement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+    },
+    {
+      "id": "nporel:responsibleForReport",
+      "type": "owl:ObjectProperty",
+      "label": "is responsible for",
+      "comment": "A Grant Administrator is typically responsible for Report submission.",
+      "domain": "npo:grant-administrator",
+      "range": "npo:report",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+    },
+    {
+      "id": "nporel:attachesComplianceRequirement",
+      "type": "owl:ObjectProperty",
+      "label": "attaches",
+      "comment": "A Grant Agreement attaches Compliance Requirements, including a Reporting Schedule.",
+      "domain": "npo:grant-agreement",
+      "range": "npo:compliance-requirement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:mayIncludeMatchingRequirement",
+      "type": "owl:ObjectProperty",
+      "label": "may include",
+      "comment": "A Grant Agreement may include a Matching Requirement.",
+      "domain": "npo:grant-agreement",
+      "range": "npo:matching-requirement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:specifiesTermsAndConditions",
+      "type": "owl:ObjectProperty",
+      "label": "specifies",
+      "comment": "A Grant Agreement specifies Terms and Conditions, including whether funding is restricted or unrestricted.",
+      "domain": "npo:grant-agreement",
+      "range": "npo:terms-and-conditions",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:issuesFundingOpportunity",
+      "type": "owl:ObjectProperty",
+      "label": "issues",
+      "comment": "A Grant Program issues Funding Opportunities during defined Funding Cycles.",
+      "domain": "npo:grant-program",
+      "range": "npo:funding-opportunity",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:mayRequestBudgetModification",
+      "type": "owl:ObjectProperty",
+      "label": "may request",
+      "comment": "Over the life of an Award, the Grantee may request a Budget Modification.",
+      "domain": "npo:grantee",
+      "range": "npo:budget-modification",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:submitsApplication",
+      "type": "owl:ObjectProperty",
+      "label": "submits",
+      "comment": "A Grantee (or a project operating under a Fiscal Sponsor) submits an Application in response to a Funding Opportunity.",
+      "domain": "npo:grantee",
+      "range": "npo:application",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:disbursedAsPayment",
+      "type": "owl:ObjectProperty",
+      "label": "is disbursed as",
+      "comment": "An Installment is disbursed as a Payment once any Payment Condition is satisfied.",
+      "domain": "npo:installment",
+      "range": "npo:payment",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:mayHavePaymentCondition",
+      "type": "owl:ObjectProperty",
+      "label": "may have",
+      "comment": "An Installment may carry a Payment Condition that must be met before it is disbursed.",
+      "domain": "npo:installment",
+      "range": "npo:payment-condition",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:brokenIntoInstallment",
+      "type": "owl:ObjectProperty",
+      "label": "is broken into",
+      "comment": "A Payment Schedule is broken into Installments.",
+      "domain": "npo:payment-schedule",
+      "range": "npo:installment",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:associatedWithGrantProgram",
+      "type": "owl:ObjectProperty",
+      "label": "is associated with",
+      "comment": "A Program Officer is associated with one or more Grant Programs and typically owns the Review and monitoring relationship for Awards made under them.",
+      "domain": "npo:program-officer",
+      "range": "npo:grant-program",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+    },
+    {
+      "id": "nporel:assessedAgainstLogicModel",
+      "type": "owl:ObjectProperty",
+      "label": "is assessed against",
+      "comment": "Reports are assessed against the project's Logic Model in terms of Outputs and Outcomes.",
+      "domain": "npo:report",
+      "range": "npo:logic-model",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:assessedAgainstTheoryOfChange",
+      "type": "owl:ObjectProperty",
+      "label": "is assessed against",
+      "comment": "Reports are assessed against the project's Theory of Change in terms of Outputs and Outcomes.",
+      "domain": "npo:report",
+      "range": "npo:theory-of-change",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:obligatesReport",
+      "type": "owl:ObjectProperty",
+      "label": "obligates",
       "comment": "A Reporting Schedule obligates the Grantee to submit Reports on a defined cadence.",
       "domain": "npo:reporting-schedule",
-      "id": "nporel:obligatesReport",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end",
-      "label": "obligates",
       "range": "npo:report",
-      "type": "owl:ObjectProperty"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:conductedByReviewer",
+      "type": "owl:ObjectProperty",
+      "label": "is conducted by",
+      "comment": "A Review is conducted by one or more Reviewers.",
+      "domain": "npo:review",
+      "range": "npo:reviewer",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:evaluatedAgainstReviewCriteria",
+      "type": "owl:ObjectProperty",
+      "label": "is evaluated against",
+      "comment": "A Review evaluates an Application against published Review Criteria.",
+      "domain": "npo:review",
+      "range": "npo:review-criteria",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:mayIncludeSiteVisit",
+      "type": "owl:ObjectProperty",
+      "label": "may include",
+      "comment": "A Review may include a Site Visit before a Decision is made.",
+      "domain": "npo:review",
+      "range": "npo:site-visit",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:producesDecision",
+      "type": "owl:ObjectProperty",
+      "label": "produces",
+      "comment": "A Review produces a Decision.",
+      "domain": "npo:review",
+      "range": "npo:decision",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     }
   ]
 }
