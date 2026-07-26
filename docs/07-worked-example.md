@@ -1,6 +1,6 @@
 # Worked Example
 
-Everything before this document describes the ontology's *schema*: what a concept is, what attributes it has, how concepts relate. None of it says what an actual grant looks like. This is the worked example that does — two connected, fictional scenarios followed with concrete values filled in instead of definitions: a direct grant from a funder opening a grant program through closeout, and a second engagement where the same organization also acts as a fiscal sponsor.
+Everything before this document describes the ontology's *schema*: what a concept is, what attributes it has, how concepts relate. None of it says what an actual grant looks like. This is the worked example that does — five connected, fictional scenarios followed with concrete values filled in instead of definitions: a direct grant from a funder opening a grant program through closeout, and four ways funding can flow through intermediaries (fiscal sponsorship, a donor-advised fund, regranting, and a collaborative fund).
 
 ## Why one example file, not one per concept
 
@@ -8,11 +8,13 @@ The roadmap originally framed this as two things: "worked examples per concept" 
 
 Not every concept appears in the example — concepts that are purely definitional or structural in the scenarios chosen (`Eligibility Criteria`, `Theory of Change`, `Logic Model`, most person-level roles) don't get an instance just to pad out coverage. That's the same judgment call as [Properties & Rules](06-properties-and-rules.md) made about which concepts get attributes: an example instance you had to invent a reason for isn't actually illustrating anything.
 
-## Two threads, one file
+## Five threads, one file
 
 Phase 3.5 Milestone 3 added a second thread to the same file rather than a second, independent example: Ocean Conservation Fund — already the Funder in the direct-grant thread — turns out to be an `Organization` in its own right, and in a second, separately-dated engagement it also occupies a `Fiscal Sponsor` role for a `Sponsored Project` (Tidewater Youth Ocean Corps), funded by a different foundation (Pacific Coastal Trust) through a `Fiscal Sponsorship Arrangement`. Reusing the same organization across both threads is deliberate: it's the first real instance data proving the thing Milestone 1 was built to make possible — one organization holding two independently-dated `Organization Role` occupancies — see [Organizations, Roles & Arrangements](08-organizations-roles-and-arrangements.md#milestone-3-instance-data-and-explorer-views) for what this thread does and doesn't cover.
 
-Because a concept like `Organization` or `Award` now has more than one individual, `getExamplesForConcept` (site) returns an array rather than a single individual, and the Example tab renders each one as its own card. An individual's optional `act` field marks the first step of a new thread (e.g. `"A Second Engagement: Fiscal Sponsorship"`); the Story page renders a heading whenever it changes and leaves it off every other step in that thread.
+Phase 3.6 Milestone 4 added three more: Ocean Conservation Fund also hosts a Donor-Advised Fund and picks up a third and fourth role occupancy (`Funder`, `Fiscal Sponsor`, and now `Funding Intermediary` — regranting a larger foundation's money to a smaller local group), and a fifth, independent thread follows two other organizations pooling money into a Collaborative Fund Arrangement. See [Organizations, Roles & Arrangements](08-organizations-roles-and-arrangements.md#milestone-4-the-rest-of-the-instance-data-role-change-diagrams-and-legal-review-flags) for what each thread covers and the role-change diagram.
+
+Because a concept like `Organization` or `Award` now has several individuals, `getExamplesForConcept` (site) returns an array rather than a single individual, and the Example tab renders each one as its own card. An individual's optional `act` field marks the first step of a new thread (e.g. `"A Second Engagement: Fiscal Sponsorship"`); the Story page renders a heading whenever it changes and leaves it off every other step in that thread.
 
 ## Where it lives
 

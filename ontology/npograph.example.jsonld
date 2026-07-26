@@ -14,6 +14,169 @@
   },
   "@graph": [
     {
+      "id": "ex:alvarez-family-fund",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:donor-advised-fund"
+      ],
+      "label": "Alvarez Family Fund",
+      "npoprop:fund-restriction-type": {
+        "@value": "donor-restricted",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-opening-date": {
+        "@value": "2021-03-01",
+        "@type": "xsd:date"
+      },
+      "nporel:heldBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      }
+    },
+    {
+      "id": "ex:alvarez-fund-advisory-arrangement",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:donor-advised-fund-arrangement"
+      ],
+      "label": "Alvarez Family Fund Advisory Arrangement",
+      "npoprop:philanthropic-arrangement-effective-date": {
+        "@value": "2021-03-01",
+        "@type": "xsd:date"
+      },
+      "npoprop:philanthropic-arrangement-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "nporel:administeredBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      },
+      "nporel:governs": {
+        "@id": "ex:alvarez-family-fund"
+      }
+    },
+    {
+      "id": "ex:alvarez-fund-recommendation-2026",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:grant-recommendation"
+      ],
+      "label": "Recommendation to fund Coral Reef Defenders",
+      "npoprop:grant-recommendation-date": {
+        "@value": "2026-06-10",
+        "@type": "xsd:date"
+      },
+      "npoprop:grant-recommendation-status": {
+        "@value": "approved",
+        "@type": "xsd:string"
+      },
+      "npoprop:grant-recommendation-amount": {
+        "@value": "15000",
+        "@type": "xsd:decimal"
+      },
+      "nporel:concernsFund": {
+        "@id": "ex:alvarez-family-fund"
+      },
+      "nporel:leadsToAward": {
+        "@id": "ex:coral-reef-defenders-award"
+      },
+      "nporel:recommendsRecipient": {
+        "@id": "ex:coral-reef-defenders"
+      }
+    },
+    {
+      "id": "ex:coastal-resilience-collaborative",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:collaborative-fund-arrangement"
+      ],
+      "label": "Coastal Resilience Collaborative",
+      "npoprop:philanthropic-arrangement-effective-date": {
+        "@value": "2025-11-01",
+        "@type": "xsd:date"
+      },
+      "npoprop:philanthropic-arrangement-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "nporel:administeredBy": {
+        "@id": "ex:tidewater-community-foundation"
+      },
+      "nporel:pools": {
+        "@id": "ex:coastal-resilience-fund"
+      }
+    },
+    {
+      "id": "ex:coastal-resilience-fund",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:fund"
+      ],
+      "label": "Coastal Resilience Fund",
+      "npoprop:fund-restriction-type": {
+        "@value": "temporarily-restricted",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-opening-date": {
+        "@value": "2025-11-01",
+        "@type": "xsd:date"
+      },
+      "nporel:heldBy": {
+        "@id": "ex:tidewater-community-foundation"
+      }
+    },
+    {
+      "id": "ex:coastal-resilience-grant-to-kelp-forest",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:award"
+      ],
+      "label": "Coastal Resilience Grant to Kelp Forest Collective",
+      "npoprop:award-amount": {
+        "@value": "20000",
+        "@type": "xsd:decimal"
+      },
+      "npoprop:award-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-date": {
+        "@value": "2026-02-01",
+        "@type": "xsd:date"
+      },
+      "nporel:awardedBy": {
+        "@id": "ex:tidewater-community-foundation"
+      },
+      "nporel:awardedTo": {
+        "@id": "ex:kelp-forest-collective"
+      },
+      "nporel:fundedFrom": {
+        "@id": "ex:coastal-resilience-fund"
+      },
+      "nporel:managedBy": {
+        "@id": "ex:tidewater-community-foundation"
+      }
+    },
+    {
       "id": "ex:coastal-watch-alliance",
       "type": [
         "owl:NamedIndividual",
@@ -311,6 +474,88 @@
       }
     },
     {
+      "id": "ex:coral-reef-defenders",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:organization"
+      ],
+      "label": "Coral Reef Defenders",
+      "npoprop:organization-tax-status": {
+        "@value": "tax-exempt-501c3",
+        "@type": "xsd:string"
+      },
+      "npoprop:organization-operating-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "id": "ex:coral-reef-defenders-award",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:award"
+      ],
+      "label": "Award to Coral Reef Defenders",
+      "npoprop:award-amount": {
+        "@value": "15000",
+        "@type": "xsd:decimal"
+      },
+      "npoprop:award-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-date": {
+        "@value": "2026-06-20",
+        "@type": "xsd:date"
+      },
+      "nporel:awardedBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      },
+      "nporel:awardedTo": {
+        "@id": "ex:coral-reef-defenders"
+      },
+      "nporel:fundedFrom": {
+        "@id": "ex:alvarez-family-fund"
+      },
+      "nporel:managedBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      }
+    },
+    {
+      "id": "ex:elena-alvarez",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:donor-advisor"
+      ],
+      "label": "Elena Alvarez",
+      "nporel:advises": {
+        "@id": "ex:alvarez-family-fund"
+      },
+      "nporel:makesRecommendation": {
+        "@id": "ex:alvarez-fund-recommendation-2026"
+      }
+    },
+    {
+      "id": "ex:kelp-forest-collective",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:organization"
+      ],
+      "label": "Kelp Forest Collective",
+      "npoprop:organization-tax-status": {
+        "@value": "tax-exempt-501c3",
+        "@type": "xsd:string"
+      },
+      "npoprop:organization-operating-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      }
+    },
+    {
       "id": "ex:marine-habitat-2026-cycle",
       "type": [
         "owl:NamedIndividual",
@@ -365,6 +610,22 @@
       }
     },
     {
+      "id": "ex:national-ocean-legacy-fund",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:organization"
+      ],
+      "label": "National Ocean Legacy Fund",
+      "npoprop:organization-tax-status": {
+        "@value": "tax-exempt-501c3",
+        "@type": "xsd:string"
+      },
+      "npoprop:organization-operating-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      }
+    },
+    {
       "id": "ex:ocean-conservation-fund",
       "type": [
         "owl:NamedIndividual",
@@ -403,6 +664,29 @@
       }
     },
     {
+      "id": "ex:ocean-conservation-fund-intermediary-role",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:funding-intermediary-role"
+      ],
+      "label": "Ocean Conservation Fund (as Funding Intermediary)",
+      "npoprop:organization-role-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:organization-role-effective-from": {
+        "@value": "2026-06-01",
+        "@type": "xsd:date"
+      },
+      "npoprop:organization-role-scope": {
+        "@value": "National Ocean Legacy regranting program",
+        "@type": "xsd:string"
+      },
+      "nporel:appliesWithin": {
+        "@id": "ex:ocean-legacy-regranting-program"
+      }
+    },
+    {
       "id": "ex:ocean-conservation-fund-org",
       "type": [
         "owl:NamedIndividual",
@@ -418,7 +702,95 @@
         "@type": "xsd:string"
       },
       "nporel:playsRole": {
-        "@id": "ex:ocean-conservation-fund-fiscal-sponsor-role"
+        "@id": "ex:ocean-conservation-fund-intermediary-role"
+      }
+    },
+    {
+      "id": "ex:ocean-legacy-award-to-ocf",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:award"
+      ],
+      "label": "Award to Ocean Conservation Fund",
+      "npoprop:award-amount": {
+        "@value": "200000",
+        "@type": "xsd:decimal"
+      },
+      "npoprop:award-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-date": {
+        "@value": "2026-06-01",
+        "@type": "xsd:date"
+      },
+      "nporel:awardedBy": {
+        "@id": "ex:national-ocean-legacy-fund"
+      },
+      "nporel:awardedTo": {
+        "@id": "ex:ocean-conservation-fund-org"
+      },
+      "nporel:managedBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      }
+    },
+    {
+      "id": "ex:ocean-legacy-regranting-program",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:regranting-arrangement"
+      ],
+      "label": "National Ocean Legacy Regranting Program",
+      "npoprop:philanthropic-arrangement-effective-date": {
+        "@value": "2026-06-01",
+        "@type": "xsd:date"
+      },
+      "npoprop:philanthropic-arrangement-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "nporel:administeredBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      },
+      "nporel:regrantsTo": {
+        "@id": "ex:kelp-forest-collective"
+      }
+    },
+    {
+      "id": "ex:ocf-subgrant-to-kelp-forest",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:award"
+      ],
+      "label": "Sub-grant to Kelp Forest Collective",
+      "npoprop:award-amount": {
+        "@value": "35000",
+        "@type": "xsd:decimal"
+      },
+      "npoprop:award-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-date": {
+        "@value": "2026-06-15",
+        "@type": "xsd:date"
+      },
+      "nporel:awardedBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      },
+      "nporel:awardedTo": {
+        "@id": "ex:kelp-forest-collective"
+      },
+      "nporel:managedBy": {
+        "@id": "ex:ocean-conservation-fund-org"
       }
     },
     {
@@ -435,6 +807,9 @@
       "npoprop:organization-operating-status": {
         "@value": "active",
         "@type": "xsd:string"
+      },
+      "nporel:participatesIn": {
+        "@id": "ex:coastal-resilience-collaborative"
       }
     },
     {
@@ -462,6 +837,25 @@
       },
       "nporel:heldBy": {
         "@id": "ex:pacific-coastal-trust"
+      }
+    },
+    {
+      "id": "ex:tidewater-community-foundation",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:organization"
+      ],
+      "label": "Tidewater Community Foundation",
+      "npoprop:organization-tax-status": {
+        "@value": "tax-exempt-501c3",
+        "@type": "xsd:string"
+      },
+      "npoprop:organization-operating-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "nporel:participatesIn": {
+        "@id": "ex:coastal-resilience-collaborative"
       }
     },
     {

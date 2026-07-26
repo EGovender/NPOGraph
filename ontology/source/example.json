@@ -1,7 +1,7 @@
 {
   "id": "coastal-watch-fy26",
-  "title": "Ocean Conservation Fund: a direct grant, and a fiscal sponsorship",
-  "summary": "Two fictional, connected scenarios: a direct grant followed end to end from a funder opening a grant program through closeout, and a second engagement where the same organization also acts as a fiscal sponsor -- showing both the everyday grant lifecycle and the same organization occupying two independently-dated roles.",
+  "title": "Ocean Conservation Fund and the intermediary philanthropy landscape",
+  "summary": "Five connected, fictional scenarios: a direct grant followed end to end, and four ways funding can flow through intermediaries -- fiscal sponsorship, a donor-advised fund, regranting, and a collaborative fund -- showing the same core organization occupying multiple independently-dated roles at once, plus the other organizations that connect around it.",
   "individuals": [
     {
       "id": "ocean-conservation-fund",
@@ -192,6 +192,121 @@
       "label": "Award for Tidewater Youth Ocean Corps Restoration Work",
       "properties": { "amount": "45000", "currency": "USD", "status": "active", "date": "2026-05-15" },
       "narrative": "On May 15, Pacific Coastal Trust makes a $45,000 Award. Because the money is for the sponsored project, the Award's party edges diverge from a direct grant: it's awardedBy Pacific Coastal Trust, awardedTo and managedBy Ocean Conservation Fund (which holds legal responsibility and administers it day to day), and fundedFrom the Community Grants Fund -- while Tidewater Youth Ocean Corps is the intended beneficiary via the Fiscal Sponsorship Arrangement above."
+    },
+    {
+      "id": "alvarez-family-fund",
+      "concept": "donor-advised-fund",
+      "label": "Alvarez Family Fund",
+      "properties": { "restrictionType": "donor-restricted", "currency": "USD", "status": "active", "openingDate": "2021-03-01" },
+      "act": "A Third Engagement: Donor-Advised Fund",
+      "narrative": "Ocean Conservation Fund also sponsors the Alvarez Family Fund (fictional), a Donor-Advised Fund it holds and administers on behalf of a family that wants ongoing input into its giving without running its own foundation."
+    },
+    {
+      "id": "elena-alvarez",
+      "concept": "donor-advisor",
+      "label": "Elena Alvarez",
+      "properties": {},
+      "narrative": "Elena Alvarez (fictional), the fund's original donor, is its Donor Advisor -- she can recommend grants and investments, but Ocean Conservation Fund retains legal control over the money."
+    },
+    {
+      "id": "alvarez-fund-advisory-arrangement",
+      "concept": "donor-advised-fund-arrangement",
+      "label": "Alvarez Family Fund Advisory Arrangement",
+      "properties": { "effectiveDate": "2021-03-01", "status": "active" },
+      "narrative": "The advisory relationship is formalized as a Donor-Advised Fund Arrangement, distinct from Ocean Conservation Fund's Funder and Fiscal Sponsor occupancies above -- a third, independently-dated engagement for the same organization."
+    },
+    {
+      "id": "coral-reef-defenders",
+      "concept": "organization",
+      "label": "Coral Reef Defenders",
+      "properties": { "taxStatus": "tax-exempt-501c3", "operatingStatus": "active" },
+      "narrative": "Coral Reef Defenders (fictional) is a marine conservation nonprofit Elena has supported informally for years."
+    },
+    {
+      "id": "alvarez-fund-recommendation-2026",
+      "concept": "grant-recommendation",
+      "label": "Recommendation to fund Coral Reef Defenders",
+      "properties": { "date": "2026-06-10", "status": "approved", "amount": "15000" },
+      "narrative": "Elena submits a Grant Recommendation asking the fund to support Coral Reef Defenders. It's non-binding by design -- Ocean Conservation Fund still has to approve it -- but in this case it does."
+    },
+    {
+      "id": "coral-reef-defenders-award",
+      "concept": "award",
+      "label": "Award to Coral Reef Defenders",
+      "properties": { "amount": "15000", "currency": "USD", "status": "active", "date": "2026-06-20" },
+      "narrative": "The recommendation leads to a $15,000 Award. Ocean Conservation Fund awards and administers it, funded from the Alvarez Family Fund rather than its own general grantmaking budget."
+    },
+    {
+      "id": "national-ocean-legacy-fund",
+      "concept": "organization",
+      "label": "National Ocean Legacy Fund",
+      "properties": { "taxStatus": "tax-exempt-501c3", "operatingStatus": "active" },
+      "act": "A Fourth Engagement: Regranting",
+      "narrative": "National Ocean Legacy Fund (fictional), a larger national foundation, wants to fund grassroots coastal restoration groups but lacks the local relationships to identify them directly."
+    },
+    {
+      "id": "ocean-conservation-fund-intermediary-role",
+      "concept": "funding-intermediary-role",
+      "label": "Ocean Conservation Fund (as Funding Intermediary)",
+      "properties": { "status": "active", "effectiveFrom": "2026-06-01", "scope": "National Ocean Legacy regranting program" },
+      "narrative": "It regrants through Ocean Conservation Fund instead -- a fourth, independently-dated role for the same organization: Funding Intermediary, alongside its Funder, Fiscal Sponsor, and Donor-Advised Fund host occupancies."
+    },
+    {
+      "id": "ocean-legacy-regranting-program",
+      "concept": "regranting-arrangement",
+      "label": "National Ocean Legacy Regranting Program",
+      "properties": { "effectiveDate": "2026-06-01", "status": "active" },
+      "narrative": "The relationship is structured as a Regranting Arrangement: Ocean Conservation Fund receives the funds as a subrecipient and redistributes them to smaller groups it already works with."
+    },
+    {
+      "id": "ocean-legacy-award-to-ocf",
+      "concept": "award",
+      "label": "Award to Ocean Conservation Fund",
+      "properties": { "amount": "200000", "currency": "USD", "status": "active", "date": "2026-06-01" },
+      "narrative": "National Ocean Legacy Fund awards Ocean Conservation Fund $200,000 for regranting."
+    },
+    {
+      "id": "kelp-forest-collective",
+      "concept": "organization",
+      "label": "Kelp Forest Collective",
+      "properties": { "taxStatus": "tax-exempt-501c3", "operatingStatus": "active" },
+      "narrative": "Kelp Forest Collective (fictional), a small kelp-restoration group, is one of the local organizations Ocean Conservation Fund regrants to."
+    },
+    {
+      "id": "ocf-subgrant-to-kelp-forest",
+      "concept": "award",
+      "label": "Sub-grant to Kelp Forest Collective",
+      "properties": { "amount": "35000", "currency": "USD", "status": "active", "date": "2026-06-15" },
+      "narrative": "Ocean Conservation Fund -- now acting as the funder rather than the recipient -- awards Kelp Forest Collective a $35,000 sub-grant from that pool."
+    },
+    {
+      "id": "tidewater-community-foundation",
+      "concept": "organization",
+      "label": "Tidewater Community Foundation",
+      "properties": { "taxStatus": "tax-exempt-501c3", "operatingStatus": "active" },
+      "act": "A Fifth Engagement: A Collaborative Fund",
+      "narrative": "Tidewater Community Foundation (fictional) partners with Pacific Coastal Trust to fund coastal resilience work neither wants to take on alone."
+    },
+    {
+      "id": "coastal-resilience-fund",
+      "concept": "fund",
+      "label": "Coastal Resilience Fund",
+      "properties": { "restrictionType": "temporarily-restricted", "currency": "USD", "status": "active", "openingDate": "2025-11-01" },
+      "narrative": "The two pool their contributions into the Coastal Resilience Fund, administered by Tidewater Community Foundation."
+    },
+    {
+      "id": "coastal-resilience-collaborative",
+      "concept": "collaborative-fund-arrangement",
+      "label": "Coastal Resilience Collaborative",
+      "properties": { "effectiveDate": "2025-11-01", "status": "active" },
+      "narrative": "Their partnership is a Collaborative Fund Arrangement -- both organizations participate in directing the shared fund's grantmaking."
+    },
+    {
+      "id": "coastal-resilience-grant-to-kelp-forest",
+      "concept": "award",
+      "label": "Coastal Resilience Grant to Kelp Forest Collective",
+      "properties": { "amount": "20000", "currency": "USD", "status": "active", "date": "2026-02-01" },
+      "narrative": "The collaborative's first award, $20,000, goes to Kelp Forest Collective -- the same small group Ocean Conservation Fund regrants to, now drawing on a second, independent funding stream."
     }
   ],
   "relationships": [
@@ -223,6 +338,38 @@
     { "predicate": "awardedBy", "subject": "tidewater-restoration-award", "object": "pacific-coastal-trust" },
     { "predicate": "awardedTo", "subject": "tidewater-restoration-award", "object": "ocean-conservation-fund-org" },
     { "predicate": "managedBy", "subject": "tidewater-restoration-award", "object": "ocean-conservation-fund-org" },
-    { "predicate": "fundedFrom", "subject": "tidewater-restoration-award", "object": "pacific-coastal-trust-fund" }
+    { "predicate": "fundedFrom", "subject": "tidewater-restoration-award", "object": "pacific-coastal-trust-fund" },
+    { "predicate": "heldBy", "subject": "alvarez-family-fund", "object": "ocean-conservation-fund-org" },
+    { "predicate": "advises", "subject": "elena-alvarez", "object": "alvarez-family-fund" },
+    { "predicate": "governs", "subject": "alvarez-fund-advisory-arrangement", "object": "alvarez-family-fund" },
+    { "predicate": "administeredBy", "subject": "alvarez-fund-advisory-arrangement", "object": "ocean-conservation-fund-org" },
+    { "predicate": "makesRecommendation", "subject": "elena-alvarez", "object": "alvarez-fund-recommendation-2026" },
+    { "predicate": "recommendsRecipient", "subject": "alvarez-fund-recommendation-2026", "object": "coral-reef-defenders" },
+    { "predicate": "concernsFund", "subject": "alvarez-fund-recommendation-2026", "object": "alvarez-family-fund" },
+    { "predicate": "leadsToAward", "subject": "alvarez-fund-recommendation-2026", "object": "coral-reef-defenders-award" },
+    { "predicate": "awardedBy", "subject": "coral-reef-defenders-award", "object": "ocean-conservation-fund-org" },
+    { "predicate": "awardedTo", "subject": "coral-reef-defenders-award", "object": "coral-reef-defenders" },
+    { "predicate": "managedBy", "subject": "coral-reef-defenders-award", "object": "ocean-conservation-fund-org" },
+    { "predicate": "fundedFrom", "subject": "coral-reef-defenders-award", "object": "alvarez-family-fund" },
+    { "predicate": "playsRole", "subject": "ocean-conservation-fund-org", "object": "ocean-conservation-fund-intermediary-role" },
+    { "predicate": "appliesWithin", "subject": "ocean-conservation-fund-intermediary-role", "object": "ocean-legacy-regranting-program" },
+    { "predicate": "administeredBy", "subject": "ocean-legacy-regranting-program", "object": "ocean-conservation-fund-org" },
+    { "predicate": "regrantsTo", "subject": "ocean-legacy-regranting-program", "object": "kelp-forest-collective" },
+    { "predicate": "awardedBy", "subject": "ocean-legacy-award-to-ocf", "object": "national-ocean-legacy-fund" },
+    { "predicate": "awardedTo", "subject": "ocean-legacy-award-to-ocf", "object": "ocean-conservation-fund-org" },
+    { "predicate": "managedBy", "subject": "ocean-legacy-award-to-ocf", "object": "ocean-conservation-fund-org" },
+    { "predicate": "awardedBy", "subject": "ocf-subgrant-to-kelp-forest", "object": "ocean-conservation-fund-org" },
+    { "predicate": "awardedTo", "subject": "ocf-subgrant-to-kelp-forest", "object": "kelp-forest-collective" },
+    { "predicate": "managedBy", "subject": "ocf-subgrant-to-kelp-forest", "object": "ocean-conservation-fund-org" },
+    { "predicate": "participatesIn", "subject": "pacific-coastal-trust", "object": "coastal-resilience-collaborative" },
+    { "predicate": "participatesIn", "subject": "tidewater-community-foundation", "object": "coastal-resilience-collaborative" },
+    { "predicate": "administeredBy", "subject": "coastal-resilience-collaborative", "object": "tidewater-community-foundation" },
+    { "predicate": "pools", "subject": "coastal-resilience-collaborative", "object": "coastal-resilience-fund" },
+    { "predicate": "heldBy", "subject": "coastal-resilience-fund", "object": "tidewater-community-foundation" },
+    { "predicate": "awardedBy", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "pacific-coastal-trust" },
+    { "predicate": "awardedBy", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "tidewater-community-foundation" },
+    { "predicate": "awardedTo", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "kelp-forest-collective" },
+    { "predicate": "managedBy", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "tidewater-community-foundation" },
+    { "predicate": "fundedFrom", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "coastal-resilience-fund" }
   ]
 }

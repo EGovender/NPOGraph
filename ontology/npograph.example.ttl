@@ -9,6 +9,27 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+ex:alvarez-fund-advisory-arrangement a owl:NamedIndividual,
+        npo:donor-advised-fund-arrangement ;
+    rdfs:label "Alvarez Family Fund Advisory Arrangement" ;
+    npoprop:philanthropic-arrangement-effective-date "2021-03-01"^^xsd:date ;
+    npoprop:philanthropic-arrangement-status "active"^^xsd:string ;
+    nporel:administeredBy ex:ocean-conservation-fund-org ;
+    nporel:governs ex:alvarez-family-fund .
+
+ex:coastal-resilience-grant-to-kelp-forest a owl:NamedIndividual,
+        npo:award ;
+    rdfs:label "Coastal Resilience Grant to Kelp Forest Collective" ;
+    npoprop:award-amount 20000.0 ;
+    npoprop:award-currency "USD"^^xsd:string ;
+    npoprop:award-date "2026-02-01"^^xsd:date ;
+    npoprop:award-status "active"^^xsd:string ;
+    nporel:awardedBy ex:pacific-coastal-trust,
+        ex:tidewater-community-foundation ;
+    nporel:awardedTo ex:kelp-forest-collective ;
+    nporel:fundedFrom ex:coastal-resilience-fund ;
+    nporel:managedBy ex:tidewater-community-foundation .
+
 ex:coastal-watch-alliance a owl:NamedIndividual,
         npo:grantee ;
     rdfs:label "Coastal Watch Alliance" ;
@@ -23,6 +44,34 @@ ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
     nporel:assessesOutcome ex:coastal-watch-habitat-outcome ;
     nporel:assessesOutput ex:coastal-watch-workshops-output .
 
+ex:elena-alvarez a owl:NamedIndividual,
+        npo:donor-advisor ;
+    rdfs:label "Elena Alvarez" ;
+    nporel:advises ex:alvarez-family-fund ;
+    nporel:makesRecommendation ex:alvarez-fund-recommendation-2026 .
+
+ex:ocean-legacy-award-to-ocf a owl:NamedIndividual,
+        npo:award ;
+    rdfs:label "Award to Ocean Conservation Fund" ;
+    npoprop:award-amount 200000.0 ;
+    npoprop:award-currency "USD"^^xsd:string ;
+    npoprop:award-date "2026-06-01"^^xsd:date ;
+    npoprop:award-status "active"^^xsd:string ;
+    nporel:awardedBy ex:national-ocean-legacy-fund ;
+    nporel:awardedTo ex:ocean-conservation-fund-org ;
+    nporel:managedBy ex:ocean-conservation-fund-org .
+
+ex:ocf-subgrant-to-kelp-forest a owl:NamedIndividual,
+        npo:award ;
+    rdfs:label "Sub-grant to Kelp Forest Collective" ;
+    npoprop:award-amount 35000.0 ;
+    npoprop:award-currency "USD"^^xsd:string ;
+    npoprop:award-date "2026-06-15"^^xsd:date ;
+    npoprop:award-status "active"^^xsd:string ;
+    nporel:awardedBy ex:ocean-conservation-fund-org ;
+    nporel:awardedTo ex:kelp-forest-collective ;
+    nporel:managedBy ex:ocean-conservation-fund-org .
+
 ex:tidewater-restoration-award a owl:NamedIndividual,
         npo:award ;
     rdfs:label "Award for Tidewater Youth Ocean Corps Restoration Work" ;
@@ -34,6 +83,16 @@ ex:tidewater-restoration-award a owl:NamedIndividual,
     nporel:awardedTo ex:ocean-conservation-fund-org ;
     nporel:fundedFrom ex:pacific-coastal-trust-fund ;
     nporel:managedBy ex:ocean-conservation-fund-org .
+
+ex:alvarez-fund-recommendation-2026 a owl:NamedIndividual,
+        npo:grant-recommendation ;
+    rdfs:label "Recommendation to fund Coral Reef Defenders" ;
+    npoprop:grant-recommendation-amount 15000.0 ;
+    npoprop:grant-recommendation-date "2026-06-10"^^xsd:date ;
+    npoprop:grant-recommendation-status "approved"^^xsd:string ;
+    nporel:concernsFund ex:alvarez-family-fund ;
+    nporel:leadsToAward ex:coral-reef-defenders-award ;
+    nporel:recommendsRecipient ex:coral-reef-defenders .
 
 ex:coastal-watch-fy26-application a owl:NamedIndividual,
         npo:application ;
@@ -131,6 +190,18 @@ ex:coastal-watch-workshops-output a owl:NamedIndividual,
     rdfs:label "12 Habitat Restoration Workshops Held" ;
     npoprop:output-unit "workshops"^^xsd:string .
 
+ex:coral-reef-defenders-award a owl:NamedIndividual,
+        npo:award ;
+    rdfs:label "Award to Coral Reef Defenders" ;
+    npoprop:award-amount 15000.0 ;
+    npoprop:award-currency "USD"^^xsd:string ;
+    npoprop:award-date "2026-06-20"^^xsd:date ;
+    npoprop:award-status "active"^^xsd:string ;
+    nporel:awardedBy ex:ocean-conservation-fund-org ;
+    nporel:awardedTo ex:coral-reef-defenders ;
+    nporel:fundedFrom ex:alvarez-family-fund ;
+    nporel:managedBy ex:ocean-conservation-fund-org .
+
 ex:marine-habitat-2026-cycle a owl:NamedIndividual,
         npo:funding-cycle ;
     rdfs:label "2026 Cycle 1" ;
@@ -143,6 +214,12 @@ ex:marine-habitat-program a owl:NamedIndividual,
     npoprop:grant-program-status "open"^^xsd:string ;
     npoprop:grant-program-total-budget 2000000.0 ;
     nporel:issuesFundingOpportunity ex:marine-habitat-2026-opportunity .
+
+ex:national-ocean-legacy-fund a owl:NamedIndividual,
+        npo:organization ;
+    rdfs:label "National Ocean Legacy Fund" ;
+    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string .
 
 ex:ocean-conservation-fund a owl:NamedIndividual,
         npo:funder ;
@@ -157,6 +234,22 @@ ex:ocean-conservation-fund-fiscal-sponsor-role a owl:NamedIndividual,
     npoprop:organization-role-scope "Tidewater Youth Ocean Corps sponsorship"^^xsd:string ;
     npoprop:organization-role-status "active"^^xsd:string ;
     nporel:appliesWithin ex:tidewater-sponsorship-arrangement .
+
+ex:ocean-conservation-fund-intermediary-role a owl:NamedIndividual,
+        npo:funding-intermediary-role ;
+    rdfs:label "Ocean Conservation Fund (as Funding Intermediary)" ;
+    npoprop:organization-role-effective-from "2026-06-01"^^xsd:date ;
+    npoprop:organization-role-scope "National Ocean Legacy regranting program"^^xsd:string ;
+    npoprop:organization-role-status "active"^^xsd:string ;
+    nporel:appliesWithin ex:ocean-legacy-regranting-program .
+
+ex:ocean-legacy-regranting-program a owl:NamedIndividual,
+        npo:regranting-arrangement ;
+    rdfs:label "National Ocean Legacy Regranting Program" ;
+    npoprop:philanthropic-arrangement-effective-date "2026-06-01"^^xsd:date ;
+    npoprop:philanthropic-arrangement-status "active"^^xsd:string ;
+    nporel:administeredBy ex:ocean-conservation-fund-org ;
+    nporel:regrantsTo ex:kelp-forest-collective .
 
 ex:pacific-coastal-trust-fund a owl:NamedIndividual,
         npo:fund ;
@@ -184,6 +277,29 @@ ex:tidewater-youth-ocean-corps a owl:NamedIndividual,
     npoprop:sponsored-project-status "active"^^xsd:string ;
     nporel:fiscallySponsoredBy ex:ocean-conservation-fund-org .
 
+ex:coastal-resilience-collaborative a owl:NamedIndividual,
+        npo:collaborative-fund-arrangement ;
+    rdfs:label "Coastal Resilience Collaborative" ;
+    npoprop:philanthropic-arrangement-effective-date "2025-11-01"^^xsd:date ;
+    npoprop:philanthropic-arrangement-status "active"^^xsd:string ;
+    nporel:administeredBy ex:tidewater-community-foundation ;
+    nporel:pools ex:coastal-resilience-fund .
+
+ex:coastal-resilience-fund a owl:NamedIndividual,
+        npo:fund ;
+    rdfs:label "Coastal Resilience Fund" ;
+    npoprop:fund-currency "USD"^^xsd:string ;
+    npoprop:fund-opening-date "2025-11-01"^^xsd:date ;
+    npoprop:fund-restriction-type "temporarily-restricted"^^xsd:string ;
+    npoprop:fund-status "active"^^xsd:string ;
+    nporel:heldBy ex:tidewater-community-foundation .
+
+ex:coral-reef-defenders a owl:NamedIndividual,
+        npo:organization ;
+    rdfs:label "Coral Reef Defenders" ;
+    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string .
+
 ex:marine-habitat-2026-opportunity a owl:NamedIndividual,
         npo:funding-opportunity ;
     rdfs:label "2026 Marine Habitat Protection Grants" ;
@@ -191,11 +307,34 @@ ex:marine-habitat-2026-opportunity a owl:NamedIndividual,
     npoprop:funding-opportunity-status "open"^^xsd:string ;
     nporel:occursDuringFundingCycle ex:marine-habitat-2026-cycle .
 
+ex:kelp-forest-collective a owl:NamedIndividual,
+        npo:organization ;
+    rdfs:label "Kelp Forest Collective" ;
+    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string .
+
 ex:pacific-coastal-trust a owl:NamedIndividual,
         npo:organization ;
     rdfs:label "Pacific Coastal Trust" ;
     npoprop:organization-operating-status "active"^^xsd:string ;
-    npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string .
+    npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string ;
+    nporel:participatesIn ex:coastal-resilience-collaborative .
+
+ex:alvarez-family-fund a owl:NamedIndividual,
+        npo:donor-advised-fund ;
+    rdfs:label "Alvarez Family Fund" ;
+    npoprop:fund-currency "USD"^^xsd:string ;
+    npoprop:fund-opening-date "2021-03-01"^^xsd:date ;
+    npoprop:fund-restriction-type "donor-restricted"^^xsd:string ;
+    npoprop:fund-status "active"^^xsd:string ;
+    nporel:heldBy ex:ocean-conservation-fund-org .
+
+ex:tidewater-community-foundation a owl:NamedIndividual,
+        npo:organization ;
+    rdfs:label "Tidewater Community Foundation" ;
+    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string ;
+    nporel:participatesIn ex:coastal-resilience-collaborative .
 
 ex:ocean-conservation-fund-org a owl:NamedIndividual,
         npo:organization ;
@@ -203,4 +342,5 @@ ex:ocean-conservation-fund-org a owl:NamedIndividual,
     npoprop:organization-operating-status "active"^^xsd:string ;
     npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string ;
     nporel:playsRole ex:ocean-conservation-fund,
-        ex:ocean-conservation-fund-fiscal-sponsor-role .
+        ex:ocean-conservation-fund-fiscal-sponsor-role,
+        ex:ocean-conservation-fund-intermediary-role .

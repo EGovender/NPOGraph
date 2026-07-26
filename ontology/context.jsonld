@@ -23,6 +23,7 @@
       "@type": "@id"
     },
     "label": "rdfs:label",
+    "legalNote": "npo:legalNote",
     "npo": "https://egovender.github.io/NPOGraph/ontology/",
     "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
     "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
