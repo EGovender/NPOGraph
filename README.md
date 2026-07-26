@@ -63,7 +63,7 @@ NPOGraph/
 
 - **[Vision](docs/00-vision.md)** — what NPOGraph is trying to be and why it matters.
 - **[Guiding Principles](docs/01-guiding-principles.md)** — the design values behind the ontology and the project.
-- **[Core Concepts](docs/02-core-concepts.md)** — the ~48 grantmaking and organizational concepts that make up the ontology so far.
+- **[Core Concepts](docs/02-core-concepts.md)** — the ~56 grantmaking and organizational concepts that make up the ontology so far.
 - **[Relationships](docs/03-relationships.md)** — how those concepts connect, including the end-to-end grant lifecycle.
 - **[Roadmap](docs/04-roadmap.md)** — what comes after the docs: machine-readable formats, an interactive explorer, search, and beyond.
 - **[Data Model](docs/05-data-model.md)** — how the prose docs become the machine-readable ontology, and how the two are kept in sync.
