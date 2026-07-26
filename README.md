@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="site/public/logo.svg" alt="NPOGraph — Nonprofit Knowledge Network" width="360" />
+</p>
+
 # NPOGraph
 
 **An open knowledge platform for understanding, designing, and improving how mission-driven organizations operate.**

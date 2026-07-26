@@ -7,7 +7,13 @@
   --text-muted: #898781;
   --border: rgba(11, 11, 11, 0.1);
   --gridline: #e1e0d9;
-  --link: #2a78d6;
+  /* Brand colors, from the NPOGraph logo mark. --brand-teal is darkened from
+     the logo's literal #4BA188 to clear 4.5:1 text contrast on --page; the
+     logo's green (#79B158) is used only decoratively (the header accent bar,
+     the icon itself), never for text/links, so it's kept at its true value. */
+  --brand-teal: #387866;
+  --brand-green: #79b158;
+  --link: var(--brand-teal);
   --card-bg: #ffffff;
 }
 
@@ -21,7 +27,9 @@
     --text-muted: #898781;
     --border: rgba(255, 255, 255, 0.1);
     --gridline: #2c2c2a;
-    --link: #3987e5;
+    --brand-teal: #5fc3a8;
+    --brand-green: #8bc168;
+    --link: var(--brand-teal);
     --card-bg: #16161a;
   }
 }
@@ -43,6 +51,11 @@ body {
   line-height: 1.55;
 }
 
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--brand-teal);
+}
+
 a {
   color: var(--link);
 }
@@ -56,13 +69,38 @@ a {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
   flex-wrap: wrap;
+  position: relative;
+}
+
+/* Decorative echo of the logo's teal-to-green gradient -- never used to
+   convey interactive state, purely a brand accent. */
+.site-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-teal), var(--brand-green));
 }
 
 .site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 700;
   font-size: 1.1rem;
   color: var(--text-primary);
   text-decoration: none;
+}
+
+.brand-icon {
+  flex: none;
+  display: block;
+}
+
+.brand-text-accent {
+  color: var(--brand-teal);
 }
 
 .site-header nav {
