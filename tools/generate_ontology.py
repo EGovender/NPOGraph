@@ -66,6 +66,44 @@ DATATYPE_TO_XSD = {
 }
 
 
+def resolve_properties_by_concept(concepts, properties):
+    """Maps each concept id to {property name: property def}, INCLUDING
+    properties inherited from ancestor concepts via subClassOf (e.g. Funder
+    inherits Organization Role's `status`) -- a concept's own directly
+    declared property overrides an inherited one of the same name.
+
+    This matters because SHACL's sh:targetClass resolves subclass instances
+    per the SHACL spec regardless of the `inference` mode passed to
+    validate() -- an individual typed `a npo:funder` is automatically a
+    SHACL-instance of `npo:organization-role` too, once `funder` is
+    subClassOf `organization-role`, and gets that shape's constraints
+    applied. Only checking a concept's own directly-declared properties here
+    would under-validate example individuals of a reparented concept -- see
+    docs/08-organizations-roles-and-arrangements.md."""
+    concepts_by_id = {c["id"]: c for c in concepts}
+    direct: dict[str, dict[str, dict]] = {}
+    for p in properties:
+        direct.setdefault(p["concept"], {})[p["name"]] = p
+
+    resolved: dict[str, dict[str, dict]] = {}
+
+    def resolve(concept_id, chain):
+        if concept_id in resolved:
+            return resolved[concept_id]
+        assert concept_id not in chain, f"subClassOf cycle detected at {concept_id}"
+        parent = concepts_by_id[concept_id].get("subClassOf")
+        merged: dict[str, dict] = {}
+        if parent:
+            merged.update(resolve(parent, chain | {concept_id}))
+        merged.update(direct.get(concept_id, {}))
+        resolved[concept_id] = merged
+        return merged
+
+    for cid in concepts_by_id:
+        resolve(cid, frozenset())
+    return resolved
+
+
 def load_source():
     concepts = json.loads((SOURCE_DIR / "concepts.json").read_text())
     relationships = json.loads((SOURCE_DIR / "relationships.json").read_text())
@@ -104,20 +142,20 @@ def load_source():
     example = json.loads((SOURCE_DIR / "example.json").read_text())
     example["individuals"] = sorted(example["individuals"], key=lambda i: i["id"])
     example["relationships"] = sorted(example["relationships"], key=lambda r: (r["predicate"], r["subject"]))
-    validate_example(example, concept_ids, properties, relationships)
+    validate_example(example, concepts, properties, relationships)
 
     return concepts, relationships, properties, business_rules, meta, example
 
 
-def validate_example(example, concept_ids, properties, relationships):
+def validate_example(example, concepts, properties, relationships):
     """Cross-checks ontology/source/example.json against the schema it claims to
     instantiate -- every individual's concept must exist, every property name
-    must be defined for that concept (with a valid enum value if applicable),
-    every required property must be present, and every relationship must use a
-    real predicate between individuals of the types that predicate expects."""
-    properties_by_concept: dict[str, dict[str, dict]] = {}
-    for p in properties:
-        properties_by_concept.setdefault(p["concept"], {})[p["name"]] = p
+    must be defined for that concept OR one of its ancestors (with a valid
+    enum value if applicable), every required property (including inherited
+    ones) must be present, and every relationship must use a real predicate
+    between individuals of the types that predicate expects."""
+    concept_ids = {c["id"] for c in concepts}
+    properties_by_concept = resolve_properties_by_concept(concepts, properties)
 
     individuals_by_id = {}
     for ind in example["individuals"]:
@@ -350,15 +388,13 @@ def write_property_shapes(properties):
     )
 
 
-def build_example_graph(example, properties) -> Graph:
+def build_example_graph(example, concepts, properties) -> Graph:
     """The worked example (docs/07-worked-example.md) as real owl:NamedIndividual
     instances -- kept in its own graph/namespace (.../ontology/examples/) so
     schema (npograph.ttl) and illustrative instance data never mix in the file
     someone would import to get the ontology itself. No blank nodes here, so
     (like the main graph) rdflib's Turtle/N-Triples serialization is stable."""
-    properties_by_concept: dict[str, dict[str, dict]] = {}
-    for p in properties:
-        properties_by_concept.setdefault(p["concept"], {})[p["name"]] = p
+    properties_by_concept = resolve_properties_by_concept(concepts, properties)
 
     g = Graph()
     g.bind("npo", NPO)
@@ -394,10 +430,8 @@ def write_example_ttl_and_nt(g: Graph):
     (OUT_DIR / "npograph.example.nt").write_text("\n".join(nt_lines) + "\n")
 
 
-def write_example_jsonld(example, properties):
-    properties_by_concept: dict[str, dict[str, dict]] = {}
-    for p in properties:
-        properties_by_concept.setdefault(p["concept"], {})[p["name"]] = p
+def write_example_jsonld(example, concepts, properties):
+    properties_by_concept = resolve_properties_by_concept(concepts, properties)
 
     context = {
         "@version": 1.1,
@@ -643,9 +677,9 @@ def main():
 
     write_property_shapes(properties)
 
-    example_graph = build_example_graph(example, properties)
+    example_graph = build_example_graph(example, concepts, properties)
     write_example_ttl_and_nt(example_graph)
-    write_example_jsonld(example, properties)
+    write_example_jsonld(example, concepts, properties)
 
     print(f"Generated ontology from {len(concepts)} concepts, "
           f"{len(relationships)} relationships, {len(properties)} properties, "

@@ -4,7 +4,25 @@
     "label": "Organization",
     "aliases": [],
     "category": "organizational-entities",
-    "definition": "Any legal entity participating in grantmaking, either as a funder or a recipient. The general category that Funder and Grantee specialize.",
+    "definition": "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "organization-role",
+    "label": "Organization Role",
+    "aliases": [],
+    "category": "organizational-entities",
+    "definition": "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "organization-type",
+    "label": "Organization Type",
+    "aliases": [],
+    "category": "organizational-entities",
+    "definition": "The legal and tax classification of what an organization fundamentally is (e.g., a public charity, private foundation, or government entity), independent of any role it plays in a specific relationship.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
@@ -13,8 +31,8 @@
     "label": "Funder",
     "aliases": ["Grantmaker"],
     "category": "organizational-entities",
-    "definition": "An organization (foundation, government agency, corporation, or individual) that provides funding through grants.",
-    "subClassOf": "organization",
+    "definition": "The role an organization occupies when it provides funding to grantees through grant programs and awards.",
+    "subClassOf": "organization-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -22,8 +40,8 @@
     "label": "Grantee",
     "aliases": ["Recipient", "Subrecipient"],
     "category": "organizational-entities",
-    "definition": "An organization or individual that receives a grant award. Also called a recipient or subrecipient when funds are re-granted.",
-    "subClassOf": "organization",
+    "definition": "The role an organization occupies when it receives and administers grant funding awarded by a funder.",
+    "subClassOf": "organization-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -31,8 +49,26 @@
     "label": "Fiscal Sponsor",
     "aliases": [],
     "category": "organizational-entities",
-    "definition": "An organization that accepts and administers grant funds on behalf of a project or group that isn't itself a legal entity able to receive grants directly.",
+    "definition": "The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf.",
+    "subClassOf": "organization-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "philanthropic-intermediary",
+    "label": "Philanthropic Intermediary",
+    "aliases": [],
+    "category": "organizational-entities",
+    "definition": "An organization commonly known for facilitating philanthropy on behalf of others -- such as by re-granting, fiscal sponsorship, or hosting donor-advised funds -- regardless of which specific role it occupies in a given arrangement.",
     "subClassOf": "organization",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "funding-intermediary-role",
+    "label": "Funding Intermediary Role",
+    "aliases": [],
+    "category": "organizational-entities",
+    "definition": "The role an organization occupies when it channels funds between an original funding source and an ultimate grantee, without itself being the original funder or the final recipient.",
+    "subClassOf": "organization-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -104,6 +140,24 @@
     "aliases": [],
     "category": "funding-structure",
     "definition": "A structured estimate of costs associated with a proposed or funded project, broken into categories (e.g., personnel, overhead, direct program costs).",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#funding-structure"
+  },
+  {
+    "id": "fund",
+    "label": "Fund",
+    "aliases": [],
+    "category": "funding-structure",
+    "definition": "A designated pool of financial resources set aside for a purpose, distinct from the grant program or strategy that directs how it's used.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#funding-structure"
+  },
+  {
+    "id": "philanthropic-arrangement",
+    "label": "Philanthropic Arrangement",
+    "aliases": [],
+    "category": "funding-structure",
+    "definition": "A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#funding-structure"
   },

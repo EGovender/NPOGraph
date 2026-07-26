@@ -15,6 +15,20 @@ npo:BusinessRule a rdfs:Class ;
     rdfs:comment "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md." ;
     npo:version "0.2.0" .
 
+npo:funding-intermediary-role a owl:Class ;
+    rdfs:label "Funding Intermediary Role" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:organization-role ;
+    skos:definition "The role an organization occupies when it channels funds between an original funding source and an ultimate grantee, without itself being the original funder or the final recipient." ;
+    npo:category "organizational-entities" .
+
+npo:philanthropic-intermediary a owl:Class ;
+    rdfs:label "Philanthropic Intermediary" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:organization ;
+    skos:definition "An organization commonly known for facilitating philanthropy on behalf of others -- such as by re-granting, fiscal sponsorship, or hosting donor-advised funds -- regardless of which specific role it occupies in a given arrangement." ;
+    npo:category "organizational-entities" .
+
 npoprop:amendment-effective-date a owl:DatatypeProperty ;
     rdfs:label "Effective Date" ;
     rdfs:comment "When the Amendment's changes take effect." ;
@@ -238,6 +252,58 @@ npoprop:evaluation-status a owl:DatatypeProperty ;
     npo:group "lifecycle" ;
     npo:required true .
 
+npoprop:fund-closing-date a owl:DatatypeProperty ;
+    rdfs:label "Closing Date" ;
+    rdfs:comment "When the fund was closed, if it has been." ;
+    rdfs:domain npo:fund ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:fund-currency a owl:DatatypeProperty ;
+    rdfs:label "Currency" ;
+    rdfs:comment "The currency the fund's balance is denominated in." ;
+    rdfs:domain npo:fund ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "financial" ;
+    npo:required true .
+
+npoprop:fund-opening-date a owl:DatatypeProperty ;
+    rdfs:label "Opening Date" ;
+    rdfs:comment "When the fund was established." ;
+    rdfs:domain npo:fund ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:fund-restriction-type a owl:DatatypeProperty ;
+    rdfs:label "Restriction Type" ;
+    rdfs:comment "The fund's accounting restriction status." ;
+    rdfs:domain npo:fund ;
+    rdfs:range xsd:string ;
+    npo:allowedValue "donor-restricted",
+        "permanently-restricted",
+        "temporarily-restricted",
+        "unrestricted" ;
+    npo:cardinality "one" ;
+    npo:group "classification" ;
+    npo:required true .
+
+npoprop:fund-status a owl:DatatypeProperty ;
+    rdfs:label "Status" ;
+    rdfs:comment "Whether the fund is currently active." ;
+    rdfs:domain npo:fund ;
+    rdfs:range xsd:string ;
+    npo:allowedValue "active",
+        "closed",
+        "frozen" ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required true .
+
 npoprop:funding-cycle-end-date a owl:DatatypeProperty ;
     rdfs:label "End Date" ;
     rdfs:comment "When the Funding Cycle closes." ;
@@ -393,6 +459,108 @@ npoprop:matching-requirement-required-ratio a owl:DatatypeProperty ;
     npo:group "financial" ;
     npo:required true .
 
+npoprop:organization-formation-date a owl:DatatypeProperty ;
+    rdfs:label "Formation Date" ;
+    rdfs:comment "When the organization was legally formed." ;
+    rdfs:domain npo:organization ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:organization-identifier a owl:DatatypeProperty ;
+    rdfs:label "Identifier" ;
+    rdfs:comment "A registration number or unique identifier for the organization (e.g., an EIN or DUNS number), if tracked." ;
+    rdfs:domain npo:organization ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "classification" ;
+    npo:required false .
+
+npoprop:organization-jurisdiction a owl:DatatypeProperty ;
+    rdfs:label "Jurisdiction" ;
+    rdfs:comment "The legal jurisdiction (country or state) the organization is formed and regulated under." ;
+    rdfs:domain npo:organization ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "classification" ;
+    npo:required false .
+
+npoprop:organization-operating-status a owl:DatatypeProperty ;
+    rdfs:label "Operating Status" ;
+    rdfs:comment "Whether the organization is currently operating." ;
+    rdfs:domain npo:organization ;
+    rdfs:range xsd:string ;
+    npo:allowedValue "active",
+        "dissolved",
+        "merged",
+        "unknown" ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:organization-role-effective-from a owl:DatatypeProperty ;
+    rdfs:label "Effective From" ;
+    rdfs:comment "When this organization began occupying this role." ;
+    rdfs:domain npo:organization-role ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:organization-role-effective-to a owl:DatatypeProperty ;
+    rdfs:label "Effective To" ;
+    rdfs:comment "When this organization stopped occupying this role, if it has ended." ;
+    rdfs:domain npo:organization-role ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:organization-role-scope a owl:DatatypeProperty ;
+    rdfs:label "Scope" ;
+    rdfs:comment "Any limits on what this role occupancy covers (e.g., a specific program or geography), if narrower than the arrangement itself." ;
+    rdfs:domain npo:organization-role ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "governance" ;
+    npo:required false .
+
+npoprop:organization-role-status a owl:DatatypeProperty ;
+    rdfs:label "Status" ;
+    rdfs:comment "Whether this role occupancy is currently in effect." ;
+    rdfs:domain npo:organization-role ;
+    rdfs:range xsd:string ;
+    npo:allowedValue "active",
+        "inactive",
+        "terminated" ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required true .
+
+npoprop:organization-tax-identifier a owl:DatatypeProperty ;
+    rdfs:label "Tax Identifier" ;
+    rdfs:comment "The organization's tax identification number (e.g., an EIN), if applicable and disclosed." ;
+    rdfs:domain npo:organization ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "classification" ;
+    npo:required false .
+
+npoprop:organization-tax-status a owl:DatatypeProperty ;
+    rdfs:label "Tax Status" ;
+    rdfs:comment "The organization's tax-exemption status, independent of its legal form." ;
+    rdfs:domain npo:organization ;
+    rdfs:range xsd:string ;
+    npo:allowedValue "government-exempt",
+        "tax-exempt-501c3",
+        "tax-exempt-other",
+        "taxable",
+        "unknown" ;
+    npo:cardinality "one" ;
+    npo:group "classification" ;
+    npo:required false .
+
 npoprop:output-unit a owl:DatatypeProperty ;
     rdfs:label "Unit" ;
     rdfs:comment "The unit the Output is counted in, e.g. \"workshops\" or \"people served\"." ;
@@ -463,6 +631,45 @@ npoprop:payment-status a owl:DatatypeProperty ;
     npo:cardinality "one" ;
     npo:group "lifecycle" ;
     npo:required true .
+
+npoprop:philanthropic-arrangement-effective-date a owl:DatatypeProperty ;
+    rdfs:label "Effective Date" ;
+    rdfs:comment "When the arrangement took effect." ;
+    rdfs:domain npo:philanthropic-arrangement ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:philanthropic-arrangement-governing-document a owl:DatatypeProperty ;
+    rdfs:label "Governing Document" ;
+    rdfs:comment "The name or type of document that formally establishes the arrangement (e.g., a fiscal sponsorship agreement)." ;
+    rdfs:domain npo:philanthropic-arrangement ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "governance" ;
+    npo:required false .
+
+npoprop:philanthropic-arrangement-status a owl:DatatypeProperty ;
+    rdfs:label "Status" ;
+    rdfs:comment "Whether the arrangement is currently active." ;
+    rdfs:domain npo:philanthropic-arrangement ;
+    rdfs:range xsd:string ;
+    npo:allowedValue "active",
+        "pending",
+        "terminated" ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required true .
+
+npoprop:philanthropic-arrangement-termination-date a owl:DatatypeProperty ;
+    rdfs:label "Termination Date" ;
+    rdfs:comment "When the arrangement ended, if it has." ;
+    rdfs:domain npo:philanthropic-arrangement ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
 
 npoprop:report-due-date a owl:DatatypeProperty ;
     rdfs:label "Due Date" ;
@@ -571,6 +778,20 @@ nporel:actsOnBehalfOf a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> ;
     rdfs:range npo:grantee .
 
+nporel:administeredBy a owl:ObjectProperty ;
+    rdfs:label "is administered by" ;
+    rdfs:comment "A Philanthropic Arrangement is administered by an Organization, such as a fiscal sponsor or fund administrator." ;
+    rdfs:domain npo:philanthropic-arrangement ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:organization .
+
+nporel:appliesWithin a owl:ObjectProperty ;
+    rdfs:label "applies within" ;
+    rdfs:comment "An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements." ;
+    rdfs:domain npo:organization-role ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:philanthropic-arrangement .
+
 nporel:assessedAgainstLogicModel a owl:ObjectProperty ;
     rdfs:label "is assessed against" ;
     rdfs:comment "Reports are assessed against the project's Logic Model in terms of Outputs and Outcomes." ;
@@ -612,6 +833,20 @@ nporel:attachesComplianceRequirement a owl:ObjectProperty ;
     rdfs:domain npo:grant-agreement ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:compliance-requirement .
+
+nporel:awardedBy a owl:ObjectProperty ;
+    rdfs:label "is awarded by" ;
+    rdfs:comment "An Award is awarded by an Organization -- the original source of the funding, which may differ from the organization that administers it." ;
+    rdfs:domain npo:award ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:organization .
+
+nporel:awardedTo a owl:ObjectProperty ;
+    rdfs:label "is awarded to" ;
+    rdfs:comment "An Award is awarded to an Organization -- the ultimate recipient, which may differ from the organization managing compliance on its behalf." ;
+    rdfs:domain npo:award ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:organization .
 
 nporel:brokenIntoInstallment a owl:ObjectProperty ;
     rdfs:label "is broken into" ;
@@ -655,12 +890,40 @@ nporel:formalizedByGrantAgreement a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:grant-agreement .
 
+nporel:fundedBy a owl:ObjectProperty ;
+    rdfs:label "is funded by" ;
+    rdfs:comment "A Grant Program is funded by a Fund -- the pool of financial resources backing the program's giving strategy." ;
+    rdfs:domain npo:grant-program ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:fund .
+
+nporel:fundedFrom a owl:ObjectProperty ;
+    rdfs:label "is funded from" ;
+    rdfs:comment "An Award draws its funds from a specific Fund." ;
+    rdfs:domain npo:award ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:fund .
+
+nporel:hasLegalForm a owl:ObjectProperty ;
+    rdfs:label "has legal form" ;
+    rdfs:comment "An Organization has a legal form describing what it fundamentally is under law, independent of any role it plays." ;
+    rdfs:domain npo:organization ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:organization-type .
+
 nporel:hasPaymentSchedule a owl:ObjectProperty ;
     rdfs:label "has" ;
     rdfs:comment "An Award's funds are released according to a Payment Schedule." ;
     rdfs:domain npo:award ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:payment-schedule .
+
+nporel:heldBy a owl:ObjectProperty ;
+    rdfs:label "is held by" ;
+    rdfs:comment "A Fund is held and administered by an Organization." ;
+    rdfs:domain npo:fund ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:organization .
 
 nporel:includesBudget a owl:ObjectProperty ;
     rdfs:label "includes" ;
@@ -689,6 +952,13 @@ nporel:maintainsGrantProgram a owl:ObjectProperty ;
     rdfs:domain npo:funder ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:grant-program .
+
+nporel:managedBy a owl:ObjectProperty ;
+    rdfs:label "is administered by" ;
+    rdfs:comment "An Award may be administered day-to-day by an Organization other than the one that awarded or received it, such as a fiscal sponsor or intermediary." ;
+    rdfs:domain npo:award ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:organization .
 
 nporel:mayHavePaymentCondition a owl:ObjectProperty ;
     rdfs:label "may have" ;
@@ -766,6 +1036,20 @@ nporel:occursDuringFundingCycle a owl:ObjectProperty ;
     rdfs:domain npo:funding-opportunity ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:funding-cycle .
+
+nporel:participatesIn a owl:ObjectProperty ;
+    rdfs:label "participates in" ;
+    rdfs:comment "An Organization participates in a Philanthropic Arrangement, independent of tracking which specific role it occupies there." ;
+    rdfs:domain npo:organization ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:philanthropic-arrangement .
+
+nporel:playsRole a owl:ObjectProperty ;
+    rdfs:label "plays" ;
+    rdfs:comment "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait." ;
+    rdfs:domain npo:organization ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:organization-role .
 
 nporel:producesDecision a owl:ObjectProperty ;
     rdfs:label "produces" ;
@@ -895,16 +1179,16 @@ npo:eligibility-criteria a owl:Class ;
 npo:fiscal-sponsor a owl:Class ;
     rdfs:label "Fiscal Sponsor" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    rdfs:subClassOf npo:organization ;
-    skos:definition "An organization that accepts and administers grant funds on behalf of a project or group that isn't itself a legal entity able to receive grants directly." ;
+    rdfs:subClassOf npo:organization-role ;
+    skos:definition "The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf." ;
     npo:category "organizational-entities" .
 
 npo:funder a owl:Class ;
     rdfs:label "Funder" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    rdfs:subClassOf npo:organization ;
+    rdfs:subClassOf npo:organization-role ;
     skos:altLabel "Grantmaker" ;
-    skos:definition "An organization (foundation, government agency, corporation, or individual) that provides funding through grants." ;
+    skos:definition "The role an organization occupies when it provides funding to grantees through grant programs and awards." ;
     npo:category "organizational-entities" .
 
 npo:grant-lifecycle a owl:Class ;
@@ -918,6 +1202,12 @@ npo:logic-model a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
     skos:definition "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project." ;
     npo:category "outcomes-and-closeout" .
+
+npo:organization-type a owl:Class ;
+    rdfs:label "Organization Type" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    skos:definition "The legal and tax classification of what an organization fundamentally is (e.g., a public charity, private foundation, or government entity), independent of any role it plays in a specific relationship." ;
+    npo:category "organizational-entities" .
 
 npo:outcome a owl:Class ;
     rdfs:label "Outcome" ;
@@ -1022,12 +1312,6 @@ npo:matching-requirement a owl:Class ;
     skos:definition "A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match)." ;
     npo:category "award-and-agreement" .
 
-npo:organization a owl:Class ;
-    rdfs:label "Organization" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    skos:definition "Any legal entity participating in grantmaking, either as a funder or a recipient. The general category that Funder and Grantee specialize." ;
-    npo:category "organizational-entities" .
-
 npo:payment-condition a owl:Class ;
     rdfs:label "Payment Condition" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
@@ -1074,10 +1358,10 @@ npo:evaluation a owl:Class ;
 npo:grantee a owl:Class ;
     rdfs:label "Grantee" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    rdfs:subClassOf npo:organization ;
+    rdfs:subClassOf npo:organization-role ;
     skos:altLabel "Recipient",
         "Subrecipient" ;
-    skos:definition "An organization or individual that receives a grant award. Also called a recipient or subrecipient when funds are re-granted." ;
+    skos:definition "The role an organization occupies when it receives and administers grant funding awarded by a funder." ;
     npo:category "organizational-entities" .
 
 npo:decision a owl:Class ;
@@ -1127,11 +1411,29 @@ npo:funding-opportunity a owl:Class ;
     skos:definition "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines." ;
     npo:category "funding-structure" .
 
+npo:philanthropic-arrangement a owl:Class ;
+    rdfs:label "Philanthropic Arrangement" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    skos:definition "A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement." ;
+    npo:category "funding-structure" .
+
+npo:fund a owl:Class ;
+    rdfs:label "Fund" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    skos:definition "A designated pool of financial resources set aside for a purpose, distinct from the grant program or strategy that directs how it's used." ;
+    npo:category "funding-structure" .
+
 npo:payment a owl:Class ;
     rdfs:label "Payment" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments." ;
     npo:category "disbursement" .
+
+npo:organization-role a owl:Class ;
+    rdfs:label "Organization Role" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    skos:definition "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself." ;
+    npo:category "organizational-entities" .
 
 npo:report a owl:Class ;
     rdfs:label "Report" ;
@@ -1144,6 +1446,12 @@ npo:grant-agreement a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:definition "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations." ;
     npo:category "award-and-agreement" .
+
+npo:organization a owl:Class ;
+    rdfs:label "Organization" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    skos:definition "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient." ;
+    npo:category "organizational-entities" .
 
 npo:award a owl:Class ;
     rdfs:label "Award" ;

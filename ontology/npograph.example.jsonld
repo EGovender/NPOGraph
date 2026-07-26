@@ -20,6 +20,10 @@
         "npo:grantee"
       ],
       "label": "Coastal Watch Alliance",
+      "npoprop:organization-role-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
       "nporel:submitsApplication": {
         "@id": "ex:coastal-watch-fy26-application"
       }
@@ -367,6 +371,10 @@
         "npo:funder"
       ],
       "label": "Ocean Conservation Fund",
+      "npoprop:organization-role-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
       "nporel:maintainsGrantProgram": {
         "@id": "ex:marine-habitat-program"
       }

@@ -12,6 +12,7 @@
 ex:coastal-watch-alliance a owl:NamedIndividual,
         npo:grantee ;
     rdfs:label "Coastal Watch Alliance" ;
+    npoprop:organization-role-status "active"^^xsd:string ;
     nporel:submitsApplication ex:coastal-watch-fy26-application .
 
 ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
@@ -25,6 +26,7 @@ ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
 ex:ocean-conservation-fund a owl:NamedIndividual,
         npo:funder ;
     rdfs:label "Ocean Conservation Fund" ;
+    npoprop:organization-role-status "active"^^xsd:string ;
     nporel:maintainsGrantProgram ex:marine-habitat-program .
 
 ex:coastal-watch-fy26-application a owl:NamedIndividual,

@@ -7,7 +7,7 @@
       "id": "ocean-conservation-fund",
       "concept": "funder",
       "label": "Ocean Conservation Fund",
-      "properties": {},
+      "properties": { "status": "active" },
       "narrative": "The Ocean Conservation Fund (fictional) is a foundation that funds marine habitat restoration work."
     },
     {
@@ -35,7 +35,7 @@
       "id": "coastal-watch-alliance",
       "concept": "grantee",
       "label": "Coastal Watch Alliance",
-      "properties": {},
+      "properties": { "status": "active" },
       "narrative": "Coastal Watch Alliance (fictional), a coastal-habitat nonprofit, decides to apply."
     },
     {

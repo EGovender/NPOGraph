@@ -53,15 +53,19 @@ These are candidate business rules implied by the lifecycle above. They need rev
 
 ## Organizational relationships
 
-- A `Funder` and a `Grantee` are both specializations of `Organization`; the same legal entity can act as a `Funder` in one relationship and a `Grantee` in another (e.g., a community foundation re-granting government funds).
+- `Funder`, `Grantee`, and `Fiscal Sponsor` are specializations of `Organization Role`, not of `Organization` directly — an `Organization` **plays** a role (`Organization --playsRole--> Organization Role`), and that occupancy **applies within** a specific `Philanthropic Arrangement` (`Organization Role --appliesWithin--> Philanthropic Arrangement`). This is what lets the same legal entity act as a `Funder` in one relationship and a `Grantee` in another (e.g., a community foundation re-granting government funds) without contradiction — see [Organizations, Roles & Arrangements](08-organizations-roles-and-arrangements.md) for the full reasoning.
+- An `Organization` also has a `hasLegalForm` relationship to an `Organization Type` (e.g., Public Charity, Private Foundation) — its legal/tax classification, independent of any role it plays.
+- A `Philanthropic Intermediary` is an organization classification (an `Organization` known for facilitating philanthropy on others' behalf), distinct from the `Funding Intermediary Role` it actually occupies in a given arrangement — a classification isn't a role, and an organization can be classified as an intermediary without every one of its engagements exercising that role.
 - A `Fiscal Sponsor` stands in for a `Grantee` that lacks independent legal status to receive an `Award` directly; the `Grant Agreement` is between the `Funder` and the `Fiscal Sponsor` on behalf of the sponsored project.
+- An `Award` names its parties directly and separately: who `awardedBy` (the original funding source), who it's `awardedTo` (the ultimate recipient), what `Fund` it's `fundedFrom`, and who's `managedBy` (day-to-day administration) — in a direct grant these collapse to the same two organizations as always; in intermediary philanthropy they can name three or four different ones.
+- A `Grant Program` is `fundedBy` a `Fund` — the financial pool behind the program's giving strategy, distinct from the program itself.
 - A `Program Officer` is associated with one or more `Grant Program`s and typically owns the `Review` and ongoing monitoring relationship for `Award`s made under them.
 - A `Grant Administrator` is the `Grantee`-side counterpart, typically responsible for `Report` submission and `Compliance Requirement` tracking.
 
 ## Open questions
 
-- How should re-granting (a `Grantee` that is itself a `Funder` to sub-grantees) be modeled — as a recursive `Award`, or a distinct concept?
 - Does `Evaluation` belong strictly after `Closeout`, or can it run concurrently with an active `Award` (e.g., mid-grant evaluation informing a renewal)?
 - Should `Decision` be its own concept, or folded into `Review` as an attribute?
+- How should the specific arrangement subtypes (Fiscal Sponsorship, Donor-Advised Fund, Regranting, and the rest listed in [Organizations, Roles & Arrangements](08-organizations-roles-and-arrangements.md)) be distinguished — one shared `arrangementType` property, or a `subClassOf` hierarchy under `Philanthropic Arrangement`, matching how `Funder`/`Grantee`/`Fiscal Sponsor` are subtypes of `Organization Role`?
 
-Open an issue to discuss any of these before they're resolved in a future revision.
+Open an issue to discuss any of these before they're resolved in a future revision. (Re-granting — a `Grantee` that is itself a `Funder` to sub-grantees — used to be an open question here; it's resolved by the `Organization Role` pattern above: the same `Organization` simply holds two separate role occupancies, one per arrangement.)

@@ -135,11 +135,35 @@ export function getSubtypes(conceptId: string): Concept[] {
   return concepts.filter((c) => c.subClassOf === conceptId);
 }
 
-/** Hand-authored attributes for a concept (lifecycle/financial/governance/classification), sorted. */
+/**
+ * Hand-authored attributes for a concept (lifecycle/financial/governance/
+ * classification), INCLUDING those inherited from ancestor concepts via
+ * subClassOf (e.g. Funder inherits Organization Role's `status`) -- mirrors
+ * tools/generate_ontology.py's resolve_properties_by_concept. SHACL's
+ * sh:targetClass resolves subclass instances as part of the spec itself, so
+ * an instance of Funder is validated against Organization Role's shape too;
+ * the site needs to show the same properties the ontology actually
+ * requires, not just the ones declared directly on the concept itself.
+ */
 export function getPropertiesForConcept(conceptId: string): Property[] {
-  return properties
-    .filter((p) => p.concept === conceptId)
-    .sort((a, b) => a.id.localeCompare(b.id));
+  const chain: Concept[] = [];
+  const seen = new Set<string>();
+  let currentId: string | null = conceptId;
+  while (currentId && !seen.has(currentId)) {
+    const c = getConcept(currentId);
+    if (!c) break;
+    seen.add(currentId);
+    chain.push(c);
+    currentId = c.subClassOf;
+  }
+
+  const byName = new Map<string, Property>();
+  for (const c of chain.reverse()) {
+    for (const p of properties.filter((p) => p.concept === c.id)) {
+      byName.set(p.name, p);
+    }
+  }
+  return Array.from(byName.values()).sort((a, b) => a.id.localeCompare(b.id));
 }
 
 /** Business rules that name this concept, sorted. */

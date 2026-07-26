@@ -67,6 +67,15 @@ npo:evaluation-property-shape
     sh:property [ sh:path npoprop:evaluation-completed-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:evaluation-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planned"""^^xsd:string """in-progress"""^^xsd:string """completed"""^^xsd:string ) ] .
 
+npo:fund-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:fund ;
+    sh:property [ sh:path npoprop:fund-closing-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:fund-currency ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:fund-opening-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:fund-restriction-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """unrestricted"""^^xsd:string """temporarily-restricted"""^^xsd:string """permanently-restricted"""^^xsd:string """donor-restricted"""^^xsd:string ) ] ,
+        [ sh:path npoprop:fund-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """closed"""^^xsd:string """frozen"""^^xsd:string ) ] .
+
 npo:funding-cycle-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:funding-cycle ;
@@ -114,6 +123,24 @@ npo:matching-requirement-property-shape
     sh:property [ sh:path npoprop:matching-requirement-match-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """cash"""^^xsd:string """in-kind"""^^xsd:string ) ] ,
         [ sh:path npoprop:matching-requirement-required-ratio ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
 
+npo:organization-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:organization ;
+    sh:property [ sh:path npoprop:organization-formation-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:organization-identifier ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:organization-jurisdiction ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:organization-operating-status ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """dissolved"""^^xsd:string """merged"""^^xsd:string """unknown"""^^xsd:string ) ] ,
+        [ sh:path npoprop:organization-tax-identifier ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:organization-tax-status ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ; sh:in ( """tax-exempt-501c3"""^^xsd:string """tax-exempt-other"""^^xsd:string """taxable"""^^xsd:string """government-exempt"""^^xsd:string """unknown"""^^xsd:string ) ] .
+
+npo:organization-role-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:organization-role ;
+    sh:property [ sh:path npoprop:organization-role-effective-from ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:organization-role-effective-to ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:organization-role-scope ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:organization-role-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """inactive"""^^xsd:string """terminated"""^^xsd:string ) ] .
+
 npo:output-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:output ;
@@ -136,6 +163,14 @@ npo:payment-schedule-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:payment-schedule ;
     sh:property [ sh:path npoprop:payment-schedule-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """completed"""^^xsd:string ) ] .
+
+npo:philanthropic-arrangement-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:philanthropic-arrangement ;
+    sh:property [ sh:path npoprop:philanthropic-arrangement-effective-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:philanthropic-arrangement-governing-document ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:philanthropic-arrangement-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """terminated"""^^xsd:string """pending"""^^xsd:string ) ] ,
+        [ sh:path npoprop:philanthropic-arrangement-termination-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] .
 
 npo:report-property-shape
     a sh:NodeShape ;

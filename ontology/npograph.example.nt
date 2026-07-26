@@ -1,6 +1,7 @@
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/grantee> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <http://www.w3.org/2000/01/rdf-schema#label> "Coastal Watch Alliance" .
+<https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-fy26-application> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-fy26-application> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-fy26-application> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/application> .
@@ -111,4 +112,5 @@
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/funder> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <http://www.w3.org/2000/01/rdf-schema#label> "Ocean Conservation Fund" .
+<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <https://egovender.github.io/NPOGraph/ontology/examples/marine-habitat-program> .

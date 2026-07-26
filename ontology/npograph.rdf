@@ -89,19 +89,26 @@
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Fiscal Sponsor</rdfs:label>
-    <skos:definition>An organization that accepts and administers grant funds on behalf of a project or group that isn't itself a legal entity able to receive grants directly.</skos:definition>
+    <skos:definition>The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf.</skos:definition>
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
-    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/fund">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Fund</rdfs:label>
+    <skos:definition>A designated pool of financial resources set aside for a purpose, distinct from the grant program or strategy that directs how it's used.</skos:definition>
+    <npo:category>funding-structure</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/funder">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Funder</rdfs:label>
-    <skos:definition>An organization (foundation, government agency, corporation, or individual) that provides funding through grants.</skos:definition>
+    <skos:definition>The role an organization occupies when it provides funding to grantees through grant programs and awards.</skos:definition>
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <skos:altLabel>Grantmaker</skos:altLabel>
-    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/funding-cycle">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -109,6 +116,14 @@
     <skos:definition>A recurring period (e.g., quarterly, annual) within a grant program during which applications are accepted and decided.</skos:definition>
     <npo:category>funding-structure</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/funding-intermediary-role">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Funding Intermediary Role</rdfs:label>
+    <skos:definition>The role an organization occupies when it channels funds between an original funding source and an ultimate grantee, without itself being the original funder or the final recipient.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/funding-opportunity">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -152,12 +167,12 @@
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/grantee">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Grantee</rdfs:label>
-    <skos:definition>An organization or individual that receives a grant award. Also called a recipient or subrecipient when funds are re-granted.</skos:definition>
+    <skos:definition>The role an organization occupies when it receives and administers grant funding awarded by a funder.</skos:definition>
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <skos:altLabel>Recipient</skos:altLabel>
     <skos:altLabel>Subrecipient</skos:altLabel>
-    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -198,7 +213,21 @@
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/organization">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Organization</rdfs:label>
-    <skos:definition>Any legal entity participating in grantmaking, either as a funder or a recipient. The general category that Funder and Grantee specialize.</skos:definition>
+    <skos:definition>Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/organization-role">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Organization Role</rdfs:label>
+    <skos:definition>A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/organization-type">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Organization Type</rdfs:label>
+    <skos:definition>The legal and tax classification of what an organization fundamentally is (e.g., a public charity, private foundation, or government entity), independent of any role it plays in a specific relationship.</skos:definition>
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
   </rdf:Description>
@@ -236,6 +265,21 @@
     <skos:definition>The agreed timing and amounts by which award funds will be disbursed to the grantee.</skos:definition>
     <npo:category>disbursement</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Philanthropic Arrangement</rdfs:label>
+    <skos:definition>A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement.</skos:definition>
+    <npo:category>funding-structure</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/philanthropic-intermediary">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Philanthropic Intermediary</rdfs:label>
+    <skos:definition>An organization commonly known for facilitating philanthropy on behalf of others -- such as by re-granting, fiscal sponsorship, or hosting donor-advised funds -- regardless of which specific role it occupies in a given arrangement.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/program-officer">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -346,6 +390,22 @@
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/review" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/awardedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is awarded by</rdfs:label>
+    <rdfs:comment>An Award is awarded by an Organization -- the original source of the funding, which may differ from the organization that administers it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/award" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/awardedTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is awarded to</rdfs:label>
+    <rdfs:comment>An Award is awarded to an Organization -- the ultimate recipient, which may differ from the organization managing compliance on its behalf.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/award" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>follows</rdfs:label>
@@ -362,6 +422,14 @@
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/grant-agreement" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/fundedFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is funded from</rdfs:label>
+    <rdfs:comment>An Award draws its funds from a specific Fund.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/award" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/fund" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/hasPaymentSchedule">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>has</rdfs:label>
@@ -369,6 +437,14 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/award" />
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/payment-schedule" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/managedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is administered by</rdfs:label>
+    <rdfs:comment>An Award may be administered day-to-day by an Organization other than the one that awarded or received it, such as a fiscal sponsor or intermediary.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/award" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -425,6 +501,14 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor" />
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/grantee" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/heldBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is held by</rdfs:label>
+    <rdfs:comment>A Fund is held and administered by an Organization.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/fund" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -514,6 +598,14 @@
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/terms-and-conditions" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/fundedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is funded by</rdfs:label>
+    <rdfs:comment>A Grant Program is funded by a Fund -- the pool of financial resources backing the program's giving strategy.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/grant-program" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/fund" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>issues</rdfs:label>
@@ -554,6 +646,38 @@
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/payment-condition" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/hasLegalForm">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>has legal form</rdfs:label>
+    <rdfs:comment>An Organization has a legal form describing what it fundamentally is under law, independent of any role it plays.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-type" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/participatesIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>participates in</rdfs:label>
+    <rdfs:comment>An Organization participates in a Philanthropic Arrangement, independent of tracking which specific role it occupies there.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/playsRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>plays</rdfs:label>
+    <rdfs:comment>An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>applies within</rdfs:label>
+    <rdfs:comment>An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>is broken into</rdfs:label>
@@ -561,6 +685,14 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/payment-schedule" />
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/installment" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/administeredBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is administered by</rdfs:label>
+    <rdfs:comment>A Philanthropic Arrangement is administered by an Organization, such as a fiscal sponsor or fund administrator.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/associatedWithGrantProgram">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -870,6 +1002,63 @@
     <npo:allowedValue>in-progress</npo:allowedValue>
     <npo:allowedValue>completed</npo:allowedValue>
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/fund-closing-date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Closing Date</rdfs:label>
+    <rdfs:comment>When the fund was closed, if it has been.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/fund" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/fund-currency">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Currency</rdfs:label>
+    <rdfs:comment>The currency the fund's balance is denominated in.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/fund" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>financial</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/fund-opening-date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Opening Date</rdfs:label>
+    <rdfs:comment>When the fund was established.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/fund" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Restriction Type</rdfs:label>
+    <rdfs:comment>The fund's accounting restriction status.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/fund" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>classification</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <npo:allowedValue>unrestricted</npo:allowedValue>
+    <npo:allowedValue>temporarily-restricted</npo:allowedValue>
+    <npo:allowedValue>permanently-restricted</npo:allowedValue>
+    <npo:allowedValue>donor-restricted</npo:allowedValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/fund-status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Status</rdfs:label>
+    <rdfs:comment>Whether the fund is currently active.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/fund" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <npo:allowedValue>active</npo:allowedValue>
+    <npo:allowedValue>closed</npo:allowedValue>
+    <npo:allowedValue>frozen</npo:allowedValue>
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/funding-cycle-end-date">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
     <rdfs:label>End Date</rdfs:label>
@@ -1040,6 +1229,118 @@
     <npo:required>true</npo:required>
     <npo:cardinality>one</npo:cardinality>
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-formation-date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Formation Date</rdfs:label>
+    <rdfs:comment>When the organization was legally formed.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-identifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Identifier</rdfs:label>
+    <rdfs:comment>A registration number or unique identifier for the organization (e.g., an EIN or DUNS number), if tracked.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>classification</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-jurisdiction">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Jurisdiction</rdfs:label>
+    <rdfs:comment>The legal jurisdiction (country or state) the organization is formed and regulated under.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>classification</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Operating Status</rdfs:label>
+    <rdfs:comment>Whether the organization is currently operating.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <npo:allowedValue>active</npo:allowedValue>
+    <npo:allowedValue>dissolved</npo:allowedValue>
+    <npo:allowedValue>merged</npo:allowedValue>
+    <npo:allowedValue>unknown</npo:allowedValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Effective From</rdfs:label>
+    <rdfs:comment>When this organization began occupying this role.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Effective To</rdfs:label>
+    <rdfs:comment>When this organization stopped occupying this role, if it has ended.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Scope</rdfs:label>
+    <rdfs:comment>Any limits on what this role occupancy covers (e.g., a specific program or geography), if narrower than the arrangement itself.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>governance</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Status</rdfs:label>
+    <rdfs:comment>Whether this role occupancy is currently in effect.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <npo:allowedValue>active</npo:allowedValue>
+    <npo:allowedValue>inactive</npo:allowedValue>
+    <npo:allowedValue>terminated</npo:allowedValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-tax-identifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Tax Identifier</rdfs:label>
+    <rdfs:comment>The organization's tax identification number (e.g., an EIN), if applicable and disclosed.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>classification</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/organization-tax-status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Tax Status</rdfs:label>
+    <rdfs:comment>The organization's tax-exemption status, independent of its legal form.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>classification</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <npo:allowedValue>tax-exempt-501c3</npo:allowedValue>
+    <npo:allowedValue>tax-exempt-other</npo:allowedValue>
+    <npo:allowedValue>taxable</npo:allowedValue>
+    <npo:allowedValue>government-exempt</npo:allowedValue>
+    <npo:allowedValue>unknown</npo:allowedValue>
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/output-unit">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
     <rdfs:label>Unit</rdfs:label>
@@ -1117,6 +1418,49 @@
     <npo:allowedValue>pending</npo:allowedValue>
     <npo:allowedValue>sent</npo:allowedValue>
     <npo:allowedValue>received</npo:allowedValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/philanthropic-arrangement-effective-date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Effective Date</rdfs:label>
+    <rdfs:comment>When the arrangement took effect.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/philanthropic-arrangement-governing-document">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Governing Document</rdfs:label>
+    <rdfs:comment>The name or type of document that formally establishes the arrangement (e.g., a fiscal sponsorship agreement).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>governance</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/philanthropic-arrangement-status">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Status</rdfs:label>
+    <rdfs:comment>Whether the arrangement is currently active.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <npo:allowedValue>active</npo:allowedValue>
+    <npo:allowedValue>terminated</npo:allowedValue>
+    <npo:allowedValue>pending</npo:allowedValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/philanthropic-arrangement-termination-date">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:label>Termination Date</rdfs:label>
+    <rdfs:comment>When the arrangement ended, if it has.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/report-due-date">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
