@@ -258,11 +258,17 @@ pre {
 }
 
 .graph-sidebar-title {
-  margin-top: 0;
+  margin: 1.5rem 0 0.5rem;
   font-size: 1rem;
 }
 
-.category-filter {
+.graph-sidebar-title:first-child {
+  margin-top: 0;
+}
+
+.category-filter,
+.view-selector,
+.shape-legend {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -270,12 +276,50 @@ pre {
   gap: 0.5rem;
 }
 
-.category-filter label {
+.category-filter label,
+.view-selector label {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
   cursor: pointer;
+}
+
+.shape-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.shape-swatch {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex: none;
+  background: var(--text-muted);
+}
+
+.shape-swatch-organization {
+  border-radius: 2px;
+}
+
+.shape-swatch-role {
+  border-radius: 0;
+  transform: rotate(45deg);
+  width: 0.6rem;
+  height: 0.6rem;
+}
+
+.shape-swatch-fund {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.shape-swatch-arrangement {
+  clip-path: polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%);
+}
+
+.shape-swatch-other {
+  border-radius: 999px;
 }
 
 .graph-hint {
@@ -743,4 +787,19 @@ pre {
   display: flex;
   gap: 0.35rem;
   flex-wrap: wrap;
+}
+
+.story-act {
+  list-style: none;
+  margin: 0.5rem 0 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gridline);
+}
+
+.story-act-title {
+  margin: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
 }

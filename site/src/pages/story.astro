@@ -23,27 +23,34 @@ const base = import.meta.env.BASE_URL;
         const category = getCategory(concept.category);
         const propertyEntries = Object.entries(individual.properties);
         return (
-          <li class="story-step">
-            <div class="story-step-marker" style={`background: light-dark(${category.colorLight}, ${category.colorDark})`} />
-            <div class="story-step-body">
-              <div class="story-step-header">
-                <a class="story-step-concept" href={`${base}concepts/${concept.id}`}>
-                  {concept.label}
-                </a>
-                <span class="muted story-step-label">{individual.label}</span>
-              </div>
-              <p class="story-step-narrative">{individual.narrative}</p>
-              {propertyEntries.length > 0 && (
-                <div class="story-step-props">
-                  {propertyEntries.map(([name, value]) => (
-                    <span class="chip">
-                      {name}: {value}
-                    </span>
-                  ))}
+          <>
+            {individual.act && (
+              <li class="story-act" aria-hidden="false">
+                <h2 class="story-act-title">{individual.act}</h2>
+              </li>
+            )}
+            <li class="story-step">
+              <div class="story-step-marker" style={`background: light-dark(${category.colorLight}, ${category.colorDark})`} />
+              <div class="story-step-body">
+                <div class="story-step-header">
+                  <a class="story-step-concept" href={`${base}concepts/${concept.id}`}>
+                    {concept.label}
+                  </a>
+                  <span class="muted story-step-label">{individual.label}</span>
                 </div>
-              )}
-            </div>
-          </li>
+                <p class="story-step-narrative">{individual.narrative}</p>
+                {propertyEntries.length > 0 && (
+                  <div class="story-step-props">
+                    {propertyEntries.map(([name, value]) => (
+                      <span class="chip">
+                        {name}: {value}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </li>
+          </>
         );
       })
     }

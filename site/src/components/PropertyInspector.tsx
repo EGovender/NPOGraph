@@ -4,7 +4,7 @@ import {
   conceptIri,
   conceptJsonLd,
   getConcept,
-  getExampleForConcept,
+  getExamplesForConcept,
   getPropertiesForConcept,
   machineFormats,
   ontologyVersion,
@@ -52,8 +52,8 @@ export default function PropertyInspector({
   showOpenPageLink = false,
   initialTab = 'Overview',
 }: Props) {
-  const example = getExampleForConcept(concept.id);
-  const tabs = ALL_TABS.filter((t) => t !== 'Example' || example);
+  const examples = getExamplesForConcept(concept.id);
+  const tabs = ALL_TABS.filter((t) => t !== 'Example' || examples.length > 0);
   const [tab, setTab] = useState<Tab>(tabs.includes(initialTab) ? initialTab : 'Overview');
   const relationshipCount = outgoing.length + incoming.length + (parent ? 1 : 0) + subtypes.length;
   const constraintFields = propertyGroups
@@ -78,6 +78,9 @@ export default function PropertyInspector({
             onClick={() => setTab(t)}
           >
             {t}
+            {t === 'Example' && examples.length > 1 && (
+              <span className="inspector-tab-count">{examples.length}</span>
+            )}
             {t === 'Properties' && constraintFields.length > 0 && (
               <span className="inspector-tab-count">{constraintFields.length}</span>
             )}
@@ -105,25 +108,30 @@ export default function PropertyInspector({
           </div>
         )}
 
-        {tab === 'Example' && example && (
+        {tab === 'Example' && examples.length > 0 && (
           <div>
-            <p className="inspector-definition">{example.narrative}</p>
-            {Object.keys(example.properties).length > 0 && (
-              <dl className="inspector-fields">
-                {Object.entries(example.properties).map(([name, value]) => {
-                  const pdef = exampleProps.find((p) => p.name === name);
-                  return (
-                    <div key={name} className="inspector-field">
-                      <dt>{pdef?.label ?? name}</dt>
-                      <dd>{value}</dd>
-                    </div>
-                  );
-                })}
-              </dl>
-            )}
+            {examples.map((example, i) => (
+              <div key={example.id} className={i > 0 ? 'inspector-group' : undefined}>
+                {examples.length > 1 && <h3 className="inspector-group-title">{example.label}</h3>}
+                <p className="inspector-definition">{example.narrative}</p>
+                {Object.keys(example.properties).length > 0 && (
+                  <dl className="inspector-fields">
+                    {Object.entries(example.properties).map(([name, value]) => {
+                      const pdef = exampleProps.find((p) => p.name === name);
+                      return (
+                        <div key={name} className="inspector-field">
+                          <dt>{pdef?.label ?? name}</dt>
+                          <dd>{value}</dd>
+                        </div>
+                      );
+                    })}
+                  </dl>
+                )}
+              </div>
+            ))}
             <p className="secondary" style={{ marginTop: '1.25rem' }}>
-              From the worked example "{example.label}" — part of a single grant followed{' '}
-              <a href={`${base}story`}>end to end in Story mode</a>.
+              From the worked example{examples.length > 1 ? 's' : ''} above — part of the ontology's{' '}
+              <a href={`${base}story`}>Story mode</a> walkthrough.
             </p>
           </div>
         )}

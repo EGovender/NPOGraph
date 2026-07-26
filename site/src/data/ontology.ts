@@ -61,6 +61,11 @@ export interface ExampleIndividual {
   label: string;
   properties: Record<string, string>;
   narrative: string;
+  /** Marks the first individual of a new narrative thread within the worked
+   * example (e.g. "A Fiscal Sponsorship Engagement"); the Story page renders
+   * a heading whenever this changes. Individuals within a thread after the
+   * first omit it. */
+  act?: string;
 }
 
 export interface ExampleRelationshipEntry {
@@ -90,11 +95,22 @@ export function getConcept(id: string): Concept | undefined {
   return CONCEPTS_BY_ID.get(id);
 }
 
-const EXAMPLE_BY_CONCEPT = new Map(workedExample.individuals.map((i) => [i.concept, i]));
+const EXAMPLES_BY_CONCEPT = new Map<string, ExampleIndividual[]>();
+for (const i of workedExample.individuals) {
+  const list = EXAMPLES_BY_CONCEPT.get(i.concept);
+  if (list) list.push(i);
+  else EXAMPLES_BY_CONCEPT.set(i.concept, [i]);
+}
 
-/** The worked example's individual for this concept, if the scenario touches it. */
-export function getExampleForConcept(conceptId: string): ExampleIndividual | undefined {
-  return EXAMPLE_BY_CONCEPT.get(conceptId);
+/**
+ * The worked example's individuals for this concept, if the scenario touches
+ * it -- usually one, but a concept like Organization or Award can appear
+ * more than once (e.g. the direct-grant Award and the fiscal-sponsorship
+ * Award are both instances of Award), so this returns all of them rather
+ * than picking one arbitrarily.
+ */
+export function getExamplesForConcept(conceptId: string): ExampleIndividual[] {
+  return EXAMPLES_BY_CONCEPT.get(conceptId) ?? [];
 }
 
 const EXAMPLE_INDIVIDUALS_BY_ID = new Map(workedExample.individuals.map((i) => [i.id, i]));
@@ -116,17 +132,48 @@ export interface RelatedConcept {
   concept: Concept;
 }
 
-/** Relationships where the given concept is the subject ("this concept ... other concept"). */
+/**
+ * A concept's id plus every ancestor's id walking up subClassOf, closest
+ * first. Shared by getPropertiesForConcept and getOutgoing/IncomingRelationships
+ * -- both need "everything this concept structurally is," not just what's
+ * declared directly on it, mirroring tools/generate_ontology.py's
+ * resolve_properties_by_concept/ancestor_ids.
+ */
+function getAncestorChain(conceptId: string): Concept[] {
+  const chain: Concept[] = [];
+  const seen = new Set<string>();
+  let currentId: string | null = conceptId;
+  while (currentId && !seen.has(currentId)) {
+    const c = getConcept(currentId);
+    if (!c) break;
+    seen.add(currentId);
+    chain.push(c);
+    currentId = c.subClassOf;
+  }
+  return chain;
+}
+
+/**
+ * Relationships where the given concept is the subject ("this concept ...
+ * other concept"), INCLUDING relationships declared on an ancestor concept
+ * (e.g. Fiscal Sponsorship Arrangement inherits Philanthropic Arrangement's
+ * `administeredBy`) -- under RDFS semantics a subclass instance is also an
+ * instance of every ancestor class, so it can use a relationship declared on
+ * one. See tools/generate_ontology.py's ancestor_ids for the instance-data
+ * side of the same rule.
+ */
 export function getOutgoingRelationships(conceptId: string): RelatedConcept[] {
+  const ancestorIds = new Set(getAncestorChain(conceptId).map((c) => c.id));
   return relationships
-    .filter((r) => r.subject === conceptId)
+    .filter((r) => ancestorIds.has(r.subject))
     .map((r) => ({ relationship: r, concept: requireConcept(r.object) }));
 }
 
-/** Relationships where the given concept is the object ("other concept ... this concept"). */
+/** Relationships where the given concept is the object ("other concept ... this concept"), including inherited ones -- see getOutgoingRelationships. */
 export function getIncomingRelationships(conceptId: string): RelatedConcept[] {
+  const ancestorIds = new Set(getAncestorChain(conceptId).map((c) => c.id));
   return relationships
-    .filter((r) => r.object === conceptId)
+    .filter((r) => ancestorIds.has(r.object))
     .map((r) => ({ relationship: r, concept: requireConcept(r.subject) }));
 }
 
@@ -146,19 +193,8 @@ export function getSubtypes(conceptId: string): Concept[] {
  * requires, not just the ones declared directly on the concept itself.
  */
 export function getPropertiesForConcept(conceptId: string): Property[] {
-  const chain: Concept[] = [];
-  const seen = new Set<string>();
-  let currentId: string | null = conceptId;
-  while (currentId && !seen.has(currentId)) {
-    const c = getConcept(currentId);
-    if (!c) break;
-    seen.add(currentId);
-    chain.push(c);
-    currentId = c.subClassOf;
-  }
-
   const byName = new Map<string, Property>();
-  for (const c of chain.reverse()) {
+  for (const c of getAncestorChain(conceptId).reverse()) {
     for (const p of properties.filter((p) => p.concept === c.id)) {
       byName.set(p.name, p);
     }
