@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ontologyVersion, ontologyLastUpdated } from '../data/ontology';
 
 interface Props {
   title: string;
@@ -9,6 +10,34 @@ interface Props {
 
 const { title, description = 'NPOGraph: an open knowledge platform for grantmaking.', wide = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
+
+const pageTitle = `${title} · NPOGraph`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(`${base}og-image.png`, Astro.site);
+
+interface NavItem {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+const NAV_ITEMS: NavItem[] = [
+  { label: 'Home', href: base },
+  { label: 'Graph', href: `${base}explore` },
+  { label: 'Concepts', href: `${base}concepts` },
+  { label: 'Model Your Program', href: `${base}design` },
+  { label: 'Worked Example', href: `${base}story` },
+  { label: 'GitHub', href: 'https://github.com/EGovender/NPOGraph', external: true },
+];
+
+function trimSlash(path: string): string {
+  return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
+}
+const currentPath = trimSlash(Astro.url.pathname);
+
+const lastUpdatedDisplay = ontologyLastUpdated
+  ? new Date(ontologyLastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+  : null;
 ---
 
 <!doctype html>
@@ -16,12 +45,24 @@ const base = import.meta.env.BASE_URL;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} · NPOGraph</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#4BA188" />
+    <link rel="canonical" href={canonicalURL} />
     <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
     <link rel="alternate icon" href={`${base}favicon.ico`} sizes="48x48" />
     <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content="NPOGraph" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
   </head>
   <body>
     <header class="site-header">
@@ -29,13 +70,32 @@ const base = import.meta.env.BASE_URL;
         <img class="brand-icon" src={`${base}favicon.svg`} alt="" width="28" height="28" />
         <span class="brand-text">NPO<span class="brand-text-accent">Graph</span></span>
       </a>
-      <nav>
-        <a href={base}>Home</a>
-        <a href={`${base}explore`}>Explore</a>
-        <a href={`${base}concepts`}>Concepts</a>
-        <a href={`${base}design`}>Design</a>
-        <a href={`${base}story`}>Story</a>
-        <a href="https://github.com/EGovender/NPOGraph" target="_blank" rel="noreferrer">GitHub</a>
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav id="site-nav">
+        {
+          NAV_ITEMS.map((item) => {
+            const isActive = !item.external && trimSlash(item.href) === currentPath;
+            return item.external ? (
+              <a href={item.href} target="_blank" rel="noreferrer">
+                {item.label}
+              </a>
+            ) : (
+              <a href={item.href} aria-current={isActive ? 'page' : undefined} class={isActive ? 'active' : ''}>
+                {item.label}
+              </a>
+            );
+          })
+        }
       </nav>
     </header>
     <main class={wide ? 'wide' : ''}>
@@ -43,7 +103,33 @@ const base = import.meta.env.BASE_URL;
     </main>
     <footer class="site-footer">
       NPOGraph is an open-source project.{' '}
-      <a href="https://github.com/EGovender/NPOGraph/blob/main/CONTRIBUTING.md">Contribute on GitHub</a>.
+      <a href="https://github.com/EGovender/NPOGraph/blob/main/CONTRIBUTING.md">Contribute on GitHub</a>.{' '}
+      <span class="footer-version">
+        Ontology v{ontologyVersion}
+        {lastUpdatedDisplay && <>{' '}&middot; updated {lastUpdatedDisplay}</>}
+      </span>
     </footer>
+    <script>
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const open = nav.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', String(open));
+        });
+        nav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            nav.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && nav.classList.contains('open')) {
+            nav.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    </script>
   </body>
 </html>

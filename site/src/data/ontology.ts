@@ -87,6 +87,9 @@ export const relationships = relationshipsData as Relationship[];
 export const properties = propertiesData as Property[];
 export const businessRules = businessRulesData as BusinessRule[];
 export const ontologyVersion: string = (metaData as { version: string }).version;
+/** Build-time date derived from git history, not hand-maintained -- see sync-ontology-data.mjs. */
+export const ontologyLastUpdated: string | null =
+  (metaData as { lastUpdated?: string | null }).lastUpdated ?? null;
 export const workedExample = exampleData as WorkedExample;
 
 const CONCEPTS_BY_ID = new Map(concepts.map((c) => [c.id, c]));
