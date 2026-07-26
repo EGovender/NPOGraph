@@ -4,7 +4,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
     <rdfs:label>NPOGraph Grantmaking Ontology</rdfs:label>
     <rdfs:comment>Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md.</rdfs:comment>
-    <npo:version>0.2.0</npo:version>
+    <npo:version>0.3.0</npo:version>
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/amendment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />

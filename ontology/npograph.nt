@@ -1448,4 +1448,4 @@
 <https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
 <https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/2000/01/rdf-schema#comment> "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md." .
 <https://egovender.github.io/NPOGraph/ontology> <http://www.w3.org/2000/01/rdf-schema#label> "NPOGraph Grantmaking Ontology" .
-<https://egovender.github.io/NPOGraph/ontology> <https://egovender.github.io/NPOGraph/ontology/version> "0.2.0" .
+<https://egovender.github.io/NPOGraph/ontology> <https://egovender.github.io/NPOGraph/ontology/version> "0.3.0" .

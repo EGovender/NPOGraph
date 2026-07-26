@@ -13,7 +13,7 @@ npo:BusinessRule a rdfs:Class ;
 <https://egovender.github.io/NPOGraph/ontology> a owl:Ontology ;
     rdfs:label "NPOGraph Grantmaking Ontology" ;
     rdfs:comment "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md." ;
-    npo:version "0.2.0" .
+    npo:version "0.3.0" .
 
 npo:funding-intermediary-role a owl:Class ;
     rdfs:label "Funding Intermediary Role" ;

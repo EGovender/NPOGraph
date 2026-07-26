@@ -52,7 +52,7 @@
       "type": "owl:Ontology",
       "label": "NPOGraph Grantmaking Ontology",
       "comment": "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md.",
-      "version": "0.2.0"
+      "version": "0.3.0"
     },
     {
       "id": "npo:amendment",
