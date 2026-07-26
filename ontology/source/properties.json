@@ -850,5 +850,89 @@
     "cardinality": "one",
     "allowedValues": null,
     "description": "The name or type of document that formally establishes the arrangement (e.g., a fiscal sponsorship agreement)."
+  },
+  {
+    "id": "fiscal-sponsorship-arrangement-fee-percentage",
+    "concept": "fiscal-sponsorship-arrangement",
+    "name": "feePercentage",
+    "label": "Fee Percentage",
+    "group": "financial",
+    "datatype": "decimal",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "The fiscal sponsor's administrative fee, charged as a percentage of funds processed."
+  },
+  {
+    "id": "sponsored-project-start-date",
+    "concept": "sponsored-project",
+    "name": "startDate",
+    "label": "Start Date",
+    "group": "lifecycle",
+    "datatype": "date",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "When the Sponsored Project began operating under its Fiscal Sponsor."
+  },
+  {
+    "id": "sponsored-project-end-date",
+    "concept": "sponsored-project",
+    "name": "endDate",
+    "label": "End Date",
+    "group": "lifecycle",
+    "datatype": "date",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "When the Sponsored Project ended, if it has."
+  },
+  {
+    "id": "sponsored-project-status",
+    "concept": "sponsored-project",
+    "name": "status",
+    "label": "Status",
+    "group": "lifecycle",
+    "datatype": "enum",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": ["active", "completed", "terminated"],
+    "description": "Whether the Sponsored Project is still operating under its Fiscal Sponsor."
+  },
+  {
+    "id": "grant-recommendation-date",
+    "concept": "grant-recommendation",
+    "name": "date",
+    "label": "Recommendation Date",
+    "group": "lifecycle",
+    "datatype": "date",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "When the Donor Advisor made the recommendation."
+  },
+  {
+    "id": "grant-recommendation-status",
+    "concept": "grant-recommendation",
+    "name": "status",
+    "label": "Status",
+    "group": "lifecycle",
+    "datatype": "enum",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": ["pending", "approved", "declined"],
+    "description": "Whether the sponsoring organization has acted on the Grant Recommendation."
+  },
+  {
+    "id": "grant-recommendation-amount",
+    "concept": "grant-recommendation",
+    "name": "amount",
+    "label": "Amount",
+    "group": "financial",
+    "datatype": "decimal",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "The amount recommended, if the Donor Advisor specified one."
   }
 ]

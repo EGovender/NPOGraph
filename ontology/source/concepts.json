@@ -99,6 +99,24 @@
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
+    "id": "donor-advisor",
+    "label": "Donor Advisor",
+    "aliases": [],
+    "category": "organizational-entities",
+    "definition": "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "sponsored-project",
+    "label": "Sponsored Project",
+    "aliases": [],
+    "category": "organizational-entities",
+    "definition": "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
     "id": "grant-program",
     "label": "Grant Program",
     "aliases": [],
@@ -153,12 +171,57 @@
     "docRef": "docs/02-core-concepts.md#funding-structure"
   },
   {
+    "id": "donor-advised-fund",
+    "label": "Donor-Advised Fund",
+    "aliases": ["DAF"],
+    "category": "funding-structure",
+    "definition": "A Fund held by a sponsoring organization, over which a Donor Advisor holds non-binding privileges to recommend grants and investments.",
+    "subClassOf": "fund",
+    "docRef": "docs/02-core-concepts.md#funding-structure"
+  },
+  {
     "id": "philanthropic-arrangement",
     "label": "Philanthropic Arrangement",
     "aliases": [],
     "category": "funding-structure",
     "definition": "A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement.",
     "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#funding-structure"
+  },
+  {
+    "id": "fiscal-sponsorship-arrangement",
+    "label": "Fiscal Sponsorship Arrangement",
+    "aliases": [],
+    "category": "funding-structure",
+    "definition": "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly.",
+    "subClassOf": "philanthropic-arrangement",
+    "docRef": "docs/02-core-concepts.md#funding-structure"
+  },
+  {
+    "id": "donor-advised-fund-arrangement",
+    "label": "Donor-Advised Fund Arrangement",
+    "aliases": [],
+    "category": "funding-structure",
+    "definition": "A Philanthropic Arrangement in which a Donor Advisor holds non-binding advisory privileges over grants made from a Donor-Advised Fund.",
+    "subClassOf": "philanthropic-arrangement",
+    "docRef": "docs/02-core-concepts.md#funding-structure"
+  },
+  {
+    "id": "regranting-arrangement",
+    "label": "Regranting Arrangement",
+    "aliases": [],
+    "category": "funding-structure",
+    "definition": "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients.",
+    "subClassOf": "philanthropic-arrangement",
+    "docRef": "docs/02-core-concepts.md#funding-structure"
+  },
+  {
+    "id": "collaborative-fund-arrangement",
+    "label": "Collaborative Fund Arrangement",
+    "aliases": [],
+    "category": "funding-structure",
+    "definition": "A Philanthropic Arrangement in which multiple funders pool resources into a shared Fund and jointly direct or oversee its grantmaking.",
+    "subClassOf": "philanthropic-arrangement",
     "docRef": "docs/02-core-concepts.md#funding-structure"
   },
   {
@@ -212,6 +275,15 @@
     "aliases": [],
     "category": "application-and-review",
     "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#application-and-review"
+  },
+  {
+    "id": "grant-recommendation",
+    "label": "Grant Recommendation",
+    "aliases": [],
+    "category": "application-and-review",
+    "definition": "A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review"
   },

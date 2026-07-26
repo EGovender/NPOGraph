@@ -67,6 +67,11 @@ npo:evaluation-property-shape
     sh:property [ sh:path npoprop:evaluation-completed-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:evaluation-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planned"""^^xsd:string """in-progress"""^^xsd:string """completed"""^^xsd:string ) ] .
 
+npo:fiscal-sponsorship-arrangement-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:fiscal-sponsorship-arrangement ;
+    sh:property [ sh:path npoprop:fiscal-sponsorship-arrangement-fee-percentage ; sh:datatype xsd:decimal ; sh:minCount 0 ; sh:maxCount 1 ] .
+
 npo:fund-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:fund ;
@@ -99,6 +104,13 @@ npo:grant-program-property-shape
     sh:targetClass npo:grant-program ;
     sh:property [ sh:path npoprop:grant-program-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planning"""^^xsd:string """open"""^^xsd:string """closed"""^^xsd:string ) ] ,
         [ sh:path npoprop:grant-program-total-budget ; sh:datatype xsd:decimal ; sh:minCount 0 ; sh:maxCount 1 ] .
+
+npo:grant-recommendation-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:grant-recommendation ;
+    sh:property [ sh:path npoprop:grant-recommendation-amount ; sh:datatype xsd:decimal ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:grant-recommendation-date ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:grant-recommendation-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """pending"""^^xsd:string """approved"""^^xsd:string """declined"""^^xsd:string ) ] .
 
 npo:indirect-cost-rate-property-shape
     a sh:NodeShape ;
@@ -195,6 +207,13 @@ npo:site-visit-property-shape
     sh:targetClass npo:site-visit ;
     sh:property [ sh:path npoprop:site-visit-scheduled-date ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:site-visit-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """scheduled"""^^xsd:string """completed"""^^xsd:string """cancelled"""^^xsd:string ) ] .
+
+npo:sponsored-project-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:sponsored-project ;
+    sh:property [ sh:path npoprop:sponsored-project-end-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:sponsored-project-start-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:sponsored-project-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """completed"""^^xsd:string """terminated"""^^xsd:string ) ] .
 
 npo:terms-and-conditions-property-shape
     a sh:NodeShape ;

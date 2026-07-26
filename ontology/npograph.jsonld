@@ -120,6 +120,15 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
+      "id": "npo:collaborative-fund-arrangement",
+      "type": "owl:Class",
+      "label": "Collaborative Fund Arrangement",
+      "definition": "A Philanthropic Arrangement in which multiple funders pool resources into a shared Fund and jointly direct or oversee its grantmaking.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "subClassOf": "npo:philanthropic-arrangement"
+    },
+    {
       "id": "npo:compliance-requirement",
       "type": "owl:Class",
       "label": "Compliance Requirement",
@@ -134,6 +143,35 @@
       "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
       "category": "application-and-review",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+    },
+    {
+      "id": "npo:donor-advised-fund",
+      "type": "owl:Class",
+      "label": "Donor-Advised Fund",
+      "definition": "A Fund held by a sponsoring organization, over which a Donor Advisor holds non-binding privileges to recommend grants and investments.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "altLabel": [
+        "DAF"
+      ],
+      "subClassOf": "npo:fund"
+    },
+    {
+      "id": "npo:donor-advised-fund-arrangement",
+      "type": "owl:Class",
+      "label": "Donor-Advised Fund Arrangement",
+      "definition": "A Philanthropic Arrangement in which a Donor Advisor holds non-binding advisory privileges over grants made from a Donor-Advised Fund.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "subClassOf": "npo:philanthropic-arrangement"
+    },
+    {
+      "id": "npo:donor-advisor",
+      "type": "owl:Class",
+      "label": "Donor Advisor",
+      "definition": "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "npo:eligibility-criteria",
@@ -159,6 +197,15 @@
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
+    },
+    {
+      "id": "npo:fiscal-sponsorship-arrangement",
+      "type": "owl:Class",
+      "label": "Fiscal Sponsorship Arrangement",
+      "definition": "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "subClassOf": "npo:philanthropic-arrangement"
     },
     {
       "id": "npo:fund",
@@ -242,6 +289,14 @@
       "definition": "A funder's standing area of giving (e.g., \"Environmental Justice Grants\"), under which funding opportunities are issued over time.",
       "category": "funding-structure",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+    },
+    {
+      "id": "npo:grant-recommendation",
+      "type": "owl:Class",
+      "label": "Grant Recommendation",
+      "definition": "A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it.",
+      "category": "application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
     },
     {
       "id": "npo:grantee",
@@ -389,6 +444,15 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
+      "id": "npo:regranting-arrangement",
+      "type": "owl:Class",
+      "label": "Regranting Arrangement",
+      "definition": "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients.",
+      "category": "funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "subClassOf": "npo:philanthropic-arrangement"
+    },
+    {
       "id": "npo:report",
       "type": "owl:Class",
       "label": "Report",
@@ -443,6 +507,14 @@
       "definition": "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision.",
       "category": "application-and-review",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+    },
+    {
+      "id": "npo:sponsored-project",
+      "type": "owl:Class",
+      "label": "Sponsored Project",
+      "definition": "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "npo:terms-and-conditions",
@@ -577,6 +649,15 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:pools",
+      "type": "owl:ObjectProperty",
+      "label": "pools",
+      "comment": "A Collaborative Fund Arrangement pools multiple funders' contributions into a shared Fund.",
+      "domain": "npo:collaborative-fund-arrangement",
+      "range": "npo:fund",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
       "id": "nporel:includesReportingSchedule",
       "type": "owl:ObjectProperty",
       "label": "includes",
@@ -604,6 +685,33 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:governs",
+      "type": "owl:ObjectProperty",
+      "label": "governs",
+      "comment": "A Donor-Advised Fund Arrangement governs the specific Donor-Advised Fund it establishes the advisory relationship for.",
+      "domain": "npo:donor-advised-fund-arrangement",
+      "range": "npo:donor-advised-fund",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
+      "id": "nporel:advises",
+      "type": "owl:ObjectProperty",
+      "label": "advises",
+      "comment": "A Donor Advisor advises a specific Donor-Advised Fund, holding non-binding privileges to recommend its grants and investments.",
+      "domain": "npo:donor-advisor",
+      "range": "npo:donor-advised-fund",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
+      "id": "nporel:makesRecommendation",
+      "type": "owl:ObjectProperty",
+      "label": "makes",
+      "comment": "A Donor Advisor makes a Grant Recommendation requesting that their Donor-Advised Fund make an award.",
+      "domain": "npo:donor-advisor",
+      "range": "npo:grant-recommendation",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
       "id": "nporel:assessesOutcome",
       "type": "owl:ObjectProperty",
       "label": "assesses",
@@ -629,6 +737,15 @@
       "domain": "npo:fiscal-sponsor",
       "range": "npo:grantee",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+    },
+    {
+      "id": "nporel:supports",
+      "type": "owl:ObjectProperty",
+      "label": "supports",
+      "comment": "A Fiscal Sponsorship Arrangement supports a specific Sponsored Project carried out under the fiscal sponsor's umbrella.",
+      "domain": "npo:fiscal-sponsorship-arrangement",
+      "range": "npo:sponsored-project",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:heldBy",
@@ -757,6 +874,33 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:concernsFund",
+      "type": "owl:ObjectProperty",
+      "label": "concerns",
+      "comment": "A Grant Recommendation concerns a specific Fund -- ordinarily a Donor-Advised Fund -- that would pay for the recommended award.",
+      "domain": "npo:grant-recommendation",
+      "range": "npo:fund",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
+      "id": "nporel:leadsToAward",
+      "type": "owl:ObjectProperty",
+      "label": "leads to",
+      "comment": "A Grant Recommendation the sponsoring organization accepts leads to an Award, mirroring how a Decision results in an Award in the direct-grant path.",
+      "domain": "npo:grant-recommendation",
+      "range": "npo:award",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
+      "id": "nporel:recommendsRecipient",
+      "type": "owl:ObjectProperty",
+      "label": "recommends",
+      "comment": "A Grant Recommendation recommends a specific Organization as the award's recipient.",
+      "domain": "npo:grant-recommendation",
+      "range": "npo:organization",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
       "id": "nporel:mayRequestBudgetModification",
       "type": "owl:ObjectProperty",
       "label": "may request",
@@ -856,6 +1000,15 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
     },
     {
+      "id": "nporel:regrantsTo",
+      "type": "owl:ObjectProperty",
+      "label": "regrants to",
+      "comment": "A Regranting Arrangement regrants funds to a downstream Organization, distinct from the Organization that supplied the funds originally.",
+      "domain": "npo:regranting-arrangement",
+      "range": "npo:organization",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
       "id": "nporel:assessedAgainstLogicModel",
       "type": "owl:ObjectProperty",
       "label": "is assessed against",
@@ -917,6 +1070,15 @@
       "domain": "npo:review",
       "range": "npo:decision",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:fiscallySponsoredBy",
+      "type": "owl:ObjectProperty",
+      "label": "is fiscally sponsored by",
+      "comment": "A Sponsored Project is fiscally sponsored by an Organization that provides the legal and administrative infrastructure it lacks on its own.",
+      "domain": "npo:sponsored-project",
+      "range": "npo:organization",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "npoprop:amendment-effective-date",
@@ -1204,6 +1366,17 @@
       ]
     },
     {
+      "id": "npoprop:fiscal-sponsorship-arrangement-fee-percentage",
+      "type": "owl:DatatypeProperty",
+      "label": "Fee Percentage",
+      "comment": "The fiscal sponsor's administrative fee, charged as a percentage of funds processed.",
+      "domain": "npo:fiscal-sponsorship-arrangement",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
       "id": "npoprop:fund-closing-date",
       "type": "owl:DatatypeProperty",
       "label": "Closing Date",
@@ -1372,6 +1545,44 @@
       "group": "financial",
       "required": false,
       "cardinality": "one"
+    },
+    {
+      "id": "npoprop:grant-recommendation-amount",
+      "type": "owl:DatatypeProperty",
+      "label": "Amount",
+      "comment": "The amount recommended, if the Donor Advisor specified one.",
+      "domain": "npo:grant-recommendation",
+      "range": "xsd:decimal",
+      "group": "financial",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:grant-recommendation-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Recommendation Date",
+      "comment": "When the Donor Advisor made the recommendation.",
+      "domain": "npo:grant-recommendation",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:grant-recommendation-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the sponsoring organization has acted on the Grant Recommendation.",
+      "domain": "npo:grant-recommendation",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "pending",
+        "approved",
+        "declined"
+      ]
     },
     {
       "id": "npoprop:indirect-cost-rate-rate",
@@ -1852,6 +2063,44 @@
       ]
     },
     {
+      "id": "npoprop:sponsored-project-end-date",
+      "type": "owl:DatatypeProperty",
+      "label": "End Date",
+      "comment": "When the Sponsored Project ended, if it has.",
+      "domain": "npo:sponsored-project",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:sponsored-project-start-date",
+      "type": "owl:DatatypeProperty",
+      "label": "Start Date",
+      "comment": "When the Sponsored Project began operating under its Fiscal Sponsor.",
+      "domain": "npo:sponsored-project",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:sponsored-project-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Whether the Sponsored Project is still operating under its Fiscal Sponsor.",
+      "domain": "npo:sponsored-project",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "active",
+        "completed",
+        "terminated"
+      ]
+    },
+    {
       "id": "npoprop:terms-and-conditions-restriction-type",
       "type": "owl:DatatypeProperty",
       "label": "Restriction Type",
@@ -1913,6 +2162,18 @@
         "npo:compliance-requirement",
         "npo:award",
         "npo:grantee"
+      ]
+    },
+    {
+      "id": "nporule:rule-grant-recommendation-non-binding",
+      "type": "npo:BusinessRule",
+      "label": "A Grant Recommendation is non-binding",
+      "comment": "A Donor Advisor's Grant Recommendation does not itself obligate a Donor-Advised Fund to make an Award; the fund's sponsoring organization retains final legal authority over whether to accept it.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md",
+      "appliesTo": [
+        "npo:grant-recommendation",
+        "npo:donor-advised-fund",
+        "npo:award"
       ]
     },
     {

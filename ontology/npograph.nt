@@ -38,6 +38,12 @@
 <https://egovender.github.io/NPOGraph/ontology/closeout> <http://www.w3.org/2000/01/rdf-schema#label> "Closeout" .
 <https://egovender.github.io/NPOGraph/ontology/closeout> <http://www.w3.org/2004/02/skos/core#definition> "The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied." .
 <https://egovender.github.io/NPOGraph/ontology/closeout> <https://egovender.github.io/NPOGraph/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/NPOGraph/ontology/collaborative-fund-arrangement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/collaborative-fund-arrangement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/collaborative-fund-arrangement> <http://www.w3.org/2000/01/rdf-schema#label> "Collaborative Fund Arrangement" .
+<https://egovender.github.io/NPOGraph/ontology/collaborative-fund-arrangement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/collaborative-fund-arrangement> <http://www.w3.org/2004/02/skos/core#definition> "A Philanthropic Arrangement in which multiple funders pool resources into a shared Fund and jointly direct or oversee its grantmaking." .
+<https://egovender.github.io/NPOGraph/ontology/collaborative-fund-arrangement> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
 <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> .
 <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/2000/01/rdf-schema#label> "Compliance Requirement" .
@@ -48,6 +54,24 @@
 <https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/2000/01/rdf-schema#label> "Decision" .
 <https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/2004/02/skos/core#definition> "The outcome of the review process for an application: approved, declined, or approved with conditions." .
 <https://egovender.github.io/NPOGraph/ontology/decision> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <http://www.w3.org/2000/01/rdf-schema#label> "Donor-Advised Fund Arrangement" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <http://www.w3.org/2004/02/skos/core#definition> "A Philanthropic Arrangement in which a Donor Advisor holds non-binding advisory privileges over grants made from a Donor-Advised Fund." .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2000/01/rdf-schema#label> "Donor-Advised Fund" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/fund> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2004/02/skos/core#altLabel> "DAF" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2004/02/skos/core#definition> "A Fund held by a sponsoring organization, over which a Donor Advisor holds non-binding privileges to recommend grants and investments." .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2000/01/rdf-schema#label> "Donor Advisor" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2004/02/skos/core#definition> "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it." .
+<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2000/01/rdf-schema#label> "Eligibility Criteria" .
@@ -64,6 +88,12 @@
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/2004/02/skos/core#definition> "The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf." .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/2000/01/rdf-schema#label> "Fiscal Sponsorship Arrangement" .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/2004/02/skos/core#definition> "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly." .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
 <https://egovender.github.io/NPOGraph/ontology/fund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/fund> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/fund> <http://www.w3.org/2000/01/rdf-schema#label> "Fund" .
@@ -116,6 +146,11 @@
 <https://egovender.github.io/NPOGraph/ontology/grant-program> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Program" .
 <https://egovender.github.io/NPOGraph/ontology/grant-program> <http://www.w3.org/2004/02/skos/core#definition> "A funder's standing area of giving (e.g., \"Environmental Justice Grants\"), under which funding opportunities are issued over time." .
 <https://egovender.github.io/NPOGraph/ontology/grant-program> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
+<https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Recommendation" .
+<https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <http://www.w3.org/2004/02/skos/core#definition> "A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it." .
+<https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
 <https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2000/01/rdf-schema#label> "Grantee" .
@@ -408,6 +443,14 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
 <https://egovender.github.io/NPOGraph/ontology/properties/evaluation-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <http://www.w3.org/2000/01/rdf-schema#comment> "The fiscal sponsor's administrative fee, charged as a percentage of funds processed." .
+<https://egovender.github.io/NPOGraph/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <http://www.w3.org/2000/01/rdf-schema#label> "Fee Percentage" .
+<https://egovender.github.io/NPOGraph/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-closing-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-closing-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the fund was closed, if it has been." .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-closing-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/fund> .
@@ -529,6 +572,33 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
 <https://egovender.github.io/NPOGraph/ontology/properties/grant-program-total-budget> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-amount> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-amount> <http://www.w3.org/2000/01/rdf-schema#comment> "The amount recommended, if the Donor Advisor specified one." .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-amount> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-amount> <http://www.w3.org/2000/01/rdf-schema#label> "Amount" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-amount> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#decimal> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-amount> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-amount> <https://egovender.github.io/NPOGraph/ontology/group> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-amount> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Donor Advisor made the recommendation." .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-date> <http://www.w3.org/2000/01/rdf-schema#label> "Recommendation Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-date> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the sponsoring organization has acted on the Grant Recommendation." .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "approved" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "declined" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "pending" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/grant-recommendation-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the rate was individually negotiated or is the de minimis rate." .
 <https://egovender.github.io/NPOGraph/ontology/properties/indirect-cost-rate-rate-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/indirect-cost-rate> .
@@ -867,6 +937,33 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
 <https://egovender.github.io/NPOGraph/ontology/properties/site-visit-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-end-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-end-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Sponsored Project ended, if it has." .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-end-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/sponsored-project> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-end-date> <http://www.w3.org/2000/01/rdf-schema#label> "End Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-end-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-end-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-end-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-end-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-start-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-start-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Sponsored Project began operating under its Fiscal Sponsor." .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-start-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/sponsored-project> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-start-date> <http://www.w3.org/2000/01/rdf-schema#label> "Start Date" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-start-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-start-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-start-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-start-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the Sponsored Project is still operating under its Fiscal Sponsor." .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/sponsored-project> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "active" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "completed" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "terminated" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/sponsored-project-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the funding governed by these Terms and Conditions is Restricted or Unrestricted Funding." .
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> .
@@ -877,6 +974,12 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
+<https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/2000/01/rdf-schema#label> "Regranting Arrangement" .
+<https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/2004/02/skos/core#definition> "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients." .
+<https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#comment> "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly." .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> .
@@ -889,6 +992,12 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/administeredBy> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/NPOGraph/ontology/relations/administeredBy> <http://www.w3.org/2000/01/rdf-schema#label> "is administered by" .
 <https://egovender.github.io/NPOGraph/ontology/relations/administeredBy> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/organization> .
+<https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/2000/01/rdf-schema#comment> "A Donor Advisor advises a specific Donor-Advised Fund, holding non-binding privileges to recommend its grants and investments." .
+<https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/donor-advisor> .
+<https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/2000/01/rdf-schema#label> "advises" .
+<https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> .
 <https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin> <http://www.w3.org/2000/01/rdf-schema#comment> "An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements." .
 <https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
@@ -949,6 +1058,12 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/2000/01/rdf-schema#label> "is broken into" .
 <https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/installment> .
+<https://egovender.github.io/NPOGraph/ontology/relations/concernsFund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/concernsFund> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Recommendation concerns a specific Fund -- ordinarily a Donor-Advised Fund -- that would pay for the recommended award." .
+<https://egovender.github.io/NPOGraph/ontology/relations/concernsFund> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> .
+<https://egovender.github.io/NPOGraph/ontology/relations/concernsFund> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/concernsFund> <http://www.w3.org/2000/01/rdf-schema#label> "concerns" .
+<https://egovender.github.io/NPOGraph/ontology/relations/concernsFund> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/fund> .
 <https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#comment> "A Review is conducted by one or more Reviewers." .
 <https://egovender.github.io/NPOGraph/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/review> .
@@ -967,6 +1082,12 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#label> "is evaluated against" .
 <https://egovender.github.io/NPOGraph/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/review-criteria> .
+<https://egovender.github.io/NPOGraph/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/2000/01/rdf-schema#comment> "A Sponsored Project is fiscally sponsored by an Organization that provides the legal and administrative infrastructure it lacks on its own." .
+<https://egovender.github.io/NPOGraph/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/sponsored-project> .
+<https://egovender.github.io/NPOGraph/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/2000/01/rdf-schema#label> "is fiscally sponsored by" .
+<https://egovender.github.io/NPOGraph/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/organization> .
 <https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/2000/01/rdf-schema#comment> "An Award's progression from decision through closeout follows the Grant Lifecycle sequence." .
 <https://egovender.github.io/NPOGraph/ontology/relations/followsGrantLifecycle> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
@@ -991,6 +1112,12 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/fundedFrom> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/NPOGraph/ontology/relations/fundedFrom> <http://www.w3.org/2000/01/rdf-schema#label> "is funded from" .
 <https://egovender.github.io/NPOGraph/ontology/relations/fundedFrom> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/fund> .
+<https://egovender.github.io/NPOGraph/ontology/relations/governs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/governs> <http://www.w3.org/2000/01/rdf-schema#comment> "A Donor-Advised Fund Arrangement governs the specific Donor-Advised Fund it establishes the advisory relationship for." .
+<https://egovender.github.io/NPOGraph/ontology/relations/governs> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/governs> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/governs> <http://www.w3.org/2000/01/rdf-schema#label> "governs" .
+<https://egovender.github.io/NPOGraph/ontology/relations/governs> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> .
 <https://egovender.github.io/NPOGraph/ontology/relations/hasLegalForm> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/hasLegalForm> <http://www.w3.org/2000/01/rdf-schema#comment> "An Organization has a legal form describing what it fundamentally is under law, independent of any role it plays." .
 <https://egovender.github.io/NPOGraph/ontology/relations/hasLegalForm> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization> .
@@ -1027,12 +1154,24 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#label> "issues" .
 <https://egovender.github.io/NPOGraph/ontology/relations/issuesFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/funding-opportunity> .
+<https://egovender.github.io/NPOGraph/ontology/relations/leadsToAward> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/leadsToAward> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Recommendation the sponsoring organization accepts leads to an Award, mirroring how a Decision results in an Award in the direct-grant path." .
+<https://egovender.github.io/NPOGraph/ontology/relations/leadsToAward> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> .
+<https://egovender.github.io/NPOGraph/ontology/relations/leadsToAward> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/leadsToAward> <http://www.w3.org/2000/01/rdf-schema#label> "leads to" .
+<https://egovender.github.io/NPOGraph/ontology/relations/leadsToAward> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/award> .
 <https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#comment> "A Funder maintains one or more Grant Programs, each of which issues Funding Opportunities over time." .
 <https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/funder> .
 <https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#label> "maintains" .
 <https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/grant-program> .
+<https://egovender.github.io/NPOGraph/ontology/relations/makesRecommendation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/makesRecommendation> <http://www.w3.org/2000/01/rdf-schema#comment> "A Donor Advisor makes a Grant Recommendation requesting that their Donor-Advised Fund make an award." .
+<https://egovender.github.io/NPOGraph/ontology/relations/makesRecommendation> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/donor-advisor> .
+<https://egovender.github.io/NPOGraph/ontology/relations/makesRecommendation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/makesRecommendation> <http://www.w3.org/2000/01/rdf-schema#label> "makes" .
+<https://egovender.github.io/NPOGraph/ontology/relations/makesRecommendation> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> .
 <https://egovender.github.io/NPOGraph/ontology/relations/managedBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/managedBy> <http://www.w3.org/2000/01/rdf-schema#comment> "An Award may be administered day-to-day by an Organization other than the one that awarded or received it, such as a fiscal sponsor or intermediary." .
 <https://egovender.github.io/NPOGraph/ontology/relations/managedBy> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/award> .
@@ -1117,6 +1256,12 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/NPOGraph/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#label> "plays" .
 <https://egovender.github.io/NPOGraph/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
+<https://egovender.github.io/NPOGraph/ontology/relations/pools> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/pools> <http://www.w3.org/2000/01/rdf-schema#comment> "A Collaborative Fund Arrangement pools multiple funders' contributions into a shared Fund." .
+<https://egovender.github.io/NPOGraph/ontology/relations/pools> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/collaborative-fund-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/pools> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/pools> <http://www.w3.org/2000/01/rdf-schema#label> "pools" .
+<https://egovender.github.io/NPOGraph/ontology/relations/pools> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/fund> .
 <https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#comment> "A Review produces a Decision." .
 <https://egovender.github.io/NPOGraph/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/review> .
@@ -1129,6 +1274,18 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#label> "reaches" .
 <https://egovender.github.io/NPOGraph/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/closeout> .
+<https://egovender.github.io/NPOGraph/ontology/relations/recommendsRecipient> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/recommendsRecipient> <http://www.w3.org/2000/01/rdf-schema#comment> "A Grant Recommendation recommends a specific Organization as the award's recipient." .
+<https://egovender.github.io/NPOGraph/ontology/relations/recommendsRecipient> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> .
+<https://egovender.github.io/NPOGraph/ontology/relations/recommendsRecipient> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/recommendsRecipient> <http://www.w3.org/2000/01/rdf-schema#label> "recommends" .
+<https://egovender.github.io/NPOGraph/ontology/relations/recommendsRecipient> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/organization> .
+<https://egovender.github.io/NPOGraph/ontology/relations/regrantsTo> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/regrantsTo> <http://www.w3.org/2000/01/rdf-schema#comment> "A Regranting Arrangement regrants funds to a downstream Organization, distinct from the Organization that supplied the funds originally." .
+<https://egovender.github.io/NPOGraph/ontology/relations/regrantsTo> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/regrantsTo> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/regrantsTo> <http://www.w3.org/2000/01/rdf-schema#label> "regrants to" .
+<https://egovender.github.io/NPOGraph/ontology/relations/regrantsTo> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/organization> .
 <https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#comment> "An Application is submitted in response to a specific Funding Opportunity." .
 <https://egovender.github.io/NPOGraph/ontology/relations/respondsToFundingOpportunity> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/application> .
@@ -1171,6 +1328,12 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#label> "submits" .
 <https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/application> .
+<https://egovender.github.io/NPOGraph/ontology/relations/supports> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#comment> "A Fiscal Sponsorship Arrangement supports a specific Sponsored Project carried out under the fiscal sponsor's umbrella." .
+<https://egovender.github.io/NPOGraph/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#label> "supports" .
+<https://egovender.github.io/NPOGraph/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/sponsored-project> .
 <https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#comment> "An Application undergoes Review by one or more Reviewers." .
 <https://egovender.github.io/NPOGraph/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/application> .
@@ -1236,6 +1399,13 @@
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/award> .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-compliance-requirement-attaches-to-award> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/grantee> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-grant-recommendation-non-binding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-grant-recommendation-non-binding> <http://www.w3.org/2000/01/rdf-schema#comment> "A Donor Advisor's Grant Recommendation does not itself obligate a Donor-Advised Fund to make an Award; the fund's sponsoring organization retains final legal authority over whether to accept it." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-grant-recommendation-non-binding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-grant-recommendation-non-binding> <http://www.w3.org/2000/01/rdf-schema#label> "A Grant Recommendation is non-binding" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-grant-recommendation-non-binding> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/award> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-grant-recommendation-non-binding> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-grant-recommendation-non-binding> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <http://www.w3.org/2000/01/rdf-schema#comment> "An Installment's Payment Condition, if any, must be satisfied before its corresponding Payment is released." .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-installment-condition-before-payment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
@@ -1255,6 +1425,11 @@
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2000/01/rdf-schema#label> "Site Visit" .
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2004/02/skos/core#definition> "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision." .
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/sponsored-project> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/sponsored-project> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/sponsored-project> <http://www.w3.org/2000/01/rdf-schema#label> "Sponsored Project" .
+<https://egovender.github.io/NPOGraph/ontology/sponsored-project> <http://www.w3.org/2004/02/skos/core#definition> "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization." .
+<https://egovender.github.io/NPOGraph/ontology/sponsored-project> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
 <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/2000/01/rdf-schema#label> "Terms and Conditions" .

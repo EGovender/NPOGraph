@@ -40,5 +40,12 @@
     "description": "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms.",
     "concepts": ["amendment", "grant-agreement", "payment", "report"],
     "docRef": "docs/03-relationships.md#key-relationship-rules-draft"
+  },
+  {
+    "id": "rule-grant-recommendation-non-binding",
+    "label": "A Grant Recommendation is non-binding",
+    "description": "A Donor Advisor's Grant Recommendation does not itself obligate a Donor-Advised Fund to make an Award; the fund's sponsoring organization retains final legal authority over whether to accept it.",
+    "concepts": ["grant-recommendation", "donor-advised-fund", "award"],
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
   }
 ]

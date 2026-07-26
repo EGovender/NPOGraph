@@ -448,5 +448,95 @@
     "label": "is responsible for",
     "description": "A Grant Administrator is typically responsible for tracking Compliance Requirements.",
     "docRef": "docs/03-relationships.md#organizational-relationships"
+  },
+  {
+    "id": "rel-fiscal-sponsorship-arrangement-supports-sponsored-project",
+    "subject": "fiscal-sponsorship-arrangement",
+    "predicate": "supports",
+    "object": "sponsored-project",
+    "label": "supports",
+    "description": "A Fiscal Sponsorship Arrangement supports a specific Sponsored Project carried out under the fiscal sponsor's umbrella.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-sponsored-project-fiscally-sponsored-by",
+    "subject": "sponsored-project",
+    "predicate": "fiscallySponsoredBy",
+    "object": "organization",
+    "label": "is fiscally sponsored by",
+    "description": "A Sponsored Project is fiscally sponsored by an Organization that provides the legal and administrative infrastructure it lacks on its own.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-donor-advisor-advises-donor-advised-fund",
+    "subject": "donor-advisor",
+    "predicate": "advises",
+    "object": "donor-advised-fund",
+    "label": "advises",
+    "description": "A Donor Advisor advises a specific Donor-Advised Fund, holding non-binding privileges to recommend its grants and investments.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-donor-advisor-makes-recommendation",
+    "subject": "donor-advisor",
+    "predicate": "makesRecommendation",
+    "object": "grant-recommendation",
+    "label": "makes",
+    "description": "A Donor Advisor makes a Grant Recommendation requesting that their Donor-Advised Fund make an award.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-grant-recommendation-recommends-recipient",
+    "subject": "grant-recommendation",
+    "predicate": "recommendsRecipient",
+    "object": "organization",
+    "label": "recommends",
+    "description": "A Grant Recommendation recommends a specific Organization as the award's recipient.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-grant-recommendation-concerns-fund",
+    "subject": "grant-recommendation",
+    "predicate": "concernsFund",
+    "object": "fund",
+    "label": "concerns",
+    "description": "A Grant Recommendation concerns a specific Fund -- ordinarily a Donor-Advised Fund -- that would pay for the recommended award.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-grant-recommendation-leads-to-award",
+    "subject": "grant-recommendation",
+    "predicate": "leadsToAward",
+    "object": "award",
+    "label": "leads to",
+    "description": "A Grant Recommendation the sponsoring organization accepts leads to an Award, mirroring how a Decision results in an Award in the direct-grant path.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-donor-advised-fund-arrangement-governs",
+    "subject": "donor-advised-fund-arrangement",
+    "predicate": "governs",
+    "object": "donor-advised-fund",
+    "label": "governs",
+    "description": "A Donor-Advised Fund Arrangement governs the specific Donor-Advised Fund it establishes the advisory relationship for.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-collaborative-fund-arrangement-pools",
+    "subject": "collaborative-fund-arrangement",
+    "predicate": "pools",
+    "object": "fund",
+    "label": "pools",
+    "description": "A Collaborative Fund Arrangement pools multiple funders' contributions into a shared Fund.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-regranting-arrangement-regrants-to",
+    "subject": "regranting-arrangement",
+    "predicate": "regrantsTo",
+    "object": "organization",
+    "label": "regrants to",
+    "description": "A Regranting Arrangement regrants funds to a downstream Organization, distinct from the Organization that supplied the funds originally.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
   }
 ]
