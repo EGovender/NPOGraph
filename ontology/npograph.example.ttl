@@ -23,11 +23,17 @@ ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
     nporel:assessesOutcome ex:coastal-watch-habitat-outcome ;
     nporel:assessesOutput ex:coastal-watch-workshops-output .
 
-ex:ocean-conservation-fund a owl:NamedIndividual,
-        npo:funder ;
-    rdfs:label "Ocean Conservation Fund" ;
-    npoprop:organization-role-status "active"^^xsd:string ;
-    nporel:maintainsGrantProgram ex:marine-habitat-program .
+ex:tidewater-restoration-award a owl:NamedIndividual,
+        npo:award ;
+    rdfs:label "Award for Tidewater Youth Ocean Corps Restoration Work" ;
+    npoprop:award-amount 45000.0 ;
+    npoprop:award-currency "USD"^^xsd:string ;
+    npoprop:award-date "2026-05-15"^^xsd:date ;
+    npoprop:award-status "active"^^xsd:string ;
+    nporel:awardedBy ex:pacific-coastal-trust ;
+    nporel:awardedTo ex:ocean-conservation-fund-org ;
+    nporel:fundedFrom ex:pacific-coastal-trust-fund ;
+    nporel:managedBy ex:ocean-conservation-fund-org .
 
 ex:coastal-watch-fy26-application a owl:NamedIndividual,
         npo:application ;
@@ -138,9 +144,63 @@ ex:marine-habitat-program a owl:NamedIndividual,
     npoprop:grant-program-total-budget 2000000.0 ;
     nporel:issuesFundingOpportunity ex:marine-habitat-2026-opportunity .
 
+ex:ocean-conservation-fund a owl:NamedIndividual,
+        npo:funder ;
+    rdfs:label "Ocean Conservation Fund" ;
+    npoprop:organization-role-status "active"^^xsd:string ;
+    nporel:maintainsGrantProgram ex:marine-habitat-program .
+
+ex:ocean-conservation-fund-fiscal-sponsor-role a owl:NamedIndividual,
+        npo:fiscal-sponsor ;
+    rdfs:label "Ocean Conservation Fund (as Fiscal Sponsor)" ;
+    npoprop:organization-role-effective-from "2026-05-01"^^xsd:date ;
+    npoprop:organization-role-scope "Tidewater Youth Ocean Corps sponsorship"^^xsd:string ;
+    npoprop:organization-role-status "active"^^xsd:string ;
+    nporel:appliesWithin ex:tidewater-sponsorship-arrangement .
+
+ex:pacific-coastal-trust-fund a owl:NamedIndividual,
+        npo:fund ;
+    rdfs:label "Pacific Coastal Trust Community Grants Fund" ;
+    npoprop:fund-currency "USD"^^xsd:string ;
+    npoprop:fund-opening-date "2020-01-01"^^xsd:date ;
+    npoprop:fund-restriction-type "unrestricted"^^xsd:string ;
+    npoprop:fund-status "active"^^xsd:string ;
+    nporel:heldBy ex:pacific-coastal-trust .
+
+ex:tidewater-sponsorship-arrangement a owl:NamedIndividual,
+        npo:fiscal-sponsorship-arrangement ;
+    rdfs:label "Tidewater Youth Ocean Corps Fiscal Sponsorship" ;
+    npoprop:fiscal-sponsorship-arrangement-fee-percentage 8.0 ;
+    npoprop:philanthropic-arrangement-effective-date "2026-05-01"^^xsd:date ;
+    npoprop:philanthropic-arrangement-governing-document "Fiscal Sponsorship Agreement"^^xsd:string ;
+    npoprop:philanthropic-arrangement-status "active"^^xsd:string ;
+    nporel:administeredBy ex:ocean-conservation-fund-org ;
+    nporel:supports ex:tidewater-youth-ocean-corps .
+
+ex:tidewater-youth-ocean-corps a owl:NamedIndividual,
+        npo:sponsored-project ;
+    rdfs:label "Tidewater Youth Ocean Corps" ;
+    npoprop:sponsored-project-start-date "2026-05-01"^^xsd:date ;
+    npoprop:sponsored-project-status "active"^^xsd:string ;
+    nporel:fiscallySponsoredBy ex:ocean-conservation-fund-org .
+
 ex:marine-habitat-2026-opportunity a owl:NamedIndividual,
         npo:funding-opportunity ;
     rdfs:label "2026 Marine Habitat Protection Grants" ;
     npoprop:funding-opportunity-application-deadline "2026-03-01"^^xsd:date ;
     npoprop:funding-opportunity-status "open"^^xsd:string ;
     nporel:occursDuringFundingCycle ex:marine-habitat-2026-cycle .
+
+ex:pacific-coastal-trust a owl:NamedIndividual,
+        npo:organization ;
+    rdfs:label "Pacific Coastal Trust" ;
+    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string .
+
+ex:ocean-conservation-fund-org a owl:NamedIndividual,
+        npo:organization ;
+    rdfs:label "Ocean Conservation Fund" ;
+    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string ;
+    nporel:playsRole ex:ocean-conservation-fund,
+        ex:ocean-conservation-fund-fiscal-sponsor-role .

@@ -104,6 +104,23 @@ def resolve_properties_by_concept(concepts, properties):
     return resolved
 
 
+def ancestor_ids(concept_id, concepts_by_id):
+    """A concept's id plus every ancestor's id walking up subClassOf -- the
+    set of types an instance of this concept structurally is. Mirrors
+    resolve_properties_by_concept's chain-walking, but for concept identity
+    rather than property merging: under RDFS semantics, an individual typed
+    as a subclass is also an instance of every ancestor class, so it may
+    legitimately be the subject/object of a relationship whose declared
+    domain/range is an ancestor concept (e.g. a `fiscal-sponsorship-arrangement`
+    individual using `administeredBy`, declared on `philanthropic-arrangement`)."""
+    chain = set()
+    current = concept_id
+    while current and current not in chain:
+        chain.add(current)
+        current = concepts_by_id[current].get("subClassOf")
+    return chain
+
+
 def load_source():
     concepts = json.loads((SOURCE_DIR / "concepts.json").read_text())
     relationships = json.loads((SOURCE_DIR / "relationships.json").read_text())
@@ -155,6 +172,7 @@ def validate_example(example, concepts, properties, relationships):
     ones) must be present, and every relationship must use a real predicate
     between individuals of the types that predicate expects."""
     concept_ids = {c["id"] for c in concepts}
+    concepts_by_id = {c["id"]: c for c in concepts}
     properties_by_concept = resolve_properties_by_concept(concepts, properties)
 
     individuals_by_id = {}
@@ -195,13 +213,13 @@ def validate_example(example, concepts, properties, relationships):
             )
         subj_concept = individuals_by_id[rel["subject"]]["concept"]
         obj_concept = individuals_by_id[rel["object"]]["concept"]
-        assert subj_concept == rel_def["subject"], (
-            f"example relationship '{rel['predicate']}' expects a '{rel_def['subject']}' subject, "
-            f"but individual '{rel['subject']}' is a '{subj_concept}'"
+        assert rel_def["subject"] in ancestor_ids(subj_concept, concepts_by_id), (
+            f"example relationship '{rel['predicate']}' expects a '{rel_def['subject']}' subject "
+            f"(or a subtype of it), but individual '{rel['subject']}' is a '{subj_concept}'"
         )
-        assert obj_concept == rel_def["object"], (
-            f"example relationship '{rel['predicate']}' expects a '{rel_def['object']}' object, "
-            f"but individual '{rel['object']}' is a '{obj_concept}'"
+        assert rel_def["object"] in ancestor_ids(obj_concept, concepts_by_id), (
+            f"example relationship '{rel['predicate']}' expects a '{rel_def['object']}' object "
+            f"(or a subtype of it), but individual '{rel['object']}' is a '{obj_concept}'"
         )
 
 

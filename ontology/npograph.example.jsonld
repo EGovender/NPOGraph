@@ -378,6 +378,176 @@
       "nporel:maintainsGrantProgram": {
         "@id": "ex:marine-habitat-program"
       }
+    },
+    {
+      "id": "ex:ocean-conservation-fund-fiscal-sponsor-role",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:fiscal-sponsor"
+      ],
+      "label": "Ocean Conservation Fund (as Fiscal Sponsor)",
+      "npoprop:organization-role-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:organization-role-effective-from": {
+        "@value": "2026-05-01",
+        "@type": "xsd:date"
+      },
+      "npoprop:organization-role-scope": {
+        "@value": "Tidewater Youth Ocean Corps sponsorship",
+        "@type": "xsd:string"
+      },
+      "nporel:appliesWithin": {
+        "@id": "ex:tidewater-sponsorship-arrangement"
+      }
+    },
+    {
+      "id": "ex:ocean-conservation-fund-org",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:organization"
+      ],
+      "label": "Ocean Conservation Fund",
+      "npoprop:organization-tax-status": {
+        "@value": "tax-exempt-501c3",
+        "@type": "xsd:string"
+      },
+      "npoprop:organization-operating-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "nporel:playsRole": {
+        "@id": "ex:ocean-conservation-fund-fiscal-sponsor-role"
+      }
+    },
+    {
+      "id": "ex:pacific-coastal-trust",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:organization"
+      ],
+      "label": "Pacific Coastal Trust",
+      "npoprop:organization-tax-status": {
+        "@value": "tax-exempt-501c3",
+        "@type": "xsd:string"
+      },
+      "npoprop:organization-operating-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      }
+    },
+    {
+      "id": "ex:pacific-coastal-trust-fund",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:fund"
+      ],
+      "label": "Pacific Coastal Trust Community Grants Fund",
+      "npoprop:fund-restriction-type": {
+        "@value": "unrestricted",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:fund-opening-date": {
+        "@value": "2020-01-01",
+        "@type": "xsd:date"
+      },
+      "nporel:heldBy": {
+        "@id": "ex:pacific-coastal-trust"
+      }
+    },
+    {
+      "id": "ex:tidewater-restoration-award",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:award"
+      ],
+      "label": "Award for Tidewater Youth Ocean Corps Restoration Work",
+      "npoprop:award-amount": {
+        "@value": "45000",
+        "@type": "xsd:decimal"
+      },
+      "npoprop:award-currency": {
+        "@value": "USD",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:award-date": {
+        "@value": "2026-05-15",
+        "@type": "xsd:date"
+      },
+      "nporel:awardedBy": {
+        "@id": "ex:pacific-coastal-trust"
+      },
+      "nporel:awardedTo": {
+        "@id": "ex:ocean-conservation-fund-org"
+      },
+      "nporel:fundedFrom": {
+        "@id": "ex:pacific-coastal-trust-fund"
+      },
+      "nporel:managedBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      }
+    },
+    {
+      "id": "ex:tidewater-sponsorship-arrangement",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:fiscal-sponsorship-arrangement"
+      ],
+      "label": "Tidewater Youth Ocean Corps Fiscal Sponsorship",
+      "npoprop:philanthropic-arrangement-effective-date": {
+        "@value": "2026-05-01",
+        "@type": "xsd:date"
+      },
+      "npoprop:philanthropic-arrangement-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:philanthropic-arrangement-governing-document": {
+        "@value": "Fiscal Sponsorship Agreement",
+        "@type": "xsd:string"
+      },
+      "npoprop:fiscal-sponsorship-arrangement-fee-percentage": {
+        "@value": "8",
+        "@type": "xsd:decimal"
+      },
+      "nporel:administeredBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      },
+      "nporel:supports": {
+        "@id": "ex:tidewater-youth-ocean-corps"
+      }
+    },
+    {
+      "id": "ex:tidewater-youth-ocean-corps",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:sponsored-project"
+      ],
+      "label": "Tidewater Youth Ocean Corps",
+      "npoprop:sponsored-project-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:sponsored-project-start-date": {
+        "@value": "2026-05-01",
+        "@type": "xsd:date"
+      },
+      "nporel:fiscallySponsoredBy": {
+        "@id": "ex:ocean-conservation-fund-org"
+      }
     }
   ]
 }

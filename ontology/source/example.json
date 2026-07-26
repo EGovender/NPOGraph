@@ -1,7 +1,7 @@
 {
   "id": "coastal-watch-fy26",
-  "title": "Coastal Watch Alliance's FY26 grant from the Ocean Conservation Fund",
-  "summary": "A single, fictional grant followed end to end -- from the funder opening a grant program through closeout -- to show the ontology's concepts and properties filled in with concrete (illustrative, not real) values instead of just definitions.",
+  "title": "Ocean Conservation Fund: a direct grant, and a fiscal sponsorship",
+  "summary": "Two fictional, connected scenarios: a direct grant followed end to end from a funder opening a grant program through closeout, and a second engagement where the same organization also acts as a fiscal sponsor -- showing both the everyday grant lifecycle and the same organization occupying two independently-dated roles.",
   "individuals": [
     {
       "id": "ocean-conservation-fund",
@@ -142,6 +142,56 @@
       "label": "Coastal Watch Alliance FY26 Closeout",
       "properties": { "status": "completed", "date": "2027-02-01" },
       "narrative": "With all payments disbursed and all reports accepted, the award reaches Closeout on February 1, 2027."
+    },
+    {
+      "id": "ocean-conservation-fund-org",
+      "concept": "organization",
+      "label": "Ocean Conservation Fund",
+      "properties": { "taxStatus": "tax-exempt-501c3", "operatingStatus": "active" },
+      "act": "A Second Engagement: Fiscal Sponsorship",
+      "narrative": "Ocean Conservation Fund is itself an Organization, not just a Funder -- and it turns out to occupy more than one role. Its Funder occupancy above covers the Coastal Watch Alliance grant; here, in a separate arrangement, it also acts as a Fiscal Sponsor."
+    },
+    {
+      "id": "ocean-conservation-fund-fiscal-sponsor-role",
+      "concept": "fiscal-sponsor",
+      "label": "Ocean Conservation Fund (as Fiscal Sponsor)",
+      "properties": { "status": "active", "effectiveFrom": "2026-05-01", "scope": "Tidewater Youth Ocean Corps sponsorship" },
+      "narrative": "This occupancy is a distinct, independently-dated Organization Role from its Funder role above -- effective May 1, 2026, and scoped to a single sponsored project."
+    },
+    {
+      "id": "tidewater-sponsorship-arrangement",
+      "concept": "fiscal-sponsorship-arrangement",
+      "label": "Tidewater Youth Ocean Corps Fiscal Sponsorship",
+      "properties": { "effectiveDate": "2026-05-01", "status": "active", "governingDocument": "Fiscal Sponsorship Agreement", "feePercentage": "8" },
+      "narrative": "The two parties formalize a Fiscal Sponsorship Arrangement, under which Ocean Conservation Fund charges an 8% administrative fee on funds it processes on the project's behalf."
+    },
+    {
+      "id": "tidewater-youth-ocean-corps",
+      "concept": "sponsored-project",
+      "label": "Tidewater Youth Ocean Corps",
+      "properties": { "status": "active", "startDate": "2026-05-01" },
+      "narrative": "Tidewater Youth Ocean Corps (fictional) is a youth-led tide pool restoration group. It isn't independently incorporated, so it operates -- and receives funding -- under Ocean Conservation Fund's fiscal sponsorship."
+    },
+    {
+      "id": "pacific-coastal-trust",
+      "concept": "organization",
+      "label": "Pacific Coastal Trust",
+      "properties": { "taxStatus": "tax-exempt-501c3", "operatingStatus": "active" },
+      "narrative": "Pacific Coastal Trust (fictional), a separate foundation, wants to fund the project directly but needs a fiscally sponsored recipient it can grant to."
+    },
+    {
+      "id": "pacific-coastal-trust-fund",
+      "concept": "fund",
+      "label": "Pacific Coastal Trust Community Grants Fund",
+      "properties": { "restrictionType": "unrestricted", "currency": "USD", "status": "active", "openingDate": "2020-01-01" },
+      "narrative": "It grants from its Community Grants Fund, open since 2020."
+    },
+    {
+      "id": "tidewater-restoration-award",
+      "concept": "award",
+      "label": "Award for Tidewater Youth Ocean Corps Restoration Work",
+      "properties": { "amount": "45000", "currency": "USD", "status": "active", "date": "2026-05-15" },
+      "narrative": "On May 15, Pacific Coastal Trust makes a $45,000 Award. Because the money is for the sponsored project, the Award's party edges diverge from a direct grant: it's awardedBy Pacific Coastal Trust, awardedTo and managedBy Ocean Conservation Fund (which holds legal responsibility and administers it day to day), and fundedFrom the Community Grants Fund -- while Tidewater Youth Ocean Corps is the intended beneficiary via the Fiscal Sponsorship Arrangement above."
     }
   ],
   "relationships": [
@@ -162,6 +212,17 @@
     { "predicate": "obligatesReport", "subject": "coastal-watch-reporting-schedule", "object": "coastal-watch-q2-report" },
     { "predicate": "assessesOutput", "subject": "coastal-watch-year1-evaluation", "object": "coastal-watch-workshops-output" },
     { "predicate": "assessesOutcome", "subject": "coastal-watch-year1-evaluation", "object": "coastal-watch-habitat-outcome" },
-    { "predicate": "reachesCloseout", "subject": "coastal-watch-fy26-award", "object": "coastal-watch-fy26-closeout" }
+    { "predicate": "reachesCloseout", "subject": "coastal-watch-fy26-award", "object": "coastal-watch-fy26-closeout" },
+    { "predicate": "playsRole", "subject": "ocean-conservation-fund-org", "object": "ocean-conservation-fund" },
+    { "predicate": "playsRole", "subject": "ocean-conservation-fund-org", "object": "ocean-conservation-fund-fiscal-sponsor-role" },
+    { "predicate": "appliesWithin", "subject": "ocean-conservation-fund-fiscal-sponsor-role", "object": "tidewater-sponsorship-arrangement" },
+    { "predicate": "administeredBy", "subject": "tidewater-sponsorship-arrangement", "object": "ocean-conservation-fund-org" },
+    { "predicate": "supports", "subject": "tidewater-sponsorship-arrangement", "object": "tidewater-youth-ocean-corps" },
+    { "predicate": "fiscallySponsoredBy", "subject": "tidewater-youth-ocean-corps", "object": "ocean-conservation-fund-org" },
+    { "predicate": "heldBy", "subject": "pacific-coastal-trust-fund", "object": "pacific-coastal-trust" },
+    { "predicate": "awardedBy", "subject": "tidewater-restoration-award", "object": "pacific-coastal-trust" },
+    { "predicate": "awardedTo", "subject": "tidewater-restoration-award", "object": "ocean-conservation-fund-org" },
+    { "predicate": "managedBy", "subject": "tidewater-restoration-award", "object": "ocean-conservation-fund-org" },
+    { "predicate": "fundedFrom", "subject": "tidewater-restoration-award", "object": "pacific-coastal-trust-fund" }
   ]
 }
