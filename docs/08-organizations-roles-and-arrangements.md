@@ -94,8 +94,41 @@ That site fix turned out to satisfy most of what "per-type inspector tab variant
 
 **Explorer views and shapes.** `/explore` gained a view selector (`site/src/data/explorer-views.ts`) — Full Ontology, Grant Lifecycle (everything except the 15 organizational-foundation concepts), Organizations & Roles, and Funds & Arrangements (each a curated concept allowlist, composable with the existing category checkboxes) — and node-shape differentiation by concept kind: `Organization` (and `Philanthropic Intermediary`) render as a rounded rectangle, `Organization Role` subtypes as a diamond, `Fund` subtypes as a hexagon, `Philanthropic Arrangement` subtypes as a tag, everything else as the original ellipse. Shape is a secondary encoding alongside the existing category color, with a legend in the sidebar — consistent with never relying on color alone.
 
+## Milestone 4: the rest of the instance data, role-change diagrams, and legal-review flags
+
+Three things were still schema-only after Milestone 3: the Donor-Advised Fund, Regranting, and Collaborative Fund paths had concepts and relationships but no worked-example individuals proving they actually work end to end. All three are built now, plus two things the reconciled product-plan review (Phase 3.6) asked for that hadn't come up yet: simple diagrams of an organization's role changes, and a way to flag concepts where this ontology's simplifications could mislead someone into skipping real legal review.
+
+**Three more worked-example threads**, all still following [Ocean Conservation Fund](07-worked-example.md) except the last:
+
+- **A Donor-Advised Fund.** Ocean Conservation Fund holds the Alvarez Family Fund; its donor, Elena Alvarez, is the `Donor Advisor`; her `Grant Recommendation` for Coral Reef Defenders is approved and `leadsToAward` a real `Award`, `fundedFrom` the DAF rather than Ocean Conservation Fund's general budget. First instance data for `Donor-Advised Fund`, `Donor Advisor`, `Donor-Advised Fund Arrangement`, and `Grant Recommendation`.
+- **A Regranting Arrangement.** National Ocean Legacy Fund (a new organization) awards Ocean Conservation Fund $200,000 to regrant; Ocean Conservation Fund takes on a *fourth* independently-dated role — `Funding Intermediary` — and redistributes $35,000 of it to Kelp Forest Collective (another new organization) as a sub-grant, `awardedBy` Ocean Conservation Fund this time instead of `awardedTo` it. First instance data for `Funding Intermediary Role` and `Regranting Arrangement`.
+- **A Collaborative Fund Arrangement.** This is the one thread that isn't about Ocean Conservation Fund: Pacific Coastal Trust (from Milestone 3's fiscal-sponsorship thread) and a new partner, Tidewater Community Foundation, pool contributions into the Coastal Resilience Fund and jointly fund a $20,000 award — to Kelp Forest Collective again, the same small grantee now shown drawing on two independent funding relationships. First instance data for `Collaborative Fund Arrangement`, and the first example of an `Award` with two `awardedBy` edges (both original funders named on the same award, which the ontology already allowed — this is just the first individual that exercises it).
+
+Ocean Conservation Fund now has four `playsRole` occupancies across four separately-dated arrangements (Funder, Fiscal Sponsor, Funding Intermediary) plus a fourth capacity — hosting a Donor-Advised Fund — that isn't modeled as a role occupancy at all, on purpose (see below).
+
+**Why hosting a DAF isn't a fourth `Organization Role`.** `Funder`, `Grantee`, `Fiscal Sponsor`, and `Funding Intermediary Role` all describe a capacity an organization exercises *toward another party in a transaction*. Holding a Donor-Advised Fund is different in kind: it's answered entirely by the direct `Fund --heldBy--> Organization` and `Donor-Advised Fund Arrangement --administeredBy--> Organization` edges already built in Milestones 1–2, and reifying it as another role would just duplicate what those edges already say without adding a date range anyone asked for. This is the same reasoning Milestone 1 used to reject an org-level "Grant Administrator" role — a direct edge is preferred over reification whenever nothing needs its own independent dated history.
+
+**Role-change diagram.** The prose above and in Milestones 1–3 describes Ocean Conservation Fund's multiple roles; here's the structure as a picture:
+
+```mermaid
+flowchart LR
+    OCF["Ocean Conservation Fund<br/>(Organization)"]
+
+    OCF -- playsRole --> Funder
+    OCF -- playsRole --> FiscalSponsor["Fiscal Sponsor"]
+    OCF -- playsRole --> FundingIntermediary["Funding Intermediary"]
+    OCF -. "heldBy (reverse) /<br/>administeredBy (reverse)" .-> DAF["Alvarez Family Fund<br/>(Donor-Advised Fund)"]
+
+    Funder -- appliesWithin --> A1["Marine Habitat Protection Program<br/>(direct grant to Coastal Watch Alliance)"]
+    FiscalSponsor -- appliesWithin --> A2["Tidewater Youth Ocean Corps<br/>Fiscal Sponsorship Arrangement"]
+    FundingIntermediary -- appliesWithin --> A3["National Ocean Legacy<br/>Regranting Program"]
+```
+
+Four boxes reachable from one `Organization` node, three of them real reified `Organization Role` occupancies each scoped to its own `Philanthropic Arrangement`, one a direct capacity with no role in between — exactly the distinction the paragraph above draws, now visible instead of only stated.
+
+**Legal-review flags.** Eight concepts central to this phase carry real legal and tax-regulatory nuance that this ontology deliberately doesn't model in depth — fiscal sponsorship's comprehensive-vs-pre-approved-grant models have materially different liability consequences, for instance, and a donor-advised fund's "non-binding" recommendation is a federal tax-law requirement, not a design preference. Modeling that depth is out of scope (this project is a shared conceptual vocabulary, not a compliance engine), but silently saying nothing invites someone to treat the simplified model as sufficient on its own. So `concepts.json` gained one new optional field, `legalNote`, set on exactly the concepts where this applies: `Fiscal Sponsor`, `Sponsored Project`, `Fiscal Sponsorship Arrangement`, `Donor Advisor`, `Donor-Advised Fund`, `Donor-Advised Fund Arrangement`, `Grant Recommendation`, and `Regranting Arrangement`. It's not a general-purpose annotation field and it's not the concept-maturity status field Milestone 7 will add later (draft/stable/deprecated is about the ontology's own confidence in a definition; `legalNote` is about the underlying subject matter's real-world complexity) — it flows through to the generated RDF (`npo:legalNote`) the same as every other concept field, and renders as a callout on the concept's Overview tab and a small badge on its `/concepts` catalogue card.
+
 ## What's still deferred
 
 - **Org-level "Grant Administrator" role** — deliberately *not* added, unchanged from Milestone 1's reasoning: the existing `Grant Administrator` concept stays a person-level role, and award-level administration is covered by `award --managedBy--> organization`.
-- **Donor-Advised Fund / Grant Recommendation instance data** — the worked example's second thread covers fiscal sponsorship, not the donor-advised-fund path added in Milestone 2. `Donor Advisor`, `Donor-Advised Fund`, `Donor-Advised Fund Arrangement`, and `Grant Recommendation` remain schema-only, same status they've had since Milestone 2.
-- **Enterprise-architecture layer** (Business Capability, Business Process, Application System, Data Object, Integration, Policy, Organizational Unit) — explicitly out of scope until the philanthropic structure above has had real use. Planned for Milestone 4.
+- **Enterprise-architecture layer** (Business Capability, Business Process, Application System, Data Object, Integration, Policy, Organizational Unit) — explicitly out of scope until the philanthropic structure above has had real use.

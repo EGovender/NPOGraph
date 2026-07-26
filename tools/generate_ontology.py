@@ -296,6 +296,8 @@ def build_graph(concepts, relationships, properties, business_rules, meta) -> Gr
             g.add((iri, SKOS.altLabel, Literal(alias)))
         if c.get("subClassOf"):
             g.add((iri, RDFS.subClassOf, concept_iri(c["subClassOf"])))
+        if c.get("legalNote"):
+            g.add((iri, NPO.legalNote, Literal(c["legalNote"])))
 
     for r in relationships:
         iri = relation_iri(r["predicate"])
@@ -528,6 +530,8 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta):
         if c.get("subClassOf"):
             ET.SubElement(desc, qname(RDFS_NS, "subClassOf"),
                           {qname(RDF_NS, "resource"): str(concept_iri(c["subClassOf"]))})
+        if c.get("legalNote"):
+            ET.SubElement(desc, qname(BASE, "legalNote")).text = c["legalNote"]
 
     for r in relationships:
         desc = ET.SubElement(root, qname(RDF_NS, "Description"),
@@ -595,6 +599,7 @@ def jsonld_context() -> dict:
         "definition": "skos:definition",
         "altLabel": "skos:altLabel",
         "category": "npo:category",
+        "legalNote": "npo:legalNote",
         "comment": "rdfs:comment",
         "version": "npo:version",
         "group": "npo:group",
@@ -640,6 +645,8 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta):
             node["altLabel"] = sorted(c["aliases"])
         if c.get("subClassOf"):
             node["subClassOf"] = "npo:" + c["subClassOf"]
+        if c.get("legalNote"):
+            node["legalNote"] = c["legalNote"]
         graph_nodes.append(node)
 
     for r in relationships:

@@ -60,6 +60,7 @@
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> .
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <http://www.w3.org/2004/02/skos/core#definition> "A Philanthropic Arrangement in which a Donor Advisor holds non-binding advisory privileges over grants made from a Donor-Advised Fund." .
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund-arrangement> <https://egovender.github.io/NPOGraph/ontology/legalNote> "The specific privileges and limits granted to a donor advisor are set by the sponsoring organization's own policies and by tax law, not by this ontology -- consult counsel before using this model as a compliance reference." .
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2000/01/rdf-schema#label> "Donor-Advised Fund" .
@@ -67,11 +68,13 @@
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2004/02/skos/core#altLabel> "DAF" .
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <http://www.w3.org/2004/02/skos/core#definition> "A Fund held by a sponsoring organization, over which a Donor Advisor holds non-binding privileges to recommend grants and investments." .
 <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> <https://egovender.github.io/NPOGraph/ontology/legalNote> "Donor-advised funds are subject to specific federal tax rules (e.g., IRC 4966-4967) governing what a donor advisor may and may not direct. This ontology models the general shape of the relationship, not compliance with those rules." .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2000/01/rdf-schema#label> "Donor Advisor" .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2004/02/skos/core#definition> "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it." .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <https://egovender.github.io/NPOGraph/ontology/legalNote> "A donor advisor's privileges are non-binding as a matter of federal tax law, not just convention -- treating a recommendation as a binding instruction can jeopardize the sponsoring organization's tax-exempt status." .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2000/01/rdf-schema#label> "Eligibility Criteria" .
@@ -88,12 +91,14 @@
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <http://www.w3.org/2004/02/skos/core#definition> "The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf." .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> <https://egovender.github.io/NPOGraph/ontology/legalNote> "Fiscal sponsorship arrangements vary significantly in legal structure (e.g., comprehensive/\"Model A\" vs. pre-approved grant relationship/\"Model C\"), which affects liability, employment, and asset ownership very differently. Consult counsel before relying on this model to characterize a specific arrangement." .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/2000/01/rdf-schema#label> "Fiscal Sponsorship Arrangement" .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <http://www.w3.org/2004/02/skos/core#definition> "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly." .
 <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/fiscal-sponsorship-arrangement> <https://egovender.github.io/NPOGraph/ontology/legalNote> "The rights and obligations created by a fiscal sponsorship agreement depend heavily on its specific model (e.g., comprehensive vs. pre-approved grant relationship). Consult counsel and the actual governing agreement rather than this ontology." .
 <https://egovender.github.io/NPOGraph/ontology/fund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/fund> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/fund> <http://www.w3.org/2000/01/rdf-schema#label> "Fund" .
@@ -151,6 +156,7 @@
 <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Recommendation" .
 <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <http://www.w3.org/2004/02/skos/core#definition> "A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it." .
 <https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <https://egovender.github.io/NPOGraph/ontology/category> "application-and-review" .
+<https://egovender.github.io/NPOGraph/ontology/grant-recommendation> <https://egovender.github.io/NPOGraph/ontology/legalNote> "A Grant Recommendation's non-binding status is a legal requirement for donor-advised funds under federal tax law, not a design choice -- see Donor-Advised Fund and Donor Advisor." .
 <https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/NPOGraph/ontology/grantee> <http://www.w3.org/2000/01/rdf-schema#label> "Grantee" .
@@ -980,6 +986,7 @@
 <https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> .
 <https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/2004/02/skos/core#definition> "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients." .
 <https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <https://egovender.github.io/NPOGraph/ontology/legalNote> "Regranting to organizations without their own tax-exempt status (or across borders) can trigger expenditure-responsibility or equivalency-determination requirements under U.S. tax law. This ontology does not model those compliance steps." .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#comment> "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly." .
 <https://egovender.github.io/NPOGraph/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> .
@@ -1430,6 +1437,7 @@
 <https://egovender.github.io/NPOGraph/ontology/sponsored-project> <http://www.w3.org/2000/01/rdf-schema#label> "Sponsored Project" .
 <https://egovender.github.io/NPOGraph/ontology/sponsored-project> <http://www.w3.org/2004/02/skos/core#definition> "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization." .
 <https://egovender.github.io/NPOGraph/ontology/sponsored-project> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/sponsored-project> <https://egovender.github.io/NPOGraph/ontology/legalNote> "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement." .
 <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
 <https://egovender.github.io/NPOGraph/ontology/terms-and-conditions> <http://www.w3.org/2000/01/rdf-schema#label> "Terms and Conditions" .

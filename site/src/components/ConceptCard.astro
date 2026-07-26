@@ -17,6 +17,7 @@ interface Props {
   hasProperties: boolean;
   hasRelationships: boolean;
   hasRules: boolean;
+  hasLegalNote?: boolean;
   categoryColorLight: string;
   categoryColorDark: string;
   base: string;
@@ -34,6 +35,7 @@ const {
   hasProperties,
   hasRelationships,
   hasRules,
+  hasLegalNote,
   categoryColorLight,
   categoryColorDark,
   base,
@@ -56,6 +58,11 @@ const {
       style={`background: light-dark(${categoryColorLight}, ${categoryColorDark});`}
     />
     <a href={`${base}concepts/${id}`} class="concept-card-label">{label}</a>
+    {hasLegalNote && (
+      <span class="badge concept-card-legal-badge" title="Has a legal-review note">
+        Legal note
+      </span>
+    )}
   </div>
   {
     parentId && parentLabel && (

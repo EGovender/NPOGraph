@@ -51,7 +51,8 @@
     "category": "organizational-entities",
     "definition": "The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf.",
     "subClassOf": "organization-role",
-    "docRef": "docs/02-core-concepts.md#organizational-entities"
+    "docRef": "docs/02-core-concepts.md#organizational-entities",
+    "legalNote": "Fiscal sponsorship arrangements vary significantly in legal structure (e.g., comprehensive/\"Model A\" vs. pre-approved grant relationship/\"Model C\"), which affects liability, employment, and asset ownership very differently. Consult counsel before relying on this model to characterize a specific arrangement."
   },
   {
     "id": "philanthropic-intermediary",
@@ -105,7 +106,8 @@
     "category": "organizational-entities",
     "definition": "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it.",
     "subClassOf": null,
-    "docRef": "docs/02-core-concepts.md#organizational-entities"
+    "docRef": "docs/02-core-concepts.md#organizational-entities",
+    "legalNote": "A donor advisor's privileges are non-binding as a matter of federal tax law, not just convention -- treating a recommendation as a binding instruction can jeopardize the sponsoring organization's tax-exempt status."
   },
   {
     "id": "sponsored-project",
@@ -114,7 +116,8 @@
     "category": "organizational-entities",
     "definition": "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.",
     "subClassOf": null,
-    "docRef": "docs/02-core-concepts.md#organizational-entities"
+    "docRef": "docs/02-core-concepts.md#organizational-entities",
+    "legalNote": "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement."
   },
   {
     "id": "grant-program",
@@ -177,7 +180,8 @@
     "category": "funding-structure",
     "definition": "A Fund held by a sponsoring organization, over which a Donor Advisor holds non-binding privileges to recommend grants and investments.",
     "subClassOf": "fund",
-    "docRef": "docs/02-core-concepts.md#funding-structure"
+    "docRef": "docs/02-core-concepts.md#funding-structure",
+    "legalNote": "Donor-advised funds are subject to specific federal tax rules (e.g., IRC 4966-4967) governing what a donor advisor may and may not direct. This ontology models the general shape of the relationship, not compliance with those rules."
   },
   {
     "id": "philanthropic-arrangement",
@@ -195,7 +199,8 @@
     "category": "funding-structure",
     "definition": "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly.",
     "subClassOf": "philanthropic-arrangement",
-    "docRef": "docs/02-core-concepts.md#funding-structure"
+    "docRef": "docs/02-core-concepts.md#funding-structure",
+    "legalNote": "The rights and obligations created by a fiscal sponsorship agreement depend heavily on its specific model (e.g., comprehensive vs. pre-approved grant relationship). Consult counsel and the actual governing agreement rather than this ontology."
   },
   {
     "id": "donor-advised-fund-arrangement",
@@ -204,7 +209,8 @@
     "category": "funding-structure",
     "definition": "A Philanthropic Arrangement in which a Donor Advisor holds non-binding advisory privileges over grants made from a Donor-Advised Fund.",
     "subClassOf": "philanthropic-arrangement",
-    "docRef": "docs/02-core-concepts.md#funding-structure"
+    "docRef": "docs/02-core-concepts.md#funding-structure",
+    "legalNote": "The specific privileges and limits granted to a donor advisor are set by the sponsoring organization's own policies and by tax law, not by this ontology -- consult counsel before using this model as a compliance reference."
   },
   {
     "id": "regranting-arrangement",
@@ -213,7 +219,8 @@
     "category": "funding-structure",
     "definition": "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients.",
     "subClassOf": "philanthropic-arrangement",
-    "docRef": "docs/02-core-concepts.md#funding-structure"
+    "docRef": "docs/02-core-concepts.md#funding-structure",
+    "legalNote": "Regranting to organizations without their own tax-exempt status (or across borders) can trigger expenditure-responsibility or equivalency-determination requirements under U.S. tax law. This ontology does not model those compliance steps."
   },
   {
     "id": "collaborative-fund-arrangement",
@@ -285,7 +292,8 @@
     "category": "application-and-review",
     "definition": "A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it.",
     "subClassOf": null,
-    "docRef": "docs/02-core-concepts.md#application-and-review"
+    "docRef": "docs/02-core-concepts.md#application-and-review",
+    "legalNote": "A Grant Recommendation's non-binding status is a legal requirement for donor-advised funds under federal tax law, not a design choice -- see Donor-Advised Fund and Donor Advisor."
   },
   {
     "id": "award",

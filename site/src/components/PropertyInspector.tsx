@@ -105,6 +105,11 @@ export default function PropertyInspector({
               Part of <strong>{getCategory(concept.category).label}</strong> in the grantmaking
               ontology.
             </p>
+            {concept.legalNote && (
+              <div className="inspector-legal-note">
+                <strong>Not legal advice:</strong> {concept.legalNote}
+              </div>
+            )}
           </div>
         )}
 

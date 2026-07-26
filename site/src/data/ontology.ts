@@ -19,6 +19,11 @@ export interface Concept {
   definition: string;
   subClassOf: string | null;
   docRef: string;
+  /** Present only on the handful of concepts (mostly Phase 3.5's
+   * intermediary-philanthropy layer) with real legal/regulatory nuance this
+   * ontology deliberately simplifies -- surfaced as a callout on the
+   * concept's Overview tab, not a general-purpose annotation field. */
+  legalNote?: string;
 }
 
 export interface Relationship {
@@ -243,6 +248,7 @@ export function conceptJsonLd(concept: Concept): Record<string, unknown> {
   };
   if (concept.aliases.length > 0) node.altLabel = concept.aliases;
   if (concept.subClassOf) node.subClassOf = 'npo:' + concept.subClassOf;
+  if (concept.legalNote) node.legalNote = concept.legalNote;
   return node;
 }
 

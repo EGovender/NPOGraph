@@ -244,6 +244,20 @@ main.wide {
   color: var(--text-secondary);
 }
 
+.concept-card-legal-badge {
+  background: #f0e4c4;
+  color: #6b5416;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .concept-card-legal-badge {
+    background: #4a3d1a;
+    color: #e8d590;
+  }
+}
+
 .badge .swatch {
   width: 0.6rem;
   height: 0.6rem;
@@ -813,6 +827,21 @@ pre {
 .inspector-note {
   font-size: 0.8rem;
   margin-top: 0;
+}
+
+.inspector-legal-note {
+  margin-top: 1.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand-teal);
+  border-radius: 6px;
+  background: var(--page);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.inspector-legal-note strong {
+  color: var(--text-primary);
 }
 
 .inspector-group {
