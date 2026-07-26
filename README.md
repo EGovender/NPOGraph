@@ -38,7 +38,8 @@ NPOGraph/
 │   ├── 04-roadmap.md
 │   ├── 05-data-model.md
 │   ├── 06-properties-and-rules.md
-│   └── 07-worked-example.md
+│   ├── 07-worked-example.md
+│   └── 08-organizations-roles-and-arrangements.md
 ├── ontology/
 │   ├── source/                     # hand-maintained canonical JSON (concepts, relationships, properties, business rules, example)
 │   ├── npograph.ttl                 # generated: OWL ontology (Turtle)
@@ -62,12 +63,13 @@ NPOGraph/
 
 - **[Vision](docs/00-vision.md)** — what NPOGraph is trying to be and why it matters.
 - **[Guiding Principles](docs/01-guiding-principles.md)** — the design values behind the ontology and the project.
-- **[Core Concepts](docs/02-core-concepts.md)** — the ~40 grantmaking concepts that make up the first version of the ontology.
+- **[Core Concepts](docs/02-core-concepts.md)** — the ~48 grantmaking and organizational concepts that make up the ontology so far.
 - **[Relationships](docs/03-relationships.md)** — how those concepts connect, including the end-to-end grant lifecycle.
 - **[Roadmap](docs/04-roadmap.md)** — what comes after the docs: machine-readable formats, an interactive explorer, search, and beyond.
 - **[Data Model](docs/05-data-model.md)** — how the prose docs become the machine-readable ontology, and how the two are kept in sync.
 - **[Properties & Rules](docs/06-properties-and-rules.md)** — concept attributes (amount, status, dates, ...) and the constraints on them, surfaced in the explorer's Properties and Rules tabs.
 - **[Worked Example](docs/07-worked-example.md)** — a single fictional grant, followed end to end as real (SHACL-validated) RDF individuals, behind the explorer's Example tab and Story page.
+- **[Organizations, Roles & Arrangements](docs/08-organizations-roles-and-arrangements.md)** — why Funder/Grantee/Fiscal Sponsor are contextual roles an organization occupies rather than permanent types, and how Fund and Philanthropic Arrangement support intermediary philanthropy (e.g. fiscal sponsorship, donor-advised funds).
 
 The ontology (`ontology/npograph.ttl` and friends) is machine-generated from `ontology/source/*.json`, which is itself a hand-maintained mirror of the prose docs — see [Data Model](docs/05-data-model.md) before editing anything under `ontology/`. The `site/` explorer app reads that same `ontology/source/*.json` at build time, so the docs, the ontology, and the explorer never describe three different things. Every concept page and every node in the graph explorer opens a property inspector (Overview / Example / Properties / Relationships / Rules / Technical tabs) — see [Properties & Rules](docs/06-properties-and-rules.md) and [Worked Example](docs/07-worked-example.md) for what backs those tabs. `/design` recommends a subset of the ontology from a short questionnaire; `/story` walks the worked example end to end.
 
