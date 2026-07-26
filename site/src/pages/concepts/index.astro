@@ -1,49 +1,305 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { concepts } from '../../data/ontology';
-import { CATEGORIES } from '../../data/categories';
+import ConceptCard from '../../components/ConceptCard.astro';
+import {
+  concepts,
+  getConcept,
+  getExamplesForConcept,
+  getPropertiesForConcept,
+  getOutgoingRelationships,
+  getIncomingRelationships,
+  getBusinessRulesForConcept,
+} from '../../data/ontology';
+import { CATEGORIES, getCategory } from '../../data/categories';
 
 const base = import.meta.env.BASE_URL;
 
-const grouped = CATEGORIES.map((category) => ({
+const cards = concepts.map((c) => {
+  const parent = c.subClassOf ? getConcept(c.subClassOf) : undefined;
+  return {
+    id: c.id,
+    label: c.label,
+    definition: c.definition,
+    aliases: c.aliases,
+    category: c.category,
+    parentId: parent?.id ?? null,
+    parentLabel: parent?.label ?? null,
+    hasExample: getExamplesForConcept(c.id).length > 0,
+    hasProperties: getPropertiesForConcept(c.id).length > 0,
+    hasRelationships: getOutgoingRelationships(c.id).length + getIncomingRelationships(c.id).length > 0,
+    hasRules: getBusinessRulesForConcept(c.id).length > 0,
+  };
+});
+
+const byCategory = CATEGORIES.map((category) => ({
   category,
-  concepts: concepts
-    .filter((c) => c.category === category.id)
-    .sort((a, b) => a.label.localeCompare(b.label)),
+  cards: cards.filter((c) => c.category === category.id).sort((a, b) => a.label.localeCompare(b.label)),
+}));
+
+const alphabetical = [...cards].sort((a, b) => a.label.localeCompare(b.label));
+const letters = [...new Set(alphabetical.map((c) => c.label[0]?.toUpperCase() ?? '#'))];
+const byLetter = letters.map((letter) => ({
+  letter,
+  cards: alphabetical.filter((c) => (c.label[0]?.toUpperCase() ?? '#') === letter),
 }));
 ---
 
 <BaseLayout title="Concepts" description="All core concepts in the NPOGraph grantmaking ontology.">
   <h1>Core Concepts</h1>
   <p class="secondary">
-    {concepts.length} concepts, grouped by category. See{' '}
+    <span id="visible-count">{concepts.length}</span> of {concepts.length} concepts. See{' '}
     <a href="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md">docs/02-core-concepts.md</a>{' '}
     for the source, or <a href={`${base}explore`}>explore them as a graph</a>.
   </p>
 
-  {
-    grouped.map(({ category, concepts: inCategory }) => (
-      <section style="margin-top: 2rem;">
-        <h2 style="display: flex; align-items: center; gap: 0.6rem; font-size: 1.15rem;">
-          <span
-            class="search-result-swatch"
-            style={`background: light-dark(${category.colorLight}, ${category.colorDark}); margin-top: 0;`}
-          />
-          {category.label}
-        </h2>
-        <ul style="list-style: none; padding: 0; display: grid; gap: 0.75rem;">
-          {inCategory.map((c) => (
-            <li class="card">
-              <a href={`${base}concepts/${c.id}`} style="font-weight: 600; text-decoration: none;">
-                {c.label}
-              </a>
-              <p class="secondary" style="margin: 0.35rem 0 0;">
-                {c.definition}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
-    ))
-  }
+  <div class="catalogue-controls">
+    <input
+      type="search"
+      id="concept-search"
+      placeholder='Search concepts (e.g. "installment", "compliance")'
+      aria-label="Search concepts"
+      class="search-input"
+    />
+
+    <div class="catalogue-row">
+      <div class="catalogue-sort" role="group" aria-label="Sort order">
+        <button type="button" class="sort-toggle active" data-sort="category" aria-pressed="true">By category</button>
+        <button type="button" class="sort-toggle" data-sort="alphabetical" aria-pressed="false">A&ndash;Z</button>
+      </div>
+
+      <details class="catalogue-filters">
+        <summary>Filters</summary>
+        <div class="catalogue-filters-body">
+          <fieldset>
+            <legend>Category</legend>
+            {
+              CATEGORIES.map((cat) => (
+                <label>
+                  <input type="checkbox" class="filter-category" value={cat.id} checked />
+                  <span
+                    class="search-result-swatch"
+                    style={`background: light-dark(${cat.colorLight}, ${cat.colorDark});`}
+                  />
+                  {cat.label}
+                </label>
+              ))
+            }
+          </fieldset>
+          <fieldset>
+            <legend>Has</legend>
+            <label><input type="checkbox" class="filter-has" value="example" /> Worked example</label>
+            <label><input type="checkbox" class="filter-has" value="properties" /> Properties</label>
+            <label><input type="checkbox" class="filter-has" value="relationships" /> Relationships</label>
+            <label><input type="checkbox" class="filter-has" value="rules" /> Business rules</label>
+          </fieldset>
+          <button type="button" id="clear-filters" class="home-cta">Clear filters</button>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <p id="empty-state" class="muted" hidden>
+    No concepts match your filters. <button type="button" id="empty-clear" class="link-button">Clear filters</button>
+  </p>
+
+  <div id="view-category">
+    {
+      byCategory.map(({ category, cards: inCategory }) => (
+        <section class="concept-group" data-category-group={category.id}>
+          <h2 class="concept-group-title">
+            <span
+              class="search-result-swatch"
+              style={`background: light-dark(${category.colorLight}, ${category.colorDark}); margin-top: 0;`}
+            />
+            {category.label}
+            <span class="concept-group-count">{inCategory.length}</span>
+          </h2>
+          <ul class="concept-card-list">
+            {inCategory.map((c) => (
+              <ConceptCard
+                {...c}
+                base={base}
+                categoryColorLight={category.colorLight}
+                categoryColorDark={category.colorDark}
+              />
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <div id="view-alphabetical" hidden>
+    {
+      byLetter.map(({ letter, cards: inLetter }) => (
+        <section class="concept-group" data-letter-group={letter}>
+          <h2 class="concept-group-title concept-group-title-letter">{letter}</h2>
+          <ul class="concept-card-list">
+            {inLetter.map((c) => {
+              const cat = getCategory(c.category);
+              return (
+                <ConceptCard {...c} base={base} categoryColorLight={cat.colorLight} categoryColorDark={cat.colorDark} />
+              );
+            })}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+
+  <script>
+    import { concepts as allConcepts } from '../../data/ontology';
+    import { conceptSearchScore } from '../../data/search';
+
+    const conceptsById = new Map(allConcepts.map((c) => [c.id, c]));
+
+    const searchInput = document.getElementById('concept-search') as HTMLInputElement;
+    const sortButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.sort-toggle'));
+    const categoryCheckboxes = Array.from(document.querySelectorAll<HTMLInputElement>('.filter-category'));
+    const hasCheckboxes = Array.from(document.querySelectorAll<HTMLInputElement>('.filter-has'));
+    const clearButtons = [document.getElementById('clear-filters'), document.getElementById('empty-clear')].filter(
+      (el): el is HTMLButtonElement => el !== null
+    );
+    const emptyState = document.getElementById('empty-state');
+    const visibleCountEl = document.getElementById('visible-count');
+    const views: Record<string, HTMLElement | null> = {
+      category: document.getElementById('view-category'),
+      alphabetical: document.getElementById('view-alphabetical'),
+    };
+
+    let activeSort: 'category' | 'alphabetical' = 'category';
+
+    function readURLState() {
+      const params = new URLSearchParams(location.search);
+      const q = params.get('q');
+      if (q) searchInput.value = q;
+
+      const sort = params.get('sort');
+      if (sort === 'alphabetical') activeSort = 'alphabetical';
+
+      const cat = params.get('cat');
+      if (cat !== null) {
+        const included = new Set(cat.split(',').filter(Boolean));
+        categoryCheckboxes.forEach((cb) => {
+          cb.checked = included.has(cb.value);
+        });
+      }
+
+      const has = params.get('has');
+      if (has !== null) {
+        const included = new Set(has.split(',').filter(Boolean));
+        hasCheckboxes.forEach((cb) => {
+          cb.checked = included.has(cb.value);
+        });
+      }
+    }
+
+    function writeURLState() {
+      const params = new URLSearchParams();
+      const q = searchInput.value.trim();
+      if (q) params.set('q', q);
+      if (activeSort !== 'category') params.set('sort', activeSort);
+
+      const uncheckedCategories = categoryCheckboxes.filter((cb) => !cb.checked);
+      if (uncheckedCategories.length > 0) {
+        params.set('cat', categoryCheckboxes.filter((cb) => cb.checked).map((cb) => cb.value).join(','));
+      }
+
+      const checkedHas = hasCheckboxes.filter((cb) => cb.checked).map((cb) => cb.value);
+      if (checkedHas.length > 0) params.set('has', checkedHas.join(','));
+
+      const qs = params.toString();
+      const url = qs ? `${location.pathname}?${qs}` : location.pathname;
+      history.replaceState(null, '', url);
+    }
+
+    function setActiveSort(sort: 'category' | 'alphabetical') {
+      activeSort = sort;
+      sortButtons.forEach((btn) => {
+        const isActive = btn.dataset.sort === sort;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+      Object.entries(views).forEach(([key, el]) => {
+        if (el) el.hidden = key !== sort;
+      });
+    }
+
+    function applyFilters() {
+      const query = searchInput.value.trim();
+      const allowedCategories = new Set(categoryCheckboxes.filter((cb) => cb.checked).map((cb) => cb.value));
+      const requiredHas = hasCheckboxes.filter((cb) => cb.checked).map((cb) => cb.value);
+
+      document.querySelectorAll<HTMLLIElement>('.concept-card').forEach((card) => {
+        const id = card.dataset.conceptId!;
+        const concept = conceptsById.get(id);
+        const category = card.dataset.category!;
+
+        let matches = concept !== undefined && allowedCategories.has(category);
+        if (matches && query) matches = conceptSearchScore(concept!, query) > 0;
+        if (matches) {
+          for (const flag of requiredHas) {
+            if (card.dataset[`has${flag.charAt(0).toUpperCase()}${flag.slice(1)}`] !== '1') {
+              matches = false;
+              break;
+            }
+          }
+        }
+
+        card.hidden = !matches;
+      });
+
+      document.querySelectorAll<HTMLElement>('.concept-group').forEach((group) => {
+        const groupCards = Array.from(group.querySelectorAll<HTMLLIElement>('.concept-card'));
+        const groupVisible = groupCards.filter((c) => !c.hidden).length;
+        group.hidden = groupVisible === 0;
+        const countEl = group.querySelector('.concept-group-count');
+        if (countEl) countEl.textContent = String(groupVisible);
+      });
+
+      // Cards exist (hidden or not) in BOTH views at once, so the headline
+      // count and empty-state must only look at the currently active view,
+      // not every .concept-card in the document.
+      const activeViewEl = views[activeSort];
+      const visibleInActiveView = activeViewEl
+        ? Array.from(activeViewEl.querySelectorAll<HTMLLIElement>('.concept-card')).filter((c) => !c.hidden).length
+        : 0;
+
+      if (visibleCountEl) visibleCountEl.textContent = String(visibleInActiveView);
+
+      const activeViewEmpty = visibleInActiveView === 0;
+      if (emptyState) emptyState.hidden = !activeViewEmpty;
+      Object.entries(views).forEach(([key, el]) => {
+        if (el) el.hidden = key !== activeSort || activeViewEmpty;
+      });
+
+      writeURLState();
+    }
+
+    function clearFilters() {
+      searchInput.value = '';
+      categoryCheckboxes.forEach((cb) => (cb.checked = true));
+      hasCheckboxes.forEach((cb) => (cb.checked = false));
+      applyFilters();
+    }
+
+    let debounceTimer: ReturnType<typeof setTimeout>;
+    searchInput.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(applyFilters, 120);
+    });
+    categoryCheckboxes.forEach((cb) => cb.addEventListener('change', applyFilters));
+    hasCheckboxes.forEach((cb) => cb.addEventListener('change', applyFilters));
+    sortButtons.forEach((btn) =>
+      btn.addEventListener('click', () => {
+        setActiveSort(btn.dataset.sort as 'category' | 'alphabetical');
+        applyFilters();
+      })
+    );
+    clearButtons.forEach((btn) => btn.addEventListener('click', clearFilters));
+
+    readURLState();
+    setActiveSort(activeSort);
+    applyFilters();
+  </script>
 </BaseLayout>

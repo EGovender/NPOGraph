@@ -1,21 +1,11 @@
 import { useMemo, useState } from 'react';
 import type { Concept } from '../data/ontology';
 import { getCategory } from '../data/categories';
+import { conceptSearchScore } from '../data/search';
 
 interface Props {
   concepts: Concept[];
   base: string;
-}
-
-function score(concept: Concept, query: string): number {
-  const q = query.toLowerCase();
-  const label = concept.label.toLowerCase();
-  if (label === q) return 100;
-  if (label.startsWith(q)) return 80;
-  if (label.includes(q)) return 60;
-  if (concept.aliases.some((a) => a.toLowerCase().includes(q))) return 50;
-  if (concept.definition.toLowerCase().includes(q)) return 30;
-  return 0;
 }
 
 export default function SearchBox({ concepts, base }: Props) {
@@ -25,7 +15,7 @@ export default function SearchBox({ concepts, base }: Props) {
     const q = query.trim();
     if (!q) return [];
     return concepts
-      .map((c) => ({ concept: c, score: score(c, q) }))
+      .map((c) => ({ concept: c, score: conceptSearchScore(c, q) }))
       .filter((r) => r.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, 8)
