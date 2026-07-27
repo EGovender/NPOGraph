@@ -4,6 +4,7 @@
     "label": "Organization",
     "aliases": [],
     "category": "organizational-entities",
+    "kind": "organization",
     "definition": "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#organizational-entities"
@@ -13,8 +14,9 @@
     "label": "Organization Role",
     "aliases": [],
     "category": "organizational-entities",
+    "kind": "organization-role",
     "definition": "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself.",
-    "subClassOf": null,
+    "subClassOf": "role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -22,6 +24,7 @@
     "label": "Organization Type",
     "aliases": [],
     "category": "organizational-entities",
+    "kind": "classification",
     "definition": "The legal and tax classification of what an organization fundamentally is (e.g., a public charity, private foundation, or government entity), independent of any role it plays in a specific relationship.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#organizational-entities"
@@ -31,6 +34,7 @@
     "label": "Funder",
     "aliases": ["Grantmaker"],
     "category": "organizational-entities",
+    "kind": "organization-role",
     "definition": "The role an organization occupies when it provides funding to grantees through grant programs and awards.",
     "subClassOf": "organization-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
@@ -40,6 +44,7 @@
     "label": "Grantee",
     "aliases": ["Recipient", "Subrecipient"],
     "category": "organizational-entities",
+    "kind": "organization-role",
     "definition": "The role an organization occupies when it receives and administers grant funding awarded by a funder.",
     "subClassOf": "organization-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
@@ -49,6 +54,7 @@
     "label": "Fiscal Sponsor",
     "aliases": [],
     "category": "organizational-entities",
+    "kind": "organization-role",
     "definition": "The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf.",
     "subClassOf": "organization-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities",
@@ -59,6 +65,7 @@
     "label": "Philanthropic Intermediary",
     "aliases": [],
     "category": "organizational-entities",
+    "kind": "organization",
     "definition": "An organization commonly known for facilitating philanthropy on behalf of others -- such as by re-granting, fiscal sponsorship, or hosting donor-advised funds -- regardless of which specific role it occupies in a given arrangement.",
     "subClassOf": "organization",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
@@ -68,6 +75,7 @@
     "label": "Funding Intermediary Role",
     "aliases": [],
     "category": "organizational-entities",
+    "kind": "organization-role",
     "definition": "The role an organization occupies when it channels funds between an original funding source and an ultimate grantee, without itself being the original funder or the final recipient.",
     "subClassOf": "organization-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
@@ -77,8 +85,9 @@
     "label": "Program Officer",
     "aliases": [],
     "category": "organizational-entities",
-    "definition": "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards.",
-    "subClassOf": null,
+    "kind": "person-role",
+    "definition": "The role a person occupies when they manage a portfolio of grants on behalf of a funder, from soliciting or reviewing applications through monitoring active awards.",
+    "subClassOf": "person-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -86,8 +95,9 @@
     "label": "Reviewer",
     "aliases": [],
     "category": "organizational-entities",
-    "definition": "An individual (staff, board member, or external peer reviewer) who evaluates an application against review criteria.",
-    "subClassOf": null,
+    "kind": "person-role",
+    "definition": "The role a person occupies when they evaluate an application against review criteria, whether as staff, a board member, or an external peer reviewer.",
+    "subClassOf": "person-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -95,8 +105,9 @@
     "label": "Grant Administrator",
     "aliases": [],
     "category": "organizational-entities",
-    "definition": "An individual at the grantee organization responsible for compliance, reporting, and financial management of an award.",
-    "subClassOf": null,
+    "kind": "person-role",
+    "definition": "The role a person occupies when they are responsible for compliance, reporting, and financial management of an award on behalf of the grantee organization.",
+    "subClassOf": "person-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -104,8 +115,9 @@
     "label": "Donor Advisor",
     "aliases": [],
     "category": "organizational-entities",
-    "definition": "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it.",
-    "subClassOf": null,
+    "kind": "person-role",
+    "definition": "The role a person occupies when they hold non-binding privileges to recommend grants and investments from a Donor-Advised Fund, typically as the fund's original donor.",
+    "subClassOf": "person-role",
     "docRef": "docs/02-core-concepts.md#organizational-entities",
     "legalNote": "A donor advisor's privileges are non-binding as a matter of federal tax law, not just convention -- treating a recommendation as a binding instruction can jeopardize the sponsoring organization's tax-exempt status."
   },
@@ -114,16 +126,108 @@
     "label": "Sponsored Project",
     "aliases": [],
     "category": "organizational-entities",
+    "kind": "entity",
     "definition": "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#organizational-entities",
     "legalNote": "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement."
   },
   {
+    "id": "role",
+    "label": "Role",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "entity",
+    "definition": "A contextual capacity an agent occupies, distinct from the agent's permanent identity or classification.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "person",
+    "label": "Person",
+    "aliases": ["Individual", "Natural Person"],
+    "category": "organizational-entities",
+    "kind": "person",
+    "definition": "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "person-role",
+    "label": "Person Role",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "person-role",
+    "definition": "A contextual capacity a person occupies within an organization, award, application, agreement, arrangement, program, project, or other defined context.",
+    "subClassOf": "role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "employee",
+    "label": "Employee",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "person-role",
+    "definition": "The role a person occupies when they work for and are compensated by an organization.",
+    "subClassOf": "person-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "board-member",
+    "label": "Board Member",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "person-role",
+    "definition": "The role a person occupies when they serve on an organization's governing board.",
+    "subClassOf": "person-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "applicant-contact",
+    "label": "Applicant Contact",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "person-role",
+    "definition": "The role a person occupies when they serve as the primary point of contact for an application submitted on behalf of an organization or project.",
+    "subClassOf": "person-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "authorized-signatory",
+    "label": "Authorized Signatory",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "person-role",
+    "definition": "The role a person occupies when they are authorized to sign a grant agreement or other governing document on behalf of an organization.",
+    "subClassOf": "person-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "donor",
+    "label": "Donor",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "person-role",
+    "definition": "The role a person occupies when they contribute charitable funds to an organization or fund, without necessarily holding advisory privileges over how they are used.",
+    "subClassOf": "person-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "consultant",
+    "label": "Consultant",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "person-role",
+    "definition": "The role a person occupies when they provide paid, defined-scope services to an organization without being its employee.",
+    "subClassOf": "person-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
     "id": "grant-program",
     "label": "Grant Program",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "grant-program",
     "definition": "A funder's standing area of giving (e.g., \"Environmental Justice Grants\"), under which funding opportunities are issued over time.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#funding-structure"
@@ -133,6 +237,7 @@
     "label": "Funding Opportunity",
     "aliases": ["RFP", "Request for Proposals", "NOFO", "Notice of Funding Opportunity"],
     "category": "funding-structure",
+    "kind": "grant-program",
     "definition": "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#funding-structure"
@@ -142,6 +247,7 @@
     "label": "Funding Cycle",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "grant-program",
     "definition": "A recurring period (e.g., quarterly, annual) within a grant program during which applications are accepted and decided.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#funding-structure"
@@ -151,6 +257,7 @@
     "label": "Eligibility Criteria",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "grant-program",
     "definition": "The conditions an organization or project must meet to apply to a funding opportunity.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#funding-structure"
@@ -160,6 +267,7 @@
     "label": "Budget",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "grant-program",
     "definition": "A structured estimate of costs associated with a proposed or funded project, broken into categories (e.g., personnel, overhead, direct program costs).",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#funding-structure"
@@ -169,6 +277,7 @@
     "label": "Fund",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "fund",
     "definition": "A designated pool of financial resources set aside for a purpose, distinct from the grant program or strategy that directs how it's used.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#funding-structure"
@@ -178,6 +287,7 @@
     "label": "Donor-Advised Fund",
     "aliases": ["DAF"],
     "category": "funding-structure",
+    "kind": "fund",
     "definition": "A Fund held by a sponsoring organization, over which a Donor Advisor holds non-binding privileges to recommend grants and investments.",
     "subClassOf": "fund",
     "docRef": "docs/02-core-concepts.md#funding-structure",
@@ -188,6 +298,7 @@
     "label": "Philanthropic Arrangement",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "arrangement",
     "definition": "A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#funding-structure"
@@ -197,6 +308,7 @@
     "label": "Fiscal Sponsorship Arrangement",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "arrangement",
     "definition": "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly.",
     "subClassOf": "philanthropic-arrangement",
     "docRef": "docs/02-core-concepts.md#funding-structure",
@@ -207,6 +319,7 @@
     "label": "Donor-Advised Fund Arrangement",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "arrangement",
     "definition": "A Philanthropic Arrangement in which a Donor Advisor holds non-binding advisory privileges over grants made from a Donor-Advised Fund.",
     "subClassOf": "philanthropic-arrangement",
     "docRef": "docs/02-core-concepts.md#funding-structure",
@@ -217,6 +330,7 @@
     "label": "Regranting Arrangement",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "arrangement",
     "definition": "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients.",
     "subClassOf": "philanthropic-arrangement",
     "docRef": "docs/02-core-concepts.md#funding-structure",
@@ -227,6 +341,7 @@
     "label": "Collaborative Fund Arrangement",
     "aliases": [],
     "category": "funding-structure",
+    "kind": "arrangement",
     "definition": "A Philanthropic Arrangement in which multiple funders pool resources into a shared Fund and jointly direct or oversee its grantmaking.",
     "subClassOf": "philanthropic-arrangement",
     "docRef": "docs/02-core-concepts.md#funding-structure"
@@ -236,6 +351,7 @@
     "label": "Letter of Inquiry",
     "aliases": ["LOI"],
     "category": "application-and-review",
+    "kind": "process",
     "definition": "A brief, preliminary submission used by some funders to screen interest before inviting a full application.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review"
@@ -245,6 +361,7 @@
     "label": "Application",
     "aliases": ["Grant Application"],
     "category": "application-and-review",
+    "kind": "process",
     "definition": "A grantee's formal submission requesting funding under a specific funding opportunity, including a proposal narrative and budget.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review"
@@ -254,6 +371,7 @@
     "label": "Review",
     "aliases": [],
     "category": "application-and-review",
+    "kind": "process",
     "definition": "The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review"
@@ -263,6 +381,7 @@
     "label": "Review Criteria",
     "aliases": [],
     "category": "application-and-review",
+    "kind": "process",
     "definition": "The published or internal standards (e.g., alignment with mission, feasibility, budget reasonableness) against which applications are scored.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review"
@@ -272,6 +391,7 @@
     "label": "Site Visit",
     "aliases": [],
     "category": "application-and-review",
+    "kind": "process",
     "definition": "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review"
@@ -281,6 +401,7 @@
     "label": "Decision",
     "aliases": [],
     "category": "application-and-review",
+    "kind": "process",
     "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review"
@@ -290,6 +411,7 @@
     "label": "Grant Recommendation",
     "aliases": [],
     "category": "application-and-review",
+    "kind": "process",
     "definition": "A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review",
@@ -300,6 +422,7 @@
     "label": "Award",
     "aliases": ["Grant Award"],
     "category": "award-and-agreement",
+    "kind": "process",
     "definition": "A funder's formal commitment to provide a specific amount of funding to a grantee, following an approved application or decision.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#award-and-agreement"
@@ -309,6 +432,7 @@
     "label": "Grant Agreement",
     "aliases": [],
     "category": "award-and-agreement",
+    "kind": "process",
     "definition": "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#award-and-agreement"
@@ -318,6 +442,7 @@
     "label": "Terms and Conditions",
     "aliases": [],
     "category": "award-and-agreement",
+    "kind": "process",
     "definition": "The specific obligations, restrictions, and expectations attached to an award (e.g., allowable uses of funds, reporting requirements).",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#award-and-agreement"
@@ -327,6 +452,7 @@
     "label": "Restricted Funding",
     "aliases": [],
     "category": "award-and-agreement",
+    "kind": "process",
     "definition": "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#award-and-agreement"
@@ -336,6 +462,7 @@
     "label": "Unrestricted Funding",
     "aliases": [],
     "category": "award-and-agreement",
+    "kind": "process",
     "definition": "Funding a grantee may use at its discretion in support of its general mission.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#award-and-agreement"
@@ -345,6 +472,7 @@
     "label": "Matching Requirement",
     "aliases": [],
     "category": "award-and-agreement",
+    "kind": "process",
     "definition": "A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match).",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#award-and-agreement"
@@ -354,6 +482,7 @@
     "label": "Amendment",
     "aliases": ["Grant Amendment"],
     "category": "award-and-agreement",
+    "kind": "process",
     "definition": "A formally agreed change to an existing grant agreement's terms, budget, timeline, or amount, made after the original agreement was signed.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#award-and-agreement"
@@ -363,6 +492,7 @@
     "label": "Payment Schedule",
     "aliases": [],
     "category": "disbursement",
+    "kind": "process",
     "definition": "The agreed timing and amounts by which award funds will be disbursed to the grantee.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#disbursement"
@@ -372,6 +502,7 @@
     "label": "Installment",
     "aliases": [],
     "category": "disbursement",
+    "kind": "process",
     "definition": "A single scheduled portion of an award's total funds, to be disbursed at a defined point or upon meeting a condition.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#disbursement"
@@ -381,6 +512,7 @@
     "label": "Payment",
     "aliases": [],
     "category": "disbursement",
+    "kind": "process",
     "definition": "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#disbursement"
@@ -390,6 +522,7 @@
     "label": "Payment Condition",
     "aliases": [],
     "category": "disbursement",
+    "kind": "process",
     "definition": "A requirement (e.g., a submitted report, a milestone reached) that must be satisfied before a scheduled payment is released.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#disbursement"
@@ -399,6 +532,7 @@
     "label": "Budget Modification",
     "aliases": [],
     "category": "disbursement",
+    "kind": "process",
     "definition": "A grantee-requested, funder-approved change to how awarded funds are allocated across budget categories, without changing the total award amount.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#disbursement"
@@ -408,6 +542,7 @@
     "label": "Compliance Requirement",
     "aliases": [],
     "category": "compliance-and-reporting",
+    "kind": "process",
     "definition": "An obligation attached to an award that the grantee must satisfy to remain in good standing (e.g., timely reporting, allowable use of funds, insurance).",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#compliance-and-reporting"
@@ -417,6 +552,7 @@
     "label": "Reporting Schedule",
     "aliases": [],
     "category": "compliance-and-reporting",
+    "kind": "process",
     "definition": "The agreed cadence and due dates for narrative and financial reports over the life of an award.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#compliance-and-reporting"
@@ -426,6 +562,7 @@
     "label": "Report",
     "aliases": [],
     "category": "compliance-and-reporting",
+    "kind": "process",
     "definition": "A grantee's submission to the funder describing progress, outcomes, and/or use of funds, per the reporting schedule. Narrative and financial reports are common subtypes.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#compliance-and-reporting"
@@ -435,6 +572,7 @@
     "label": "Audit",
     "aliases": [],
     "category": "compliance-and-reporting",
+    "kind": "process",
     "definition": "A formal, independent examination of a grantee's financial records, either as a general organizational requirement or specific to a grant.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#compliance-and-reporting"
@@ -444,6 +582,7 @@
     "label": "Indirect Cost Rate",
     "aliases": [],
     "category": "compliance-and-reporting",
+    "kind": "process",
     "definition": "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#compliance-and-reporting"
@@ -453,6 +592,7 @@
     "label": "Theory of Change",
     "aliases": [],
     "category": "outcomes-and-closeout",
+    "kind": "process",
     "definition": "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
@@ -462,6 +602,7 @@
     "label": "Logic Model",
     "aliases": [],
     "category": "outcomes-and-closeout",
+    "kind": "process",
     "definition": "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
@@ -471,6 +612,7 @@
     "label": "Output",
     "aliases": [],
     "category": "outcomes-and-closeout",
+    "kind": "process",
     "definition": "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served).",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
@@ -480,6 +622,7 @@
     "label": "Outcome",
     "aliases": [],
     "category": "outcomes-and-closeout",
+    "kind": "process",
     "definition": "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
@@ -489,6 +632,7 @@
     "label": "Evaluation",
     "aliases": [],
     "category": "outcomes-and-closeout",
+    "kind": "process",
     "definition": "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
@@ -498,6 +642,7 @@
     "label": "Closeout",
     "aliases": [],
     "category": "outcomes-and-closeout",
+    "kind": "process",
     "definition": "The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
@@ -507,6 +652,7 @@
     "label": "Grant Lifecycle",
     "aliases": [],
     "category": "cross-cutting",
+    "kind": "entity",
     "definition": "The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#cross-cutting"

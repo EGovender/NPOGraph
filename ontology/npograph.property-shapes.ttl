@@ -145,14 +145,6 @@ npo:organization-property-shape
         [ sh:path npoprop:organization-tax-identifier ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:organization-tax-status ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ; sh:in ( """tax-exempt-501c3"""^^xsd:string """tax-exempt-other"""^^xsd:string """taxable"""^^xsd:string """government-exempt"""^^xsd:string """unknown"""^^xsd:string ) ] .
 
-npo:organization-role-property-shape
-    a sh:NodeShape ;
-    sh:targetClass npo:organization-role ;
-    sh:property [ sh:path npoprop:organization-role-effective-from ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:organization-role-effective-to ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:organization-role-scope ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:organization-role-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """inactive"""^^xsd:string """terminated"""^^xsd:string ) ] .
-
 npo:output-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:output ;
@@ -201,6 +193,15 @@ npo:review-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:review ;
     sh:property [ sh:path npoprop:review-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """pending"""^^xsd:string """in-progress"""^^xsd:string """completed"""^^xsd:string ) ] .
+
+npo:role-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:role ;
+    sh:property [ sh:path npoprop:role-effective-from ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:role-effective-to ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:role-notes ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:role-scope ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:role-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planned"""^^xsd:string """active"""^^xsd:string """suspended"""^^xsd:string """ended"""^^xsd:string """cancelled"""^^xsd:string ) ] .
 
 npo:site-visit-property-shape
     a sh:NodeShape ;

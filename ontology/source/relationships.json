@@ -538,5 +538,32 @@
     "label": "regrants to",
     "description": "A Regranting Arrangement regrants funds to a downstream Organization, distinct from the Organization that supplied the funds originally.",
     "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rel-person-plays-role",
+    "subject": "person",
+    "predicate": "personPlaysRole",
+    "object": "person-role",
+    "label": "plays",
+    "description": "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed.",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "rel-person-affiliated-with-organization",
+    "subject": "person",
+    "predicate": "affiliatedWith",
+    "object": "organization",
+    "label": "is affiliated with",
+    "description": "A Person is affiliated with an Organization, independent of which specific Person Role(s) they occupy there.",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "rel-person-role-applies-within-organization",
+    "subject": "person-role",
+    "predicate": "personRoleAppliesWithin",
+    "object": "organization",
+    "label": "applies within",
+    "description": "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts.",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
   }
 ]

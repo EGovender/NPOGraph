@@ -696,54 +696,6 @@
     "description": "Whether the organization is currently operating."
   },
   {
-    "id": "organization-role-effective-from",
-    "concept": "organization-role",
-    "name": "effectiveFrom",
-    "label": "Effective From",
-    "group": "lifecycle",
-    "datatype": "date",
-    "required": false,
-    "cardinality": "one",
-    "allowedValues": null,
-    "description": "When this organization began occupying this role."
-  },
-  {
-    "id": "organization-role-effective-to",
-    "concept": "organization-role",
-    "name": "effectiveTo",
-    "label": "Effective To",
-    "group": "lifecycle",
-    "datatype": "date",
-    "required": false,
-    "cardinality": "one",
-    "allowedValues": null,
-    "description": "When this organization stopped occupying this role, if it has ended."
-  },
-  {
-    "id": "organization-role-status",
-    "concept": "organization-role",
-    "name": "status",
-    "label": "Status",
-    "group": "lifecycle",
-    "datatype": "enum",
-    "required": true,
-    "cardinality": "one",
-    "allowedValues": ["active", "inactive", "terminated"],
-    "description": "Whether this role occupancy is currently in effect."
-  },
-  {
-    "id": "organization-role-scope",
-    "concept": "organization-role",
-    "name": "scope",
-    "label": "Scope",
-    "group": "governance",
-    "datatype": "string",
-    "required": false,
-    "cardinality": "one",
-    "allowedValues": null,
-    "description": "Any limits on what this role occupancy covers (e.g., a specific program or geography), if narrower than the arrangement itself."
-  },
-  {
     "id": "fund-restriction-type",
     "concept": "fund",
     "name": "restrictionType",
@@ -934,5 +886,65 @@
     "cardinality": "one",
     "allowedValues": null,
     "description": "The amount recommended, if the Donor Advisor specified one."
+  },
+  {
+    "id": "role-effective-from",
+    "concept": "role",
+    "name": "effectiveFrom",
+    "label": "Effective From",
+    "group": "lifecycle",
+    "datatype": "date",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "When this role occupancy takes effect. Inherited by every Person Role and Organization Role subclass."
+  },
+  {
+    "id": "role-effective-to",
+    "concept": "role",
+    "name": "effectiveTo",
+    "label": "Effective To",
+    "group": "lifecycle",
+    "datatype": "date",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "When this role occupancy ends, if it has a defined end. Must not precede Effective From."
+  },
+  {
+    "id": "role-status",
+    "concept": "role",
+    "name": "status",
+    "label": "Status",
+    "group": "lifecycle",
+    "datatype": "enum",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": ["planned", "active", "suspended", "ended", "cancelled"],
+    "description": "Where this role occupancy currently sits in its own lifecycle."
+  },
+  {
+    "id": "role-scope",
+    "concept": "role",
+    "name": "scope",
+    "label": "Scope",
+    "group": "governance",
+    "datatype": "string",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "How narrowly this role occupancy is scoped (e.g. organization-wide vs. specific to one program, project, award, agreement, or arrangement). Free text until Milestone 2 makes it a controlled value alongside the broader role-context relationship."
+  },
+  {
+    "id": "role-notes",
+    "concept": "role",
+    "name": "notes",
+    "label": "Notes",
+    "group": "governance",
+    "datatype": "string",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "Free-text context about this role occupancy not captured by its other properties."
   }
 ]

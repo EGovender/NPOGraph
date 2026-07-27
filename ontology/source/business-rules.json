@@ -47,5 +47,33 @@
     "description": "A Donor Advisor's Grant Recommendation does not itself obligate a Donor-Advised Fund to make an Award; the fund's sponsoring organization retains final legal authority over whether to accept it.",
     "concepts": ["grant-recommendation", "donor-advised-fund", "award"],
     "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
+    "id": "rule-active-role-requires-effective-from",
+    "label": "An active role must have an effective start date",
+    "description": "A Role occupancy with status Active must specify Effective From -- a role cannot be considered in effect without a defined start.",
+    "concepts": ["role", "person-role", "organization-role"],
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "rule-role-effective-to-not-before-from",
+    "label": "A role's effective end date must not precede its start date",
+    "description": "A Role occupancy's Effective To, if present, must not be earlier than its Effective From.",
+    "concepts": ["role", "person-role", "organization-role"],
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "rule-role-occupancy-requires-holder",
+    "label": "A role occupancy must identify its role holder",
+    "description": "An instance of a Person Role must be held by a Person (via playsRole); an instance of an Organization Role must be held by an Organization (via playsRole). A role occupancy with no holder is not a valid occupancy, only a role definition.",
+    "concepts": ["role", "person-role", "organization-role", "person", "organization"],
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "rule-role-occupancy-requires-context-unless-organization-wide",
+    "label": "A role occupancy should identify its context unless explicitly organization-wide",
+    "description": "A Role occupancy should specify what it applies within (via appliesWithin), unless its Scope is explicitly organization-wide -- a role with neither a context nor an organization-wide scope is ambiguous about what it actually governs.",
+    "concepts": ["role", "person-role", "organization-role"],
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
   }
 ]

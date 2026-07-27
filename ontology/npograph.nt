@@ -6,6 +6,12 @@
 <https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/2004/02/skos/core#altLabel> "Grant Amendment" .
 <https://egovender.github.io/NPOGraph/ontology/amendment> <http://www.w3.org/2004/02/skos/core#definition> "A formally agreed change to an existing grant agreement's terms, budget, timeline, or amount, made after the original agreement was signed." .
 <https://egovender.github.io/NPOGraph/ontology/amendment> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology/applicant-contact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/applicant-contact> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/applicant-contact> <http://www.w3.org/2000/01/rdf-schema#label> "Applicant Contact" .
+<https://egovender.github.io/NPOGraph/ontology/applicant-contact> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/applicant-contact> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they serve as the primary point of contact for an application submitted on behalf of an organization or project." .
+<https://egovender.github.io/NPOGraph/ontology/applicant-contact> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/application> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/application> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
 <https://egovender.github.io/NPOGraph/ontology/application> <http://www.w3.org/2000/01/rdf-schema#label> "Application" .
@@ -17,12 +23,24 @@
 <https://egovender.github.io/NPOGraph/ontology/audit> <http://www.w3.org/2000/01/rdf-schema#label> "Audit" .
 <https://egovender.github.io/NPOGraph/ontology/audit> <http://www.w3.org/2004/02/skos/core#definition> "A formal, independent examination of a grantee's financial records, either as a general organizational requirement or specific to a grant." .
 <https://egovender.github.io/NPOGraph/ontology/audit> <https://egovender.github.io/NPOGraph/ontology/category> "compliance-and-reporting" .
+<https://egovender.github.io/NPOGraph/ontology/authorized-signatory> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/authorized-signatory> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/authorized-signatory> <http://www.w3.org/2000/01/rdf-schema#label> "Authorized Signatory" .
+<https://egovender.github.io/NPOGraph/ontology/authorized-signatory> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/authorized-signatory> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they are authorized to sign a grant agreement or other governing document on behalf of an organization." .
+<https://egovender.github.io/NPOGraph/ontology/authorized-signatory> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
 <https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/2000/01/rdf-schema#label> "Award" .
 <https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/2004/02/skos/core#altLabel> "Grant Award" .
 <https://egovender.github.io/NPOGraph/ontology/award> <http://www.w3.org/2004/02/skos/core#definition> "A funder's formal commitment to provide a specific amount of funding to a grantee, following an approved application or decision." .
 <https://egovender.github.io/NPOGraph/ontology/award> <https://egovender.github.io/NPOGraph/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/NPOGraph/ontology/board-member> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/board-member> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/board-member> <http://www.w3.org/2000/01/rdf-schema#label> "Board Member" .
+<https://egovender.github.io/NPOGraph/ontology/board-member> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/board-member> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they serve on an organization's governing board." .
+<https://egovender.github.io/NPOGraph/ontology/board-member> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/budget-modification> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/budget-modification> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> .
 <https://egovender.github.io/NPOGraph/ontology/budget-modification> <http://www.w3.org/2000/01/rdf-schema#label> "Budget Modification" .
@@ -49,6 +67,12 @@
 <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/2000/01/rdf-schema#label> "Compliance Requirement" .
 <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <http://www.w3.org/2004/02/skos/core#definition> "An obligation attached to an award that the grantee must satisfy to remain in good standing (e.g., timely reporting, allowable use of funds, insurance)." .
 <https://egovender.github.io/NPOGraph/ontology/compliance-requirement> <https://egovender.github.io/NPOGraph/ontology/category> "compliance-and-reporting" .
+<https://egovender.github.io/NPOGraph/ontology/consultant> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/consultant> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/consultant> <http://www.w3.org/2000/01/rdf-schema#label> "Consultant" .
+<https://egovender.github.io/NPOGraph/ontology/consultant> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/consultant> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they provide paid, defined-scope services to an organization without being its employee." .
+<https://egovender.github.io/NPOGraph/ontology/consultant> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
 <https://egovender.github.io/NPOGraph/ontology/decision> <http://www.w3.org/2000/01/rdf-schema#label> "Decision" .
@@ -72,14 +96,27 @@
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2000/01/rdf-schema#label> "Donor Advisor" .
-<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2004/02/skos/core#definition> "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it." .
+<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/donor-advisor> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they hold non-binding privileges to recommend grants and investments from a Donor-Advised Fund, typically as the fund's original donor." .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/donor-advisor> <https://egovender.github.io/NPOGraph/ontology/legalNote> "A donor advisor's privileges are non-binding as a matter of federal tax law, not just convention -- treating a recommendation as a binding instruction can jeopardize the sponsoring organization's tax-exempt status." .
+<https://egovender.github.io/NPOGraph/ontology/donor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/donor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/donor> <http://www.w3.org/2000/01/rdf-schema#label> "Donor" .
+<https://egovender.github.io/NPOGraph/ontology/donor> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/donor> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they contribute charitable funds to an organization or fund, without necessarily holding advisory privileges over how they are used." .
+<https://egovender.github.io/NPOGraph/ontology/donor> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2000/01/rdf-schema#label> "Eligibility Criteria" .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <http://www.w3.org/2004/02/skos/core#definition> "The conditions an organization or project must meet to apply to a funding opportunity." .
 <https://egovender.github.io/NPOGraph/ontology/eligibility-criteria> <https://egovender.github.io/NPOGraph/ontology/category> "funding-structure" .
+<https://egovender.github.io/NPOGraph/ontology/employee> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/employee> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/employee> <http://www.w3.org/2000/01/rdf-schema#label> "Employee" .
+<https://egovender.github.io/NPOGraph/ontology/employee> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/employee> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they work for and are compensated by an organization." .
+<https://egovender.github.io/NPOGraph/ontology/employee> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/evaluation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/evaluation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
 <https://egovender.github.io/NPOGraph/ontology/evaluation> <http://www.w3.org/2000/01/rdf-schema#label> "Evaluation" .
@@ -134,7 +171,8 @@
 <https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Administrator" .
-<https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/2004/02/skos/core#definition> "An individual at the grantee organization responsible for compliance, reporting, and financial management of an award." .
+<https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/grant-administrator> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they are responsible for compliance, reporting, and financial management of an award on behalf of the grantee organization." .
 <https://egovender.github.io/NPOGraph/ontology/grant-administrator> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/grant-agreement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/grant-agreement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> .
@@ -194,6 +232,7 @@
 <https://egovender.github.io/NPOGraph/ontology/organization-role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/organization-role> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/NPOGraph/ontology/organization-role> <http://www.w3.org/2000/01/rdf-schema#label> "Organization Role" .
+<https://egovender.github.io/NPOGraph/ontology/organization-role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/role> .
 <https://egovender.github.io/NPOGraph/ontology/organization-role> <http://www.w3.org/2004/02/skos/core#definition> "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself." .
 <https://egovender.github.io/NPOGraph/ontology/organization-role> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/organization-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
@@ -231,6 +270,19 @@
 <https://egovender.github.io/NPOGraph/ontology/payment> <http://www.w3.org/2000/01/rdf-schema#label> "Payment" .
 <https://egovender.github.io/NPOGraph/ontology/payment> <http://www.w3.org/2004/02/skos/core#definition> "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments." .
 <https://egovender.github.io/NPOGraph/ontology/payment> <https://egovender.github.io/NPOGraph/ontology/category> "disbursement" .
+<https://egovender.github.io/NPOGraph/ontology/person-role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/person-role> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/person-role> <http://www.w3.org/2000/01/rdf-schema#label> "Person Role" .
+<https://egovender.github.io/NPOGraph/ontology/person-role> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/role> .
+<https://egovender.github.io/NPOGraph/ontology/person-role> <http://www.w3.org/2004/02/skos/core#definition> "A contextual capacity a person occupies within an organization, award, application, agreement, arrangement, program, project, or other defined context." .
+<https://egovender.github.io/NPOGraph/ontology/person-role> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/person> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/person> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/person> <http://www.w3.org/2000/01/rdf-schema#label> "Person" .
+<https://egovender.github.io/NPOGraph/ontology/person> <http://www.w3.org/2004/02/skos/core#altLabel> "Individual" .
+<https://egovender.github.io/NPOGraph/ontology/person> <http://www.w3.org/2004/02/skos/core#altLabel> "Natural Person" .
+<https://egovender.github.io/NPOGraph/ontology/person> <http://www.w3.org/2004/02/skos/core#definition> "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships." .
+<https://egovender.github.io/NPOGraph/ontology/person> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> <http://www.w3.org/2000/01/rdf-schema#label> "Philanthropic Arrangement" .
@@ -245,7 +297,8 @@
 <https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#label> "Program Officer" .
-<https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2004/02/skos/core#definition> "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards." .
+<https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/program-officer> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they manage a portfolio of grants on behalf of a funder, from soliciting or reviewing applications through monitoring active awards." .
 <https://egovender.github.io/NPOGraph/ontology/program-officer> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
 <https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/amendment-effective-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Amendment's changes take effect." .
@@ -707,41 +760,6 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> <http://www.w3.org/2000/01/rdf-schema#comment> "When this organization began occupying this role." .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> <http://www.w3.org/2000/01/rdf-schema#label> "Effective From" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to> <http://www.w3.org/2000/01/rdf-schema#comment> "When this organization stopped occupying this role, if it has ended." .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to> <http://www.w3.org/2000/01/rdf-schema#label> "Effective To" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-to> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> <http://www.w3.org/2000/01/rdf-schema#comment> "Any limits on what this role occupancy covers (e.g., a specific program or geography), if narrower than the arrangement itself." .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> <http://www.w3.org/2000/01/rdf-schema#label> "Scope" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether this role occupancy is currently in effect." .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "active" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "inactive" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "terminated" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-tax-identifier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-tax-identifier> <http://www.w3.org/2000/01/rdf-schema#comment> "The organization's tax identification number (e.g., an EIN), if applicable and disclosed." .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-tax-identifier> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization> .
@@ -924,6 +942,51 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
 <https://egovender.github.io/NPOGraph/ontology/properties/review-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> <http://www.w3.org/2000/01/rdf-schema#comment> "When this role occupancy takes effect. Inherited by every Person Role and Organization Role subclass." .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/role> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> <http://www.w3.org/2000/01/rdf-schema#label> "Effective From" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-to> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-to> <http://www.w3.org/2000/01/rdf-schema#comment> "When this role occupancy ends, if it has a defined end. Must not precede Effective From." .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-to> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/role> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-to> <http://www.w3.org/2000/01/rdf-schema#label> "Effective To" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-to> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-to> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-to> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-effective-to> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-notes> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-notes> <http://www.w3.org/2000/01/rdf-schema#comment> "Free-text context about this role occupancy not captured by its other properties." .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-notes> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/role> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-notes> <http://www.w3.org/2000/01/rdf-schema#label> "Notes" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-notes> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-notes> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-notes> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-notes> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <http://www.w3.org/2000/01/rdf-schema#comment> "How narrowly this role occupancy is scoped (e.g. organization-wide vs. specific to one program, project, award, agreement, or arrangement). Free text until Milestone 2 makes it a controlled value alongside the broader role-context relationship." .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/role> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <http://www.w3.org/2000/01/rdf-schema#label> "Scope" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where this role occupancy currently sits in its own lifecycle." .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/role> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "active" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "cancelled" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "ended" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "planned" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "suspended" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Site Visit is scheduled to occur." .
 <https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/site-visit> .
@@ -1005,6 +1068,12 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/2000/01/rdf-schema#label> "advises" .
 <https://egovender.github.io/NPOGraph/ontology/relations/advises> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/donor-advised-fund> .
+<https://egovender.github.io/NPOGraph/ontology/relations/affiliatedWith> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/affiliatedWith> <http://www.w3.org/2000/01/rdf-schema#comment> "A Person is affiliated with an Organization, independent of which specific Person Role(s) they occupy there." .
+<https://egovender.github.io/NPOGraph/ontology/relations/affiliatedWith> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/person> .
+<https://egovender.github.io/NPOGraph/ontology/relations/affiliatedWith> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/relations/affiliatedWith> <http://www.w3.org/2000/01/rdf-schema#label> "is affiliated with" .
+<https://egovender.github.io/NPOGraph/ontology/relations/affiliatedWith> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/organization> .
 <https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin> <http://www.w3.org/2000/01/rdf-schema#comment> "An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements." .
 <https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
@@ -1257,6 +1326,18 @@
 <https://egovender.github.io/NPOGraph/ontology/relations/participatesIn> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/NPOGraph/ontology/relations/participatesIn> <http://www.w3.org/2000/01/rdf-schema#label> "participates in" .
 <https://egovender.github.io/NPOGraph/ontology/relations/participatesIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement> .
+<https://egovender.github.io/NPOGraph/ontology/relations/personPlaysRole> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#comment> "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed." .
+<https://egovender.github.io/NPOGraph/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/person> .
+<https://egovender.github.io/NPOGraph/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#label> "plays" .
+<https://egovender.github.io/NPOGraph/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/NPOGraph/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#comment> "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts." .
+<https://egovender.github.io/NPOGraph/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#label> "applies within" .
+<https://egovender.github.io/NPOGraph/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/NPOGraph/ontology/organization> .
 <https://egovender.github.io/NPOGraph/ontology/relations/playsRole> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#comment> "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait." .
 <https://egovender.github.io/NPOGraph/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization> .
@@ -1375,8 +1456,21 @@
 <https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2000/01/rdf-schema#label> "Reviewer" .
-<https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2004/02/skos/core#definition> "An individual (staff, board member, or external peer reviewer) who evaluates an application against review criteria." .
+<https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/reviewer> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they evaluate an application against review criteria, whether as staff, a board member, or an external peer reviewer." .
 <https://egovender.github.io/NPOGraph/ontology/reviewer> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/NPOGraph/ontology/role> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/role> <http://www.w3.org/2000/01/rdf-schema#label> "Role" .
+<https://egovender.github.io/NPOGraph/ontology/role> <http://www.w3.org/2004/02/skos/core#definition> "A contextual capacity an agent occupies, distinct from the agent's permanent identity or classification." .
+<https://egovender.github.io/NPOGraph/ontology/role> <https://egovender.github.io/NPOGraph/ontology/category> "organizational-entities" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-active-role-requires-effective-from> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-active-role-requires-effective-from> <http://www.w3.org/2000/01/rdf-schema#comment> "A Role occupancy with status Active must specify Effective From -- a role cannot be considered in effect without a defined start." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-active-role-requires-effective-from> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-active-role-requires-effective-from> <http://www.w3.org/2000/01/rdf-schema#label> "An active role must have an effective start date" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-active-role-requires-effective-from> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-active-role-requires-effective-from> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-active-role-requires-effective-from> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/role> .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <http://www.w3.org/2000/01/rdf-schema#comment> "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-amendment-not-retroactive> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> .
@@ -1427,6 +1521,29 @@
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/award> .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/grant-agreement> .
 <https://egovender.github.io/NPOGraph/ontology/rules/rule-payment-requires-award-and-agreement> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/payment> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-effective-to-not-before-from> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-effective-to-not-before-from> <http://www.w3.org/2000/01/rdf-schema#comment> "A Role occupancy's Effective To, if present, must not be earlier than its Effective From." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-effective-to-not-before-from> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-effective-to-not-before-from> <http://www.w3.org/2000/01/rdf-schema#label> "A role's effective end date must not precede its start date" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-effective-to-not-before-from> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-effective-to-not-before-from> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-effective-to-not-before-from> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-context-unless-organization-wide> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-context-unless-organization-wide> <http://www.w3.org/2000/01/rdf-schema#comment> "A Role occupancy should specify what it applies within (via appliesWithin), unless its Scope is explicitly organization-wide -- a role with neither a context nor an organization-wide scope is ambiguous about what it actually governs." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-context-unless-organization-wide> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-context-unless-organization-wide> <http://www.w3.org/2000/01/rdf-schema#label> "A role occupancy should identify its context unless explicitly organization-wide" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-context-unless-organization-wide> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-context-unless-organization-wide> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-context-unless-organization-wide> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/BusinessRule> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <http://www.w3.org/2000/01/rdf-schema#comment> "An instance of a Person Role must be held by a Person (via playsRole); an instance of an Organization Role must be held by an Organization (via playsRole). A role occupancy with no holder is not a valid occupancy, only a role definition." .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <http://www.w3.org/2000/01/rdf-schema#label> "A role occupancy must identify its role holder" .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/organization-role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/organization> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/person-role> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/person> .
+<https://egovender.github.io/NPOGraph/ontology/rules/rule-role-occupancy-requires-holder> <https://egovender.github.io/NPOGraph/ontology/appliesTo> <https://egovender.github.io/NPOGraph/ontology/role> .
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> .
 <https://egovender.github.io/NPOGraph/ontology/site-visit> <http://www.w3.org/2000/01/rdf-schema#label> "Site Visit" .

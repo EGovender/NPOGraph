@@ -33,7 +33,7 @@ ex:coastal-resilience-grant-to-kelp-forest a owl:NamedIndividual,
 ex:coastal-watch-alliance a owl:NamedIndividual,
         npo:grantee ;
     rdfs:label "Coastal Watch Alliance" ;
-    npoprop:organization-role-status "active"^^xsd:string ;
+    npoprop:role-status "active"^^xsd:string ;
     nporel:submitsApplication ex:coastal-watch-fy26-application .
 
 ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
@@ -47,6 +47,7 @@ ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
 ex:elena-alvarez a owl:NamedIndividual,
         npo:donor-advisor ;
     rdfs:label "Elena Alvarez" ;
+    npoprop:role-status "active"^^xsd:string ;
     nporel:advises ex:alvarez-family-fund ;
     nporel:makesRecommendation ex:alvarez-fund-recommendation-2026 .
 
@@ -224,23 +225,23 @@ ex:national-ocean-legacy-fund a owl:NamedIndividual,
 ex:ocean-conservation-fund a owl:NamedIndividual,
         npo:funder ;
     rdfs:label "Ocean Conservation Fund" ;
-    npoprop:organization-role-status "active"^^xsd:string ;
+    npoprop:role-status "active"^^xsd:string ;
     nporel:maintainsGrantProgram ex:marine-habitat-program .
 
 ex:ocean-conservation-fund-fiscal-sponsor-role a owl:NamedIndividual,
         npo:fiscal-sponsor ;
     rdfs:label "Ocean Conservation Fund (as Fiscal Sponsor)" ;
-    npoprop:organization-role-effective-from "2026-05-01"^^xsd:date ;
-    npoprop:organization-role-scope "Tidewater Youth Ocean Corps sponsorship"^^xsd:string ;
-    npoprop:organization-role-status "active"^^xsd:string ;
+    npoprop:role-effective-from "2026-05-01"^^xsd:date ;
+    npoprop:role-scope "Tidewater Youth Ocean Corps sponsorship"^^xsd:string ;
+    npoprop:role-status "active"^^xsd:string ;
     nporel:appliesWithin ex:tidewater-sponsorship-arrangement .
 
 ex:ocean-conservation-fund-intermediary-role a owl:NamedIndividual,
         npo:funding-intermediary-role ;
     rdfs:label "Ocean Conservation Fund (as Funding Intermediary)" ;
-    npoprop:organization-role-effective-from "2026-06-01"^^xsd:date ;
-    npoprop:organization-role-scope "National Ocean Legacy regranting program"^^xsd:string ;
-    npoprop:organization-role-status "active"^^xsd:string ;
+    npoprop:role-effective-from "2026-06-01"^^xsd:date ;
+    npoprop:role-scope "National Ocean Legacy regranting program"^^xsd:string ;
+    npoprop:role-status "active"^^xsd:string ;
     nporel:appliesWithin ex:ocean-legacy-regranting-program .
 
 ex:ocean-legacy-regranting-program a owl:NamedIndividual,

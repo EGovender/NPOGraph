@@ -52,7 +52,7 @@
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/grantee> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <http://www.w3.org/2000/01/rdf-schema#label> "Coastal Watch Alliance" .
-<https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <https://egovender.github.io/NPOGraph/ontology/properties/role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-alliance> <https://egovender.github.io/NPOGraph/ontology/relations/submitsApplication> <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-fy26-application> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-fy26-application> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/coastal-watch-fy26-application> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/application> .
@@ -162,6 +162,7 @@
 <https://egovender.github.io/NPOGraph/ontology/examples/elena-alvarez> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/elena-alvarez> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/donor-advisor> .
 <https://egovender.github.io/NPOGraph/ontology/examples/elena-alvarez> <http://www.w3.org/2000/01/rdf-schema#label> "Elena Alvarez" .
+<https://egovender.github.io/NPOGraph/ontology/examples/elena-alvarez> <https://egovender.github.io/NPOGraph/ontology/properties/role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
 <https://egovender.github.io/NPOGraph/ontology/examples/elena-alvarez> <https://egovender.github.io/NPOGraph/ontology/relations/advises> <https://egovender.github.io/NPOGraph/ontology/examples/alvarez-family-fund> .
 <https://egovender.github.io/NPOGraph/ontology/examples/elena-alvarez> <https://egovender.github.io/NPOGraph/ontology/relations/makesRecommendation> <https://egovender.github.io/NPOGraph/ontology/examples/alvarez-fund-recommendation-2026> .
 <https://egovender.github.io/NPOGraph/ontology/examples/kelp-forest-collective> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
@@ -194,16 +195,16 @@
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/fiscal-sponsor> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <http://www.w3.org/2000/01/rdf-schema#label> "Ocean Conservation Fund (as Fiscal Sponsor)" .
-<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> "2026-05-01"^^<http://www.w3.org/2001/XMLSchema#date> .
-<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> "Tidewater Youth Ocean Corps sponsorship"^^<http://www.w3.org/2001/XMLSchema#string> .
-<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> "2026-05-01"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <https://egovender.github.io/NPOGraph/ontology/properties/role-scope> "Tidewater Youth Ocean Corps sponsorship"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <https://egovender.github.io/NPOGraph/ontology/properties/role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-fiscal-sponsor-role> <https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin> <https://egovender.github.io/NPOGraph/ontology/examples/tidewater-sponsorship-arrangement> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/funding-intermediary-role> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <http://www.w3.org/2000/01/rdf-schema#label> "Ocean Conservation Fund (as Funding Intermediary)" .
-<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-effective-from> "2026-06-01"^^<http://www.w3.org/2001/XMLSchema#date> .
-<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-scope> "National Ocean Legacy regranting program"^^<http://www.w3.org/2001/XMLSchema#string> .
-<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <https://egovender.github.io/NPOGraph/ontology/properties/role-effective-from> "2026-06-01"^^<http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <https://egovender.github.io/NPOGraph/ontology/properties/role-scope> "National Ocean Legacy regranting program"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <https://egovender.github.io/NPOGraph/ontology/properties/role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-intermediary-role> <https://egovender.github.io/NPOGraph/ontology/relations/appliesWithin> <https://egovender.github.io/NPOGraph/ontology/examples/ocean-legacy-regranting-program> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-org> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund-org> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/organization> .
@@ -216,7 +217,7 @@
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/funder> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <http://www.w3.org/2000/01/rdf-schema#label> "Ocean Conservation Fund" .
-<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <https://egovender.github.io/NPOGraph/ontology/properties/organization-role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <https://egovender.github.io/NPOGraph/ontology/properties/role-status> "active"^^<http://www.w3.org/2001/XMLSchema#string> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-conservation-fund> <https://egovender.github.io/NPOGraph/ontology/relations/maintainsGrantProgram> <https://egovender.github.io/NPOGraph/ontology/examples/marine-habitat-program> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-legacy-award-to-ocf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#NamedIndividual> .
 <https://egovender.github.io/NPOGraph/ontology/examples/ocean-legacy-award-to-ocf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://egovender.github.io/NPOGraph/ontology/award> .

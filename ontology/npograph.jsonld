@@ -67,6 +67,15 @@
       ]
     },
     {
+      "id": "npo:applicant-contact",
+      "type": "owl:Class",
+      "label": "Applicant Contact",
+      "definition": "The role a person occupies when they serve as the primary point of contact for an application submitted on behalf of an organization or project.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
+    },
+    {
       "id": "npo:application",
       "type": "owl:Class",
       "label": "Application",
@@ -86,6 +95,15 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
+      "id": "npo:authorized-signatory",
+      "type": "owl:Class",
+      "label": "Authorized Signatory",
+      "definition": "The role a person occupies when they are authorized to sign a grant agreement or other governing document on behalf of an organization.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
+    },
+    {
       "id": "npo:award",
       "type": "owl:Class",
       "label": "Award",
@@ -95,6 +113,15 @@
       "altLabel": [
         "Grant Award"
       ]
+    },
+    {
+      "id": "npo:board-member",
+      "type": "owl:Class",
+      "label": "Board Member",
+      "definition": "The role a person occupies when they serve on an organization's governing board.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
     },
     {
       "id": "npo:budget",
@@ -138,12 +165,30 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
+      "id": "npo:consultant",
+      "type": "owl:Class",
+      "label": "Consultant",
+      "definition": "The role a person occupies when they provide paid, defined-scope services to an organization without being its employee.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
+    },
+    {
       "id": "npo:decision",
       "type": "owl:Class",
       "label": "Decision",
       "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
       "category": "application-and-review",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+    },
+    {
+      "id": "npo:donor",
+      "type": "owl:Class",
+      "label": "Donor",
+      "definition": "The role a person occupies when they contribute charitable funds to an organization or fund, without necessarily holding advisory privileges over how they are used.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
     },
     {
       "id": "npo:donor-advised-fund",
@@ -172,9 +217,10 @@
       "id": "npo:donor-advisor",
       "type": "owl:Class",
       "label": "Donor Advisor",
-      "definition": "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it.",
+      "definition": "The role a person occupies when they hold non-binding privileges to recommend grants and investments from a Donor-Advised Fund, typically as the fund's original donor.",
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role",
       "legalNote": "A donor advisor's privileges are non-binding as a matter of federal tax law, not just convention -- treating a recommendation as a binding instruction can jeopardize the sponsoring organization's tax-exempt status."
     },
     {
@@ -184,6 +230,15 @@
       "definition": "The conditions an organization or project must meet to apply to a funding opportunity.",
       "category": "funding-structure",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+    },
+    {
+      "id": "npo:employee",
+      "type": "owl:Class",
+      "label": "Employee",
+      "definition": "The role a person occupies when they work for and are compensated by an organization.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
     },
     {
       "id": "npo:evaluation",
@@ -268,9 +323,10 @@
       "id": "npo:grant-administrator",
       "type": "owl:Class",
       "label": "Grant Administrator",
-      "definition": "An individual at the grantee organization responsible for compliance, reporting, and financial management of an award.",
+      "definition": "The role a person occupies when they are responsible for compliance, reporting, and financial management of an award on behalf of the grantee organization.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
     },
     {
       "id": "npo:grant-agreement",
@@ -375,7 +431,8 @@
       "label": "Organization Role",
       "definition": "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:role"
     },
     {
       "id": "npo:organization-type",
@@ -426,6 +483,27 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
     },
     {
+      "id": "npo:person",
+      "type": "owl:Class",
+      "label": "Person",
+      "definition": "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "altLabel": [
+        "Individual",
+        "Natural Person"
+      ]
+    },
+    {
+      "id": "npo:person-role",
+      "type": "owl:Class",
+      "label": "Person Role",
+      "definition": "A contextual capacity a person occupies within an organization, award, application, agreement, arrangement, program, project, or other defined context.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:role"
+    },
+    {
       "id": "npo:philanthropic-arrangement",
       "type": "owl:Class",
       "label": "Philanthropic Arrangement",
@@ -446,9 +524,10 @@
       "id": "npo:program-officer",
       "type": "owl:Class",
       "label": "Program Officer",
-      "definition": "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards.",
+      "definition": "The role a person occupies when they manage a portfolio of grants on behalf of a funder, from soliciting or reviewing applications through monitoring active awards.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
     },
     {
       "id": "npo:regranting-arrangement",
@@ -504,7 +583,16 @@
       "id": "npo:reviewer",
       "type": "owl:Class",
       "label": "Reviewer",
-      "definition": "An individual (staff, board member, or external peer reviewer) who evaluates an application against review criteria.",
+      "definition": "The role a person occupies when they evaluate an application against review criteria, whether as staff, a board member, or an external peer reviewer.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:person-role"
+    },
+    {
+      "id": "npo:role",
+      "type": "owl:Class",
+      "label": "Role",
+      "definition": "A contextual capacity an agent occupies, distinct from the agent's permanent identity or classification.",
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
@@ -989,6 +1077,33 @@
       "domain": "npo:payment-schedule",
       "range": "npo:installment",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:affiliatedWith",
+      "type": "owl:ObjectProperty",
+      "label": "is affiliated with",
+      "comment": "A Person is affiliated with an Organization, independent of which specific Person Role(s) they occupy there.",
+      "domain": "npo:person",
+      "range": "npo:organization",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+    },
+    {
+      "id": "nporel:personPlaysRole",
+      "type": "owl:ObjectProperty",
+      "label": "plays",
+      "comment": "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed.",
+      "domain": "npo:person",
+      "range": "npo:person-role",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+    },
+    {
+      "id": "nporel:personRoleAppliesWithin",
+      "type": "owl:ObjectProperty",
+      "label": "applies within",
+      "comment": "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts.",
+      "domain": "npo:person-role",
+      "range": "npo:organization",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "nporel:administeredBy",
@@ -1739,55 +1854,6 @@
       ]
     },
     {
-      "id": "npoprop:organization-role-effective-from",
-      "type": "owl:DatatypeProperty",
-      "label": "Effective From",
-      "comment": "When this organization began occupying this role.",
-      "domain": "npo:organization-role",
-      "range": "xsd:date",
-      "group": "lifecycle",
-      "required": false,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:organization-role-effective-to",
-      "type": "owl:DatatypeProperty",
-      "label": "Effective To",
-      "comment": "When this organization stopped occupying this role, if it has ended.",
-      "domain": "npo:organization-role",
-      "range": "xsd:date",
-      "group": "lifecycle",
-      "required": false,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:organization-role-scope",
-      "type": "owl:DatatypeProperty",
-      "label": "Scope",
-      "comment": "Any limits on what this role occupancy covers (e.g., a specific program or geography), if narrower than the arrangement itself.",
-      "domain": "npo:organization-role",
-      "range": "xsd:string",
-      "group": "governance",
-      "required": false,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:organization-role-status",
-      "type": "owl:DatatypeProperty",
-      "label": "Status",
-      "comment": "Whether this role occupancy is currently in effect.",
-      "domain": "npo:organization-role",
-      "range": "xsd:string",
-      "group": "lifecycle",
-      "required": true,
-      "cardinality": "one",
-      "allowedValues": [
-        "active",
-        "inactive",
-        "terminated"
-      ]
-    },
-    {
       "id": "npoprop:organization-tax-identifier",
       "type": "owl:DatatypeProperty",
       "label": "Tax Identifier",
@@ -2045,6 +2111,68 @@
       ]
     },
     {
+      "id": "npoprop:role-effective-from",
+      "type": "owl:DatatypeProperty",
+      "label": "Effective From",
+      "comment": "When this role occupancy takes effect. Inherited by every Person Role and Organization Role subclass.",
+      "domain": "npo:role",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:role-effective-to",
+      "type": "owl:DatatypeProperty",
+      "label": "Effective To",
+      "comment": "When this role occupancy ends, if it has a defined end. Must not precede Effective From.",
+      "domain": "npo:role",
+      "range": "xsd:date",
+      "group": "lifecycle",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:role-notes",
+      "type": "owl:DatatypeProperty",
+      "label": "Notes",
+      "comment": "Free-text context about this role occupancy not captured by its other properties.",
+      "domain": "npo:role",
+      "range": "xsd:string",
+      "group": "governance",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:role-scope",
+      "type": "owl:DatatypeProperty",
+      "label": "Scope",
+      "comment": "How narrowly this role occupancy is scoped (e.g. organization-wide vs. specific to one program, project, award, agreement, or arrangement). Free text until Milestone 2 makes it a controlled value alongside the broader role-context relationship.",
+      "domain": "npo:role",
+      "range": "xsd:string",
+      "group": "governance",
+      "required": false,
+      "cardinality": "one"
+    },
+    {
+      "id": "npoprop:role-status",
+      "type": "owl:DatatypeProperty",
+      "label": "Status",
+      "comment": "Where this role occupancy currently sits in its own lifecycle.",
+      "domain": "npo:role",
+      "range": "xsd:string",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "allowedValues": [
+        "planned",
+        "active",
+        "suspended",
+        "ended",
+        "cancelled"
+      ]
+    },
+    {
       "id": "npoprop:site-visit-scheduled-date",
       "type": "owl:DatatypeProperty",
       "label": "Scheduled Date",
@@ -2122,6 +2250,18 @@
       "allowedValues": [
         "restricted",
         "unrestricted"
+      ]
+    },
+    {
+      "id": "nporule:rule-active-role-requires-effective-from",
+      "type": "npo:BusinessRule",
+      "label": "An active role must have an effective start date",
+      "comment": "A Role occupancy with status Active must specify Effective From -- a role cannot be considered in effect without a defined start.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "appliesTo": [
+        "npo:role",
+        "npo:person-role",
+        "npo:organization-role"
       ]
     },
     {
@@ -2207,6 +2347,44 @@
         "npo:payment",
         "npo:award",
         "npo:grant-agreement"
+      ]
+    },
+    {
+      "id": "nporule:rule-role-effective-to-not-before-from",
+      "type": "npo:BusinessRule",
+      "label": "A role's effective end date must not precede its start date",
+      "comment": "A Role occupancy's Effective To, if present, must not be earlier than its Effective From.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "appliesTo": [
+        "npo:role",
+        "npo:person-role",
+        "npo:organization-role"
+      ]
+    },
+    {
+      "id": "nporule:rule-role-occupancy-requires-context-unless-organization-wide",
+      "type": "npo:BusinessRule",
+      "label": "A role occupancy should identify its context unless explicitly organization-wide",
+      "comment": "A Role occupancy should specify what it applies within (via appliesWithin), unless its Scope is explicitly organization-wide -- a role with neither a context nor an organization-wide scope is ambiguous about what it actually governs.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "appliesTo": [
+        "npo:role",
+        "npo:person-role",
+        "npo:organization-role"
+      ]
+    },
+    {
+      "id": "nporule:rule-role-occupancy-requires-holder",
+      "type": "npo:BusinessRule",
+      "label": "A role occupancy must identify its role holder",
+      "comment": "An instance of a Person Role must be held by a Person (via playsRole); an instance of an Organization Role must be held by an Organization (via playsRole). A role occupancy with no holder is not a valid occupancy, only a role definition.",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "appliesTo": [
+        "npo:role",
+        "npo:person-role",
+        "npo:organization-role",
+        "npo:person",
+        "npo:organization"
       ]
     }
   ]

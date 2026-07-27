@@ -205,7 +205,7 @@
       "id": "elena-alvarez",
       "concept": "donor-advisor",
       "label": "Elena Alvarez",
-      "properties": {},
+      "properties": { "status": "active" },
       "narrative": "Elena Alvarez (fictional), the fund's original donor, is its Donor Advisor -- she can recommend grants and investments, but Ocean Conservation Fund retains legal control over the money."
     },
     {

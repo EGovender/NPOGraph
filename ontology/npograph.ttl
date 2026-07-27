@@ -15,6 +15,48 @@ npo:BusinessRule a rdfs:Class ;
     rdfs:comment "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md." ;
     npo:version "0.3.0" .
 
+npo:applicant-contact a owl:Class ;
+    rdfs:label "Applicant Contact" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they serve as the primary point of contact for an application submitted on behalf of an organization or project." ;
+    npo:category "organizational-entities" .
+
+npo:authorized-signatory a owl:Class ;
+    rdfs:label "Authorized Signatory" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they are authorized to sign a grant agreement or other governing document on behalf of an organization." ;
+    npo:category "organizational-entities" .
+
+npo:board-member a owl:Class ;
+    rdfs:label "Board Member" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they serve on an organization's governing board." ;
+    npo:category "organizational-entities" .
+
+npo:consultant a owl:Class ;
+    rdfs:label "Consultant" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they provide paid, defined-scope services to an organization without being its employee." ;
+    npo:category "organizational-entities" .
+
+npo:donor a owl:Class ;
+    rdfs:label "Donor" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they contribute charitable funds to an organization or fund, without necessarily holding advisory privileges over how they are used." ;
+    npo:category "organizational-entities" .
+
+npo:employee a owl:Class ;
+    rdfs:label "Employee" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they work for and are compensated by an organization." ;
+    npo:category "organizational-entities" .
+
 npo:funding-intermediary-role a owl:Class ;
     rdfs:label "Funding Intermediary Role" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
@@ -538,45 +580,6 @@ npoprop:organization-operating-status a owl:DatatypeProperty ;
     npo:group "lifecycle" ;
     npo:required false .
 
-npoprop:organization-role-effective-from a owl:DatatypeProperty ;
-    rdfs:label "Effective From" ;
-    rdfs:comment "When this organization began occupying this role." ;
-    rdfs:domain npo:organization-role ;
-    rdfs:range xsd:date ;
-    npo:cardinality "one" ;
-    npo:group "lifecycle" ;
-    npo:required false .
-
-npoprop:organization-role-effective-to a owl:DatatypeProperty ;
-    rdfs:label "Effective To" ;
-    rdfs:comment "When this organization stopped occupying this role, if it has ended." ;
-    rdfs:domain npo:organization-role ;
-    rdfs:range xsd:date ;
-    npo:cardinality "one" ;
-    npo:group "lifecycle" ;
-    npo:required false .
-
-npoprop:organization-role-scope a owl:DatatypeProperty ;
-    rdfs:label "Scope" ;
-    rdfs:comment "Any limits on what this role occupancy covers (e.g., a specific program or geography), if narrower than the arrangement itself." ;
-    rdfs:domain npo:organization-role ;
-    rdfs:range xsd:string ;
-    npo:cardinality "one" ;
-    npo:group "governance" ;
-    npo:required false .
-
-npoprop:organization-role-status a owl:DatatypeProperty ;
-    rdfs:label "Status" ;
-    rdfs:comment "Whether this role occupancy is currently in effect." ;
-    rdfs:domain npo:organization-role ;
-    rdfs:range xsd:string ;
-    npo:allowedValue "active",
-        "inactive",
-        "terminated" ;
-    npo:cardinality "one" ;
-    npo:group "lifecycle" ;
-    npo:required true .
-
 npoprop:organization-tax-identifier a owl:DatatypeProperty ;
     rdfs:label "Tax Identifier" ;
     rdfs:comment "The organization's tax identification number (e.g., an EIN), if applicable and disclosed." ;
@@ -778,6 +781,56 @@ npoprop:review-status a owl:DatatypeProperty ;
     npo:group "lifecycle" ;
     npo:required true .
 
+npoprop:role-effective-from a owl:DatatypeProperty ;
+    rdfs:label "Effective From" ;
+    rdfs:comment "When this role occupancy takes effect. Inherited by every Person Role and Organization Role subclass." ;
+    rdfs:domain npo:role ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:role-effective-to a owl:DatatypeProperty ;
+    rdfs:label "Effective To" ;
+    rdfs:comment "When this role occupancy ends, if it has a defined end. Must not precede Effective From." ;
+    rdfs:domain npo:role ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:role-notes a owl:DatatypeProperty ;
+    rdfs:label "Notes" ;
+    rdfs:comment "Free-text context about this role occupancy not captured by its other properties." ;
+    rdfs:domain npo:role ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "governance" ;
+    npo:required false .
+
+npoprop:role-scope a owl:DatatypeProperty ;
+    rdfs:label "Scope" ;
+    rdfs:comment "How narrowly this role occupancy is scoped (e.g. organization-wide vs. specific to one program, project, award, agreement, or arrangement). Free text until Milestone 2 makes it a controlled value alongside the broader role-context relationship." ;
+    rdfs:domain npo:role ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "governance" ;
+    npo:required false .
+
+npoprop:role-status a owl:DatatypeProperty ;
+    rdfs:label "Status" ;
+    rdfs:comment "Where this role occupancy currently sits in its own lifecycle." ;
+    rdfs:domain npo:role ;
+    rdfs:range xsd:string ;
+    npo:allowedValue "active",
+        "cancelled",
+        "ended",
+        "planned",
+        "suspended" ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required true .
+
 npoprop:site-visit-scheduled-date a owl:DatatypeProperty ;
     rdfs:label "Scheduled Date" ;
     rdfs:comment "When the Site Visit is scheduled to occur." ;
@@ -860,6 +913,13 @@ nporel:advises a owl:ObjectProperty ;
     rdfs:domain npo:donor-advisor ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:donor-advised-fund .
+
+nporel:affiliatedWith a owl:ObjectProperty ;
+    rdfs:label "is affiliated with" ;
+    rdfs:comment "A Person is affiliated with an Organization, independent of which specific Person Role(s) they occupy there." ;
+    rdfs:domain npo:person ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:range npo:organization .
 
 nporel:appliesWithin a owl:ObjectProperty ;
     rdfs:label "applies within" ;
@@ -1155,6 +1215,20 @@ nporel:participatesIn a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:philanthropic-arrangement .
 
+nporel:personPlaysRole a owl:ObjectProperty ;
+    rdfs:label "plays" ;
+    rdfs:comment "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed." ;
+    rdfs:domain npo:person ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:range npo:person-role .
+
+nporel:personRoleAppliesWithin a owl:ObjectProperty ;
+    rdfs:label "applies within" ;
+    rdfs:comment "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts." ;
+    rdfs:domain npo:person-role ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:range npo:organization .
+
 nporel:playsRole a owl:ObjectProperty ;
     rdfs:label "plays" ;
     rdfs:comment "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait." ;
@@ -1260,6 +1334,14 @@ nporel:undergoesReview a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:review .
 
+nporule:rule-active-role-requires-effective-from a npo:BusinessRule ;
+    rdfs:label "An active role must have an effective start date" ;
+    rdfs:comment "A Role occupancy with status Active must specify Effective From -- a role cannot be considered in effect without a defined start." ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    npo:appliesTo npo:organization-role,
+        npo:person-role,
+        npo:role .
+
 nporule:rule-amendment-not-retroactive a npo:BusinessRule ;
     rdfs:label "An Amendment is forward-looking, not retroactive" ;
     rdfs:comment "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." ;
@@ -1316,6 +1398,32 @@ nporule:rule-payment-requires-award-and-agreement a npo:BusinessRule ;
     npo:appliesTo npo:award,
         npo:grant-agreement,
         npo:payment .
+
+nporule:rule-role-effective-to-not-before-from a npo:BusinessRule ;
+    rdfs:label "A role's effective end date must not precede its start date" ;
+    rdfs:comment "A Role occupancy's Effective To, if present, must not be earlier than its Effective From." ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    npo:appliesTo npo:organization-role,
+        npo:person-role,
+        npo:role .
+
+nporule:rule-role-occupancy-requires-context-unless-organization-wide a npo:BusinessRule ;
+    rdfs:label "A role occupancy should identify its context unless explicitly organization-wide" ;
+    rdfs:comment "A Role occupancy should specify what it applies within (via appliesWithin), unless its Scope is explicitly organization-wide -- a role with neither a context nor an organization-wide scope is ambiguous about what it actually governs." ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    npo:appliesTo npo:organization-role,
+        npo:person-role,
+        npo:role .
+
+nporule:rule-role-occupancy-requires-holder a npo:BusinessRule ;
+    rdfs:label "A role occupancy must identify its role holder" ;
+    rdfs:comment "An instance of a Person Role must be held by a Person (via playsRole); an instance of an Organization Role must be held by an Organization (via playsRole). A role occupancy with no holder is not a valid occupancy, only a role definition." ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    npo:appliesTo npo:organization,
+        npo:organization-role,
+        npo:person,
+        npo:person-role,
+        npo:role .
 
 npo:collaborative-fund-arrangement a owl:Class ;
     rdfs:label "Collaborative Fund Arrangement" ;
@@ -1381,7 +1489,8 @@ npo:outcome a owl:Class ;
 npo:program-officer a owl:Class ;
     rdfs:label "Program Officer" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    skos:definition "An individual at a funder responsible for managing a portfolio of grants, from soliciting or reviewing applications through monitoring active awards." ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they manage a portfolio of grants on behalf of a funder, from soliciting or reviewing applications through monitoring active awards." ;
     npo:category "organizational-entities" .
 
 npo:regranting-arrangement a owl:Class ;
@@ -1407,7 +1516,8 @@ npo:review-criteria a owl:Class ;
 npo:reviewer a owl:Class ;
     rdfs:label "Reviewer" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    skos:definition "An individual (staff, board member, or external peer reviewer) who evaluates an application against review criteria." ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they evaluate an application against review criteria, whether as staff, a board member, or an external peer reviewer." ;
     npo:category "organizational-entities" .
 
 npo:theory-of-change a owl:Class ;
@@ -1431,7 +1541,8 @@ npo:budget a owl:Class ;
 npo:donor-advisor a owl:Class ;
     rdfs:label "Donor Advisor" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    skos:definition "An individual granted advisory privileges over a Donor-Advised Fund, typically the original donor, who may recommend (but not compel) grants and investments from it." ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they hold non-binding privileges to recommend grants and investments from a Donor-Advised Fund, typically as the fund's original donor." ;
     npo:category "organizational-entities" ;
     npo:legalNote "A donor advisor's privileges are non-binding as a matter of federal tax law, not just convention -- treating a recommendation as a binding instruction can jeopardize the sponsoring organization's tax-exempt status." .
 
@@ -1446,7 +1557,8 @@ npo:fiscal-sponsorship-arrangement a owl:Class ;
 npo:grant-administrator a owl:Class ;
     rdfs:label "Grant Administrator" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    skos:definition "An individual at the grantee organization responsible for compliance, reporting, and financial management of an award." ;
+    rdfs:subClassOf npo:person-role ;
+    skos:definition "The role a person occupies when they are responsible for compliance, reporting, and financial management of an award on behalf of the grantee organization." ;
     npo:category "organizational-entities" .
 
 npo:indirect-cost-rate a owl:Class ;
@@ -1518,6 +1630,14 @@ npo:payment-schedule a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "The agreed timing and amounts by which award funds will be disbursed to the grantee." ;
     npo:category "disbursement" .
+
+npo:person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    skos:altLabel "Individual",
+        "Natural Person" ;
+    skos:definition "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships." ;
+    npo:category "organizational-entities" .
 
 npo:reporting-schedule a owl:Class ;
     rdfs:label "Reporting Schedule" ;
@@ -1629,6 +1749,7 @@ npo:payment a owl:Class ;
 npo:organization-role a owl:Class ;
     rdfs:label "Organization Role" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:role ;
     skos:definition "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself." ;
     npo:category "organizational-entities" .
 
@@ -1655,6 +1776,19 @@ npo:philanthropic-arrangement a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
     skos:definition "A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement." ;
     npo:category "funding-structure" .
+
+npo:role a owl:Class ;
+    rdfs:label "Role" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    skos:definition "A contextual capacity an agent occupies, distinct from the agent's permanent identity or classification." ;
+    npo:category "organizational-entities" .
+
+npo:person-role a owl:Class ;
+    rdfs:label "Person Role" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:role ;
+    skos:definition "A contextual capacity a person occupies within an organization, award, application, agreement, arrangement, program, project, or other defined context." ;
+    npo:category "organizational-entities" .
 
 npo:award a owl:Class ;
     rdfs:label "Award" ;

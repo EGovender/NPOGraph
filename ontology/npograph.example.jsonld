@@ -183,7 +183,7 @@
         "npo:grantee"
       ],
       "label": "Coastal Watch Alliance",
-      "npoprop:organization-role-status": {
+      "npoprop:role-status": {
         "@value": "active",
         "@type": "xsd:string"
       },
@@ -532,6 +532,10 @@
         "npo:donor-advisor"
       ],
       "label": "Elena Alvarez",
+      "npoprop:role-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
       "nporel:advises": {
         "@id": "ex:alvarez-family-fund"
       },
@@ -632,7 +636,7 @@
         "npo:funder"
       ],
       "label": "Ocean Conservation Fund",
-      "npoprop:organization-role-status": {
+      "npoprop:role-status": {
         "@value": "active",
         "@type": "xsd:string"
       },
@@ -647,15 +651,15 @@
         "npo:fiscal-sponsor"
       ],
       "label": "Ocean Conservation Fund (as Fiscal Sponsor)",
-      "npoprop:organization-role-status": {
+      "npoprop:role-status": {
         "@value": "active",
         "@type": "xsd:string"
       },
-      "npoprop:organization-role-effective-from": {
+      "npoprop:role-effective-from": {
         "@value": "2026-05-01",
         "@type": "xsd:date"
       },
-      "npoprop:organization-role-scope": {
+      "npoprop:role-scope": {
         "@value": "Tidewater Youth Ocean Corps sponsorship",
         "@type": "xsd:string"
       },
@@ -670,15 +674,15 @@
         "npo:funding-intermediary-role"
       ],
       "label": "Ocean Conservation Fund (as Funding Intermediary)",
-      "npoprop:organization-role-status": {
+      "npoprop:role-status": {
         "@value": "active",
         "@type": "xsd:string"
       },
-      "npoprop:organization-role-effective-from": {
+      "npoprop:role-effective-from": {
         "@value": "2026-06-01",
         "@type": "xsd:date"
       },
-      "npoprop:organization-role-scope": {
+      "npoprop:role-scope": {
         "@value": "National Ocean Legacy regranting program",
         "@type": "xsd:string"
       },
