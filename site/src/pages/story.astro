@@ -1,9 +1,75 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { workedExample, getConcept } from '../data/ontology';
+import { workedExample, getConcept, type ExampleIndividual } from '../data/ontology';
 import { getCategory } from '../data/categories';
 
 const base = import.meta.env.BASE_URL;
+
+interface Stage {
+  id: string;
+  label: string;
+  colorLight: string;
+  colorDark: string;
+}
+
+interface Scenario {
+  id: string;
+  label: string;
+  stages: Stage[];
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/^a \w+ engagement:\s*/i, '')
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+function shortLabel(act: string): string {
+  return act.replace(/^A \w+ Engagement:\s*/i, '').trim();
+}
+
+function stagesFor(individuals: ExampleIndividual[]): Stage[] {
+  const stages: Stage[] = [];
+  const seen = new Set<string>();
+  for (const ind of individuals) {
+    const concept = getConcept(ind.concept);
+    if (!concept || seen.has(concept.category)) continue;
+    seen.add(concept.category);
+    const cat = getCategory(concept.category);
+    stages.push({ id: concept.category, label: cat.label, colorLight: cat.colorLight, colorDark: cat.colorDark });
+  }
+  return stages;
+}
+
+// Split the flat individuals list into scenarios wherever an `act` marks the
+// start of a new thread -- everything before the first `act` is the base
+// "Direct Grant" scenario (see docs/07-worked-example.md for why the whole
+// worked example is one file, not several).
+const scenarios: Scenario[] = [];
+const scenarioIdByIndividualId = new Map<string, string>();
+let bucket: ExampleIndividual[] = [];
+let bucketId = 'direct-grant';
+let bucketLabel = 'Direct Grant';
+
+function flushBucket() {
+  if (bucket.length === 0) return;
+  scenarios.push({ id: bucketId, label: bucketLabel, stages: stagesFor(bucket) });
+  for (const ind of bucket) scenarioIdByIndividualId.set(ind.id, bucketId);
+}
+
+for (const individual of workedExample.individuals) {
+  if (individual.act) {
+    flushBucket();
+    bucket = [];
+    bucketId = slugify(individual.act);
+    bucketLabel = shortLabel(individual.act);
+  }
+  bucket.push(individual);
+}
+flushBucket();
 ---
 
 <BaseLayout title="Story" description={workedExample.summary}>
@@ -15,6 +81,35 @@ const base = import.meta.env.BASE_URL;
     for how it was built and validated.
   </p>
 
+  <div class="story-scenario-tabs" role="tablist" aria-label="Choose a scenario">
+    <button type="button" class="story-scenario-tab active" data-scenario="all" aria-pressed="true">
+      All
+    </button>
+    {
+      scenarios.map((s) => (
+        <button type="button" class="story-scenario-tab" data-scenario={s.id} aria-pressed="false">
+          {s.label}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    scenarios.map((s) => (
+      <div class="story-stage-bar" data-stage-bar={s.id} hidden>
+        {s.stages.map((stage) => (
+          <span
+            class="story-stage-pill"
+            data-stage={stage.id}
+            style={`--stage-color: light-dark(${stage.colorLight}, ${stage.colorDark})`}
+          >
+            {stage.label}
+          </span>
+        ))}
+      </div>
+    ))
+  }
+
   <ol class="story-timeline">
     {
       workedExample.individuals.map((individual) => {
@@ -22,14 +117,15 @@ const base = import.meta.env.BASE_URL;
         if (!concept) return null;
         const category = getCategory(concept.category);
         const propertyEntries = Object.entries(individual.properties);
+        const scenarioId = scenarioIdByIndividualId.get(individual.id) ?? 'direct-grant';
         return (
           <>
             {individual.act && (
-              <li class="story-act" aria-hidden="false">
+              <li class="story-act" data-scenario={scenarioId} aria-hidden="false">
                 <h2 class="story-act-title">{individual.act}</h2>
               </li>
             )}
-            <li class="story-step">
+            <li class="story-step" data-scenario={scenarioId} data-stage={concept.category}>
               <div class="story-step-marker" style={`background: light-dark(${category.colorLight}, ${category.colorDark})`} />
               <div class="story-step-body">
                 <div class="story-step-header">
@@ -48,6 +144,9 @@ const base = import.meta.env.BASE_URL;
                     ))}
                   </div>
                 )}
+                <a class="story-step-graph-link" href={`${base}explore?concept=${concept.id}`}>
+                  Open in graph &rarr;
+                </a>
               </div>
             </li>
           </>
@@ -55,4 +154,72 @@ const base = import.meta.env.BASE_URL;
       })
     }
   </ol>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.story-scenario-tab'));
+    const steps = Array.from(document.querySelectorAll<HTMLLIElement>('.story-step'));
+    const acts = Array.from(document.querySelectorAll<HTMLLIElement>('.story-act'));
+    const stageBars = Array.from(document.querySelectorAll<HTMLDivElement>('.story-stage-bar'));
+
+    function readScenarioFromURL(): string {
+      return new URLSearchParams(location.search).get('scenario') || 'all';
+    }
+
+    function updateActiveStage(scenarioId: string) {
+      const bar = stageBars.find((b) => b.dataset.stageBar === scenarioId);
+      if (!bar) return;
+      const pills = Array.from(bar.querySelectorAll<HTMLSpanElement>('.story-stage-pill'));
+      const visibleSteps = steps.filter((s) => s.dataset.scenario === scenarioId);
+      const threshold = bar.getBoundingClientRect().bottom + 20;
+      let activeStage = visibleSteps[0]?.dataset.stage;
+      for (const s of visibleSteps) {
+        if (s.getBoundingClientRect().top <= threshold) activeStage = s.dataset.stage;
+        else break;
+      }
+      pills.forEach((p) => p.classList.toggle('active', p.dataset.stage === activeStage));
+    }
+
+    function setScenario(id: string) {
+      tabs.forEach((t) => {
+        const active = t.dataset.scenario === id;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-pressed', String(active));
+      });
+      steps.forEach((s) => {
+        s.hidden = id !== 'all' && s.dataset.scenario !== id;
+      });
+      acts.forEach((a) => {
+        a.hidden = id !== 'all' && a.dataset.scenario !== id;
+      });
+      stageBars.forEach((b) => {
+        b.hidden = id === 'all' || b.dataset.stageBar !== id;
+      });
+
+      const params = new URLSearchParams();
+      if (id !== 'all') params.set('scenario', id);
+      const qs = params.toString();
+      history.replaceState(null, '', qs ? `${location.pathname}?${qs}` : location.pathname);
+
+      if (id !== 'all') updateActiveStage(id);
+    }
+
+    tabs.forEach((t) => t.addEventListener('click', () => setScenario(t.dataset.scenario!)));
+
+    let ticking = false;
+    document.addEventListener(
+      'scroll',
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const current = tabs.find((t) => t.classList.contains('active'))?.dataset.scenario ?? 'all';
+          if (current !== 'all') updateActiveStage(current);
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
+
+    setScenario(readScenarioFromURL());
+  </script>
 </BaseLayout>

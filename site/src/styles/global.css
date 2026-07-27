@@ -1167,6 +1167,11 @@ pre {
   padding-bottom: 1.75rem;
 }
 
+/* See the matching comment on .story-stage-bar[hidden] -- same reason. */
+.story-step[hidden] {
+  display: none;
+}
+
 .story-step::before {
   content: '';
   position: absolute;
@@ -1236,4 +1241,83 @@ pre {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--text-secondary);
+}
+
+.story-scenario-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+}
+
+.story-scenario-tab {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.story-scenario-tab.active {
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  color: #ffffff;
+}
+
+.story-stage-bar {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.25rem 0 0;
+  padding: 0.75rem 0;
+  background: var(--page);
+  border-bottom: 1px solid var(--gridline);
+  max-width: 70ch;
+}
+
+/* `display: flex` above has the same specificity as the UA stylesheet's
+   `[hidden] { display: none }` and loads after it, so without this override
+   the `hidden` attribute (toggled from story.astro's script) would be
+   silently ignored and every stage bar/step would stay visible regardless. */
+.story-stage-bar[hidden] {
+  display: none;
+}
+
+.story-stage-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: var(--gridline);
+  color: var(--text-muted);
+}
+
+.story-stage-pill::before {
+  content: '';
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--stage-color);
+  flex: none;
+}
+
+.story-stage-pill.active {
+  background: color-mix(in srgb, var(--stage-color) 20%, var(--card-bg));
+  color: var(--text-primary);
+}
+
+.story-step-graph-link {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
