@@ -18,7 +18,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { CATEGORIES, getCategory } from '../data/categories';
 import { EXPLORER_VIEWS, resolveLifecycleView } from '../data/explorer-views';
 import { findShortestPath, seededGridPositions, type PathStep } from '../data/graph-utils';
-import { conceptKind, KIND_LEGEND, type ConceptKind } from '../data/graph-kinds';
+import { conceptKind, KIND_LEGEND } from '../data/graph-kinds';
 import { nodeShapePath } from '../data/graph-shapes';
 import { RELATIONSHIP_KIND_LABELS, relationshipKind, type RelationshipKind } from '../data/relationship-kinds';
 import { conceptSearchScore } from '../data/search';
@@ -32,6 +32,7 @@ import {
   getOutgoingRelationships,
   getPropertyGroups,
   getSubtypes,
+  type ConceptKind,
 } from '../data/ontology';
 import PropertyInspector from './PropertyInspector';
 
@@ -248,7 +249,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       id: c.id,
       label: c.label,
       category: c.category,
-      kind: conceptKind(c, conceptsById),
+      kind: conceptKind(c),
     }));
     const seeded = seededGridPositions(nodes.map((n) => n.id));
     for (const n of nodes) {
@@ -800,7 +801,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
 
   const visibleListConcepts = concepts
     .filter((c) => !hiddenCategories.has(c.category))
-    .filter((c) => !hiddenKinds.has(conceptKind(c, conceptsById)))
+    .filter((c) => !hiddenKinds.has(conceptKind(c)))
     .filter((c) => !searchQuery.trim() || conceptSearchScore(c, searchQuery.trim()) > 0)
     .sort((a, b) => a.label.localeCompare(b.label));
   const visibleListIds = new Set(visibleListConcepts.map((c) => c.id));

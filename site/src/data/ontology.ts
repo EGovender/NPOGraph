@@ -11,11 +11,33 @@ import metaData from './generated/meta.json';
 import exampleData from './generated/example.json';
 import { getCategory } from './categories';
 
+// Which structural family a concept belongs to -- authored per-concept in
+// ontology/source/concepts.json (Phase 3.7 Milestone 1), not derived
+// client-side. Used for the graph explorer's shapes/filters and, going
+// forward, other kind-aware rendering. `document`/`reference-scheme`/
+// `reference-value` aren't used by any concept yet -- reserved for Phase
+// 3.7's later milestones (documents and the reference-data/SKOS framework).
+export type ConceptKind =
+  | 'organization'
+  | 'person'
+  | 'organization-role'
+  | 'person-role'
+  | 'fund'
+  | 'grant-program'
+  | 'arrangement'
+  | 'classification'
+  | 'process'
+  | 'entity'
+  | 'document'
+  | 'reference-scheme'
+  | 'reference-value';
+
 export interface Concept {
   id: string;
   label: string;
   aliases: string[];
   category: string;
+  kind: ConceptKind;
   definition: string;
   subClassOf: string | null;
   docRef: string;
