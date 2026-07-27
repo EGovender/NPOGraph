@@ -1,6 +1,6 @@
 # NPOGraph explorer
 
-The interactive explorer for the [NPOGraph](../README.md) grantmaking ontology — search, browse, and graph-visualize the concepts, relationships, properties, and business rules defined in `../ontology/source/*.json`. Built with [Astro](https://astro.build) (static output) and React islands for the interactive graph ([cytoscape.js](https://js.cytoscape.org/)) and the property inspector.
+The interactive explorer for the [NPOGraph](../README.md) grantmaking ontology — search, browse, and graph-visualize the concepts, relationships, properties, and business rules defined in `../ontology/source/*.json`. Built with [Astro](https://astro.build) (static output) and React islands for the interactive graph ([D3](https://d3js.org/): `d3-force`, `d3-zoom`, `d3-drag`, `d3-shape`) and the property inspector.
 
 Live at [egovender.github.io/NPOGraph](https://egovender.github.io/NPOGraph/).
 
@@ -29,7 +29,7 @@ src/
 ├── data/          # typed data-access layer (ontology.ts, categories.ts) + generated/ (gitignored)
 │                  # + design-questions.ts (hand-authored site logic, not synced ontology data)
 ├── layouts/       # BaseLayout.astro
-├── components/    # SearchBox, GraphExplorer (React + cytoscape, 'full' and 'mini' modes),
+├── components/    # SearchBox, GraphExplorer (React + D3, 'full' and 'mini' modes),
 │                  # PropertyInspector (Overview/Example/Properties/Relationships/Rules/Technical),
 │                  # DesignWizard
 └── pages/

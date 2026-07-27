@@ -58,7 +58,7 @@ NPOGraph/
     ├── scripts/sync-ontology-data.mjs  # copies ontology/source/*.json in at build time
     └── src/
         ├── data/                        # typed data-access layer over the synced JSON, + design-questions.ts
-        ├── components/                  # SearchBox, GraphExplorer (cytoscape.js), PropertyInspector, DesignWizard, etc.
+        ├── components/                  # SearchBox, GraphExplorer (D3), PropertyInspector, DesignWizard, etc.
         └── pages/                       # /, /explore, /concepts, /concepts/[id], /design, /story
 ```
 
