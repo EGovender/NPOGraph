@@ -70,14 +70,21 @@ function useIsDark(): boolean {
   return isDark;
 }
 
-/** Reads ?view=&concept=&q= once on mount; full-mode only. */
+/** Reads ?view=&concept=&q=&concepts= once on mount; full-mode only. */
 function readInitialURLState() {
-  if (typeof window === 'undefined') return { view: 'full', concept: null as string | null, q: '' };
+  if (typeof window === 'undefined') {
+    return { view: 'full', concept: null as string | null, q: '', customConcepts: null as string[] | null };
+  }
   const params = new URLSearchParams(window.location.search);
+  const customConcepts = params.get('concepts');
   return {
     view: params.get('view') ?? 'full',
     concept: params.get('concept'),
     q: params.get('q') ?? '',
+    // An ad-hoc concept allowlist (e.g. from the Design tool's "open in
+    // graph"), distinct from the named views in explorer-views.ts -- takes
+    // priority over `view` when present.
+    customConcepts: customConcepts ? customConcepts.split(',').filter(Boolean) : null,
   };
 }
 
@@ -87,29 +94,48 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   const cyRef = useRef<Core | null>(null);
   const isDark = useIsDark();
   const isMini = mode === 'mini';
-  const initialURL = useMemo(readInitialURLState, []);
 
-  const [selectedId, setSelectedId] = useState<string | null>(isMini ? null : initialURL.concept);
+  // All of these start at their SSR-safe defaults, matching the
+  // server-rendered HTML, rather than reading the URL eagerly in the
+  // initializer -- doing that would make the client's first render disagree
+  // with the SSR-ed markup (view/concept/search/custom-selection would
+  // already reflect the URL on the client but not on the server) and
+  // trigger a React hydration-mismatch, discarding and re-rendering the
+  // whole tree. Restored after mount instead, in the effect below.
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hiddenCategories, setHiddenCategories] = useState<Set<string>>(new Set());
-  const [viewId, setViewId] = useState<string>(isMini ? 'full' : initialURL.view);
-  const [searchQuery, setSearchQuery] = useState(isMini ? '' : initialURL.q);
+  const [viewId, setViewId] = useState<string>('full');
+  const [customConceptIds, setCustomConceptIds] = useState<Set<string> | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const [pathFromId, setPathFromId] = useState('');
   const [pathToId, setPathToId] = useState('');
   const [pathResult, setPathResult] = useState<PathStep[] | null | undefined>(undefined);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showList, setShowList] = useState(false);
 
+  useEffect(() => {
+    if (isMini) return;
+    const url = readInitialURLState();
+    if (url.customConcepts) setCustomConceptIds(new Set(url.customConcepts));
+    if (url.view !== 'full') setViewId(url.view);
+    if (url.concept) setSelectedId(url.concept);
+    if (url.q) setSearchQuery(url.q);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMini]);
+
   const conceptsById = useMemo(() => new Map(allConcepts.map((c) => [c.id, c])), []);
 
   // The active view's concept allowlist, or null for "no filter" (Full Ontology).
+  // A custom ad-hoc list (from the Design tool) always wins over the named views.
   const viewConceptIds = useMemo(() => {
     if (isMini) return null;
+    if (customConceptIds) return customConceptIds;
     if (viewId === 'lifecycle') {
       return new Set(resolveLifecycleView(allConcepts.map((c) => c.id)));
     }
     const view = EXPLORER_VIEWS.find((v) => v.id === viewId);
     return view?.conceptIds ? new Set(view.conceptIds) : null;
-  }, [isMini, viewId]);
+  }, [isMini, viewId, customConceptIds]);
 
   const { concepts, relationships } = useMemo(() => {
     if (isMini && focusConceptId) {
@@ -145,13 +171,17 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   useEffect(() => {
     if (isMini || typeof window === 'undefined') return;
     const params = new URLSearchParams();
-    if (viewId !== 'full') params.set('view', viewId);
+    if (customConceptIds) {
+      params.set('concepts', Array.from(customConceptIds).join(','));
+    } else if (viewId !== 'full') {
+      params.set('view', viewId);
+    }
     if (selectedId) params.set('concept', selectedId);
     if (searchQuery.trim()) params.set('q', searchQuery.trim());
     const qs = params.toString();
     const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
     window.history.replaceState(null, '', url);
-  }, [isMini, viewId, selectedId, searchQuery]);
+  }, [isMini, viewId, customConceptIds, selectedId, searchQuery]);
 
   // Build the graph once (or whenever the underlying element set changes).
   useEffect(() => {
@@ -315,16 +345,16 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       cy.on('tap', 'node', (evt) => {
         setPathResult(undefined);
         setSearchQuery('');
-        selectNode(cy, evt.target.id());
+        setSelectedId(evt.target.id());
       });
       cy.on('tap', (evt) => {
-        if (evt.target === cy) clearSelection(cy);
+        if (evt.target === cy) setSelectedId(null);
       });
-      // Re-select whatever was already active (e.g. restored from the URL
-      // on first load) now that the graph exists to select it in.
-      if (selectedId && cy.getElementById(selectedId).length > 0) {
-        selectNode(cy, selectedId);
-      }
+      // Apply whatever selection/search/path state is already active (e.g.
+      // restored from the URL after mount) now that the graph exists to
+      // apply it to -- a freshly built cytoscape instance has no classes on
+      // it yet regardless of what the React state already says.
+      applyHighlight(cy);
     }
 
     cyRef.current = cy;
@@ -332,8 +362,8 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       cy.destroy();
       cyRef.current = null;
     };
-    // Rebuild only when the underlying data changes; theme/selection/search
-    // are handled by their own effects below.
+    // Rebuild only when the underlying data changes; theme/highlighting are
+    // handled by their own effects below.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [concepts, relationships]);
 
@@ -369,31 +399,25 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     });
   }, [hiddenCategories]);
 
-  // In-graph search: highlight matches the same way node selection does,
-  // taking priority over a plain selection while there's a query. Reuses
-  // the exact relevance definition the homepage and concept catalogue use.
+  // Applies whichever of path-find / search / plain selection is active, in
+  // that priority order, to the current graph. This is the ONLY place that
+  // touches the selected/connected/faded/path-edge classes -- previously
+  // three separate effects each independently decided when to clear or set
+  // them based on their own stale closures, which meant they could disagree
+  // about (and clobber) each other's outcome when several fired in the same
+  // React commit (e.g. restoring a selection from the URL on mount, while a
+  // freshly-mounted search effect's empty-query branch was still reasoning
+  // from the pre-restoration value of selectedId). Consolidating into one
+  // idempotent function -- called here on every relevant state change, and
+  // again directly from the graph-build effect after a rebuild -- removes
+  // that race entirely: there is exactly one function that decides the
+  // outcome, and it always recomputes from the current values.
   useEffect(() => {
     const cy = cyRef.current;
     if (!cy || isMini) return;
-    const query = searchQuery.trim();
-    if (!query) {
-      if (selectedId && cy.getElementById(selectedId).length > 0) selectNode(cy, selectedId);
-      else clearSelection(cy);
-      return;
-    }
-    const matches = cy.nodes().filter((n) => {
-      const concept = conceptsById.get(n.id());
-      return concept ? conceptSearchScore(concept, query) > 0 : false;
-    });
-    cy.elements().removeClass('selected connected faded path-edge');
-    if (matches.length === 0) {
-      cy.elements().addClass('faded');
-      return;
-    }
-    matches.addClass('connected');
-    cy.elements().not(matches).addClass('faded');
+    applyHighlight(cy);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchQuery]);
+  }, [selectedId, searchQuery, pathResult, isMini]);
 
   const searchResults = useMemo(() => {
     const query = searchQuery.trim();
@@ -406,29 +430,51 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       .map((r) => r.concept);
   }, [concepts, searchQuery, isMini]);
 
-  // Path-finding: highlight the found path's nodes and the specific edges
-  // between consecutive path nodes (in either direction, since the search
-  // itself is undirected) -- takes priority over search/selection display.
-  useEffect(() => {
-    const cy = cyRef.current;
-    if (!cy || isMini) return;
-    if (!pathResult || pathResult.length === 0) return;
-    const nodeIds = new Set<string>([pathResult[0].fromId, ...pathResult.map((s) => s.toId)]);
-    const pathNodes = cy.nodes().filter((n) => nodeIds.has(n.id()));
-    const pathEdges = cy.edges().filter((e) => {
-      return pathResult.some(
-        (step) =>
-          (e.data('source') === step.fromId && e.data('target') === step.toId) ||
-          (e.data('source') === step.toId && e.data('target') === step.fromId)
-      );
-    });
+  function applyHighlight(cy: Core) {
     cy.elements().removeClass('selected connected faded path-edge');
-    const highlighted = pathNodes.union(pathEdges);
-    highlighted.addClass('connected');
-    pathEdges.addClass('path-edge');
-    cy.elements().not(highlighted).addClass('faded');
-    cy.fit(highlighted, 40);
-  }, [pathResult, isMini]);
+
+    const path = pathResult;
+    if (path && path.length > 0) {
+      const nodeIds = new Set<string>([path[0].fromId, ...path.map((s) => s.toId)]);
+      const pathNodes = cy.nodes().filter((n) => nodeIds.has(n.id()));
+      const pathEdges = cy.edges().filter((e) =>
+        path.some(
+          (step) =>
+            (e.data('source') === step.fromId && e.data('target') === step.toId) ||
+            (e.data('source') === step.toId && e.data('target') === step.fromId)
+        )
+      );
+      const highlighted = pathNodes.union(pathEdges);
+      highlighted.addClass('connected');
+      pathEdges.addClass('path-edge');
+      cy.elements().not(highlighted).addClass('faded');
+      cy.fit(highlighted, 40);
+      return;
+    }
+
+    const query = searchQuery.trim();
+    if (query) {
+      const matches = cy.nodes().filter((n) => {
+        const concept = conceptsById.get(n.id());
+        return concept ? conceptSearchScore(concept, query) > 0 : false;
+      });
+      if (matches.length === 0) {
+        cy.elements().addClass('faded');
+      } else {
+        matches.addClass('connected');
+        cy.elements().not(matches).addClass('faded');
+      }
+      return;
+    }
+
+    if (selectedId && cy.getElementById(selectedId).length > 0) {
+      const node = cy.getElementById(selectedId);
+      const neighborhood = node.closedNeighborhood();
+      node.addClass('selected');
+      neighborhood.addClass('connected');
+      cy.elements().not(neighborhood).addClass('faded');
+    }
+  }
 
   // The canvas and the list-view alternative both stay mounted permanently
   // (toggled with the `hidden` attribute, not conditional rendering) so the
@@ -461,21 +507,6 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     document.addEventListener('fullscreenchange', handler);
     return () => document.removeEventListener('fullscreenchange', handler);
   }, [isMini]);
-
-  function selectNode(cy: Core, id: string) {
-    setSelectedId(id);
-    const node = cy.getElementById(id);
-    const neighborhood = node.closedNeighborhood();
-    cy.elements().removeClass('selected connected faded path-edge');
-    node.addClass('selected');
-    neighborhood.addClass('connected');
-    cy.elements().not(neighborhood).addClass('faded');
-  }
-
-  function clearSelection(cy: Core) {
-    setSelectedId(null);
-    cy.elements().removeClass('selected connected faded path-edge');
-  }
 
   function toggleCategory(id: string) {
     setHiddenCategories((prev) => {
@@ -527,12 +558,10 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   }
 
   function clearPathFind() {
+    // The consolidated highlight effect (keyed on pathResult) reapplies
+    // whatever's next in priority -- search, then plain selection, then
+    // nothing -- once this clears.
     setPathResult(undefined);
-    const cy = cyRef.current;
-    if (cy) {
-      if (selectedId && cy.getElementById(selectedId).length > 0) selectNode(cy, selectedId);
-      else clearSelection(cy);
-    }
   }
 
   const controls = (
@@ -615,7 +644,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
                         if (!cy) return;
                         setSearchQuery('');
                         setPathResult(undefined);
-                        selectNode(cy, c.id);
+                        setSelectedId(c.id);
                         cy.fit(cy.getElementById(c.id).closedNeighborhood(), 60);
                       }}
                     >
@@ -686,22 +715,35 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
         </div>
 
         <h2 className="graph-sidebar-title">View</h2>
-        <ul className="view-selector">
-          {EXPLORER_VIEWS.map((view) => (
-            <li key={view.id}>
-              <label>
-                <input
-                  type="radio"
-                  name="explorer-view"
-                  checked={viewId === view.id}
-                  onChange={() => setViewId(view.id)}
-                />
-                {view.label}
-              </label>
-            </li>
-          ))}
-        </ul>
-        <p className="muted graph-hint">{EXPLORER_VIEWS.find((v) => v.id === viewId)?.description}</p>
+        {customConceptIds ? (
+          <div className="custom-view-banner">
+            <p>
+              Showing {customConceptIds.size} concepts from a <strong>Design</strong> recommendation.
+            </p>
+            <button type="button" className="link-button" onClick={() => setCustomConceptIds(null)}>
+              Clear, show named views
+            </button>
+          </div>
+        ) : (
+          <>
+            <ul className="view-selector">
+              {EXPLORER_VIEWS.map((view) => (
+                <li key={view.id}>
+                  <label>
+                    <input
+                      type="radio"
+                      name="explorer-view"
+                      checked={viewId === view.id}
+                      onChange={() => setViewId(view.id)}
+                    />
+                    {view.label}
+                  </label>
+                </li>
+              ))}
+            </ul>
+            <p className="muted graph-hint">{EXPLORER_VIEWS.find((v) => v.id === viewId)?.description}</p>
+          </>
+        )}
 
         <h2 className="graph-sidebar-title">Categories</h2>
         <ul className="category-filter">
