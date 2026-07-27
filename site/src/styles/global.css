@@ -594,7 +594,7 @@ pre {
   border-radius: 2px;
 }
 
-.shape-swatch-role {
+.shape-swatch-organization-role {
   border-radius: 0;
   transform: rotate(45deg);
   width: 0.6rem;
@@ -609,8 +609,25 @@ pre {
   clip-path: polygon(0% 0%, 80% 0%, 100% 50%, 80% 100%, 0% 100%);
 }
 
+.shape-swatch-grant-program {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.shape-swatch-grant {
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
 .shape-swatch-other {
   border-radius: 999px;
+}
+
+.graph-edge-label-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
 }
 
 .graph-hint {
@@ -633,6 +650,109 @@ pre {
 
 .graph-canvas-mini {
   height: 320px;
+}
+
+/* D3-rendered graph primitives -- node/edge appearance, selection and
+   filter states. Category fill color is set inline per node (it varies
+   per concept, drawn from the same 8-color palette as the sidebar
+   legend); everything else here is static CSS so light/dark switching
+   needs no JS re-render at all. */
+
+.graph-node-shape {
+  stroke: none;
+  cursor: pointer;
+}
+
+.graph-node-label {
+  font-size: 9px;
+  fill: var(--text-primary);
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  user-select: none;
+}
+
+.graph-node.selected .graph-node-shape,
+.graph-node.focus .graph-node-shape {
+  stroke: var(--text-primary);
+  stroke-width: 3px;
+}
+
+.graph-node.selected .graph-node-label,
+.graph-node.focus .graph-node-label {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.graph-node.connected {
+  opacity: 1;
+}
+
+.graph-node.faded {
+  opacity: 0.12;
+}
+
+.graph-edge {
+  stroke: var(--gridline);
+  stroke-width: 1.2;
+  opacity: 0.6;
+}
+
+.graph-edge.subclass-edge {
+  stroke-dasharray: 4 3;
+  opacity: 0.5;
+}
+
+.graph-edge.connected {
+  opacity: 1;
+}
+
+.graph-edge.faded {
+  opacity: 0.12;
+}
+
+.graph-edge.path-edge {
+  stroke: var(--brand-teal);
+  stroke-width: 3px;
+  opacity: 1;
+}
+
+.graph-arrowhead {
+  fill: var(--gridline);
+}
+
+.graph-edge-label {
+  font-size: 8px;
+  fill: var(--text-secondary);
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.graph-edge-label.visible {
+  opacity: 1;
+}
+
+.graph-edge-label.path-edge {
+  fill: var(--brand-teal);
+  font-weight: 600;
+}
+
+/* Same specificity/cascade-order gotcha as the story page's [hidden]
+   stage bars: these two rules must come after the display-setting rules
+   above (.graph-edge, .graph-edge-label) so a category/kind/relationship
+   filter actually hides the element instead of being silently overridden. */
+.graph-node.node-hidden,
+.graph-edge.edge-hidden,
+.graph-edge-label.edge-hidden {
+  display: none;
 }
 
 .graph-controls {

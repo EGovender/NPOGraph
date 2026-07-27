@@ -1,9 +1,28 @@
-import cytoscape, { type Core, type NodeSingular } from 'cytoscape';
+import { drag as d3drag } from 'd3-drag';
+import {
+  forceCollide,
+  forceLink,
+  forceManyBody,
+  forceRadial,
+  forceSimulation,
+  forceX,
+  forceY,
+  type Simulation,
+  type SimulationLinkDatum,
+  type SimulationNodeDatum,
+} from 'd3-force';
+import { select, type Selection } from 'd3-selection';
+import 'd3-transition'; // augments Selection with .transition() (used for smooth pan/zoom)
+import { zoom as d3zoom, zoomIdentity, type ZoomBehavior } from 'd3-zoom';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { CATEGORIES, getCategory } from '../data/categories';
 import { EXPLORER_VIEWS, resolveLifecycleView } from '../data/explorer-views';
 import { findShortestPath, seededGridPositions, type PathStep } from '../data/graph-utils';
+import { conceptKind, KIND_LEGEND, type ConceptKind } from '../data/graph-kinds';
+import { nodeShapePath } from '../data/graph-shapes';
+import { RELATIONSHIP_KIND_LABELS, relationshipKind, type RelationshipKind } from '../data/relationship-kinds';
 import { conceptSearchScore } from '../data/search';
+import { exportSvgAsPng } from '../data/svg-export';
 import {
   concepts as allConcepts,
   relationships as allRelationships,
@@ -13,61 +32,51 @@ import {
   getOutgoingRelationships,
   getPropertyGroups,
   getSubtypes,
-  type Concept,
 } from '../data/ontology';
 import PropertyInspector from './PropertyInspector';
 
-/**
- * Which of the four visual node kinds a concept renders as -- walks the
- * subClassOf chain so subtypes pick up their ancestor's kind (e.g. Funder ->
- * role, Philanthropic Intermediary -> organization), same rule as
- * getPropertiesForConcept/getOutgoingRelationships use for properties and
- * relationships. Concepts outside these four families (most of the ontology)
- * render as the default ellipse.
- */
-type ConceptKind = 'organization' | 'role' | 'fund' | 'arrangement' | 'other';
+const NODE_SIZE = 18;
+const FOCUS_SIZE = 26;
+const ARROW_GAP = 6;
+const LINK_DISTANCE = 60;
+const CHARGE_STRENGTH = -55;
 
-function conceptKind(concept: Concept, conceptsById: Map<string, Concept>): ConceptKind {
-  let current: Concept | undefined = concept;
-  const seen = new Set<string>();
-  while (current && !seen.has(current.id)) {
-    seen.add(current.id);
-    if (current.id === 'organization-role') return 'role';
-    if (current.id === 'fund') return 'fund';
-    if (current.id === 'philanthropic-arrangement') return 'arrangement';
-    if (current.id === 'organization') return 'organization';
-    current = current.subClassOf ? conceptsById.get(current.subClassOf) : undefined;
-  }
-  return 'other';
+interface SimNode extends SimulationNodeDatum {
+  id: string;
+  label: string;
+  category: string;
+  kind: ConceptKind;
 }
 
-const SHAPE_LEGEND: { kind: ConceptKind; label: string; shape: string }[] = [
-  { kind: 'organization', label: 'Organization', shape: 'round-rectangle' },
-  { kind: 'role', label: 'Organization Role', shape: 'diamond' },
-  { kind: 'fund', label: 'Fund', shape: 'hexagon' },
-  { kind: 'arrangement', label: 'Arrangement', shape: 'tag' },
-];
+interface SimLink extends SimulationLinkDatum<SimNode> {
+  id: string;
+  label: string;
+  relKind: RelationshipKind;
+  isSubclass: boolean;
+}
+
+function endpoint(n: string | number | SimNode): SimNode {
+  return n as SimNode;
+}
+
+interface GraphHandle {
+  simulation: Simulation<SimNode, SimLink>;
+  zoomBehavior: ZoomBehavior<SVGSVGElement, unknown>;
+  nodeSel: Selection<SVGGElement, SimNode, SVGGElement, unknown>;
+  edgeSel: Selection<SVGLineElement, SimLink, SVGGElement, unknown>;
+  edgeLabelSel: Selection<SVGTextElement, SimLink, SVGGElement, unknown>;
+  nodesById: Map<string, SimNode>;
+  links: SimLink[];
+}
 
 interface Props {
   base: string;
   /** 'full' (default): sidebar + canvas + property inspector, used on /explore.
-   *  'mini': canvas only, scoped to one concept's neighborhood, used embedded
+   *  'mini' canvas only, scoped to one concept's neighborhood, used embedded
    *  on a concept's own page -- clicking a neighbor navigates to its page. */
   mode?: 'full' | 'mini';
   /** Required in mini mode: which concept to center the neighborhood on. */
   focusConceptId?: string;
-}
-
-function useIsDark(): boolean {
-  const [isDark, setIsDark] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-color-scheme: dark)');
-    setIsDark(mq.matches);
-    const listener = (e: MediaQueryListEvent) => setIsDark(e.matches);
-    mq.addEventListener('change', listener);
-    return () => mq.removeEventListener('change', listener);
-  }, []);
-  return isDark;
 }
 
 /** Reads ?view=&concept=&q=&concepts= once on mount; full-mode only. */
@@ -88,11 +97,53 @@ function readInitialURLState() {
   };
 }
 
+/**
+ * Computes visible-node bounding box (optionally filtered by `predicate`)
+ * and animates the zoom transform to fit it, centered, in the SVG's current
+ * viewport size. Standalone (not a GraphHandle method) since it's called
+ * from several places -- the fit control button, path-find, search-result
+ * click, resize-on-show, and fullscreen toggle.
+ */
+function fitToBounds(
+  handle: GraphHandle,
+  svgEl: SVGSVGElement,
+  predicate?: (d: SimNode) => boolean,
+  padding = 30
+) {
+  const nodes = Array.from(handle.nodesById.values()).filter((n) => !predicate || predicate(n));
+  if (nodes.length === 0) return;
+  const xs = nodes.map((n) => n.x ?? 0);
+  const ys = nodes.map((n) => n.y ?? 0);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const bw = Math.max(maxX - minX, 1);
+  const bh = Math.max(maxY - minY, 1);
+  const rect = svgEl.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) {
+    // A small (e.g. mini-mode) graph can settle and fire the simulation's
+    // one-shot 'end' event before its embedding container has completed its
+    // first real layout pass, momentarily reporting a zero-size rect --
+    // retry on the next frame rather than silently giving up the only fit
+    // this graph will ever get.
+    requestAnimationFrame(() => fitToBounds(handle, svgEl, predicate, padding));
+    return;
+  }
+  const scale = Math.min((rect.width - padding * 2) / bw, (rect.height - padding * 2) / bh, 2.5);
+  const cx = (minX + maxX) / 2;
+  const cy = (minY + maxY) / 2;
+  const transform = zoomIdentity
+    .translate(rect.width / 2, rect.height / 2)
+    .scale(Math.max(scale, 0.05))
+    .translate(-cx, -cy);
+  select(svgEl).transition().duration(200).call(handle.zoomBehavior.transform, transform);
+}
+
 export default function GraphExplorer({ base, mode = 'full', focusConceptId }: Props) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
-  const cyRef = useRef<Core | null>(null);
-  const isDark = useIsDark();
+  const graphRef = useRef<GraphHandle | null>(null);
   const isMini = mode === 'mini';
 
   // All of these start at their SSR-safe defaults, matching the
@@ -104,6 +155,9 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   // whole tree. Restored after mount instead, in the effect below.
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hiddenCategories, setHiddenCategories] = useState<Set<string>>(new Set());
+  const [hiddenKinds, setHiddenKinds] = useState<Set<ConceptKind>>(new Set());
+  const [hiddenRelationshipKinds, setHiddenRelationshipKinds] = useState<Set<RelationshipKind>>(new Set());
+  const [showEdgeLabels, setShowEdgeLabels] = useState(isMini);
   const [viewId, setViewId] = useState<string>('full');
   const [customConceptIds, setCustomConceptIds] = useState<Set<string> | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -167,7 +221,9 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
 
   // Keep the URL in sync with view/concept/search so the current state is
   // shareable and survives a reload -- full mode only, replacing (not
-  // pushing) history so filtering doesn't spam the back button.
+  // pushing) history so filtering doesn't spam the back button. Kind and
+  // relationship-type filters are session-only, matching how the category
+  // filter already isn't URL-persisted either.
   useEffect(() => {
     if (isMini || typeof window === 'undefined') return;
     const params = new URLSearchParams();
@@ -185,239 +241,383 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
 
   // Build the graph once (or whenever the underlying element set changes).
   useEffect(() => {
-    if (!containerRef.current) return;
+    const svgEl = svgRef.current;
+    if (!svgEl) return;
 
-    const positions = isMini ? null : seededGridPositions(concepts.map((c) => c.id));
+    const nodes: SimNode[] = concepts.map((c) => ({
+      id: c.id,
+      label: c.label,
+      category: c.category,
+      kind: conceptKind(c, conceptsById),
+    }));
+    const seeded = seededGridPositions(nodes.map((n) => n.id));
+    for (const n of nodes) {
+      const pos = seeded.get(n.id)!;
+      n.x = pos.x;
+      n.y = pos.y;
+    }
+    if (isMini && focusConceptId) {
+      const focus = nodes.find((n) => n.id === focusConceptId);
+      if (focus) {
+        focus.fx = 0;
+        focus.fy = 0;
+        focus.x = 0;
+        focus.y = 0;
+      }
+    }
 
-    const elements = [
-      ...concepts.map((c) => ({
-        data: { id: c.id, label: c.label, category: c.category, kind: conceptKind(c, conceptsById) },
-        ...(positions ? { position: positions.get(c.id) } : {}),
-      })),
+    const links: SimLink[] = [
       ...relationships.map((r) => ({
-        data: { id: r.id, source: r.subject, target: r.object, label: r.label },
+        id: r.id,
+        source: r.subject,
+        target: r.object,
+        label: r.label,
+        relKind: relationshipKind(r.predicate),
+        isSubclass: false,
       })),
       ...concepts
         .filter((c) => c.subClassOf && neighborHas(concepts, c.subClassOf))
         .map((c) => ({
-          data: { id: `${c.id}-subclass-of`, source: c.id, target: c.subClassOf as string, label: 'is a' },
-          classes: 'subclass-edge',
+          id: `${c.id}-subclass-of`,
+          source: c.id,
+          target: c.subClassOf as string,
+          label: 'is a',
+          relKind: 'structural' as RelationshipKind,
+          isSubclass: true,
         })),
     ];
 
-    const cy = cytoscape({
-      container: containerRef.current,
-      elements,
-      minZoom: 0.2,
-      maxZoom: 2.5,
-      wheelSensitivity: 0.3,
-      style: [
-        {
-          selector: 'node',
-          style: {
-            'background-color': (ele: NodeSingular) => {
-              const cat = getCategory(ele.data('category'));
-              return isDark ? cat.colorDark : cat.colorLight;
-            },
-            label: 'data(label)',
-            color: isDark ? '#ffffff' : '#0b0b0b',
-            'font-size': 9,
-            'text-valign': 'bottom',
-            'text-margin-y': 4,
-            'text-background-color': isDark ? '#1a1a19' : '#fcfcfb',
-            'text-background-opacity': 0.85,
-            'text-background-padding': '1px',
-            width: 16,
-            height: 16,
-            'border-width': 0,
-            shape: 'ellipse',
-          },
-        },
-        {
-          selector: 'node[kind="organization"]',
-          style: { shape: 'round-rectangle' },
-        },
-        {
-          selector: 'node[kind="role"]',
-          style: { shape: 'diamond' },
-        },
-        {
-          selector: 'node[kind="fund"]',
-          style: { shape: 'hexagon' },
-        },
-        {
-          selector: 'node[kind="arrangement"]',
-          style: { shape: 'tag' },
-        },
-        {
-          selector: 'edge',
-          style: {
-            width: 1.2,
-            'line-color': isDark ? '#3a3a38' : '#d7d6cf',
-            'target-arrow-color': isDark ? '#3a3a38' : '#d7d6cf',
-            'target-arrow-shape': 'triangle',
-            'arrow-scale': 0.7,
-            'curve-style': 'bezier',
-            opacity: 0.6,
-          },
-        },
-        {
-          selector: 'edge.subclass-edge',
-          style: {
-            'line-style': 'dashed',
-            'target-arrow-shape': 'triangle-tee',
-            opacity: 0.5,
-          },
-        },
-        {
-          selector: 'node.selected',
-          style: {
-            'border-width': 3,
-            'border-color': isDark ? '#ffffff' : '#0b0b0b',
-            'font-size': 11,
-            'font-weight': 700,
-          },
-        },
-        {
-          selector: 'node.focus',
-          style: {
-            'border-width': 3,
-            'border-color': isDark ? '#ffffff' : '#0b0b0b',
-            width: 22,
-            height: 22,
-            'font-size': 11,
-            'font-weight': 700,
-          },
-        },
-        {
-          selector: 'edge.path-edge',
-          style: {
-            width: 3,
-            'line-color': isDark ? '#5fc3a8' : '#387866',
-            'target-arrow-color': isDark ? '#5fc3a8' : '#387866',
-            opacity: 1,
-          },
-        },
-        {
-          selector: '.connected',
-          style: { opacity: 1 },
-        },
-        {
-          selector: '.faded',
-          style: { opacity: 0.12 },
-        },
-        {
-          selector: '.category-hidden',
-          style: { display: 'none' },
-        },
-      ],
-      layout: isMini
-        ? { name: 'breadthfirst', fit: true, padding: 24, spacingFactor: 1.1, directed: false }
-        : ({
-            name: 'cose',
-            animate: false,
-            fit: true,
-            padding: 40,
-            // Seeded with deterministic starting positions (see
-            // seededGridPositions) so the force simulation -- the only thing
-            // that moves nodes from there -- has no remaining randomness,
-            // and the same element set settles into the same layout on
-            // every visit instead of a new random one each time.
-            randomize: false,
-            nodeRepulsion: () => 40000,
-            idealEdgeLength: () => 140,
-            nodeOverlap: 20,
-            componentSpacing: 120,
-            edgeElasticity: () => 100,
-            nestingFactor: 5,
-            gravity: 60,
-            numIter: 2000,
-          } as cytoscape.LayoutOptions),
-    });
+    const svg = select(svgEl);
+    svg.selectAll('*').remove();
 
-    if (isMini && focusConceptId) {
-      cy.getElementById(focusConceptId).addClass('focus');
-      cy.on('tap', 'node', (evt) => {
-        const id = evt.target.id();
-        if (id !== focusConceptId) window.location.href = `${base}concepts/${id}`;
-      });
+    const defs = svg.append('defs');
+    defs
+      .append('marker')
+      .attr('id', 'graph-arrow')
+      .attr('viewBox', '0 -5 10 10')
+      .attr('refX', 9)
+      .attr('refY', 0)
+      .attr('markerWidth', 7)
+      .attr('markerHeight', 7)
+      .attr('orient', 'auto')
+      .append('path')
+      .attr('d', 'M0,-5L10,0L0,5')
+      .attr('class', 'graph-arrowhead');
+
+    const viewport = svg.append('g').attr('class', 'graph-viewport');
+    const edgeLayer = viewport.append('g').attr('class', 'graph-edges');
+    const edgeLabelLayer = viewport.append('g').attr('class', 'graph-edge-labels');
+    const nodeLayer = viewport.append('g').attr('class', 'graph-nodes');
+
+    const simulation = forceSimulation<SimNode>(nodes)
+      .force(
+        'link',
+        forceLink<SimNode, SimLink>(links)
+          .id((d) => d.id)
+          .distance(LINK_DISTANCE)
+      )
+      // distanceMax caps how far apart two nodes still repel each other --
+      // without it, a sparsely-linked node (common here: many concepts have
+      // just one relationship) gets pushed outward by the cumulative pull
+      // of all 55 *other* nodes with nothing strong enough to reel it back
+      // in, and the whole layout drifts apart indefinitely instead of
+      // settling.
+      .force('charge', forceManyBody().strength(CHARGE_STRENGTH).distanceMax(260))
+      .force('collide', forceCollide(NODE_SIZE / 2 + 4));
+
+    if (isMini) {
+      simulation.force(
+        'radial',
+        forceRadial(90, 0, 0).strength((d) => (d as SimNode).id === focusConceptId ? 0 : 0.9)
+      );
     } else {
-      cy.on('tap', 'node', (evt) => {
-        setPathResult(undefined);
-        setSearchQuery('');
-        setSelectedId(evt.target.id());
-      });
-      cy.on('tap', (evt) => {
-        if (evt.target === cy) setSelectedId(null);
-      });
-      // Apply whatever selection/search/path state is already active (e.g.
-      // restored from the URL after mount) now that the graph exists to
-      // apply it to -- a freshly built cytoscape instance has no classes on
-      // it yet regardless of what the React state already says.
-      applyHighlight(cy);
+      // forceCenter alone only recenters the *average* position each tick --
+      // it doesn't pull individual nodes back, so it can't stop the drift
+      // above on its own. A weak per-node pull toward the origin is a real
+      // restoring force and keeps the settled layout compact.
+      simulation.force('x', forceX(0).strength(0.05));
+      simulation.force('y', forceY(0).strength(0.05));
     }
 
-    cyRef.current = cy;
-    return () => {
-      cy.destroy();
-      cyRef.current = null;
+    const edgeSel = edgeLayer
+      .selectAll<SVGLineElement, SimLink>('line')
+      .data(links, (d) => d.id)
+      .join('line')
+      .attr('class', (d) => `graph-edge${d.isSubclass ? ' subclass-edge' : ''}`)
+      .attr('data-rel-kind', (d) => d.relKind)
+      .attr('marker-end', 'url(#graph-arrow)');
+
+    const edgeLabelSel = edgeLabelLayer
+      .selectAll<SVGTextElement, SimLink>('text')
+      .data(links, (d) => d.id)
+      .join('text')
+      .attr('class', 'graph-edge-label')
+      .attr('text-anchor', 'middle')
+      .text((d) => d.label);
+
+    const dragBehavior = d3drag<SVGGElement, SimNode>()
+      .clickDistance(6)
+      .on('start', (event) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+      })
+      .on('drag', (event, d) => {
+        d.fx = event.x;
+        d.fy = event.y;
+      })
+      .on('end', (event) => {
+        if (!event.active) simulation.alphaTarget(0);
+        // fx/fy stay set -- the node stays exactly where it was dropped.
+      });
+
+    const nodeSel = nodeLayer
+      .selectAll<SVGGElement, SimNode>('g')
+      .data(nodes, (d) => d.id)
+      .join('g')
+      .attr('class', (d) => `graph-node${isMini && d.id === focusConceptId ? ' focus' : ''}`)
+      .attr('data-kind', (d) => d.kind)
+      .attr('data-category', (d) => d.category)
+      .call(dragBehavior);
+
+    nodeSel
+      .append('path')
+      .attr('class', 'graph-node-shape')
+      .attr('d', (d) => nodeShapePath(d.kind, isMini && d.id === focusConceptId ? FOCUS_SIZE : NODE_SIZE))
+      .style('fill', (d) => {
+        const cat = getCategory(d.category);
+        return `light-dark(${cat.colorLight}, ${cat.colorDark})`;
+      });
+
+    nodeSel
+      .append('text')
+      .attr('class', 'graph-node-label')
+      .attr('text-anchor', 'middle')
+      .attr('dy', (d) => (isMini && d.id === focusConceptId ? FOCUS_SIZE : NODE_SIZE) / 2 + 12)
+      .text((d) => d.label);
+
+    if (isMini && focusConceptId) {
+      nodeSel.on('click', (_event, d) => {
+        if (d.id !== focusConceptId) window.location.href = `${base}concepts/${d.id}`;
+      });
+    } else {
+      nodeSel.on('click', (_event, d) => {
+        setPathResult(undefined);
+        setSearchQuery('');
+        setSelectedId(d.id);
+      });
+      svg.on('click', (event: MouseEvent) => {
+        if (event.target === svgEl) setSelectedId(null);
+      });
+    }
+
+    function ticked() {
+      nodeSel.attr('transform', (d) => `translate(${d.x ?? 0},${d.y ?? 0})`);
+      edgeSel.each(function (d) {
+        const s = endpoint(d.source);
+        const t = endpoint(d.target);
+        const sx = s.x ?? 0;
+        const sy = s.y ?? 0;
+        const tx = t.x ?? 0;
+        const ty = t.y ?? 0;
+        const dx = tx - sx;
+        const dy = ty - sy;
+        const len = Math.hypot(dx, dy) || 1;
+        const ux = dx / len;
+        const uy = dy / len;
+        const sr = (isMini && s.id === focusConceptId ? FOCUS_SIZE : NODE_SIZE) / 2;
+        const tr = (isMini && t.id === focusConceptId ? FOCUS_SIZE : NODE_SIZE) / 2 + ARROW_GAP;
+        select(this)
+          .attr('x1', sx + ux * sr)
+          .attr('y1', sy + uy * sr)
+          .attr('x2', tx - ux * tr)
+          .attr('y2', ty - uy * tr);
+      });
+      edgeLabelSel
+        .attr('x', (d) => ((endpoint(d.source).x ?? 0) + (endpoint(d.target).x ?? 0)) / 2)
+        .attr('y', (d) => ((endpoint(d.source).y ?? 0) + (endpoint(d.target).y ?? 0)) / 2);
+    }
+    simulation.on('tick', ticked);
+
+    const zoomBehavior = d3zoom<SVGSVGElement, unknown>()
+      .scaleExtent([0.08, 2.5])
+      // Without this, a mousedown that starts on a node bubbles up and
+      // zoom's own pan-drag claims it before the node's d3.drag ever gets
+      // a chance -- the whole graph pans instead of the node moving. Wheel
+      // events are exempt so scrolling to zoom still works with the cursor
+      // over a node.
+      .filter((event) => event.type === 'wheel' || !(event.target as Element).closest('.graph-node'))
+      .on('zoom', (event) => viewport.attr('transform', event.transform.toString()));
+    svg.call(zoomBehavior);
+
+    graphRef.current = {
+      simulation,
+      zoomBehavior,
+      nodeSel,
+      edgeSel,
+      edgeLabelSel,
+      nodesById: new Map(nodes.map((n) => [n.id, n])),
+      links,
     };
-    // Rebuild only when the underlying data changes; theme/highlighting are
-    // handled by their own effects below.
+
+    // Fit immediately using the seeded starting positions, before the
+    // simulation has run a single tick -- guarantees the graph is framed
+    // reasonably from the very first paint instead of depending on the
+    // simulation's one-shot 'end' event, which fires on its own schedule
+    // (and, for a small/fast-converging graph, can fire before the
+    // embedding container has even completed its first layout pass).
+    fitToBounds(graphRef.current, svgEl, undefined, isMini ? 20 : 30);
+
+    // Once the layout has actually settled, fit again to the *real* result
+    // -- the seeded grid start positions above are not laid out to fill the
+    // viewport, so the immediate fit above is only ever a rough placeholder.
+    // Only once, though: dragging a node briefly reheats the simulation
+    // (see the drag handlers below), and re-fitting every time that reheat
+    // cools back down would yank the view out from under the user right
+    // after they let go of a node.
+    let hasAutoFitted = false;
+    function fitToSettledLayout() {
+      if (hasAutoFitted) return;
+      hasAutoFitted = true;
+      fitToBounds(graphRef.current!, svgEl!, undefined, isMini ? 20 : 30);
+    }
+    simulation.on('end', fitToSettledLayout);
+    // Backstop: a throttled tab (e.g. backgrounded during load) can delay
+    // requestAnimationFrame enough that 'end' takes far longer than usual to
+    // fire. Don't leave the graph on the rough placeholder fit indefinitely
+    // waiting for it -- fit to wherever things are after a bounded wait
+    // either way.
+    const initialFitTimeout = setTimeout(fitToSettledLayout, 2500);
+
+    // Apply whatever filter/selection/search/path state is already active
+    // (e.g. restored from the URL after mount, or simply left over from
+    // before a rebuild triggered by switching views) now that the graph
+    // exists to apply it to -- a freshly built graph has no classes on it
+    // yet regardless of what React state already says, and without this the
+    // filters/highlight visibly reset every time the concept/relationship
+    // set changes.
+    applyFilters();
+    applyHighlight();
+
+    return () => {
+      clearTimeout(initialFitTimeout);
+      simulation.stop();
+      svg.on('.zoom', null);
+      svg.selectAll('*').remove();
+      graphRef.current = null;
+    };
+    // Rebuild only when the underlying data changes; filters/highlighting
+    // are handled by their own effects below (and reapplied synchronously
+    // above right after every rebuild).
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [concepts, relationships]);
+  }, [concepts, relationships, isMini, focusConceptId]);
 
-  // Re-apply theme-dependent colors when the color scheme flips.
-  useEffect(() => {
-    const cy = cyRef.current;
-    if (!cy) return;
-    cy.style()
-      .selector('node')
-      .style({
-        'background-color': (ele: NodeSingular) => {
-          const cat = getCategory(ele.data('category'));
-          return isDark ? cat.colorDark : cat.colorLight;
-        },
-        color: isDark ? '#ffffff' : '#0b0b0b',
-      })
-      .selector('node.selected')
-      .style({ 'border-color': isDark ? '#ffffff' : '#0b0b0b' })
-      .selector('edge')
-      .style({
-        'line-color': isDark ? '#3a3a38' : '#d7d6cf',
-        'target-arrow-color': isDark ? '#3a3a38' : '#d7d6cf',
-      })
-      .update();
-  }, [isDark]);
+  // Applies the category, kind, and relationship-type filters -- hides
+  // nodes whose category or kind is unchecked, and hides edges whose
+  // relationship-type bucket is unchecked OR whose subject/object is
+  // itself hidden (avoiding dangling edge stubs pointing at invisible
+  // nodes).
+  function applyFilters() {
+    const handle = graphRef.current;
+    if (!handle) return;
+    const hiddenNodeIds = new Set<string>();
+    for (const n of handle.nodesById.values()) {
+      if (hiddenCategories.has(n.category) || hiddenKinds.has(n.kind)) hiddenNodeIds.add(n.id);
+    }
+    handle.nodeSel.classed('node-hidden', (d) => hiddenNodeIds.has(d.id));
+    const edgeHidden = (d: SimLink) => {
+      const s = endpoint(d.source).id;
+      const t = endpoint(d.target).id;
+      return hiddenNodeIds.has(s) || hiddenNodeIds.has(t) || hiddenRelationshipKinds.has(d.relKind);
+    };
+    handle.edgeSel.classed('edge-hidden', edgeHidden);
+    handle.edgeLabelSel.classed('edge-hidden', edgeHidden);
+  }
 
-  // Apply category visibility filter.
   useEffect(() => {
-    const cy = cyRef.current;
-    if (!cy) return;
-    cy.nodes().forEach((n) => {
-      n.toggleClass('category-hidden', hiddenCategories.has(n.data('category')));
-    });
-  }, [hiddenCategories]);
+    applyFilters();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hiddenCategories, hiddenKinds, hiddenRelationshipKinds]);
 
   // Applies whichever of path-find / search / plain selection is active, in
   // that priority order, to the current graph. This is the ONLY place that
-  // touches the selected/connected/faded/path-edge classes -- previously
-  // three separate effects each independently decided when to clear or set
-  // them based on their own stale closures, which meant they could disagree
-  // about (and clobber) each other's outcome when several fired in the same
-  // React commit (e.g. restoring a selection from the URL on mount, while a
-  // freshly-mounted search effect's empty-query branch was still reasoning
-  // from the pre-restoration value of selectedId). Consolidating into one
-  // idempotent function -- called here on every relevant state change, and
-  // again directly from the graph-build effect after a rebuild -- removes
-  // that race entirely: there is exactly one function that decides the
-  // outcome, and it always recomputes from the current values.
+  // touches the selected/connected/faded/path-edge classes -- see the
+  // matching comment in the Cytoscape-era version of this component for why
+  // that consolidation matters (a same-commit race between several
+  // independent effects each deciding the outcome from their own stale
+  // closures). Also decides edge-label visibility, since that's driven by
+  // the exact same connected/path/selection state.
+  function applyHighlight() {
+    const handle = graphRef.current;
+    if (!handle || isMini) return;
+    const { nodeSel, edgeSel, edgeLabelSel } = handle;
+    nodeSel.classed('selected', false).classed('connected', false).classed('faded', false);
+    edgeSel.classed('connected', false).classed('faded', false).classed('path-edge', false);
+    edgeLabelSel.classed('visible', false).classed('path-edge', false);
+
+    const path = pathResult;
+    if (path && path.length > 0) {
+      const nodeIds = new Set<string>([path[0].fromId, ...path.map((s) => s.toId)]);
+      const pathEdgeIds = new Set(
+        handle.links
+          .filter((l) =>
+            path.some(
+              (step) =>
+                (endpoint(l.source).id === step.fromId && endpoint(l.target).id === step.toId) ||
+                (endpoint(l.source).id === step.toId && endpoint(l.target).id === step.fromId)
+            )
+          )
+          .map((l) => l.id)
+      );
+      nodeSel.classed('connected', (d) => nodeIds.has(d.id));
+      nodeSel.classed('faded', (d) => !nodeIds.has(d.id));
+      edgeSel.classed('path-edge connected', (d) => pathEdgeIds.has(d.id));
+      edgeSel.classed('faded', (d) => !pathEdgeIds.has(d.id));
+      edgeLabelSel.classed('visible path-edge', (d) => pathEdgeIds.has(d.id));
+      fitToBounds(handle, svgRef.current!, (n) => nodeIds.has(n.id), 40);
+    } else {
+      const query = searchQuery.trim();
+      if (query) {
+        const matchIds = new Set(
+          concepts.filter((c) => conceptSearchScore(c, query) > 0).map((c) => c.id)
+        );
+        if (matchIds.size === 0) {
+          nodeSel.classed('faded', true);
+          edgeSel.classed('faded', true);
+        } else {
+          nodeSel.classed('connected', (d) => matchIds.has(d.id));
+          nodeSel.classed('faded', (d) => !matchIds.has(d.id));
+          // Matches the Cytoscape-era behavior: search dims every edge
+          // uniformly (only matching nodes are highlighted), it doesn't
+          // trace connections between matches.
+          edgeSel.classed('faded', true);
+        }
+      } else if (selectedId && handle.nodesById.has(selectedId)) {
+        const neighborIds = new Set<string>([selectedId]);
+        const incidentEdgeIds = new Set<string>();
+        for (const l of handle.links) {
+          const s = endpoint(l.source).id;
+          const t = endpoint(l.target).id;
+          if (s === selectedId || t === selectedId) {
+            incidentEdgeIds.add(l.id);
+            neighborIds.add(s);
+            neighborIds.add(t);
+          }
+        }
+        nodeSel.classed('selected', (d) => d.id === selectedId);
+        nodeSel.classed('connected', (d) => neighborIds.has(d.id));
+        nodeSel.classed('faded', (d) => !neighborIds.has(d.id));
+        edgeSel.classed('connected', (d) => incidentEdgeIds.has(d.id));
+        edgeSel.classed('faded', (d) => !incidentEdgeIds.has(d.id));
+        edgeLabelSel.classed('visible', (d) => incidentEdgeIds.has(d.id));
+      }
+    }
+
+    if (showEdgeLabels) edgeLabelSel.classed('visible', true);
+  }
+
   useEffect(() => {
-    const cy = cyRef.current;
-    if (!cy || isMini) return;
-    applyHighlight(cy);
+    applyHighlight();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedId, searchQuery, pathResult, isMini]);
+  }, [selectedId, searchQuery, pathResult, isMini, showEdgeLabels]);
 
   const searchResults = useMemo(() => {
     const query = searchQuery.trim();
@@ -430,82 +630,39 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       .map((r) => r.concept);
   }, [concepts, searchQuery, isMini]);
 
-  function applyHighlight(cy: Core) {
-    cy.elements().removeClass('selected connected faded path-edge');
-
-    const path = pathResult;
-    if (path && path.length > 0) {
-      const nodeIds = new Set<string>([path[0].fromId, ...path.map((s) => s.toId)]);
-      const pathNodes = cy.nodes().filter((n) => nodeIds.has(n.id()));
-      const pathEdges = cy.edges().filter((e) =>
-        path.some(
-          (step) =>
-            (e.data('source') === step.fromId && e.data('target') === step.toId) ||
-            (e.data('source') === step.toId && e.data('target') === step.fromId)
-        )
-      );
-      const highlighted = pathNodes.union(pathEdges);
-      highlighted.addClass('connected');
-      pathEdges.addClass('path-edge');
-      cy.elements().not(highlighted).addClass('faded');
-      cy.fit(highlighted, 40);
-      return;
-    }
-
-    const query = searchQuery.trim();
-    if (query) {
-      const matches = cy.nodes().filter((n) => {
-        const concept = conceptsById.get(n.id());
-        return concept ? conceptSearchScore(concept, query) > 0 : false;
-      });
-      if (matches.length === 0) {
-        cy.elements().addClass('faded');
-      } else {
-        matches.addClass('connected');
-        cy.elements().not(matches).addClass('faded');
-      }
-      return;
-    }
-
-    if (selectedId && cy.getElementById(selectedId).length > 0) {
-      const node = cy.getElementById(selectedId);
-      const neighborhood = node.closedNeighborhood();
-      node.addClass('selected');
-      neighborhood.addClass('connected');
-      cy.elements().not(neighborhood).addClass('faded');
-    }
-  }
-
   // The canvas and the list-view alternative both stay mounted permanently
   // (toggled with the `hidden` attribute, not conditional rendering) so the
-  // cytoscape instance is never destroyed/orphaned by switching views --
-  // but a canvas that was hidden (display:none) reports zero size, so it
-  // needs an explicit resize+refit once it becomes visible again.
+  // simulation is never destroyed/orphaned by switching views -- but a
+  // canvas that was hidden (display:none) reports zero size, so it needs an
+  // explicit re-fit once it becomes visible again. Skips the very first run
+  // (mount): the build effect's own simulation 'end' handler already does
+  // the initial fit once the layout has actually settled, and firing this
+  // one too on mount would re-fit to the raw, not-yet-simulated seeded grid
+  // positions instead.
+  const skippedInitialResizeFit = useRef(false);
   useEffect(() => {
     if (isMini || showList) return;
-    const cy = cyRef.current;
-    if (!cy) return;
-    const id = setTimeout(() => {
-      cy.resize();
-      cy.fit(undefined, 30);
-    }, 0);
+    if (!skippedInitialResizeFit.current) {
+      skippedInitialResizeFit.current = true;
+      return;
+    }
+    const id = setTimeout(() => fitToView(), 0);
     return () => clearTimeout(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMini, showList]);
 
-  // Fullscreen: track native fullscreen state and resize/refit cytoscape
-  // once the container's dimensions actually change.
+  // Fullscreen: track native fullscreen state and re-fit once the
+  // container's dimensions actually change.
   useEffect(() => {
     if (isMini) return;
     const handler = () => {
       const active = document.fullscreenElement === wrapRef.current;
       setIsFullscreen(active);
-      setTimeout(() => {
-        cyRef.current?.resize();
-        cyRef.current?.fit(undefined, 30);
-      }, 50);
+      setTimeout(() => fitToView(), 50);
     };
     document.addEventListener('fullscreenchange', handler);
     return () => document.removeEventListener('fullscreenchange', handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMini]);
 
   function toggleCategory(id: string) {
@@ -517,21 +674,57 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     });
   }
 
+  function toggleKind(kind: ConceptKind) {
+    setHiddenKinds((prev) => {
+      const next = new Set(prev);
+      if (next.has(kind)) next.delete(kind);
+      else next.add(kind);
+      return next;
+    });
+  }
+
+  function toggleRelationshipKind(kind: RelationshipKind) {
+    setHiddenRelationshipKinds((prev) => {
+      const next = new Set(prev);
+      if (next.has(kind)) next.delete(kind);
+      else next.add(kind);
+      return next;
+    });
+  }
+
   function zoomBy(factor: number) {
-    const cy = cyRef.current;
-    if (!cy) return;
-    cy.zoom({ level: cy.zoom() * factor, renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
+    const handle = graphRef.current;
+    const svgEl = svgRef.current;
+    if (!handle || !svgEl) return;
+    select(svgEl).transition().duration(150).call(handle.zoomBehavior.scaleBy, factor);
   }
 
   function fitToView() {
-    cyRef.current?.fit(undefined, 30);
+    const handle = graphRef.current;
+    const svgEl = svgRef.current;
+    if (!handle || !svgEl) return;
+    fitToBounds(handle, svgEl);
   }
 
-  function exportImage() {
-    const cy = cyRef.current;
-    if (!cy) return;
-    const bg = isDark ? '#0d0d0d' : '#f9f9f7';
-    const dataUrl = cy.png({ full: true, scale: 2, bg });
+  function fitToNeighborhood(conceptId: string) {
+    const handle = graphRef.current;
+    const svgEl = svgRef.current;
+    if (!handle || !svgEl) return;
+    const neighborIds = new Set<string>([conceptId]);
+    for (const l of handle.links) {
+      const s = endpoint(l.source).id;
+      const t = endpoint(l.target).id;
+      if (s === conceptId) neighborIds.add(t);
+      if (t === conceptId) neighborIds.add(s);
+    }
+    fitToBounds(handle, svgEl, (n) => neighborIds.has(n.id), 60);
+  }
+
+  async function exportImage() {
+    const svgEl = svgRef.current;
+    if (!svgEl) return;
+    const background = getComputedStyle(svgEl).backgroundColor || '#ffffff';
+    const dataUrl = await exportSvgAsPng(svgEl, { background, scale: 2 });
     const link = document.createElement('a');
     link.href = dataUrl;
     link.download = `npograph-${viewId}-${new Date().toISOString().slice(0, 10)}.png`;
@@ -596,7 +789,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   if (isMini) {
     return (
       <div className="graph-canvas-wrap graph-canvas-mini">
-        <div className="graph-canvas" ref={containerRef} role="img" aria-label={`Neighborhood graph for ${focusConceptId}`} />
+        <svg className="graph-canvas" ref={svgRef} role="img" aria-label={`Neighborhood graph for ${focusConceptId}`} />
         {controls}
       </div>
     );
@@ -607,6 +800,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
 
   const visibleListConcepts = concepts
     .filter((c) => !hiddenCategories.has(c.category))
+    .filter((c) => !hiddenKinds.has(conceptKind(c, conceptsById)))
     .filter((c) => !searchQuery.trim() || conceptSearchScore(c, searchQuery.trim()) > 0)
     .sort((a, b) => a.label.localeCompare(b.label));
   const visibleListIds = new Set(visibleListConcepts.map((c) => c.id));
@@ -640,12 +834,10 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
                       type="button"
                       className="search-result-button"
                       onClick={() => {
-                        const cy = cyRef.current;
-                        if (!cy) return;
                         setSearchQuery('');
                         setPathResult(undefined);
                         setSelectedId(c.id);
-                        cy.fit(cy.getElementById(c.id).closedNeighborhood(), 60);
+                        fitToNeighborhood(c.id);
                       }}
                     >
                       <span
@@ -765,25 +957,60 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
           ))}
         </ul>
 
+        <h2 className="graph-sidebar-title">Kind</h2>
+        <ul className="category-filter">
+          {KIND_LEGEND.map((entry) => (
+            <li key={entry.kind}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={!hiddenKinds.has(entry.kind)}
+                  onChange={() => toggleKind(entry.kind)}
+                />
+                <span className={`shape-swatch shape-swatch-${entry.kind}`} />
+                {entry.label}
+              </label>
+            </li>
+          ))}
+        </ul>
+
+        <h2 className="graph-sidebar-title">Relationship type</h2>
+        <ul className="category-filter">
+          {(Object.keys(RELATIONSHIP_KIND_LABELS) as RelationshipKind[]).map((kind) => (
+            <li key={kind}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={!hiddenRelationshipKinds.has(kind)}
+                  onChange={() => toggleRelationshipKind(kind)}
+                />
+                {RELATIONSHIP_KIND_LABELS[kind]}
+              </label>
+            </li>
+          ))}
+        </ul>
+        <label className="graph-edge-label-toggle">
+          <input type="checkbox" checked={showEdgeLabels} onChange={() => setShowEdgeLabels((v) => !v)} />
+          Show all relationship labels
+        </label>
+
         <h2 className="graph-sidebar-title">Shapes</h2>
         <ul className="shape-legend">
-          {SHAPE_LEGEND.map((entry) => (
+          {KIND_LEGEND.map((entry) => (
             <li key={entry.kind}>
               <span className={`shape-swatch shape-swatch-${entry.kind}`} />
               {entry.label}
             </li>
           ))}
-          <li>
-            <span className="shape-swatch shape-swatch-other" />
-            Everything else
-          </li>
         </ul>
 
         <button type="button" className="home-cta graph-list-toggle" onClick={() => setShowList((v) => !v)}>
           {showList ? 'Show graph' : 'Show as list (keyboard-accessible)'}
         </button>
 
-        <p className="muted graph-hint">Click a node to see its details. Click the background to clear.</p>
+        <p className="muted graph-hint">
+          Click a node to see its details. Click the background to clear. Drag to reposition, scroll to zoom.
+        </p>
       </aside>
 
       <div className="graph-canvas-wrap graph-list-view" hidden={!showList}>
@@ -822,7 +1049,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       </div>
 
       <div className="graph-canvas-wrap" ref={wrapRef} hidden={showList}>
-        <div className="graph-canvas" ref={containerRef} role="img" aria-label="NPOGraph concept relationship graph" />
+        <svg className="graph-canvas" ref={svgRef} role="img" aria-label="NPOGraph concept relationship graph" />
         {controls}
       </div>
 

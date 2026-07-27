@@ -1,6 +1,6 @@
 // Pure helpers for GraphExplorer.tsx, kept separate from the component so
 // the path-finding and layout-seeding logic can be reasoned about (and
-// tested) independently of React/cytoscape wiring.
+// tested) independently of React/D3 wiring.
 import type { Concept, Relationship } from './ontology';
 
 export interface PathStep {
