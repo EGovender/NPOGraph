@@ -1091,6 +1091,56 @@ pre {
   margin-top: 0.6rem;
 }
 
+.design-section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.design-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.05rem;
+  margin: 0.5rem 0 0;
+}
+
+.design-question-help {
+  margin: 0.35rem 0.2rem 0;
+  font-size: 0.82rem;
+}
+
+.design-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.75rem 0;
+}
+
+.design-actions .home-cta {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.design-actions-export {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.custom-view-banner {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand-teal);
+  border-radius: 6px;
+  background: var(--page);
+  font-size: 0.85rem;
+}
+
+.custom-view-banner p {
+  margin: 0 0 0.4rem;
+}
+
 @media (max-width: 800px) {
   .design-wizard {
     grid-template-columns: 1fr;
