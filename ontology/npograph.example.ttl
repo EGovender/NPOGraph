@@ -73,6 +73,12 @@ ex:ocf-subgrant-to-kelp-forest a owl:NamedIndividual,
     nporel:awardedTo ex:kelp-forest-collective ;
     nporel:managedBy ex:ocean-conservation-fund-org .
 
+ex:tidal-marketing-collective-org a owl:NamedIndividual,
+        npo:organization ;
+    rdfs:label "Tidal Marketing Collective" ;
+    npoprop:organization-operating-status "active"^^xsd:string ;
+    nporel:playsRole ex:tidal-marketing-contractor-role .
+
 ex:tidewater-restoration-award a owl:NamedIndividual,
         npo:award ;
     rdfs:label "Award for Tidewater Youth Ocean Corps Restoration Work" ;
@@ -232,7 +238,8 @@ ex:ocean-conservation-fund-fiscal-sponsor-role a owl:NamedIndividual,
         npo:fiscal-sponsor ;
     rdfs:label "Ocean Conservation Fund (as Fiscal Sponsor)" ;
     npoprop:role-effective-from "2026-05-01"^^xsd:date ;
-    npoprop:role-scope "Tidewater Youth Ocean Corps sponsorship"^^xsd:string ;
+    npoprop:role-notes "Scoped to Tidewater Youth Ocean Corps sponsorship."^^xsd:string ;
+    npoprop:role-scope "project-specific"^^xsd:string ;
     npoprop:role-status "active"^^xsd:string ;
     nporel:appliesWithin ex:tidewater-sponsorship-arrangement .
 
@@ -240,7 +247,8 @@ ex:ocean-conservation-fund-intermediary-role a owl:NamedIndividual,
         npo:funding-intermediary-role ;
     rdfs:label "Ocean Conservation Fund (as Funding Intermediary)" ;
     npoprop:role-effective-from "2026-06-01"^^xsd:date ;
-    npoprop:role-scope "National Ocean Legacy regranting program"^^xsd:string ;
+    npoprop:role-notes "Scoped to the National Ocean Legacy regranting program."^^xsd:string ;
+    npoprop:role-scope "arrangement-specific"^^xsd:string ;
     npoprop:role-status "active"^^xsd:string ;
     nporel:appliesWithin ex:ocean-legacy-regranting-program .
 
@@ -260,6 +268,15 @@ ex:pacific-coastal-trust-fund a owl:NamedIndividual,
     npoprop:fund-restriction-type "unrestricted"^^xsd:string ;
     npoprop:fund-status "active"^^xsd:string ;
     nporel:heldBy ex:pacific-coastal-trust .
+
+ex:tidal-marketing-contractor-role a owl:NamedIndividual,
+        npo:contractor ;
+    rdfs:label "Tidal Marketing Collective (as Contractor)" ;
+    npoprop:role-effective-from "2026-04-01"^^xsd:date ;
+    npoprop:role-notes "Engaged to produce Ocean Conservation Fund's annual impact report."^^xsd:string ;
+    npoprop:role-scope "agreement-specific"^^xsd:string ;
+    npoprop:role-status "active"^^xsd:string ;
+    nporel:organizationRoleAppliesWithinOrganization ex:ocean-conservation-fund-org .
 
 ex:tidewater-sponsorship-arrangement a owl:NamedIndividual,
         npo:fiscal-sponsorship-arrangement ;

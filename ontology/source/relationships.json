@@ -99,6 +99,15 @@
     "docRef": "docs/08-organizations-roles-and-arrangements.md"
   },
   {
+    "id": "rel-organization-role-applies-within-organization",
+    "subject": "organization-role",
+    "predicate": "organizationRoleAppliesWithinOrganization",
+    "object": "organization",
+    "label": "applies within",
+    "description": "An Organization Role can also be scoped directly to an Organization rather than an Arrangement -- e.g. a Contractor, Vendor, Service Provider, Employer, or Partner role is naturally scoped to which organization it relates to, not to a Philanthropic Arrangement. A distinct predicate from rel-organization-role-applies-within for the same reason Phase 3.7 Milestone 1's Person relationships needed distinct names: the generator requires every relationship predicate to be globally unique, so one predicate can't have two different declared object concepts. Broadening this into a true Role-appliesWithin-Context union (Award, Application, Agreement, Fund, Grant Program, Funding Opportunity, Project, Review, Payment, Decision, per the Phase 3.7 roadmap) is deferred until real worked-example data actually needs one of those specific contexts -- adding all of them speculatively now, each as its own distinct predicate, would be exactly the kind of premature abstraction this project avoids.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+  },
+  {
     "id": "rel-organization-has-legal-form",
     "subject": "organization",
     "predicate": "hasLegalForm",

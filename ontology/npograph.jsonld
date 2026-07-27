@@ -174,6 +174,15 @@
       "subClassOf": "npo:person-role"
     },
     {
+      "id": "npo:contractor",
+      "type": "owl:Class",
+      "label": "Contractor",
+      "definition": "The role an organization occupies when it is bound by a contract to deliver a specific, defined piece of work for another organization.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:organization-role"
+    },
+    {
       "id": "npo:decision",
       "type": "owl:Class",
       "label": "Decision",
@@ -239,6 +248,15 @@
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
+    },
+    {
+      "id": "npo:employer",
+      "type": "owl:Class",
+      "label": "Employer",
+      "definition": "The role an organization occupies when it employs a person -- the organization-side counterpart to that person's Employee role.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:organization-role"
     },
     {
       "id": "npo:evaluation",
@@ -459,6 +477,15 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
+      "id": "npo:partner",
+      "type": "owl:Class",
+      "label": "Partner",
+      "definition": "The role an organization occupies when it collaborates with another organization on shared work, in a relationship not adequately described as one party purchasing from or providing a service to the other.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:organization-role"
+    },
+    {
       "id": "npo:payment",
       "type": "owl:Class",
       "label": "Payment",
@@ -597,6 +624,15 @@
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
+      "id": "npo:service-provider",
+      "type": "owl:Class",
+      "label": "Service Provider",
+      "definition": "The role an organization occupies when it provides an ongoing operational service to another organization -- broader and less transactional than a single Contractor engagement or Vendor purchase.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:organization-role"
+    },
+    {
       "id": "npo:site-visit",
       "type": "owl:Class",
       "label": "Site Visit",
@@ -612,6 +648,15 @@
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
       "legalNote": "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement."
+    },
+    {
+      "id": "npo:sponsoring-organization",
+      "type": "owl:Class",
+      "label": "Sponsoring Organization",
+      "definition": "The role an organization occupies when it holds and administers a Fund on behalf of the fund's donor or benefactors, distinct from acting as a Fiscal Sponsor for a specific project.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:organization-role"
     },
     {
       "id": "npo:terms-and-conditions",
@@ -636,6 +681,15 @@
       "definition": "Funding a grantee may use at its discretion in support of its general mission.",
       "category": "award-and-agreement",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+    },
+    {
+      "id": "npo:vendor",
+      "type": "owl:Class",
+      "label": "Vendor",
+      "definition": "The role an organization occupies when it is the source from which another organization purchases standard goods or services, without a defined-work contract the way a Contractor has.",
+      "category": "organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:organization-role"
     },
     {
       "id": "nporel:modifiesGrantAgreement",
@@ -1067,6 +1121,15 @@
       "comment": "An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements.",
       "domain": "npo:organization-role",
       "range": "npo:philanthropic-arrangement",
+      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
+      "id": "nporel:organizationRoleAppliesWithinOrganization",
+      "type": "owl:ObjectProperty",
+      "label": "applies within",
+      "comment": "An Organization Role can also be scoped directly to an Organization rather than an Arrangement -- e.g. a Contractor, Vendor, Service Provider, Employer, or Partner role is naturally scoped to which organization it relates to, not to a Philanthropic Arrangement. A distinct predicate from rel-organization-role-applies-within for the same reason Phase 3.7 Milestone 1's Person relationships needed distinct names: the generator requires every relationship predicate to be globally unique, so one predicate can't have two different declared object concepts. Broadening this into a true Role-appliesWithin-Context union (Award, Application, Agreement, Fund, Grant Program, Funding Opportunity, Project, Review, Payment, Decision, per the Phase 3.7 roadmap) is deferred until real worked-example data actually needs one of those specific contexts -- adding all of them speculatively now, each as its own distinct predicate, would be exactly the kind of premature abstraction this project avoids.",
+      "domain": "npo:organization-role",
+      "range": "npo:organization",
       "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
@@ -2147,12 +2210,21 @@
       "id": "npoprop:role-scope",
       "type": "owl:DatatypeProperty",
       "label": "Scope",
-      "comment": "How narrowly this role occupancy is scoped (e.g. organization-wide vs. specific to one program, project, award, agreement, or arrangement). Free text until Milestone 2 makes it a controlled value alongside the broader role-context relationship.",
+      "comment": "How narrowly this role occupancy is scoped. A plain inline enum until Phase 3.7 Milestone 3's reference-data framework exists, at which point this becomes a governed vocabulary instead.",
       "domain": "npo:role",
       "range": "xsd:string",
       "group": "governance",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "allowedValues": [
+        "organization-wide",
+        "program-specific",
+        "project-specific",
+        "award-specific",
+        "agreement-specific",
+        "arrangement-specific",
+        "transaction-specific"
+      ]
     },
     {
       "id": "npoprop:role-status",

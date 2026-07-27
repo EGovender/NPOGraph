@@ -929,11 +929,11 @@
     "name": "scope",
     "label": "Scope",
     "group": "governance",
-    "datatype": "string",
+    "datatype": "enum",
     "required": false,
     "cardinality": "one",
-    "allowedValues": null,
-    "description": "How narrowly this role occupancy is scoped (e.g. organization-wide vs. specific to one program, project, award, agreement, or arrangement). Free text until Milestone 2 makes it a controlled value alongside the broader role-context relationship."
+    "allowedValues": ["organization-wide", "program-specific", "project-specific", "award-specific", "agreement-specific", "arrangement-specific", "transaction-specific"],
+    "description": "How narrowly this role occupancy is scoped. A plain inline enum until Phase 3.7 Milestone 3's reference-data framework exists, at which point this becomes a governed vocabulary instead."
   },
   {
     "id": "role-notes",

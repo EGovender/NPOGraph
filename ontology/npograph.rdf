@@ -105,6 +105,14 @@
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/person-role" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/contractor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Contractor</rdfs:label>
+    <skos:definition>The role an organization occupies when it is bound by a contract to deliver a specific, defined piece of work for another organization.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/decision">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Decision</rdfs:label>
@@ -162,6 +170,14 @@
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/person-role" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/employer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Employer</rdfs:label>
+    <skos:definition>The role an organization occupies when it employs a person -- the organization-side counterpart to that person's Employee role.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/evaluation">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -349,6 +365,14 @@
     <npo:category>outcomes-and-closeout</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/partner">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Partner</rdfs:label>
+    <skos:definition>The role an organization occupies when it collaborates with another organization on shared work, in a relationship not adequately described as one party purchasing from or providing a service to the other.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/payment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Payment</rdfs:label>
@@ -469,6 +493,14 @@
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/service-provider">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Service Provider</rdfs:label>
+    <skos:definition>The role an organization occupies when it provides an ongoing operational service to another organization -- broader and less transactional than a single Contractor engagement or Vendor purchase.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/site-visit">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Site Visit</rdfs:label>
@@ -483,6 +515,14 @@
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <npo:legalNote>Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement.</npo:legalNote>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/sponsoring-organization">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Sponsoring Organization</rdfs:label>
+    <skos:definition>The role an organization occupies when it holds and administers a Fund on behalf of the fund's donor or benefactors, distinct from acting as a Fiscal Sponsor for a specific project.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/terms-and-conditions">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -504,6 +544,14 @@
     <skos:definition>Funding a grantee may use at its discretion in support of its general mission.</skos:definition>
     <npo:category>award-and-agreement</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/vendor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Vendor</rdfs:label>
+    <skos:definition>The role an organization occupies when it is the source from which another organization purchases standard goods or services, without a defined-work contract the way a Contractor has.</skos:definition>
+    <npo:category>organizational-entities</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/modifiesGrantAgreement">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -887,6 +935,14 @@
     <rdfs:comment>An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements.</rdfs:comment>
     <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
     <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/philanthropic-arrangement" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/organizationRoleAppliesWithinOrganization">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>applies within</rdfs:label>
+    <rdfs:comment>An Organization Role can also be scoped directly to an Organization rather than an Arrangement -- e.g. a Contractor, Vendor, Service Provider, Employer, or Partner role is naturally scoped to which organization it relates to, not to a Philanthropic Arrangement. A distinct predicate from rel-organization-role-applies-within for the same reason Phase 3.7 Milestone 1's Person relationships needed distinct names: the generator requires every relationship predicate to be globally unique, so one predicate can't have two different declared object concepts. Broadening this into a true Role-appliesWithin-Context union (Award, Application, Agreement, Fund, Grant Program, Funding Opportunity, Project, Review, Payment, Decision, per the Phase 3.7 roadmap) is deferred until real worked-example data actually needs one of those specific contexts -- adding all of them speculatively now, each as its own distinct predicate, would be exactly the kind of premature abstraction this project avoids.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization-role" />
+    <rdfs:range rdf:resource="https://egovender.github.io/NPOGraph/ontology/organization" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/relations/brokenIntoInstallment">
@@ -1820,12 +1876,19 @@
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/role-scope">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
     <rdfs:label>Scope</rdfs:label>
-    <rdfs:comment>How narrowly this role occupancy is scoped (e.g. organization-wide vs. specific to one program, project, award, agreement, or arrangement). Free text until Milestone 2 makes it a controlled value alongside the broader role-context relationship.</rdfs:comment>
+    <rdfs:comment>How narrowly this role occupancy is scoped. A plain inline enum until Phase 3.7 Milestone 3's reference-data framework exists, at which point this becomes a governed vocabulary instead.</rdfs:comment>
     <rdfs:domain rdf:resource="https://egovender.github.io/NPOGraph/ontology/role" />
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
     <npo:group>governance</npo:group>
     <npo:required>false</npo:required>
     <npo:cardinality>one</npo:cardinality>
+    <npo:allowedValue>organization-wide</npo:allowedValue>
+    <npo:allowedValue>program-specific</npo:allowedValue>
+    <npo:allowedValue>project-specific</npo:allowedValue>
+    <npo:allowedValue>award-specific</npo:allowedValue>
+    <npo:allowedValue>agreement-specific</npo:allowedValue>
+    <npo:allowedValue>arrangement-specific</npo:allowedValue>
+    <npo:allowedValue>transaction-specific</npo:allowedValue>
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/NPOGraph/ontology/properties/role-status">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />

@@ -81,6 +81,66 @@
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
+    "id": "contractor",
+    "label": "Contractor",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "organization-role",
+    "definition": "The role an organization occupies when it is bound by a contract to deliver a specific, defined piece of work for another organization.",
+    "subClassOf": "organization-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "vendor",
+    "label": "Vendor",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "organization-role",
+    "definition": "The role an organization occupies when it is the source from which another organization purchases standard goods or services, without a defined-work contract the way a Contractor has.",
+    "subClassOf": "organization-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "service-provider",
+    "label": "Service Provider",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "organization-role",
+    "definition": "The role an organization occupies when it provides an ongoing operational service to another organization -- broader and less transactional than a single Contractor engagement or Vendor purchase.",
+    "subClassOf": "organization-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "employer",
+    "label": "Employer",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "organization-role",
+    "definition": "The role an organization occupies when it employs a person -- the organization-side counterpart to that person's Employee role.",
+    "subClassOf": "organization-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "partner",
+    "label": "Partner",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "organization-role",
+    "definition": "The role an organization occupies when it collaborates with another organization on shared work, in a relationship not adequately described as one party purchasing from or providing a service to the other.",
+    "subClassOf": "organization-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "sponsoring-organization",
+    "label": "Sponsoring Organization",
+    "aliases": [],
+    "category": "organizational-entities",
+    "kind": "organization-role",
+    "definition": "The role an organization occupies when it holds and administers a Fund on behalf of the fund's donor or benefactors, distinct from acting as a Fiscal Sponsor for a specific project.",
+    "subClassOf": "organization-role",
+    "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
     "id": "program-officer",
     "label": "Program Officer",
     "aliases": [],

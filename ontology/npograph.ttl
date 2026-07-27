@@ -43,6 +43,13 @@ npo:consultant a owl:Class ;
     skos:definition "The role a person occupies when they provide paid, defined-scope services to an organization without being its employee." ;
     npo:category "organizational-entities" .
 
+npo:contractor a owl:Class ;
+    rdfs:label "Contractor" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:organization-role ;
+    skos:definition "The role an organization occupies when it is bound by a contract to deliver a specific, defined piece of work for another organization." ;
+    npo:category "organizational-entities" .
+
 npo:donor a owl:Class ;
     rdfs:label "Donor" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
@@ -57,11 +64,25 @@ npo:employee a owl:Class ;
     skos:definition "The role a person occupies when they work for and are compensated by an organization." ;
     npo:category "organizational-entities" .
 
+npo:employer a owl:Class ;
+    rdfs:label "Employer" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:organization-role ;
+    skos:definition "The role an organization occupies when it employs a person -- the organization-side counterpart to that person's Employee role." ;
+    npo:category "organizational-entities" .
+
 npo:funding-intermediary-role a owl:Class ;
     rdfs:label "Funding Intermediary Role" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it channels funds between an original funding source and an ultimate grantee, without itself being the original funder or the final recipient." ;
+    npo:category "organizational-entities" .
+
+npo:partner a owl:Class ;
+    rdfs:label "Partner" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:organization-role ;
+    skos:definition "The role an organization occupies when it collaborates with another organization on shared work, in a relationship not adequately described as one party purchasing from or providing a service to the other." ;
     npo:category "organizational-entities" .
 
 npo:philanthropic-intermediary a owl:Class ;
@@ -810,9 +831,16 @@ npoprop:role-notes a owl:DatatypeProperty ;
 
 npoprop:role-scope a owl:DatatypeProperty ;
     rdfs:label "Scope" ;
-    rdfs:comment "How narrowly this role occupancy is scoped (e.g. organization-wide vs. specific to one program, project, award, agreement, or arrangement). Free text until Milestone 2 makes it a controlled value alongside the broader role-context relationship." ;
+    rdfs:comment "How narrowly this role occupancy is scoped. A plain inline enum until Phase 3.7 Milestone 3's reference-data framework exists, at which point this becomes a governed vocabulary instead." ;
     rdfs:domain npo:role ;
     rdfs:range xsd:string ;
+    npo:allowedValue "agreement-specific",
+        "arrangement-specific",
+        "award-specific",
+        "organization-wide",
+        "program-specific",
+        "project-specific",
+        "transaction-specific" ;
     npo:cardinality "one" ;
     npo:group "governance" ;
     npo:required false .
@@ -1208,6 +1236,13 @@ nporel:occursDuringFundingCycle a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:funding-cycle .
 
+nporel:organizationRoleAppliesWithinOrganization a owl:ObjectProperty ;
+    rdfs:label "applies within" ;
+    rdfs:comment "An Organization Role can also be scoped directly to an Organization rather than an Arrangement -- e.g. a Contractor, Vendor, Service Provider, Employer, or Partner role is naturally scoped to which organization it relates to, not to a Philanthropic Arrangement. A distinct predicate from rel-organization-role-applies-within for the same reason Phase 3.7 Milestone 1's Person relationships needed distinct names: the generator requires every relationship predicate to be globally unique, so one predicate can't have two different declared object concepts. Broadening this into a true Role-appliesWithin-Context union (Award, Application, Agreement, Fund, Grant Program, Funding Opportunity, Project, Review, Payment, Decision, per the Phase 3.7 roadmap) is deferred until real worked-example data actually needs one of those specific contexts -- adding all of them speculatively now, each as its own distinct predicate, would be exactly the kind of premature abstraction this project avoids." ;
+    rdfs:domain npo:organization-role ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:organization .
+
 nporel:participatesIn a owl:ObjectProperty ;
     rdfs:label "participates in" ;
     rdfs:comment "An Organization participates in a Philanthropic Arrangement, independent of tracking which specific role it occupies there." ;
@@ -1424,6 +1459,27 @@ nporule:rule-role-occupancy-requires-holder a npo:BusinessRule ;
         npo:person,
         npo:person-role,
         npo:role .
+
+npo:service-provider a owl:Class ;
+    rdfs:label "Service Provider" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:organization-role ;
+    skos:definition "The role an organization occupies when it provides an ongoing operational service to another organization -- broader and less transactional than a single Contractor engagement or Vendor purchase." ;
+    npo:category "organizational-entities" .
+
+npo:sponsoring-organization a owl:Class ;
+    rdfs:label "Sponsoring Organization" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:organization-role ;
+    skos:definition "The role an organization occupies when it holds and administers a Fund on behalf of the fund's donor or benefactors, distinct from acting as a Fiscal Sponsor for a specific project." ;
+    npo:category "organizational-entities" .
+
+npo:vendor a owl:Class ;
+    rdfs:label "Vendor" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:organization-role ;
+    skos:definition "The role an organization occupies when it is the source from which another organization purchases standard goods or services, without a defined-work contract the way a Contractor has." ;
+    npo:category "organizational-entities" .
 
 npo:collaborative-fund-arrangement a owl:Class ;
     rdfs:label "Collaborative Fund Arrangement" ;
@@ -1746,13 +1802,6 @@ npo:payment a owl:Class ;
     skos:definition "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments." ;
     npo:category "disbursement" .
 
-npo:organization-role a owl:Class ;
-    rdfs:label "Organization Role" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    rdfs:subClassOf npo:role ;
-    skos:definition "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself." ;
-    npo:category "organizational-entities" .
-
 npo:report a owl:Class ;
     rdfs:label "Report" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
@@ -1788,6 +1837,13 @@ npo:person-role a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:role ;
     skos:definition "A contextual capacity a person occupies within an organization, award, application, agreement, arrangement, program, project, or other defined context." ;
+    npo:category "organizational-entities" .
+
+npo:organization-role a owl:Class ;
+    rdfs:label "Organization Role" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:role ;
+    skos:definition "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself." ;
     npo:category "organizational-entities" .
 
 npo:award a owl:Class ;

@@ -155,7 +155,7 @@
       "id": "ocean-conservation-fund-fiscal-sponsor-role",
       "concept": "fiscal-sponsor",
       "label": "Ocean Conservation Fund (as Fiscal Sponsor)",
-      "properties": { "status": "active", "effectiveFrom": "2026-05-01", "scope": "Tidewater Youth Ocean Corps sponsorship" },
+      "properties": { "status": "active", "effectiveFrom": "2026-05-01", "scope": "project-specific", "notes": "Scoped to Tidewater Youth Ocean Corps sponsorship." },
       "narrative": "This occupancy is a distinct, independently-dated Organization Role from its Funder role above -- effective May 1, 2026, and scoped to a single sponsored project."
     },
     {
@@ -248,7 +248,7 @@
       "id": "ocean-conservation-fund-intermediary-role",
       "concept": "funding-intermediary-role",
       "label": "Ocean Conservation Fund (as Funding Intermediary)",
-      "properties": { "status": "active", "effectiveFrom": "2026-06-01", "scope": "National Ocean Legacy regranting program" },
+      "properties": { "status": "active", "effectiveFrom": "2026-06-01", "scope": "arrangement-specific", "notes": "Scoped to the National Ocean Legacy regranting program." },
       "narrative": "It regrants through Ocean Conservation Fund instead -- a fourth, independently-dated role for the same organization: Funding Intermediary, alongside its Funder, Fiscal Sponsor, and Donor-Advised Fund host occupancies."
     },
     {
@@ -307,6 +307,21 @@
       "label": "Coastal Resilience Grant to Kelp Forest Collective",
       "properties": { "amount": "20000", "currency": "USD", "status": "active", "date": "2026-02-01" },
       "narrative": "The collaborative's first award, $20,000, goes to Kelp Forest Collective -- the same small group Ocean Conservation Fund regrants to, now drawing on a second, independent funding stream."
+    },
+    {
+      "id": "tidal-marketing-collective-org",
+      "concept": "organization",
+      "label": "Tidal Marketing Collective",
+      "properties": { "operatingStatus": "active" },
+      "act": "A Sixth Engagement: Contractor Relationship",
+      "narrative": "Tidal Marketing Collective (fictional) is a communications firm -- an Organization in its own right, occupying a role toward Ocean Conservation Fund the same way Funder, Fiscal Sponsor, and Funding Intermediary do, just outside the philanthropic-arrangement pattern those follow."
+    },
+    {
+      "id": "tidal-marketing-contractor-role",
+      "concept": "contractor",
+      "label": "Tidal Marketing Collective (as Contractor)",
+      "properties": { "status": "active", "effectiveFrom": "2026-04-01", "scope": "agreement-specific", "notes": "Engaged to produce Ocean Conservation Fund's annual impact report." },
+      "narrative": "This Organization Role is scoped directly to Ocean Conservation Fund itself, not to a Philanthropic Arrangement -- the broader role-context this milestone adds, since a Contractor engagement isn't philanthropic funding flowing between parties."
     }
   ],
   "relationships": [
@@ -370,6 +385,8 @@
     { "predicate": "awardedBy", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "tidewater-community-foundation" },
     { "predicate": "awardedTo", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "kelp-forest-collective" },
     { "predicate": "managedBy", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "tidewater-community-foundation" },
-    { "predicate": "fundedFrom", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "coastal-resilience-fund" }
+    { "predicate": "fundedFrom", "subject": "coastal-resilience-grant-to-kelp-forest", "object": "coastal-resilience-fund" },
+    { "predicate": "playsRole", "subject": "tidal-marketing-collective-org", "object": "tidal-marketing-contractor-role" },
+    { "predicate": "organizationRoleAppliesWithinOrganization", "subject": "tidal-marketing-contractor-role", "object": "ocean-conservation-fund-org" }
   ]
 }

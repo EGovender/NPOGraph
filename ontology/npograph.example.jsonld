@@ -660,7 +660,11 @@
         "@type": "xsd:date"
       },
       "npoprop:role-scope": {
-        "@value": "Tidewater Youth Ocean Corps sponsorship",
+        "@value": "project-specific",
+        "@type": "xsd:string"
+      },
+      "npoprop:role-notes": {
+        "@value": "Scoped to Tidewater Youth Ocean Corps sponsorship.",
         "@type": "xsd:string"
       },
       "nporel:appliesWithin": {
@@ -683,7 +687,11 @@
         "@type": "xsd:date"
       },
       "npoprop:role-scope": {
-        "@value": "National Ocean Legacy regranting program",
+        "@value": "arrangement-specific",
+        "@type": "xsd:string"
+      },
+      "npoprop:role-notes": {
+        "@value": "Scoped to the National Ocean Legacy regranting program.",
         "@type": "xsd:string"
       },
       "nporel:appliesWithin": {
@@ -841,6 +849,48 @@
       },
       "nporel:heldBy": {
         "@id": "ex:pacific-coastal-trust"
+      }
+    },
+    {
+      "id": "ex:tidal-marketing-collective-org",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:organization"
+      ],
+      "label": "Tidal Marketing Collective",
+      "npoprop:organization-operating-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "nporel:playsRole": {
+        "@id": "ex:tidal-marketing-contractor-role"
+      }
+    },
+    {
+      "id": "ex:tidal-marketing-contractor-role",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:contractor"
+      ],
+      "label": "Tidal Marketing Collective (as Contractor)",
+      "npoprop:role-status": {
+        "@value": "active",
+        "@type": "xsd:string"
+      },
+      "npoprop:role-effective-from": {
+        "@value": "2026-04-01",
+        "@type": "xsd:date"
+      },
+      "npoprop:role-scope": {
+        "@value": "agreement-specific",
+        "@type": "xsd:string"
+      },
+      "npoprop:role-notes": {
+        "@value": "Engaged to produce Ocean Conservation Fund's annual impact report.",
+        "@type": "xsd:string"
+      },
+      "nporel:organizationRoleAppliesWithinOrganization": {
+        "@id": "ex:ocean-conservation-fund-org"
       }
     },
     {

@@ -200,7 +200,7 @@ npo:role-property-shape
     sh:property [ sh:path npoprop:role-effective-from ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:role-effective-to ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:role-notes ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:role-scope ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:role-scope ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ; sh:in ( """organization-wide"""^^xsd:string """program-specific"""^^xsd:string """project-specific"""^^xsd:string """award-specific"""^^xsd:string """agreement-specific"""^^xsd:string """arrangement-specific"""^^xsd:string """transaction-specific"""^^xsd:string ) ] ,
         [ sh:path npoprop:role-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planned"""^^xsd:string """active"""^^xsd:string """suspended"""^^xsd:string """ended"""^^xsd:string """cancelled"""^^xsd:string ) ] .
 
 npo:site-visit-property-shape
