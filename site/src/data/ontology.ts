@@ -59,7 +59,7 @@ export interface Relationship {
 }
 
 export type PropertyGroupSource = 'lifecycle' | 'financial' | 'governance' | 'classification';
-export type PropertyDatatype = 'string' | 'decimal' | 'date' | 'boolean' | 'enum';
+export type PropertyDatatype = 'string' | 'decimal' | 'date' | 'boolean' | 'enum' | 'reference';
 
 export interface Property {
   id: string;
@@ -68,6 +68,11 @@ export interface Property {
   label: string;
   group: PropertyGroupSource;
   datatype: PropertyDatatype;
+  /** Present only when datatype is 'reference' -- the id of the
+   * ontology/source/reference-data/*.json scheme this property's values are
+   * drawn from (Phase 3.7 Milestone 3), in place of a hand-authored
+   * allowedValues list. See ./reference-data.ts. */
+  referenceScheme?: string;
   required: boolean;
   cardinality: 'one' | 'many';
   allowedValues: string[] | null;

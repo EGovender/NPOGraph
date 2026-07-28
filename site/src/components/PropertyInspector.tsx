@@ -10,6 +10,7 @@ import {
   ontologyVersion,
 } from '../data/ontology';
 import { getCategory } from '../data/categories';
+import { getActiveReferenceValues, getReferenceScheme } from '../data/reference-data';
 
 const ALL_TABS = ['Overview', 'Example', 'Properties', 'Relationships', 'Rules', 'Technical'] as const;
 type Tab = (typeof ALL_TABS)[number];
@@ -157,7 +158,11 @@ export default function PropertyInspector({
                         {f.href ? <a href={f.href}>{f.value}</a> : f.value}
                         {f.property && (
                           <span className="inspector-chips">
-                            <span className="chip">{f.property.datatype}</span>
+                            <span className="chip">
+                              {f.property.datatype === 'reference' && f.property.referenceScheme
+                                ? `reference: ${getReferenceScheme(f.property.referenceScheme).label}`
+                                : f.property.datatype}
+                            </span>
                             <span className={`chip ${f.property.required ? 'chip-required' : ''}`}>
                               {f.property.required ? 'required' : 'optional'}
                             </span>
@@ -247,6 +252,17 @@ export default function PropertyInspector({
                           {f.property!.allowedValues.map((v) => (
                             <span key={v} className="chip chip-value">
                               {v}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      {f.property!.datatype === 'reference' && f.property!.referenceScheme && (
+                        <div className="inspector-allowed-values">
+                          values from{' '}
+                          <strong>{getReferenceScheme(f.property!.referenceScheme).label}</strong>:{' '}
+                          {getActiveReferenceValues(f.property!.referenceScheme).map((v) => (
+                            <span key={v.id} className="chip chip-value">
+                              {v.label}
                             </span>
                           ))}
                         </div>

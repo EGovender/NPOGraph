@@ -4,7 +4,7 @@
 // this project's root. This copy is itself generated -- see
 // docs/05-data-model.md at the repo root for the source-of-truth policy.
 // Runs automatically before `dev` and `build` (see package.json).
-import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
@@ -26,6 +26,16 @@ for (const file of [
 ]) {
   copyFileSync(join(SOURCE_DIR, file), join(DEST_DIR, file));
   console.log(`synced ${file} -> src/data/generated/${file}`);
+}
+
+// Reference-data schemes (Phase 3.7 Milestone 3) are one file per scheme, not
+// a single JSON document, so they're synced as a directory instead.
+const REFDATA_SOURCE_DIR = join(SOURCE_DIR, 'reference-data');
+const REFDATA_DEST_DIR = join(DEST_DIR, 'reference-data');
+mkdirSync(REFDATA_DEST_DIR, { recursive: true });
+for (const file of readdirSync(REFDATA_SOURCE_DIR).filter((f) => f.endsWith('.json'))) {
+  copyFileSync(join(REFDATA_SOURCE_DIR, file), join(REFDATA_DEST_DIR, file));
+  console.log(`synced reference-data/${file} -> src/data/generated/reference-data/${file}`);
 }
 
 // Stamp a build-time lastUpdated onto the synced meta.json, derived from git
