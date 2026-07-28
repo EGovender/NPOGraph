@@ -1128,12 +1128,26 @@ mark {
   font-size: 1.1rem;
 }
 
+.inspector-tabs-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
 .inspector-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 1rem;
+}
+
+.inspector-copy-link {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  margin-bottom: 0.4rem;
 }
 
 .inspector-tab {
@@ -1299,7 +1313,12 @@ mark {
   font-size: 0.82rem;
 }
 
-/* Concept page: mini-graph + inspector, two columns */
+/* Concept page: breadcrumb, mini-graph + inspector, prev/next, related */
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
 
 .concept-layout {
   display: grid;
@@ -1316,6 +1335,19 @@ mark {
   padding: 1rem;
 }
 
+.concept-graph-col-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.concept-graph-col-header a {
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
 .concept-graph-hint {
   font-size: 0.8rem;
   margin: 0.6rem 0 0;
@@ -1330,9 +1362,40 @@ mark {
   min-width: 0;
 }
 
+.concept-prev-next {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.related-concepts {
+  margin-top: 2rem;
+}
+
+.related-concept-card {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+}
+
 @media (max-width: 800px) {
   .concept-layout {
     grid-template-columns: 1fr;
+  }
+
+  /* The definition (Overview tab, in the inspector) matters more than the
+     neighborhood graph on a small screen -- show it first. */
+  .concept-inspector-col {
+    order: 1;
+  }
+
+  .concept-graph-col {
+    order: 2;
   }
 }
 

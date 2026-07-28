@@ -12,6 +12,7 @@ import {
   getPropertyGroups,
   getBusinessRulesForConcept,
 } from '../../data/ontology';
+import { getCategory } from '../../data/categories';
 
 export function getStaticPaths() {
   return concepts.map((c) => ({ params: { id: c.id } }));
@@ -27,14 +28,42 @@ const subtypes = getSubtypes(concept.id);
 const parent = concept.subClassOf ? getConcept(concept.subClassOf) : undefined;
 const propertyGroups = getPropertyGroups(concept);
 const businessRules = getBusinessRulesForConcept(concept.id);
+const category = getCategory(concept.category);
+
+// Alphabetical order matches the catalogue's A-Z view, so "previous"/"next"
+// here lines up with what someone browsing that view would expect.
+const alphabetical = [...concepts].sort((a, b) => a.label.localeCompare(b.label));
+const ownIndex = alphabetical.findIndex((c) => c.id === concept.id);
+const prevConcept = ownIndex > 0 ? alphabetical[ownIndex - 1] : undefined;
+const nextConcept = ownIndex < alphabetical.length - 1 ? alphabetical[ownIndex + 1] : undefined;
+
+// "Related" reuses the relationship/hierarchy data already computed above --
+// no separate relatedness heuristic to invent or keep in sync.
+const relatedIds = new Set<string>();
+if (parent) relatedIds.add(parent.id);
+for (const s of subtypes) relatedIds.add(s.id);
+for (const { concept: c } of outgoing) relatedIds.add(c.id);
+for (const { concept: c } of incoming) relatedIds.add(c.id);
+relatedIds.delete(concept.id);
+const relatedConcepts = Array.from(relatedIds)
+  .map((cid) => getConcept(cid))
+  .filter((c): c is NonNullable<typeof c> => !!c)
+  .sort((a, b) => a.label.localeCompare(b.label))
+  .slice(0, 12);
 ---
 
 <BaseLayout title={concept.label} description={concept.definition} wide>
-  <p><a href={`${base}concepts`}>&larr; All concepts</a></p>
+  <p class="breadcrumb">
+    <a href={`${base}concepts`}>Concepts</a> &rsaquo;{' '}
+    <a href={`${base}concepts#category-${category.id}`}>{category.label}</a> &rsaquo; {concept.label}
+  </p>
 
   <div class="concept-layout">
     <div class="concept-graph-col">
-      <h2 class="inspector-group-title">Neighborhood</h2>
+      <div class="concept-graph-col-header">
+        <h2 class="inspector-group-title">Neighborhood</h2>
+        <a href={`${base}explore?concept=${concept.id}`}>View in full graph &rarr;</a>
+      </div>
       <GraphExplorer client:load base={base} mode="mini" focusConceptId={concept.id} />
       <p class="muted concept-graph-hint">
         {concept.label} and its directly connected concepts. Click one to go to its page.
@@ -52,7 +81,34 @@ const businessRules = getBusinessRulesForConcept(concept.id);
         propertyGroups={propertyGroups}
         businessRules={businessRules}
         base={base}
+        persistTabInUrl
       />
     </div>
   </div>
+
+  <nav class="concept-prev-next" aria-label="Adjacent concepts (A-Z)">
+    {prevConcept ? (
+      <a href={`${base}concepts/${prevConcept.id}`}>&larr; {prevConcept.label}</a>
+    ) : <span />}
+    {nextConcept ? (
+      <a href={`${base}concepts/${nextConcept.id}`}>{nextConcept.label} &rarr;</a>
+    ) : <span />}
+  </nav>
+
+  {relatedConcepts.length > 0 && (
+    <section class="related-concepts">
+      <h2 class="inspector-group-title">Related concepts</h2>
+      <ul class="concept-card-list">
+        {relatedConcepts.map((c) => {
+          const cat = getCategory(c.category);
+          return (
+            <li class="card related-concept-card">
+              <span class="search-result-swatch" style={`background: light-dark(${cat.colorLight}, ${cat.colorDark});`} />
+              <a href={`${base}concepts/${c.id}`} class="concept-card-label">{c.label}</a>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )}
 </BaseLayout>
