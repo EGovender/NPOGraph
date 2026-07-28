@@ -56,6 +56,65 @@ Enum-valued properties (e.g. `award`'s `status`) carry an `allowedValues` list i
 
 `ontology/source/business-rules.json` transcribes the prose rules already in `03-relationships.md` without changing their meaning, and adds an explicit `concepts` list so the explorer can show "closeout requires all payments and reports" on the `Closeout` page, the `Payment` page, and the `Report` page, instead of only in the docs. These become `npo:BusinessRule` instances (under their own `.../ontology/rules/` namespace, `nporule:`) in the generated ontology, linked to the concepts they involve via `npo:appliesTo`.
 
+## Phase 3.7 Milestone 3: reference-backed properties and controlled vocabularies
+
+Every enum property up to this point (`award.status`, `fund.restrictionType`, and 33 others) stores its allowed values as a plain inline `allowedValues` array in `properties.json` -- no scheme, no definitions per value, no way to mark a value deprecated or map it to an external standard, and no way for two properties to share a vocabulary without copy-pasting the same array twice. This milestone adds a real controlled-vocabulary layer for properties that need more than that, without touching the other 31 enum properties -- see [Roadmap](04-roadmap.md) for why only five migrate now and the rest wait.
+
+**`ontology/source/reference-data/*.json`** -- one file per scheme:
+
+```json
+{
+  "id": "role-status",
+  "label": "Role Status",
+  "description": "Where a Role occupancy currently sits in its own lifecycle...",
+  "domain": "role",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "role-status-active",
+      "code": "active",
+      "label": "Active",
+      "definition": "The role occupancy is currently in effect.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    }
+  ]
+}
+```
+
+A scheme becomes a `skos:ConceptScheme`; each of its values becomes a `skos:Concept` (`skos:inScheme` the scheme, `skos:notation` its short `code`, `skos:prefLabel` its display `label`, `skos:definition` its `definition`) -- real SKOS, not an NPOGraph-invented shape wearing SKOS's name. `broader` becomes `skos:broader` (see Restriction Type below for why this isn't always a flat list); `replacedBy` becomes `dcterms:isReplacedBy` and requires `deprecated: true` on the same value; `mappings` (`{"relation": "exactMatch"|"closeMatch"|"broadMatch"|"narrowMatch"|"relatedMatch", "uri": "..."}`) becomes the matching `skos:*Match` triple to an external vocabulary term. None of the five schemes below actually populate `mappings` yet -- the generator supports it, but fabricating a mapping to an external standard just to exercise the field would be worse than leaving it empty until a real one is needed.
+
+A scheme's own `publicationStatus` (draft/published/deprecated -- distinct from a *value's* `deprecated` flag, since a scheme can stay published while retiring one of its values) is itself drawn from the **Publication Status** scheme below, resolved to a real `skos:Concept` reference rather than a bare string -- the reference-data framework governs its own metadata the same way it governs everything else.
+
+**The five "shared" vocabularies migrated as the proving ground:**
+
+- **Role Status** (`role.status`) -- planned/active/suspended/ended/cancelled.
+- **Organization Operating Status** (`organization.operatingStatus`) -- active/dissolved/merged/unknown.
+- **Frequency** (`reporting-schedule.frequency`) -- monthly/quarterly/annual/one-time. Generic enough to back a different property later without a new scheme.
+- **Restriction Type** (`fund.restrictionType`) -- unrestricted/donor-restricted/temporarily-restricted/permanently-restricted. The one scheme with real hierarchy: `temporarily-restricted` and `permanently-restricted` each set `broader: "restriction-type-donor-restricted"`, since both are kinds of donor restriction that differ only in whether it expires. `terms-and-conditions.restrictionType` (a simpler restricted/unrestricted enum on a different concept) was deliberately **not** folded into this scheme -- the two properties aren't proven to mean the same thing yet, and conflating them to save a migration would be a modeling decision, not a mechanical one; left as its own inline enum until that's actually decided.
+- **Publication Status** (used only by reference-data schemes' own `publicationStatus` field, not by any ontology concept) -- draft/published/deprecated. The framework's self-describing bootstrap vocabulary.
+
+**In `properties.json`**, a reference-backed property looks like this instead of carrying `allowedValues`:
+
+```json
+{
+  "id": "role-status",
+  "concept": "role",
+  "name": "status",
+  "datatype": "reference",
+  "referenceScheme": "role-status",
+  "allowedValues": null,
+  ...
+}
+```
+
+`datatype: "reference"` makes the property an `owl:ObjectProperty` (range `skos:Concept`) instead of an `owl:DatatypeProperty` -- its value is a resource, not a literal. Instance data (`ontology/source/example.json`) is unaffected: a role occupancy's `status` is still written as the plain string `"active"`, and the generator resolves it to `nporef:role-status-active` when building the RDF/JSON-LD -- the human-authored side of the ontology never has to spell out full reference-data IRIs by hand.
+
+**SHACL enforcement** for a reference-backed property combines `sh:class skos:Concept` (the value must be a SKOS concept at all) with a scheme-membership check (`sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue nporef:role-status ] ]`, i.e. it must be a concept specifically *in this scheme*) -- deliberately not an enumerated `sh:in` list of the scheme's current values, so a scheme can gain a new value without regenerating every shape that references it. Deprecated values still satisfy this shape; flagging their use is left to Milestone 6's planned deprecated-value warning, a softer signal than a hard SHACL failure.
+
 ## Versioning
 
 `ontology/source/meta.json` holds a single ontology-wide `version` string, bumped whenever `concepts.json`, `relationships.json`, or `properties.json` change meaning (not on every typo fix). There is no per-concept version or authorship history — NPOGraph doesn't track that yet, and the Technical tab says so rather than inventing it.
