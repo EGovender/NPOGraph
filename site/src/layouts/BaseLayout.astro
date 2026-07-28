@@ -6,7 +6,10 @@ import SearchBox from '../components/SearchBox';
 interface Props {
   title: string;
   description?: string;
-  wide?: boolean;
+  /** true: the existing 1200px-capped layout (concept catalogue, concept
+   * pages, design tool). 'full': a much wider cap, for the graph explorer,
+   * where canvas space is the whole point. */
+  wide?: boolean | 'full';
 }
 
 const { title, description = 'NPOGraph: an open knowledge platform for grantmaking.', wide = false } = Astro.props;
@@ -104,7 +107,7 @@ const lastUpdatedDisplay = ontologyLastUpdated
         {!isHome && <SearchBox client:load compact concepts={concepts} base={base} />}
       </nav>
     </header>
-    <main class={wide ? 'wide' : ''}>
+    <main class={wide === 'full' ? 'full-bleed' : wide ? 'wide' : ''}>
       <slot />
     </main>
     <footer class="site-footer">

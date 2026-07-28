@@ -218,6 +218,15 @@ main.wide {
   max-width: 1200px;
 }
 
+/* The graph explorer only -- canvas space is the entire point of that page,
+   so it gets a much wider cap than every other page (concept catalogue,
+   concept pages, design tool) instead of sharing "wide". */
+main.full-bleed {
+  max-width: 1800px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem;
@@ -707,15 +716,136 @@ mark {
   }
 }
 
+/* Filters live in a horizontal toolbar above the canvas (not a side column)
+   so the graph itself gets as much width as possible -- see .graph-main. */
 .graph-explorer {
-  display: grid;
-  grid-template-columns: 220px 1fr 360px;
-  gap: 1rem;
-  height: calc(100vh - 220px);
-  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.graph-sidebar,
+.graph-toolbar {
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card-bg);
+}
+
+.graph-toolbar-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.graph-toolbar-search {
+  flex: 1 1 240px;
+  min-width: 180px;
+}
+
+/* Overlay the results instead of pushing the rest of the toolbar row down --
+   this search box sits inline next to the view pills and graph/list toggle,
+   not alone in its own column like it used to. */
+.graph-toolbar-search .search-results,
+.graph-toolbar-search .search-no-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 20;
+  width: max(100%, 320px);
+}
+
+.graph-toolbar .graph-view-toggle,
+.graph-toolbar .graph-reset-filters {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.view-pills {
+  display: inline-flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.view-pill {
+  border: none;
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  padding: 0.5rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.view-pill + .view-pill {
+  border-left: 1px solid var(--border);
+}
+
+.view-pill.active {
+  background: var(--brand-teal);
+  color: #ffffff;
+}
+
+/* The Kind legend and filter are the same control -- every kind present in
+   the current view is always listed (never hidden in an accordion), with a
+   live count, and clicking one both tells you what it means (shape) and
+   toggles it. */
+.graph-kind-key {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.graph-kind-key-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-right: 0.25rem;
+}
+
+.graph-kind-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.graph-kind-chip:hover {
+  border-color: var(--brand-teal);
+}
+
+.graph-kind-chip-hidden {
+  opacity: 0.55;
+  background: var(--page);
+}
+
+.graph-kind-chip-count {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* The canvas + the (overlaid, not column-sharing) detail panel. */
+.graph-main {
+  position: relative;
+  height: calc(100vh - 340px);
+  min-height: 520px;
+}
+
 .graph-detail {
   overflow-y: auto;
   padding: 1rem;
@@ -723,6 +853,31 @@ mark {
   border-radius: 8px;
   background: var(--card-bg);
   min-width: 0;
+}
+
+.graph-detail-overlay {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  width: min(380px, calc(100% - 1.5rem));
+  z-index: 5;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.graph-detail-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--page);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .graph-sidebar-title {
@@ -938,10 +1093,13 @@ mark {
   display: none;
 }
 
+/* Left, not right -- the detail overlay (.graph-detail-overlay) occupies the
+   canvas's top-right corner whenever a concept is selected, and would
+   otherwise sit on top of these. */
 .graph-controls {
   position: absolute;
   top: 0.6rem;
-  right: 0.6rem;
+  left: 0.6rem;
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
@@ -1124,24 +1282,20 @@ mark {
 }
 
 @media (max-width: 900px) {
-  .graph-explorer {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 60vh auto;
-    height: auto;
+  /* The toolbar is now compact and already sits above the graph in document
+     order (not a tall side column), so there's no more need to reorder the
+     graph ahead of it on small screens the way the old sidebar layout did. */
+  .graph-main {
+    height: 65vh;
+    min-height: 420px;
   }
 
-  /* The graph itself is the point of this page -- show it before the
-     sidebar's filters on small screens instead of after. */
-  .graph-canvas-wrap {
-    order: 1;
-  }
-
-  .graph-sidebar {
-    order: 2;
-  }
-
-  .graph-detail {
-    order: 3;
+  .graph-detail-overlay {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
   }
 }
 
