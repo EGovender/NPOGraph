@@ -693,6 +693,22 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     });
   }
 
+  /** Clears every filter that can make a node silently disappear (view,
+   * category/kind/relationship-type hides, search, path-find) so a
+   * confused "where did my node go" moment always has a one-click way out,
+   * without touching an ad-hoc Design-tool selection (customConceptIds),
+   * which isn't a filter someone is trying to back out of. */
+  function resetFilters() {
+    setHiddenCategories(new Set());
+    setHiddenKinds(new Set());
+    setHiddenRelationshipKinds(new Set());
+    setSearchQuery('');
+    setPathFromId('');
+    setPathToId('');
+    setPathResult(undefined);
+    if (!customConceptIds) setViewId('full');
+  }
+
   function zoomBy(factor: number) {
     const handle = graphRef.current;
     const svgEl = svgRef.current;
@@ -760,13 +776,13 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
 
   const controls = (
     <div className="graph-controls">
-      <button type="button" aria-label="Zoom in" onClick={() => zoomBy(1.3)}>
+      <button type="button" aria-label="Zoom in" title="Zoom in" onClick={() => zoomBy(1.3)}>
         +
       </button>
-      <button type="button" aria-label="Zoom out" onClick={() => zoomBy(1 / 1.3)}>
+      <button type="button" aria-label="Zoom out" title="Zoom out" onClick={() => zoomBy(1 / 1.3)}>
         &minus;
       </button>
-      <button type="button" aria-label="Fit to view" onClick={fitToView}>
+      <button type="button" aria-label="Fit to view" title="Fit to view" onClick={fitToView}>
         &#x2922;
       </button>
       {!isMini && (
@@ -808,6 +824,61 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   const visibleListRelationships = relationships.filter(
     (r) => visibleListIds.has(r.subject) && visibleListIds.has(r.object)
   );
+
+  // What's currently making a node disappear, as removable chips -- so a
+  // user never has to open "Advanced filters" and inspect every checkbox to
+  // find out why. Each entry undoes exactly the one thing it names.
+  interface FilterChip {
+    key: string;
+    label: string;
+    onRemove: () => void;
+  }
+  const activeFilterChips: FilterChip[] = [];
+  if (!customConceptIds && viewId !== 'full') {
+    const view = EXPLORER_VIEWS.find((v) => v.id === viewId);
+    activeFilterChips.push({ key: 'view', label: `View: ${view?.label ?? viewId}`, onRemove: () => setViewId('full') });
+  }
+  for (const cat of CATEGORIES) {
+    if (hiddenCategories.has(cat.id)) {
+      activeFilterChips.push({
+        key: `cat-${cat.id}`,
+        label: `${cat.label} hidden`,
+        onRemove: () => toggleCategory(cat.id),
+      });
+    }
+  }
+  for (const entry of KIND_LEGEND) {
+    if (hiddenKinds.has(entry.kind)) {
+      activeFilterChips.push({
+        key: `kind-${entry.kind}`,
+        label: `${entry.label} hidden`,
+        onRemove: () => toggleKind(entry.kind),
+      });
+    }
+  }
+  for (const kind of Object.keys(RELATIONSHIP_KIND_LABELS) as RelationshipKind[]) {
+    if (hiddenRelationshipKinds.has(kind)) {
+      activeFilterChips.push({
+        key: `rel-${kind}`,
+        label: `${RELATIONSHIP_KIND_LABELS[kind]} relationships hidden`,
+        onRemove: () => toggleRelationshipKind(kind),
+      });
+    }
+  }
+  if (searchQuery.trim()) {
+    activeFilterChips.push({ key: 'search', label: `Search: "${searchQuery.trim()}"`, onRemove: () => setSearchQuery('') });
+  }
+  if (pathResult !== undefined) {
+    activeFilterChips.push({
+      key: 'path',
+      label: 'Path highlighted',
+      onRemove: () => {
+        setPathFromId('');
+        setPathToId('');
+        setPathResult(undefined);
+      },
+    });
+  }
 
   return (
     <div className="graph-explorer">
@@ -857,56 +928,6 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
           )}
         </div>
 
-        <h2 className="graph-sidebar-title">Find a path</h2>
-        <div className="path-finder">
-          <label className="path-finder-label">
-            From
-            <select value={pathFromId} onChange={(e) => setPathFromId(e.target.value)}>
-              <option value="">Select a concept&hellip;</option>
-              {sortedForPathFinder.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="path-finder-label">
-            To
-            <select value={pathToId} onChange={(e) => setPathToId(e.target.value)}>
-              <option value="">Select a concept&hellip;</option>
-              {sortedForPathFinder.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <div className="path-finder-actions">
-            <button type="button" className="home-cta" disabled={!pathFromId || !pathToId} onClick={runPathFind}>
-              Find path
-            </button>
-            {pathResult !== undefined && (
-              <button type="button" className="link-button" onClick={clearPathFind}>
-                Clear
-              </button>
-            )}
-          </div>
-          <div aria-live="polite">
-            {pathResult === null && <p className="muted graph-hint">No path between these concepts in this view.</p>}
-            {pathResult && pathResult.length === 0 && <p className="muted graph-hint">Select two different concepts.</p>}
-            {pathResult && pathResult.length > 0 && (
-              <ol className="path-result">
-                <li>{conceptsById.get(pathResult[0].fromId)?.label}</li>
-                {pathResult.map((step, i) => (
-                  <li key={i}>
-                    <span className="muted">{step.label}</span> {conceptsById.get(step.toId)?.label}
-                  </li>
-                ))}
-              </ol>
-            )}
-          </div>
-        </div>
-
         <h2 className="graph-sidebar-title">View</h2>
         {customConceptIds ? (
           <div className="custom-view-banner">
@@ -938,76 +959,146 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
           </>
         )}
 
-        <h2 className="graph-sidebar-title">Categories</h2>
-        <ul className="category-filter">
-          {CATEGORIES.map((cat) => (
-            <li key={cat.id}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={!hiddenCategories.has(cat.id)}
-                  onChange={() => toggleCategory(cat.id)}
-                />
-                <span
-                  className="search-result-swatch"
-                  style={{ background: `light-dark(${cat.colorLight}, ${cat.colorDark})` }}
-                />
-                {cat.label}
-              </label>
-            </li>
-          ))}
-        </ul>
+        <div className="graph-view-toggle" role="group" aria-label="Graph or list view">
+          <button type="button" className={!showList ? 'active' : ''} aria-pressed={!showList} onClick={() => setShowList(false)}>
+            Graph
+          </button>
+          <button type="button" className={showList ? 'active' : ''} aria-pressed={showList} onClick={() => setShowList(true)}>
+            List (keyboard-accessible)
+          </button>
+        </div>
 
-        <h2 className="graph-sidebar-title">Kind</h2>
-        <ul className="category-filter">
-          {KIND_LEGEND.map((entry) => (
-            <li key={entry.kind}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={!hiddenKinds.has(entry.kind)}
-                  onChange={() => toggleKind(entry.kind)}
-                />
-                <span className={`shape-swatch shape-swatch-${entry.kind}`} />
-                {entry.label}
-              </label>
-            </li>
-          ))}
-        </ul>
-
-        <h2 className="graph-sidebar-title">Relationship type</h2>
-        <ul className="category-filter">
-          {(Object.keys(RELATIONSHIP_KIND_LABELS) as RelationshipKind[]).map((kind) => (
-            <li key={kind}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={!hiddenRelationshipKinds.has(kind)}
-                  onChange={() => toggleRelationshipKind(kind)}
-                />
-                {RELATIONSHIP_KIND_LABELS[kind]}
-              </label>
-            </li>
-          ))}
-        </ul>
-        <label className="graph-edge-label-toggle">
-          <input type="checkbox" checked={showEdgeLabels} onChange={() => setShowEdgeLabels((v) => !v)} />
-          Show all relationship labels
-        </label>
-
-        <h2 className="graph-sidebar-title">Shapes</h2>
-        <ul className="shape-legend">
-          {KIND_LEGEND.map((entry) => (
-            <li key={entry.kind}>
-              <span className={`shape-swatch shape-swatch-${entry.kind}`} />
-              {entry.label}
-            </li>
-          ))}
-        </ul>
-
-        <button type="button" className="home-cta graph-list-toggle" onClick={() => setShowList((v) => !v)}>
-          {showList ? 'Show graph' : 'Show as list (keyboard-accessible)'}
+        <button
+          type="button"
+          className="link-button graph-reset-filters"
+          disabled={activeFilterChips.length === 0}
+          onClick={resetFilters}
+        >
+          Reset filters
         </button>
+
+        {activeFilterChips.length > 0 && (
+          <ul className="graph-filter-chips">
+            {activeFilterChips.map((chip) => (
+              <li key={chip.key}>
+                <button type="button" className="graph-filter-chip" onClick={chip.onRemove}>
+                  {chip.label} <span aria-hidden="true">&times;</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <details className="graph-advanced-filters">
+          <summary>Advanced filters</summary>
+
+          <h3 className="graph-sidebar-title">Categories</h3>
+          <ul className="category-filter">
+            {CATEGORIES.map((cat) => (
+              <li key={cat.id}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={!hiddenCategories.has(cat.id)}
+                    onChange={() => toggleCategory(cat.id)}
+                  />
+                  <span
+                    className="search-result-swatch"
+                    style={{ background: `light-dark(${cat.colorLight}, ${cat.colorDark})` }}
+                  />
+                  {cat.label}
+                </label>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="graph-sidebar-title">Kind</h3>
+          <ul className="category-filter">
+            {KIND_LEGEND.map((entry) => (
+              <li key={entry.kind}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={!hiddenKinds.has(entry.kind)}
+                    onChange={() => toggleKind(entry.kind)}
+                  />
+                  <span className={`shape-swatch shape-swatch-${entry.kind}`} />
+                  {entry.label}
+                </label>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="graph-sidebar-title">Relationship type</h3>
+          <ul className="category-filter">
+            {(Object.keys(RELATIONSHIP_KIND_LABELS) as RelationshipKind[]).map((kind) => (
+              <li key={kind}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={!hiddenRelationshipKinds.has(kind)}
+                    onChange={() => toggleRelationshipKind(kind)}
+                  />
+                  {RELATIONSHIP_KIND_LABELS[kind]}
+                </label>
+              </li>
+            ))}
+          </ul>
+          <label className="graph-edge-label-toggle">
+            <input type="checkbox" checked={showEdgeLabels} onChange={() => setShowEdgeLabels((v) => !v)} />
+            Show all relationship labels
+          </label>
+
+          <h3 className="graph-sidebar-title">Find a path</h3>
+          <div className="path-finder">
+            <label className="path-finder-label">
+              From
+              <select value={pathFromId} onChange={(e) => setPathFromId(e.target.value)}>
+                <option value="">Select a concept&hellip;</option>
+                {sortedForPathFinder.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="path-finder-label">
+              To
+              <select value={pathToId} onChange={(e) => setPathToId(e.target.value)}>
+                <option value="">Select a concept&hellip;</option>
+                {sortedForPathFinder.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <div className="path-finder-actions">
+              <button type="button" className="home-cta" disabled={!pathFromId || !pathToId} onClick={runPathFind}>
+                Find path
+              </button>
+              {pathResult !== undefined && (
+                <button type="button" className="link-button" onClick={clearPathFind}>
+                  Clear
+                </button>
+              )}
+            </div>
+            <div aria-live="polite">
+              {pathResult === null && <p className="muted graph-hint">No path between these concepts in this view.</p>}
+              {pathResult && pathResult.length === 0 && <p className="muted graph-hint">Select two different concepts.</p>}
+              {pathResult && pathResult.length > 0 && (
+                <ol className="path-result">
+                  <li>{conceptsById.get(pathResult[0].fromId)?.label}</li>
+                  {pathResult.map((step, i) => (
+                    <li key={i}>
+                      <span className="muted">{step.label}</span> {conceptsById.get(step.toId)?.label}
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </div>
+          </div>
+        </details>
 
         <p className="muted graph-hint">
           Click a node to see its details. Click the background to clear. Drag to reposition, scroll to zoom.

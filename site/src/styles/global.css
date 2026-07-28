@@ -191,12 +191,28 @@ main.wide {
   display: inline-block;
 }
 
-.home-cta-row {
+.journey-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.journey-card {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  margin: 0 auto 1.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.journey-card-title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.journey-card .home-cta {
+  margin-top: auto;
+  align-self: flex-start;
 }
 
 .home-cta {
@@ -624,8 +640,7 @@ pre {
 }
 
 .category-filter,
-.view-selector,
-.shape-legend {
+.view-selector {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -640,13 +655,6 @@ pre {
   gap: 0.5rem;
   font-size: 0.9rem;
   cursor: pointer;
-}
-
-.shape-legend li {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
 }
 
 .shape-swatch {
@@ -744,7 +752,7 @@ pre {
 }
 
 .graph-node-label {
-  font-size: 9px;
+  font-size: 11px;
   fill: var(--text-primary);
   paint-order: stroke;
   stroke: var(--surface);
@@ -762,7 +770,7 @@ pre {
 
 .graph-node.selected .graph-node-label,
 .graph-node.focus .graph-node-label {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -804,7 +812,7 @@ pre {
 }
 
 .graph-edge-label {
-  font-size: 8px;
+  font-size: 10px;
   fill: var(--text-secondary);
   paint-order: stroke;
   stroke: var(--surface);
@@ -846,13 +854,13 @@ pre {
 }
 
 .graph-controls button {
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 6px;
   border: 1px solid var(--border);
   background: var(--card-bg);
   color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1;
   cursor: pointer;
 }
@@ -912,11 +920,86 @@ pre {
   gap: 0.2rem;
 }
 
-.graph-list-toggle {
+.graph-view-toggle {
+  display: flex;
   margin-top: 1.5rem;
-  width: 100%;
-  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.graph-view-toggle button {
+  flex: 1;
+  padding: 0.5rem 0.4rem;
   font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.graph-view-toggle button + button {
+  border-left: 1px solid var(--border);
+}
+
+.graph-view-toggle button.active {
+  background: var(--brand-teal);
+  color: #ffffff;
+}
+
+.graph-reset-filters {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.graph-reset-filters:disabled {
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: default;
+}
+
+.graph-filter-chips {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.graph-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.graph-filter-chip:hover {
+  border-color: var(--brand-teal);
+}
+
+.graph-advanced-filters {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+.graph-advanced-filters summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.graph-advanced-filters .graph-sidebar-title {
+  font-size: 0.9rem;
 }
 
 .graph-list-view {
@@ -950,6 +1033,20 @@ pre {
     grid-template-columns: 1fr;
     grid-template-rows: auto 60vh auto;
     height: auto;
+  }
+
+  /* The graph itself is the point of this page -- show it before the
+     sidebar's filters on small screens instead of after. */
+  .graph-canvas-wrap {
+    order: 1;
+  }
+
+  .graph-sidebar {
+    order: 2;
+  }
+
+  .graph-detail {
+    order: 3;
   }
 }
 

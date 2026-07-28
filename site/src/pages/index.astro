@@ -24,22 +24,53 @@ const lastUpdatedDisplay = ontologyLastUpdated
     </p>
   </section>
 
-  <nav class="home-cta-row" aria-label="Primary">
-    <a class="home-cta home-cta-primary" href={`${base}explore`}>Explore the graph</a>
-    <a class="home-cta" href={`${base}story`}>Follow a worked example</a>
-    <a class="home-cta" href={`${base}design`}>Model your operating model</a>
-    <a class="home-cta" href={`${base}concepts`}>Browse concepts</a>
-  </nav>
+  <section class="journey-cards" aria-label="Choose your path">
+    <div class="card journey-card">
+      <h2 class="journey-card-title">Understand how grantmaking fits together</h2>
+      <p class="secondary">For nonprofit leaders, program teams, and newcomers.</p>
+      <a class="home-cta home-cta-primary" href={`${base}story`}>Start with a worked example</a>
+    </div>
+    <div class="card journey-card">
+      <h2 class="journey-card-title">Map your organization's process</h2>
+      <p class="secondary">Answer questions and identify the concepts that apply to your program.</p>
+      <a class="home-cta home-cta-primary" href={`${base}design`}>Model your program</a>
+    </div>
+    <div class="card journey-card">
+      <h2 class="journey-card-title">Explore the data model</h2>
+      <p class="secondary">Search definitions, relationships, properties, rules, and technical formats.</p>
+      <a class="home-cta home-cta-primary" href={`${base}concepts`}>Browse the ontology</a>
+    </div>
+  </section>
+
+  <p class="secondary" style="text-align: center; margin: 1.25rem 0;">
+    Already familiar with knowledge graphs?{' '}
+    <a href={`${base}explore`}>Open the graph explorer &rarr;</a>
+  </p>
 
   <SearchBox client:load concepts={concepts} base={base} />
 
   <p class="muted" style="text-align: center; margin-top: 0.75rem;">
-    Pre-alpha · Ontology v{ontologyVersion}
+    <strong>Pre-alpha:</strong> the ontology and this site are both still taking shape — concepts,
+    relationships, and pages can change without notice.
+  </p>
+  <p class="muted" style="text-align: center; margin-top: 0.25rem;">
+    Ontology v{ontologyVersion}
     {lastUpdatedDisplay && <>, updated {lastUpdatedDisplay}</>}
     {' '}· {concepts.length} concepts · {relationships.length} relationships
   </p>
 
   <section style="margin-top: 3rem;">
+    <h2>What can NPOGraph help with?</h2>
+    <ul>
+      <li>Standardize definitions across a CRM, grants platform, and finance system</li>
+      <li>Design a new grants-management data model</li>
+      <li>Document how awards, installments, payments, and reports relate</li>
+      <li>Compare terminology used by funders, grantees, and software vendors</li>
+      <li>Create shared reference data and validation rules</li>
+    </ul>
+  </section>
+
+  <section style="margin-top: 2rem;">
     <h2>What is this?</h2>
     <p>
       NPOGraph models how grantmaking actually works — funders, applications, reviews, awards,
