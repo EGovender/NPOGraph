@@ -1,0 +1,38 @@
+{
+  "id": "publication-status",
+  "label": "Publication Status",
+  "description": "The lifecycle state of a reference-data scheme itself -- whether it's still being drafted, actively governing one or more properties, or deprecated in favor of something else. Distinct from a single value's own `deprecated` flag: a scheme can stay published while one of its values is retired.",
+  "domain": "reference-data-governance",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "publication-status-draft",
+      "code": "draft",
+      "label": "Draft",
+      "definition": "The scheme is still being defined and does not yet constrain any concept property.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "publication-status-published",
+      "code": "published",
+      "label": "Published",
+      "definition": "The scheme is stable and in active use, constraining one or more concept properties.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "publication-status-deprecated",
+      "code": "deprecated",
+      "label": "Deprecated",
+      "definition": "The scheme is no longer recommended for new use, though existing data may still reference its values.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    }
+  ]
+}

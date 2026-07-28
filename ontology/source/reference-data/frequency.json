@@ -1,0 +1,47 @@
+{
+  "id": "frequency",
+  "label": "Frequency",
+  "description": "How often a recurring obligation is due. Currently used for how often Reports are due under a Reporting Schedule; generic enough to apply to other recurring obligations later without a new scheme.",
+  "domain": "scheduling",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "frequency-monthly",
+      "code": "monthly",
+      "label": "Monthly",
+      "definition": "Recurs every month.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "frequency-quarterly",
+      "code": "quarterly",
+      "label": "Quarterly",
+      "definition": "Recurs every three months.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "frequency-annual",
+      "code": "annual",
+      "label": "Annual",
+      "definition": "Recurs once a year.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "frequency-one-time",
+      "code": "one-time",
+      "label": "One-Time",
+      "definition": "Occurs once, with no recurrence.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    }
+  ]
+}

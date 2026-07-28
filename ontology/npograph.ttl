@@ -1,5 +1,6 @@
 @prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
 @prefix npoprop: <https://egovender.github.io/NPOGraph/ontology/properties/> .
+@prefix nporef: <https://egovender.github.io/NPOGraph/ontology/reference-data/> .
 @prefix nporel: <https://egovender.github.io/NPOGraph/ontology/relations/> .
 @prefix nporule: <https://egovender.github.io/NPOGraph/ontology/rules/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -351,17 +352,14 @@ npoprop:fund-opening-date a owl:DatatypeProperty ;
     npo:group "lifecycle" ;
     npo:required false .
 
-npoprop:fund-restriction-type a owl:DatatypeProperty ;
+npoprop:fund-restriction-type a owl:ObjectProperty ;
     rdfs:label "Restriction Type" ;
     rdfs:comment "The fund's accounting restriction status." ;
     rdfs:domain npo:fund ;
-    rdfs:range xsd:string ;
-    npo:allowedValue "donor-restricted",
-        "permanently-restricted",
-        "temporarily-restricted",
-        "unrestricted" ;
+    rdfs:range skos:Concept ;
     npo:cardinality "one" ;
     npo:group "classification" ;
+    npo:referenceScheme nporef:restriction-type ;
     npo:required true .
 
 npoprop:fund-status a owl:DatatypeProperty ;
@@ -588,17 +586,14 @@ npoprop:organization-jurisdiction a owl:DatatypeProperty ;
     npo:group "classification" ;
     npo:required false .
 
-npoprop:organization-operating-status a owl:DatatypeProperty ;
+npoprop:organization-operating-status a owl:ObjectProperty ;
     rdfs:label "Operating Status" ;
     rdfs:comment "Whether the organization is currently operating." ;
     rdfs:domain npo:organization ;
-    rdfs:range xsd:string ;
-    npo:allowedValue "active",
-        "dissolved",
-        "merged",
-        "unknown" ;
+    rdfs:range skos:Concept ;
     npo:cardinality "one" ;
     npo:group "lifecycle" ;
+    npo:referenceScheme nporef:organization-operating-status ;
     npo:required false .
 
 npoprop:organization-tax-identifier a owl:DatatypeProperty ;
@@ -777,17 +772,14 @@ npoprop:report-submitted-date a owl:DatatypeProperty ;
     npo:group "lifecycle" ;
     npo:required false .
 
-npoprop:reporting-schedule-frequency a owl:DatatypeProperty ;
+npoprop:reporting-schedule-frequency a owl:ObjectProperty ;
     rdfs:label "Frequency" ;
     rdfs:comment "How often Reports are due under this Reporting Schedule." ;
     rdfs:domain npo:reporting-schedule ;
-    rdfs:range xsd:string ;
-    npo:allowedValue "annual",
-        "monthly",
-        "one-time",
-        "quarterly" ;
+    rdfs:range skos:Concept ;
     npo:cardinality "one" ;
     npo:group "lifecycle" ;
+    npo:referenceScheme nporef:frequency ;
     npo:required true .
 
 npoprop:review-status a owl:DatatypeProperty ;
@@ -845,18 +837,14 @@ npoprop:role-scope a owl:DatatypeProperty ;
     npo:group "governance" ;
     npo:required false .
 
-npoprop:role-status a owl:DatatypeProperty ;
+npoprop:role-status a owl:ObjectProperty ;
     rdfs:label "Status" ;
     rdfs:comment "Where this role occupancy currently sits in its own lifecycle." ;
     rdfs:domain npo:role ;
-    rdfs:range xsd:string ;
-    npo:allowedValue "active",
-        "cancelled",
-        "ended",
-        "planned",
-        "suspended" ;
+    rdfs:range skos:Concept ;
     npo:cardinality "one" ;
     npo:group "lifecycle" ;
+    npo:referenceScheme nporef:role-status ;
     npo:required true .
 
 npoprop:site-visit-scheduled-date a owl:DatatypeProperty ;
@@ -920,6 +908,116 @@ npoprop:terms-and-conditions-restriction-type a owl:DatatypeProperty ;
     npo:cardinality "one" ;
     npo:group "governance" ;
     npo:required true .
+
+nporef:frequency-annual a skos:Concept ;
+    skos:definition "Recurs once a year." ;
+    skos:inScheme nporef:frequency ;
+    skos:notation "annual" ;
+    skos:prefLabel "Annual" .
+
+nporef:frequency-monthly a skos:Concept ;
+    skos:definition "Recurs every month." ;
+    skos:inScheme nporef:frequency ;
+    skos:notation "monthly" ;
+    skos:prefLabel "Monthly" .
+
+nporef:frequency-one-time a skos:Concept ;
+    skos:definition "Occurs once, with no recurrence." ;
+    skos:inScheme nporef:frequency ;
+    skos:notation "one-time" ;
+    skos:prefLabel "One-Time" .
+
+nporef:frequency-quarterly a skos:Concept ;
+    skos:definition "Recurs every three months." ;
+    skos:inScheme nporef:frequency ;
+    skos:notation "quarterly" ;
+    skos:prefLabel "Quarterly" .
+
+nporef:organization-operating-status-active a skos:Concept ;
+    skos:definition "The organization is currently operating." ;
+    skos:inScheme nporef:organization-operating-status ;
+    skos:notation "active" ;
+    skos:prefLabel "Active" .
+
+nporef:organization-operating-status-dissolved a skos:Concept ;
+    skos:definition "The organization has formally ceased to exist." ;
+    skos:inScheme nporef:organization-operating-status ;
+    skos:notation "dissolved" ;
+    skos:prefLabel "Dissolved" .
+
+nporef:organization-operating-status-merged a skos:Concept ;
+    skos:definition "The organization has combined into another organization and no longer operates independently." ;
+    skos:inScheme nporef:organization-operating-status ;
+    skos:notation "merged" ;
+    skos:prefLabel "Merged" .
+
+nporef:organization-operating-status-unknown a skos:Concept ;
+    skos:definition "The organization's current operating status has not been confirmed." ;
+    skos:inScheme nporef:organization-operating-status ;
+    skos:notation "unknown" ;
+    skos:prefLabel "Unknown" .
+
+nporef:publication-status-deprecated a skos:Concept ;
+    skos:definition "The scheme is no longer recommended for new use, though existing data may still reference its values." ;
+    skos:inScheme nporef:publication-status ;
+    skos:notation "deprecated" ;
+    skos:prefLabel "Deprecated" .
+
+nporef:publication-status-draft a skos:Concept ;
+    skos:definition "The scheme is still being defined and does not yet constrain any concept property." ;
+    skos:inScheme nporef:publication-status ;
+    skos:notation "draft" ;
+    skos:prefLabel "Draft" .
+
+nporef:restriction-type-permanently-restricted a skos:Concept ;
+    skos:broader nporef:restriction-type-donor-restricted ;
+    skos:definition "The fund's donor-imposed restriction never expires." ;
+    skos:inScheme nporef:restriction-type ;
+    skos:notation "permanently-restricted" ;
+    skos:prefLabel "Permanently Restricted" .
+
+nporef:restriction-type-temporarily-restricted a skos:Concept ;
+    skos:broader nporef:restriction-type-donor-restricted ;
+    skos:definition "The fund's donor-imposed restriction expires after a specific time or purpose is satisfied." ;
+    skos:inScheme nporef:restriction-type ;
+    skos:notation "temporarily-restricted" ;
+    skos:prefLabel "Temporarily Restricted" .
+
+nporef:restriction-type-unrestricted a skos:Concept ;
+    skos:definition "The fund carries no donor-imposed restriction on its use." ;
+    skos:inScheme nporef:restriction-type ;
+    skos:notation "unrestricted" ;
+    skos:prefLabel "Unrestricted" .
+
+nporef:role-status-active a skos:Concept ;
+    skos:definition "The role occupancy is currently in effect." ;
+    skos:inScheme nporef:role-status ;
+    skos:notation "active" ;
+    skos:prefLabel "Active" .
+
+nporef:role-status-cancelled a skos:Concept ;
+    skos:definition "The role occupancy was called off before or without reaching its expected conclusion." ;
+    skos:inScheme nporef:role-status ;
+    skos:notation "cancelled" ;
+    skos:prefLabel "Cancelled" .
+
+nporef:role-status-ended a skos:Concept ;
+    skos:definition "The role occupancy concluded as expected, e.g. at its effectiveTo date." ;
+    skos:inScheme nporef:role-status ;
+    skos:notation "ended" ;
+    skos:prefLabel "Ended" .
+
+nporef:role-status-planned a skos:Concept ;
+    skos:definition "The role occupancy has been agreed but has not yet started." ;
+    skos:inScheme nporef:role-status ;
+    skos:notation "planned" ;
+    skos:prefLabel "Planned" .
+
+nporef:role-status-suspended a skos:Concept ;
+    skos:definition "The role occupancy is temporarily paused without having formally ended." ;
+    skos:inScheme nporef:role-status ;
+    skos:notation "suspended" ;
+    skos:prefLabel "Suspended" .
 
 nporel:actsOnBehalfOf a owl:ObjectProperty ;
     rdfs:label "acts on behalf of" ;
@@ -1636,6 +1734,12 @@ npo:output a owl:Class ;
     skos:definition "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served)." ;
     npo:category "outcomes-and-closeout" .
 
+nporef:restriction-type-donor-restricted a skos:Concept ;
+    skos:definition "The fund's use is constrained by the donor, without specifying here whether the constraint is time-limited or perpetual." ;
+    skos:inScheme nporef:restriction-type ;
+    skos:notation "donor-restricted" ;
+    skos:prefLabel "Donor-Restricted" .
+
 npo:terms-and-conditions a owl:Class ;
     rdfs:label "Terms and Conditions" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
@@ -1695,6 +1799,14 @@ npo:person a owl:Class ;
     skos:definition "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships." ;
     npo:category "organizational-entities" .
 
+nporef:publication-status a skos:ConceptScheme ;
+    skos:definition "The lifecycle state of a reference-data scheme itself -- whether it's still being drafted, actively governing one or more properties, or deprecated in favor of something else. Distinct from a single value's own `deprecated` flag: a scheme can stay published while one of its values is retired." ;
+    skos:prefLabel "Publication Status" ;
+    npo:authorityType "internal" ;
+    npo:publicationStatus nporef:publication-status-published ;
+    npo:schemeDomain "reference-data-governance" ;
+    npo:version "1.0.0" .
+
 npo:reporting-schedule a owl:Class ;
     rdfs:label "Reporting Schedule" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
@@ -1741,6 +1853,36 @@ npo:decision a owl:Class ;
     skos:definition "The outcome of the review process for an application: approved, declined, or approved with conditions." ;
     npo:category "application-and-review" .
 
+nporef:frequency a skos:ConceptScheme ;
+    skos:definition "How often a recurring obligation is due. Currently used for how often Reports are due under a Reporting Schedule; generic enough to apply to other recurring obligations later without a new scheme." ;
+    skos:prefLabel "Frequency" ;
+    npo:authorityType "internal" ;
+    npo:publicationStatus nporef:publication-status-published ;
+    npo:schemeDomain "scheduling" ;
+    npo:version "1.0.0" .
+
+nporef:organization-operating-status a skos:ConceptScheme ;
+    skos:definition "Whether an Organization is currently operating, independent of any role it holds or arrangement it participates in." ;
+    skos:prefLabel "Organization Operating Status" ;
+    npo:authorityType "internal" ;
+    npo:publicationStatus nporef:publication-status-published ;
+    npo:schemeDomain "organization" ;
+    npo:version "1.0.0" .
+
+nporef:publication-status-published a skos:Concept ;
+    skos:definition "The scheme is stable and in active use, constraining one or more concept properties." ;
+    skos:inScheme nporef:publication-status ;
+    skos:notation "published" ;
+    skos:prefLabel "Published" .
+
+nporef:restriction-type a skos:ConceptScheme ;
+    skos:definition "A Fund's accounting restriction status -- whether its use is constrained by the donor, and if so, how. `donor-restricted` is the broader designation covering both time-limited and perpetual donor restrictions; `temporarily-restricted` and `permanently-restricted` narrow it to which kind." ;
+    skos:prefLabel "Restriction Type" ;
+    npo:authorityType "internal" ;
+    npo:publicationStatus nporef:publication-status-published ;
+    npo:schemeDomain "financial" ;
+    npo:version "1.0.0" .
+
 npo:sponsored-project a owl:Class ;
     rdfs:label "Sponsored Project" ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
@@ -1759,6 +1901,14 @@ npo:installment a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "A single scheduled portion of an award's total funds, to be disbursed at a defined point or upon meeting a condition." ;
     npo:category "disbursement" .
+
+nporef:role-status a skos:ConceptScheme ;
+    skos:definition "Where a Role occupancy currently sits in its own lifecycle, shared by every person-role and organization-role subtype via the role concept's inherited `status` property." ;
+    skos:prefLabel "Role Status" ;
+    npo:authorityType "internal" ;
+    npo:publicationStatus nporef:publication-status-published ;
+    npo:schemeDomain "role" ;
+    npo:version "1.0.0" .
 
 npo:review a owl:Class ;
     rdfs:label "Review" ;

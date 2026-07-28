@@ -4,6 +4,7 @@
 @prefix ex: <https://egovender.github.io/NPOGraph/ontology/examples/> .
 @prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
 @prefix npoprop: <https://egovender.github.io/NPOGraph/ontology/properties/> .
+@prefix nporef: <https://egovender.github.io/NPOGraph/ontology/reference-data/> .
 @prefix nporel: <https://egovender.github.io/NPOGraph/ontology/relations/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -33,7 +34,7 @@ ex:coastal-resilience-grant-to-kelp-forest a owl:NamedIndividual,
 ex:coastal-watch-alliance a owl:NamedIndividual,
         npo:grantee ;
     rdfs:label "Coastal Watch Alliance" ;
-    npoprop:role-status "active"^^xsd:string ;
+    npoprop:role-status nporef:role-status-active ;
     nporel:submitsApplication ex:coastal-watch-fy26-application .
 
 ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
@@ -47,7 +48,7 @@ ex:coastal-watch-year1-evaluation a owl:NamedIndividual,
 ex:elena-alvarez a owl:NamedIndividual,
         npo:donor-advisor ;
     rdfs:label "Elena Alvarez" ;
-    npoprop:role-status "active"^^xsd:string ;
+    npoprop:role-status nporef:role-status-active ;
     nporel:advises ex:alvarez-family-fund ;
     nporel:makesRecommendation ex:alvarez-fund-recommendation-2026 .
 
@@ -76,7 +77,7 @@ ex:ocf-subgrant-to-kelp-forest a owl:NamedIndividual,
 ex:tidal-marketing-collective-org a owl:NamedIndividual,
         npo:organization ;
     rdfs:label "Tidal Marketing Collective" ;
-    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-operating-status nporef:organization-operating-status-active ;
     nporel:playsRole ex:tidal-marketing-contractor-role .
 
 ex:tidewater-restoration-award a owl:NamedIndividual,
@@ -189,7 +190,7 @@ ex:coastal-watch-reporting-requirement a owl:NamedIndividual,
 ex:coastal-watch-reporting-schedule a owl:NamedIndividual,
         npo:reporting-schedule ;
     rdfs:label "Coastal Watch Alliance Reporting Schedule" ;
-    npoprop:reporting-schedule-frequency "quarterly"^^xsd:string ;
+    npoprop:reporting-schedule-frequency nporef:frequency-quarterly ;
     nporel:obligatesReport ex:coastal-watch-q2-report .
 
 ex:coastal-watch-workshops-output a owl:NamedIndividual,
@@ -225,13 +226,13 @@ ex:marine-habitat-program a owl:NamedIndividual,
 ex:national-ocean-legacy-fund a owl:NamedIndividual,
         npo:organization ;
     rdfs:label "National Ocean Legacy Fund" ;
-    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-operating-status nporef:organization-operating-status-active ;
     npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string .
 
 ex:ocean-conservation-fund a owl:NamedIndividual,
         npo:funder ;
     rdfs:label "Ocean Conservation Fund" ;
-    npoprop:role-status "active"^^xsd:string ;
+    npoprop:role-status nporef:role-status-active ;
     nporel:maintainsGrantProgram ex:marine-habitat-program .
 
 ex:ocean-conservation-fund-fiscal-sponsor-role a owl:NamedIndividual,
@@ -240,7 +241,7 @@ ex:ocean-conservation-fund-fiscal-sponsor-role a owl:NamedIndividual,
     npoprop:role-effective-from "2026-05-01"^^xsd:date ;
     npoprop:role-notes "Scoped to Tidewater Youth Ocean Corps sponsorship."^^xsd:string ;
     npoprop:role-scope "project-specific"^^xsd:string ;
-    npoprop:role-status "active"^^xsd:string ;
+    npoprop:role-status nporef:role-status-active ;
     nporel:appliesWithin ex:tidewater-sponsorship-arrangement .
 
 ex:ocean-conservation-fund-intermediary-role a owl:NamedIndividual,
@@ -249,7 +250,7 @@ ex:ocean-conservation-fund-intermediary-role a owl:NamedIndividual,
     npoprop:role-effective-from "2026-06-01"^^xsd:date ;
     npoprop:role-notes "Scoped to the National Ocean Legacy regranting program."^^xsd:string ;
     npoprop:role-scope "arrangement-specific"^^xsd:string ;
-    npoprop:role-status "active"^^xsd:string ;
+    npoprop:role-status nporef:role-status-active ;
     nporel:appliesWithin ex:ocean-legacy-regranting-program .
 
 ex:ocean-legacy-regranting-program a owl:NamedIndividual,
@@ -265,7 +266,7 @@ ex:pacific-coastal-trust-fund a owl:NamedIndividual,
     rdfs:label "Pacific Coastal Trust Community Grants Fund" ;
     npoprop:fund-currency "USD"^^xsd:string ;
     npoprop:fund-opening-date "2020-01-01"^^xsd:date ;
-    npoprop:fund-restriction-type "unrestricted"^^xsd:string ;
+    npoprop:fund-restriction-type nporef:restriction-type-unrestricted ;
     npoprop:fund-status "active"^^xsd:string ;
     nporel:heldBy ex:pacific-coastal-trust .
 
@@ -275,7 +276,7 @@ ex:tidal-marketing-contractor-role a owl:NamedIndividual,
     npoprop:role-effective-from "2026-04-01"^^xsd:date ;
     npoprop:role-notes "Engaged to produce Ocean Conservation Fund's annual impact report."^^xsd:string ;
     npoprop:role-scope "agreement-specific"^^xsd:string ;
-    npoprop:role-status "active"^^xsd:string ;
+    npoprop:role-status nporef:role-status-active ;
     nporel:organizationRoleAppliesWithinOrganization ex:ocean-conservation-fund-org .
 
 ex:tidewater-sponsorship-arrangement a owl:NamedIndividual,
@@ -308,14 +309,14 @@ ex:coastal-resilience-fund a owl:NamedIndividual,
     rdfs:label "Coastal Resilience Fund" ;
     npoprop:fund-currency "USD"^^xsd:string ;
     npoprop:fund-opening-date "2025-11-01"^^xsd:date ;
-    npoprop:fund-restriction-type "temporarily-restricted"^^xsd:string ;
+    npoprop:fund-restriction-type nporef:restriction-type-temporarily-restricted ;
     npoprop:fund-status "active"^^xsd:string ;
     nporel:heldBy ex:tidewater-community-foundation .
 
 ex:coral-reef-defenders a owl:NamedIndividual,
         npo:organization ;
     rdfs:label "Coral Reef Defenders" ;
-    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-operating-status nporef:organization-operating-status-active ;
     npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string .
 
 ex:marine-habitat-2026-opportunity a owl:NamedIndividual,
@@ -328,13 +329,13 @@ ex:marine-habitat-2026-opportunity a owl:NamedIndividual,
 ex:kelp-forest-collective a owl:NamedIndividual,
         npo:organization ;
     rdfs:label "Kelp Forest Collective" ;
-    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-operating-status nporef:organization-operating-status-active ;
     npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string .
 
 ex:pacific-coastal-trust a owl:NamedIndividual,
         npo:organization ;
     rdfs:label "Pacific Coastal Trust" ;
-    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-operating-status nporef:organization-operating-status-active ;
     npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string ;
     nporel:participatesIn ex:coastal-resilience-collaborative .
 
@@ -343,21 +344,21 @@ ex:alvarez-family-fund a owl:NamedIndividual,
     rdfs:label "Alvarez Family Fund" ;
     npoprop:fund-currency "USD"^^xsd:string ;
     npoprop:fund-opening-date "2021-03-01"^^xsd:date ;
-    npoprop:fund-restriction-type "donor-restricted"^^xsd:string ;
+    npoprop:fund-restriction-type nporef:restriction-type-donor-restricted ;
     npoprop:fund-status "active"^^xsd:string ;
     nporel:heldBy ex:ocean-conservation-fund-org .
 
 ex:tidewater-community-foundation a owl:NamedIndividual,
         npo:organization ;
     rdfs:label "Tidewater Community Foundation" ;
-    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-operating-status nporef:organization-operating-status-active ;
     npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string ;
     nporel:participatesIn ex:coastal-resilience-collaborative .
 
 ex:ocean-conservation-fund-org a owl:NamedIndividual,
         npo:organization ;
     rdfs:label "Ocean Conservation Fund" ;
-    npoprop:organization-operating-status "active"^^xsd:string ;
+    npoprop:organization-operating-status nporef:organization-operating-status-active ;
     npoprop:organization-tax-status "tax-exempt-501c3"^^xsd:string ;
     nporel:playsRole ex:ocean-conservation-fund,
         ex:ocean-conservation-fund-fiscal-sponsor-role,

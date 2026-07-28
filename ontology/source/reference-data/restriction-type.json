@@ -1,0 +1,47 @@
+{
+  "id": "restriction-type",
+  "label": "Restriction Type",
+  "description": "A Fund's accounting restriction status -- whether its use is constrained by the donor, and if so, how. `donor-restricted` is the broader designation covering both time-limited and perpetual donor restrictions; `temporarily-restricted` and `permanently-restricted` narrow it to which kind.",
+  "domain": "financial",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "restriction-type-unrestricted",
+      "code": "unrestricted",
+      "label": "Unrestricted",
+      "definition": "The fund carries no donor-imposed restriction on its use.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "restriction-type-donor-restricted",
+      "code": "donor-restricted",
+      "label": "Donor-Restricted",
+      "definition": "The fund's use is constrained by the donor, without specifying here whether the constraint is time-limited or perpetual.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "restriction-type-temporarily-restricted",
+      "code": "temporarily-restricted",
+      "label": "Temporarily Restricted",
+      "definition": "The fund's donor-imposed restriction expires after a specific time or purpose is satisfied.",
+      "deprecated": false,
+      "broader": "restriction-type-donor-restricted",
+      "mappings": []
+    },
+    {
+      "id": "restriction-type-permanently-restricted",
+      "code": "permanently-restricted",
+      "label": "Permanently Restricted",
+      "definition": "The fund's donor-imposed restriction never expires.",
+      "deprecated": false,
+      "broader": "restriction-type-donor-restricted",
+      "mappings": []
+    }
+  ]
+}

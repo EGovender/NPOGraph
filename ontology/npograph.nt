@@ -552,17 +552,14 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-opening-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-opening-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-opening-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <http://www.w3.org/2000/01/rdf-schema#comment> "The fund's accounting restriction status." .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/fund> .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <http://www.w3.org/2000/01/rdf-schema#label> "Restriction Type" .
-<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
-<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "donor-restricted" .
-<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "permanently-restricted" .
-<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "temporarily-restricted" .
-<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "unrestricted" .
+<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <https://egovender.github.io/NPOGraph/ontology/group> "classification" .
+<https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <https://egovender.github.io/NPOGraph/ontology/referenceScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-restriction-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/fund-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the fund is currently active." .
@@ -766,17 +763,14 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-jurisdiction> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-jurisdiction> <https://egovender.github.io/NPOGraph/ontology/group> "classification" .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-jurisdiction> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the organization is currently operating." .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/organization> .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <http://www.w3.org/2000/01/rdf-schema#label> "Operating Status" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "active" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "dissolved" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "merged" .
-<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "unknown" .
+<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/referenceScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-tax-identifier> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/organization-tax-identifier> <http://www.w3.org/2000/01/rdf-schema#comment> "The organization's tax identification number (e.g., an EIN), if applicable and disclosed." .
@@ -937,17 +931,14 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
 <https://egovender.github.io/NPOGraph/ontology/properties/report-submitted-date> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#comment> "How often Reports are due under this Reporting Schedule." .
 <https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/reporting-schedule> .
 <https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#label> "Frequency" .
-<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
-<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "annual" .
-<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "monthly" .
-<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "one-time" .
-<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "quarterly" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/referenceScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> .
 <https://egovender.github.io/NPOGraph/ontology/properties/reporting-schedule-frequency> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/review-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/review-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where the Review currently stands." .
@@ -999,18 +990,14 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
 <https://egovender.github.io/NPOGraph/ontology/properties/role-scope> <https://egovender.github.io/NPOGraph/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
-<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#comment> "Where this role occupancy currently sits in its own lifecycle." .
 <https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/NPOGraph/ontology/role> .
 <https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#label> "Status" .
-<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
-<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "active" .
-<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "cancelled" .
-<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "ended" .
-<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "planned" .
-<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/allowedValue> "suspended" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/group> "lifecycle" .
+<https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/referenceScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> .
 <https://egovender.github.io/NPOGraph/ontology/properties/role-status> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/NPOGraph/ontology/properties/site-visit-scheduled-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Site Visit is scheduled to occur." .
@@ -1068,6 +1055,143 @@
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/cardinality> "one" .
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/group> "governance" .
 <https://egovender.github.io/NPOGraph/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/NPOGraph/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-annual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-annual> <http://www.w3.org/2004/02/skos/core#definition> "Recurs once a year." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-annual> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-annual> <http://www.w3.org/2004/02/skos/core#notation> "annual" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-annual> <http://www.w3.org/2004/02/skos/core#prefLabel> "Annual" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-monthly> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-monthly> <http://www.w3.org/2004/02/skos/core#definition> "Recurs every month." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-monthly> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-monthly> <http://www.w3.org/2004/02/skos/core#notation> "monthly" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-monthly> <http://www.w3.org/2004/02/skos/core#prefLabel> "Monthly" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-one-time> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-one-time> <http://www.w3.org/2004/02/skos/core#definition> "Occurs once, with no recurrence." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-one-time> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-one-time> <http://www.w3.org/2004/02/skos/core#notation> "one-time" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-one-time> <http://www.w3.org/2004/02/skos/core#prefLabel> "One-Time" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-quarterly> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-quarterly> <http://www.w3.org/2004/02/skos/core#definition> "Recurs every three months." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-quarterly> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-quarterly> <http://www.w3.org/2004/02/skos/core#notation> "quarterly" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency-quarterly> <http://www.w3.org/2004/02/skos/core#prefLabel> "Quarterly" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> <http://www.w3.org/2004/02/skos/core#definition> "How often a recurring obligation is due. Currently used for how often Reports are due under a Reporting Schedule; generic enough to apply to other recurring obligations later without a new scheme." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> <http://www.w3.org/2004/02/skos/core#prefLabel> "Frequency" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> <https://egovender.github.io/NPOGraph/ontology/authorityType> "internal" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> <https://egovender.github.io/NPOGraph/ontology/publicationStatus> <https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> <https://egovender.github.io/NPOGraph/ontology/schemeDomain> "scheduling" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/frequency> <https://egovender.github.io/NPOGraph/ontology/version> "1.0.0" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-active> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-active> <http://www.w3.org/2004/02/skos/core#definition> "The organization is currently operating." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-active> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-active> <http://www.w3.org/2004/02/skos/core#notation> "active" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-active> <http://www.w3.org/2004/02/skos/core#prefLabel> "Active" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-dissolved> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-dissolved> <http://www.w3.org/2004/02/skos/core#definition> "The organization has formally ceased to exist." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-dissolved> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-dissolved> <http://www.w3.org/2004/02/skos/core#notation> "dissolved" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-dissolved> <http://www.w3.org/2004/02/skos/core#prefLabel> "Dissolved" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-merged> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-merged> <http://www.w3.org/2004/02/skos/core#definition> "The organization has combined into another organization and no longer operates independently." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-merged> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-merged> <http://www.w3.org/2004/02/skos/core#notation> "merged" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-merged> <http://www.w3.org/2004/02/skos/core#prefLabel> "Merged" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-unknown> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-unknown> <http://www.w3.org/2004/02/skos/core#definition> "The organization's current operating status has not been confirmed." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-unknown> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-unknown> <http://www.w3.org/2004/02/skos/core#notation> "unknown" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status-unknown> <http://www.w3.org/2004/02/skos/core#prefLabel> "Unknown" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> <http://www.w3.org/2004/02/skos/core#definition> "Whether an Organization is currently operating, independent of any role it holds or arrangement it participates in." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> <http://www.w3.org/2004/02/skos/core#prefLabel> "Organization Operating Status" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/authorityType> "internal" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/publicationStatus> <https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/schemeDomain> "organization" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/organization-operating-status> <https://egovender.github.io/NPOGraph/ontology/version> "1.0.0" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-deprecated> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-deprecated> <http://www.w3.org/2004/02/skos/core#definition> "The scheme is no longer recommended for new use, though existing data may still reference its values." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-deprecated> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-deprecated> <http://www.w3.org/2004/02/skos/core#notation> "deprecated" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-deprecated> <http://www.w3.org/2004/02/skos/core#prefLabel> "Deprecated" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-draft> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-draft> <http://www.w3.org/2004/02/skos/core#definition> "The scheme is still being defined and does not yet constrain any concept property." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-draft> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-draft> <http://www.w3.org/2004/02/skos/core#notation> "draft" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-draft> <http://www.w3.org/2004/02/skos/core#prefLabel> "Draft" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> <http://www.w3.org/2004/02/skos/core#definition> "The scheme is stable and in active use, constraining one or more concept properties." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> <http://www.w3.org/2004/02/skos/core#notation> "published" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> <http://www.w3.org/2004/02/skos/core#prefLabel> "Published" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> <http://www.w3.org/2004/02/skos/core#definition> "The lifecycle state of a reference-data scheme itself -- whether it's still being drafted, actively governing one or more properties, or deprecated in favor of something else. Distinct from a single value's own `deprecated` flag: a scheme can stay published while one of its values is retired." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> <http://www.w3.org/2004/02/skos/core#prefLabel> "Publication Status" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> <https://egovender.github.io/NPOGraph/ontology/authorityType> "internal" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> <https://egovender.github.io/NPOGraph/ontology/publicationStatus> <https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> <https://egovender.github.io/NPOGraph/ontology/schemeDomain> "reference-data-governance" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status> <https://egovender.github.io/NPOGraph/ontology/version> "1.0.0" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-donor-restricted> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-donor-restricted> <http://www.w3.org/2004/02/skos/core#definition> "The fund's use is constrained by the donor, without specifying here whether the constraint is time-limited or perpetual." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-donor-restricted> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-donor-restricted> <http://www.w3.org/2004/02/skos/core#notation> "donor-restricted" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-donor-restricted> <http://www.w3.org/2004/02/skos/core#prefLabel> "Donor-Restricted" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-permanently-restricted> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-permanently-restricted> <http://www.w3.org/2004/02/skos/core#broader> <https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-donor-restricted> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-permanently-restricted> <http://www.w3.org/2004/02/skos/core#definition> "The fund's donor-imposed restriction never expires." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-permanently-restricted> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-permanently-restricted> <http://www.w3.org/2004/02/skos/core#notation> "permanently-restricted" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-permanently-restricted> <http://www.w3.org/2004/02/skos/core#prefLabel> "Permanently Restricted" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-temporarily-restricted> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-temporarily-restricted> <http://www.w3.org/2004/02/skos/core#broader> <https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-donor-restricted> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-temporarily-restricted> <http://www.w3.org/2004/02/skos/core#definition> "The fund's donor-imposed restriction expires after a specific time or purpose is satisfied." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-temporarily-restricted> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-temporarily-restricted> <http://www.w3.org/2004/02/skos/core#notation> "temporarily-restricted" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-temporarily-restricted> <http://www.w3.org/2004/02/skos/core#prefLabel> "Temporarily Restricted" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-unrestricted> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-unrestricted> <http://www.w3.org/2004/02/skos/core#definition> "The fund carries no donor-imposed restriction on its use." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-unrestricted> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-unrestricted> <http://www.w3.org/2004/02/skos/core#notation> "unrestricted" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type-unrestricted> <http://www.w3.org/2004/02/skos/core#prefLabel> "Unrestricted" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> <http://www.w3.org/2004/02/skos/core#definition> "A Fund's accounting restriction status -- whether its use is constrained by the donor, and if so, how. `donor-restricted` is the broader designation covering both time-limited and perpetual donor restrictions; `temporarily-restricted` and `permanently-restricted` narrow it to which kind." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> <http://www.w3.org/2004/02/skos/core#prefLabel> "Restriction Type" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> <https://egovender.github.io/NPOGraph/ontology/authorityType> "internal" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> <https://egovender.github.io/NPOGraph/ontology/publicationStatus> <https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> <https://egovender.github.io/NPOGraph/ontology/schemeDomain> "financial" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/restriction-type> <https://egovender.github.io/NPOGraph/ontology/version> "1.0.0" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-active> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-active> <http://www.w3.org/2004/02/skos/core#definition> "The role occupancy is currently in effect." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-active> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-active> <http://www.w3.org/2004/02/skos/core#notation> "active" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-active> <http://www.w3.org/2004/02/skos/core#prefLabel> "Active" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-cancelled> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-cancelled> <http://www.w3.org/2004/02/skos/core#definition> "The role occupancy was called off before or without reaching its expected conclusion." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-cancelled> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-cancelled> <http://www.w3.org/2004/02/skos/core#notation> "cancelled" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-cancelled> <http://www.w3.org/2004/02/skos/core#prefLabel> "Cancelled" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-ended> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-ended> <http://www.w3.org/2004/02/skos/core#definition> "The role occupancy concluded as expected, e.g. at its effectiveTo date." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-ended> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-ended> <http://www.w3.org/2004/02/skos/core#notation> "ended" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-ended> <http://www.w3.org/2004/02/skos/core#prefLabel> "Ended" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-planned> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-planned> <http://www.w3.org/2004/02/skos/core#definition> "The role occupancy has been agreed but has not yet started." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-planned> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-planned> <http://www.w3.org/2004/02/skos/core#notation> "planned" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-planned> <http://www.w3.org/2004/02/skos/core#prefLabel> "Planned" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-suspended> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-suspended> <http://www.w3.org/2004/02/skos/core#definition> "The role occupancy is temporarily paused without having formally ended." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-suspended> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-suspended> <http://www.w3.org/2004/02/skos/core#notation> "suspended" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status-suspended> <http://www.w3.org/2004/02/skos/core#prefLabel> "Suspended" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> <http://www.w3.org/2004/02/skos/core#definition> "Where a Role occupancy currently sits in its own lifecycle, shared by every person-role and organization-role subtype via the role concept's inherited `status` property." .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> <http://www.w3.org/2004/02/skos/core#prefLabel> "Role Status" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> <https://egovender.github.io/NPOGraph/ontology/authorityType> "internal" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> <https://egovender.github.io/NPOGraph/ontology/publicationStatus> <https://egovender.github.io/NPOGraph/ontology/reference-data/publication-status-published> .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> <https://egovender.github.io/NPOGraph/ontology/schemeDomain> "role" .
+<https://egovender.github.io/NPOGraph/ontology/reference-data/role-status> <https://egovender.github.io/NPOGraph/ontology/version> "1.0.0" .
 <https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> .
 <https://egovender.github.io/NPOGraph/ontology/regranting-arrangement> <http://www.w3.org/2000/01/rdf-schema#label> "Regranting Arrangement" .

@@ -4,6 +4,7 @@
     "npo": "https://egovender.github.io/NPOGraph/ontology/",
     "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
     "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
+    "nporef": "https://egovender.github.io/NPOGraph/ontology/reference-data/",
     "ex": "https://egovender.github.io/NPOGraph/ontology/examples/",
     "owl": "http://www.w3.org/2002/07/owl#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
@@ -21,8 +22,7 @@
       ],
       "label": "Alvarez Family Fund",
       "npoprop:fund-restriction-type": {
-        "@value": "donor-restricted",
-        "@type": "xsd:string"
+        "@id": "nporef:restriction-type-donor-restricted"
       },
       "npoprop:fund-currency": {
         "@value": "USD",
@@ -121,8 +121,7 @@
       ],
       "label": "Coastal Resilience Fund",
       "npoprop:fund-restriction-type": {
-        "@value": "temporarily-restricted",
-        "@type": "xsd:string"
+        "@id": "nporef:restriction-type-temporarily-restricted"
       },
       "npoprop:fund-currency": {
         "@value": "USD",
@@ -184,8 +183,7 @@
       ],
       "label": "Coastal Watch Alliance",
       "npoprop:role-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:role-status-active"
       },
       "nporel:submitsApplication": {
         "@id": "ex:coastal-watch-fy26-application"
@@ -432,8 +430,7 @@
       ],
       "label": "Coastal Watch Alliance Reporting Schedule",
       "npoprop:reporting-schedule-frequency": {
-        "@value": "quarterly",
-        "@type": "xsd:string"
+        "@id": "nporef:frequency-quarterly"
       },
       "nporel:obligatesReport": {
         "@id": "ex:coastal-watch-q2-report"
@@ -485,8 +482,7 @@
         "@type": "xsd:string"
       },
       "npoprop:organization-operating-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:organization-operating-status-active"
       }
     },
     {
@@ -533,8 +529,7 @@
       ],
       "label": "Elena Alvarez",
       "npoprop:role-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:role-status-active"
       },
       "nporel:advises": {
         "@id": "ex:alvarez-family-fund"
@@ -555,8 +550,7 @@
         "@type": "xsd:string"
       },
       "npoprop:organization-operating-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:organization-operating-status-active"
       }
     },
     {
@@ -625,8 +619,7 @@
         "@type": "xsd:string"
       },
       "npoprop:organization-operating-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:organization-operating-status-active"
       }
     },
     {
@@ -637,8 +630,7 @@
       ],
       "label": "Ocean Conservation Fund",
       "npoprop:role-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:role-status-active"
       },
       "nporel:maintainsGrantProgram": {
         "@id": "ex:marine-habitat-program"
@@ -652,8 +644,7 @@
       ],
       "label": "Ocean Conservation Fund (as Fiscal Sponsor)",
       "npoprop:role-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:role-status-active"
       },
       "npoprop:role-effective-from": {
         "@value": "2026-05-01",
@@ -679,8 +670,7 @@
       ],
       "label": "Ocean Conservation Fund (as Funding Intermediary)",
       "npoprop:role-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:role-status-active"
       },
       "npoprop:role-effective-from": {
         "@value": "2026-06-01",
@@ -710,8 +700,7 @@
         "@type": "xsd:string"
       },
       "npoprop:organization-operating-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:organization-operating-status-active"
       },
       "nporel:playsRole": {
         "@id": "ex:ocean-conservation-fund-intermediary-role"
@@ -817,8 +806,7 @@
         "@type": "xsd:string"
       },
       "npoprop:organization-operating-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:organization-operating-status-active"
       },
       "nporel:participatesIn": {
         "@id": "ex:coastal-resilience-collaborative"
@@ -832,8 +820,7 @@
       ],
       "label": "Pacific Coastal Trust Community Grants Fund",
       "npoprop:fund-restriction-type": {
-        "@value": "unrestricted",
-        "@type": "xsd:string"
+        "@id": "nporef:restriction-type-unrestricted"
       },
       "npoprop:fund-currency": {
         "@value": "USD",
@@ -859,8 +846,7 @@
       ],
       "label": "Tidal Marketing Collective",
       "npoprop:organization-operating-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:organization-operating-status-active"
       },
       "nporel:playsRole": {
         "@id": "ex:tidal-marketing-contractor-role"
@@ -874,8 +860,7 @@
       ],
       "label": "Tidal Marketing Collective (as Contractor)",
       "npoprop:role-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:role-status-active"
       },
       "npoprop:role-effective-from": {
         "@value": "2026-04-01",
@@ -905,8 +890,7 @@
         "@type": "xsd:string"
       },
       "npoprop:organization-operating-status": {
-        "@value": "active",
-        "@type": "xsd:string"
+        "@id": "nporef:organization-operating-status-active"
       },
       "nporel:participatesIn": {
         "@id": "ex:coastal-resilience-collaborative"

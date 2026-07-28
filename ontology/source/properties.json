@@ -461,10 +461,11 @@
     "name": "frequency",
     "label": "Frequency",
     "group": "lifecycle",
-    "datatype": "enum",
+    "datatype": "reference",
+    "referenceScheme": "frequency",
     "required": true,
     "cardinality": "one",
-    "allowedValues": ["monthly", "quarterly", "annual", "one-time"],
+    "allowedValues": null,
     "description": "How often Reports are due under this Reporting Schedule."
   },
   {
@@ -689,10 +690,11 @@
     "name": "operatingStatus",
     "label": "Operating Status",
     "group": "lifecycle",
-    "datatype": "enum",
+    "datatype": "reference",
+    "referenceScheme": "organization-operating-status",
     "required": false,
     "cardinality": "one",
-    "allowedValues": ["active", "dissolved", "merged", "unknown"],
+    "allowedValues": null,
     "description": "Whether the organization is currently operating."
   },
   {
@@ -701,10 +703,11 @@
     "name": "restrictionType",
     "label": "Restriction Type",
     "group": "classification",
-    "datatype": "enum",
+    "datatype": "reference",
+    "referenceScheme": "restriction-type",
     "required": true,
     "cardinality": "one",
-    "allowedValues": ["unrestricted", "temporarily-restricted", "permanently-restricted", "donor-restricted"],
+    "allowedValues": null,
     "description": "The fund's accounting restriction status."
   },
   {
@@ -917,10 +920,11 @@
     "name": "status",
     "label": "Status",
     "group": "lifecycle",
-    "datatype": "enum",
+    "datatype": "reference",
+    "referenceScheme": "role-status",
     "required": true,
     "cardinality": "one",
-    "allowedValues": ["planned", "active", "suspended", "ended", "cancelled"],
+    "allowedValues": null,
     "description": "Where this role occupancy currently sits in its own lifecycle."
   },
   {

@@ -4,6 +4,8 @@
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
 @prefix npoprop: <https://egovender.github.io/NPOGraph/ontology/properties/> .
+@prefix nporef: <https://egovender.github.io/NPOGraph/ontology/reference-data/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 npo:amendment-property-shape
@@ -78,7 +80,7 @@ npo:fund-property-shape
     sh:property [ sh:path npoprop:fund-closing-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:fund-currency ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:fund-opening-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:fund-restriction-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """unrestricted"""^^xsd:string """temporarily-restricted"""^^xsd:string """permanently-restricted"""^^xsd:string """donor-restricted"""^^xsd:string ) ] ,
+        [ sh:path npoprop:fund-restriction-type ; sh:class skos:Concept ; sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue nporef:restriction-type ] ] ; sh:minCount 1 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:fund-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """closed"""^^xsd:string """frozen"""^^xsd:string ) ] .
 
 npo:funding-cycle-property-shape
@@ -141,7 +143,7 @@ npo:organization-property-shape
     sh:property [ sh:path npoprop:organization-formation-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:organization-identifier ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:organization-jurisdiction ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
-        [ sh:path npoprop:organization-operating-status ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """dissolved"""^^xsd:string """merged"""^^xsd:string """unknown"""^^xsd:string ) ] ,
+        [ sh:path npoprop:organization-operating-status ; sh:class skos:Concept ; sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue nporef:organization-operating-status ] ] ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:organization-tax-identifier ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:organization-tax-status ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ; sh:in ( """tax-exempt-501c3"""^^xsd:string """tax-exempt-other"""^^xsd:string """taxable"""^^xsd:string """government-exempt"""^^xsd:string """unknown"""^^xsd:string ) ] .
 
@@ -187,7 +189,7 @@ npo:report-property-shape
 npo:reporting-schedule-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:reporting-schedule ;
-    sh:property [ sh:path npoprop:reporting-schedule-frequency ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """monthly"""^^xsd:string """quarterly"""^^xsd:string """annual"""^^xsd:string """one-time"""^^xsd:string ) ] .
+    sh:property [ sh:path npoprop:reporting-schedule-frequency ; sh:class skos:Concept ; sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue nporef:frequency ] ] ; sh:minCount 1 ; sh:maxCount 1 ] .
 
 npo:review-property-shape
     a sh:NodeShape ;
@@ -201,7 +203,7 @@ npo:role-property-shape
         [ sh:path npoprop:role-effective-to ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:role-notes ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:role-scope ; sh:datatype xsd:string ; sh:minCount 0 ; sh:maxCount 1 ; sh:in ( """organization-wide"""^^xsd:string """program-specific"""^^xsd:string """project-specific"""^^xsd:string """award-specific"""^^xsd:string """agreement-specific"""^^xsd:string """arrangement-specific"""^^xsd:string """transaction-specific"""^^xsd:string ) ] ,
-        [ sh:path npoprop:role-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planned"""^^xsd:string """active"""^^xsd:string """suspended"""^^xsd:string """ended"""^^xsd:string """cancelled"""^^xsd:string ) ] .
+        [ sh:path npoprop:role-status ; sh:class skos:Concept ; sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue nporef:role-status ] ] ; sh:minCount 1 ; sh:maxCount 1 ] .
 
 npo:site-visit-property-shape
     a sh:NodeShape ;

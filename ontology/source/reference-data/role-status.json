@@ -1,0 +1,56 @@
+{
+  "id": "role-status",
+  "label": "Role Status",
+  "description": "Where a Role occupancy currently sits in its own lifecycle, shared by every person-role and organization-role subtype via the role concept's inherited `status` property.",
+  "domain": "role",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "role-status-planned",
+      "code": "planned",
+      "label": "Planned",
+      "definition": "The role occupancy has been agreed but has not yet started.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "role-status-active",
+      "code": "active",
+      "label": "Active",
+      "definition": "The role occupancy is currently in effect.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "role-status-suspended",
+      "code": "suspended",
+      "label": "Suspended",
+      "definition": "The role occupancy is temporarily paused without having formally ended.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "role-status-ended",
+      "code": "ended",
+      "label": "Ended",
+      "definition": "The role occupancy concluded as expected, e.g. at its effectiveTo date.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "role-status-cancelled",
+      "code": "cancelled",
+      "label": "Cancelled",
+      "definition": "The role occupancy was called off before or without reaching its expected conclusion.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    }
+  ]
+}

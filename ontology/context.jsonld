@@ -8,36 +8,91 @@
       "@id": "npo:appliesTo",
       "@type": "@id"
     },
+    "authorityType": "npo:authorityType",
+    "broadMatch": {
+      "@container": "@set",
+      "@id": "skos:broadMatch",
+      "@type": "@id"
+    },
+    "broader": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    },
     "cardinality": "npo:cardinality",
     "category": "npo:category",
+    "closeMatch": {
+      "@container": "@set",
+      "@id": "skos:closeMatch",
+      "@type": "@id"
+    },
     "comment": "rdfs:comment",
+    "dcterms": "http://purl.org/dc/terms/",
     "definition": "skos:definition",
+    "deprecated": {
+      "@id": "owl:deprecated",
+      "@type": "xsd:boolean"
+    },
     "domain": {
       "@id": "rdfs:domain",
       "@type": "@id"
     },
+    "exactMatch": {
+      "@container": "@set",
+      "@id": "skos:exactMatch",
+      "@type": "@id"
+    },
     "group": "npo:group",
     "id": "@id",
+    "inScheme": {
+      "@id": "skos:inScheme",
+      "@type": "@id"
+    },
     "isDefinedBy": {
       "@id": "rdfs:isDefinedBy",
       "@type": "@id"
     },
+    "isReplacedBy": {
+      "@id": "dcterms:isReplacedBy",
+      "@type": "@id"
+    },
     "label": "rdfs:label",
     "legalNote": "npo:legalNote",
+    "narrowMatch": {
+      "@container": "@set",
+      "@id": "skos:narrowMatch",
+      "@type": "@id"
+    },
+    "notation": "skos:notation",
     "npo": "https://egovender.github.io/NPOGraph/ontology/",
     "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
+    "nporef": "https://egovender.github.io/NPOGraph/ontology/reference-data/",
     "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
     "nporule": "https://egovender.github.io/NPOGraph/ontology/rules/",
     "owl": "http://www.w3.org/2002/07/owl#",
+    "prefLabel": "skos:prefLabel",
+    "publicationStatus": {
+      "@id": "npo:publicationStatus",
+      "@type": "@id"
+    },
     "range": {
       "@id": "rdfs:range",
       "@type": "@id"
     },
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "referenceScheme": {
+      "@id": "npo:referenceScheme",
+      "@type": "@id"
+    },
+    "relatedMatch": {
+      "@container": "@set",
+      "@id": "skos:relatedMatch",
+      "@type": "@id"
+    },
     "required": {
       "@id": "npo:required",
       "@type": "xsd:boolean"
     },
+    "schemeDomain": "npo:schemeDomain",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "subClassOf": {
       "@id": "rdfs:subClassOf",

@@ -2,7 +2,11 @@
 """
 Generates ontology/npograph.{ttl,rdf,nt,jsonld}, ontology/context.jsonld, and
 ontology/npograph.property-shapes.ttl from the canonical, hand-maintained JSON
-in ontology/source/.
+in ontology/source/, including the controlled-vocabulary schemes under
+ontology/source/reference-data/ (see docs/06-properties-and-rules.md), which
+are emitted as real, IRI-identified skos:ConceptScheme/skos:Concept resources
+in the same main outputs -- not a blank-node structure, so they don't disturb
+this file's determinism story below.
 
 Do not hand-edit the generated files under ontology/ -- edit the JSON files in
 ontology/source/ instead, then re-run this script. See docs/05-data-model.md
@@ -27,10 +31,11 @@ from decimal import Decimal
 from pathlib import Path
 
 from rdflib import Graph, Literal, Namespace, OWL, RDF, RDFS, URIRef, XSD
-from rdflib.namespace import SKOS
+from rdflib.namespace import DCTERMS, SKOS
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE_DIR = ROOT / "ontology" / "source"
+REFDATA_DIR = SOURCE_DIR / "reference-data"
 OUT_DIR = ROOT / "ontology"
 
 BASE = "https://egovender.github.io/NPOGraph/ontology/"
@@ -38,17 +43,22 @@ REL_BASE = BASE + "relations/"
 PROP_BASE = BASE + "properties/"
 RULE_BASE = BASE + "rules/"
 EXAMPLE_BASE = BASE + "examples/"
+REFDATA_BASE = BASE + "reference-data/"
 NPO = Namespace(BASE)
 NPOREL = Namespace(REL_BASE)
 NPOPROP = Namespace(PROP_BASE)
 NPORULE = Namespace(RULE_BASE)
 NPOEX = Namespace(EXAMPLE_BASE)
+NPOREF = Namespace(REFDATA_BASE)
 
 RDF_NS = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 RDFS_NS = "http://www.w3.org/2000/01/rdf-schema#"
 OWL_NS = "http://www.w3.org/2002/07/owl#"
 SKOS_NS = "http://www.w3.org/2004/02/skos/core#"
 XSD_NS = "http://www.w3.org/2001/XMLSchema#"
+DCTERMS_NS = "http://purl.org/dc/terms/"
+
+VALID_MAPPING_RELATIONS = {"exactMatch", "closeMatch", "broadMatch", "narrowMatch", "relatedMatch"}
 
 ONTOLOGY_COMMENT = (
     "Generated from ontology/source/*.json. Do not hand-edit. "
@@ -64,6 +74,12 @@ DATATYPE_TO_XSD = {
     # enforced by SHACL sh:in, not by an OWL-level datatype restriction.
     "enum": XSD.string,
 }
+
+# "reference" is a distinct datatype, not in DATATYPE_TO_XSD: a reference-backed
+# property's value is a skos:Concept resource (an owl:ObjectProperty), not an
+# RDF literal, so it has no XSD type -- see load_reference_data() and every
+# "datatype == 'reference'" branch below.
+ALL_DATATYPES = set(DATATYPE_TO_XSD) | {"reference"}
 
 
 def resolve_properties_by_concept(concepts, properties):
@@ -121,12 +137,70 @@ def ancestor_ids(concept_id, concepts_by_id):
     return chain
 
 
+def load_reference_data():
+    """Loads and cross-validates every ontology/source/reference-data/*.json
+    controlled-vocabulary scheme -- see docs/06-properties-and-rules.md for the
+    SKOS-based governance model this backs. Returns schemes sorted by id, each
+    with its `values` list sorted by id."""
+    schemes = [json.loads(f.read_text()) for f in sorted(REFDATA_DIR.glob("*.json"))]
+    schemes = sorted(schemes, key=lambda s: s["id"])
+
+    scheme_ids = {s["id"] for s in schemes}
+    assert len(scheme_ids) == len(schemes), "duplicate reference-data scheme id"
+
+    value_ids: dict[str, str] = {}  # value id -> owning scheme id, for global uniqueness + lookups
+    for s in schemes:
+        s["values"] = sorted(s["values"], key=lambda v: v["id"])
+        assert s["authorityType"] in {"internal", "external"}, (
+            f"scheme '{s['id']}' has unknown authorityType '{s['authorityType']}'"
+        )
+        assert s["values"], f"scheme '{s['id']}' has no values"
+
+        codes = [v["code"] for v in s["values"]]
+        assert len(set(codes)) == len(codes), f"duplicate value code within scheme '{s['id']}'"
+
+        for v in s["values"]:
+            assert v["id"] not in value_ids, f"duplicate reference-data value id '{v['id']}'"
+            value_ids[v["id"]] = s["id"]
+
+    for s in schemes:
+        for v in s["values"]:
+            if v.get("broader"):
+                assert value_ids.get(v["broader"]) == s["id"], (
+                    f"value '{v['id']}' in scheme '{s['id']}' has broader '{v['broader']}', "
+                    f"which is not a value of the same scheme"
+                )
+            if v.get("replacedBy"):
+                assert value_ids.get(v["replacedBy"]) == s["id"], (
+                    f"value '{v['id']}' in scheme '{s['id']}' has replacedBy '{v['replacedBy']}', "
+                    f"which is not a value of the same scheme"
+                )
+                assert v.get("deprecated"), (
+                    f"value '{v['id']}' has replacedBy set but is not itself deprecated"
+                )
+            for m in v.get("mappings", []):
+                assert m["relation"] in VALID_MAPPING_RELATIONS, (
+                    f"value '{v['id']}' has an unknown mapping relation '{m['relation']}'"
+                )
+
+    publication_status = next(s for s in schemes if s["id"] == "publication-status")
+    publication_codes = {v["code"] for v in publication_status["values"]}
+    for s in schemes:
+        assert s["publicationStatus"] in publication_codes, (
+            f"scheme '{s['id']}' has publicationStatus '{s['publicationStatus']}', "
+            f"which is not a value of the publication-status scheme"
+        )
+
+    return schemes
+
+
 def load_source():
     concepts = json.loads((SOURCE_DIR / "concepts.json").read_text())
     relationships = json.loads((SOURCE_DIR / "relationships.json").read_text())
     properties = json.loads((SOURCE_DIR / "properties.json").read_text())
     business_rules = json.loads((SOURCE_DIR / "business-rules.json").read_text())
     meta = json.loads((SOURCE_DIR / "meta.json").read_text())
+    reference_data = load_reference_data()
 
     concepts = sorted(concepts, key=lambda c: c["id"])
     relationships = sorted(relationships, key=lambda r: r["id"])
@@ -140,15 +214,23 @@ def load_source():
     predicates = [r["predicate"] for r in relationships]
     assert len(set(predicates)) == len(predicates), "duplicate relationship predicate"
 
+    reference_schemes_by_id = {s["id"]: s for s in reference_data}
     prop_ids = [p["id"] for p in properties]
     assert len(set(prop_ids)) == len(prop_ids), "duplicate property id"
     for p in properties:
         assert p["concept"] in concept_ids, f"unknown concept in property {p['id']}"
-        assert p["datatype"] in DATATYPE_TO_XSD, f"unknown datatype in property {p['id']}"
+        assert p["datatype"] in ALL_DATATYPES, f"unknown datatype in property {p['id']}"
         if p["datatype"] == "enum":
             assert p["allowedValues"], f"enum property missing allowedValues: {p['id']}"
+            assert p.get("referenceScheme") is None, f"enum property has referenceScheme: {p['id']}"
+        elif p["datatype"] == "reference":
+            assert p["allowedValues"] is None, f"reference property has allowedValues: {p['id']}"
+            assert p.get("referenceScheme") in reference_schemes_by_id, (
+                f"property {p['id']} has unknown referenceScheme '{p.get('referenceScheme')}'"
+            )
         else:
             assert p["allowedValues"] is None, f"non-enum property has allowedValues: {p['id']}"
+            assert p.get("referenceScheme") is None, f"non-reference property has referenceScheme: {p['id']}"
 
     rule_ids = [r["id"] for r in business_rules]
     assert len(set(rule_ids)) == len(rule_ids), "duplicate business rule id"
@@ -159,18 +241,19 @@ def load_source():
     example = json.loads((SOURCE_DIR / "example.json").read_text())
     example["individuals"] = sorted(example["individuals"], key=lambda i: i["id"])
     example["relationships"] = sorted(example["relationships"], key=lambda r: (r["predicate"], r["subject"]))
-    validate_example(example, concepts, properties, relationships)
+    validate_example(example, concepts, properties, relationships, reference_schemes_by_id)
 
-    return concepts, relationships, properties, business_rules, meta, example
+    return concepts, relationships, properties, business_rules, meta, example, reference_data
 
 
-def validate_example(example, concepts, properties, relationships):
+def validate_example(example, concepts, properties, relationships, reference_schemes_by_id):
     """Cross-checks ontology/source/example.json against the schema it claims to
     instantiate -- every individual's concept must exist, every property name
     must be defined for that concept OR one of its ancestors (with a valid
-    enum value if applicable), every required property (including inherited
-    ones) must be present, and every relationship must use a real predicate
-    between individuals of the types that predicate expects."""
+    enum or reference-scheme value if applicable), every required property
+    (including inherited ones) must be present, and every relationship must
+    use a real predicate between individuals of the types that predicate
+    expects."""
     concept_ids = {c["id"] for c in concepts}
     concepts_by_id = {c["id"]: c for c in concepts}
     properties_by_concept = resolve_properties_by_concept(concepts, properties)
@@ -193,6 +276,13 @@ def validate_example(example, concepts, properties, relationships):
                 assert value in pdef["allowedValues"], (
                     f"example individual '{ind['id']}': invalid value '{value}' for "
                     f"enum property '{name}' (allowed: {pdef['allowedValues']})"
+                )
+            elif pdef["datatype"] == "reference":
+                scheme = reference_schemes_by_id[pdef["referenceScheme"]]
+                codes = [v["code"] for v in scheme["values"]]
+                assert value in codes, (
+                    f"example individual '{ind['id']}': invalid value '{value}' for "
+                    f"reference property '{name}' (scheme '{scheme['id']}' allows: {codes})"
                 )
         for name, pdef in concept_props.items():
             if pdef["required"]:
@@ -247,6 +337,18 @@ def example_iri(individual_id: str) -> URIRef:
     return NPOEX[individual_id]
 
 
+def reference_scheme_iri(scheme_id: str) -> URIRef:
+    return NPOREF[scheme_id]
+
+
+def reference_value_id(scheme: dict, code: str) -> str:
+    return next(v["id"] for v in scheme["values"] if v["code"] == code)
+
+
+def reference_value_iri(scheme: dict, code: str) -> URIRef:
+    return NPOREF[reference_value_id(scheme, code)]
+
+
 def property_value_literal(prop_def: dict, raw_value) -> Literal:
     """Converts a JSON value from example.json into an RDF literal typed to
     match the property's declared datatype, so it actually satisfies the
@@ -262,16 +364,55 @@ def property_value_literal(prop_def: dict, raw_value) -> Literal:
     return Literal(str(raw_value), datatype=XSD.string)
 
 
-def build_graph(concepts, relationships, properties, business_rules, meta) -> Graph:
+def add_reference_data(g: Graph, reference_data):
+    """Emits every reference-data scheme and its values as real, IRI-identified
+    skos:ConceptScheme/skos:Concept resources -- no blank nodes, so this is
+    safe to add to the main graph alongside the deterministic-serialization
+    invariant described in this module's docstring. See
+    docs/06-properties-and-rules.md for the governance model."""
+    schemes_by_id = {s["id"]: s for s in reference_data}
+    publication_status_scheme = schemes_by_id["publication-status"]
+
+    for s in reference_data:
+        scheme_iri = reference_scheme_iri(s["id"])
+        g.add((scheme_iri, RDF.type, SKOS.ConceptScheme))
+        g.add((scheme_iri, SKOS.prefLabel, Literal(s["label"])))
+        g.add((scheme_iri, SKOS.definition, Literal(s["description"])))
+        g.add((scheme_iri, NPO.schemeDomain, Literal(s["domain"])))
+        g.add((scheme_iri, NPO.authorityType, Literal(s["authorityType"])))
+        g.add((scheme_iri, NPO.version, Literal(s["version"])))
+        g.add((scheme_iri, NPO.publicationStatus,
+               reference_value_iri(publication_status_scheme, s["publicationStatus"])))
+
+        for v in s["values"]:
+            v_iri = NPOREF[v["id"]]
+            g.add((v_iri, RDF.type, SKOS.Concept))
+            g.add((v_iri, SKOS.inScheme, scheme_iri))
+            g.add((v_iri, SKOS.notation, Literal(v["code"])))
+            g.add((v_iri, SKOS.prefLabel, Literal(v["label"])))
+            g.add((v_iri, SKOS.definition, Literal(v["definition"])))
+            if v.get("deprecated"):
+                g.add((v_iri, OWL.deprecated, Literal(True)))
+            if v.get("broader"):
+                g.add((v_iri, SKOS.broader, NPOREF[v["broader"]]))
+            if v.get("replacedBy"):
+                g.add((v_iri, DCTERMS.isReplacedBy, NPOREF[v["replacedBy"]]))
+            for m in v.get("mappings", []):
+                g.add((v_iri, SKOS[m["relation"]], URIRef(m["uri"])))
+
+
+def build_graph(concepts, relationships, properties, business_rules, meta, reference_data) -> Graph:
     """Used for the Turtle and N-Triples outputs (both verified deterministic)."""
     g = Graph()
     g.bind("npo", NPO)
     g.bind("nporel", NPOREL)
     g.bind("npoprop", NPOPROP)
     g.bind("nporule", NPORULE)
+    g.bind("nporef", NPOREF)
     g.bind("owl", OWL)
     g.bind("rdfs", RDFS)
     g.bind("skos", SKOS)
+    g.bind("dcterms", DCTERMS)
 
     ontology_iri = URIRef(BASE.rstrip("/"))
     g.add((ontology_iri, RDF.type, OWL.Ontology))
@@ -310,16 +451,21 @@ def build_graph(concepts, relationships, properties, business_rules, meta) -> Gr
 
     for p in properties:
         iri = property_iri(p["id"])
-        g.add((iri, RDF.type, OWL.DatatypeProperty))
         g.add((iri, RDFS.label, Literal(p["label"])))
         g.add((iri, RDFS.comment, Literal(p["description"])))
         g.add((iri, RDFS.domain, concept_iri(p["concept"])))
-        g.add((iri, RDFS.range, DATATYPE_TO_XSD[p["datatype"]]))
         g.add((iri, NPO.group, Literal(p["group"])))
         g.add((iri, NPO.required, Literal(p["required"])))
         g.add((iri, NPO.cardinality, Literal(p["cardinality"])))
-        for value in p.get("allowedValues") or []:
-            g.add((iri, NPO.allowedValue, Literal(value)))
+        if p["datatype"] == "reference":
+            g.add((iri, RDF.type, OWL.ObjectProperty))
+            g.add((iri, RDFS.range, SKOS.Concept))
+            g.add((iri, NPO.referenceScheme, reference_scheme_iri(p["referenceScheme"])))
+        else:
+            g.add((iri, RDF.type, OWL.DatatypeProperty))
+            g.add((iri, RDFS.range, DATATYPE_TO_XSD[p["datatype"]]))
+            for value in p.get("allowedValues") or []:
+                g.add((iri, NPO.allowedValue, Literal(value)))
 
     for r in business_rules:
         iri = rule_iri(r["id"])
@@ -329,6 +475,8 @@ def build_graph(concepts, relationships, properties, business_rules, meta) -> Gr
         g.add((iri, RDFS.isDefinedBy, URIRef(doc_url(r["docRef"]))))
         for cid in r["concepts"]:
             g.add((iri, NPO.appliesTo, concept_iri(cid)))
+
+    add_reference_data(g, reference_data)
 
     return g
 
@@ -344,15 +492,19 @@ def turtle_string(s: str) -> str:
 
 
 def build_property_shapes_text(properties) -> str:
-    """Per-concept SHACL PropertyShapes enforcing required-ness, datatype, and
-    allowed values for each attribute in properties.json. Generated -- see
+    """Per-concept SHACL PropertyShapes enforcing required-ness, datatype (or,
+    for reference-backed properties, scheme membership), and allowed values
+    for each attribute in properties.json. Generated -- see
     docs/06-properties-and-rules.md. Kept separate from the hand-authored
     ontology/npograph.shapes.ttl, which validates the ontology's own
     structural completeness rather than per-concept business data.
 
     Built as text, not an rdflib Graph, because SHACL property shapes and the
     RDF list underlying sh:in are blank-node structures whose serialized
-    order rdflib does not guarantee stable across environments."""
+    order rdflib does not guarantee stable across environments. The nested
+    blank nodes used for reference-backed properties' scheme-membership check
+    are hand-written in a fixed order below, so they carry no such risk --
+    unlike rdflib's serializer, this function's own output order never varies."""
     by_concept: dict[str, list] = {}
     for p in properties:
         by_concept.setdefault(p["concept"], []).append(p)
@@ -361,6 +513,8 @@ def build_property_shapes_text(properties) -> str:
         "@prefix sh: <http://www.w3.org/ns/shacl#> .",
         f"@prefix npo: <{BASE}> .",
         f"@prefix npoprop: <{PROP_BASE}> .",
+        f"@prefix nporef: <{REFDATA_BASE}> .",
+        f"@prefix skos: <{SKOS_NS}> .",
         f"@prefix xsd: <{XSD_NS}> .",
         "",
     ]
@@ -368,12 +522,17 @@ def build_property_shapes_text(properties) -> str:
     for concept_id in sorted(by_concept):
         prop_blocks = []
         for p in sorted(by_concept[concept_id], key=lambda p: p["id"]):
-            xsd_local = DATATYPE_TO_XSD[p["datatype"]].rsplit("#", 1)[-1]
-            parts = [
-                f"sh:path npoprop:{p['id']}",
-                f"sh:datatype xsd:{xsd_local}",
-                f"sh:minCount {1 if p['required'] else 0}",
-            ]
+            parts = [f"sh:path npoprop:{p['id']}"]
+            if p["datatype"] == "reference":
+                parts.append("sh:class skos:Concept")
+                parts.append(
+                    "sh:node [ sh:property [ sh:path skos:inScheme ; "
+                    f"sh:hasValue nporef:{p['referenceScheme']} ] ]"
+                )
+            else:
+                xsd_local = DATATYPE_TO_XSD[p["datatype"]].rsplit("#", 1)[-1]
+                parts.append(f"sh:datatype xsd:{xsd_local}")
+            parts.append(f"sh:minCount {1 if p['required'] else 0}")
             if p["cardinality"] == "one":
                 parts.append("sh:maxCount 1")
             if p["allowedValues"]:
@@ -408,18 +567,20 @@ def write_property_shapes(properties):
     )
 
 
-def build_example_graph(example, concepts, properties) -> Graph:
+def build_example_graph(example, concepts, properties, reference_data) -> Graph:
     """The worked example (docs/07-worked-example.md) as real owl:NamedIndividual
     instances -- kept in its own graph/namespace (.../ontology/examples/) so
     schema (npograph.ttl) and illustrative instance data never mix in the file
     someone would import to get the ontology itself. No blank nodes here, so
     (like the main graph) rdflib's Turtle/N-Triples serialization is stable."""
     properties_by_concept = resolve_properties_by_concept(concepts, properties)
+    schemes_by_id = {s["id"]: s for s in reference_data}
 
     g = Graph()
     g.bind("npo", NPO)
     g.bind("nporel", NPOREL)
     g.bind("npoprop", NPOPROP)
+    g.bind("nporef", NPOREF)
     g.bind("ex", NPOEX)
 
     for ind in example["individuals"]:
@@ -430,7 +591,11 @@ def build_example_graph(example, concepts, properties) -> Graph:
         concept_props = properties_by_concept.get(ind["concept"], {})
         for name, value in ind.get("properties", {}).items():
             pdef = concept_props[name]
-            g.add((iri, property_iri(pdef["id"]), property_value_literal(pdef, value)))
+            if pdef["datatype"] == "reference":
+                scheme = schemes_by_id[pdef["referenceScheme"]]
+                g.add((iri, property_iri(pdef["id"]), reference_value_iri(scheme, value)))
+            else:
+                g.add((iri, property_iri(pdef["id"]), property_value_literal(pdef, value)))
 
     for rel in example["relationships"]:
         g.add((example_iri(rel["subject"]), relation_iri(rel["predicate"]), example_iri(rel["object"])))
@@ -450,14 +615,16 @@ def write_example_ttl_and_nt(g: Graph):
     (OUT_DIR / "npograph.example.nt").write_text("\n".join(nt_lines) + "\n")
 
 
-def write_example_jsonld(example, concepts, properties):
+def write_example_jsonld(example, concepts, properties, reference_data):
     properties_by_concept = resolve_properties_by_concept(concepts, properties)
+    schemes_by_id = {s["id"]: s for s in reference_data}
 
     context = {
         "@version": 1.1,
         "npo": BASE,
         "nporel": REL_BASE,
         "npoprop": PROP_BASE,
+        "nporef": REFDATA_BASE,
         "ex": EXAMPLE_BASE,
         "owl": "http://www.w3.org/2002/07/owl#",
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
@@ -478,7 +645,10 @@ def write_example_jsonld(example, concepts, properties):
         for name, value in ind.get("properties", {}).items():
             pdef = concept_props[name]
             key = "npoprop:" + pdef["id"]
-            if pdef["datatype"] == "decimal":
+            if pdef["datatype"] == "reference":
+                scheme = schemes_by_id[pdef["referenceScheme"]]
+                node[key] = {"@id": "nporef:" + reference_value_id(scheme, value)}
+            elif pdef["datatype"] == "decimal":
                 node[key] = {"@value": str(Decimal(value)), "@type": "xsd:decimal"}
             elif pdef["datatype"] == "date":
                 node[key] = {"@value": value, "@type": "xsd:date"}
@@ -496,10 +666,11 @@ def write_example_jsonld(example, concepts, properties):
     (OUT_DIR / "npograph.example.jsonld").write_text(json.dumps(document, indent=2) + "\n")
 
 
-def write_rdf_xml(concepts, relationships, properties, business_rules, meta):
+def write_rdf_xml(concepts, relationships, properties, business_rules, meta, reference_data):
     for prefix, uri in (("rdf", RDF_NS), ("rdfs", RDFS_NS), ("owl", OWL_NS),
-                        ("skos", SKOS_NS), ("npo", BASE), ("nporel", REL_BASE),
-                        ("npoprop", PROP_BASE), ("nporule", RULE_BASE)):
+                        ("skos", SKOS_NS), ("dcterms", DCTERMS_NS), ("npo", BASE),
+                        ("nporel", REL_BASE), ("npoprop", PROP_BASE), ("nporule", RULE_BASE),
+                        ("nporef", REFDATA_BASE)):
         ET.register_namespace(prefix, uri)
 
     def qname(ns, local):
@@ -550,19 +721,27 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta):
     for p in properties:
         desc = ET.SubElement(root, qname(RDF_NS, "Description"),
                               {qname(RDF_NS, "about"): str(property_iri(p["id"]))})
-        ET.SubElement(desc, qname(RDF_NS, "type"),
-                      {qname(RDF_NS, "resource"): OWL_NS + "DatatypeProperty"})
         ET.SubElement(desc, qname(RDFS_NS, "label")).text = p["label"]
         ET.SubElement(desc, qname(RDFS_NS, "comment")).text = p["description"]
         ET.SubElement(desc, qname(RDFS_NS, "domain"),
                       {qname(RDF_NS, "resource"): str(concept_iri(p["concept"]))})
-        ET.SubElement(desc, qname(RDFS_NS, "range"),
-                      {qname(RDF_NS, "resource"): str(DATATYPE_TO_XSD[p["datatype"]])})
         ET.SubElement(desc, qname(BASE, "group")).text = p["group"]
         ET.SubElement(desc, qname(BASE, "required")).text = str(p["required"]).lower()
         ET.SubElement(desc, qname(BASE, "cardinality")).text = p["cardinality"]
-        for value in p.get("allowedValues") or []:
-            ET.SubElement(desc, qname(BASE, "allowedValue")).text = value
+        if p["datatype"] == "reference":
+            ET.SubElement(desc, qname(RDF_NS, "type"),
+                          {qname(RDF_NS, "resource"): OWL_NS + "ObjectProperty"})
+            ET.SubElement(desc, qname(RDFS_NS, "range"),
+                          {qname(RDF_NS, "resource"): SKOS_NS + "Concept"})
+            ET.SubElement(desc, qname(BASE, "referenceScheme"),
+                          {qname(RDF_NS, "resource"): str(reference_scheme_iri(p["referenceScheme"]))})
+        else:
+            ET.SubElement(desc, qname(RDF_NS, "type"),
+                          {qname(RDF_NS, "resource"): OWL_NS + "DatatypeProperty"})
+            ET.SubElement(desc, qname(RDFS_NS, "range"),
+                          {qname(RDF_NS, "resource"): str(DATATYPE_TO_XSD[p["datatype"]])})
+            for value in p.get("allowedValues") or []:
+                ET.SubElement(desc, qname(BASE, "allowedValue")).text = value
 
     for r in business_rules:
         desc = ET.SubElement(root, qname(RDF_NS, "Description"),
@@ -577,6 +756,44 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta):
             ET.SubElement(desc, qname(BASE, "appliesTo"),
                           {qname(RDF_NS, "resource"): str(concept_iri(cid))})
 
+    schemes_by_id = {s["id"]: s for s in reference_data}
+    publication_status_scheme = schemes_by_id["publication-status"]
+    for s in reference_data:
+        scheme_el = ET.SubElement(root, qname(RDF_NS, "Description"),
+                                   {qname(RDF_NS, "about"): str(reference_scheme_iri(s["id"]))})
+        ET.SubElement(scheme_el, qname(RDF_NS, "type"),
+                      {qname(RDF_NS, "resource"): SKOS_NS + "ConceptScheme"})
+        ET.SubElement(scheme_el, qname(SKOS_NS, "prefLabel")).text = s["label"]
+        ET.SubElement(scheme_el, qname(SKOS_NS, "definition")).text = s["description"]
+        ET.SubElement(scheme_el, qname(BASE, "schemeDomain")).text = s["domain"]
+        ET.SubElement(scheme_el, qname(BASE, "authorityType")).text = s["authorityType"]
+        ET.SubElement(scheme_el, qname(BASE, "version")).text = s["version"]
+        ET.SubElement(scheme_el, qname(BASE, "publicationStatus"),
+                      {qname(RDF_NS, "resource"): str(
+                          reference_value_iri(publication_status_scheme, s["publicationStatus"]))})
+
+        for v in s["values"]:
+            v_el = ET.SubElement(root, qname(RDF_NS, "Description"),
+                                  {qname(RDF_NS, "about"): str(NPOREF[v["id"]])})
+            ET.SubElement(v_el, qname(RDF_NS, "type"),
+                          {qname(RDF_NS, "resource"): SKOS_NS + "Concept"})
+            ET.SubElement(v_el, qname(SKOS_NS, "inScheme"),
+                          {qname(RDF_NS, "resource"): str(reference_scheme_iri(s["id"]))})
+            ET.SubElement(v_el, qname(SKOS_NS, "notation")).text = v["code"]
+            ET.SubElement(v_el, qname(SKOS_NS, "prefLabel")).text = v["label"]
+            ET.SubElement(v_el, qname(SKOS_NS, "definition")).text = v["definition"]
+            if v.get("deprecated"):
+                ET.SubElement(v_el, qname(OWL_NS, "deprecated")).text = "true"
+            if v.get("broader"):
+                ET.SubElement(v_el, qname(SKOS_NS, "broader"),
+                              {qname(RDF_NS, "resource"): str(NPOREF[v["broader"]])})
+            if v.get("replacedBy"):
+                ET.SubElement(v_el, qname(DCTERMS_NS, "isReplacedBy"),
+                              {qname(RDF_NS, "resource"): str(NPOREF[v["replacedBy"]])})
+            for m in v.get("mappings", []):
+                ET.SubElement(v_el, qname(SKOS_NS, m["relation"]),
+                              {qname(RDF_NS, "resource"): m["uri"]})
+
     ET.indent(root, space="  ")
     body = ET.tostring(root, encoding="unicode")
     (OUT_DIR / "npograph.rdf").write_text(
@@ -585,19 +802,23 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta):
 
 
 def jsonld_context() -> dict:
-    return {
+    context = {
         "@version": 1.1,
         "npo": BASE,
         "nporel": REL_BASE,
         "npoprop": PROP_BASE,
         "nporule": RULE_BASE,
+        "nporef": REFDATA_BASE,
         "owl": "http://www.w3.org/2002/07/owl#",
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "skos": "http://www.w3.org/2004/02/skos/core#",
+        "dcterms": DCTERMS_NS,
         "xsd": XSD_NS,
         "label": "rdfs:label",
         "definition": "skos:definition",
         "altLabel": "skos:altLabel",
+        "prefLabel": "skos:prefLabel",
+        "notation": "skos:notation",
         "category": "npo:category",
         "legalNote": "npo:legalNote",
         "comment": "rdfs:comment",
@@ -606,17 +827,28 @@ def jsonld_context() -> dict:
         "required": {"@id": "npo:required", "@type": "xsd:boolean"},
         "cardinality": "npo:cardinality",
         "allowedValues": "npo:allowedValue",
+        "referenceScheme": {"@id": "npo:referenceScheme", "@type": "@id"},
+        "schemeDomain": "npo:schemeDomain",
+        "authorityType": "npo:authorityType",
+        "publicationStatus": {"@id": "npo:publicationStatus", "@type": "@id"},
         "subClassOf": {"@id": "rdfs:subClassOf", "@type": "@id"},
         "domain": {"@id": "rdfs:domain", "@type": "@id"},
         "range": {"@id": "rdfs:range", "@type": "@id"},
         "isDefinedBy": {"@id": "rdfs:isDefinedBy", "@type": "@id"},
         "appliesTo": {"@id": "npo:appliesTo", "@type": "@id", "@container": "@set"},
+        "inScheme": {"@id": "skos:inScheme", "@type": "@id"},
+        "broader": {"@id": "skos:broader", "@type": "@id"},
+        "deprecated": {"@id": "owl:deprecated", "@type": "xsd:boolean"},
+        "isReplacedBy": {"@id": "dcterms:isReplacedBy", "@type": "@id"},
         "type": "@type",
         "id": "@id",
     }
+    for relation in sorted(VALID_MAPPING_RELATIONS):
+        context[relation] = {"@id": f"skos:{relation}", "@type": "@id", "@container": "@set"}
+    return context
 
 
-def write_jsonld(concepts, relationships, properties, business_rules, meta):
+def write_jsonld(concepts, relationships, properties, business_rules, meta, reference_data):
     context = jsonld_context()
     (OUT_DIR / "context.jsonld").write_text(
         json.dumps({"@context": context}, indent=2, sort_keys=True) + "\n"
@@ -663,17 +895,22 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta):
     for p in properties:
         node = {
             "id": "npoprop:" + p["id"],
-            "type": "owl:DatatypeProperty",
             "label": p["label"],
             "comment": p["description"],
             "domain": "npo:" + p["concept"],
-            "range": "xsd:" + DATATYPE_TO_XSD[p["datatype"]].rsplit("#", 1)[-1],
             "group": p["group"],
             "required": p["required"],
             "cardinality": p["cardinality"],
         }
-        if p.get("allowedValues"):
-            node["allowedValues"] = p["allowedValues"]
+        if p["datatype"] == "reference":
+            node["type"] = "owl:ObjectProperty"
+            node["range"] = "skos:Concept"
+            node["referenceScheme"] = "nporef:" + p["referenceScheme"]
+        else:
+            node["type"] = "owl:DatatypeProperty"
+            node["range"] = "xsd:" + DATATYPE_TO_XSD[p["datatype"]].rsplit("#", 1)[-1]
+            if p.get("allowedValues"):
+                node["allowedValues"] = p["allowedValues"]
         graph_nodes.append(node)
 
     for r in business_rules:
@@ -686,6 +923,41 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta):
             "appliesTo": ["npo:" + cid for cid in r["concepts"]],
         })
 
+    schemes_by_id = {s["id"]: s for s in reference_data}
+    publication_status_scheme = schemes_by_id["publication-status"]
+    for s in reference_data:
+        graph_nodes.append({
+            "id": "nporef:" + s["id"],
+            "type": "skos:ConceptScheme",
+            "prefLabel": s["label"],
+            "definition": s["description"],
+            "schemeDomain": s["domain"],
+            "authorityType": s["authorityType"],
+            "version": s["version"],
+            "publicationStatus": "nporef:" + reference_value_id(publication_status_scheme, s["publicationStatus"]),
+        })
+        for v in s["values"]:
+            node = {
+                "id": "nporef:" + v["id"],
+                "type": "skos:Concept",
+                "inScheme": "nporef:" + s["id"],
+                "notation": v["code"],
+                "prefLabel": v["label"],
+                "definition": v["definition"],
+            }
+            if v.get("deprecated"):
+                node["deprecated"] = True
+            if v.get("broader"):
+                node["broader"] = "nporef:" + v["broader"]
+            if v.get("replacedBy"):
+                node["isReplacedBy"] = "nporef:" + v["replacedBy"]
+            by_relation: dict[str, list[str]] = {}
+            for m in v.get("mappings", []):
+                by_relation.setdefault(m["relation"], []).append(m["uri"])
+            for relation, uris in by_relation.items():
+                node[relation] = uris
+            graph_nodes.append(node)
+
     document = {"@context": context, "@graph": graph_nodes}
     (OUT_DIR / "npograph.jsonld").write_text(
         json.dumps(document, indent=2) + "\n"
@@ -693,22 +965,24 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta):
 
 
 def main():
-    concepts, relationships, properties, business_rules, meta, example = load_source()
+    concepts, relationships, properties, business_rules, meta, example, reference_data = load_source()
 
-    g = build_graph(concepts, relationships, properties, business_rules, meta)
+    g = build_graph(concepts, relationships, properties, business_rules, meta, reference_data)
     write_turtle_and_ntriples(g)
-    write_rdf_xml(concepts, relationships, properties, business_rules, meta)
-    write_jsonld(concepts, relationships, properties, business_rules, meta)
+    write_rdf_xml(concepts, relationships, properties, business_rules, meta, reference_data)
+    write_jsonld(concepts, relationships, properties, business_rules, meta, reference_data)
 
     write_property_shapes(properties)
 
-    example_graph = build_example_graph(example, concepts, properties)
+    example_graph = build_example_graph(example, concepts, properties, reference_data)
     write_example_ttl_and_nt(example_graph)
-    write_example_jsonld(example, concepts, properties)
+    write_example_jsonld(example, concepts, properties, reference_data)
 
+    value_count = sum(len(s["values"]) for s in reference_data)
     print(f"Generated ontology from {len(concepts)} concepts, "
           f"{len(relationships)} relationships, {len(properties)} properties, "
-          f"{len(business_rules)} business rules, and a {len(example['individuals'])}-step worked example.")
+          f"{len(business_rules)} business rules, {len(reference_data)} reference-data "
+          f"schemes ({value_count} values), and a {len(example['individuals'])}-step worked example.")
     for name in ("npograph.ttl", "npograph.rdf", "npograph.nt", "context.jsonld",
                  "npograph.jsonld", "npograph.property-shapes.ttl",
                  "npograph.example.ttl", "npograph.example.nt", "npograph.example.jsonld"):

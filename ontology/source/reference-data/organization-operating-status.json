@@ -1,0 +1,47 @@
+{
+  "id": "organization-operating-status",
+  "label": "Organization Operating Status",
+  "description": "Whether an Organization is currently operating, independent of any role it holds or arrangement it participates in.",
+  "domain": "organization",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "organization-operating-status-active",
+      "code": "active",
+      "label": "Active",
+      "definition": "The organization is currently operating.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "organization-operating-status-dissolved",
+      "code": "dissolved",
+      "label": "Dissolved",
+      "definition": "The organization has formally ceased to exist.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "organization-operating-status-merged",
+      "code": "merged",
+      "label": "Merged",
+      "definition": "The organization has combined into another organization and no longer operates independently.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "organization-operating-status-unknown",
+      "code": "unknown",
+      "label": "Unknown",
+      "definition": "The organization's current operating status has not been confirmed.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    }
+  ]
+}

@@ -5,13 +5,17 @@
     "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
     "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
     "nporule": "https://egovender.github.io/NPOGraph/ontology/rules/",
+    "nporef": "https://egovender.github.io/NPOGraph/ontology/reference-data/",
     "owl": "http://www.w3.org/2002/07/owl#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
+    "dcterms": "http://purl.org/dc/terms/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "label": "rdfs:label",
     "definition": "skos:definition",
     "altLabel": "skos:altLabel",
+    "prefLabel": "skos:prefLabel",
+    "notation": "skos:notation",
     "category": "npo:category",
     "legalNote": "npo:legalNote",
     "comment": "rdfs:comment",
@@ -23,6 +27,16 @@
     },
     "cardinality": "npo:cardinality",
     "allowedValues": "npo:allowedValue",
+    "referenceScheme": {
+      "@id": "npo:referenceScheme",
+      "@type": "@id"
+    },
+    "schemeDomain": "npo:schemeDomain",
+    "authorityType": "npo:authorityType",
+    "publicationStatus": {
+      "@id": "npo:publicationStatus",
+      "@type": "@id"
+    },
     "subClassOf": {
       "@id": "rdfs:subClassOf",
       "@type": "@id"
@@ -44,8 +58,49 @@
       "@type": "@id",
       "@container": "@set"
     },
+    "inScheme": {
+      "@id": "skos:inScheme",
+      "@type": "@id"
+    },
+    "broader": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    },
+    "deprecated": {
+      "@id": "owl:deprecated",
+      "@type": "xsd:boolean"
+    },
+    "isReplacedBy": {
+      "@id": "dcterms:isReplacedBy",
+      "@type": "@id"
+    },
     "type": "@type",
-    "id": "@id"
+    "id": "@id",
+    "broadMatch": {
+      "@id": "skos:broadMatch",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "closeMatch": {
+      "@id": "skos:closeMatch",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "exactMatch": {
+      "@id": "skos:exactMatch",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "narrowMatch": {
+      "@id": "skos:narrowMatch",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "relatedMatch": {
+      "@id": "skos:relatedMatch",
+      "@type": "@id",
+      "@container": "@set"
+    }
   },
   "@graph": [
     {
@@ -1269,25 +1324,25 @@
     },
     {
       "id": "npoprop:amendment-effective-date",
-      "type": "owl:DatatypeProperty",
       "label": "Effective Date",
       "comment": "When the Amendment's changes take effect.",
       "domain": "npo:amendment",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:amendment-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Amendment stands in its approval process.",
       "domain": "npo:amendment",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "proposed",
         "approved",
@@ -1296,14 +1351,14 @@
     },
     {
       "id": "npoprop:application-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Application currently sits in the review process.",
       "domain": "npo:application",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "draft",
         "submitted",
@@ -1314,36 +1369,36 @@
     },
     {
       "id": "npoprop:application-submitted-date",
-      "type": "owl:DatatypeProperty",
       "label": "Submitted Date",
       "comment": "When the Application was submitted, once it has been.",
       "domain": "npo:application",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:audit-scheduled-date",
-      "type": "owl:DatatypeProperty",
       "label": "Scheduled Date",
       "comment": "When the Audit is scheduled to occur.",
       "domain": "npo:audit",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:audit-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Audit stands.",
       "domain": "npo:audit",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "scheduled",
         "in-progress",
@@ -1352,47 +1407,47 @@
     },
     {
       "id": "npoprop:award-amount",
-      "type": "owl:DatatypeProperty",
       "label": "Amount",
       "comment": "The total amount committed under the Award.",
       "domain": "npo:award",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:award-currency",
-      "type": "owl:DatatypeProperty",
       "label": "Currency",
       "comment": "The currency the Award amount is denominated in, if not implied by context.",
       "domain": "npo:award",
-      "range": "xsd:string",
       "group": "financial",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
     },
     {
       "id": "npoprop:award-date",
-      "type": "owl:DatatypeProperty",
       "label": "Award Date",
       "comment": "When the Award was made.",
       "domain": "npo:award",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:award-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Award currently sits in the grant lifecycle.",
       "domain": "npo:award",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "proposed",
         "approved",
@@ -1403,25 +1458,25 @@
     },
     {
       "id": "npoprop:budget-modification-amount",
-      "type": "owl:DatatypeProperty",
       "label": "Amount",
       "comment": "The amount being moved between budget categories.",
       "domain": "npo:budget-modification",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:budget-modification-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether the funder has approved the requested Budget Modification.",
       "domain": "npo:budget-modification",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "requested",
         "approved",
@@ -1430,36 +1485,36 @@
     },
     {
       "id": "npoprop:budget-total-amount",
-      "type": "owl:DatatypeProperty",
       "label": "Total Amount",
       "comment": "The sum of all budget categories in the proposed or funded Budget.",
       "domain": "npo:budget",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:closeout-date",
-      "type": "owl:DatatypeProperty",
       "label": "Closeout Date",
       "comment": "When Closeout was completed.",
       "domain": "npo:closeout",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:closeout-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether the Award's Closeout has been completed.",
       "domain": "npo:closeout",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "pending",
         "completed"
@@ -1467,14 +1522,14 @@
     },
     {
       "id": "npoprop:compliance-requirement-requirement-type",
-      "type": "owl:DatatypeProperty",
       "label": "Requirement Type",
       "comment": "The kind of obligation the Compliance Requirement imposes.",
       "domain": "npo:compliance-requirement",
-      "range": "xsd:string",
       "group": "governance",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "reporting",
         "financial",
@@ -1484,14 +1539,14 @@
     },
     {
       "id": "npoprop:compliance-requirement-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether the Grantee has met the Compliance Requirement.",
       "domain": "npo:compliance-requirement",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "open",
         "satisfied",
@@ -1500,25 +1555,25 @@
     },
     {
       "id": "npoprop:decision-date",
-      "type": "owl:DatatypeProperty",
       "label": "Decision Date",
       "comment": "When the Decision was made.",
       "domain": "npo:decision",
-      "range": "xsd:date",
-      "group": "lifecycle",
-      "required": true,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:decision-outcome",
-      "type": "owl:DatatypeProperty",
-      "label": "Outcome",
-      "comment": "The result of the review process for the Application.",
-      "domain": "npo:decision",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:decision-outcome",
+      "label": "Outcome",
+      "comment": "The result of the review process for the Application.",
+      "domain": "npo:decision",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "approved",
         "declined",
@@ -1527,25 +1582,25 @@
     },
     {
       "id": "npoprop:evaluation-completed-date",
-      "type": "owl:DatatypeProperty",
       "label": "Completed Date",
       "comment": "When the Evaluation was completed, once it has been.",
       "domain": "npo:evaluation",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:evaluation-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Evaluation stands.",
       "domain": "npo:evaluation",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "planned",
         "in-progress",
@@ -1554,75 +1609,70 @@
     },
     {
       "id": "npoprop:fiscal-sponsorship-arrangement-fee-percentage",
-      "type": "owl:DatatypeProperty",
       "label": "Fee Percentage",
       "comment": "The fiscal sponsor's administrative fee, charged as a percentage of funds processed.",
       "domain": "npo:fiscal-sponsorship-arrangement",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:fund-closing-date",
-      "type": "owl:DatatypeProperty",
       "label": "Closing Date",
       "comment": "When the fund was closed, if it has been.",
       "domain": "npo:fund",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:fund-currency",
-      "type": "owl:DatatypeProperty",
       "label": "Currency",
       "comment": "The currency the fund's balance is denominated in.",
       "domain": "npo:fund",
-      "range": "xsd:string",
       "group": "financial",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
     },
     {
       "id": "npoprop:fund-opening-date",
-      "type": "owl:DatatypeProperty",
       "label": "Opening Date",
       "comment": "When the fund was established.",
       "domain": "npo:fund",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:fund-restriction-type",
-      "type": "owl:DatatypeProperty",
       "label": "Restriction Type",
       "comment": "The fund's accounting restriction status.",
       "domain": "npo:fund",
-      "range": "xsd:string",
       "group": "classification",
       "required": true,
       "cardinality": "one",
-      "allowedValues": [
-        "unrestricted",
-        "temporarily-restricted",
-        "permanently-restricted",
-        "donor-restricted"
-      ]
+      "type": "owl:ObjectProperty",
+      "range": "skos:Concept",
+      "referenceScheme": "nporef:restriction-type"
     },
     {
       "id": "npoprop:fund-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether the fund is currently active.",
       "domain": "npo:fund",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "active",
         "closed",
@@ -1631,47 +1681,47 @@
     },
     {
       "id": "npoprop:funding-cycle-end-date",
-      "type": "owl:DatatypeProperty",
       "label": "End Date",
       "comment": "When the Funding Cycle closes.",
       "domain": "npo:funding-cycle",
-      "range": "xsd:date",
-      "group": "lifecycle",
-      "required": true,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:funding-cycle-start-date",
-      "type": "owl:DatatypeProperty",
-      "label": "Start Date",
-      "comment": "When the Funding Cycle begins accepting applications.",
-      "domain": "npo:funding-cycle",
-      "range": "xsd:date",
-      "group": "lifecycle",
-      "required": true,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:funding-opportunity-application-deadline",
-      "type": "owl:DatatypeProperty",
-      "label": "Application Deadline",
-      "comment": "The date by which an Application must be submitted.",
-      "domain": "npo:funding-opportunity",
-      "range": "xsd:date",
-      "group": "lifecycle",
-      "required": true,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:funding-opportunity-status",
-      "type": "owl:DatatypeProperty",
-      "label": "Status",
-      "comment": "Whether the Funding Opportunity is still accepting applications.",
-      "domain": "npo:funding-opportunity",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:funding-cycle-start-date",
+      "label": "Start Date",
+      "comment": "When the Funding Cycle begins accepting applications.",
+      "domain": "npo:funding-cycle",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:funding-opportunity-application-deadline",
+      "label": "Application Deadline",
+      "comment": "The date by which an Application must be submitted.",
+      "domain": "npo:funding-opportunity",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:funding-opportunity-status",
+      "label": "Status",
+      "comment": "Whether the Funding Opportunity is still accepting applications.",
+      "domain": "npo:funding-opportunity",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "draft",
         "open",
@@ -1680,25 +1730,25 @@
     },
     {
       "id": "npoprop:grant-agreement-effective-date",
-      "type": "owl:DatatypeProperty",
       "label": "Effective Date",
       "comment": "When the Grant Agreement's terms take effect.",
       "domain": "npo:grant-agreement",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:grant-agreement-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Grant Agreement stands in its own lifecycle.",
       "domain": "npo:grant-agreement",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "draft",
         "signed",
@@ -1708,14 +1758,14 @@
     },
     {
       "id": "npoprop:grant-program-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Grant Program currently sits in its own lifecycle.",
       "domain": "npo:grant-program",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "planning",
         "open",
@@ -1724,47 +1774,47 @@
     },
     {
       "id": "npoprop:grant-program-total-budget",
-      "type": "owl:DatatypeProperty",
       "label": "Total Budget",
       "comment": "The total amount set aside for this Grant Program, if the funder tracks one.",
       "domain": "npo:grant-program",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:grant-recommendation-amount",
-      "type": "owl:DatatypeProperty",
       "label": "Amount",
       "comment": "The amount recommended, if the Donor Advisor specified one.",
       "domain": "npo:grant-recommendation",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:grant-recommendation-date",
-      "type": "owl:DatatypeProperty",
       "label": "Recommendation Date",
       "comment": "When the Donor Advisor made the recommendation.",
       "domain": "npo:grant-recommendation",
-      "range": "xsd:date",
-      "group": "lifecycle",
-      "required": true,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:grant-recommendation-status",
-      "type": "owl:DatatypeProperty",
-      "label": "Status",
-      "comment": "Whether the sponsoring organization has acted on the Grant Recommendation.",
-      "domain": "npo:grant-recommendation",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:grant-recommendation-status",
+      "label": "Status",
+      "comment": "Whether the sponsoring organization has acted on the Grant Recommendation.",
+      "domain": "npo:grant-recommendation",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "pending",
         "approved",
@@ -1773,25 +1823,25 @@
     },
     {
       "id": "npoprop:indirect-cost-rate-rate",
-      "type": "owl:DatatypeProperty",
       "label": "Rate",
       "comment": "The indirect cost rate, expressed as a percentage of direct costs.",
       "domain": "npo:indirect-cost-rate",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:indirect-cost-rate-rate-type",
-      "type": "owl:DatatypeProperty",
       "label": "Rate Type",
       "comment": "Whether the rate was individually negotiated or is the de minimis rate.",
       "domain": "npo:indirect-cost-rate",
-      "range": "xsd:string",
       "group": "classification",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "negotiated",
         "de-minimis"
@@ -1799,25 +1849,25 @@
     },
     {
       "id": "npoprop:installment-amount",
-      "type": "owl:DatatypeProperty",
       "label": "Amount",
       "comment": "The amount scheduled for this Installment.",
       "domain": "npo:installment",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:installment-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether the Installment has been disbursed, or is being held pending its Payment Condition.",
       "domain": "npo:installment",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "scheduled",
         "released",
@@ -1826,14 +1876,14 @@
     },
     {
       "id": "npoprop:letter-of-inquiry-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether the Letter of Inquiry resulted in an invitation to submit a full Application.",
       "domain": "npo:letter-of-inquiry",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "submitted",
         "invited",
@@ -1842,14 +1892,14 @@
     },
     {
       "id": "npoprop:matching-requirement-match-type",
-      "type": "owl:DatatypeProperty",
       "label": "Match Type",
       "comment": "Whether the required match must be cash or may be in-kind.",
       "domain": "npo:matching-requirement",
-      "range": "xsd:string",
       "group": "financial",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "cash",
         "in-kind"
@@ -1857,86 +1907,81 @@
     },
     {
       "id": "npoprop:matching-requirement-required-ratio",
-      "type": "owl:DatatypeProperty",
       "label": "Required Ratio",
       "comment": "The match ratio the Grantee must meet, e.g. \"1:1\".",
       "domain": "npo:matching-requirement",
-      "range": "xsd:string",
       "group": "financial",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
     },
     {
       "id": "npoprop:organization-formation-date",
-      "type": "owl:DatatypeProperty",
       "label": "Formation Date",
       "comment": "When the organization was legally formed.",
       "domain": "npo:organization",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:organization-identifier",
-      "type": "owl:DatatypeProperty",
       "label": "Identifier",
       "comment": "A registration number or unique identifier for the organization (e.g., an EIN or DUNS number), if tracked.",
       "domain": "npo:organization",
-      "range": "xsd:string",
       "group": "classification",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
     },
     {
       "id": "npoprop:organization-jurisdiction",
-      "type": "owl:DatatypeProperty",
       "label": "Jurisdiction",
       "comment": "The legal jurisdiction (country or state) the organization is formed and regulated under.",
       "domain": "npo:organization",
-      "range": "xsd:string",
       "group": "classification",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
     },
     {
       "id": "npoprop:organization-operating-status",
-      "type": "owl:DatatypeProperty",
       "label": "Operating Status",
       "comment": "Whether the organization is currently operating.",
       "domain": "npo:organization",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": false,
       "cardinality": "one",
-      "allowedValues": [
-        "active",
-        "dissolved",
-        "merged",
-        "unknown"
-      ]
+      "type": "owl:ObjectProperty",
+      "range": "skos:Concept",
+      "referenceScheme": "nporef:organization-operating-status"
     },
     {
       "id": "npoprop:organization-tax-identifier",
-      "type": "owl:DatatypeProperty",
       "label": "Tax Identifier",
       "comment": "The organization's tax identification number (e.g., an EIN), if applicable and disclosed.",
       "domain": "npo:organization",
-      "range": "xsd:string",
-      "group": "classification",
-      "required": false,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:organization-tax-status",
-      "type": "owl:DatatypeProperty",
-      "label": "Tax Status",
-      "comment": "The organization's tax-exemption status, independent of its legal form.",
-      "domain": "npo:organization",
-      "range": "xsd:string",
       "group": "classification",
       "required": false,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
+    },
+    {
+      "id": "npoprop:organization-tax-status",
+      "label": "Tax Status",
+      "comment": "The organization's tax-exemption status, independent of its legal form.",
+      "domain": "npo:organization",
+      "group": "classification",
+      "required": false,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "tax-exempt-501c3",
         "tax-exempt-other",
@@ -1947,36 +1992,36 @@
     },
     {
       "id": "npoprop:output-unit",
-      "type": "owl:DatatypeProperty",
       "label": "Unit",
       "comment": "The unit the Output is counted in, e.g. \"workshops\" or \"people served\".",
       "domain": "npo:output",
-      "range": "xsd:string",
       "group": "classification",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
     },
     {
       "id": "npoprop:payment-amount",
-      "type": "owl:DatatypeProperty",
       "label": "Amount",
       "comment": "The actual amount transferred in this Payment.",
       "domain": "npo:payment",
-      "range": "xsd:decimal",
       "group": "financial",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:decimal"
     },
     {
       "id": "npoprop:payment-condition-condition-type",
-      "type": "owl:DatatypeProperty",
       "label": "Condition Type",
       "comment": "What kind of condition must be satisfied before the corresponding Payment is released.",
       "domain": "npo:payment-condition",
-      "range": "xsd:string",
       "group": "governance",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "report-required",
         "milestone-required",
@@ -1985,36 +2030,36 @@
     },
     {
       "id": "npoprop:payment-currency",
-      "type": "owl:DatatypeProperty",
       "label": "Currency",
       "comment": "The currency the Payment was made in, if not implied by context.",
       "domain": "npo:payment",
-      "range": "xsd:string",
       "group": "financial",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
     },
     {
       "id": "npoprop:payment-date",
-      "type": "owl:DatatypeProperty",
       "label": "Payment Date",
       "comment": "When the Payment was sent or received.",
       "domain": "npo:payment",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:payment-schedule-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether all Installments in the Payment Schedule have been disbursed.",
       "domain": "npo:payment-schedule",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "active",
         "completed"
@@ -2022,14 +2067,14 @@
     },
     {
       "id": "npoprop:payment-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Payment stands in transit.",
       "domain": "npo:payment",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "pending",
         "sent",
@@ -2038,36 +2083,36 @@
     },
     {
       "id": "npoprop:philanthropic-arrangement-effective-date",
-      "type": "owl:DatatypeProperty",
       "label": "Effective Date",
       "comment": "When the arrangement took effect.",
       "domain": "npo:philanthropic-arrangement",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:philanthropic-arrangement-governing-document",
-      "type": "owl:DatatypeProperty",
       "label": "Governing Document",
       "comment": "The name or type of document that formally establishes the arrangement (e.g., a fiscal sponsorship agreement).",
       "domain": "npo:philanthropic-arrangement",
-      "range": "xsd:string",
       "group": "governance",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
     },
     {
       "id": "npoprop:philanthropic-arrangement-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether the arrangement is currently active.",
       "domain": "npo:philanthropic-arrangement",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "active",
         "terminated",
@@ -2076,36 +2121,36 @@
     },
     {
       "id": "npoprop:philanthropic-arrangement-termination-date",
-      "type": "owl:DatatypeProperty",
       "label": "Termination Date",
       "comment": "When the arrangement ended, if it has.",
       "domain": "npo:philanthropic-arrangement",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:report-due-date",
-      "type": "owl:DatatypeProperty",
       "label": "Due Date",
       "comment": "When the Report is due per the Reporting Schedule.",
       "domain": "npo:report",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": true,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:report-report-type",
-      "type": "owl:DatatypeProperty",
       "label": "Report Type",
       "comment": "Whether the Report covers narrative progress, financial use of funds, or both.",
       "domain": "npo:report",
-      "range": "xsd:string",
       "group": "classification",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "narrative",
         "financial",
@@ -2114,14 +2159,14 @@
     },
     {
       "id": "npoprop:report-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Report stands with the funder.",
       "domain": "npo:report",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "not-started",
         "submitted",
@@ -2131,42 +2176,37 @@
     },
     {
       "id": "npoprop:report-submitted-date",
-      "type": "owl:DatatypeProperty",
       "label": "Submitted Date",
       "comment": "When the Report was actually submitted, once it has been.",
       "domain": "npo:report",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:reporting-schedule-frequency",
-      "type": "owl:DatatypeProperty",
       "label": "Frequency",
       "comment": "How often Reports are due under this Reporting Schedule.",
       "domain": "npo:reporting-schedule",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
-      "allowedValues": [
-        "monthly",
-        "quarterly",
-        "annual",
-        "one-time"
-      ]
+      "type": "owl:ObjectProperty",
+      "range": "skos:Concept",
+      "referenceScheme": "nporef:frequency"
     },
     {
       "id": "npoprop:review-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where the Review currently stands.",
       "domain": "npo:review",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "pending",
         "in-progress",
@@ -2175,47 +2215,47 @@
     },
     {
       "id": "npoprop:role-effective-from",
-      "type": "owl:DatatypeProperty",
       "label": "Effective From",
       "comment": "When this role occupancy takes effect. Inherited by every Person Role and Organization Role subclass.",
       "domain": "npo:role",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:role-effective-to",
-      "type": "owl:DatatypeProperty",
       "label": "Effective To",
       "comment": "When this role occupancy ends, if it has a defined end. Must not precede Effective From.",
       "domain": "npo:role",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:role-notes",
-      "type": "owl:DatatypeProperty",
       "label": "Notes",
       "comment": "Free-text context about this role occupancy not captured by its other properties.",
       "domain": "npo:role",
-      "range": "xsd:string",
-      "group": "governance",
-      "required": false,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:role-scope",
-      "type": "owl:DatatypeProperty",
-      "label": "Scope",
-      "comment": "How narrowly this role occupancy is scoped. A plain inline enum until Phase 3.7 Milestone 3's reference-data framework exists, at which point this becomes a governed vocabulary instead.",
-      "domain": "npo:role",
-      "range": "xsd:string",
       "group": "governance",
       "required": false,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
+    },
+    {
+      "id": "npoprop:role-scope",
+      "label": "Scope",
+      "comment": "How narrowly this role occupancy is scoped. A plain inline enum until Phase 3.7 Milestone 3's reference-data framework exists, at which point this becomes a governed vocabulary instead.",
+      "domain": "npo:role",
+      "group": "governance",
+      "required": false,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "organization-wide",
         "program-specific",
@@ -2228,43 +2268,37 @@
     },
     {
       "id": "npoprop:role-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Where this role occupancy currently sits in its own lifecycle.",
       "domain": "npo:role",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
-      "allowedValues": [
-        "planned",
-        "active",
-        "suspended",
-        "ended",
-        "cancelled"
-      ]
+      "type": "owl:ObjectProperty",
+      "range": "skos:Concept",
+      "referenceScheme": "nporef:role-status"
     },
     {
       "id": "npoprop:site-visit-scheduled-date",
-      "type": "owl:DatatypeProperty",
       "label": "Scheduled Date",
       "comment": "When the Site Visit is scheduled to occur.",
       "domain": "npo:site-visit",
-      "range": "xsd:date",
-      "group": "lifecycle",
-      "required": true,
-      "cardinality": "one"
-    },
-    {
-      "id": "npoprop:site-visit-status",
-      "type": "owl:DatatypeProperty",
-      "label": "Status",
-      "comment": "Whether the Site Visit has happened yet.",
-      "domain": "npo:site-visit",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:site-visit-status",
+      "label": "Status",
+      "comment": "Whether the Site Visit has happened yet.",
+      "domain": "npo:site-visit",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "scheduled",
         "completed",
@@ -2273,36 +2307,36 @@
     },
     {
       "id": "npoprop:sponsored-project-end-date",
-      "type": "owl:DatatypeProperty",
       "label": "End Date",
       "comment": "When the Sponsored Project ended, if it has.",
       "domain": "npo:sponsored-project",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:sponsored-project-start-date",
-      "type": "owl:DatatypeProperty",
       "label": "Start Date",
       "comment": "When the Sponsored Project began operating under its Fiscal Sponsor.",
       "domain": "npo:sponsored-project",
-      "range": "xsd:date",
       "group": "lifecycle",
       "required": false,
-      "cardinality": "one"
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
     },
     {
       "id": "npoprop:sponsored-project-status",
-      "type": "owl:DatatypeProperty",
       "label": "Status",
       "comment": "Whether the Sponsored Project is still operating under its Fiscal Sponsor.",
       "domain": "npo:sponsored-project",
-      "range": "xsd:string",
       "group": "lifecycle",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "active",
         "completed",
@@ -2311,14 +2345,14 @@
     },
     {
       "id": "npoprop:terms-and-conditions-restriction-type",
-      "type": "owl:DatatypeProperty",
       "label": "Restriction Type",
       "comment": "Whether the funding governed by these Terms and Conditions is Restricted or Unrestricted Funding.",
       "domain": "npo:terms-and-conditions",
-      "range": "xsd:string",
       "group": "governance",
       "required": true,
       "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string",
       "allowedValues": [
         "restricted",
         "unrestricted"
@@ -2458,6 +2492,218 @@
         "npo:person",
         "npo:organization"
       ]
+    },
+    {
+      "id": "nporef:frequency",
+      "type": "skos:ConceptScheme",
+      "prefLabel": "Frequency",
+      "definition": "How often a recurring obligation is due. Currently used for how often Reports are due under a Reporting Schedule; generic enough to apply to other recurring obligations later without a new scheme.",
+      "schemeDomain": "scheduling",
+      "authorityType": "internal",
+      "version": "1.0.0",
+      "publicationStatus": "nporef:publication-status-published"
+    },
+    {
+      "id": "nporef:frequency-annual",
+      "type": "skos:Concept",
+      "inScheme": "nporef:frequency",
+      "notation": "annual",
+      "prefLabel": "Annual",
+      "definition": "Recurs once a year."
+    },
+    {
+      "id": "nporef:frequency-monthly",
+      "type": "skos:Concept",
+      "inScheme": "nporef:frequency",
+      "notation": "monthly",
+      "prefLabel": "Monthly",
+      "definition": "Recurs every month."
+    },
+    {
+      "id": "nporef:frequency-one-time",
+      "type": "skos:Concept",
+      "inScheme": "nporef:frequency",
+      "notation": "one-time",
+      "prefLabel": "One-Time",
+      "definition": "Occurs once, with no recurrence."
+    },
+    {
+      "id": "nporef:frequency-quarterly",
+      "type": "skos:Concept",
+      "inScheme": "nporef:frequency",
+      "notation": "quarterly",
+      "prefLabel": "Quarterly",
+      "definition": "Recurs every three months."
+    },
+    {
+      "id": "nporef:organization-operating-status",
+      "type": "skos:ConceptScheme",
+      "prefLabel": "Organization Operating Status",
+      "definition": "Whether an Organization is currently operating, independent of any role it holds or arrangement it participates in.",
+      "schemeDomain": "organization",
+      "authorityType": "internal",
+      "version": "1.0.0",
+      "publicationStatus": "nporef:publication-status-published"
+    },
+    {
+      "id": "nporef:organization-operating-status-active",
+      "type": "skos:Concept",
+      "inScheme": "nporef:organization-operating-status",
+      "notation": "active",
+      "prefLabel": "Active",
+      "definition": "The organization is currently operating."
+    },
+    {
+      "id": "nporef:organization-operating-status-dissolved",
+      "type": "skos:Concept",
+      "inScheme": "nporef:organization-operating-status",
+      "notation": "dissolved",
+      "prefLabel": "Dissolved",
+      "definition": "The organization has formally ceased to exist."
+    },
+    {
+      "id": "nporef:organization-operating-status-merged",
+      "type": "skos:Concept",
+      "inScheme": "nporef:organization-operating-status",
+      "notation": "merged",
+      "prefLabel": "Merged",
+      "definition": "The organization has combined into another organization and no longer operates independently."
+    },
+    {
+      "id": "nporef:organization-operating-status-unknown",
+      "type": "skos:Concept",
+      "inScheme": "nporef:organization-operating-status",
+      "notation": "unknown",
+      "prefLabel": "Unknown",
+      "definition": "The organization's current operating status has not been confirmed."
+    },
+    {
+      "id": "nporef:publication-status",
+      "type": "skos:ConceptScheme",
+      "prefLabel": "Publication Status",
+      "definition": "The lifecycle state of a reference-data scheme itself -- whether it's still being drafted, actively governing one or more properties, or deprecated in favor of something else. Distinct from a single value's own `deprecated` flag: a scheme can stay published while one of its values is retired.",
+      "schemeDomain": "reference-data-governance",
+      "authorityType": "internal",
+      "version": "1.0.0",
+      "publicationStatus": "nporef:publication-status-published"
+    },
+    {
+      "id": "nporef:publication-status-deprecated",
+      "type": "skos:Concept",
+      "inScheme": "nporef:publication-status",
+      "notation": "deprecated",
+      "prefLabel": "Deprecated",
+      "definition": "The scheme is no longer recommended for new use, though existing data may still reference its values."
+    },
+    {
+      "id": "nporef:publication-status-draft",
+      "type": "skos:Concept",
+      "inScheme": "nporef:publication-status",
+      "notation": "draft",
+      "prefLabel": "Draft",
+      "definition": "The scheme is still being defined and does not yet constrain any concept property."
+    },
+    {
+      "id": "nporef:publication-status-published",
+      "type": "skos:Concept",
+      "inScheme": "nporef:publication-status",
+      "notation": "published",
+      "prefLabel": "Published",
+      "definition": "The scheme is stable and in active use, constraining one or more concept properties."
+    },
+    {
+      "id": "nporef:restriction-type",
+      "type": "skos:ConceptScheme",
+      "prefLabel": "Restriction Type",
+      "definition": "A Fund's accounting restriction status -- whether its use is constrained by the donor, and if so, how. `donor-restricted` is the broader designation covering both time-limited and perpetual donor restrictions; `temporarily-restricted` and `permanently-restricted` narrow it to which kind.",
+      "schemeDomain": "financial",
+      "authorityType": "internal",
+      "version": "1.0.0",
+      "publicationStatus": "nporef:publication-status-published"
+    },
+    {
+      "id": "nporef:restriction-type-donor-restricted",
+      "type": "skos:Concept",
+      "inScheme": "nporef:restriction-type",
+      "notation": "donor-restricted",
+      "prefLabel": "Donor-Restricted",
+      "definition": "The fund's use is constrained by the donor, without specifying here whether the constraint is time-limited or perpetual."
+    },
+    {
+      "id": "nporef:restriction-type-permanently-restricted",
+      "type": "skos:Concept",
+      "inScheme": "nporef:restriction-type",
+      "notation": "permanently-restricted",
+      "prefLabel": "Permanently Restricted",
+      "definition": "The fund's donor-imposed restriction never expires.",
+      "broader": "nporef:restriction-type-donor-restricted"
+    },
+    {
+      "id": "nporef:restriction-type-temporarily-restricted",
+      "type": "skos:Concept",
+      "inScheme": "nporef:restriction-type",
+      "notation": "temporarily-restricted",
+      "prefLabel": "Temporarily Restricted",
+      "definition": "The fund's donor-imposed restriction expires after a specific time or purpose is satisfied.",
+      "broader": "nporef:restriction-type-donor-restricted"
+    },
+    {
+      "id": "nporef:restriction-type-unrestricted",
+      "type": "skos:Concept",
+      "inScheme": "nporef:restriction-type",
+      "notation": "unrestricted",
+      "prefLabel": "Unrestricted",
+      "definition": "The fund carries no donor-imposed restriction on its use."
+    },
+    {
+      "id": "nporef:role-status",
+      "type": "skos:ConceptScheme",
+      "prefLabel": "Role Status",
+      "definition": "Where a Role occupancy currently sits in its own lifecycle, shared by every person-role and organization-role subtype via the role concept's inherited `status` property.",
+      "schemeDomain": "role",
+      "authorityType": "internal",
+      "version": "1.0.0",
+      "publicationStatus": "nporef:publication-status-published"
+    },
+    {
+      "id": "nporef:role-status-active",
+      "type": "skos:Concept",
+      "inScheme": "nporef:role-status",
+      "notation": "active",
+      "prefLabel": "Active",
+      "definition": "The role occupancy is currently in effect."
+    },
+    {
+      "id": "nporef:role-status-cancelled",
+      "type": "skos:Concept",
+      "inScheme": "nporef:role-status",
+      "notation": "cancelled",
+      "prefLabel": "Cancelled",
+      "definition": "The role occupancy was called off before or without reaching its expected conclusion."
+    },
+    {
+      "id": "nporef:role-status-ended",
+      "type": "skos:Concept",
+      "inScheme": "nporef:role-status",
+      "notation": "ended",
+      "prefLabel": "Ended",
+      "definition": "The role occupancy concluded as expected, e.g. at its effectiveTo date."
+    },
+    {
+      "id": "nporef:role-status-planned",
+      "type": "skos:Concept",
+      "inScheme": "nporef:role-status",
+      "notation": "planned",
+      "prefLabel": "Planned",
+      "definition": "The role occupancy has been agreed but has not yet started."
+    },
+    {
+      "id": "nporef:role-status-suspended",
+      "type": "skos:Concept",
+      "inScheme": "nporef:role-status",
+      "notation": "suspended",
+      "prefLabel": "Suspended",
+      "definition": "The role occupancy is temporarily paused without having formally ended."
     }
   ]
 }
