@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import { CORE_CONCEPTS, DESIGN_QUESTIONS, DESIGN_SECTIONS, type DesignQuestion } from '../data/design-questions';
-import { buildDesignJson, buildDesignJsonLd, buildDesignMarkdown, downloadFile } from '../data/design-export';
+import {
+  buildDesignJson,
+  buildDesignJsonLd,
+  buildDesignMarkdown,
+  buildDesignSummary,
+  downloadFile,
+} from '../data/design-export';
 import { concepts, requireConcept } from '../data/ontology';
 import { CATEGORIES } from '../data/categories';
 
@@ -50,19 +56,34 @@ export default function DesignWizard({ base }: Props) {
     [answers]
   );
 
-  const recommendedIds = useMemo(() => {
+  // Tracks WHY each recommended concept is included -- "foundation" (every
+  // program needs it, regardless of answers) or the question/answer that
+  // added it -- so the result list can show its reason instead of just
+  // appearing with no explanation. First cause wins; a concept added by an
+  // earlier question keeps that reason even if a later one would also add it.
+  const { recommendedIds, reasonByConceptId } = useMemo(() => {
     const ids = new Set(CORE_CONCEPTS);
+    const reasons = new Map<string, string>();
+    for (const id of CORE_CONCEPTS) reasons.set(id, 'Foundation: every grantmaking program needs this.');
     for (const q of visibleQuestions) {
       const answer = answers[q.id];
       if (!answer) continue;
+      let added: string[];
+      let answerLabel: string;
       if (q.type === 'boolean') {
-        for (const id of answer === 'yes' ? q.yes : q.no) ids.add(id);
+        added = answer === 'yes' ? q.yes : q.no;
+        answerLabel = answer === 'yes' ? 'Yes' : 'No';
       } else {
         const opt = q.options.find((o) => o.value === answer);
-        opt?.concepts.forEach((id) => ids.add(id));
+        added = opt?.concepts ?? [];
+        answerLabel = opt?.label ?? answer;
+      }
+      for (const id of added) {
+        ids.add(id);
+        if (!reasons.has(id)) reasons.set(id, `Because you answered "${answerLabel}" to: ${q.text}`);
       }
     }
-    return ids;
+    return { recommendedIds: ids, reasonByConceptId: reasons };
   }, [answers, visibleQuestions]);
 
   const answeredCount = visibleQuestions.filter((q) => answers[q.id]).length;
@@ -104,6 +125,15 @@ export default function DesignWizard({ base }: Props) {
     } else {
       downloadFile('npograph-design.md', buildDesignMarkdown(input), 'text/markdown');
     }
+  }
+
+  function downloadSummary() {
+    const input = { answers, recommended: recommendedConcepts, excluded };
+    downloadFile(
+      'npograph-program-summary.md',
+      buildDesignSummary(input, visibleQuestions, DESIGN_SECTIONS),
+      'text/markdown'
+    );
   }
 
   function copyLink() {
@@ -190,27 +220,37 @@ export default function DesignWizard({ base }: Props) {
         <p className="muted design-result-count">
           {recommendedIds.size} of {concepts.length} concepts
         </p>
+        <p className="secondary design-foundation-note">
+          {CORE_CONCEPTS.length} foundation concepts apply to most grantmaking programs, whether or not you've
+          answered anything below; everything else is included because of a specific answer.
+        </p>
 
         <div className="design-actions">
           <a className="home-cta home-cta-primary" href={openInGraphHref}>
             Open in graph
           </a>
+          <button type="button" className="home-cta" onClick={downloadSummary}>
+            Download summary
+          </button>
           <button type="button" className="home-cta" onClick={copyLink}>
             {copied ? 'Link copied!' : 'Copy shareable link'}
           </button>
         </div>
-        <div className="design-actions design-actions-export">
-          <span className="muted">Export:</span>
-          <button type="button" className="link-button" onClick={() => exportAs('json')}>
-            JSON
-          </button>
-          <button type="button" className="link-button" onClick={() => exportAs('jsonld')}>
-            JSON-LD
-          </button>
-          <button type="button" className="link-button" onClick={() => exportAs('markdown')}>
-            Markdown
-          </button>
-        </div>
+
+        <details className="design-developer-exports">
+          <summary className="muted">Developer exports</summary>
+          <div className="design-actions design-actions-export">
+            <button type="button" className="link-button" onClick={() => exportAs('json')}>
+              JSON
+            </button>
+            <button type="button" className="link-button" onClick={() => exportAs('jsonld')}>
+              JSON-LD
+            </button>
+            <button type="button" className="link-button" onClick={() => exportAs('markdown')}>
+              Markdown
+            </button>
+          </div>
+        </details>
 
         {recommendedByCategory.map(({ category, items }) => (
           <section key={category.id} className="inspector-group">
@@ -225,6 +265,9 @@ export default function DesignWizard({ base }: Props) {
               {items.map((c) => (
                 <li key={c.id}>
                   <a href={`${base}concepts/${c.id}`}>{requireConcept(c.id).label}</a>
+                  {reasonByConceptId.get(c.id) && !CORE_CONCEPTS.includes(c.id) && (
+                    <div className="muted design-reason">{reasonByConceptId.get(c.id)}</div>
+                  )}
                 </li>
               ))}
             </ul>
@@ -233,7 +276,7 @@ export default function DesignWizard({ base }: Props) {
 
         {excluded.length > 0 && (
           <details className="design-excluded">
-            <summary className="muted">Not included ({excluded.length})</summary>
+            <summary className="muted">Not currently selected ({excluded.length})</summary>
             <ul className="design-concept-list">
               {excluded.map((c) => (
                 <li key={c.id} className="muted">

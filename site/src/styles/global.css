@@ -1507,6 +1507,31 @@ mark {
   margin-top: 0.6rem;
 }
 
+.design-foundation-note {
+  font-size: 0.85rem;
+  margin: 0.35rem 0 0;
+}
+
+.design-developer-exports {
+  margin: 0.5rem 0 1rem;
+  font-size: 0.85rem;
+}
+
+.design-developer-exports summary {
+  cursor: pointer;
+}
+
+.design-developer-exports .design-actions-export {
+  margin-top: 0.5rem;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.design-reason {
+  font-size: 0.78rem;
+  margin-top: 0.1rem;
+}
+
 .design-section {
   display: grid;
   gap: 0.75rem;
