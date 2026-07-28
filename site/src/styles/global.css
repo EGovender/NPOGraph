@@ -273,6 +273,20 @@ main.wide {
   color: var(--text-secondary);
 }
 
+/* A small page-identity label above an h1 whose own wording (a fictional
+   grant's name, a category name, etc.) doesn't say what kind of page this
+   is -- keeps the page's nav label recognizable without watering down a
+   more inviting title. Uses --text-secondary, not --text-muted, so it
+   doesn't introduce its own low-contrast text. */
+.eyebrow {
+  margin: 0 0 0.25rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
 code,
 pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -280,6 +294,10 @@ pre {
 
 .search-box {
   position: relative;
+}
+
+.search-box-compact {
+  width: 200px;
 }
 
 .search-input {
@@ -290,6 +308,11 @@ pre {
   border: 1px solid var(--border);
   background: var(--card-bg);
   color: var(--text-primary);
+}
+
+.search-box-compact .search-input {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.65rem;
 }
 
 .search-input:focus {
@@ -528,6 +551,49 @@ pre {
 
 .search-no-results {
   margin-top: 0.5rem;
+}
+
+/* The header's persistent compact search overlays its results instead of
+   pushing the header taller while typing. */
+.search-results-compact {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  max-width: 90vw;
+  max-height: 70vh;
+  overflow-y: auto;
+  z-index: 30;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.search-no-results-compact {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 320px;
+  max-width: 90vw;
+  z-index: 30;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.65rem 0.9rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 640px) {
+  .site-header nav .search-box-compact {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  .site-header nav .search-results-compact,
+  .site-header nav .search-no-results-compact {
+    position: static;
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
+  }
 }
 
 .graph-explorer {

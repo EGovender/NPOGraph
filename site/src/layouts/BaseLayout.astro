@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
-import { ontologyVersion, ontologyLastUpdated } from '../data/ontology';
+import { concepts, ontologyVersion, ontologyLastUpdated } from '../data/ontology';
+import SearchBox from '../components/SearchBox';
 
 interface Props {
   title: string;
@@ -34,6 +35,10 @@ function trimSlash(path: string): string {
   return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
 }
 const currentPath = trimSlash(Astro.url.pathname);
+// The homepage already has its own full-size SearchBox below the hero, so
+// the header's persistent compact one is redundant there -- only render it
+// on every other page.
+const isHome = currentPath === trimSlash(base);
 
 const lastUpdatedDisplay = ontologyLastUpdated
   ? new Date(ontologyLastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
@@ -96,6 +101,7 @@ const lastUpdatedDisplay = ontologyLastUpdated
             );
           })
         }
+        {!isHome && <SearchBox client:load compact concepts={concepts} base={base} />}
       </nav>
     </header>
     <main class={wide ? 'wide' : ''}>

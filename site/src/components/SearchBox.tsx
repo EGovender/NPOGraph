@@ -6,9 +6,13 @@ import { conceptSearchScore } from '../data/search';
 interface Props {
   concepts: Concept[];
   base: string;
+  /** A narrow, dropdown-overlay variant for the persistent site-header
+   * search (every page but the homepage, which already has the full-size
+   * box below its hero) -- same search, just not laid out inline. */
+  compact?: boolean;
 }
 
-export default function SearchBox({ concepts, base }: Props) {
+export default function SearchBox({ concepts, base, compact = false }: Props) {
   const [query, setQuery] = useState('');
 
   const results = useMemo(() => {
@@ -23,17 +27,17 @@ export default function SearchBox({ concepts, base }: Props) {
   }, [concepts, query]);
 
   return (
-    <div className="search-box">
+    <div className={compact ? 'search-box search-box-compact' : 'search-box'}>
       <input
         type="search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search concepts (e.g. “installment”, “compliance”)"
+        placeholder={compact ? 'Search concepts…' : 'Search concepts (e.g. “installment”, “compliance”)'}
         aria-label="Search NPOGraph concepts"
         className="search-input"
       />
       {results.length > 0 && (
-        <ul className="search-results" role="listbox">
+        <ul className={compact ? 'search-results search-results-compact' : 'search-results'} role="listbox">
           {results.map((c) => {
             const category = getCategory(c.category);
             return (
@@ -54,7 +58,9 @@ export default function SearchBox({ concepts, base }: Props) {
         </ul>
       )}
       {query.trim() && results.length === 0 && (
-        <p className="muted search-no-results">No concepts match "{query}".</p>
+        <p className={compact ? 'muted search-no-results search-no-results-compact' : 'muted search-no-results'}>
+          No concepts match "{query}".
+        </p>
       )}
     </div>
   );
