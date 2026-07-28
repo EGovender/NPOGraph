@@ -1669,6 +1669,14 @@ mark {
   flex-wrap: wrap;
 }
 
+/* Same specificity gotcha .story-stage-bar[hidden] already documents --
+   `display: flex` above loads after (and ties the specificity of) the UA
+   `[hidden] { display: none }`, so without this the technical-data toggle's
+   hidden variant would stay visible. */
+.story-step-props[hidden] {
+  display: none;
+}
+
 .story-act {
   list-style: none;
   margin: 0.5rem 0 1.5rem;
@@ -1708,6 +1716,58 @@ mark {
   color: #ffffff;
 }
 
+.story-scenario-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+}
+
+.story-scenario-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--text-primary);
+}
+
+.story-scenario-card.active {
+  border-color: var(--brand-teal);
+  box-shadow: inset 0 0 0 1px var(--brand-teal);
+}
+
+.story-scenario-card-label {
+  font-weight: 700;
+}
+
+.story-scenario-card-desc {
+  font-size: 0.85rem;
+}
+
+.story-scenario-complexity {
+  font-size: 0.72rem;
+}
+
+.story-scenario-complexity-simple {
+  background: color-mix(in srgb, var(--brand-green) 25%, var(--card-bg));
+}
+
+.story-scenario-complexity-complex {
+  background: color-mix(in srgb, #c0392b 20%, var(--card-bg));
+}
+
+.story-tech-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
 .story-stage-bar {
   position: sticky;
   top: 0;
@@ -1738,8 +1798,11 @@ mark {
   font-weight: 600;
   padding: 0.25rem 0.65rem;
   border-radius: 999px;
+  border: none;
   background: var(--gridline);
   color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .story-stage-pill::before {

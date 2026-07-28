@@ -1,9 +1,75 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { workedExample, getConcept, type ExampleIndividual } from '../data/ontology';
+import {
+  workedExample,
+  getConcept,
+  getPropertiesForConcept,
+  type ExampleIndividual,
+  type Property,
+} from '../data/ontology';
 import { getCategory } from '../data/categories';
+import { getReferenceScheme } from '../data/reference-data';
 
 const base = import.meta.env.BASE_URL;
+
+// Hand-authored UI content describing each narrative thread -- like
+// design-questions.ts, this is presentation logic layered on top of the
+// ontology's own worked-example data, not an ontology claim itself, so it
+// lives here rather than in ontology/source/example.json.
+const SCENARIO_META: Record<string, { description: string; complexity: 'Simple' | 'Moderate' | 'Complex' }> = {
+  'direct-grant': { description: 'A funder awards directly to a single grantee, start to finish.', complexity: 'Simple' },
+  'fiscal-sponsorship': {
+    description: "A funder supports a project that doesn't have its own nonprofit status, via a fiscal sponsor.",
+    complexity: 'Moderate',
+  },
+  'donor-advised-fund': {
+    description: 'A donor recommends grants from a fund the sponsoring organization legally controls.',
+    complexity: 'Moderate',
+  },
+  regranting: {
+    description: 'One organization receives funds and redistributes them to its own sub-grantees.',
+    complexity: 'Moderate',
+  },
+  'collaborative-fund': {
+    description: 'Two funders pool contributions into one fund and jointly award a grant.',
+    complexity: 'Complex',
+  },
+  'contractor-relationship': {
+    description: 'An organization engages a contractor directly, outside the philanthropic-arrangement pattern.',
+    complexity: 'Simple',
+  },
+};
+const DEFAULT_SCENARIO_META = { description: 'A connected thread in the worked example.', complexity: 'Moderate' as const };
+
+/** Renders a property value the way someone reading the story (not the raw
+ * data) would expect: reference-backed codes as their scheme label, decimals
+ * in the "financial" group with thousands separators, dates spelled out,
+ * booleans as Yes/No, other enums title-cased. Falls back to the raw value
+ * for anything that doesn't map cleanly, rather than guessing. */
+function formatPropertyValue(pdef: Property | undefined, value: string): string {
+  if (!pdef) return value;
+  if (pdef.datatype === 'reference' && pdef.referenceScheme) {
+    const match = getReferenceScheme(pdef.referenceScheme).values.find((v) => v.code === value);
+    return match ? match.label : value;
+  }
+  if (pdef.datatype === 'decimal') {
+    const num = Number(value);
+    if (!Number.isFinite(num)) return value;
+    const formatted = num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    return pdef.group === 'financial' ? `$${formatted}` : formatted;
+  }
+  if (pdef.datatype === 'date') {
+    const d = new Date(`${value}T00:00:00`);
+    return Number.isNaN(d.getTime()) ? value : d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+  if (pdef.datatype === 'boolean') {
+    return value === 'true' ? 'Yes' : 'No';
+  }
+  if (pdef.datatype === 'enum') {
+    return value.split('-').map((w) => w[0]?.toUpperCase() + w.slice(1)).join(' ');
+  }
+  return value;
+}
 
 interface Stage {
   id: string;
@@ -82,30 +148,51 @@ flushBucket();
     for how it was built and validated.
   </p>
 
-  <div class="story-scenario-tabs" role="tablist" aria-label="Choose a scenario">
-    <button type="button" class="story-scenario-tab active" data-scenario="all" aria-pressed="true">
-      All
-    </button>
+  <div class="story-scenario-cards" role="tablist" aria-label="Choose a scenario">
     {
-      scenarios.map((s) => (
-        <button type="button" class="story-scenario-tab" data-scenario={s.id} aria-pressed="false">
-          {s.label}
-        </button>
-      ))
+      scenarios.map((s, i) => {
+        const meta = SCENARIO_META[s.id] ?? DEFAULT_SCENARIO_META;
+        return (
+          <button
+            type="button"
+            class={`card story-scenario-card${i === 0 ? ' active' : ''}`}
+            data-scenario={s.id}
+            aria-pressed={i === 0 ? 'true' : 'false'}
+          >
+            <span class="story-scenario-card-label">{s.label}</span>
+            <span class="secondary story-scenario-card-desc">{meta.description}</span>
+            <span class={`badge story-scenario-complexity story-scenario-complexity-${meta.complexity.toLowerCase()}`}>
+              {meta.complexity}
+            </span>
+          </button>
+        );
+      })
     }
   </div>
+  <p class="secondary" style="margin: 0.75rem 0 1.5rem;">
+    <button type="button" class="link-button story-scenario-tab" data-scenario="all" aria-pressed="false">
+      Show all scenarios combined
+    </button>
+  </p>
+
+  <label class="story-tech-toggle">
+    <input type="checkbox" id="story-show-technical" />
+    Show technical field names and raw values
+  </label>
 
   {
     scenarios.map((s) => (
       <div class="story-stage-bar" data-stage-bar={s.id} hidden>
         {s.stages.map((stage) => (
-          <span
+          <button
+            type="button"
             class="story-stage-pill"
             data-stage={stage.id}
+            data-stage-scenario={s.id}
             style={`--stage-color: light-dark(${stage.colorLight}, ${stage.colorDark})`}
           >
             {stage.label}
-          </span>
+          </button>
         ))}
       </div>
     ))
@@ -118,6 +205,7 @@ flushBucket();
         if (!concept) return null;
         const category = getCategory(concept.category);
         const propertyEntries = Object.entries(individual.properties);
+        const conceptProperties = getPropertiesForConcept(concept.id);
         const scenarioId = scenarioIdByIndividualId.get(individual.id) ?? 'direct-grant';
         return (
           <>
@@ -137,13 +225,25 @@ flushBucket();
                 </div>
                 <p class="story-step-narrative">{individual.narrative}</p>
                 {propertyEntries.length > 0 && (
-                  <div class="story-step-props">
-                    {propertyEntries.map(([name, value]) => (
-                      <span class="chip">
-                        {name}: {value}
-                      </span>
-                    ))}
-                  </div>
+                  <>
+                    <div class="story-step-props story-step-props-human">
+                      {propertyEntries.map(([name, value]) => {
+                        const pdef = conceptProperties.find((p) => p.name === name);
+                        return (
+                          <span class="chip">
+                            {pdef?.label ?? name}: {formatPropertyValue(pdef, value)}
+                          </span>
+                        );
+                      })}
+                    </div>
+                    <div class="story-step-props story-step-props-tech" hidden>
+                      {propertyEntries.map(([name, value]) => (
+                        <span class="chip">
+                          {name}: {value}
+                        </span>
+                      ))}
+                    </div>
+                  </>
                 )}
                 <a class="story-step-graph-link" href={`${base}explore?concept=${concept.id}`}>
                   Open in graph &rarr;
@@ -157,13 +257,22 @@ flushBucket();
   </ol>
 
   <script>
-    const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('.story-scenario-tab'));
+    const tabs = Array.from(
+      document.querySelectorAll<HTMLButtonElement>('.story-scenario-card, .story-scenario-tab')
+    );
     const steps = Array.from(document.querySelectorAll<HTMLLIElement>('.story-step'));
     const acts = Array.from(document.querySelectorAll<HTMLLIElement>('.story-act'));
     const stageBars = Array.from(document.querySelectorAll<HTMLDivElement>('.story-stage-bar'));
+    const stagePills = Array.from(document.querySelectorAll<HTMLButtonElement>('.story-stage-pill'));
+    const technicalToggle = document.getElementById('story-show-technical') as HTMLInputElement | null;
+
+    // Default to the first real scenario (Direct Grant), not "All" -- the
+    // longest, most complex view shouldn't be what a first-time visitor
+    // lands on. An explicit ?scenario= (including "all") still wins.
+    const defaultScenario = tabs.find((t) => t.dataset.scenario && t.dataset.scenario !== 'all')?.dataset.scenario ?? 'all';
 
     function readScenarioFromURL(): string {
-      return new URLSearchParams(location.search).get('scenario') || 'all';
+      return new URLSearchParams(location.search).get('scenario') || defaultScenario;
     }
 
     function updateActiveStage(scenarioId: string) {
@@ -220,6 +329,25 @@ flushBucket();
       },
       { passive: true }
     );
+
+    stagePills.forEach((pill) =>
+      pill.addEventListener('click', () => {
+        const scenarioId = pill.dataset.stageScenario!;
+        const stage = pill.dataset.stage!;
+        const target = steps.find((s) => s.dataset.scenario === scenarioId && s.dataset.stage === stage && !s.hidden);
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      })
+    );
+
+    technicalToggle?.addEventListener('change', () => {
+      const showTechnical = technicalToggle.checked;
+      document.querySelectorAll<HTMLElement>('.story-step-props-human').forEach((el) => {
+        el.hidden = showTechnical;
+      });
+      document.querySelectorAll<HTMLElement>('.story-step-props-tech').forEach((el) => {
+        el.hidden = !showTechnical;
+      });
+    });
 
     setScenario(readScenarioFromURL());
   </script>
