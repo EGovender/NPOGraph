@@ -352,6 +352,31 @@ pre {
   gap: 0.75rem;
 }
 
+.catalogue-controls-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: var(--page);
+  padding: 0.75rem 0;
+  margin-top: 0.75rem;
+  border-bottom: 1px solid transparent;
+}
+
+.category-jump-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  font-size: 0.82rem;
+}
+
+.category-jump-links a {
+  text-decoration: none;
+}
+
+.category-jump-links a:hover {
+  text-decoration: underline;
+}
+
 .catalogue-row {
   display: flex;
   flex-wrap: wrap;
@@ -483,8 +508,10 @@ pre {
   list-style: none;
   padding: 0;
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 0.75rem;
   margin: 0.75rem 0 0;
+  align-items: start;
 }
 
 .concept-card-header {
@@ -505,6 +532,35 @@ pre {
 
 .concept-card-def {
   margin: 0.35rem 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Compact list: one column, one-line definitions, tighter padding -- for
+   scanning many concepts at once rather than reading each in full. */
+#catalogue-views.compact .concept-card-list {
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+}
+
+#catalogue-views.compact .concept-card {
+  padding: 0.6rem 0.9rem;
+}
+
+#catalogue-views.compact .concept-card-def {
+  -webkit-line-clamp: 1;
+}
+
+#catalogue-views.compact .concept-card-meta {
+  display: none;
+}
+
+mark {
+  background: light-dark(#fff3a0, #6b5a00);
+  color: inherit;
+  border-radius: 2px;
 }
 
 .search-results {
