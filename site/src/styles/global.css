@@ -11,13 +11,16 @@
   --text-muted: #74726d;
   --border: rgba(11, 11, 11, 0.1);
   --gridline: #e1e0d9;
-  /* Brand colors, from the NPOGraph logo mark. --brand-teal is darkened from
-     the logo's literal #4BA188 to clear 4.5:1 text contrast on --page; the
-     logo's green (#79B158) is used only decoratively (the header accent bar,
-     the icon itself), never for text/links, so it's kept at its true value. */
-  --brand-teal: #387866;
-  --brand-green: #79b158;
-  --link: var(--brand-teal);
+  /* CommonGood Atlas brand: navy (structure -- headings, buttons, the "CommonGood"
+     half of the wordmark) + sage green (accent -- links, the "Atlas" half).
+     --brand-green is the logo's true, vivid value, used only decoratively
+     (icons, swatches, borders) -- at ~3:1 on --page it doesn't clear 4.5:1 for
+     text. --brand-green-ink is a darkened variant reserved for anywhere green
+     needs to BE text (links, accent copy), verified ~5.4:1 on --page/--card-bg. */
+  --brand-navy: #14304d;
+  --brand-green: #6e9e52;
+  --brand-green-ink: #4a7033;
+  --link: var(--brand-green-ink);
   --card-bg: #ffffff;
 }
 
@@ -31,9 +34,12 @@
     --text-muted: #898781;
     --border: rgba(255, 255, 255, 0.1);
     --gridline: #2c2c2a;
-    --brand-teal: #5fc3a8;
+    /* Both brightened from their light-mode values for visibility against a
+       dark page -- same reasoning as the rest of this file's dark-mode block. */
+    --brand-navy: #4779ad;
     --brand-green: #8bc168;
-    --link: var(--brand-teal);
+    --brand-green-ink: #8bc168;
+    --link: var(--brand-green-ink);
     --card-bg: #16161a;
   }
 }
@@ -51,13 +57,13 @@ body {
 body {
   background: var(--page);
   color: var(--text-primary);
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.55;
 }
 
 input[type="radio"],
 input[type="checkbox"] {
-  accent-color: var(--brand-teal);
+  accent-color: var(--brand-navy);
 }
 
 /* One consistent, high-contrast keyboard-focus ring across every
@@ -83,8 +89,10 @@ a {
    this only changes headings that were relying on the browser default. */
 h1 {
   font-size: 2rem;
-  line-height: 1.25;
+  font-weight: 800;
+  line-height: 1.2;
   margin: 0 0 0.75rem;
+  letter-spacing: -0.01em;
 }
 
 h2 {
@@ -111,7 +119,7 @@ h3 {
   position: relative;
 }
 
-/* Decorative echo of the logo's teal-to-green gradient -- never used to
+/* Decorative echo of the logo's navy-to-green gradient -- never used to
    convey interactive state, purely a brand accent. */
 .site-header::after {
   content: '';
@@ -120,7 +128,7 @@ h3 {
   right: 0;
   bottom: -2px;
   height: 2px;
-  background: linear-gradient(90deg, var(--brand-teal), var(--brand-green));
+  background: linear-gradient(90deg, var(--brand-navy), var(--brand-green));
 }
 
 .site-header .brand {
@@ -139,13 +147,19 @@ h3 {
 }
 
 .brand-text-accent {
-  color: var(--brand-teal);
+  color: var(--brand-navy);
 }
 
 .site-header nav {
   display: flex;
+  align-items: center;
   gap: 1.25rem;
   flex-wrap: wrap;
+}
+
+.nav-get-started {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
 }
 
 .site-header nav a {
@@ -205,6 +219,12 @@ h3 {
 
   .site-header nav a {
     padding: 0.5rem 0;
+  }
+
+  .site-header nav a.nav-get-started {
+    padding: 0.6rem 1.1rem;
+    margin-top: 0.4rem;
+    text-align: center;
   }
 }
 
@@ -276,12 +296,12 @@ main.full-bleed {
 }
 
 .home-cta:hover {
-  border-color: var(--brand-teal);
+  border-color: var(--brand-navy);
 }
 
 .home-cta-primary {
-  background: var(--brand-teal);
-  border-color: var(--brand-teal);
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
   color: #ffffff;
 }
 
@@ -454,7 +474,7 @@ pre {
 }
 
 .sort-toggle.active {
-  background: var(--brand-teal);
+  background: var(--brand-navy);
   color: #ffffff;
 }
 
@@ -479,7 +499,7 @@ pre {
 }
 
 .catalogue-filters[open] summary {
-  border-color: var(--brand-teal);
+  border-color: var(--brand-navy);
   color: var(--text-primary);
 }
 
@@ -784,7 +804,7 @@ mark {
 }
 
 .view-pill.active {
-  background: var(--brand-teal);
+  background: var(--brand-navy);
   color: #ffffff;
 }
 
@@ -826,7 +846,7 @@ mark {
 }
 
 .graph-kind-chip:hover {
-  border-color: var(--brand-teal);
+  border-color: var(--brand-navy);
 }
 
 .graph-kind-chip-hidden {
@@ -1052,7 +1072,7 @@ mark {
 }
 
 .graph-edge.path-edge {
-  stroke: var(--brand-teal);
+  stroke: var(--brand-navy);
   stroke-width: 3px;
   opacity: 1;
 }
@@ -1079,7 +1099,7 @@ mark {
 }
 
 .graph-edge-label.path-edge {
-  fill: var(--brand-teal);
+  fill: var(--brand-navy);
   font-weight: 600;
 }
 
@@ -1197,7 +1217,7 @@ mark {
 }
 
 .graph-view-toggle button.active {
-  background: var(--brand-teal);
+  background: var(--brand-navy);
   color: #ffffff;
 }
 
@@ -1236,7 +1256,7 @@ mark {
 }
 
 .graph-filter-chip:hover {
-  border-color: var(--brand-teal);
+  border-color: var(--brand-navy);
 }
 
 .graph-advanced-filters {
@@ -1393,7 +1413,7 @@ mark {
   margin-top: 1.25rem;
   padding: 0.75rem 1rem;
   border: 1px solid var(--border);
-  border-left: 3px solid var(--brand-teal);
+  border-left: 3px solid var(--brand-navy);
   border-radius: 6px;
   background: var(--page);
   font-size: 0.85rem;
@@ -1765,7 +1785,7 @@ mark {
 .custom-view-banner {
   padding: 0.75rem;
   border: 1px solid var(--border);
-  border-left: 3px solid var(--brand-teal);
+  border-left: 3px solid var(--brand-navy);
   border-radius: 6px;
   background: var(--page);
   font-size: 0.85rem;
@@ -1904,8 +1924,8 @@ mark {
 }
 
 .story-scenario-tab.active {
-  border-color: var(--brand-teal);
-  background: var(--brand-teal);
+  border-color: var(--brand-navy);
+  background: var(--brand-navy);
   color: #ffffff;
 }
 
@@ -1928,8 +1948,8 @@ mark {
 }
 
 .story-scenario-card.active {
-  border-color: var(--brand-teal);
-  box-shadow: inset 0 0 0 1px var(--brand-teal);
+  border-color: var(--brand-navy);
+  box-shadow: inset 0 0 0 1px var(--brand-navy);
 }
 
 .story-scenario-card-label {
@@ -2017,4 +2037,323 @@ mark {
   margin-top: 0.6rem;
   font-size: 0.82rem;
   font-weight: 600;
+}
+
+/* Homepage: hero, feature strip, process band, stats strip */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+  gap: 2.5rem;
+  align-items: center;
+  margin: 1rem 0 3.5rem;
+}
+
+.hero-heading {
+  font-size: 2.75rem;
+  margin: 0 0 1rem;
+}
+
+.hero-heading span {
+  display: block;
+}
+
+.hero-heading-navy {
+  color: var(--brand-navy);
+}
+
+.hero-heading-green {
+  color: var(--brand-green-ink);
+}
+
+.hero-subtext {
+  font-size: 1.1rem;
+  max-width: 52ch;
+  margin: 0;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.hero-tagline {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.hero-graphic {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+
+.hero-network {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-node-list {
+  position: absolute;
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.hero-node a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hero-node a:hover {
+  color: var(--link);
+}
+
+.hero-node-icon {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  flex: none;
+}
+
+.hero-node-icon-org,
+.hero-node-icon-process,
+.hero-node-icon-resources {
+  background: var(--brand-green);
+}
+
+.hero-node-icon-people,
+.hero-node-icon-data,
+.hero-node-icon-outcomes {
+  background: var(--brand-navy);
+}
+
+.hero-node-org {
+  top: 50%;
+  left: 100%;
+}
+
+.hero-node-people {
+  top: 16%;
+  left: 85%;
+}
+
+.hero-node-process {
+  top: 16%;
+  left: 15%;
+}
+
+.hero-node-data {
+  top: 50%;
+  left: 0%;
+}
+
+.hero-node-resources {
+  top: 84%;
+  left: 15%;
+}
+
+.hero-node-outcomes {
+  top: 84%;
+  left: 85%;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-graphic {
+    order: -1;
+  }
+
+  .hero-heading {
+    font-size: 2.1rem;
+  }
+
+  .hero-node {
+    font-size: 0.7rem;
+  }
+}
+
+.feature-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 0 0 3.5rem;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  flex: none;
+}
+
+.feature-icon-knowledge,
+.feature-icon-tools,
+.feature-icon-impact {
+  background: var(--brand-navy);
+}
+
+.feature-icon-insights,
+.feature-icon-open {
+  background: var(--brand-green);
+}
+
+.feature-title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.process-band {
+  margin: 0 -1.5rem 3.5rem;
+  padding: 3rem 1.5rem;
+  background: var(--brand-navy);
+  border-radius: 12px;
+}
+
+.process-band-title {
+  text-align: center;
+  color: #ffffff;
+  margin: 0 0 2rem;
+  font-size: 1.5rem;
+}
+
+.process-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.process-step {
+  flex: 1 1 220px;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.process-step h3 {
+  color: #ffffff;
+  margin: 0.5rem 0 0;
+}
+
+.process-step p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.process-step a {
+  color: var(--brand-green);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+  text-decoration: none;
+}
+
+.process-step a:hover {
+  text-decoration: underline;
+}
+
+.process-step-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid var(--brand-green);
+}
+
+.process-step-arrow {
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
+  font-size: 1.5rem;
+  color: var(--brand-green);
+}
+
+@media (max-width: 700px) {
+  .process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .process-step-arrow {
+    transform: rotate(90deg);
+    padding-top: 0;
+  }
+}
+
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 0 0 1rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stats-item strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.stats-item p {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+}
+
+.stats-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  flex: none;
+}
+
+.stats-icon-concepts,
+.stats-icon-open {
+  background: var(--brand-navy);
+}
+
+.stats-icon-relationships,
+.stats-icon-together {
+  background: var(--brand-green);
 }

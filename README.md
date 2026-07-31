@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="site/public/logo.svg" alt="CommonGood Atlas — Nonprofit Knowledge Network" width="360" />
+  <img src="site/public/logo.svg" alt="CommonGood Atlas — Shared knowledge. Stronger impact." width="360" />
 </p>
 
 # CommonGood Atlas
