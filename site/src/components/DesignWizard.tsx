@@ -119,18 +119,18 @@ export default function DesignWizard({ base }: Props) {
   function exportAs(format: 'json' | 'jsonld' | 'markdown') {
     const input = { answers, recommended: recommendedConcepts, excluded };
     if (format === 'json') {
-      downloadFile('npograph-design.json', buildDesignJson(input), 'application/json');
+      downloadFile('commongood-atlas-design.json', buildDesignJson(input), 'application/json');
     } else if (format === 'jsonld') {
-      downloadFile('npograph-design.jsonld', buildDesignJsonLd(recommendedConcepts), 'application/ld+json');
+      downloadFile('commongood-atlas-design.jsonld', buildDesignJsonLd(recommendedConcepts), 'application/ld+json');
     } else {
-      downloadFile('npograph-design.md', buildDesignMarkdown(input), 'text/markdown');
+      downloadFile('commongood-atlas-design.md', buildDesignMarkdown(input), 'text/markdown');
     }
   }
 
   function downloadSummary() {
     const input = { answers, recommended: recommendedConcepts, excluded };
     downloadFile(
-      'npograph-program-summary.md',
+      'commongood-atlas-program-summary.md',
       buildDesignSummary(input, visibleQuestions, DESIGN_SECTIONS),
       'text/markdown'
     );

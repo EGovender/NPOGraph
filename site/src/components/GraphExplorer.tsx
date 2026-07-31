@@ -771,7 +771,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     const dataUrl = await exportSvgAsPng(svgEl, { background, scale: 2 });
     const link = document.createElement('a');
     link.href = dataUrl;
-    link.download = `npograph-${viewId}-${new Date().toISOString().slice(0, 10)}.png`;
+    link.download = `commongood-atlas-${viewId}-${new Date().toISOString().slice(0, 10)}.png`;
     link.click();
   }
 
@@ -1168,7 +1168,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
         </div>
 
         <div className="graph-canvas-wrap" ref={wrapRef} hidden={showList}>
-          <svg className="graph-canvas" ref={svgRef} role="img" aria-label="NPOGraph concept relationship graph" />
+          <svg className="graph-canvas" ref={svgRef} role="img" aria-label="CommonGood Atlas concept relationship graph" />
           {controls}
         </div>
 

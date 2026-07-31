@@ -1,6 +1,6 @@
 # Deployment Checklist
 
-A short, practical checklist for confirming the live site at [egovender.github.io/NPOGraph](https://egovender.github.io/NPOGraph/) actually matches the repository after a push to `main`. Most of this is already enforced automatically (see below); this exists for the cases automation can't cover — spot-checking the *deployed* result, not just the build.
+A short, practical checklist for confirming the live site at [egovender.github.io/commongood-atlas](https://egovender.github.io/commongood-atlas/) actually matches the repository after a push to `main`. Most of this is already enforced automatically (see below); this exists for the cases automation can't cover — spot-checking the *deployed* result, not just the build.
 
 ## Automated (nothing to do, just know it's there)
 
@@ -10,7 +10,7 @@ A short, practical checklist for confirming the live site at [egovender.github.i
 
 ## Manual spot-check, after a deploy you care about
 
-1. Open the [Actions tab](https://github.com/EGovender/NPOGraph/actions) — confirm both `ontology` and `deploy-site` are green for the latest commit on `main`.
+1. Open the [Actions tab](https://github.com/EGovender/commongood-atlas/actions) — confirm both `ontology` and `deploy-site` are green for the latest commit on `main`.
 2. Open the live site's homepage — confirm the concept/relationship counts in the status line match `ontology/source/concepts.json`/`relationships.json` (`jq length`, or just count entries).
 3. Confirm the homepage's "Ontology v… , updated …" line (footer, and the homepage status line) shows the version in `ontology/source/meta.json` and a date matching the latest commit that touched `ontology/source/`.
 4. View-source (or a social-preview debugger) on the homepage and one concept page — confirm `og:title`/`og:description`/`og:image`/`twitter:*`/`<link rel="canonical">` are present and point at the live domain, not `localhost`.

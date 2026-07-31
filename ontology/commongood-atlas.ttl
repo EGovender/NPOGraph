@@ -1,8 +1,8 @@
-@prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
-@prefix npoprop: <https://egovender.github.io/NPOGraph/ontology/properties/> .
-@prefix nporef: <https://egovender.github.io/NPOGraph/ontology/reference-data/> .
-@prefix nporel: <https://egovender.github.io/NPOGraph/ontology/relations/> .
-@prefix nporule: <https://egovender.github.io/NPOGraph/ontology/rules/> .
+@prefix npo: <https://egovender.github.io/commongood-atlas/ontology/> .
+@prefix npoprop: <https://egovender.github.io/commongood-atlas/ontology/properties/> .
+@prefix nporef: <https://egovender.github.io/commongood-atlas/ontology/reference-data/> .
+@prefix nporel: <https://egovender.github.io/commongood-atlas/ontology/relations/> .
+@prefix nporule: <https://egovender.github.io/commongood-atlas/ontology/rules/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -11,84 +11,84 @@
 npo:BusinessRule a rdfs:Class ;
     rdfs:label "Business Rule" .
 
-<https://egovender.github.io/NPOGraph/ontology> a owl:Ontology ;
-    rdfs:label "NPOGraph Grantmaking Ontology" ;
+<https://egovender.github.io/commongood-atlas/ontology> a owl:Ontology ;
+    rdfs:label "CommonGood Atlas Grantmaking Ontology" ;
     rdfs:comment "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md." ;
     npo:version "0.3.0" .
 
 npo:applicant-contact a owl:Class ;
     rdfs:label "Applicant Contact" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they serve as the primary point of contact for an application submitted on behalf of an organization or project." ;
     npo:category "organizational-entities" .
 
 npo:authorized-signatory a owl:Class ;
     rdfs:label "Authorized Signatory" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they are authorized to sign a grant agreement or other governing document on behalf of an organization." ;
     npo:category "organizational-entities" .
 
 npo:board-member a owl:Class ;
     rdfs:label "Board Member" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they serve on an organization's governing board." ;
     npo:category "organizational-entities" .
 
 npo:consultant a owl:Class ;
     rdfs:label "Consultant" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they provide paid, defined-scope services to an organization without being its employee." ;
     npo:category "organizational-entities" .
 
 npo:contractor a owl:Class ;
     rdfs:label "Contractor" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it is bound by a contract to deliver a specific, defined piece of work for another organization." ;
     npo:category "organizational-entities" .
 
 npo:donor a owl:Class ;
     rdfs:label "Donor" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they contribute charitable funds to an organization or fund, without necessarily holding advisory privileges over how they are used." ;
     npo:category "organizational-entities" .
 
 npo:employee a owl:Class ;
     rdfs:label "Employee" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they work for and are compensated by an organization." ;
     npo:category "organizational-entities" .
 
 npo:employer a owl:Class ;
     rdfs:label "Employer" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it employs a person -- the organization-side counterpart to that person's Employee role." ;
     npo:category "organizational-entities" .
 
 npo:funding-intermediary-role a owl:Class ;
     rdfs:label "Funding Intermediary Role" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it channels funds between an original funding source and an ultimate grantee, without itself being the original funder or the final recipient." ;
     npo:category "organizational-entities" .
 
 npo:partner a owl:Class ;
     rdfs:label "Partner" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it collaborates with another organization on shared work, in a relationship not adequately described as one party purchasing from or providing a service to the other." ;
     npo:category "organizational-entities" .
 
 npo:philanthropic-intermediary a owl:Class ;
     rdfs:label "Philanthropic Intermediary" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization ;
     skos:definition "An organization commonly known for facilitating philanthropy on behalf of others -- such as by re-granting, fiscal sponsorship, or hosting donor-advised funds -- regardless of which specific role it occupies in a given arrangement." ;
     npo:category "organizational-entities" .
@@ -1023,454 +1023,454 @@ nporel:actsOnBehalfOf a owl:ObjectProperty ;
     rdfs:label "acts on behalf of" ;
     rdfs:comment "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly." ;
     rdfs:domain npo:fiscal-sponsor ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships> ;
     rdfs:range npo:grantee .
 
 nporel:administeredBy a owl:ObjectProperty ;
     rdfs:label "is administered by" ;
     rdfs:comment "A Philanthropic Arrangement is administered by an Organization, such as a fiscal sponsor or fund administrator." ;
     rdfs:domain npo:philanthropic-arrangement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:advises a owl:ObjectProperty ;
     rdfs:label "advises" ;
     rdfs:comment "A Donor Advisor advises a specific Donor-Advised Fund, holding non-binding privileges to recommend its grants and investments." ;
     rdfs:domain npo:donor-advisor ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:donor-advised-fund .
 
 nporel:affiliatedWith a owl:ObjectProperty ;
     rdfs:label "is affiliated with" ;
     rdfs:comment "A Person is affiliated with an Organization, independent of which specific Person Role(s) they occupy there." ;
     rdfs:domain npo:person ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:range npo:organization .
 
 nporel:appliesWithin a owl:ObjectProperty ;
     rdfs:label "applies within" ;
     rdfs:comment "An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements." ;
     rdfs:domain npo:organization-role ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:philanthropic-arrangement .
 
 nporel:assessedAgainstLogicModel a owl:ObjectProperty ;
     rdfs:label "is assessed against" ;
     rdfs:comment "Reports are assessed against the project's Logic Model in terms of Outputs and Outcomes." ;
     rdfs:domain npo:report ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:logic-model .
 
 nporel:assessedAgainstTheoryOfChange a owl:ObjectProperty ;
     rdfs:label "is assessed against" ;
     rdfs:comment "Reports are assessed against the project's Theory of Change in terms of Outputs and Outcomes." ;
     rdfs:domain npo:report ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:theory-of-change .
 
 nporel:assessesOutcome a owl:ObjectProperty ;
     rdfs:label "assesses" ;
     rdfs:comment "An Evaluation assesses whether a grant-funded project achieved its intended Outcomes." ;
     rdfs:domain npo:evaluation ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:outcome .
 
 nporel:assessesOutput a owl:ObjectProperty ;
     rdfs:label "assesses" ;
     rdfs:comment "An Evaluation assesses whether a grant-funded project achieved its intended Outputs." ;
     rdfs:domain npo:evaluation ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:output .
 
 nporel:associatedWithGrantProgram a owl:ObjectProperty ;
     rdfs:label "is associated with" ;
     rdfs:comment "A Program Officer is associated with one or more Grant Programs and typically owns the Review and monitoring relationship for Awards made under them." ;
     rdfs:domain npo:program-officer ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships> ;
     rdfs:range npo:grant-program .
 
 nporel:attachesComplianceRequirement a owl:ObjectProperty ;
     rdfs:label "attaches" ;
     rdfs:comment "A Grant Agreement attaches Compliance Requirements, including a Reporting Schedule." ;
     rdfs:domain npo:grant-agreement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:compliance-requirement .
 
 nporel:awardedBy a owl:ObjectProperty ;
     rdfs:label "is awarded by" ;
     rdfs:comment "An Award is awarded by an Organization -- the original source of the funding, which may differ from the organization that administers it." ;
     rdfs:domain npo:award ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:awardedTo a owl:ObjectProperty ;
     rdfs:label "is awarded to" ;
     rdfs:comment "An Award is awarded to an Organization -- the ultimate recipient, which may differ from the organization managing compliance on its behalf." ;
     rdfs:domain npo:award ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:brokenIntoInstallment a owl:ObjectProperty ;
     rdfs:label "is broken into" ;
     rdfs:comment "A Payment Schedule is broken into Installments." ;
     rdfs:domain npo:payment-schedule ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:installment .
 
 nporel:concernsFund a owl:ObjectProperty ;
     rdfs:label "concerns" ;
     rdfs:comment "A Grant Recommendation concerns a specific Fund -- ordinarily a Donor-Advised Fund -- that would pay for the recommended award." ;
     rdfs:domain npo:grant-recommendation ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:fund .
 
 nporel:conductedByReviewer a owl:ObjectProperty ;
     rdfs:label "is conducted by" ;
     rdfs:comment "A Review is conducted by one or more Reviewers." ;
     rdfs:domain npo:review ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:reviewer .
 
 nporel:disbursedAsPayment a owl:ObjectProperty ;
     rdfs:label "is disbursed as" ;
     rdfs:comment "An Installment is disbursed as a Payment once any Payment Condition is satisfied." ;
     rdfs:domain npo:installment ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:payment .
 
 nporel:evaluatedAgainstReviewCriteria a owl:ObjectProperty ;
     rdfs:label "is evaluated against" ;
     rdfs:comment "A Review evaluates an Application against published Review Criteria." ;
     rdfs:domain npo:review ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:review-criteria .
 
 nporel:fiscallySponsoredBy a owl:ObjectProperty ;
     rdfs:label "is fiscally sponsored by" ;
     rdfs:comment "A Sponsored Project is fiscally sponsored by an Organization that provides the legal and administrative infrastructure it lacks on its own." ;
     rdfs:domain npo:sponsored-project ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:followsGrantLifecycle a owl:ObjectProperty ;
     rdfs:label "follows" ;
     rdfs:comment "An Award's progression from decision through closeout follows the Grant Lifecycle sequence." ;
     rdfs:domain npo:award ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:grant-lifecycle .
 
 nporel:formalizedByGrantAgreement a owl:ObjectProperty ;
     rdfs:label "is formalized by" ;
     rdfs:comment "An Award is formalized by a Grant Agreement." ;
     rdfs:domain npo:award ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:grant-agreement .
 
 nporel:fundedBy a owl:ObjectProperty ;
     rdfs:label "is funded by" ;
     rdfs:comment "A Grant Program is funded by a Fund -- the pool of financial resources backing the program's giving strategy." ;
     rdfs:domain npo:grant-program ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:fund .
 
 nporel:fundedFrom a owl:ObjectProperty ;
     rdfs:label "is funded from" ;
     rdfs:comment "An Award draws its funds from a specific Fund." ;
     rdfs:domain npo:award ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:fund .
 
 nporel:governs a owl:ObjectProperty ;
     rdfs:label "governs" ;
     rdfs:comment "A Donor-Advised Fund Arrangement governs the specific Donor-Advised Fund it establishes the advisory relationship for." ;
     rdfs:domain npo:donor-advised-fund-arrangement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:donor-advised-fund .
 
 nporel:hasLegalForm a owl:ObjectProperty ;
     rdfs:label "has legal form" ;
     rdfs:comment "An Organization has a legal form describing what it fundamentally is under law, independent of any role it plays." ;
     rdfs:domain npo:organization ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization-type .
 
 nporel:hasPaymentSchedule a owl:ObjectProperty ;
     rdfs:label "has" ;
     rdfs:comment "An Award's funds are released according to a Payment Schedule." ;
     rdfs:domain npo:award ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:payment-schedule .
 
 nporel:heldBy a owl:ObjectProperty ;
     rdfs:label "is held by" ;
     rdfs:comment "A Fund is held and administered by an Organization." ;
     rdfs:domain npo:fund ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:includesBudget a owl:ObjectProperty ;
     rdfs:label "includes" ;
     rdfs:comment "An Application includes a proposed Budget." ;
     rdfs:domain npo:application ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:budget .
 
 nporel:includesReportingSchedule a owl:ObjectProperty ;
     rdfs:label "includes" ;
     rdfs:comment "A Compliance Requirement includes a Reporting Schedule that obligates the Grantee to submit Reports." ;
     rdfs:domain npo:compliance-requirement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:reporting-schedule .
 
 nporel:issuesFundingOpportunity a owl:ObjectProperty ;
     rdfs:label "issues" ;
     rdfs:comment "A Grant Program issues Funding Opportunities during defined Funding Cycles." ;
     rdfs:domain npo:grant-program ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:funding-opportunity .
 
 nporel:leadsToAward a owl:ObjectProperty ;
     rdfs:label "leads to" ;
     rdfs:comment "A Grant Recommendation the sponsoring organization accepts leads to an Award, mirroring how a Decision results in an Award in the direct-grant path." ;
     rdfs:domain npo:grant-recommendation ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:award .
 
 nporel:maintainsGrantProgram a owl:ObjectProperty ;
     rdfs:label "maintains" ;
     rdfs:comment "A Funder maintains one or more Grant Programs, each of which issues Funding Opportunities over time." ;
     rdfs:domain npo:funder ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:grant-program .
 
 nporel:makesRecommendation a owl:ObjectProperty ;
     rdfs:label "makes" ;
     rdfs:comment "A Donor Advisor makes a Grant Recommendation requesting that their Donor-Advised Fund make an award." ;
     rdfs:domain npo:donor-advisor ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:grant-recommendation .
 
 nporel:managedBy a owl:ObjectProperty ;
     rdfs:label "is administered by" ;
     rdfs:comment "An Award may be administered day-to-day by an Organization other than the one that awarded or received it, such as a fiscal sponsor or intermediary." ;
     rdfs:domain npo:award ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:mayHavePaymentCondition a owl:ObjectProperty ;
     rdfs:label "may have" ;
     rdfs:comment "An Installment may carry a Payment Condition that must be met before it is disbursed." ;
     rdfs:domain npo:installment ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:payment-condition .
 
 nporel:mayIncludeAudit a owl:ObjectProperty ;
     rdfs:label "may include" ;
     rdfs:comment "A Compliance Requirement may include an Audit." ;
     rdfs:domain npo:compliance-requirement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:audit .
 
 nporel:mayIncludeMatchingRequirement a owl:ObjectProperty ;
     rdfs:label "may include" ;
     rdfs:comment "A Grant Agreement may include a Matching Requirement." ;
     rdfs:domain npo:grant-agreement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:matching-requirement .
 
 nporel:mayIncludeSiteVisit a owl:ObjectProperty ;
     rdfs:label "may include" ;
     rdfs:comment "A Review may include a Site Visit before a Decision is made." ;
     rdfs:domain npo:review ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:site-visit .
 
 nporel:mayRequestBudgetModification a owl:ObjectProperty ;
     rdfs:label "may request" ;
     rdfs:comment "Over the life of an Award, the Grantee may request a Budget Modification." ;
     rdfs:domain npo:grantee ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:budget-modification .
 
 nporel:mayRequireLetterOfInquiry a owl:ObjectProperty ;
     rdfs:label "may require" ;
     rdfs:comment "A Funding Opportunity may require a Letter of Inquiry before a full Application is invited." ;
     rdfs:domain npo:funding-opportunity ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:letter-of-inquiry .
 
 nporel:maySpecifyRestrictedFunding a owl:ObjectProperty ;
     rdfs:label "may specify" ;
     rdfs:comment "A Grant Agreement's Terms and Conditions may classify the award as Restricted Funding." ;
     rdfs:domain npo:grant-agreement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:restricted-funding .
 
 nporel:maySpecifyUnrestrictedFunding a owl:ObjectProperty ;
     rdfs:label "may specify" ;
     rdfs:comment "A Grant Agreement's Terms and Conditions may classify the award as Unrestricted Funding." ;
     rdfs:domain npo:grant-agreement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:unrestricted-funding .
 
 nporel:modifiesGrantAgreement a owl:ObjectProperty ;
     rdfs:label "modifies" ;
     rdfs:comment "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." ;
     rdfs:domain npo:amendment ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
     rdfs:range npo:grant-agreement .
 
 nporel:obligatesReport a owl:ObjectProperty ;
     rdfs:label "obligates" ;
     rdfs:comment "A Reporting Schedule obligates the Grantee to submit Reports on a defined cadence." ;
     rdfs:domain npo:reporting-schedule ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:report .
 
 nporel:occursDuringFundingCycle a owl:ObjectProperty ;
     rdfs:label "occurs during" ;
     rdfs:comment "A Funding Opportunity is issued within a defined Funding Cycle." ;
     rdfs:domain npo:funding-opportunity ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:funding-cycle .
 
 nporel:organizationRoleAppliesWithinOrganization a owl:ObjectProperty ;
     rdfs:label "applies within" ;
     rdfs:comment "An Organization Role can also be scoped directly to an Organization rather than an Arrangement -- e.g. a Contractor, Vendor, Service Provider, Employer, or Partner role is naturally scoped to which organization it relates to, not to a Philanthropic Arrangement. A distinct predicate from rel-organization-role-applies-within for the same reason Phase 3.7 Milestone 1's Person relationships needed distinct names: the generator requires every relationship predicate to be globally unique, so one predicate can't have two different declared object concepts. Broadening this into a true Role-appliesWithin-Context union (Award, Application, Agreement, Fund, Grant Program, Funding Opportunity, Project, Review, Payment, Decision, per the Phase 3.7 roadmap) is deferred until real worked-example data actually needs one of those specific contexts -- adding all of them speculatively now, each as its own distinct predicate, would be exactly the kind of premature abstraction this project avoids." ;
     rdfs:domain npo:organization-role ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:participatesIn a owl:ObjectProperty ;
     rdfs:label "participates in" ;
     rdfs:comment "An Organization participates in a Philanthropic Arrangement, independent of tracking which specific role it occupies there." ;
     rdfs:domain npo:organization ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:philanthropic-arrangement .
 
 nporel:personPlaysRole a owl:ObjectProperty ;
     rdfs:label "plays" ;
     rdfs:comment "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed." ;
     rdfs:domain npo:person ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:range npo:person-role .
 
 nporel:personRoleAppliesWithin a owl:ObjectProperty ;
     rdfs:label "applies within" ;
     rdfs:comment "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts." ;
     rdfs:domain npo:person-role ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:range npo:organization .
 
 nporel:playsRole a owl:ObjectProperty ;
     rdfs:label "plays" ;
     rdfs:comment "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait." ;
     rdfs:domain npo:organization ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization-role .
 
 nporel:pools a owl:ObjectProperty ;
     rdfs:label "pools" ;
     rdfs:comment "A Collaborative Fund Arrangement pools multiple funders' contributions into a shared Fund." ;
     rdfs:domain npo:collaborative-fund-arrangement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:fund .
 
 nporel:producesDecision a owl:ObjectProperty ;
     rdfs:label "produces" ;
     rdfs:comment "A Review produces a Decision." ;
     rdfs:domain npo:review ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:decision .
 
 nporel:reachesCloseout a owl:ObjectProperty ;
     rdfs:label "reaches" ;
     rdfs:comment "Once all Payments are disbursed and all Compliance Requirements are satisfied, the Award reaches Closeout." ;
     rdfs:domain npo:award ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:closeout .
 
 nporel:recommendsRecipient a owl:ObjectProperty ;
     rdfs:label "recommends" ;
     rdfs:comment "A Grant Recommendation recommends a specific Organization as the award's recipient." ;
     rdfs:domain npo:grant-recommendation ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:regrantsTo a owl:ObjectProperty ;
     rdfs:label "regrants to" ;
     rdfs:comment "A Regranting Arrangement regrants funds to a downstream Organization, distinct from the Organization that supplied the funds originally." ;
     rdfs:domain npo:regranting-arrangement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
 nporel:respondsToFundingOpportunity a owl:ObjectProperty ;
     rdfs:label "responds to" ;
     rdfs:comment "An Application is submitted in response to a specific Funding Opportunity." ;
     rdfs:domain npo:application ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:funding-opportunity .
 
 nporel:responsibleForComplianceRequirement a owl:ObjectProperty ;
     rdfs:label "is responsible for" ;
     rdfs:comment "A Grant Administrator is typically responsible for tracking Compliance Requirements." ;
     rdfs:domain npo:grant-administrator ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships> ;
     rdfs:range npo:compliance-requirement .
 
 nporel:responsibleForReport a owl:ObjectProperty ;
     rdfs:label "is responsible for" ;
     rdfs:comment "A Grant Administrator is typically responsible for Report submission." ;
     rdfs:domain npo:grant-administrator ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships> ;
     rdfs:range npo:report .
 
 nporel:resultsInAward a owl:ObjectProperty ;
     rdfs:label "results in" ;
     rdfs:comment "An approved Decision results in an Award." ;
     rdfs:domain npo:decision ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:award .
 
 nporel:specifiesEligibilityCriteria a owl:ObjectProperty ;
     rdfs:label "specifies" ;
     rdfs:comment "A Funding Opportunity specifies the Eligibility Criteria an applicant must meet." ;
     rdfs:domain npo:funding-opportunity ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:eligibility-criteria .
 
 nporel:specifiesTermsAndConditions a owl:ObjectProperty ;
     rdfs:label "specifies" ;
     rdfs:comment "A Grant Agreement specifies Terms and Conditions, including whether funding is restricted or unrestricted." ;
     rdfs:domain npo:grant-agreement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:terms-and-conditions .
 
 nporel:submitsApplication a owl:ObjectProperty ;
     rdfs:label "submits" ;
     rdfs:comment "A Grantee (or a project operating under a Fiscal Sponsor) submits an Application in response to a Funding Opportunity." ;
     rdfs:domain npo:grantee ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:application .
 
 nporel:supports a owl:ObjectProperty ;
     rdfs:label "supports" ;
     rdfs:comment "A Fiscal Sponsorship Arrangement supports a specific Sponsored Project carried out under the fiscal sponsor's umbrella." ;
     rdfs:domain npo:fiscal-sponsorship-arrangement ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:sponsored-project .
 
 nporel:undergoesReview a owl:ObjectProperty ;
     rdfs:label "undergoes" ;
     rdfs:comment "An Application undergoes Review by one or more Reviewers." ;
     rdfs:domain npo:application ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:review .
 
 nporule:rule-active-role-requires-effective-from a npo:BusinessRule ;
     rdfs:label "An active role must have an effective start date" ;
     rdfs:comment "A Role occupancy with status Active must specify Effective From -- a role cannot be considered in effect without a defined start." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     npo:appliesTo npo:organization-role,
         npo:person-role,
         npo:role .
@@ -1478,7 +1478,7 @@ nporule:rule-active-role-requires-effective-from a npo:BusinessRule ;
 nporule:rule-amendment-not-retroactive a npo:BusinessRule ;
     rdfs:label "An Amendment is forward-looking, not retroactive" ;
     rdfs:comment "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
     npo:appliesTo npo:amendment,
         npo:grant-agreement,
         npo:payment,
@@ -1487,7 +1487,7 @@ nporule:rule-amendment-not-retroactive a npo:BusinessRule ;
 nporule:rule-award-requires-approved-decision a npo:BusinessRule ;
     rdfs:label "An Award requires an approved Decision" ;
     rdfs:comment "An Award cannot exist without a Decision that approved an Application (or, in funder-initiated giving, an equivalent internal approval)." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
     npo:appliesTo npo:application,
         npo:award,
         npo:decision .
@@ -1495,7 +1495,7 @@ nporule:rule-award-requires-approved-decision a npo:BusinessRule ;
 nporule:rule-closeout-requires-payments-and-reports a npo:BusinessRule ;
     rdfs:label "Closeout requires both financial and reporting conditions" ;
     rdfs:comment "Closeout requires both financial conditions (all Payments made or the award formally reduced) and reporting conditions (all required Reports accepted) to be true." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
     npo:appliesTo npo:closeout,
         npo:payment,
         npo:report .
@@ -1503,7 +1503,7 @@ nporule:rule-closeout-requires-payments-and-reports a npo:BusinessRule ;
 nporule:rule-compliance-requirement-attaches-to-award a npo:BusinessRule ;
     rdfs:label "A Compliance Requirement attaches to a specific Award, not the Grantee in the abstract" ;
     rdfs:comment "A Compliance Requirement is always attached to a specific Award, not to the Grantee in the abstract -- the same organization can be in good standing on one award and delinquent on another." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
     npo:appliesTo npo:award,
         npo:compliance-requirement,
         npo:grantee .
@@ -1511,7 +1511,7 @@ nporule:rule-compliance-requirement-attaches-to-award a npo:BusinessRule ;
 nporule:rule-grant-recommendation-non-binding a npo:BusinessRule ;
     rdfs:label "A Grant Recommendation is non-binding" ;
     rdfs:comment "A Donor Advisor's Grant Recommendation does not itself obligate a Donor-Advised Fund to make an Award; the fund's sponsoring organization retains final legal authority over whether to accept it." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     npo:appliesTo npo:award,
         npo:donor-advised-fund,
         npo:grant-recommendation .
@@ -1519,7 +1519,7 @@ nporule:rule-grant-recommendation-non-binding a npo:BusinessRule ;
 nporule:rule-installment-condition-before-payment a npo:BusinessRule ;
     rdfs:label "An Installment's Payment Condition must be met before release" ;
     rdfs:comment "An Installment's Payment Condition, if any, must be satisfied before its corresponding Payment is released." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
     npo:appliesTo npo:installment,
         npo:payment,
         npo:payment-condition .
@@ -1527,7 +1527,7 @@ nporule:rule-installment-condition-before-payment a npo:BusinessRule ;
 nporule:rule-payment-requires-award-and-agreement a npo:BusinessRule ;
     rdfs:label "A Payment requires an Award, typically with a Grant Agreement" ;
     rdfs:comment "A Payment cannot exist without an Award and, typically, a Grant Agreement -- though some funders disburse an initial installment before a fully signed agreement is in place." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft> ;
     npo:appliesTo npo:award,
         npo:grant-agreement,
         npo:payment .
@@ -1535,7 +1535,7 @@ nporule:rule-payment-requires-award-and-agreement a npo:BusinessRule ;
 nporule:rule-role-effective-to-not-before-from a npo:BusinessRule ;
     rdfs:label "A role's effective end date must not precede its start date" ;
     rdfs:comment "A Role occupancy's Effective To, if present, must not be earlier than its Effective From." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     npo:appliesTo npo:organization-role,
         npo:person-role,
         npo:role .
@@ -1543,7 +1543,7 @@ nporule:rule-role-effective-to-not-before-from a npo:BusinessRule ;
 nporule:rule-role-occupancy-requires-context-unless-organization-wide a npo:BusinessRule ;
     rdfs:label "A role occupancy should identify its context unless explicitly organization-wide" ;
     rdfs:comment "A Role occupancy should specify what it applies within (via appliesWithin), unless its Scope is explicitly organization-wide -- a role with neither a context nor an organization-wide scope is ambiguous about what it actually governs." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     npo:appliesTo npo:organization-role,
         npo:person-role,
         npo:role .
@@ -1551,7 +1551,7 @@ nporule:rule-role-occupancy-requires-context-unless-organization-wide a npo:Busi
 nporule:rule-role-occupancy-requires-holder a npo:BusinessRule ;
     rdfs:label "A role occupancy must identify its role holder" ;
     rdfs:comment "An instance of a Person Role must be held by a Person (via playsRole); an instance of an Organization Role must be held by an Organization (via playsRole). A role occupancy with no holder is not a valid occupancy, only a role definition." ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     npo:appliesTo npo:organization,
         npo:organization-role,
         npo:person,
@@ -1560,35 +1560,35 @@ nporule:rule-role-occupancy-requires-holder a npo:BusinessRule ;
 
 npo:service-provider a owl:Class ;
     rdfs:label "Service Provider" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it provides an ongoing operational service to another organization -- broader and less transactional than a single Contractor engagement or Vendor purchase." ;
     npo:category "organizational-entities" .
 
 npo:sponsoring-organization a owl:Class ;
     rdfs:label "Sponsoring Organization" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it holds and administers a Fund on behalf of the fund's donor or benefactors, distinct from acting as a Fiscal Sponsor for a specific project." ;
     npo:category "organizational-entities" .
 
 npo:vendor a owl:Class ;
     rdfs:label "Vendor" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it is the source from which another organization purchases standard goods or services, without a defined-work contract the way a Contractor has." ;
     npo:category "organizational-entities" .
 
 npo:collaborative-fund-arrangement a owl:Class ;
     rdfs:label "Collaborative Fund Arrangement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     rdfs:subClassOf npo:philanthropic-arrangement ;
     skos:definition "A Philanthropic Arrangement in which multiple funders pool resources into a shared Fund and jointly direct or oversee its grantmaking." ;
     npo:category "funding-structure" .
 
 npo:donor-advised-fund-arrangement a owl:Class ;
     rdfs:label "Donor-Advised Fund Arrangement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     rdfs:subClassOf npo:philanthropic-arrangement ;
     skos:definition "A Philanthropic Arrangement in which a Donor Advisor holds non-binding advisory privileges over grants made from a Donor-Advised Fund." ;
     npo:category "funding-structure" ;
@@ -1596,13 +1596,13 @@ npo:donor-advised-fund-arrangement a owl:Class ;
 
 npo:eligibility-criteria a owl:Class ;
     rdfs:label "Eligibility Criteria" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     skos:definition "The conditions an organization or project must meet to apply to a funding opportunity." ;
     npo:category "funding-structure" .
 
 npo:fiscal-sponsor a owl:Class ;
     rdfs:label "Fiscal Sponsor" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:definition "The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf." ;
     npo:category "organizational-entities" ;
@@ -1610,7 +1610,7 @@ npo:fiscal-sponsor a owl:Class ;
 
 npo:funder a owl:Class ;
     rdfs:label "Funder" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:altLabel "Grantmaker" ;
     skos:definition "The role an organization occupies when it provides funding to grantees through grant programs and awards." ;
@@ -1618,38 +1618,38 @@ npo:funder a owl:Class ;
 
 npo:grant-lifecycle a owl:Class ;
     rdfs:label "Grant Lifecycle" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#cross-cutting> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting> ;
     skos:definition "The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout." ;
     npo:category "cross-cutting" .
 
 npo:logic-model a owl:Class ;
     rdfs:label "Logic Model" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
     skos:definition "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project." ;
     npo:category "outcomes-and-closeout" .
 
 npo:organization-type a owl:Class ;
     rdfs:label "Organization Type" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     skos:definition "The legal and tax classification of what an organization fundamentally is (e.g., a public charity, private foundation, or government entity), independent of any role it plays in a specific relationship." ;
     npo:category "organizational-entities" .
 
 npo:outcome a owl:Class ;
     rdfs:label "Outcome" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
     skos:definition "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output." ;
     npo:category "outcomes-and-closeout" .
 
 npo:program-officer a owl:Class ;
     rdfs:label "Program Officer" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they manage a portfolio of grants on behalf of a funder, from soliciting or reviewing applications through monitoring active awards." ;
     npo:category "organizational-entities" .
 
 npo:regranting-arrangement a owl:Class ;
     rdfs:label "Regranting Arrangement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     rdfs:subClassOf npo:philanthropic-arrangement ;
     skos:definition "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients." ;
     npo:category "funding-structure" ;
@@ -1657,44 +1657,44 @@ npo:regranting-arrangement a owl:Class ;
 
 npo:restricted-funding a owl:Class ;
     rdfs:label "Restricted Funding" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:definition "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement." ;
     npo:category "award-and-agreement" .
 
 npo:review-criteria a owl:Class ;
     rdfs:label "Review Criteria" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
     skos:definition "The published or internal standards (e.g., alignment with mission, feasibility, budget reasonableness) against which applications are scored." ;
     npo:category "application-and-review" .
 
 npo:reviewer a owl:Class ;
     rdfs:label "Reviewer" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they evaluate an application against review criteria, whether as staff, a board member, or an external peer reviewer." ;
     npo:category "organizational-entities" .
 
 npo:theory-of-change a owl:Class ;
     rdfs:label "Theory of Change" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
     skos:definition "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change." ;
     npo:category "outcomes-and-closeout" .
 
 npo:unrestricted-funding a owl:Class ;
     rdfs:label "Unrestricted Funding" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:definition "Funding a grantee may use at its discretion in support of its general mission." ;
     npo:category "award-and-agreement" .
 
 npo:budget a owl:Class ;
     rdfs:label "Budget" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     skos:definition "A structured estimate of costs associated with a proposed or funded project, broken into categories (e.g., personnel, overhead, direct program costs)." ;
     npo:category "funding-structure" .
 
 npo:donor-advisor a owl:Class ;
     rdfs:label "Donor Advisor" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they hold non-binding privileges to recommend grants and investments from a Donor-Advised Fund, typically as the fund's original donor." ;
     npo:category "organizational-entities" ;
@@ -1702,7 +1702,7 @@ npo:donor-advisor a owl:Class ;
 
 npo:fiscal-sponsorship-arrangement a owl:Class ;
     rdfs:label "Fiscal Sponsorship Arrangement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     rdfs:subClassOf npo:philanthropic-arrangement ;
     skos:definition "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly." ;
     npo:category "funding-structure" ;
@@ -1710,27 +1710,27 @@ npo:fiscal-sponsorship-arrangement a owl:Class ;
 
 npo:grant-administrator a owl:Class ;
     rdfs:label "Grant Administrator" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:person-role ;
     skos:definition "The role a person occupies when they are responsible for compliance, reporting, and financial management of an award on behalf of the grantee organization." ;
     npo:category "organizational-entities" .
 
 npo:indirect-cost-rate a owl:Class ;
     rdfs:label "Indirect Cost Rate" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
     skos:definition "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award." ;
     npo:category "compliance-and-reporting" .
 
 npo:letter-of-inquiry a owl:Class ;
     rdfs:label "Letter of Inquiry" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
     skos:altLabel "LOI" ;
     skos:definition "A brief, preliminary submission used by some funders to screen interest before inviting a full application." ;
     npo:category "application-and-review" .
 
 npo:output a owl:Class ;
     rdfs:label "Output" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
     skos:definition "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served)." ;
     npo:category "outcomes-and-closeout" .
 
@@ -1742,25 +1742,25 @@ nporef:restriction-type-donor-restricted a skos:Concept ;
 
 npo:terms-and-conditions a owl:Class ;
     rdfs:label "Terms and Conditions" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:definition "The specific obligations, restrictions, and expectations attached to an award (e.g., allowable uses of funds, reporting requirements)." ;
     npo:category "award-and-agreement" .
 
 npo:audit a owl:Class ;
     rdfs:label "Audit" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
     skos:definition "A formal, independent examination of a grantee's financial records, either as a general organizational requirement or specific to a grant." ;
     npo:category "compliance-and-reporting" .
 
 npo:budget-modification a owl:Class ;
     rdfs:label "Budget Modification" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "A grantee-requested, funder-approved change to how awarded funds are allocated across budget categories, without changing the total award amount." ;
     npo:category "disbursement" .
 
 npo:donor-advised-fund a owl:Class ;
     rdfs:label "Donor-Advised Fund" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     rdfs:subClassOf npo:fund ;
     skos:altLabel "DAF" ;
     skos:definition "A Fund held by a sponsoring organization, over which a Donor Advisor holds non-binding privileges to recommend grants and investments." ;
@@ -1769,31 +1769,31 @@ npo:donor-advised-fund a owl:Class ;
 
 npo:funding-cycle a owl:Class ;
     rdfs:label "Funding Cycle" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     skos:definition "A recurring period (e.g., quarterly, annual) within a grant program during which applications are accepted and decided." ;
     npo:category "funding-structure" .
 
 npo:matching-requirement a owl:Class ;
     rdfs:label "Matching Requirement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:definition "A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match)." ;
     npo:category "award-and-agreement" .
 
 npo:payment-condition a owl:Class ;
     rdfs:label "Payment Condition" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "A requirement (e.g., a submitted report, a milestone reached) that must be satisfied before a scheduled payment is released." ;
     npo:category "disbursement" .
 
 npo:payment-schedule a owl:Class ;
     rdfs:label "Payment Schedule" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "The agreed timing and amounts by which award funds will be disbursed to the grantee." ;
     npo:category "disbursement" .
 
 npo:person a owl:Class ;
     rdfs:label "Person" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     skos:altLabel "Individual",
         "Natural Person" ;
     skos:definition "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships." ;
@@ -1809,38 +1809,38 @@ nporef:publication-status a skos:ConceptScheme ;
 
 npo:reporting-schedule a owl:Class ;
     rdfs:label "Reporting Schedule" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
     skos:definition "The agreed cadence and due dates for narrative and financial reports over the life of an award." ;
     npo:category "compliance-and-reporting" .
 
 npo:site-visit a owl:Class ;
     rdfs:label "Site Visit" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
     skos:definition "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision." ;
     npo:category "application-and-review" .
 
 npo:amendment a owl:Class ;
     rdfs:label "Amendment" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:altLabel "Grant Amendment" ;
     skos:definition "A formally agreed change to an existing grant agreement's terms, budget, timeline, or amount, made after the original agreement was signed." ;
     npo:category "award-and-agreement" .
 
 npo:closeout a owl:Class ;
     rdfs:label "Closeout" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
     skos:definition "The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied." ;
     npo:category "outcomes-and-closeout" .
 
 npo:evaluation a owl:Class ;
     rdfs:label "Evaluation" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
     skos:definition "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes." ;
     npo:category "outcomes-and-closeout" .
 
 npo:grantee a owl:Class ;
     rdfs:label "Grantee" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:organization-role ;
     skos:altLabel "Recipient",
         "Subrecipient" ;
@@ -1849,7 +1849,7 @@ npo:grantee a owl:Class ;
 
 npo:decision a owl:Class ;
     rdfs:label "Decision" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
     skos:definition "The outcome of the review process for an application: approved, declined, or approved with conditions." ;
     npo:category "application-and-review" .
 
@@ -1885,20 +1885,20 @@ nporef:restriction-type a skos:ConceptScheme ;
 
 npo:sponsored-project a owl:Class ;
     rdfs:label "Sponsored Project" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     skos:definition "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization." ;
     npo:category "organizational-entities" ;
     npo:legalNote "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement." .
 
 npo:grant-program a owl:Class ;
     rdfs:label "Grant Program" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     skos:definition "A funder's standing area of giving (e.g., \"Environmental Justice Grants\"), under which funding opportunities are issued over time." ;
     npo:category "funding-structure" .
 
 npo:installment a owl:Class ;
     rdfs:label "Installment" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "A single scheduled portion of an award's total funds, to be disbursed at a defined point or upon meeting a condition." ;
     npo:category "disbursement" .
 
@@ -1912,26 +1912,26 @@ nporef:role-status a skos:ConceptScheme ;
 
 npo:review a owl:Class ;
     rdfs:label "Review" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
     skos:definition "The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers." ;
     npo:category "application-and-review" .
 
 npo:application a owl:Class ;
     rdfs:label "Application" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
     skos:altLabel "Grant Application" ;
     skos:definition "A grantee's formal submission requesting funding under a specific funding opportunity, including a proposal narrative and budget." ;
     npo:category "application-and-review" .
 
 npo:compliance-requirement a owl:Class ;
     rdfs:label "Compliance Requirement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
     skos:definition "An obligation attached to an award that the grantee must satisfy to remain in good standing (e.g., timely reporting, allowable use of funds, insurance)." ;
     npo:category "compliance-and-reporting" .
 
 npo:funding-opportunity a owl:Class ;
     rdfs:label "Funding Opportunity" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     skos:altLabel "NOFO",
         "Notice of Funding Opportunity",
         "RFP",
@@ -1941,70 +1941,70 @@ npo:funding-opportunity a owl:Class ;
 
 npo:grant-recommendation a owl:Class ;
     rdfs:label "Grant Recommendation" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
     skos:definition "A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it." ;
     npo:category "application-and-review" ;
     npo:legalNote "A Grant Recommendation's non-binding status is a legal requirement for donor-advised funds under federal tax law, not a design choice -- see Donor-Advised Fund and Donor Advisor." .
 
 npo:payment a owl:Class ;
     rdfs:label "Payment" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments." ;
     npo:category "disbursement" .
 
 npo:report a owl:Class ;
     rdfs:label "Report" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
     skos:definition "A grantee's submission to the funder describing progress, outcomes, and/or use of funds, per the reporting schedule. Narrative and financial reports are common subtypes." ;
     npo:category "compliance-and-reporting" .
 
 npo:fund a owl:Class ;
     rdfs:label "Fund" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     skos:definition "A designated pool of financial resources set aside for a purpose, distinct from the grant program or strategy that directs how it's used." ;
     npo:category "funding-structure" .
 
 npo:grant-agreement a owl:Class ;
     rdfs:label "Grant Agreement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:definition "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations." ;
     npo:category "award-and-agreement" .
 
 npo:philanthropic-arrangement a owl:Class ;
     rdfs:label "Philanthropic Arrangement" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
     skos:definition "A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement." ;
     npo:category "funding-structure" .
 
 npo:role a owl:Class ;
     rdfs:label "Role" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     skos:definition "A contextual capacity an agent occupies, distinct from the agent's permanent identity or classification." ;
     npo:category "organizational-entities" .
 
 npo:person-role a owl:Class ;
     rdfs:label "Person Role" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:role ;
     skos:definition "A contextual capacity a person occupies within an organization, award, application, agreement, arrangement, program, project, or other defined context." ;
     npo:category "organizational-entities" .
 
 npo:organization-role a owl:Class ;
     rdfs:label "Organization Role" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:subClassOf npo:role ;
     skos:definition "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself." ;
     npo:category "organizational-entities" .
 
 npo:award a owl:Class ;
     rdfs:label "Award" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:altLabel "Grant Award" ;
     skos:definition "A funder's formal commitment to provide a specific amount of funding to a grantee, following an approved application or decision." ;
     npo:category "award-and-agreement" .
 
 npo:organization a owl:Class ;
     rdfs:label "Organization" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     skos:definition "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient." ;
     npo:category "organizational-entities" .

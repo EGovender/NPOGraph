@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Generates ontology/npograph.{ttl,rdf,nt,jsonld}, ontology/context.jsonld, and
-ontology/npograph.property-shapes.ttl from the canonical, hand-maintained JSON
-in ontology/source/, including the controlled-vocabulary schemes under
-ontology/source/reference-data/ (see docs/06-properties-and-rules.md), which
-are emitted as real, IRI-identified skos:ConceptScheme/skos:Concept resources
-in the same main outputs -- not a blank-node structure, so they don't disturb
-this file's determinism story below.
+Generates ontology/commongood-atlas.{ttl,rdf,nt,jsonld}, ontology/context.jsonld,
+and ontology/commongood-atlas.property-shapes.ttl from the canonical,
+hand-maintained JSON in ontology/source/, including the controlled-vocabulary
+schemes under ontology/source/reference-data/ (see
+docs/06-properties-and-rules.md), which are emitted as real, IRI-identified
+skos:ConceptScheme/skos:Concept resources in the same main outputs -- not a
+blank-node structure, so they don't disturb this file's determinism story below.
 
 Do not hand-edit the generated files under ontology/ -- edit the JSON files in
 ontology/source/ instead, then re-run this script. See docs/05-data-model.md
@@ -15,14 +15,15 @@ and docs/06-properties-and-rules.md for the full policy.
 Output must be byte-reproducible across machines/CI so the drift check in
 .github/workflows/ontology.yml is meaningful. rdflib's RDF/XML and JSON-LD
 serializers iterate internal sets whose order isn't guaranteed stable across
-Python/rdflib versions or processes, so npograph.rdf and npograph.jsonld are
-built directly from the sorted source data instead of via g.serialize(). The
-main Turtle and N-Triples outputs use rdflib's serializer (verified stable
-across seeds/environments for a graph with no blank nodes), but the property
-shapes file uses SHACL property shapes and RDF list nodes for sh:in, both of
-which are blank-node-based -- rdflib's Turtle serializer's blank node/list
-ordering is NOT guaranteed stable there, so that file is hand-built as text
-from the sorted source data too, same as the RDF/XML and JSON-LD outputs.
+Python/rdflib versions or processes, so commongood-atlas.rdf and
+commongood-atlas.jsonld are built directly from the sorted source data instead
+of via g.serialize(). The main Turtle and N-Triples outputs use rdflib's
+serializer (verified stable across seeds/environments for a graph with no
+blank nodes), but the property shapes file uses SHACL property shapes and RDF
+list nodes for sh:in, both of which are blank-node-based -- rdflib's Turtle
+serializer's blank node/list ordering is NOT guaranteed stable there, so that
+file is hand-built as text from the sorted source data too, same as the
+RDF/XML and JSON-LD outputs.
 """
 import json
 import xml.etree.ElementTree as ET
@@ -38,7 +39,7 @@ SOURCE_DIR = ROOT / "ontology" / "source"
 REFDATA_DIR = SOURCE_DIR / "reference-data"
 OUT_DIR = ROOT / "ontology"
 
-BASE = "https://egovender.github.io/NPOGraph/ontology/"
+BASE = "https://egovender.github.io/commongood-atlas/ontology/"
 REL_BASE = BASE + "relations/"
 PROP_BASE = BASE + "properties/"
 RULE_BASE = BASE + "rules/"
@@ -314,7 +315,7 @@ def validate_example(example, concepts, properties, relationships, reference_sch
 
 
 def doc_url(doc_ref: str) -> str:
-    return "https://github.com/EGovender/NPOGraph/blob/main/" + doc_ref
+    return "https://github.com/EGovender/commongood-atlas/blob/main/" + doc_ref
 
 
 def concept_iri(concept_id: str) -> URIRef:
@@ -416,7 +417,7 @@ def build_graph(concepts, relationships, properties, business_rules, meta, refer
 
     ontology_iri = URIRef(BASE.rstrip("/"))
     g.add((ontology_iri, RDF.type, OWL.Ontology))
-    g.add((ontology_iri, RDFS.label, Literal("NPOGraph Grantmaking Ontology")))
+    g.add((ontology_iri, RDFS.label, Literal("CommonGood Atlas Grantmaking Ontology")))
     g.add((ontology_iri, RDFS.comment, Literal(ONTOLOGY_COMMENT)))
     g.add((ontology_iri, NPO.version, Literal(meta["version"])))
 
@@ -496,7 +497,7 @@ def build_property_shapes_text(properties) -> str:
     for reference-backed properties, scheme membership), and allowed values
     for each attribute in properties.json. Generated -- see
     docs/06-properties-and-rules.md. Kept separate from the hand-authored
-    ontology/npograph.shapes.ttl, which validates the ontology's own
+    ontology/commongood-atlas.shapes.ttl, which validates the ontology's own
     structural completeness rather than per-concept business data.
 
     Built as text, not an rdflib Graph, because SHACL property shapes and the
@@ -551,10 +552,10 @@ def build_property_shapes_text(properties) -> str:
 
 def write_turtle_and_ntriples(g: Graph):
     ttl = g.serialize(format="turtle")
-    (OUT_DIR / "npograph.ttl").write_text(ttl.rstrip("\n") + "\n")
+    (OUT_DIR / "commongood-atlas.ttl").write_text(ttl.rstrip("\n") + "\n")
 
     nt_lines = sorted(g.serialize(format="nt").strip().splitlines())
-    (OUT_DIR / "npograph.nt").write_text("\n".join(nt_lines) + "\n")
+    (OUT_DIR / "commongood-atlas.nt").write_text("\n".join(nt_lines) + "\n")
 
 
 def write_property_shapes(properties):
@@ -562,7 +563,7 @@ def write_property_shapes(properties):
         "# Generated by tools/generate_ontology.py from ontology/source/properties.json.\n"
         "# Do not hand-edit -- see docs/06-properties-and-rules.md.\n\n"
     )
-    (OUT_DIR / "npograph.property-shapes.ttl").write_text(
+    (OUT_DIR / "commongood-atlas.property-shapes.ttl").write_text(
         header + build_property_shapes_text(properties)
     )
 
@@ -570,7 +571,7 @@ def write_property_shapes(properties):
 def build_example_graph(example, concepts, properties, reference_data) -> Graph:
     """The worked example (docs/07-worked-example.md) as real owl:NamedIndividual
     instances -- kept in its own graph/namespace (.../ontology/examples/) so
-    schema (npograph.ttl) and illustrative instance data never mix in the file
+    schema (commongood-atlas.ttl) and illustrative instance data never mix in the file
     someone would import to get the ontology itself. No blank nodes here, so
     (like the main graph) rdflib's Turtle/N-Triples serialization is stable."""
     properties_by_concept = resolve_properties_by_concept(concepts, properties)
@@ -609,10 +610,10 @@ def write_example_ttl_and_nt(g: Graph):
         "# Generated -- do not hand-edit. See docs/07-worked-example.md.\n\n"
     )
     ttl = g.serialize(format="turtle")
-    (OUT_DIR / "npograph.example.ttl").write_text(header + ttl.lstrip("\n").rstrip("\n") + "\n")
+    (OUT_DIR / "commongood-atlas.example.ttl").write_text(header + ttl.lstrip("\n").rstrip("\n") + "\n")
 
     nt_lines = sorted(g.serialize(format="nt").strip().splitlines())
-    (OUT_DIR / "npograph.example.nt").write_text("\n".join(nt_lines) + "\n")
+    (OUT_DIR / "commongood-atlas.example.nt").write_text("\n".join(nt_lines) + "\n")
 
 
 def write_example_jsonld(example, concepts, properties, reference_data):
@@ -663,7 +664,7 @@ def write_example_jsonld(example, concepts, properties, reference_data):
         subject_node["nporel:" + rel["predicate"]] = {"@id": "ex:" + rel["object"]}
 
     document = {"@context": context, "@graph": graph_nodes}
-    (OUT_DIR / "npograph.example.jsonld").write_text(json.dumps(document, indent=2) + "\n")
+    (OUT_DIR / "commongood-atlas.example.jsonld").write_text(json.dumps(document, indent=2) + "\n")
 
 
 def write_rdf_xml(concepts, relationships, properties, business_rules, meta, reference_data):
@@ -682,7 +683,7 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta, ref
                                  {qname(RDF_NS, "about"): BASE.rstrip("/")})
     ET.SubElement(ontology_el, qname(RDF_NS, "type"),
                   {qname(RDF_NS, "resource"): OWL_NS + "Ontology"})
-    ET.SubElement(ontology_el, qname(RDFS_NS, "label")).text = "NPOGraph Grantmaking Ontology"
+    ET.SubElement(ontology_el, qname(RDFS_NS, "label")).text = "CommonGood Atlas Grantmaking Ontology"
     ET.SubElement(ontology_el, qname(RDFS_NS, "comment")).text = ONTOLOGY_COMMENT
     ET.SubElement(ontology_el, qname(BASE, "version")).text = meta["version"]
 
@@ -796,7 +797,7 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta, ref
 
     ET.indent(root, space="  ")
     body = ET.tostring(root, encoding="unicode")
-    (OUT_DIR / "npograph.rdf").write_text(
+    (OUT_DIR / "commongood-atlas.rdf").write_text(
         '<?xml version="1.0" encoding="utf-8"?>\n' + body + "\n"
     )
 
@@ -858,7 +859,7 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta, refe
         {
             "id": BASE.rstrip("/"),
             "type": "owl:Ontology",
-            "label": "NPOGraph Grantmaking Ontology",
+            "label": "CommonGood Atlas Grantmaking Ontology",
             "comment": ONTOLOGY_COMMENT,
             "version": meta["version"],
         }
@@ -959,7 +960,7 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta, refe
             graph_nodes.append(node)
 
     document = {"@context": context, "@graph": graph_nodes}
-    (OUT_DIR / "npograph.jsonld").write_text(
+    (OUT_DIR / "commongood-atlas.jsonld").write_text(
         json.dumps(document, indent=2) + "\n"
     )
 
@@ -983,9 +984,9 @@ def main():
           f"{len(relationships)} relationships, {len(properties)} properties, "
           f"{len(business_rules)} business rules, {len(reference_data)} reference-data "
           f"schemes ({value_count} values), and a {len(example['individuals'])}-step worked example.")
-    for name in ("npograph.ttl", "npograph.rdf", "npograph.nt", "context.jsonld",
-                 "npograph.jsonld", "npograph.property-shapes.ttl",
-                 "npograph.example.ttl", "npograph.example.nt", "npograph.example.jsonld"):
+    for name in ("commongood-atlas.ttl", "commongood-atlas.rdf", "commongood-atlas.nt", "context.jsonld",
+                 "commongood-atlas.jsonld", "commongood-atlas.property-shapes.ttl",
+                 "commongood-atlas.example.ttl", "commongood-atlas.example.nt", "commongood-atlas.example.jsonld"):
         print(f"  ontology/{name}")
 
 

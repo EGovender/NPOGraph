@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="site/public/logo.svg" alt="NPOGraph — Nonprofit Knowledge Network" width="360" />
+  <img src="site/public/logo.svg" alt="CommonGood Atlas — Nonprofit Knowledge Network" width="360" />
 </p>
 
-# NPOGraph
+# CommonGood Atlas
 
 **An open knowledge platform for understanding, designing, and improving how mission-driven organizations operate.**
 
 > Status: early-stage / pre-alpha. See the [roadmap](docs/04-roadmap.md).
 
-**[Explore the live ontology →](https://egovender.github.io/NPOGraph/)**
+**[Explore the live ontology →](https://egovender.github.io/commongood-atlas/)**
 
-## What is NPOGraph?
+## What is CommonGood Atlas?
 
-NPOGraph is an open-source effort to build a shared semantic model — an ontology — of how nonprofit organizations actually work, starting with **grantmaking**: funders, applications, reviews, awards, payments, compliance, and outcomes.
+CommonGood Atlas is an open-source effort to build a shared semantic model — an ontology — of how nonprofit organizations actually work, starting with **grantmaking**: funders, applications, reviews, awards, payments, compliance, and outcomes.
 
 Rather than a static specification document, the goal is a living, explorable knowledge base: a place where someone new to grantmaking can learn how the pieces fit together, where an implementer can find a precise definition of a concept before modeling it in a database or API, and where the community can propose and discuss changes the way open-source software projects do.
 
@@ -20,12 +20,12 @@ The name is intentionally broader than "grants." The core ontology is designed t
 
 ## Why
 
-Nonprofit software is fragmented: every CRM, grants-management system, and finance tool re-derives its own model of what a "grant," an "award," or a "report" means, usually implicitly, in code. There is no shared, open reference for these concepts the way there is for, say, web standards or accounting. NPOGraph is an attempt to build that reference — openly, incrementally, and in public.
+Nonprofit software is fragmented: every CRM, grants-management system, and finance tool re-derives its own model of what a "grant," an "award," or a "report" means, usually implicitly, in code. There is no shared, open reference for these concepts the way there is for, say, web standards or accounting. CommonGood Atlas is an attempt to build that reference — openly, incrementally, and in public.
 
 ## What's here today
 
 ```
-NPOGraph/
+CommonGood Atlas/
 ├── README.md
 ├── LICENSE
 ├── CONTRIBUTING.md
@@ -43,17 +43,17 @@ NPOGraph/
 │   └── 09-deployment-checklist.md
 ├── ontology/
 │   ├── source/                     # hand-maintained canonical JSON (concepts, relationships, properties, business rules, example)
-│   ├── npograph.ttl                 # generated: OWL ontology (Turtle)
-│   ├── npograph.rdf                 # generated: RDF/XML
-│   ├── npograph.nt                  # generated: N-Triples
+│   ├── commongood-atlas.ttl                 # generated: OWL ontology (Turtle)
+│   ├── commongood-atlas.rdf                 # generated: RDF/XML
+│   ├── commongood-atlas.nt                  # generated: N-Triples
 │   ├── context.jsonld               # generated: JSON-LD context
-│   ├── npograph.jsonld              # generated: JSON-LD graph
-│   ├── npograph.shapes.ttl          # hand-authored SHACL shapes (structural completeness)
-│   ├── npograph.property-shapes.ttl # generated SHACL (per-concept property constraints)
-│   └── npograph.example.{ttl,nt,jsonld} # generated: the worked example as real owl:NamedIndividuals
+│   ├── commongood-atlas.jsonld              # generated: JSON-LD graph
+│   ├── commongood-atlas.shapes.ttl          # hand-authored SHACL shapes (structural completeness)
+│   ├── commongood-atlas.property-shapes.ttl # generated SHACL (per-concept property constraints)
+│   └── commongood-atlas.example.{ttl,nt,jsonld} # generated: the worked example as real owl:NamedIndividuals
 ├── tools/
 │   ├── generate_ontology.py    # ontology/source/*.json -> ontology/*.ttl,*.rdf,*.nt,*.jsonld,*.property-shapes.ttl,*.example.*
-│   └── validate_ontology.py    # validates npograph.ttl + npograph.example.ttl against both shapes files
+│   └── validate_ontology.py    # validates commongood-atlas.ttl + commongood-atlas.example.ttl against both shapes files
 └── site/                      # Astro + React explorer app, deployed to GitHub Pages
     ├── scripts/sync-ontology-data.mjs  # copies ontology/source/*.json in at build time
     └── src/
@@ -62,7 +62,7 @@ NPOGraph/
         └── pages/                       # /, /explore, /concepts, /concepts/[id], /design, /story
 ```
 
-- **[Vision](docs/00-vision.md)** — what NPOGraph is trying to be and why it matters.
+- **[Vision](docs/00-vision.md)** — what CommonGood Atlas is trying to be and why it matters.
 - **[Guiding Principles](docs/01-guiding-principles.md)** — the design values behind the ontology and the project.
 - **[Core Concepts](docs/02-core-concepts.md)** — the ~56 grantmaking and organizational concepts that make up the ontology so far.
 - **[Relationships](docs/03-relationships.md)** — how those concepts connect, including the end-to-end grant lifecycle.
@@ -73,7 +73,7 @@ NPOGraph/
 - **[Organizations, Roles & Arrangements](docs/08-organizations-roles-and-arrangements.md)** — why Funder/Grantee/Fiscal Sponsor are contextual roles an organization occupies rather than permanent types, and how Fund and Philanthropic Arrangement support intermediary philanthropy (e.g. fiscal sponsorship, donor-advised funds).
 - **[Deployment Checklist](docs/09-deployment-checklist.md)** — how to confirm the live site actually matches the repository after a push.
 
-The ontology (`ontology/npograph.ttl` and friends) is machine-generated from `ontology/source/*.json`, which is itself a hand-maintained mirror of the prose docs — see [Data Model](docs/05-data-model.md) before editing anything under `ontology/`. The `site/` explorer app reads that same `ontology/source/*.json` at build time, so the docs, the ontology, and the explorer never describe three different things. Every concept page and every node in the graph explorer opens a property inspector (Overview / Example / Properties / Relationships / Rules / Technical tabs) — see [Properties & Rules](docs/06-properties-and-rules.md) and [Worked Example](docs/07-worked-example.md) for what backs those tabs. `/design` recommends a subset of the ontology from a short questionnaire; `/story` walks the worked example end to end.
+The ontology (`ontology/commongood-atlas.ttl` and friends) is machine-generated from `ontology/source/*.json`, which is itself a hand-maintained mirror of the prose docs — see [Data Model](docs/05-data-model.md) before editing anything under `ontology/`. The `site/` explorer app reads that same `ontology/source/*.json` at build time, so the docs, the ontology, and the explorer never describe three different things. Every concept page and every node in the graph explorer opens a property inspector (Overview / Example / Properties / Relationships / Rules / Technical tabs) — see [Properties & Rules](docs/06-properties-and-rules.md) and [Worked Example](docs/07-worked-example.md) for what backs those tabs. `/design` recommends a subset of the ontology from a short questionnaire; `/story` walks the worked example end to end.
 
 ### Regenerating the ontology
 
@@ -100,7 +100,7 @@ npm run dev
 
 ## Contributing
 
-NPOGraph is meant to be built in the open, with contributions from people who understand grantmaking in practice, not just in theory. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose a new concept, question an existing one, or suggest a relationship.
+CommonGood Atlas is meant to be built in the open, with contributions from people who understand grantmaking in practice, not just in theory. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose a new concept, question an existing one, or suggest a relationship.
 
 ## License
 

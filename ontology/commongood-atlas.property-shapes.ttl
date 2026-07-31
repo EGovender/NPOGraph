@@ -2,9 +2,9 @@
 # Do not hand-edit -- see docs/06-properties-and-rules.md.
 
 @prefix sh: <http://www.w3.org/ns/shacl#> .
-@prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
-@prefix npoprop: <https://egovender.github.io/NPOGraph/ontology/properties/> .
-@prefix nporef: <https://egovender.github.io/NPOGraph/ontology/reference-data/> .
+@prefix npo: <https://egovender.github.io/commongood-atlas/ontology/> .
+@prefix npoprop: <https://egovender.github.io/commongood-atlas/ontology/properties/> .
+@prefix nporef: <https://egovender.github.io/commongood-atlas/ontology/reference-data/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 

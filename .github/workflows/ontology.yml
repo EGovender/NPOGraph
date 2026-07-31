@@ -31,10 +31,10 @@ jobs:
 
       - name: Fail if generated files are out of date
         run: |
-          git diff --exit-code -- ontology/npograph.ttl ontology/npograph.rdf \
-            ontology/npograph.nt ontology/context.jsonld ontology/npograph.jsonld \
-            ontology/npograph.property-shapes.ttl ontology/npograph.example.ttl \
-            ontology/npograph.example.nt ontology/npograph.example.jsonld || \
+          git diff --exit-code -- ontology/commongood-atlas.ttl ontology/commongood-atlas.rdf \
+            ontology/commongood-atlas.nt ontology/context.jsonld ontology/commongood-atlas.jsonld \
+            ontology/commongood-atlas.property-shapes.ttl ontology/commongood-atlas.example.ttl \
+            ontology/commongood-atlas.example.nt ontology/commongood-atlas.example.jsonld || \
           (echo "::error::Generated ontology files are out of date. Run tools/generate_ontology.py and commit the result." && exit 1)
 
       - name: Validate ontology against SHACL shapes

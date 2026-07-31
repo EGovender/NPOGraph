@@ -1,11 +1,11 @@
 # The worked example from ontology/source/example.json, as RDF individuals.
 # Generated -- do not hand-edit. See docs/07-worked-example.md.
 
-@prefix ex: <https://egovender.github.io/NPOGraph/ontology/examples/> .
-@prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
-@prefix npoprop: <https://egovender.github.io/NPOGraph/ontology/properties/> .
-@prefix nporef: <https://egovender.github.io/NPOGraph/ontology/reference-data/> .
-@prefix nporel: <https://egovender.github.io/NPOGraph/ontology/relations/> .
+@prefix ex: <https://egovender.github.io/commongood-atlas/ontology/examples/> .
+@prefix npo: <https://egovender.github.io/commongood-atlas/ontology/> .
+@prefix npoprop: <https://egovender.github.io/commongood-atlas/ontology/properties/> .
+@prefix nporef: <https://egovender.github.io/commongood-atlas/ontology/reference-data/> .
+@prefix nporel: <https://egovender.github.io/commongood-atlas/ontology/relations/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .

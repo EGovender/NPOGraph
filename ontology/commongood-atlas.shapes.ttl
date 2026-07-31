@@ -1,8 +1,9 @@
-# Hand-authored SHACL shapes for NPOGraph.
+# Hand-authored SHACL shapes for CommonGood Atlas.
 #
-# These validate the STRUCTURE of the generated ontology (ontology/npograph.ttl),
-# not instance/business-rule data -- see docs/05-data-model.md for why business
-# rules (e.g. "closeout requires all payments made") aren't encoded here.
+# These validate the STRUCTURE of the generated ontology
+# (ontology/commongood-atlas.ttl), not instance/business-rule data -- see
+# docs/05-data-model.md for why business rules (e.g. "closeout requires all
+# payments made") aren't encoded here.
 #
 # Run with: .venv/bin/python tools/validate_ontology.py
 
@@ -10,7 +11,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix npo: <https://egovender.github.io/NPOGraph/ontology/> .
+@prefix npo: <https://egovender.github.io/commongood-atlas/ontology/> .
 
 npo:ConceptShape
     a sh:NodeShape ;

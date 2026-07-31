@@ -1,6 +1,6 @@
 # Vision
 
-NPOGraph is an open-source knowledge platform that helps the nonprofit sector understand, design, and improve grantmaking through a shared semantic model.
+CommonGood Atlas is an open-source knowledge platform that helps the nonprofit sector understand, design, and improve grantmaking through a shared semantic model.
 
 ## The problem
 
@@ -10,7 +10,7 @@ The result is that every new tool, integration, and onboarding starts from scrat
 
 ## The approach
 
-NPOGraph starts from the belief that grantmaking is well-understood enough, and important enough, to deserve an open, shared, precisely-defined model — the same way industries with mature standards (accounting, shipping, healthcare data) have one.
+CommonGood Atlas starts from the belief that grantmaking is well-understood enough, and important enough, to deserve an open, shared, precisely-defined model — the same way industries with mature standards (accounting, shipping, healthcare data) have one.
 
 Concretely, that means:
 
@@ -21,11 +21,11 @@ Concretely, that means:
 
 ## What success looks like
 
-- A grants manager can look up "installment" or "compliance requirement" in NPOGraph and get a definition that matches how their organization actually works, with the surrounding relationships made explicit.
-- A software team building a grants-management feature can start from NPOGraph's concepts and relationships instead of inventing their own, and can point back to NPOGraph as a source of truth in a design review.
+- A grants manager can look up "installment" or "compliance requirement" in CommonGood Atlas and get a definition that matches how their organization actually works, with the surrounding relationships made explicit.
+- A software team building a grants-management feature can start from CommonGood Atlas's concepts and relationships instead of inventing their own, and can point back to CommonGood Atlas as a source of truth in a design review.
 - A newcomer to grantmaking can walk through the concepts in order — application, review, award, agreement, disbursement, reporting, closeout — and come away with an accurate mental model, not just a glossary.
 - The project has enough outside contributors, and enough of a review process, that no single person's opinion silently becomes "the spec."
 
-## What NPOGraph is not (yet)
+## What CommonGood Atlas is not (yet)
 
 This is not a grants-management product, a CRM, or a replacement for existing nonprofit software. It does not currently have any application code, API, or machine-readable ontology — see the [roadmap](04-roadmap.md) for how those are expected to follow once the underlying model is solid.

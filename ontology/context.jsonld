@@ -63,11 +63,11 @@
       "@type": "@id"
     },
     "notation": "skos:notation",
-    "npo": "https://egovender.github.io/NPOGraph/ontology/",
-    "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
-    "nporef": "https://egovender.github.io/NPOGraph/ontology/reference-data/",
-    "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
-    "nporule": "https://egovender.github.io/NPOGraph/ontology/rules/",
+    "npo": "https://egovender.github.io/commongood-atlas/ontology/",
+    "npoprop": "https://egovender.github.io/commongood-atlas/ontology/properties/",
+    "nporef": "https://egovender.github.io/commongood-atlas/ontology/reference-data/",
+    "nporel": "https://egovender.github.io/commongood-atlas/ontology/relations/",
+    "nporule": "https://egovender.github.io/commongood-atlas/ontology/rules/",
     "owl": "http://www.w3.org/2002/07/owl#",
     "prefLabel": "skos:prefLabel",
     "publicationStatus": {

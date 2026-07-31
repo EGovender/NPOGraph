@@ -14,7 +14,7 @@ export interface DesignExportInput {
 
 export function buildDesignJson({ answers, recommended, excluded }: DesignExportInput): string {
   const payload = {
-    generatedBy: 'NPOGraph Design Tool',
+    generatedBy: 'CommonGood Atlas Design Tool',
     ontologyVersion,
     generatedAt: new Date().toISOString(),
     answers,
@@ -26,7 +26,7 @@ export function buildDesignJson({ answers, recommended, excluded }: DesignExport
 
 export function buildDesignJsonLd(recommended: Concept[]): string {
   const context = {
-    npo: 'https://egovender.github.io/NPOGraph/ontology/',
+    npo: 'https://egovender.github.io/commongood-atlas/ontology/',
     owl: 'http://www.w3.org/2002/07/owl#',
     rdfs: 'http://www.w3.org/2000/01/rdf-schema#',
     skos: 'http://www.w3.org/2004/02/skos/core#',
@@ -44,9 +44,9 @@ export function buildDesignJsonLd(recommended: Concept[]): string {
 
 export function buildDesignMarkdown({ recommended, excluded }: DesignExportInput): string {
   const lines: string[] = [
-    '# NPOGraph Design Recommendation',
+    '# CommonGood Atlas Design Recommendation',
     '',
-    `Generated from the [NPOGraph Design tool](https://egovender.github.io/NPOGraph/design/) against ontology v${ontologyVersion}.`,
+    `Generated from the [CommonGood Atlas Design tool](https://egovender.github.io/commongood-atlas/design/) against ontology v${ontologyVersion}.`,
     '',
     `${recommended.length} of ${recommended.length + excluded.length} concepts recommended.`,
     '',
@@ -84,7 +84,7 @@ export function buildDesignSummary(
   const lines: string[] = [
     '# Your Grantmaking Program',
     '',
-    `A summary from the [NPOGraph Model Your Program tool](https://egovender.github.io/NPOGraph/design/), against ontology v${ontologyVersion}.`,
+    `A summary from the [CommonGood Atlas Model Your Program tool](https://egovender.github.io/commongood-atlas/design/), against ontology v${ontologyVersion}.`,
     '',
   ];
 

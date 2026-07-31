@@ -8,7 +8,7 @@ Phase 1 modeled concepts (`owl:Class`) and the relationships between them (`owl:
 
 - **`ontology/source/properties.json`** — attributes (`owl:DatatypeProperty`), one entry per (concept, attribute) pair.
 - **`ontology/source/business-rules.json`** — the cross-concept constraints already described in prose in [Relationships → Key relationship rules](03-relationships.md#key-relationship-rules-draft), transcribed as data and tagged with which concepts each one involves.
-- **`ontology/npograph.property-shapes.ttl`** — generated SHACL `PropertyShape`s, one set per concept, enforcing each attribute's required-ness, datatype, and allowed values. This is real, checked validation (`tools/validate_ontology.py`), not just descriptive text.
+- **`ontology/commongood-atlas.property-shapes.ttl`** — generated SHACL `PropertyShape`s, one set per concept, enforcing each attribute's required-ness, datatype, and allowed values. This is real, checked validation (`tools/validate_ontology.py`), not just descriptive text.
 
 ## Not every concept has properties
 
@@ -27,7 +27,7 @@ Every property belongs to one of these groups. `Identity`, `Classification`, and
 | Governance | owner, approver, policy, restriction | Hand-authored in `properties.json` |
 | Provenance | source, ontology version | Derived from `concepts.json` (`docRef`) and `ontology/source/meta.json` |
 
-`Relationships` (recipient, funder, agreement, installments, ...) and `Validation` (required fields, allowed values, cardinality) are deliberately **not** separate groups in `properties.json`, even though the reference designs that inspired this feature list them as property groups. In NPOGraph they already have dedicated homes — object-valued connections are `relationships.json` (surfaced in the Relationships tab), and per-property constraints are SHACL (surfaced in the Rules tab) — so duplicating them inside `properties.json` would just be two places for the same fact to drift apart.
+`Relationships` (recipient, funder, agreement, installments, ...) and `Validation` (required fields, allowed values, cardinality) are deliberately **not** separate groups in `properties.json`, even though the reference designs that inspired this feature list them as property groups. In CommonGood Atlas they already have dedicated homes — object-valued connections are `relationships.json` (surfaced in the Relationships tab), and per-property constraints are SHACL (surfaced in the Rules tab) — so duplicating them inside `properties.json` would just be two places for the same fact to drift apart.
 
 ## Example: Award
 
@@ -46,7 +46,7 @@ Every property belongs to one of these groups. `Identity`, `Classification`, and
 }
 ```
 
-This becomes an `owl:DatatypeProperty` (`npoprop:award-amount`, domain `npo:award`, range `xsd:decimal`) in `npograph.ttl`, and a SHACL constraint in `npograph.property-shapes.ttl` requiring exactly one `npoprop:award-amount` value of type `xsd:decimal` on anything shaped as `npo:award`. Properties live under their own `.../ontology/properties/` namespace (`npoprop:`), the same way relationships already live under `.../ontology/relations/` (`nporel:`) -- concepts, relationships, and properties each get their own slice of the IRI space.
+This becomes an `owl:DatatypeProperty` (`npoprop:award-amount`, domain `npo:award`, range `xsd:decimal`) in `commongood-atlas.ttl`, and a SHACL constraint in `commongood-atlas.property-shapes.ttl` requiring exactly one `npoprop:award-amount` value of type `xsd:decimal` on anything shaped as `npo:award`. Properties live under their own `.../ontology/properties/` namespace (`npoprop:`), the same way relationships already live under `.../ontology/relations/` (`nporel:`) -- concepts, relationships, and properties each get their own slice of the IRI space.
 
 Properties are minted per `properties.json` entry (its `id`, e.g. `award-amount`), not per bare attribute `name` (e.g. `amount`) -- many concepts share a `name` like `status` or `amount` with a *different* domain and, for enums, different allowed values (a `Report`'s `status` values aren't an `Award`'s). Sharing one global `npo:status` property across all of them would force a single `rdfs:domain`, which RDFS/OWL treats as "must be an instance of all of these classes at once" when repeated -- not the "applies separately to each" meaning intended here. Giving each (concept, attribute) pair its own property keeps every domain and range unambiguous, at the cost of some repeated names across the ontology; that's a deliberate v0.1 tradeoff, not an oversight.
 
@@ -85,7 +85,7 @@ Every enum property up to this point (`award.status`, `fund.restrictionType`, an
 }
 ```
 
-A scheme becomes a `skos:ConceptScheme`; each of its values becomes a `skos:Concept` (`skos:inScheme` the scheme, `skos:notation` its short `code`, `skos:prefLabel` its display `label`, `skos:definition` its `definition`) -- real SKOS, not an NPOGraph-invented shape wearing SKOS's name. `broader` becomes `skos:broader` (see Restriction Type below for why this isn't always a flat list); `replacedBy` becomes `dcterms:isReplacedBy` and requires `deprecated: true` on the same value; `mappings` (`{"relation": "exactMatch"|"closeMatch"|"broadMatch"|"narrowMatch"|"relatedMatch", "uri": "..."}`) becomes the matching `skos:*Match` triple to an external vocabulary term. None of the five schemes below actually populate `mappings` yet -- the generator supports it, but fabricating a mapping to an external standard just to exercise the field would be worse than leaving it empty until a real one is needed.
+A scheme becomes a `skos:ConceptScheme`; each of its values becomes a `skos:Concept` (`skos:inScheme` the scheme, `skos:notation` its short `code`, `skos:prefLabel` its display `label`, `skos:definition` its `definition`) -- real SKOS, not an CommonGood Atlas-invented shape wearing SKOS's name. `broader` becomes `skos:broader` (see Restriction Type below for why this isn't always a flat list); `replacedBy` becomes `dcterms:isReplacedBy` and requires `deprecated: true` on the same value; `mappings` (`{"relation": "exactMatch"|"closeMatch"|"broadMatch"|"narrowMatch"|"relatedMatch", "uri": "..."}`) becomes the matching `skos:*Match` triple to an external vocabulary term. None of the five schemes below actually populate `mappings` yet -- the generator supports it, but fabricating a mapping to an external standard just to exercise the field would be worse than leaving it empty until a real one is needed.
 
 A scheme's own `publicationStatus` (draft/published/deprecated -- distinct from a *value's* `deprecated` flag, since a scheme can stay published while retiring one of its values) is itself drawn from the **Publication Status** scheme below, resolved to a real `skos:Concept` reference rather than a bare string -- the reference-data framework governs its own metadata the same way it governs everything else.
 
@@ -117,4 +117,4 @@ A scheme's own `publicationStatus` (draft/published/deprecated -- distinct from 
 
 ## Versioning
 
-`ontology/source/meta.json` holds a single ontology-wide `version` string, bumped whenever `concepts.json`, `relationships.json`, or `properties.json` change meaning (not on every typo fix). There is no per-concept version or authorship history — NPOGraph doesn't track that yet, and the Technical tab says so rather than inventing it.
+`ontology/source/meta.json` holds a single ontology-wide `version` string, bumped whenever `concepts.json`, `relationships.json`, or `properties.json` change meaning (not on every typo fix). There is no per-concept version or authorship history — CommonGood Atlas doesn't track that yet, and the Technical tab says so rather than inventing it.
