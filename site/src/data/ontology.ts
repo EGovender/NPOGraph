@@ -244,22 +244,22 @@ export function getBusinessRulesForConcept(conceptId: string): BusinessRule[] {
     .sort((a, b) => a.id.localeCompare(b.id));
 }
 
-const GITHUB_BLOB_BASE = 'https://github.com/EGovender/NPOGraph/blob/main/';
+const GITHUB_BLOB_BASE = 'https://github.com/EGovender/commongood-atlas/blob/main/';
 
 export function docUrl(docRef: string): string {
   return GITHUB_BLOB_BASE + docRef;
 }
 
-const GITHUB_ONTOLOGY_BASE = 'https://github.com/EGovender/NPOGraph/blob/main/ontology/';
+const GITHUB_ONTOLOGY_BASE = 'https://github.com/EGovender/commongood-atlas/blob/main/ontology/';
 
 export const machineFormats = [
-  { label: 'OWL (Turtle)', href: GITHUB_ONTOLOGY_BASE + 'npograph.ttl' },
-  { label: 'RDF/XML', href: GITHUB_ONTOLOGY_BASE + 'npograph.rdf' },
-  { label: 'N-Triples', href: GITHUB_ONTOLOGY_BASE + 'npograph.nt' },
-  { label: 'JSON-LD', href: GITHUB_ONTOLOGY_BASE + 'npograph.jsonld' },
+  { label: 'OWL (Turtle)', href: GITHUB_ONTOLOGY_BASE + 'commongood-atlas.ttl' },
+  { label: 'RDF/XML', href: GITHUB_ONTOLOGY_BASE + 'commongood-atlas.rdf' },
+  { label: 'N-Triples', href: GITHUB_ONTOLOGY_BASE + 'commongood-atlas.nt' },
+  { label: 'JSON-LD', href: GITHUB_ONTOLOGY_BASE + 'commongood-atlas.jsonld' },
 ];
 
-export const ONTOLOGY_NAMESPACE = 'https://egovender.github.io/NPOGraph/ontology/';
+export const ONTOLOGY_NAMESPACE = 'https://egovender.github.io/commongood-atlas/ontology/';
 
 export function conceptIri(conceptId: string): string {
   return ONTOLOGY_NAMESPACE + conceptId;

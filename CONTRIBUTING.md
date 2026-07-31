@@ -1,6 +1,6 @@
-# Contributing to NPOGraph
+# Contributing to CommonGood Atlas
 
-NPOGraph is an ontology and documentation project before it's a software project. The most valuable contributions right now come from people who understand grantmaking in practice — program officers, grants managers, fiscal sponsors, compliance staff — as much as from engineers.
+CommonGood Atlas is an ontology and documentation project before it's a software project. The most valuable contributions right now come from people who understand grantmaking in practice — program officers, grants managers, fiscal sponsors, compliance staff — as much as from engineers.
 
 ## What you can contribute right now
 
@@ -18,7 +18,7 @@ NPOGraph is an ontology and documentation project before it's a software project
    - Why the current version doesn't work (a concrete example is more useful than an abstract argument)
    - A proposed replacement, if you have one
 4. PRs that touch `docs/02-core-concepts.md` or `docs/03-relationships.md` should reference the issue that discussed the change.
-5. If your change adds, renames, or redefines a concept, relationship, attribute, or business rule, also update the matching entry in `ontology/source/concepts.json`, `relationships.json`, `properties.json`, or `business-rules.json`, then run `tools/generate_ontology.py` and `tools/validate_ontology.py` and commit the regenerated files under `ontology/`. If the change affects a concept used in the worked example (`ontology/source/example.json`), the generator will fail loudly if the example now violates the schema (an unknown property, an invalid enum value, a missing required field) — fix the example rather than working around the check. See [Data Model](docs/05-data-model.md), [Properties & Rules](docs/06-properties-and-rules.md), and [Worked Example](docs/07-worked-example.md) for the full policy — CI will reject a PR where the generated ontology files are out of date. Never hand-edit `ontology/npograph.ttl`, `.rdf`, `.nt`, `.jsonld`, `.property-shapes.ttl`, or `.example.*` directly.
+5. If your change adds, renames, or redefines a concept, relationship, attribute, or business rule, also update the matching entry in `ontology/source/concepts.json`, `relationships.json`, `properties.json`, or `business-rules.json`, then run `tools/generate_ontology.py` and `tools/validate_ontology.py` and commit the regenerated files under `ontology/`. If the change affects a concept used in the worked example (`ontology/source/example.json`), the generator will fail loudly if the example now violates the schema (an unknown property, an invalid enum value, a missing required field) — fix the example rather than working around the check. See [Data Model](docs/05-data-model.md), [Properties & Rules](docs/06-properties-and-rules.md), and [Worked Example](docs/07-worked-example.md) for the full policy — CI will reject a PR where the generated ontology files are out of date. Never hand-edit `ontology/commongood-atlas.ttl`, `.rdf`, `.nt`, `.jsonld`, `.property-shapes.ttl`, or `.example.*` directly.
 6. The [explorer site](site/README.md) reads `ontology/source/*.json` directly at build time, so a concept/relationship change should just work there once synced (`npm run sync-data` inside `site/`) — it never needs its own separate edit for ontology content. Bugs or improvements to the site itself (search, the graph view, page layout) can go straight to a PR.
 
 ## Style for concept definitions

@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
 Validates the ontology against its own SHACL shapes:
-ontology/npograph.shapes.ttl (hand-authored, structural completeness) and
-ontology/npograph.property-shapes.ttl (generated, per-concept property
-constraints -- see docs/06-properties-and-rules.md).
+ontology/commongood-atlas.shapes.ttl (hand-authored, structural completeness)
+and ontology/commongood-atlas.property-shapes.ttl (generated, per-concept
+property constraints -- see docs/06-properties-and-rules.md).
 
-The data graph includes both npograph.ttl (the schema: concepts,
-relationships, properties, business rules) and npograph.example.ttl (the
-worked example's individuals, see docs/07-worked-example.md) -- the example
-individuals are typed as instances of real concepts, so the per-concept
-property shapes apply to them automatically. An invalid enum value or a
-missing required property in the example would fail here.
+The data graph includes both commongood-atlas.ttl (the schema: concepts,
+relationships, properties, business rules) and commongood-atlas.example.ttl
+(the worked example's individuals, see docs/07-worked-example.md) -- the
+example individuals are typed as instances of real concepts, so the
+per-concept property shapes apply to them automatically. An invalid enum
+value or a missing required property in the example would fail here.
 
 Run after tools/generate_ontology.py, or as part of CI, to catch any of the
 above before they merge.
@@ -23,12 +23,12 @@ from rdflib import Graph
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_FILES = [
-    ROOT / "ontology" / "npograph.ttl",
-    ROOT / "ontology" / "npograph.example.ttl",
+    ROOT / "ontology" / "commongood-atlas.ttl",
+    ROOT / "ontology" / "commongood-atlas.example.ttl",
 ]
 SHAPES_FILES = [
-    ROOT / "ontology" / "npograph.shapes.ttl",
-    ROOT / "ontology" / "npograph.property-shapes.ttl",
+    ROOT / "ontology" / "commongood-atlas.shapes.ttl",
+    ROOT / "ontology" / "commongood-atlas.property-shapes.ttl",
 ]
 
 

@@ -33,7 +33,7 @@ export default function SearchBox({ concepts, base, compact = false }: Props) {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={compact ? 'Search concepts…' : 'Search concepts (e.g. “installment”, “compliance”)'}
-        aria-label="Search NPOGraph concepts"
+        aria-label="Search CommonGood Atlas concepts"
         className="search-input"
       />
       {results.length > 0 && (

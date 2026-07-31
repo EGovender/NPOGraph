@@ -355,7 +355,7 @@ export default function PropertyInspector({
               </div>
               <div className="inspector-field">
                 <dt>Source-system mappings</dt>
-                <dd className="muted">None yet — NPOGraph has no source-system integrations.</dd>
+                <dd className="muted">None yet — CommonGood Atlas has no source-system integrations.</dd>
               </div>
               <div className="inspector-field">
                 <dt>Ontology version</dt>

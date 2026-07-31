@@ -1,11 +1,11 @@
 {
   "@context": {
     "@version": 1.1,
-    "npo": "https://egovender.github.io/NPOGraph/ontology/",
-    "nporel": "https://egovender.github.io/NPOGraph/ontology/relations/",
-    "npoprop": "https://egovender.github.io/NPOGraph/ontology/properties/",
-    "nporule": "https://egovender.github.io/NPOGraph/ontology/rules/",
-    "nporef": "https://egovender.github.io/NPOGraph/ontology/reference-data/",
+    "npo": "https://egovender.github.io/commongood-atlas/ontology/",
+    "nporel": "https://egovender.github.io/commongood-atlas/ontology/relations/",
+    "npoprop": "https://egovender.github.io/commongood-atlas/ontology/properties/",
+    "nporule": "https://egovender.github.io/commongood-atlas/ontology/rules/",
+    "nporef": "https://egovender.github.io/commongood-atlas/ontology/reference-data/",
     "owl": "http://www.w3.org/2002/07/owl#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
@@ -104,9 +104,9 @@
   },
   "@graph": [
     {
-      "id": "https://egovender.github.io/NPOGraph/ontology",
+      "id": "https://egovender.github.io/commongood-atlas/ontology",
       "type": "owl:Ontology",
-      "label": "NPOGraph Grantmaking Ontology",
+      "label": "CommonGood Atlas Grantmaking Ontology",
       "comment": "Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md.",
       "version": "0.3.0"
     },
@@ -116,7 +116,7 @@
       "label": "Amendment",
       "definition": "A formally agreed change to an existing grant agreement's terms, budget, timeline, or amount, made after the original agreement was signed.",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement",
       "altLabel": [
         "Grant Amendment"
       ]
@@ -127,7 +127,7 @@
       "label": "Applicant Contact",
       "definition": "The role a person occupies when they serve as the primary point of contact for an application submitted on behalf of an organization or project.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -136,7 +136,7 @@
       "label": "Application",
       "definition": "A grantee's formal submission requesting funding under a specific funding opportunity, including a proposal narrative and budget.",
       "category": "application-and-review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review",
       "altLabel": [
         "Grant Application"
       ]
@@ -147,7 +147,7 @@
       "label": "Audit",
       "definition": "A formal, independent examination of a grantee's financial records, either as a general organizational requirement or specific to a grant.",
       "category": "compliance-and-reporting",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
       "id": "npo:authorized-signatory",
@@ -155,7 +155,7 @@
       "label": "Authorized Signatory",
       "definition": "The role a person occupies when they are authorized to sign a grant agreement or other governing document on behalf of an organization.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -164,7 +164,7 @@
       "label": "Award",
       "definition": "A funder's formal commitment to provide a specific amount of funding to a grantee, following an approved application or decision.",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement",
       "altLabel": [
         "Grant Award"
       ]
@@ -175,7 +175,7 @@
       "label": "Board Member",
       "definition": "The role a person occupies when they serve on an organization's governing board.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -184,7 +184,7 @@
       "label": "Budget",
       "definition": "A structured estimate of costs associated with a proposed or funded project, broken into categories (e.g., personnel, overhead, direct program costs).",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure"
     },
     {
       "id": "npo:budget-modification",
@@ -192,7 +192,7 @@
       "label": "Budget Modification",
       "definition": "A grantee-requested, funder-approved change to how awarded funds are allocated across budget categories, without changing the total award amount.",
       "category": "disbursement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement"
     },
     {
       "id": "npo:closeout",
@@ -200,7 +200,7 @@
       "label": "Closeout",
       "definition": "The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied.",
       "category": "outcomes-and-closeout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:collaborative-fund-arrangement",
@@ -208,7 +208,7 @@
       "label": "Collaborative Fund Arrangement",
       "definition": "A Philanthropic Arrangement in which multiple funders pool resources into a shared Fund and jointly direct or oversee its grantmaking.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure",
       "subClassOf": "npo:philanthropic-arrangement"
     },
     {
@@ -217,7 +217,7 @@
       "label": "Compliance Requirement",
       "definition": "An obligation attached to an award that the grantee must satisfy to remain in good standing (e.g., timely reporting, allowable use of funds, insurance).",
       "category": "compliance-and-reporting",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
       "id": "npo:consultant",
@@ -225,7 +225,7 @@
       "label": "Consultant",
       "definition": "The role a person occupies when they provide paid, defined-scope services to an organization without being its employee.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -234,7 +234,7 @@
       "label": "Contractor",
       "definition": "The role an organization occupies when it is bound by a contract to deliver a specific, defined piece of work for another organization.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
     },
     {
@@ -243,7 +243,7 @@
       "label": "Decision",
       "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
       "category": "application-and-review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review"
     },
     {
       "id": "npo:donor",
@@ -251,7 +251,7 @@
       "label": "Donor",
       "definition": "The role a person occupies when they contribute charitable funds to an organization or fund, without necessarily holding advisory privileges over how they are used.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -260,7 +260,7 @@
       "label": "Donor-Advised Fund",
       "definition": "A Fund held by a sponsoring organization, over which a Donor Advisor holds non-binding privileges to recommend grants and investments.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure",
       "altLabel": [
         "DAF"
       ],
@@ -273,7 +273,7 @@
       "label": "Donor-Advised Fund Arrangement",
       "definition": "A Philanthropic Arrangement in which a Donor Advisor holds non-binding advisory privileges over grants made from a Donor-Advised Fund.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure",
       "subClassOf": "npo:philanthropic-arrangement",
       "legalNote": "The specific privileges and limits granted to a donor advisor are set by the sponsoring organization's own policies and by tax law, not by this ontology -- consult counsel before using this model as a compliance reference."
     },
@@ -283,7 +283,7 @@
       "label": "Donor Advisor",
       "definition": "The role a person occupies when they hold non-binding privileges to recommend grants and investments from a Donor-Advised Fund, typically as the fund's original donor.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role",
       "legalNote": "A donor advisor's privileges are non-binding as a matter of federal tax law, not just convention -- treating a recommendation as a binding instruction can jeopardize the sponsoring organization's tax-exempt status."
     },
@@ -293,7 +293,7 @@
       "label": "Eligibility Criteria",
       "definition": "The conditions an organization or project must meet to apply to a funding opportunity.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure"
     },
     {
       "id": "npo:employee",
@@ -301,7 +301,7 @@
       "label": "Employee",
       "definition": "The role a person occupies when they work for and are compensated by an organization.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -310,7 +310,7 @@
       "label": "Employer",
       "definition": "The role an organization occupies when it employs a person -- the organization-side counterpart to that person's Employee role.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
     },
     {
@@ -319,7 +319,7 @@
       "label": "Evaluation",
       "definition": "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes.",
       "category": "outcomes-and-closeout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:fiscal-sponsor",
@@ -327,7 +327,7 @@
       "label": "Fiscal Sponsor",
       "definition": "The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role",
       "legalNote": "Fiscal sponsorship arrangements vary significantly in legal structure (e.g., comprehensive/\"Model A\" vs. pre-approved grant relationship/\"Model C\"), which affects liability, employment, and asset ownership very differently. Consult counsel before relying on this model to characterize a specific arrangement."
     },
@@ -337,7 +337,7 @@
       "label": "Fiscal Sponsorship Arrangement",
       "definition": "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure",
       "subClassOf": "npo:philanthropic-arrangement",
       "legalNote": "The rights and obligations created by a fiscal sponsorship agreement depend heavily on its specific model (e.g., comprehensive vs. pre-approved grant relationship). Consult counsel and the actual governing agreement rather than this ontology."
     },
@@ -347,7 +347,7 @@
       "label": "Fund",
       "definition": "A designated pool of financial resources set aside for a purpose, distinct from the grant program or strategy that directs how it's used.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure"
     },
     {
       "id": "npo:funder",
@@ -355,7 +355,7 @@
       "label": "Funder",
       "definition": "The role an organization occupies when it provides funding to grantees through grant programs and awards.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "altLabel": [
         "Grantmaker"
       ],
@@ -367,7 +367,7 @@
       "label": "Funding Cycle",
       "definition": "A recurring period (e.g., quarterly, annual) within a grant program during which applications are accepted and decided.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure"
     },
     {
       "id": "npo:funding-intermediary-role",
@@ -375,7 +375,7 @@
       "label": "Funding Intermediary Role",
       "definition": "The role an organization occupies when it channels funds between an original funding source and an ultimate grantee, without itself being the original funder or the final recipient.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
     },
     {
@@ -384,7 +384,7 @@
       "label": "Funding Opportunity",
       "definition": "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure",
       "altLabel": [
         "NOFO",
         "Notice of Funding Opportunity",
@@ -398,7 +398,7 @@
       "label": "Grant Administrator",
       "definition": "The role a person occupies when they are responsible for compliance, reporting, and financial management of an award on behalf of the grantee organization.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -407,7 +407,7 @@
       "label": "Grant Agreement",
       "definition": "The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations.",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement"
     },
     {
       "id": "npo:grant-lifecycle",
@@ -415,7 +415,7 @@
       "label": "Grant Lifecycle",
       "definition": "The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout.",
       "category": "cross-cutting",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#cross-cutting"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting"
     },
     {
       "id": "npo:grant-program",
@@ -423,7 +423,7 @@
       "label": "Grant Program",
       "definition": "A funder's standing area of giving (e.g., \"Environmental Justice Grants\"), under which funding opportunities are issued over time.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure"
     },
     {
       "id": "npo:grant-recommendation",
@@ -431,7 +431,7 @@
       "label": "Grant Recommendation",
       "definition": "A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it.",
       "category": "application-and-review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review",
       "legalNote": "A Grant Recommendation's non-binding status is a legal requirement for donor-advised funds under federal tax law, not a design choice -- see Donor-Advised Fund and Donor Advisor."
     },
     {
@@ -440,7 +440,7 @@
       "label": "Grantee",
       "definition": "The role an organization occupies when it receives and administers grant funding awarded by a funder.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "altLabel": [
         "Recipient",
         "Subrecipient"
@@ -453,7 +453,7 @@
       "label": "Indirect Cost Rate",
       "definition": "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award.",
       "category": "compliance-and-reporting",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
       "id": "npo:installment",
@@ -461,7 +461,7 @@
       "label": "Installment",
       "definition": "A single scheduled portion of an award's total funds, to be disbursed at a defined point or upon meeting a condition.",
       "category": "disbursement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement"
     },
     {
       "id": "npo:letter-of-inquiry",
@@ -469,7 +469,7 @@
       "label": "Letter of Inquiry",
       "definition": "A brief, preliminary submission used by some funders to screen interest before inviting a full application.",
       "category": "application-and-review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review",
       "altLabel": [
         "LOI"
       ]
@@ -480,7 +480,7 @@
       "label": "Logic Model",
       "definition": "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project.",
       "category": "outcomes-and-closeout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:matching-requirement",
@@ -488,7 +488,7 @@
       "label": "Matching Requirement",
       "definition": "A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match).",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement"
     },
     {
       "id": "npo:organization",
@@ -496,7 +496,7 @@
       "label": "Organization",
       "definition": "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "npo:organization-role",
@@ -504,7 +504,7 @@
       "label": "Organization Role",
       "definition": "A contextual capacity an organization occupies within a specific arrangement or award -- such as acting as a funder, grant recipient, or fiscal sponsor -- rather than a permanent trait of the organization itself.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:role"
     },
     {
@@ -513,7 +513,7 @@
       "label": "Organization Type",
       "definition": "The legal and tax classification of what an organization fundamentally is (e.g., a public charity, private foundation, or government entity), independent of any role it plays in a specific relationship.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "npo:outcome",
@@ -521,7 +521,7 @@
       "label": "Outcome",
       "definition": "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output.",
       "category": "outcomes-and-closeout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:output",
@@ -529,7 +529,7 @@
       "label": "Output",
       "definition": "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served).",
       "category": "outcomes-and-closeout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:partner",
@@ -537,7 +537,7 @@
       "label": "Partner",
       "definition": "The role an organization occupies when it collaborates with another organization on shared work, in a relationship not adequately described as one party purchasing from or providing a service to the other.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
     },
     {
@@ -546,7 +546,7 @@
       "label": "Payment",
       "definition": "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments.",
       "category": "disbursement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement"
     },
     {
       "id": "npo:payment-condition",
@@ -554,7 +554,7 @@
       "label": "Payment Condition",
       "definition": "A requirement (e.g., a submitted report, a milestone reached) that must be satisfied before a scheduled payment is released.",
       "category": "disbursement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement"
     },
     {
       "id": "npo:payment-schedule",
@@ -562,7 +562,7 @@
       "label": "Payment Schedule",
       "definition": "The agreed timing and amounts by which award funds will be disbursed to the grantee.",
       "category": "disbursement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#disbursement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement"
     },
     {
       "id": "npo:person",
@@ -570,7 +570,7 @@
       "label": "Person",
       "definition": "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "altLabel": [
         "Individual",
         "Natural Person"
@@ -582,7 +582,7 @@
       "label": "Person Role",
       "definition": "A contextual capacity a person occupies within an organization, award, application, agreement, arrangement, program, project, or other defined context.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:role"
     },
     {
@@ -591,7 +591,7 @@
       "label": "Philanthropic Arrangement",
       "definition": "A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure"
     },
     {
       "id": "npo:philanthropic-intermediary",
@@ -599,7 +599,7 @@
       "label": "Philanthropic Intermediary",
       "definition": "An organization commonly known for facilitating philanthropy on behalf of others -- such as by re-granting, fiscal sponsorship, or hosting donor-advised funds -- regardless of which specific role it occupies in a given arrangement.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization"
     },
     {
@@ -608,7 +608,7 @@
       "label": "Program Officer",
       "definition": "The role a person occupies when they manage a portfolio of grants on behalf of a funder, from soliciting or reviewing applications through monitoring active awards.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -617,7 +617,7 @@
       "label": "Regranting Arrangement",
       "definition": "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients.",
       "category": "funding-structure",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#funding-structure",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure",
       "subClassOf": "npo:philanthropic-arrangement",
       "legalNote": "Regranting to organizations without their own tax-exempt status (or across borders) can trigger expenditure-responsibility or equivalency-determination requirements under U.S. tax law. This ontology does not model those compliance steps."
     },
@@ -627,7 +627,7 @@
       "label": "Report",
       "definition": "A grantee's submission to the funder describing progress, outcomes, and/or use of funds, per the reporting schedule. Narrative and financial reports are common subtypes.",
       "category": "compliance-and-reporting",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
       "id": "npo:reporting-schedule",
@@ -635,7 +635,7 @@
       "label": "Reporting Schedule",
       "definition": "The agreed cadence and due dates for narrative and financial reports over the life of an award.",
       "category": "compliance-and-reporting",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
     },
     {
       "id": "npo:restricted-funding",
@@ -643,7 +643,7 @@
       "label": "Restricted Funding",
       "definition": "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement.",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement"
     },
     {
       "id": "npo:review",
@@ -651,7 +651,7 @@
       "label": "Review",
       "definition": "The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers.",
       "category": "application-and-review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review"
     },
     {
       "id": "npo:review-criteria",
@@ -659,7 +659,7 @@
       "label": "Review Criteria",
       "definition": "The published or internal standards (e.g., alignment with mission, feasibility, budget reasonableness) against which applications are scored.",
       "category": "application-and-review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review"
     },
     {
       "id": "npo:reviewer",
@@ -667,7 +667,7 @@
       "label": "Reviewer",
       "definition": "The role a person occupies when they evaluate an application against review criteria, whether as staff, a board member, or an external peer reviewer.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
     },
     {
@@ -676,7 +676,7 @@
       "label": "Role",
       "definition": "A contextual capacity an agent occupies, distinct from the agent's permanent identity or classification.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "npo:service-provider",
@@ -684,7 +684,7 @@
       "label": "Service Provider",
       "definition": "The role an organization occupies when it provides an ongoing operational service to another organization -- broader and less transactional than a single Contractor engagement or Vendor purchase.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
     },
     {
@@ -693,7 +693,7 @@
       "label": "Site Visit",
       "definition": "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision.",
       "category": "application-and-review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#application-and-review"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review"
     },
     {
       "id": "npo:sponsored-project",
@@ -701,7 +701,7 @@
       "label": "Sponsored Project",
       "definition": "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "legalNote": "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement."
     },
     {
@@ -710,7 +710,7 @@
       "label": "Sponsoring Organization",
       "definition": "The role an organization occupies when it holds and administers a Fund on behalf of the fund's donor or benefactors, distinct from acting as a Fiscal Sponsor for a specific project.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
     },
     {
@@ -719,7 +719,7 @@
       "label": "Terms and Conditions",
       "definition": "The specific obligations, restrictions, and expectations attached to an award (e.g., allowable uses of funds, reporting requirements).",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement"
     },
     {
       "id": "npo:theory-of-change",
@@ -727,7 +727,7 @@
       "label": "Theory of Change",
       "definition": "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change.",
       "category": "outcomes-and-closeout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:unrestricted-funding",
@@ -735,7 +735,7 @@
       "label": "Unrestricted Funding",
       "definition": "Funding a grantee may use at its discretion in support of its general mission.",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#award-and-agreement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement"
     },
     {
       "id": "npo:vendor",
@@ -743,7 +743,7 @@
       "label": "Vendor",
       "definition": "The role an organization occupies when it is the source from which another organization purchases standard goods or services, without a defined-work contract the way a Contractor has.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
     },
     {
@@ -753,7 +753,7 @@
       "comment": "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms.",
       "domain": "npo:amendment",
       "range": "npo:grant-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft"
     },
     {
       "id": "nporel:includesBudget",
@@ -762,7 +762,7 @@
       "comment": "An Application includes a proposed Budget.",
       "domain": "npo:application",
       "range": "npo:budget",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:respondsToFundingOpportunity",
@@ -771,7 +771,7 @@
       "comment": "An Application is submitted in response to a specific Funding Opportunity.",
       "domain": "npo:application",
       "range": "npo:funding-opportunity",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:undergoesReview",
@@ -780,7 +780,7 @@
       "comment": "An Application undergoes Review by one or more Reviewers.",
       "domain": "npo:application",
       "range": "npo:review",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:awardedBy",
@@ -789,7 +789,7 @@
       "comment": "An Award is awarded by an Organization -- the original source of the funding, which may differ from the organization that administers it.",
       "domain": "npo:award",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:awardedTo",
@@ -798,7 +798,7 @@
       "comment": "An Award is awarded to an Organization -- the ultimate recipient, which may differ from the organization managing compliance on its behalf.",
       "domain": "npo:award",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:followsGrantLifecycle",
@@ -807,7 +807,7 @@
       "comment": "An Award's progression from decision through closeout follows the Grant Lifecycle sequence.",
       "domain": "npo:award",
       "range": "npo:grant-lifecycle",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:formalizedByGrantAgreement",
@@ -816,7 +816,7 @@
       "comment": "An Award is formalized by a Grant Agreement.",
       "domain": "npo:award",
       "range": "npo:grant-agreement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:fundedFrom",
@@ -825,7 +825,7 @@
       "comment": "An Award draws its funds from a specific Fund.",
       "domain": "npo:award",
       "range": "npo:fund",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:hasPaymentSchedule",
@@ -834,7 +834,7 @@
       "comment": "An Award's funds are released according to a Payment Schedule.",
       "domain": "npo:award",
       "range": "npo:payment-schedule",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:managedBy",
@@ -843,7 +843,7 @@
       "comment": "An Award may be administered day-to-day by an Organization other than the one that awarded or received it, such as a fiscal sponsor or intermediary.",
       "domain": "npo:award",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:reachesCloseout",
@@ -852,7 +852,7 @@
       "comment": "Once all Payments are disbursed and all Compliance Requirements are satisfied, the Award reaches Closeout.",
       "domain": "npo:award",
       "range": "npo:closeout",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:pools",
@@ -861,7 +861,7 @@
       "comment": "A Collaborative Fund Arrangement pools multiple funders' contributions into a shared Fund.",
       "domain": "npo:collaborative-fund-arrangement",
       "range": "npo:fund",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:includesReportingSchedule",
@@ -870,7 +870,7 @@
       "comment": "A Compliance Requirement includes a Reporting Schedule that obligates the Grantee to submit Reports.",
       "domain": "npo:compliance-requirement",
       "range": "npo:reporting-schedule",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:mayIncludeAudit",
@@ -879,7 +879,7 @@
       "comment": "A Compliance Requirement may include an Audit.",
       "domain": "npo:compliance-requirement",
       "range": "npo:audit",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:resultsInAward",
@@ -888,7 +888,7 @@
       "comment": "An approved Decision results in an Award.",
       "domain": "npo:decision",
       "range": "npo:award",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:governs",
@@ -897,7 +897,7 @@
       "comment": "A Donor-Advised Fund Arrangement governs the specific Donor-Advised Fund it establishes the advisory relationship for.",
       "domain": "npo:donor-advised-fund-arrangement",
       "range": "npo:donor-advised-fund",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:advises",
@@ -906,7 +906,7 @@
       "comment": "A Donor Advisor advises a specific Donor-Advised Fund, holding non-binding privileges to recommend its grants and investments.",
       "domain": "npo:donor-advisor",
       "range": "npo:donor-advised-fund",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:makesRecommendation",
@@ -915,7 +915,7 @@
       "comment": "A Donor Advisor makes a Grant Recommendation requesting that their Donor-Advised Fund make an award.",
       "domain": "npo:donor-advisor",
       "range": "npo:grant-recommendation",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:assessesOutcome",
@@ -924,7 +924,7 @@
       "comment": "An Evaluation assesses whether a grant-funded project achieved its intended Outcomes.",
       "domain": "npo:evaluation",
       "range": "npo:outcome",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:assessesOutput",
@@ -933,7 +933,7 @@
       "comment": "An Evaluation assesses whether a grant-funded project achieved its intended Outputs.",
       "domain": "npo:evaluation",
       "range": "npo:output",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:actsOnBehalfOf",
@@ -942,7 +942,7 @@
       "comment": "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly.",
       "domain": "npo:fiscal-sponsor",
       "range": "npo:grantee",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships"
     },
     {
       "id": "nporel:supports",
@@ -951,7 +951,7 @@
       "comment": "A Fiscal Sponsorship Arrangement supports a specific Sponsored Project carried out under the fiscal sponsor's umbrella.",
       "domain": "npo:fiscal-sponsorship-arrangement",
       "range": "npo:sponsored-project",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:heldBy",
@@ -960,7 +960,7 @@
       "comment": "A Fund is held and administered by an Organization.",
       "domain": "npo:fund",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:maintainsGrantProgram",
@@ -969,7 +969,7 @@
       "comment": "A Funder maintains one or more Grant Programs, each of which issues Funding Opportunities over time.",
       "domain": "npo:funder",
       "range": "npo:grant-program",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:mayRequireLetterOfInquiry",
@@ -978,7 +978,7 @@
       "comment": "A Funding Opportunity may require a Letter of Inquiry before a full Application is invited.",
       "domain": "npo:funding-opportunity",
       "range": "npo:letter-of-inquiry",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:occursDuringFundingCycle",
@@ -987,7 +987,7 @@
       "comment": "A Funding Opportunity is issued within a defined Funding Cycle.",
       "domain": "npo:funding-opportunity",
       "range": "npo:funding-cycle",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:specifiesEligibilityCriteria",
@@ -996,7 +996,7 @@
       "comment": "A Funding Opportunity specifies the Eligibility Criteria an applicant must meet.",
       "domain": "npo:funding-opportunity",
       "range": "npo:eligibility-criteria",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:responsibleForComplianceRequirement",
@@ -1005,7 +1005,7 @@
       "comment": "A Grant Administrator is typically responsible for tracking Compliance Requirements.",
       "domain": "npo:grant-administrator",
       "range": "npo:compliance-requirement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships"
     },
     {
       "id": "nporel:responsibleForReport",
@@ -1014,7 +1014,7 @@
       "comment": "A Grant Administrator is typically responsible for Report submission.",
       "domain": "npo:grant-administrator",
       "range": "npo:report",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships"
     },
     {
       "id": "nporel:attachesComplianceRequirement",
@@ -1023,7 +1023,7 @@
       "comment": "A Grant Agreement attaches Compliance Requirements, including a Reporting Schedule.",
       "domain": "npo:grant-agreement",
       "range": "npo:compliance-requirement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:mayIncludeMatchingRequirement",
@@ -1032,7 +1032,7 @@
       "comment": "A Grant Agreement may include a Matching Requirement.",
       "domain": "npo:grant-agreement",
       "range": "npo:matching-requirement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:maySpecifyRestrictedFunding",
@@ -1041,7 +1041,7 @@
       "comment": "A Grant Agreement's Terms and Conditions may classify the award as Restricted Funding.",
       "domain": "npo:grant-agreement",
       "range": "npo:restricted-funding",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:maySpecifyUnrestrictedFunding",
@@ -1050,7 +1050,7 @@
       "comment": "A Grant Agreement's Terms and Conditions may classify the award as Unrestricted Funding.",
       "domain": "npo:grant-agreement",
       "range": "npo:unrestricted-funding",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:specifiesTermsAndConditions",
@@ -1059,7 +1059,7 @@
       "comment": "A Grant Agreement specifies Terms and Conditions, including whether funding is restricted or unrestricted.",
       "domain": "npo:grant-agreement",
       "range": "npo:terms-and-conditions",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:fundedBy",
@@ -1068,7 +1068,7 @@
       "comment": "A Grant Program is funded by a Fund -- the pool of financial resources backing the program's giving strategy.",
       "domain": "npo:grant-program",
       "range": "npo:fund",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:issuesFundingOpportunity",
@@ -1077,7 +1077,7 @@
       "comment": "A Grant Program issues Funding Opportunities during defined Funding Cycles.",
       "domain": "npo:grant-program",
       "range": "npo:funding-opportunity",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:concernsFund",
@@ -1086,7 +1086,7 @@
       "comment": "A Grant Recommendation concerns a specific Fund -- ordinarily a Donor-Advised Fund -- that would pay for the recommended award.",
       "domain": "npo:grant-recommendation",
       "range": "npo:fund",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:leadsToAward",
@@ -1095,7 +1095,7 @@
       "comment": "A Grant Recommendation the sponsoring organization accepts leads to an Award, mirroring how a Decision results in an Award in the direct-grant path.",
       "domain": "npo:grant-recommendation",
       "range": "npo:award",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:recommendsRecipient",
@@ -1104,7 +1104,7 @@
       "comment": "A Grant Recommendation recommends a specific Organization as the award's recipient.",
       "domain": "npo:grant-recommendation",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:mayRequestBudgetModification",
@@ -1113,7 +1113,7 @@
       "comment": "Over the life of an Award, the Grantee may request a Budget Modification.",
       "domain": "npo:grantee",
       "range": "npo:budget-modification",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:submitsApplication",
@@ -1122,7 +1122,7 @@
       "comment": "A Grantee (or a project operating under a Fiscal Sponsor) submits an Application in response to a Funding Opportunity.",
       "domain": "npo:grantee",
       "range": "npo:application",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:disbursedAsPayment",
@@ -1131,7 +1131,7 @@
       "comment": "An Installment is disbursed as a Payment once any Payment Condition is satisfied.",
       "domain": "npo:installment",
       "range": "npo:payment",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:mayHavePaymentCondition",
@@ -1140,7 +1140,7 @@
       "comment": "An Installment may carry a Payment Condition that must be met before it is disbursed.",
       "domain": "npo:installment",
       "range": "npo:payment-condition",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:hasLegalForm",
@@ -1149,7 +1149,7 @@
       "comment": "An Organization has a legal form describing what it fundamentally is under law, independent of any role it plays.",
       "domain": "npo:organization",
       "range": "npo:organization-type",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:participatesIn",
@@ -1158,7 +1158,7 @@
       "comment": "An Organization participates in a Philanthropic Arrangement, independent of tracking which specific role it occupies there.",
       "domain": "npo:organization",
       "range": "npo:philanthropic-arrangement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:playsRole",
@@ -1167,7 +1167,7 @@
       "comment": "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait.",
       "domain": "npo:organization",
       "range": "npo:organization-role",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:appliesWithin",
@@ -1176,7 +1176,7 @@
       "comment": "An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements.",
       "domain": "npo:organization-role",
       "range": "npo:philanthropic-arrangement",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:organizationRoleAppliesWithinOrganization",
@@ -1185,7 +1185,7 @@
       "comment": "An Organization Role can also be scoped directly to an Organization rather than an Arrangement -- e.g. a Contractor, Vendor, Service Provider, Employer, or Partner role is naturally scoped to which organization it relates to, not to a Philanthropic Arrangement. A distinct predicate from rel-organization-role-applies-within for the same reason Phase 3.7 Milestone 1's Person relationships needed distinct names: the generator requires every relationship predicate to be globally unique, so one predicate can't have two different declared object concepts. Broadening this into a true Role-appliesWithin-Context union (Award, Application, Agreement, Fund, Grant Program, Funding Opportunity, Project, Review, Payment, Decision, per the Phase 3.7 roadmap) is deferred until real worked-example data actually needs one of those specific contexts -- adding all of them speculatively now, each as its own distinct predicate, would be exactly the kind of premature abstraction this project avoids.",
       "domain": "npo:organization-role",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:brokenIntoInstallment",
@@ -1194,7 +1194,7 @@
       "comment": "A Payment Schedule is broken into Installments.",
       "domain": "npo:payment-schedule",
       "range": "npo:installment",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:affiliatedWith",
@@ -1203,7 +1203,7 @@
       "comment": "A Person is affiliated with an Organization, independent of which specific Person Role(s) they occupy there.",
       "domain": "npo:person",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "nporel:personPlaysRole",
@@ -1212,7 +1212,7 @@
       "comment": "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed.",
       "domain": "npo:person",
       "range": "npo:person-role",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "nporel:personRoleAppliesWithin",
@@ -1221,7 +1221,7 @@
       "comment": "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts.",
       "domain": "npo:person-role",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities"
     },
     {
       "id": "nporel:administeredBy",
@@ -1230,7 +1230,7 @@
       "comment": "A Philanthropic Arrangement is administered by an Organization, such as a fiscal sponsor or fund administrator.",
       "domain": "npo:philanthropic-arrangement",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:associatedWithGrantProgram",
@@ -1239,7 +1239,7 @@
       "comment": "A Program Officer is associated with one or more Grant Programs and typically owns the Review and monitoring relationship for Awards made under them.",
       "domain": "npo:program-officer",
       "range": "npo:grant-program",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#organizational-relationships"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships"
     },
     {
       "id": "nporel:regrantsTo",
@@ -1248,7 +1248,7 @@
       "comment": "A Regranting Arrangement regrants funds to a downstream Organization, distinct from the Organization that supplied the funds originally.",
       "domain": "npo:regranting-arrangement",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:assessedAgainstLogicModel",
@@ -1257,7 +1257,7 @@
       "comment": "Reports are assessed against the project's Logic Model in terms of Outputs and Outcomes.",
       "domain": "npo:report",
       "range": "npo:logic-model",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:assessedAgainstTheoryOfChange",
@@ -1266,7 +1266,7 @@
       "comment": "Reports are assessed against the project's Theory of Change in terms of Outputs and Outcomes.",
       "domain": "npo:report",
       "range": "npo:theory-of-change",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:obligatesReport",
@@ -1275,7 +1275,7 @@
       "comment": "A Reporting Schedule obligates the Grantee to submit Reports on a defined cadence.",
       "domain": "npo:reporting-schedule",
       "range": "npo:report",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:conductedByReviewer",
@@ -1284,7 +1284,7 @@
       "comment": "A Review is conducted by one or more Reviewers.",
       "domain": "npo:review",
       "range": "npo:reviewer",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:evaluatedAgainstReviewCriteria",
@@ -1293,7 +1293,7 @@
       "comment": "A Review evaluates an Application against published Review Criteria.",
       "domain": "npo:review",
       "range": "npo:review-criteria",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:mayIncludeSiteVisit",
@@ -1302,7 +1302,7 @@
       "comment": "A Review may include a Site Visit before a Decision is made.",
       "domain": "npo:review",
       "range": "npo:site-visit",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:producesDecision",
@@ -1311,7 +1311,7 @@
       "comment": "A Review produces a Decision.",
       "domain": "npo:review",
       "range": "npo:decision",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:fiscallySponsoredBy",
@@ -1320,7 +1320,7 @@
       "comment": "A Sponsored Project is fiscally sponsored by an Organization that provides the legal and administrative infrastructure it lacks on its own.",
       "domain": "npo:sponsored-project",
       "range": "npo:organization",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "npoprop:amendment-effective-date",
@@ -2363,7 +2363,7 @@
       "type": "npo:BusinessRule",
       "label": "An active role must have an effective start date",
       "comment": "A Role occupancy with status Active must specify Effective From -- a role cannot be considered in effect without a defined start.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "appliesTo": [
         "npo:role",
         "npo:person-role",
@@ -2375,7 +2375,7 @@
       "type": "npo:BusinessRule",
       "label": "An Amendment is forward-looking, not retroactive",
       "comment": "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
       "appliesTo": [
         "npo:amendment",
         "npo:grant-agreement",
@@ -2388,7 +2388,7 @@
       "type": "npo:BusinessRule",
       "label": "An Award requires an approved Decision",
       "comment": "An Award cannot exist without a Decision that approved an Application (or, in funder-initiated giving, an equivalent internal approval).",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
       "appliesTo": [
         "npo:award",
         "npo:decision",
@@ -2400,7 +2400,7 @@
       "type": "npo:BusinessRule",
       "label": "Closeout requires both financial and reporting conditions",
       "comment": "Closeout requires both financial conditions (all Payments made or the award formally reduced) and reporting conditions (all required Reports accepted) to be true.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
       "appliesTo": [
         "npo:closeout",
         "npo:payment",
@@ -2412,7 +2412,7 @@
       "type": "npo:BusinessRule",
       "label": "A Compliance Requirement attaches to a specific Award, not the Grantee in the abstract",
       "comment": "A Compliance Requirement is always attached to a specific Award, not to the Grantee in the abstract -- the same organization can be in good standing on one award and delinquent on another.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
       "appliesTo": [
         "npo:compliance-requirement",
         "npo:award",
@@ -2424,7 +2424,7 @@
       "type": "npo:BusinessRule",
       "label": "A Grant Recommendation is non-binding",
       "comment": "A Donor Advisor's Grant Recommendation does not itself obligate a Donor-Advised Fund to make an Award; the fund's sponsoring organization retains final legal authority over whether to accept it.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/08-organizations-roles-and-arrangements.md",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md",
       "appliesTo": [
         "npo:grant-recommendation",
         "npo:donor-advised-fund",
@@ -2436,7 +2436,7 @@
       "type": "npo:BusinessRule",
       "label": "An Installment's Payment Condition must be met before release",
       "comment": "An Installment's Payment Condition, if any, must be satisfied before its corresponding Payment is released.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
       "appliesTo": [
         "npo:installment",
         "npo:payment-condition",
@@ -2448,7 +2448,7 @@
       "type": "npo:BusinessRule",
       "label": "A Payment requires an Award, typically with a Grant Agreement",
       "comment": "A Payment cannot exist without an Award and, typically, a Grant Agreement -- though some funders disburse an initial installment before a fully signed agreement is in place.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#key-relationship-rules-draft",
       "appliesTo": [
         "npo:payment",
         "npo:award",
@@ -2460,7 +2460,7 @@
       "type": "npo:BusinessRule",
       "label": "A role's effective end date must not precede its start date",
       "comment": "A Role occupancy's Effective To, if present, must not be earlier than its Effective From.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "appliesTo": [
         "npo:role",
         "npo:person-role",
@@ -2472,7 +2472,7 @@
       "type": "npo:BusinessRule",
       "label": "A role occupancy should identify its context unless explicitly organization-wide",
       "comment": "A Role occupancy should specify what it applies within (via appliesWithin), unless its Scope is explicitly organization-wide -- a role with neither a context nor an organization-wide scope is ambiguous about what it actually governs.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "appliesTo": [
         "npo:role",
         "npo:person-role",
@@ -2484,7 +2484,7 @@
       "type": "npo:BusinessRule",
       "label": "A role occupancy must identify its role holder",
       "comment": "An instance of a Person Role must be held by a Person (via playsRole); an instance of an Organization Role must be held by an Organization (via playsRole). A role occupancy with no holder is not a valid occupancy, only a role definition.",
-      "isDefinedBy": "https://github.com/EGovender/NPOGraph/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "appliesTo": [
         "npo:role",
         "npo:person-role",

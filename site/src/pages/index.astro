@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SearchBox from '../components/SearchBox';
 import { concepts, relationships, ontologyVersion, ontologyLastUpdated } from '../data/ontology';
 
 const base = import.meta.env.BASE_URL;
@@ -8,72 +7,177 @@ const base = import.meta.env.BASE_URL;
 const lastUpdatedDisplay = ontologyLastUpdated
   ? new Date(ontologyLastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
   : null;
+
+// The six category nodes around the hero graphic, each linking to a real,
+// existing page/view -- no invented sections.
+const heroNodes = [
+  { label: 'Organizations', href: `${base}explore?view=organizations`, icon: 'org' },
+  { label: 'People', href: `${base}concepts`, icon: 'people' },
+  { label: 'Processes', href: `${base}explore?view=lifecycle`, icon: 'process' },
+  { label: 'Data', href: `${base}explore?view=funds`, icon: 'data' },
+  { label: 'Resources', href: `${base}concepts`, icon: 'resources' },
+  { label: 'Outcomes', href: `${base}concepts`, icon: 'outcomes' },
+];
 ---
 
 <BaseLayout title="Home">
-  <section style="text-align: center; margin-bottom: 2rem;">
-    <h1 style="margin-bottom: 0.5rem;">A shared language for grantmaking and nonprofit operations</h1>
-    <p class="secondary" style="font-size: 1.15rem; max-width: 60ch; margin: 0 auto;">
-      Every funder, grantee, and vendor models a "grant" a little differently. NPOGraph is an open,
-      precisely-defined ontology so the same concepts — application, award, payment, compliance,
-      outcome — mean the same thing everywhere.
-    </p>
-    <p class="muted" style="max-width: 55ch; margin: 0.75rem auto 0;">
-      Built for grantmaking practitioners, nonprofit-technology teams, and the vendors and
-      researchers who support them.
-    </p>
+  <section class="hero">
+    <div class="hero-copy">
+      <h1 class="hero-heading">
+        <span class="hero-heading-navy">Shared knowledge.</span>
+        <span class="hero-heading-green">Stronger impact.</span>
+      </h1>
+      <p class="secondary hero-subtext">
+        CommonGood Atlas is an open knowledge foundation for nonprofit and philanthropic
+        operations — starting with grantmaking: funders, applications, awards, payments,
+        compliance, and outcomes, described the same way everywhere.
+      </p>
+      <div class="hero-ctas">
+        <a class="home-cta home-cta-primary" href={`${base}concepts`}>Explore the Atlas &rarr;</a>
+        <a class="home-cta" href="#about">Learn More</a>
+      </div>
+      <p class="muted hero-tagline">Built by and for the social sector. Open. Collaborative. Always improving.</p>
+    </div>
+
+    <div class="hero-graphic">
+      <svg class="hero-network" viewBox="0 0 200 200" aria-hidden="true">
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#6E9E52" stroke-width="2.5" />
+        <g stroke="#14304D" stroke-width="1.5" stroke-linecap="round" opacity="0.55">
+          <line x1="100" y1="100" x2="152" y2="100" />
+          <line x1="100" y1="100" x2="126" y2="55" />
+          <line x1="100" y1="100" x2="74" y2="55" />
+          <line x1="100" y1="100" x2="48" y2="100" />
+          <line x1="100" y1="100" x2="74" y2="145" />
+          <line x1="100" y1="100" x2="126" y2="145" />
+          <line x1="152" y1="100" x2="126" y2="55" />
+          <line x1="126" y1="55" x2="74" y2="55" />
+          <line x1="74" y1="55" x2="48" y2="100" />
+          <line x1="48" y1="100" x2="74" y2="145" />
+          <line x1="74" y1="145" x2="126" y2="145" />
+          <line x1="126" y1="145" x2="152" y2="100" />
+        </g>
+        <circle cx="100" cy="100" r="10" fill="#14304D" />
+        <circle cx="152" cy="100" r="7" fill="#6E9E52" />
+        <circle cx="126" cy="55" r="7" fill="#14304D" />
+        <circle cx="74" cy="55" r="7" fill="#6E9E52" />
+        <circle cx="48" cy="100" r="7" fill="#14304D" />
+        <circle cx="74" cy="145" r="7" fill="#6E9E52" />
+        <circle cx="126" cy="145" r="7" fill="#14304D" />
+      </svg>
+
+      <ul class="hero-node-list" aria-label="Knowledge categories">
+        {
+          heroNodes.map((node) => (
+            <li class={`hero-node hero-node-${node.icon}`}>
+              <a href={node.href}>
+                <span class={`hero-node-icon hero-node-icon-${node.icon}`} />
+                {node.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </section>
 
-  <section class="journey-cards" aria-label="Choose your path">
-    <div class="card journey-card">
-      <h2 class="journey-card-title">Understand how grantmaking fits together</h2>
-      <p class="secondary">For nonprofit leaders, program teams, and newcomers.</p>
-      <a class="home-cta home-cta-primary" href={`${base}story`}>Start with a worked example</a>
+  <section class="feature-strip">
+    <div class="card feature-card">
+      <span class="feature-icon feature-icon-knowledge" />
+      <h2 class="feature-title">Comprehensive Knowledge</h2>
+      <p class="secondary">Concepts, definitions, and relationships across the grantmaking operating landscape.</p>
     </div>
-    <div class="card journey-card">
-      <h2 class="journey-card-title">Map your organization's process</h2>
-      <p class="secondary">Answer questions and identify the concepts that apply to your program.</p>
-      <a class="home-cta home-cta-primary" href={`${base}design`}>Model your program</a>
+    <div class="card feature-card">
+      <span class="feature-icon feature-icon-insights" />
+      <h2 class="feature-title">Connected Insights</h2>
+      <p class="secondary">Explore how everything connects through an interactive knowledge graph.</p>
     </div>
-    <div class="card journey-card">
-      <h2 class="journey-card-title">Explore the data model</h2>
-      <p class="secondary">Search definitions, relationships, properties, rules, and technical formats.</p>
-      <a class="home-cta home-cta-primary" href={`${base}concepts`}>Browse the ontology</a>
+    <div class="card feature-card">
+      <span class="feature-icon feature-icon-tools" />
+      <h2 class="feature-title">Practical Tools</h2>
+      <p class="secondary">Model your program and identify which concepts apply to your organization.</p>
+    </div>
+    <div class="card feature-card">
+      <span class="feature-icon feature-icon-open" />
+      <h2 class="feature-title">Open and Collaborative</h2>
+      <p class="secondary">Open source (MIT licensed) and built to serve the social sector.</p>
+    </div>
+    <div class="card feature-card">
+      <span class="feature-icon feature-icon-impact" />
+      <h2 class="feature-title">Built for Impact</h2>
+      <p class="secondary">Designed to help organizations describe their work consistently and operate more effectively.</p>
     </div>
   </section>
 
-  <p class="secondary" style="text-align: center; margin: 1.25rem 0;">
-    Already familiar with knowledge graphs?{' '}
-    <a href={`${base}explore`}>Open the graph explorer &rarr;</a>
-  </p>
+  <section class="process-band">
+    <h2 class="process-band-title">From understanding to impact</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <span class="process-step-icon process-step-icon-explore" />
+        <h3>Explore</h3>
+        <p>Discover concepts and connections across the grantmaking landscape.</p>
+        <a href={`${base}explore`}>Go to Explorer &rarr;</a>
+      </div>
+      <div class="process-step-arrow" aria-hidden="true">&rarr;</div>
+      <div class="process-step">
+        <span class="process-step-icon process-step-icon-model" />
+        <h3>Model</h3>
+        <p>Answer questions about your program and see which concepts apply.</p>
+        <a href={`${base}design`}>Go to Modeler &rarr;</a>
+      </div>
+      <div class="process-step-arrow" aria-hidden="true">&rarr;</div>
+      <div class="process-step">
+        <span class="process-step-icon process-step-icon-learn" />
+        <h3>Learn</h3>
+        <p>Walk through a full worked example, start to finish.</p>
+        <a href={`${base}story`}>Go to Worked Example &rarr;</a>
+      </div>
+    </div>
+  </section>
 
-  <SearchBox client:load concepts={concepts} base={base} />
+  <section class="stats-strip">
+    <div class="stats-item">
+      <span class="stats-icon stats-icon-concepts" />
+      <div>
+        <strong>{concepts.length} concepts</strong>
+        <p class="secondary">Defined and documented</p>
+      </div>
+    </div>
+    <div class="stats-item">
+      <span class="stats-icon stats-icon-relationships" />
+      <div>
+        <strong>{relationships.length} relationships</strong>
+        <p class="secondary">Mapped between them</p>
+      </div>
+    </div>
+    <div class="stats-item">
+      <span class="stats-icon stats-icon-open" />
+      <div>
+        <strong>Open Source</strong>
+        <p class="secondary">MIT licensed, transparent and accessible</p>
+      </div>
+    </div>
+    <div class="stats-item">
+      <span class="stats-icon stats-icon-together" />
+      <div>
+        <strong>Built Together</strong>
+        <p class="secondary">Contribute on GitHub</p>
+      </div>
+    </div>
+  </section>
 
-  <p class="muted" style="text-align: center; margin-top: 0.75rem;">
+  <p class="muted" style="text-align: center; margin-top: 2rem;">
     <strong>Pre-alpha:</strong> the ontology and this site are both still taking shape — concepts,
     relationships, and pages can change without notice.
   </p>
   <p class="muted" style="text-align: center; margin-top: 0.25rem;">
     Ontology v{ontologyVersion}
     {lastUpdatedDisplay && <>, updated {lastUpdatedDisplay}</>}
-    {' '}· {concepts.length} concepts · {relationships.length} relationships
   </p>
 
-  <section style="margin-top: 3rem;">
-    <h2>What can NPOGraph help with?</h2>
-    <ul>
-      <li>Standardize definitions across a CRM, grants platform, and finance system</li>
-      <li>Design a new grants-management data model</li>
-      <li>Document how awards, installments, payments, and reports relate</li>
-      <li>Compare terminology used by funders, grantees, and software vendors</li>
-      <li>Create shared reference data and validation rules</li>
-    </ul>
-  </section>
-
-  <section style="margin-top: 2rem;">
+  <section id="about" style="margin-top: 3rem;">
     <h2>What is this?</h2>
     <p>
-      NPOGraph models how grantmaking actually works — funders, applications, reviews, awards,
+      CommonGood Atlas models how grantmaking actually works — funders, applications, reviews, awards,
       payments, compliance, and outcomes, plus the organizational roles and arrangements
       (fiscal sponsorship, donor-advised funds, regranting) that surround them — as a shared,
       openly reviewable ontology. This site is the interactive explorer for that ontology.
@@ -81,10 +185,10 @@ const lastUpdatedDisplay = ontologyLastUpdated
     <p>
       Grantmaking is the first module; the goal is a broader ontology for nonprofit operations. See
       the project's{' '}
-      <a href="https://github.com/EGovender/NPOGraph/blob/main/docs/00-vision.md">vision</a>{' '}
-      and <a href="https://github.com/EGovender/NPOGraph/blob/main/docs/04-roadmap.md">roadmap</a>{' '}
+      <a href="https://github.com/EGovender/commongood-atlas/blob/main/docs/00-vision.md">vision</a>{' '}
+      and <a href="https://github.com/EGovender/commongood-atlas/blob/main/docs/04-roadmap.md">roadmap</a>{' '}
       for where it's headed, or the{' '}
-      <a href="https://github.com/EGovender/NPOGraph">NPOGraph repository</a> for the underlying
+      <a href="https://github.com/EGovender/commongood-atlas">CommonGood Atlas repository</a> for the underlying
       concepts, relationships, and machine-readable formats (OWL, RDF, JSON-LD).
     </p>
   </section>

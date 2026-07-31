@@ -22,7 +22,7 @@ Because a concept like `Organization` or `Award` now has several individuals, `g
 
 ## Generated as real RDF
 
-`tools/generate_ontology.py` turns this into actual `owl:NamedIndividual` instances — `ontology/npograph.example.ttl`, `.nt`, and `.jsonld` — under their own `.../ontology/examples/` namespace (`ex:`), separate from the class-level `npograph.ttl` so schema and example data don't mix in the file someone would import to get the ontology itself.
+`tools/generate_ontology.py` turns this into actual `owl:NamedIndividual` instances — `ontology/commongood-atlas.example.ttl`, `.nt`, and `.jsonld` — under their own `.../ontology/examples/` namespace (`ex:`), separate from the class-level `commongood-atlas.ttl` so schema and example data don't mix in the file someone would import to get the ontology itself.
 
 Because they're typed as instances of real concepts (`ex:coastal-watch-fy26-award a npo:award`), the per-concept SHACL property shapes from [Properties & Rules](06-properties-and-rules.md) apply to them automatically — `tools/validate_ontology.py` validates the example individuals against the same required-ness/datatype/allowed-values constraints as everything else. If the example used an invalid `status` value or omitted a required property, validation would fail. This is the actual point of building it as RDF instead of just prose: it's proof the schema is usable, not just descriptive.
 

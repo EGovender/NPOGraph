@@ -1,8 +1,8 @@
-# NPOGraph explorer
+# CommonGood Atlas explorer
 
-The interactive explorer for the [NPOGraph](../README.md) grantmaking ontology — search, browse, and graph-visualize the concepts, relationships, properties, and business rules defined in `../ontology/source/*.json`. Built with [Astro](https://astro.build) (static output) and React islands for the interactive graph ([D3](https://d3js.org/): `d3-force`, `d3-zoom`, `d3-drag`, `d3-shape`) and the property inspector.
+The interactive explorer for the [CommonGood Atlas](../README.md) grantmaking ontology — search, browse, and graph-visualize the concepts, relationships, properties, and business rules defined in `../ontology/source/*.json`. Built with [Astro](https://astro.build) (static output) and React islands for the interactive graph ([D3](https://d3js.org/): `d3-force`, `d3-zoom`, `d3-drag`, `d3-shape`) and the property inspector.
 
-Live at [egovender.github.io/NPOGraph](https://egovender.github.io/NPOGraph/).
+Live at [egovender.github.io/commongood-atlas](https://egovender.github.io/commongood-atlas/).
 
 ## Requirements
 

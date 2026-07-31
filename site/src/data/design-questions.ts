@@ -140,7 +140,7 @@ export const DESIGN_QUESTIONS: DesignQuestion[] = [
     type: 'boolean',
     section: 'organization',
     text: 'Does your organization take on more than one of these roles at once -- for example, acting as a funder for your own programs while also serving as a fiscal sponsor or grantee elsewhere?',
-    help: 'This is the case NPOGraph\'s Organization Role model exists for: the same organization holds multiple, independently-dated role occupancies rather than one permanent type.',
+    help: 'This is the case CommonGood Atlas\'s Organization Role model exists for: the same organization holds multiple, independently-dated role occupancies rather than one permanent type.',
     yes: ['philanthropic-arrangement'],
     no: [],
   },
