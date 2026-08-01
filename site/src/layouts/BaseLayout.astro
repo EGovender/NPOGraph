@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import '../styles/commongood-atlas-reference.css';
+import '../styles/site-extensions.css';
 import { concepts, ontologyVersion, ontologyLastUpdated } from '../data/ontology';
 import SearchBox from '../components/SearchBox';
 
@@ -8,11 +10,13 @@ interface Props {
   description?: string;
   /** true: the existing 1200px-capped layout (concept catalogue, concept
    * pages, design tool). 'full': a much wider cap, for the graph explorer,
-   * where canvas space is the whole point. */
-  wide?: boolean | 'full';
+   * where canvas space is the whole point. 'home': no cap/padding at all --
+   * the homepage's full-bleed bands (hero, feature strip, dark pathway band,
+   * metrics strip) each center their own content via .cga-container. */
+  wide?: boolean | 'full' | 'home';
 }
 
-const { title, description = 'CommonGood Atlas: an open knowledge platform for grantmaking.', wide = false } = Astro.props;
+const { title, description = 'CommonGood Atlas is an open knowledge foundation for nonprofit and philanthropic operations.', wide = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
 const pageTitle = `${title} · CommonGood Atlas`;
@@ -25,12 +29,18 @@ interface NavItem {
   external?: boolean;
 }
 
+// Reference brief recommends Explore / Model / Implement / Resources /
+// Community / About. Mapped to real routes only -- no dead links: Implement
+// points at the worked example (the closest thing this repo has to an
+// "implementation guide"), Resources at the concept catalogue, About at the
+// homepage's own "What is this?" section.
 const NAV_ITEMS: NavItem[] = [
   { label: 'Explore', href: `${base}explore` },
-  { label: 'Concepts', href: `${base}concepts` },
   { label: 'Model', href: `${base}design` },
-  { label: 'Worked Example', href: `${base}story` },
+  { label: 'Implement', href: `${base}story` },
+  { label: 'Resources', href: `${base}concepts` },
   { label: 'Community', href: 'https://github.com/EGovender/commongood-atlas', external: true },
+  { label: 'About', href: `${base}#about` },
 ];
 
 function trimSlash(path: string): string {
@@ -50,15 +60,15 @@ const lastUpdatedDisplay = ontologyLastUpdated
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#14304D" />
+    <meta name="theme-color" content="#082f5b" />
     <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" href={`${base}favicon.svg`} type="image/svg+xml" />
+    <link rel="icon" href={`${base}brand/commongood-atlas-mark.svg`} type="image/svg+xml" />
     <link rel="alternate icon" href={`${base}favicon.ico`} sizes="48x48" />
     <link rel="apple-touch-icon" href={`${base}apple-touch-icon.png`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
     />
 
@@ -74,51 +84,91 @@ const lastUpdatedDisplay = ontologyLastUpdated
     <meta name="twitter:image" content={ogImageURL} />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href={base}>
-        <img class="brand-icon" src={`${base}favicon.svg`} alt="" width="28" height="28" />
-        <span class="brand-text">CommonGood<span class="brand-text-accent"> Atlas</span></span>
-      </a>
-      <button
-        type="button"
-        class="nav-toggle"
-        aria-expanded="false"
-        aria-controls="site-nav"
-        aria-label="Toggle navigation menu"
-      >
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-      <nav id="site-nav">
-        {
-          NAV_ITEMS.map((item) => {
-            const isActive = !item.external && trimSlash(item.href) === currentPath;
-            return item.external ? (
-              <a href={item.href} target="_blank" rel="noreferrer">
-                {item.label}
-              </a>
-            ) : (
-              <a href={item.href} aria-current={isActive ? 'page' : undefined} class={isActive ? 'active' : ''}>
-                {item.label}
-              </a>
-            );
-          })
-        }
-        <SearchBox client:load compact concepts={concepts} base={base} />
-        <a class="home-cta home-cta-primary nav-get-started" href={`${base}story`}>Get Started</a>
-      </nav>
+    <header class="cga-site-header">
+      <div class="cga-site-header__inner cga-container">
+        <a class="cga-brand" href={base}>
+          <img class="cga-brand__mark" src={`${base}brand/commongood-atlas-mark.svg`} alt="" width="48" height="48" />
+          <span class="cga-brand__text">CommonGood<span class="cga-brand__atlas">Atlas</span></span>
+        </a>
+
+        <nav id="site-nav" class="cga-nav">
+          {
+            NAV_ITEMS.map((item) => {
+              const isActive = !item.external && trimSlash(item.href) === currentPath;
+              return item.external ? (
+                <a href={item.href} target="_blank" rel="noreferrer">
+                  {item.label}
+                </a>
+              ) : (
+                <a href={item.href} aria-current={isActive ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              );
+            })
+          }
+        </nav>
+
+        <div class="cga-header-actions">
+          <div class="site-header-search">
+            <svg class="site-header-search-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="1.6" />
+              <path d="M13.5 13.5 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+            <SearchBox client:load compact concepts={concepts} base={base} />
+          </div>
+          <a class="cga-button cga-button--primary cga-button--small" href={`${base}story`}>Get Started</a>
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="site-nav"
+            aria-label="Toggle navigation menu"
+          >
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+          </button>
+        </div>
+      </div>
     </header>
-    <main class={wide === 'full' ? 'full-bleed' : wide ? 'wide' : ''}>
+    <main class={wide === 'full' ? 'full-bleed' : wide === 'home' ? 'home-bleed' : wide ? 'wide' : ''}>
       <slot />
     </main>
-    <footer class="site-footer">
-      CommonGood Atlas is an open-source project.{' '}
-      <a href="https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md">Contribute on GitHub</a>.{' '}
-      <span class="footer-version">
+    <footer class="cga-site-footer">
+      <div class="cga-site-footer__inner cga-container">
+        <div>
+          <span class="cga-brand" style="color: #ffffff;">
+            <img class="cga-brand__mark" src={`${base}brand/commongood-atlas-mark.svg`} alt="" width="36" height="36" />
+            <span class="cga-brand__text" style="color: #ffffff;">CommonGood<span class="cga-brand__atlas">Atlas</span></span>
+          </span>
+          <p style="max-width: 32ch; margin-top: 1rem;">
+            An open knowledge foundation for nonprofit and philanthropic operations. Open source, MIT licensed.
+          </p>
+        </div>
+        <div>
+          <h3>Explore</h3>
+          <p><a href={`${base}explore`}>Graph Explorer</a></p>
+          <p><a href={`${base}concepts`}>Concept Catalogue</a></p>
+        </div>
+        <div>
+          <h3>Learn</h3>
+          <p><a href={`${base}design`}>Model Your Program</a></p>
+          <p><a href={`${base}story`}>Worked Example</a></p>
+        </div>
+        <div>
+          <h3>Contribute</h3>
+          <p><a href="https://github.com/EGovender/commongood-atlas" target="_blank" rel="noreferrer">GitHub</a></p>
+          <p>
+            <a href="https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer"
+              >Contributing guide</a
+            >
+          </p>
+        </div>
+      </div>
+      <div class="cga-container" style="padding-bottom: 1.5rem; font-size: var(--cga-xs);">
         Ontology v{ontologyVersion}
         {lastUpdatedDisplay && <>{' '}&middot; updated {lastUpdatedDisplay}</>}
-      </span>
+      </div>
     </footer>
     <script>
       const toggle = document.querySelector('.nav-toggle');
