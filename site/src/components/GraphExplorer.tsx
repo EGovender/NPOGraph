@@ -18,7 +18,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { CATEGORIES, getCategory } from '../data/categories';
 import { EXPLORER_VIEWS, resolveLifecycleView } from '../data/explorer-views';
 import { findShortestPath, seededGridPositions, type PathStep } from '../data/graph-utils';
-import { conceptKind, KIND_LEGEND } from '../data/graph-kinds';
+import { conceptKind, KIND_LEGEND, kindSwatchColor } from '../data/graph-kinds';
 import { nodeShapePath } from '../data/graph-shapes';
 import { RELATIONSHIP_KIND_LABELS, relationshipKind, type RelationshipKind } from '../data/relationship-kinds';
 import { conceptSearchScore } from '../data/search';
@@ -39,8 +39,8 @@ import PropertyInspector from './PropertyInspector';
 const NODE_SIZE = 18;
 const FOCUS_SIZE = 26;
 const ARROW_GAP = 6;
-const LINK_DISTANCE = 60;
-const CHARGE_STRENGTH = -55;
+const LINK_DISTANCE = 125;
+const CHARGE_STRENGTH = -170;
 
 // Hidden by default so a first-time visitor sees the core entities (Organization,
 // Person, Fund, Grant Program, Process steps, etc.) without every Organization
@@ -350,8 +350,8 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       // of all 55 *other* nodes with nothing strong enough to reel it back
       // in, and the whole layout drifts apart indefinitely instead of
       // settling.
-      .force('charge', forceManyBody().strength(CHARGE_STRENGTH).distanceMax(260))
-      .force('collide', forceCollide(NODE_SIZE / 2 + 4));
+      .force('charge', forceManyBody().strength(CHARGE_STRENGTH).distanceMax(440))
+      .force('collide', forceCollide(NODE_SIZE / 2 + 18));
 
     if (isMini) {
       simulation.force(
@@ -989,33 +989,30 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
               List (keyboard-accessible)
             </button>
           </div>
-
-          <button
-            type="button"
-            className="link-button graph-reset-filters"
-            disabled={activeFilterChips.length === 0}
-            onClick={resetFilters}
-          >
-            Reset filters
-          </button>
         </div>
 
         {activeFilterChips.length > 0 && (
-          <ul className="graph-filter-chips">
-            {activeFilterChips.map((chip) => (
-              <li key={chip.key}>
-                <button type="button" className="graph-filter-chip" onClick={chip.onRemove}>
-                  {chip.label} <span aria-hidden="true">&times;</span>
-                </button>
-              </li>
-            ))}
-          </ul>
+          <div className="graph-active-filters-row">
+            <ul className="graph-filter-chips">
+              {activeFilterChips.map((chip) => (
+                <li key={chip.key}>
+                  <button type="button" className="graph-filter-chip" onClick={chip.onRemove}>
+                    {chip.label} <span aria-hidden="true">&times;</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <button type="button" className="link-button graph-reset-filters" onClick={resetFilters}>
+              Reset all
+            </button>
+          </div>
         )}
 
         <div className="graph-kind-key" role="group" aria-label="Kind: legend and filter">
           <span className="graph-kind-key-label">Kind:</span>
           {kindEntriesInView.map((entry) => {
             const hidden = hiddenKinds.has(entry.kind);
+            const color = kindSwatchColor(entry.kind);
             return (
               <button
                 key={entry.kind}
@@ -1024,7 +1021,10 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
                 aria-pressed={!hidden}
                 onClick={() => toggleKind(entry.kind)}
               >
-                <span className={`shape-swatch shape-swatch-${entry.kind}`} />
+                <span
+                  className={`shape-swatch shape-swatch-${entry.kind}`}
+                  style={color ? { background: `light-dark(${color.light}, ${color.dark})` } : undefined}
+                />
                 {entry.label}
                 <span className="graph-kind-chip-count">{kindCounts.get(entry.kind)}</span>
               </button>
@@ -1032,8 +1032,66 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
           })}
         </div>
 
-        <details className="graph-advanced-filters">
-          <summary>More filters</summary>
+        <details className="graph-tool-section graph-path-finder-section">
+          <summary>
+            <span className="graph-tool-section-title">Find a path between two concepts</span>
+            <span className="graph-tool-section-hint">See how any two concepts connect, step by step</span>
+          </summary>
+          <div className="path-finder">
+            <label className="path-finder-label">
+              From
+              <select value={pathFromId} onChange={(e) => setPathFromId(e.target.value)}>
+                <option value="">Select a concept&hellip;</option>
+                {sortedForPathFinder.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="path-finder-label">
+              To
+              <select value={pathToId} onChange={(e) => setPathToId(e.target.value)}>
+                <option value="">Select a concept&hellip;</option>
+                {sortedForPathFinder.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <div className="path-finder-actions">
+              <button type="button" className="home-cta home-cta-primary" disabled={!pathFromId || !pathToId} onClick={runPathFind}>
+                Find path
+              </button>
+              {pathResult !== undefined && (
+                <button type="button" className="link-button" onClick={clearPathFind}>
+                  Clear
+                </button>
+              )}
+            </div>
+            <div aria-live="polite">
+              {pathResult === null && <p className="muted graph-hint">No path between these concepts in this view.</p>}
+              {pathResult && pathResult.length === 0 && <p className="muted graph-hint">Select two different concepts.</p>}
+              {pathResult && pathResult.length > 0 && (
+                <ol className="path-result">
+                  <li>{conceptsById.get(pathResult[0].fromId)?.label}</li>
+                  {pathResult.map((step, i) => (
+                    <li key={i}>
+                      <span className="muted">{step.label}</span> {conceptsById.get(step.toId)?.label}
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </div>
+          </div>
+        </details>
+
+        <details className="graph-tool-section graph-advanced-filters">
+          <summary>
+            <span className="graph-tool-section-title">Advanced filters</span>
+            <span className="graph-tool-section-hint">Categories, relationship types, and labels</span>
+          </summary>
 
           <h3 className="graph-sidebar-title">Categories</h3>
           <ul className="category-filter">
@@ -1074,56 +1132,6 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
             <input type="checkbox" checked={showEdgeLabels} onChange={() => setShowEdgeLabels((v) => !v)} />
             Show all relationship labels
           </label>
-
-          <h3 className="graph-sidebar-title">Find a path</h3>
-          <div className="path-finder">
-            <label className="path-finder-label">
-              From
-              <select value={pathFromId} onChange={(e) => setPathFromId(e.target.value)}>
-                <option value="">Select a concept&hellip;</option>
-                {sortedForPathFinder.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="path-finder-label">
-              To
-              <select value={pathToId} onChange={(e) => setPathToId(e.target.value)}>
-                <option value="">Select a concept&hellip;</option>
-                {sortedForPathFinder.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <div className="path-finder-actions">
-              <button type="button" className="home-cta" disabled={!pathFromId || !pathToId} onClick={runPathFind}>
-                Find path
-              </button>
-              {pathResult !== undefined && (
-                <button type="button" className="link-button" onClick={clearPathFind}>
-                  Clear
-                </button>
-              )}
-            </div>
-            <div aria-live="polite">
-              {pathResult === null && <p className="muted graph-hint">No path between these concepts in this view.</p>}
-              {pathResult && pathResult.length === 0 && <p className="muted graph-hint">Select two different concepts.</p>}
-              {pathResult && pathResult.length > 0 && (
-                <ol className="path-result">
-                  <li>{conceptsById.get(pathResult[0].fromId)?.label}</li>
-                  {pathResult.map((step, i) => (
-                    <li key={i}>
-                      <span className="muted">{step.label}</span> {conceptsById.get(step.toId)?.label}
-                    </li>
-                  ))}
-                </ol>
-              )}
-            </div>
-          </div>
         </details>
 
         <p className="muted graph-hint">

@@ -204,9 +204,18 @@ main.full-bleed {
   font-size: 1.05rem;
 }
 
+/* align-self: stretch (not flex-start) so every card's button gets the full
+   card width to lay its text out in -- otherwise the longest label ("Start
+   with a worked example") wraps to two lines while the shorter ones don't,
+   leaving the three buttons visibly different heights. */
 .journey-card .home-cta {
   margin-top: auto;
-  align-self: flex-start;
+  align-self: stretch;
+  /* Fixed at 2 lines' worth of height (not just the base 2.75rem) --
+     "Start with a worked example" still wraps even at full card width,
+     so matching heights needs a fixed box, not just equal width. */
+  min-height: 3.75rem;
+  text-align: center;
 }
 
 .home-cta {
@@ -713,8 +722,7 @@ mark {
   width: max(100%, 320px);
 }
 
-.graph-toolbar .graph-view-toggle,
-.graph-toolbar .graph-reset-filters {
+.graph-toolbar .graph-view-toggle {
   margin: 0;
   white-space: nowrap;
 }
@@ -994,10 +1002,18 @@ mark {
   opacity: 0.12;
 }
 
+/* A faded node keeps a faint shape for spatial context, but its label is
+   dropped entirely -- otherwise a tight fit-to-bounds (e.g. after Find a
+   path) leaves dozens of faint, overlapping labels from unrelated nodes
+   cluttering the view around the thing actually being highlighted. */
+.graph-node.faded .graph-node-label {
+  display: none;
+}
+
 .graph-edge {
-  stroke: var(--gridline);
-  stroke-width: 1.2;
-  opacity: 0.6;
+  stroke: var(--cga-border-strong, #c6d2dc);
+  stroke-width: 1.4;
+  opacity: 0.85;
 }
 
 .graph-edge.subclass-edge {
@@ -1163,22 +1179,29 @@ mark {
   color: #ffffff;
 }
 
-.graph-reset-filters {
-  display: block;
+/* Active filters and the control that clears them, grouped in one row so
+   it's clear at a glance what's filtered and how to undo it -- only
+   rendered at all when there's something to show, so there's never a
+   disabled, doing-nothing "Reset" sitting in the toolbar. */
+.graph-active-filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
   margin-top: 0.75rem;
-  font-size: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
 }
 
-.graph-reset-filters:disabled {
-  color: var(--text-muted);
-  text-decoration: none;
-  cursor: default;
+.graph-reset-filters {
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 .graph-filter-chips {
   list-style: none;
   padding: 0;
-  margin: 0.75rem 0 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
@@ -1201,16 +1224,65 @@ mark {
   border-color: var(--brand-navy);
 }
 
-.graph-advanced-filters {
-  margin-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  padding-top: 0.75rem;
+/* Shared shell for the two toolbar disclosures (Find a path, Advanced
+   filters) -- same border/spacing/summary treatment so neither reads as
+   more or less "real" than the other, unlike the old single catch-all
+   "More filters" section that buried path-finding among rarely-touched
+   technical filters. */
+.graph-tool-section {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.1rem 1rem 0.9rem;
+  background: var(--card-bg);
 }
 
-.graph-advanced-filters summary {
+.graph-tool-section summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1rem 0.6rem;
+  margin: 0 -1rem;
+  padding: 0.75rem 1rem;
   cursor: pointer;
-  font-weight: 600;
+  list-style: none;
+}
+
+.graph-tool-section summary::-webkit-details-marker {
+  display: none;
+}
+
+.graph-tool-section summary::before {
+  content: '\25B8';
+  display: inline-block;
+  margin-right: 0.35rem;
+  color: var(--text-muted);
+  transition: transform 120ms ease;
+}
+
+.graph-tool-section[open] summary::before {
+  transform: rotate(90deg);
+}
+
+.graph-tool-section-title {
+  font-weight: 700;
   font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.graph-tool-section-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Find a path is the toolbar's most distinctive capability (it's the only
+   thing here that draws a highlighted route across the graph, not just a
+   show/hide filter) -- a green accent border sets it apart from the plainer,
+   more routine Advanced filters section next to it instead of both looking
+   like the same kind of collapsed accordion. */
+.graph-path-finder-section {
+  border-color: var(--brand-green);
+  border-left-width: 3px;
 }
 
 .graph-advanced-filters .graph-sidebar-title {
