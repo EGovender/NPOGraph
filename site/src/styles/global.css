@@ -1,32 +1,42 @@
 :root {
   color-scheme: light;
-  --surface: var(--cga-surface-soft, #f2f5f8);
-  --page: var(--cga-page, #f5f7fa);
-  --text-primary: var(--cga-text, #102b46);
-  --text-secondary: var(--cga-muted, #556b7e);
-  --text-muted: var(--cga-subtle, #758697);
-  --border: var(--cga-border, #dfe6ec);
-  --gridline: var(--cga-border, #dfe6ec);
-  /* CommonGood Atlas brand, aligned to the supplied reference palette
-     (commongood-atlas-reference.css): navy (structure -- headings, buttons,
-     the "CommonGood" half of the wordmark) + institutional green (accent --
-     active/selected state, the "Atlas" half). --brand-green-ink is the
-     text-safe green used for active-state indicators (tabs, selected
-     options, chips) -- reference's own green-700, already used for links in
-     the supplied theme. Bare <a> color/hover is owned by
-     commongood-atlas-reference.css's own `a` rule (navy, green on hover),
-     imported after this file. */
-  --brand-navy: var(--cga-navy-900, #082f5b);
-  --brand-green: var(--cga-green-600, #4f9667);
-  --brand-green-ink: var(--cga-green-700, #3d8455);
-  --link: var(--brand-green-ink);
-  --card-bg: var(--cga-white, #ffffff);
+  --surface: #fcfcfb;
+  --page: #f9f9f7;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  /* #74726d, not the logo-adjacent #898781 dark mode also uses -- on this
+     light --page (#f9f9f7), #898781 measures ~3.4:1, below WCAG 2.2's 4.5:1
+     for normal text; #74726d clears it at ~4.56:1. Dark mode's #898781
+     already passes (~5.4:1 on --page #0d0d0d) so it's untouched. */
+  --text-muted: #74726d;
+  --border: rgba(11, 11, 11, 0.1);
+  --gridline: #e1e0d9;
+  /* Brand colors, from the NPOGraph logo mark. --brand-teal is darkened from
+     the logo's literal #4BA188 to clear 4.5:1 text contrast on --page; the
+     logo's green (#79B158) is used only decoratively (the header accent bar,
+     the icon itself), never for text/links, so it's kept at its true value. */
+  --brand-teal: #387866;
+  --brand-green: #79b158;
+  --link: var(--brand-teal);
+  --card-bg: #ffffff;
 }
 
-/* Dark mode is intentionally not supported: the supplied reference theme
-   (commongood-atlas-reference.css) declares `color-scheme: light` and has no
-   dark variants for its tokens, so a prefers-color-scheme override here would
-   fight it rather than complement it. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --surface: #1a1a19;
+    --page: #0d0d0d;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --border: rgba(255, 255, 255, 0.1);
+    --gridline: #2c2c2a;
+    --brand-teal: #5fc3a8;
+    --brand-green: #8bc168;
+    --link: var(--brand-teal);
+    --card-bg: #16161a;
+  }
+}
 
 * {
   box-sizing: border-box;
@@ -38,19 +48,165 @@ body {
   padding: 0;
 }
 
-/* body, a, :focus-visible, and h1-h3 are intentionally not declared here --
-   commongood-atlas-reference.css (imported after this file in BaseLayout)
-   declares all of them at the same or higher specificity, so a rule here
-   would either be fully shadowed dead code or fight the reference theme. */
+body {
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.55;
+}
 
 input[type="radio"],
 input[type="checkbox"] {
-  accent-color: var(--brand-navy);
+  accent-color: var(--brand-teal);
 }
 
-/* Header layout (.cga-site-header shell, .cga-brand, .cga-nav link styling,
-   .cga-header-actions, .nav-toggle mobile behavior) now lives in
-   commongood-atlas-reference.css + site-extensions.css -- see BaseLayout.astro. */
+/* One consistent, high-contrast keyboard-focus ring across every
+   interactive element -- links, buttons, tabs, pills, graph controls,
+   filter chips, form fields -- instead of leaving it to whatever the
+   browser default happens to render (or not render at all on custom
+   button/label-based controls). :focus-visible so it only shows for
+   keyboard/assistive-tech navigation, not every mouse click. */
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+a {
+  color: var(--link);
+}
+
+/* A consistent baseline type scale -- previously undeclared, so every
+   heading fell back to the UA stylesheet's sizing with only per-page inline
+   margin tweaks. Page-level components (design questions, inspector tabs,
+   etc.) already set their own heading classes with higher specificity, so
+   this only changes headings that were relying on the browser default. */
+h1 {
+  font-size: 2rem;
+  line-height: 1.25;
+  margin: 0 0 0.75rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin: 2rem 0 0.75rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  flex-wrap: wrap;
+  position: relative;
+}
+
+/* Decorative echo of the logo's teal-to-green gradient -- never used to
+   convey interactive state, purely a brand accent. */
+.site-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-teal), var(--brand-green));
+}
+
+.site-header .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.brand-icon {
+  flex: none;
+  display: block;
+}
+
+.brand-text-accent {
+  color: var(--brand-teal);
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.site-header nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.site-header nav a:hover {
+  color: var(--text-primary);
+}
+
+.site-header nav a.active {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  cursor: pointer;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 16px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .site-header nav {
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+    order: 3;
+    padding-top: 0.75rem;
+  }
+
+  .site-header nav.open {
+    display: flex;
+  }
+
+  .site-header nav a {
+    padding: 0.5rem 0;
+  }
+}
 
 main {
   max-width: 960px;
@@ -71,60 +227,73 @@ main.full-bleed {
   padding-right: 1rem;
 }
 
-/* The homepage's own full-bleed bands (.cga-hero, .cga-feature-band,
-   .cga-section--navy, .cga-metrics) center their content via .cga-container;
-   <main> itself must not add its own cap/padding or those bands can't reach
-   the viewport edge. */
-main.home-bleed {
-  max-width: none;
-  padding: 0;
-  margin: 0;
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
-/* Footer now uses .cga-site-footer (commongood-atlas-reference.css). */
+.footer-version {
+  display: inline-block;
+}
+
+.journey-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.journey-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.journey-card-title {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.journey-card .home-cta {
+  margin-top: auto;
+  align-self: flex-start;
+}
 
 .home-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  min-height: 2.75rem;
-  padding: 0.65rem 1.15rem;
-  border-radius: 0.5rem;
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--card-bg);
   color: var(--text-primary);
   text-decoration: none;
   font-size: 0.95rem;
-  font-weight: 700;
-  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  font-weight: 600;
 }
 
 .home-cta:hover {
-  border-color: var(--brand-navy);
-  transform: translateY(-1px);
+  border-color: var(--brand-teal);
 }
 
 .home-cta-primary {
-  background: var(--brand-navy);
-  border-color: var(--brand-navy);
+  background: var(--brand-teal);
+  border-color: var(--brand-teal);
   color: #ffffff;
-  box-shadow: var(--cga-shadow-sm);
 }
 
 .home-cta-primary:hover {
-  background: var(--cga-navy-950);
-  border-color: var(--cga-navy-950);
-  box-shadow: var(--cga-shadow-md);
+  opacity: 0.92;
 }
 
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 1.35rem;
-  box-shadow: var(--cga-shadow-sm);
-  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
 }
 
 .badge {
@@ -211,9 +380,8 @@ pre {
 }
 
 .search-input:focus {
-  outline: none;
-  border-color: var(--brand-green);
-  box-shadow: var(--cga-focus);
+  outline: 2px solid var(--link);
+  outline-offset: 1px;
 }
 
 .link-button {
@@ -286,7 +454,7 @@ pre {
 }
 
 .sort-toggle.active {
-  background: var(--brand-navy);
+  background: var(--brand-teal);
   color: #ffffff;
 }
 
@@ -311,7 +479,7 @@ pre {
 }
 
 .catalogue-filters[open] summary {
-  border-color: var(--brand-navy);
+  border-color: var(--brand-teal);
   color: var(--text-primary);
 }
 
@@ -533,9 +701,20 @@ mark {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Header search responsive sizing now lives in site-extensions.css
-   (.cga-header-actions .search-box-compact), alongside the rest of the
-   header's mobile layout. */
+@media (max-width: 640px) {
+  .site-header nav .search-box-compact {
+    width: 100%;
+    margin-top: 0.25rem;
+  }
+
+  .site-header nav .search-results-compact,
+  .site-header nav .search-no-results-compact {
+    position: static;
+    width: 100%;
+    max-width: none;
+    box-shadow: none;
+  }
+}
 
 /* Filters live in a horizontal toolbar above the canvas (not a side column)
    so the graph itself gets as much width as possible -- see .graph-main. */
@@ -605,7 +784,7 @@ mark {
 }
 
 .view-pill.active {
-  background: var(--brand-navy);
+  background: var(--brand-teal);
   color: #ffffff;
 }
 
@@ -647,7 +826,7 @@ mark {
 }
 
 .graph-kind-chip:hover {
-  border-color: var(--brand-navy);
+  border-color: var(--brand-teal);
 }
 
 .graph-kind-chip-hidden {
@@ -804,11 +983,7 @@ mark {
   height: 100%;
   border: 1px solid var(--border);
   border-radius: 8px;
-  background:
-    linear-gradient(rgba(8, 47, 91, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(8, 47, 91, 0.035) 1px, transparent 1px),
-    var(--cga-white);
-  background-size: 24px 24px;
+  background: var(--surface);
 }
 
 .graph-canvas-mini {
@@ -877,7 +1052,7 @@ mark {
 }
 
 .graph-edge.path-edge {
-  stroke: var(--brand-navy);
+  stroke: var(--brand-teal);
   stroke-width: 3px;
   opacity: 1;
 }
@@ -904,7 +1079,7 @@ mark {
 }
 
 .graph-edge-label.path-edge {
-  fill: var(--brand-navy);
+  fill: var(--brand-teal);
   font-weight: 600;
 }
 
@@ -1022,7 +1197,7 @@ mark {
 }
 
 .graph-view-toggle button.active {
-  background: var(--brand-navy);
+  background: var(--brand-teal);
   color: #ffffff;
 }
 
@@ -1061,7 +1236,7 @@ mark {
 }
 
 .graph-filter-chip:hover {
-  border-color: var(--brand-navy);
+  border-color: var(--brand-teal);
 }
 
 .graph-advanced-filters {
@@ -1218,7 +1393,7 @@ mark {
   margin-top: 1.25rem;
   padding: 0.75rem 1rem;
   border: 1px solid var(--border);
-  border-left: 3px solid var(--brand-navy);
+  border-left: 3px solid var(--brand-teal);
   border-radius: 6px;
   background: var(--page);
   font-size: 0.85rem;
@@ -1590,7 +1765,7 @@ mark {
 .custom-view-banner {
   padding: 0.75rem;
   border: 1px solid var(--border);
-  border-left: 3px solid var(--brand-navy);
+  border-left: 3px solid var(--brand-teal);
   border-radius: 6px;
   background: var(--page);
   font-size: 0.85rem;
@@ -1729,8 +1904,8 @@ mark {
 }
 
 .story-scenario-tab.active {
-  border-color: var(--brand-navy);
-  background: var(--brand-navy);
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
   color: #ffffff;
 }
 
@@ -1753,8 +1928,8 @@ mark {
 }
 
 .story-scenario-card.active {
-  border-color: var(--brand-navy);
-  box-shadow: inset 0 0 0 1px var(--brand-navy);
+  border-color: var(--brand-teal);
+  box-shadow: inset 0 0 0 1px var(--brand-teal);
 }
 
 .story-scenario-card-label {
@@ -1843,4 +2018,3 @@ mark {
   font-size: 0.82rem;
   font-weight: 600;
 }
-

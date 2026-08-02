@@ -1,240 +1,91 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SearchBox from '../components/SearchBox';
 import { concepts, relationships, ontologyVersion, ontologyLastUpdated } from '../data/ontology';
-
-import heroGlobe from '../icons/hero-globe-network.svg?raw';
-import orbitOrganizations from '../icons/orbit-organizations.svg?raw';
-import orbitPeople from '../icons/orbit-people.svg?raw';
-import orbitProcesses from '../icons/orbit-processes.svg?raw';
-import orbitData from '../icons/orbit-data.svg?raw';
-import orbitResources from '../icons/orbit-resources.svg?raw';
-import orbitOutcomes from '../icons/orbit-outcomes.svg?raw';
-import featureKnowledge from '../icons/feature-comprehensive-knowledge.svg?raw';
-import featureInsights from '../icons/feature-connected-insights.svg?raw';
-import featureTools from '../icons/feature-practical-tools.svg?raw';
-import featureOpen from '../icons/feature-open-and-collaborative.svg?raw';
-import featureImpact from '../icons/feature-built-for-impact.svg?raw';
-import pathwayExplore from '../icons/pathway-explore.svg?raw';
-import pathwayModel from '../icons/pathway-model.svg?raw';
-import pathwayImplement from '../icons/pathway-implement.svg?raw';
 
 const base = import.meta.env.BASE_URL;
 
 const lastUpdatedDisplay = ontologyLastUpdated
   ? new Date(ontologyLastUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
   : null;
-
-// The six category nodes around the hero graphic, each linking to a real,
-// existing page/view -- no invented sections.
-const orbitNodes = [
-  { label: 'Organizations', href: `${base}explore?view=organizations`, icon: orbitOrganizations, cls: 'organizations' },
-  { label: 'People', href: `${base}concepts`, icon: orbitPeople, cls: 'people' },
-  { label: 'Processes', href: `${base}explore?view=lifecycle`, icon: orbitProcesses, cls: 'processes' },
-  { label: 'Data', href: `${base}explore?view=funds`, icon: orbitData, cls: 'data' },
-  { label: 'Resources', href: `${base}concepts`, icon: orbitResources, cls: 'resources' },
-  { label: 'Outcomes', href: `${base}concepts`, icon: orbitOutcomes, cls: 'outcomes' },
-];
-
-const features = [
-  {
-    icon: featureKnowledge,
-    title: 'Comprehensive Knowledge',
-    copy: 'Concepts, definitions, and relationships across the grantmaking operating landscape.',
-  },
-  {
-    icon: featureInsights,
-    title: 'Connected Insights',
-    copy: 'Explore how everything connects through an interactive knowledge graph.',
-  },
-  {
-    icon: featureTools,
-    title: 'Practical Tools',
-    copy: 'Model your program and identify which concepts apply to your organization.',
-  },
-  {
-    icon: featureOpen,
-    title: 'Open and Collaborative',
-    copy: 'Open source (MIT licensed) and built to serve the social sector.',
-  },
-  {
-    icon: featureImpact,
-    title: 'Built for Impact',
-    copy: 'Designed to help organizations describe their work consistently and operate more effectively.',
-  },
-];
-
-const pathways = [
-  {
-    icon: pathwayExplore,
-    title: 'Explore',
-    copy: 'Discover concepts and connections across the grantmaking landscape.',
-    href: `${base}explore`,
-    linkText: 'Go to Explorer',
-  },
-  {
-    icon: pathwayModel,
-    title: 'Model',
-    copy: 'Answer questions about your program and see which concepts apply.',
-    href: `${base}design`,
-    linkText: 'Go to Modeler',
-  },
-  {
-    icon: pathwayImplement,
-    title: 'Implement',
-    copy: 'Follow a worked example to see the ontology applied end to end.',
-    href: `${base}story`,
-    linkText: 'Go to Worked Example',
-  },
-];
 ---
 
-<BaseLayout title="Home" wide="home">
-  <section class="cga-hero">
-    <div class="cga-container cga-hero__grid">
-      <div>
-        <h1 class="cga-hero__title">
-          <span>Shared knowledge.</span>
-          <span class="cga-hero__accent">Stronger impact.</span>
-        </h1>
-        <p class="cga-hero__copy">
-          CommonGood Atlas is an open knowledge foundation for nonprofit and philanthropic
-          operations — starting with grantmaking: funders, applications, awards, payments,
-          compliance, and outcomes, described the same way everywhere.
-        </p>
-        <div class="cga-hero__actions">
-          <a class="cga-button cga-button--primary" href={`${base}concepts`}>Explore the Atlas &rarr;</a>
-          <a class="cga-button cga-button--secondary" href="#about">Learn More</a>
-        </div>
-        <p class="cga-hero__note">Built by and for the social sector. Open. Collaborative. Always improving.</p>
-      </div>
+<BaseLayout title="Home">
+  <section style="text-align: center; margin-bottom: 2rem;">
+    <h1 style="margin-bottom: 0.5rem;">A shared language for grantmaking and nonprofit operations</h1>
+    <p class="secondary" style="font-size: 1.15rem; max-width: 60ch; margin: 0 auto;">
+      Every funder, grantee, and vendor models a "grant" a little differently. CommonGood Atlas is an open,
+      precisely-defined ontology so the same concepts — application, award, payment, compliance,
+      outcome — mean the same thing everywhere.
+    </p>
+    <p class="muted" style="max-width: 55ch; margin: 0.75rem auto 0;">
+      Built for grantmaking practitioners, nonprofit-technology teams, and the vendors and
+      researchers who support them.
+    </p>
+  </section>
 
-      <div class="cga-hero__visual">
-        <div class="cga-hero__visual-inner">
-          <div class="cga-hero__orbit-wrap">
-            <div class="cga-hero__orbit-globe">
-              <Fragment set:html={heroGlobe} />
-            </div>
-            <ul class="cga-hero__orbit" aria-label="Knowledge categories">
-              {
-                orbitNodes.map((node) => (
-                  <li class={`cga-orbit-node cga-orbit-${node.cls}`}>
-                    <a href={node.href}>
-                      <span class="cga-orbit-node-icon" set:html={node.icon} />
-                      {node.label}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-        </div>
-      </div>
+  <section class="journey-cards" aria-label="Choose your path">
+    <div class="card journey-card">
+      <h2 class="journey-card-title">Understand how grantmaking fits together</h2>
+      <p class="secondary">For nonprofit leaders, program teams, and newcomers.</p>
+      <a class="home-cta home-cta-primary" href={`${base}story`}>Start with a worked example</a>
+    </div>
+    <div class="card journey-card">
+      <h2 class="journey-card-title">Map your organization's process</h2>
+      <p class="secondary">Answer questions and identify the concepts that apply to your program.</p>
+      <a class="home-cta home-cta-primary" href={`${base}design`}>Model your program</a>
+    </div>
+    <div class="card journey-card">
+      <h2 class="journey-card-title">Explore the data model</h2>
+      <p class="secondary">Search definitions, relationships, properties, rules, and technical formats.</p>
+      <a class="home-cta home-cta-primary" href={`${base}concepts`}>Browse the ontology</a>
     </div>
   </section>
 
-  <section class="cga-feature-band">
-    <div class="cga-container cga-grid cga-grid--5">
-      {
-        features.map((feature) => (
-          <div class="cga-card">
-            <div class="cga-card__top">
-              <span class="cga-card__icon" set:html={feature.icon} />
-            </div>
-            <h2 class="cga-card__title">{feature.title}</h2>
-            <p class="cga-card__copy">{feature.copy}</p>
-          </div>
-        ))
-      }
-    </div>
+  <p class="secondary" style="text-align: center; margin: 1.25rem 0;">
+    Already familiar with knowledge graphs?{' '}
+    <a href={`${base}explore`}>Open the graph explorer &rarr;</a>
+  </p>
+
+  <SearchBox client:load concepts={concepts} base={base} />
+
+  <p class="muted" style="text-align: center; margin-top: 0.75rem;">
+    <strong>Pre-alpha:</strong> the ontology and this site are both still taking shape — concepts,
+    relationships, and pages can change without notice.
+  </p>
+  <p class="muted" style="text-align: center; margin-top: 0.25rem;">
+    Ontology v{ontologyVersion}
+    {lastUpdatedDisplay && <>, updated {lastUpdatedDisplay}</>}
+    {' '}· {concepts.length} concepts · {relationships.length} relationships
+  </p>
+
+  <section style="margin-top: 3rem;">
+    <h2>What can CommonGood Atlas help with?</h2>
+    <ul>
+      <li>Standardize definitions across a CRM, grants platform, and finance system</li>
+      <li>Design a new grants-management data model</li>
+      <li>Document how awards, installments, payments, and reports relate</li>
+      <li>Compare terminology used by funders, grantees, and software vendors</li>
+      <li>Create shared reference data and validation rules</li>
+    </ul>
   </section>
 
-  <section class="cga-section cga-section--navy">
-    <div class="cga-container">
-      <div class="cga-section-heading cga-section-heading--center">
-        <h2>From understanding to impact</h2>
-      </div>
-      <div class="cga-pathways">
-        {
-          pathways.map((pathway) => (
-            <div class="cga-pathway">
-              <span class="cga-pathway__icon" set:html={pathway.icon} />
-              <div>
-                <h3>{pathway.title}</h3>
-                <p>{pathway.copy}</p>
-                <a href={pathway.href}>{pathway.linkText} &rarr;</a>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="cga-metrics">
-    <div class="cga-container cga-metrics__grid">
-      <div class="cga-metric">
-        <span class="cga-metric__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 3 20 7.5v9L12 21 4 16.5v-9Z" /></svg>
-        </span>
-        <div>
-          <strong>{concepts.length} concepts</strong>
-          <span>Defined and documented</span>
-        </div>
-      </div>
-      <div class="cga-metric">
-        <span class="cga-metric__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="7" cy="12" r="3.2" /><circle cx="17" cy="12" r="3.2" /><path d="M10.2 12h3.6" /></svg>
-        </span>
-        <div>
-          <strong>{relationships.length} relationships</strong>
-          <span>Mapped between them</span>
-        </div>
-      </div>
-      <div class="cga-metric">
-        <span class="cga-metric__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M9 6 4 12l5 6M15 6l5 6-5 6" /></svg>
-        </span>
-        <div>
-          <strong>Open Source</strong>
-          <span>MIT licensed, transparent and accessible</span>
-        </div>
-      </div>
-      <div class="cga-metric">
-        <span class="cga-metric__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="9" cy="9" r="3.4" /><circle cx="16" cy="11" r="2.6" /><path d="M3.5 19c.8-3.4 3-5.2 5.5-5.2s4.7 1.8 5.5 5.2M14 18.4c.5-2 1.8-3.3 3.6-3.3 1.5 0 2.7.9 3.4 2.4" /></svg>
-        </span>
-        <div>
-          <strong>Built Together</strong>
-          <span>Contribute on GitHub</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about" class="cga-section cga-section--compact cga-section--white">
-    <div class="cga-container cga-reading">
-      <h2>What is this?</h2>
-      <p>
-        CommonGood Atlas models how grantmaking actually works — funders, applications, reviews, awards,
-        payments, compliance, and outcomes, plus the organizational roles and arrangements
-        (fiscal sponsorship, donor-advised funds, regranting) that surround them — as a shared,
-        openly reviewable ontology. This site is the interactive explorer for that ontology.
-      </p>
-      <p>
-        Grantmaking is the first module; the goal is a broader ontology for nonprofit operations. See
-        the project's{' '}
-        <a href="https://github.com/EGovender/commongood-atlas/blob/main/docs/00-vision.md">vision</a>{' '}
-        and <a href="https://github.com/EGovender/commongood-atlas/blob/main/docs/04-roadmap.md">roadmap</a>{' '}
-        for where it's headed, or the{' '}
-        <a href="https://github.com/EGovender/commongood-atlas">CommonGood Atlas repository</a> for the underlying
-        concepts, relationships, and machine-readable formats (OWL, RDF, JSON-LD).
-      </p>
-      <p style="margin-top: 1.5rem; color: var(--cga-muted); font-size: var(--cga-sm);">
-        <strong>Pre-alpha:</strong> the ontology and this site are both still taking shape — concepts,
-        relationships, and pages can change without notice.
-        {' '}Ontology v{ontologyVersion}
-        {lastUpdatedDisplay && <>, updated {lastUpdatedDisplay}</>}.
-      </p>
-    </div>
+  <section style="margin-top: 2rem;">
+    <h2>What is this?</h2>
+    <p>
+      CommonGood Atlas models how grantmaking actually works — funders, applications, reviews, awards,
+      payments, compliance, and outcomes, plus the organizational roles and arrangements
+      (fiscal sponsorship, donor-advised funds, regranting) that surround them — as a shared,
+      openly reviewable ontology. This site is the interactive explorer for that ontology.
+    </p>
+    <p>
+      Grantmaking is the first module; the goal is a broader ontology for nonprofit operations. See
+      the project's{' '}
+      <a href="https://github.com/EGovender/commongood-atlas/blob/main/docs/00-vision.md">vision</a>{' '}
+      and <a href="https://github.com/EGovender/commongood-atlas/blob/main/docs/04-roadmap.md">roadmap</a>{' '}
+      for where it's headed, or the{' '}
+      <a href="https://github.com/EGovender/commongood-atlas">CommonGood Atlas repository</a> for the underlying
+      concepts, relationships, and machine-readable formats (OWL, RDF, JSON-LD).
+    </p>
   </section>
 </BaseLayout>
