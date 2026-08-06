@@ -49,7 +49,7 @@ export default function SearchBox({ concepts, base, compact = false }: Props) {
                   />
                   <span>
                     <strong>{c.label}</strong>
-                    <span className="search-result-def"> — {c.definition}</span>
+                    <span className="search-result-def"> - {c.definition}</span>
                   </span>
                 </a>
               </li>

@@ -207,7 +207,7 @@ export default function PropertyInspector({
               </div>
             ))}
             <p className="secondary" style={{ marginTop: '1.25rem' }}>
-              From the worked example{examples.length > 1 ? 's' : ''} above — part of the ontology's{' '}
+              From the worked example{examples.length > 1 ? 's' : ''} above - part of the ontology's{' '}
               <a href={`${base}story`}>Story mode</a> walkthrough.
             </p>
           </div>
@@ -252,7 +252,7 @@ export default function PropertyInspector({
             {propertyGroups.some((g) => g.fields.length > 0) && (
               <>
                 <p className="muted inspector-note">
-                  Schema-level attributes an instance of {concept.label} carries — not example data.
+                  Schema-level attributes an instance of {concept.label} carries - not example data.
                 </p>
                 {propertyGroups.map((group) => (
                   <section key={group.id} className="inspector-group">
@@ -355,7 +355,7 @@ export default function PropertyInspector({
               </div>
               <div className="inspector-field">
                 <dt>Source-system mappings</dt>
-                <dd className="muted">None yet — CommonGood Atlas has no source-system integrations.</dd>
+                <dd className="muted">None yet - CommonGood Atlas has no source-system integrations.</dd>
               </div>
               <div className="inspector-field">
                 <dt>Ontology version</dt>

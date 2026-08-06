@@ -2176,6 +2176,13 @@ mark {
   margin: 0 0 1.75rem;
 }
 
+.dark-hero-note {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  max-width: 52ch;
+  margin: 0 0 1.75rem;
+}
+
 .dark-hero-actions {
   display: flex;
   gap: 0.75rem;

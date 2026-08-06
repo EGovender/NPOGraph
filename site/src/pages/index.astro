@@ -21,12 +21,15 @@ const lastUpdatedDisplay = ontologyLastUpdated
         <h1 class="dark-hero-title">A shared language for grantmaking and <strong>nonprofit operations</strong></h1>
         <p class="dark-hero-copy">
           Every funder, grantee, and vendor models a "grant" a little differently. CommonGood Atlas is an
-          open, precisely-defined ontology so the same concepts — application, award, payment, compliance,
-          outcome — mean the same thing everywhere.
+          open, precisely-defined ontology so the same concepts - application, award, payment, compliance,
+          outcome - mean the same thing everywhere.
+        </p>
+        <p class="dark-hero-note">
+          Built for grantmaking practitioners, nonprofit-technology teams, and the vendors and
+          researchers who support them.
         </p>
         <div class="dark-hero-actions">
-          <a class="dark-hero-cta" href={`${base}concepts`}>Explore the Atlas</a>
-          <a class="dark-hero-cta dark-hero-cta-secondary" href={`${base}story`}>Watch a Worked Example</a>
+          <a class="dark-hero-cta" href={`${base}explore`}>Explore the Atlas</a>
         </div>
       </div>
       <div class="dark-hero-visual" set:html={heroNetwork} />
@@ -34,11 +37,6 @@ const lastUpdatedDisplay = ontologyLastUpdated
   </section>
 
   <div class="home-container">
-  <p class="muted" style="text-align: center; margin: 2rem 0 0;">
-    Built for grantmaking practitioners, nonprofit-technology teams, and the vendors and
-    researchers who support them.
-  </p>
-
   <section class="journey-cards" aria-label="Choose your path">
     <div class="card journey-card">
       <h2 class="journey-card-title">Understand how grantmaking fits together</h2>
@@ -53,7 +51,7 @@ const lastUpdatedDisplay = ontologyLastUpdated
     <div class="card journey-card">
       <h2 class="journey-card-title">Explore the data model</h2>
       <p class="secondary">Search definitions, relationships, properties, rules, and technical formats.</p>
-      <a class="home-cta home-cta-primary" href={`${base}concepts`}>Browse the ontology</a>
+      <a class="home-cta home-cta-primary" href={`${base}concepts`}>Browse Concepts</a>
     </div>
   </section>
 
@@ -65,7 +63,7 @@ const lastUpdatedDisplay = ontologyLastUpdated
   <SearchBox client:load concepts={concepts} base={base} />
 
   <p class="muted" style="text-align: center; margin-top: 0.75rem;">
-    <strong>Pre-alpha:</strong> the ontology and this site are both still taking shape — concepts,
+    <strong>Pre-alpha:</strong> the ontology and this site are both still taking shape - concepts,
     relationships, and pages can change without notice.
   </p>
   <p class="muted" style="text-align: center; margin-top: 0.25rem;">
@@ -88,9 +86,9 @@ const lastUpdatedDisplay = ontologyLastUpdated
   <section style="margin-top: 2rem;">
     <h2>What is this?</h2>
     <p>
-      CommonGood Atlas models how grantmaking actually works — funders, applications, reviews, awards,
+      CommonGood Atlas models how grantmaking actually works - funders, applications, reviews, awards,
       payments, compliance, and outcomes, plus the organizational roles and arrangements
-      (fiscal sponsorship, donor-advised funds, regranting) that surround them — as a shared,
+      (fiscal sponsorship, donor-advised funds, regranting) that surround them - as a shared,
       openly reviewable ontology. This site is the interactive explorer for that ontology.
     </p>
     <p>
