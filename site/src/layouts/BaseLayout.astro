@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import '../styles/commongood-atlas-reference.css';
 import { concepts, ontologyVersion, ontologyLastUpdated } from '../data/ontology';
 import SearchBox from '../components/SearchBox';
 
@@ -9,8 +8,10 @@ interface Props {
   description?: string;
   /** true: the existing 1200px-capped layout (concept catalogue, concept
    * pages, design tool). 'full': a much wider cap, for the graph explorer,
-   * where canvas space is the whole point. */
-  wide?: boolean | 'full';
+   * where canvas space is the whole point. 'home': no cap/padding at all --
+   * the homepage's full-bleed dark hero band centers its own content via a
+   * container element. */
+  wide?: boolean | 'full' | 'home';
 }
 
 const { title, description = 'CommonGood Atlas is an open knowledge foundation for nonprofit and philanthropic operations.', wide = false } = Astro.props;
@@ -114,7 +115,7 @@ const lastUpdatedDisplay = ontologyLastUpdated
         {!isHome && <SearchBox client:load compact concepts={concepts} base={base} />}
       </nav>
     </header>
-    <main class={wide === 'full' ? 'full-bleed' : wide ? 'wide' : ''}>
+    <main class={wide === 'full' ? 'full-bleed' : wide === 'home' ? 'home-bleed' : wide ? 'wide' : ''}>
       <slot />
     </main>
     <footer class="site-footer">

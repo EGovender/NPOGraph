@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SearchBox from '../components/SearchBox';
 import { concepts, relationships, ontologyVersion, ontologyLastUpdated } from '../data/ontology';
+import heroNetwork from '../icons/hero-network-dark.svg?raw';
 
 const base = import.meta.env.BASE_URL;
 
@@ -10,21 +11,33 @@ const lastUpdatedDisplay = ontologyLastUpdated
   : null;
 ---
 
-<BaseLayout title="Home">
-  <section style="text-align: center; margin-bottom: 2rem;">
-    <h1 style="margin-bottom: 0.5rem;">
-      A shared language for grantmaking and <span style="color: var(--brand-green-ink);">nonprofit operations</span>
-    </h1>
-    <p class="secondary" style="font-size: 1.15rem; max-width: 60ch; margin: 0 auto;">
-      Every funder, grantee, and vendor models a "grant" a little differently. CommonGood Atlas is an open,
-      precisely-defined ontology so the same concepts — application, award, payment, compliance,
-      outcome — mean the same thing everywhere.
-    </p>
-    <p class="muted" style="max-width: 55ch; margin: 0.75rem auto 0;">
-      Built for grantmaking practitioners, nonprofit-technology teams, and the vendors and
-      researchers who support them.
-    </p>
+<BaseLayout title="Home" wide="home">
+  <section class="dark-hero">
+    <div class="dark-hero-inner">
+      <div>
+        <img class="dark-hero-mark" src={`${base}brand/mark-on-dark.svg`} alt="" width="64" height="64" />
+        <span class="dark-hero-eyebrow">Open Knowledge Ontology</span>
+        <span class="dark-hero-eyebrow-rule" aria-hidden="true"></span>
+        <h1 class="dark-hero-title">A shared language for grantmaking and <strong>nonprofit operations</strong></h1>
+        <p class="dark-hero-copy">
+          Every funder, grantee, and vendor models a "grant" a little differently. CommonGood Atlas is an
+          open, precisely-defined ontology so the same concepts — application, award, payment, compliance,
+          outcome — mean the same thing everywhere.
+        </p>
+        <div class="dark-hero-actions">
+          <a class="dark-hero-cta" href={`${base}concepts`}>Explore the Atlas</a>
+          <a class="dark-hero-cta dark-hero-cta-secondary" href={`${base}story`}>Watch a Worked Example</a>
+        </div>
+      </div>
+      <div class="dark-hero-visual" set:html={heroNetwork} />
+    </div>
   </section>
+
+  <div class="home-container">
+  <p class="muted" style="text-align: center; margin: 2rem 0 0;">
+    Built for grantmaking practitioners, nonprofit-technology teams, and the vendors and
+    researchers who support them.
+  </p>
 
   <section class="journey-cards" aria-label="Choose your path">
     <div class="card journey-card">
@@ -90,4 +103,5 @@ const lastUpdatedDisplay = ontologyLastUpdated
       concepts, relationships, and machine-readable formats (OWL, RDF, JSON-LD).
     </p>
   </section>
+  </div>
 </BaseLayout>

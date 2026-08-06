@@ -1,29 +1,36 @@
 :root {
   color-scheme: light;
-  --surface: var(--cga-surface-soft, #f2f5f8);
-  --page: var(--cga-page, #f5f7fa);
-  --text-primary: var(--cga-text, #102b46);
-  --text-secondary: var(--cga-muted, #556b7e);
-  --text-muted: var(--cga-subtle, #758697);
-  --border: var(--cga-border, #dfe6ec);
-  --gridline: var(--cga-border, #dfe6ec);
-  /* CommonGood Atlas brand, aligned to commongood-atlas-reference.css's
-     navy/green tokens. --brand-green-ink is the text-safe green used for
-     active-state indicators (the reference's own green-700, already used
-     for links in that theme). Bare <a> color/hover is owned by
-     commongood-atlas-reference.css's own `a` rule, imported after this
-     file. */
-  --brand-navy: var(--cga-navy-900, #082f5b);
-  --brand-green: var(--cga-green-600, #4f9667);
-  --brand-green-ink: var(--cga-green-700, #3d8455);
+  --page: #f7f7f8;
+  --surface: #f0f1f3;
+  --text-secondary: #55596a;
+  /* 4.66:1 on --page -- WCAG 2.2 normal-text minimum is 4.5:1. */
+  --text-muted: #6b6f80;
+  --border: #e0e1e5;
+  --gridline: #e0e1e5;
+  /* CommonGood Atlas brand, recolored to match the kibocommerce.com
+     reference: dark charcoal (structure -- headings, buttons, the hero
+     band) + a bold gold accent. --brand-green is the vivid, literal gold
+     (#FFCE01) -- decorative-only (buttons, underlines, the hero graphic)
+     since at ~1.5:1 on white it fails as text. --brand-green-ink is a
+     darkened, text-safe gold (~5.3:1 on --page) for links and active-state
+     indicators. Variable names kept as -navy/-green for minimal churn
+     across the codebase -- they no longer literally mean navy/green. */
+  --brand-navy: #2e343e;
+  --brand-green: #ffce01;
+  --brand-green-ink: #8a6508;
   --link: var(--brand-green-ink);
-  --card-bg: var(--cga-white, #ffffff);
+  --card-bg: #ffffff;
+  --text-primary: var(--brand-navy);
+
+  --shadow-sm: 0 1px 2px rgba(20, 22, 28, 0.05), 0 5px 15px rgba(20, 22, 28, 0.06);
+  --shadow-md: 0 2px 4px rgba(20, 22, 28, 0.05), 0 14px 32px rgba(20, 22, 28, 0.1);
+  --focus-ring: 0 0 0 3px rgba(255, 206, 1, 0.4), 0 0 0 1px var(--brand-navy);
 }
 
-/* Dark mode is intentionally not supported: commongood-atlas-reference.css
-   declares `color-scheme: light` and has no dark variants for its tokens,
-   so a prefers-color-scheme override here would fight it rather than
-   complement it. */
+/* Dark mode is intentionally not supported -- the brand's dark charcoal is
+   used deliberately as a light-mode hero/accent color, not as a page-wide
+   dark theme, so a prefers-color-scheme override would be a different
+   feature, not a natural extension of this palette. */
 
 * {
   box-sizing: border-box;
@@ -35,15 +42,51 @@ body {
   padding: 0;
 }
 
+body {
+  background: var(--page);
+  color: var(--text-primary);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.55;
+}
+
 input[type="radio"],
 input[type="checkbox"] {
   accent-color: var(--brand-navy);
 }
 
-/* body, a, :focus-visible, and h1-h3 are intentionally not declared here --
-   commongood-atlas-reference.css (imported after this file in BaseLayout)
-   declares all of them at the same or higher specificity, so a rule here
-   would either be fully shadowed dead code or fight the reference theme. */
+:focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: var(--focus-ring);
+}
+
+a {
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--brand-navy);
+}
+
+h1 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.75rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin: 2rem 0 0.75rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  line-height: 1.35;
+  margin: 1.25rem 0 0.5rem;
+}
 
 .site-header {
   display: flex;
@@ -173,6 +216,22 @@ main.full-bleed {
   padding-right: 1rem;
 }
 
+/* The homepage's dark hero band needs to reach the viewport edge; <main>
+   itself must not add its own cap/padding, so the hero centers its own
+   content via .home-container while everything below it (journey cards,
+   etc.) gets its own explicit max-width instead of inheriting one here. */
+main.home-bleed {
+  max-width: none;
+  padding: 0;
+  margin: 0;
+}
+
+.home-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
 .site-footer {
   border-top: 1px solid var(--border);
   padding: 1.5rem;
@@ -244,13 +303,13 @@ main.full-bleed {
   background: var(--brand-navy);
   border-color: var(--brand-navy);
   color: #ffffff;
-  box-shadow: var(--cga-shadow-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 .home-cta-primary:hover {
-  background: var(--cga-navy-950);
-  border-color: var(--cga-navy-950);
-  box-shadow: var(--cga-shadow-md);
+  background: #21252d;
+  border-color: #21252d;
+  box-shadow: var(--shadow-md);
 }
 
 .card {
@@ -258,7 +317,7 @@ main.full-bleed {
   border: 1px solid var(--border);
   border-radius: 0.5rem;
   padding: 1.35rem;
-  box-shadow: var(--cga-shadow-sm);
+  box-shadow: var(--shadow-sm);
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 
@@ -348,7 +407,7 @@ pre {
 .search-input:focus {
   outline: none;
   border-color: var(--brand-green);
-  box-shadow: var(--cga-focus);
+  box-shadow: var(--focus-ring);
 }
 
 .link-button {
@@ -950,9 +1009,9 @@ mark {
   border: 1px solid var(--border);
   border-radius: 8px;
   background:
-    linear-gradient(rgba(8, 47, 91, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(8, 47, 91, 0.035) 1px, transparent 1px),
-    var(--cga-white);
+    linear-gradient(rgba(46, 52, 62, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 52, 62, 0.05) 1px, transparent 1px),
+    #ffffff;
   background-size: 24px 24px;
 }
 
@@ -1011,7 +1070,7 @@ mark {
 }
 
 .graph-edge {
-  stroke: var(--cga-border-strong, #c6d2dc);
+  stroke: #b7b9c2;
   stroke-width: 1.4;
   opacity: 0.85;
 }
@@ -2051,4 +2110,126 @@ mark {
   margin-top: 0.6rem;
   font-size: 0.82rem;
   font-weight: 600;
+}
+
+/* Homepage dark hero band -- modeled on kibocommerce.com's dark, two-column
+   hero: a big mark, an eyebrow with a short accent rule, a bold headline
+   with a weight-emphasized phrase (not a color split -- the reference uses
+   font-weight, not color, to draw the eye), and a line-art network graphic
+   on the right instead of their product screenshot. */
+.dark-hero {
+  background: var(--brand-navy);
+  color: #ffffff;
+  padding: 4rem 0;
+}
+
+.dark-hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 380px);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.dark-hero-mark {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.dark-hero-eyebrow {
+  display: inline-block;
+  color: var(--brand-green);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dark-hero-eyebrow-rule {
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: var(--brand-green);
+  margin: 0.7rem 0 1.35rem;
+  border-radius: 2px;
+}
+
+.dark-hero-title {
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.1rem;
+}
+
+.dark-hero-title strong {
+  font-weight: 800;
+}
+
+.dark-hero-copy {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 1.05rem;
+  max-width: 52ch;
+  margin: 0 0 1.75rem;
+}
+
+.dark-hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.dark-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--brand-green);
+  color: var(--brand-navy);
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.dark-hero-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+.dark-hero-cta-secondary {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.dark-hero-cta-secondary:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.dark-hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.dark-hero-visual svg {
+  width: 100%;
+  max-width: 300px;
+}
+
+@media (max-width: 800px) {
+  .dark-hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .dark-hero-visual {
+    order: -1;
+    max-width: 220px;
+    margin: 0 auto 1.5rem;
+  }
 }
