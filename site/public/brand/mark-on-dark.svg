@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-labelledby="title">
   <title id="title">CommonGood Atlas mark</title>
   <path d="M50 4 92 27v46L50 96 8 73V27Z" fill="none" stroke="#FFCE01" stroke-width="5" stroke-linejoin="round"/>
-  <g stroke="#2E343E" stroke-width="4" stroke-linecap="round">
+  <g stroke="#FFFFFF" stroke-width="4" stroke-linecap="round">
     <line x1="50" y1="50" x2="50" y2="26"/>
     <line x1="50" y1="50" x2="71" y2="38"/>
     <line x1="50" y1="50" x2="71" y2="62"/>
@@ -9,11 +9,11 @@
     <line x1="50" y1="50" x2="29" y2="62"/>
     <line x1="50" y1="50" x2="29" y2="38"/>
   </g>
-  <circle cx="50" cy="50" r="9" fill="#2E343E"/>
+  <circle cx="50" cy="50" r="9" fill="#FFFFFF"/>
   <circle cx="50" cy="26" r="6" fill="#FFCE01"/>
-  <circle cx="71" cy="38" r="6" fill="#2E343E"/>
+  <circle cx="71" cy="38" r="6" fill="#FFFFFF"/>
   <circle cx="71" cy="62" r="6" fill="#FFCE01"/>
-  <circle cx="50" cy="74" r="6" fill="#2E343E"/>
+  <circle cx="50" cy="74" r="6" fill="#FFFFFF"/>
   <circle cx="29" cy="62" r="6" fill="#FFCE01"/>
-  <circle cx="29" cy="38" r="6" fill="#2E343E"/>
+  <circle cx="29" cy="38" r="6" fill="#FFFFFF"/>
 </svg>

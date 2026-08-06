@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <path d="M200 40 340 120v160L200 360 60 280V120Z" stroke="#FFCE01" stroke-width="3"/>
+  <path d="M200 90 300 148v116L200 322 100 264V148Z" stroke="#FFFFFF" stroke-width="1.5" opacity="0.35"/>
+  <path
+    d="M55 130 Q130 45 215 95 T345 195 Q385 255 325 300 T205 358"
+    stroke="#FFCE01"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-dasharray="1 9"
+    opacity="0.85"
+  />
+  <g stroke="#FFFFFF" stroke-width="1.5" opacity="0.75">
+    <line x1="200" y1="200" x2="200" y2="90"/>
+    <line x1="200" y1="200" x2="290" y2="145"/>
+    <line x1="200" y1="200" x2="290" y2="255"/>
+    <line x1="200" y1="200" x2="200" y2="310"/>
+    <line x1="200" y1="200" x2="110" y2="255"/>
+    <line x1="200" y1="200" x2="110" y2="145"/>
+  </g>
+  <circle cx="200" cy="200" r="11" fill="#FFCE01"/>
+  <circle cx="200" cy="90" r="7" fill="#FFFFFF"/>
+  <circle cx="290" cy="145" r="7" fill="#FFCE01"/>
+  <circle cx="290" cy="255" r="7" fill="#FFFFFF"/>
+  <circle cx="200" cy="310" r="7" fill="#FFCE01"/>
+  <circle cx="110" cy="255" r="7" fill="#FFFFFF"/>
+  <circle cx="110" cy="145" r="7" fill="#FFCE01"/>
+</svg>
