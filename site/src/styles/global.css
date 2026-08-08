@@ -781,6 +781,33 @@ mark {
   width: max(100%, 320px);
 }
 
+/* The view switcher changes what dataset you're looking at -- top billing
+   (its own labeled row, ahead of search/Graph-List) instead of competing
+   as same-weight buttons in the same row as the Graph/List toggle. */
+.graph-view-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.graph-view-switcher-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.graph-visible-count {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.graph-visible-count strong {
+  color: var(--text-primary);
+}
+
 .graph-toolbar .graph-view-toggle {
   margin: 0;
   white-space: nowrap;
@@ -813,30 +840,35 @@ mark {
   color: #ffffff;
 }
 
-/* The Kind legend and filter are the same control -- every kind present in
-   the current view is always listed (never hidden in an accordion), with a
-   live count, and clicking one both tells you what it means (shape) and
-   toggles it. */
-.graph-kind-key {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--border);
+/* One consistent chip style for every filter axis (Kind, Category,
+   Relationship type) inside the unified Filters panel -- each group gets a
+   small label followed by a row of pill chips; clicking one both shows what
+   it means (shape/color swatch) and toggles it. */
+.filter-chip-group {
+  margin-top: 0.9rem;
 }
 
-.graph-kind-key-label {
-  font-size: 0.8rem;
+.filter-chip-group:first-child {
+  margin-top: 0;
+}
+
+.filter-chip-group-label {
+  display: block;
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--text-muted);
-  margin-right: 0.25rem;
+  margin-bottom: 0.4rem;
 }
 
-.graph-kind-chip {
+.filter-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filter-chip {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -850,44 +882,48 @@ mark {
   cursor: pointer;
 }
 
-.graph-kind-chip:hover {
+.filter-chip:hover {
   border-color: var(--brand-navy);
 }
 
-.graph-kind-chip-hidden {
+.filter-chip-hidden {
   opacity: 0.55;
   background: var(--page);
 }
 
-.graph-kind-chip-count {
+.filter-chip-count {
   color: var(--text-muted);
   font-weight: 400;
 }
 
-/* The canvas + the (overlaid, not column-sharing) detail panel. */
+/* The canvas and the docked detail panel share the row via flex -- the
+   canvas shrinks to make room instead of the panel floating on top of it. */
 .graph-main {
-  position: relative;
-  height: calc(100vh - 340px);
-  min-height: 520px;
+  display: flex;
+  gap: 0.75rem;
+  height: calc(100vh - 260px);
+  min-height: 600px;
 }
 
 .graph-detail {
   overflow-y: auto;
-  padding: 1rem;
+  /* Extra right padding clears the close button, which sits absolutely
+     positioned in this same top-right corner -- without it, the category
+     badge's text runs behind the button instead of stopping short of it. */
+  padding: 1rem 2.5rem 1rem 1rem;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--card-bg);
   min-width: 0;
+  position: relative;
 }
 
-.graph-detail-overlay {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  bottom: 0.75rem;
-  width: min(380px, calc(100% - 1.5rem));
-  z-index: 5;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+/* Docked, not floating -- a flex sibling of the canvas, so selecting a node
+   shrinks the canvas to make room instead of covering part of it. Wide
+   enough that all 4 (non-"In Practice") inspector tabs fit on one line. */
+.graph-detail-docked {
+  flex: 0 0 420px;
+  height: 100%;
 }
 
 .graph-detail-close {
@@ -914,23 +950,6 @@ mark {
   margin-top: 0;
 }
 
-.category-filter,
-.view-selector {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 0.5rem;
-}
-
-.category-filter label,
-.view-selector label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-}
 
 .shape-swatch {
   width: 0.75rem;
@@ -984,14 +1003,6 @@ mark {
   border-radius: 999px;
 }
 
-.graph-edge-label-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
-  font-size: 0.85rem;
-  cursor: pointer;
-}
 
 .graph-hint {
   margin-top: 1.25rem;
@@ -1000,6 +1011,8 @@ mark {
 
 .graph-canvas-wrap {
   position: relative;
+  flex: 1;
+  min-width: 0;
   height: 100%;
 }
 
@@ -1111,7 +1124,13 @@ mark {
   transition: opacity 0.15s ease;
 }
 
-.graph-edge-label.visible {
+.graph-edge-label.visible,
+.graph-edge-label.hover-visible {
+  opacity: 1;
+}
+
+.graph-edge:hover {
+  stroke-width: 2.4;
   opacity: 1;
 }
 
@@ -1157,6 +1176,17 @@ mark {
 
 .graph-controls button:hover {
   background: var(--gridline);
+}
+
+.graph-controls button.active {
+  background: var(--brand-navy);
+  border-color: var(--brand-navy);
+  color: #ffffff;
+}
+
+.graph-controls button[aria-label*="relationship labels"] {
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .graph-detail-link {
@@ -1238,10 +1268,10 @@ mark {
   color: #ffffff;
 }
 
-/* Active filters and the control that clears them, grouped in one row so
-   it's clear at a glance what's filtered and how to undo it -- only
-   rendered at all when there's something to show, so there's never a
-   disabled, doing-nothing "Reset" sitting in the toolbar. */
+/* Active filters and the control that clears them, grouped in one row --
+   always visible (Reset disabled when there's nothing to reset) so it's
+   never ambiguous whether the current view has drifted from the default,
+   regardless of which named view or tab you're on. */
 .graph-active-filters-row {
   display: flex;
   flex-wrap: wrap;
@@ -1255,6 +1285,12 @@ mark {
 .graph-reset-filters {
   font-size: 0.85rem;
   white-space: nowrap;
+}
+
+.graph-reset-filters:disabled {
+  color: var(--text-muted);
+  text-decoration: none;
+  cursor: default;
 }
 
 .graph-filter-chips {
@@ -1283,11 +1319,12 @@ mark {
   border-color: var(--brand-navy);
 }
 
-/* Shared shell for the two toolbar disclosures (Find a path, Advanced
-   filters) -- same border/spacing/summary treatment so neither reads as
-   more or less "real" than the other, unlike the old single catch-all
-   "More filters" section that buried path-finding among rarely-touched
-   technical filters. */
+/* Shared shell for the toolbar's two disclosures (Filters, Find a path) --
+   same border/spacing/summary treatment so neither reads as more or less
+   "real" or "clickable" than the other. Filters opens by default (it's
+   Kind/Category/Relationship-type, the controls people reach for most);
+   Find a path stays closed but keeps its own green accent so it doesn't
+   just look like a second, identical filters block. */
 .graph-tool-section {
   margin-top: 1rem;
   border: 1px solid var(--border);
@@ -1344,10 +1381,6 @@ mark {
   border-left-width: 3px;
 }
 
-.graph-advanced-filters .graph-sidebar-title {
-  font-size: 0.9rem;
-}
-
 .graph-list-view {
   overflow-y: auto;
   padding: 1rem;
@@ -1379,16 +1412,21 @@ mark {
      order (not a tall side column), so there's no more need to reorder the
      graph ahead of it on small screens the way the old sidebar layout did. */
   .graph-main {
+    flex-direction: column;
+    height: auto;
+    min-height: 0;
+  }
+
+  .graph-canvas-wrap {
     height: 65vh;
     min-height: 420px;
   }
 
-  .graph-detail-overlay {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  .graph-detail-docked {
+    flex: none;
     width: auto;
+    height: auto;
+    max-height: 60vh;
   }
 }
 
