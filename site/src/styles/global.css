@@ -216,20 +216,14 @@ main.full-bleed {
   padding-right: 1rem;
 }
 
-/* The homepage's dark hero band needs to reach the viewport edge; <main>
-   itself must not add its own cap/padding, so the hero centers its own
-   content via .home-container while everything below it (journey cards,
-   etc.) gets its own explicit max-width instead of inheriting one here. */
+/* The homepage's full-bleed sections (hero, dark use-case panel) need to
+   reach the viewport edge; <main> itself must not add its own cap/padding,
+   so each homepage section centers its own content via home.css's
+   .cg-home-container / -inner classes instead of inheriting one here. */
 main.home-bleed {
   max-width: none;
   padding: 0;
   margin: 0;
-}
-
-.home-container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 1.5rem 4rem;
 }
 
 .site-footer {
@@ -242,39 +236,6 @@ main.home-bleed {
 
 .footer-version {
   display: inline-block;
-}
-
-.journey-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-  margin: 0 0 1.5rem;
-}
-
-.journey-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  text-align: left;
-}
-
-.journey-card-title {
-  margin: 0;
-  font-size: 1.05rem;
-}
-
-/* align-self: stretch (not flex-start) so every card's button gets the full
-   card width to lay its text out in -- otherwise the longest label ("Start
-   with a worked example") wraps to two lines while the shorter ones don't,
-   leaving the three buttons visibly different heights. */
-.journey-card .home-cta {
-  margin-top: auto;
-  align-self: stretch;
-  /* Fixed at 2 lines' worth of height (not just the base 2.75rem) --
-     "Start with a worked example" still wraps even at full card width,
-     so matching heights needs a fixed box, not just equal width. */
-  min-height: 3.75rem;
-  text-align: center;
 }
 
 .home-cta {
@@ -2151,135 +2112,6 @@ mark {
   margin-top: 0.6rem;
   font-size: 0.82rem;
   font-weight: 600;
-}
-
-/* Homepage dark hero band -- modeled on kibocommerce.com's dark, two-column
-   hero: a big mark, an eyebrow with a short accent rule, a bold headline
-   with a weight-emphasized phrase (not a color split -- the reference uses
-   font-weight, not color, to draw the eye), and a line-art network graphic
-   on the right instead of their product screenshot. */
-.dark-hero {
-  background: var(--brand-navy);
-  color: #ffffff;
-  padding: 4rem 0;
-}
-
-.dark-hero-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 380px);
-  gap: 2.5rem;
-  align-items: center;
-}
-
-.dark-hero-mark {
-  display: block;
-  margin-bottom: 1.5rem;
-}
-
-.dark-hero-eyebrow {
-  display: inline-block;
-  color: var(--brand-green);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.dark-hero-eyebrow-rule {
-  display: block;
-  width: 48px;
-  height: 3px;
-  background: var(--brand-green);
-  margin: 0.7rem 0 1.35rem;
-  border-radius: 2px;
-}
-
-.dark-hero-title {
-  color: #ffffff;
-  font-size: clamp(2rem, 4vw, 2.9rem);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin: 0 0 1.1rem;
-}
-
-.dark-hero-title strong {
-  font-weight: 800;
-}
-
-.dark-hero-copy {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 1.05rem;
-  max-width: 52ch;
-  margin: 0 0 1.75rem;
-}
-
-.dark-hero-note {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.9rem;
-  max-width: 52ch;
-  margin: 0 0 1.75rem;
-}
-
-.dark-hero-actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.dark-hero-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  background: var(--brand-green);
-  color: var(--brand-navy);
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
-}
-
-.dark-hero-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
-}
-
-.dark-hero-cta-secondary {
-  background: transparent;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.dark-hero-cta-secondary:hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.dark-hero-visual {
-  display: flex;
-  justify-content: center;
-}
-
-.dark-hero-visual svg {
-  width: 100%;
-  max-width: 300px;
-}
-
-@media (max-width: 800px) {
-  .dark-hero-inner {
-    grid-template-columns: 1fr;
-  }
-
-  .dark-hero-visual {
-    order: -1;
-    max-width: 220px;
-    margin: 0 auto 1.5rem;
-  }
 }
 
 /* /contribute: the clickable title *is* the button -- no separate card

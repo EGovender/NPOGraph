@@ -29,6 +29,10 @@ export default function SearchBox({ concepts, base, compact = false }: Props) {
 
   return (
     <div className={compact ? 'search-box search-box-compact' : 'search-box'}>
+      {/* TODO: upgrade to a full ARIA combobox pattern (role="combobox",
+          aria-expanded, aria-controls, aria-activedescendant, arrow-key/
+          Enter/Escape handling) -- results already have role="listbox" but
+          the input itself doesn't announce or drive them yet. */}
       <input
         type="search"
         value={query}
