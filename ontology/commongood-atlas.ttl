@@ -1,3 +1,4 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix npo: <https://egovender.github.io/commongood-atlas/ontology/> .
 @prefix npoprop: <https://egovender.github.io/commongood-atlas/ontology/properties/> .
 @prefix nporef: <https://egovender.github.io/commongood-atlas/ontology/reference-data/> .
@@ -316,6 +317,26 @@ npoprop:evaluation-status a owl:DatatypeProperty ;
     npo:group "lifecycle" ;
     npo:required true .
 
+npoprop:evidence-claim-claim-type a owl:ObjectProperty ;
+    rdfs:label "Claim Type" ;
+    rdfs:comment "Whether this claim asserts association, contribution, attribution, or causation." ;
+    rdfs:domain npo:evidence-claim ;
+    rdfs:range skos:Concept ;
+    npo:cardinality "one" ;
+    npo:group "classification" ;
+    npo:referenceScheme nporef:claim-type ;
+    npo:required true .
+
+npoprop:evidence-claim-evidence-strength a owl:ObjectProperty ;
+    rdfs:label "Evidence Strength" ;
+    rdfs:comment "How strong the supporting evidence is for this claim." ;
+    rdfs:domain npo:evidence-claim ;
+    rdfs:range skos:Concept ;
+    npo:cardinality "one" ;
+    npo:group "classification" ;
+    npo:referenceScheme nporef:evidence-strength ;
+    npo:required true .
+
 npoprop:fiscal-sponsorship-arrangement-fee-percentage a owl:DatatypeProperty ;
     rdfs:label "Fee Percentage" ;
     rdfs:comment "The fiscal sponsor's administrative fee, charged as a percentage of funds processed." ;
@@ -559,6 +580,24 @@ npoprop:matching-requirement-required-ratio a owl:DatatypeProperty ;
     npo:group "financial" ;
     npo:required true .
 
+npoprop:measurement-observation-date a owl:DatatypeProperty ;
+    rdfs:label "Observation Date" ;
+    rdfs:comment "The date the value was observed." ;
+    rdfs:domain npo:measurement ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required true .
+
+npoprop:measurement-value a owl:DatatypeProperty ;
+    rdfs:label "Value" ;
+    rdfs:comment "The observed value for the indicator. A plain string so it can hold a numeric (\"64%\"), categorical (\"improved\"), ordinal (\"high\"), or textual observation without conflating these kinds of values into different fields." ;
+    rdfs:domain npo:measurement ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required true .
+
 npoprop:organization-formation-date a owl:DatatypeProperty ;
     rdfs:label "Formation Date" ;
     rdfs:comment "When the organization was legally formed." ;
@@ -727,6 +766,16 @@ npoprop:philanthropic-arrangement-termination-date a owl:DatatypeProperty ;
     rdfs:range xsd:date ;
     npo:cardinality "one" ;
     npo:group "lifecycle" ;
+    npo:required false .
+
+npoprop:project-issue-area a owl:ObjectProperty ;
+    rdfs:label "Issue Area" ;
+    rdfs:comment "The primary social or environmental issue this Project addresses." ;
+    rdfs:domain npo:project ;
+    rdfs:range skos:Concept ;
+    npo:cardinality "one" ;
+    npo:group "classification" ;
+    npo:referenceScheme nporef:issue-area ;
     npo:required false .
 
 npoprop:report-due-date a owl:DatatypeProperty ;
@@ -898,6 +947,24 @@ npoprop:sponsored-project-status a owl:DatatypeProperty ;
     npo:group "lifecycle" ;
     npo:required true .
 
+npoprop:target-target-date a owl:DatatypeProperty ;
+    rdfs:label "Target Date" ;
+    rdfs:comment "The date by which the target value is expected to be reached." ;
+    rdfs:domain npo:target ;
+    rdfs:range xsd:date ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required true .
+
+npoprop:target-value a owl:DatatypeProperty ;
+    rdfs:label "Value" ;
+    rdfs:comment "The planned value for the indicator (e.g. \"70%\", \"500 households\"). A plain string so it can hold a numeric, percentage, or other planned value without a separate typed field per kind of indicator." ;
+    rdfs:domain npo:target ;
+    rdfs:range xsd:string ;
+    npo:cardinality "one" ;
+    npo:group "lifecycle" ;
+    npo:required true .
+
 npoprop:terms-and-conditions-restriction-type a owl:DatatypeProperty ;
     rdfs:label "Restriction Type" ;
     rdfs:comment "Whether the funding governed by these Terms and Conditions is Restricted or Unrestricted Funding." ;
@@ -908,6 +975,60 @@ npoprop:terms-and-conditions-restriction-type a owl:DatatypeProperty ;
     npo:cardinality "one" ;
     npo:group "governance" ;
     npo:required true .
+
+nporef:claim-type-association a skos:Concept ;
+    skos:definition "Two phenomena are observed together, without asserting that one influenced the other." ;
+    skos:inScheme nporef:claim-type ;
+    skos:notation "association" ;
+    skos:prefLabel "Association" .
+
+nporef:claim-type-attribution a skos:Concept ;
+    skos:definition "The evidence assigns a defined portion or substantial responsibility for the result to the intervention." ;
+    skos:inScheme nporef:claim-type ;
+    skos:notation "attribution" ;
+    skos:prefLabel "Attribution" .
+
+nporef:claim-type-causation a skos:Concept ;
+    skos:definition "The evidence supports a causal relationship between the intervention and the result." ;
+    skos:inScheme nporef:claim-type ;
+    skos:notation "causation" ;
+    skos:prefLabel "Causation" .
+
+nporef:claim-type-contribution a skos:Concept ;
+    skos:definition "There is evidence that the intervention played some role in producing the result, alongside other factors." ;
+    skos:inScheme nporef:claim-type ;
+    skos:notation "contribution" ;
+    skos:prefLabel "Contribution" .
+
+nporef:evidence-strength-anecdotal a skos:Concept ;
+    skos:definition "Based on isolated stories or individual accounts, not a systematic review." ;
+    skos:inScheme nporef:evidence-strength ;
+    skos:notation "anecdotal" ;
+    skos:prefLabel "Anecdotal" .
+
+nporef:evidence-strength-inconclusive a skos:Concept ;
+    skos:definition "The available evidence does not clearly support or refute the claim." ;
+    skos:inScheme nporef:evidence-strength ;
+    skos:notation "inconclusive" ;
+    skos:prefLabel "Inconclusive" .
+
+nporef:evidence-strength-limited a skos:Concept ;
+    skos:definition "Based on a small or narrow body of evidence with significant gaps." ;
+    skos:inScheme nporef:evidence-strength ;
+    skos:notation "limited" ;
+    skos:prefLabel "Limited" .
+
+nporef:evidence-strength-moderate a skos:Concept ;
+    skos:definition "Based on a reasonably systematic body of evidence with some limitations." ;
+    skos:inScheme nporef:evidence-strength ;
+    skos:notation "moderate" ;
+    skos:prefLabel "Moderate" .
+
+nporef:evidence-strength-strong a skos:Concept ;
+    skos:definition "Based on a rigorous, systematic body of evidence with few limitations." ;
+    skos:inScheme nporef:evidence-strength ;
+    skos:notation "strong" ;
+    skos:prefLabel "Strong" .
 
 nporef:frequency-annual a skos:Concept ;
     skos:definition "Recurs once a year." ;
@@ -932,6 +1053,54 @@ nporef:frequency-quarterly a skos:Concept ;
     skos:inScheme nporef:frequency ;
     skos:notation "quarterly" ;
     skos:prefLabel "Quarterly" .
+
+nporef:issue-area-arts-and-culture a skos:Concept ;
+    skos:definition "Arts, culture, and creative expression." ;
+    skos:inScheme nporef:issue-area ;
+    skos:notation "arts-and-culture" ;
+    skos:prefLabel "Arts and Culture" .
+
+nporef:issue-area-economic-development a skos:Concept ;
+    skos:definition "Employment, income, and local economic opportunity." ;
+    skos:inScheme nporef:issue-area ;
+    skos:notation "economic-development" ;
+    skos:prefLabel "Economic Development" .
+
+nporef:issue-area-education a skos:Concept ;
+    skos:definition "Access to and quality of learning, from early childhood through adult education." ;
+    skos:inScheme nporef:issue-area ;
+    skos:notation "education" ;
+    skos:prefLabel "Education" .
+
+nporef:issue-area-environment a skos:Concept ;
+    skos:definition "Conservation, climate, and natural-resource stewardship." ;
+    skos:inScheme nporef:issue-area ;
+    skos:notation "environment" ;
+    skos:prefLabel "Environment" .
+
+nporef:issue-area-food-security a skos:Concept ;
+    skos:definition "Reliable access to sufficient, affordable, nutritious food." ;
+    skos:inScheme nporef:issue-area ;
+    skos:notation "food-security" ;
+    skos:prefLabel "Food Security" .
+
+nporef:issue-area-health a skos:Concept ;
+    skos:definition "Physical and behavioral health, including access to care." ;
+    skos:inScheme nporef:issue-area ;
+    skos:notation "health" ;
+    skos:prefLabel "Health" .
+
+nporef:issue-area-housing a skos:Concept ;
+    skos:definition "Access to safe, stable, and affordable housing." ;
+    skos:inScheme nporef:issue-area ;
+    skos:notation "housing" ;
+    skos:prefLabel "Housing" .
+
+nporef:issue-area-human-rights a skos:Concept ;
+    skos:definition "Civil rights, civil liberties, and human-rights advocacy." ;
+    skos:inScheme nporef:issue-area ;
+    skos:notation "human-rights" ;
+    skos:prefLabel "Human Rights" .
 
 nporef:organization-operating-status-active a skos:Concept ;
     skos:definition "The organization is currently operating." ;
@@ -1019,12 +1188,26 @@ nporef:role-status-suspended a skos:Concept ;
     skos:notation "suspended" ;
     skos:prefLabel "Suspended" .
 
+nporel:aboutResult a owl:ObjectProperty ;
+    rdfs:label "is about" ;
+    rdfs:comment "An Evidence Claim is about a Result. Declared against the abstract Result concept rather than each subtype separately, so a claim can concern any Output, Outcome, or Impact instance." ;
+    rdfs:domain npo:evidence-claim ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:result .
+
 nporel:actsOnBehalfOf a owl:ObjectProperty ;
     rdfs:label "acts on behalf of" ;
     rdfs:comment "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly." ;
     rdfs:domain npo:fiscal-sponsor ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships> ;
     rdfs:range npo:grantee .
+
+nporel:addressesNeed a owl:ObjectProperty ;
+    rdfs:label "addresses" ;
+    rdfs:comment "A Project addresses one or more identified Needs." ;
+    rdfs:domain npo:project ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:need .
 
 nporel:administeredBy a owl:ObjectProperty ;
     rdfs:label "is administered by" ;
@@ -1046,6 +1229,13 @@ nporel:affiliatedWith a owl:ObjectProperty ;
     rdfs:domain npo:person ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     rdfs:range npo:organization .
+
+nporel:appliesToAward a owl:ObjectProperty ;
+    rdfs:label "applies to" ;
+    rdfs:comment "A Compliance Requirement applies to a specific Award -- distinct from the Grant Agreement specifying it: the Agreement is the document that spells out the requirement, while this relationship tracks which Award it actually binds. The same organization can be in good standing on one award and delinquent on another, so the requirement must attach to the Award, not the Grantee in the abstract." ;
+    rdfs:domain npo:compliance-requirement ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
+    rdfs:range npo:award .
 
 nporel:appliesWithin a owl:ObjectProperty ;
     rdfs:label "applies within" ;
@@ -1131,6 +1321,20 @@ nporel:conductedByReviewer a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:reviewer .
 
+nporel:contributesToImpact a owl:ObjectProperty ;
+    rdfs:label "contributes to" ;
+    rdfs:comment "An Outcome contributes to a broader or longer-term Impact. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced." ;
+    rdfs:domain npo:outcome ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:impact .
+
+nporel:contributesToOutcome a owl:ObjectProperty ;
+    rdfs:label "contributes to" ;
+    rdfs:comment "An Output contributes to an intended or observed Outcome. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced." ;
+    rdfs:domain npo:output ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:outcome .
+
 nporel:disbursedAsPayment a owl:ObjectProperty ;
     rdfs:label "is disbursed as" ;
     rdfs:comment "An Installment is disbursed as a Payment once any Payment Condition is satisfied." ;
@@ -1144,6 +1348,20 @@ nporel:evaluatedAgainstReviewCriteria a owl:ObjectProperty ;
     rdfs:domain npo:review ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:review-criteria .
+
+nporel:evaluatesProject a owl:ObjectProperty ;
+    rdfs:label "evaluates" ;
+    rdfs:comment "An Evaluation assesses a Project." ;
+    rdfs:domain npo:evaluation ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:project .
+
+nporel:experiencedByPopulation a owl:ObjectProperty ;
+    rdfs:label "is experienced by" ;
+    rdfs:comment "A Need is experienced by a specific Population." ;
+    rdfs:domain npo:need ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:population .
 
 nporel:fiscallySponsoredBy a owl:ObjectProperty ;
     rdfs:label "is fiscally sponsored by" ;
@@ -1180,6 +1398,13 @@ nporel:fundedFrom a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:fund .
 
+nporel:fundsProject a owl:ObjectProperty ;
+    rdfs:label "funds" ;
+    rdfs:comment "An Award commits funding to a Project. The Award is the funding commitment; the Project is the work performed using it." ;
+    rdfs:domain npo:award ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:project .
+
 nporel:governs a owl:ObjectProperty ;
     rdfs:label "governs" ;
     rdfs:comment "A Donor-Advised Fund Arrangement governs the specific Donor-Advised Fund it establishes the advisory relationship for." ;
@@ -1194,12 +1419,40 @@ nporel:hasLegalForm a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization-type .
 
+nporel:hasLogicModel a owl:ObjectProperty ;
+    rdfs:label "has" ;
+    rdfs:comment "A Project has a Logic Model connecting its inputs, activities, outputs, and outcomes." ;
+    rdfs:domain npo:project ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:logic-model .
+
+nporel:hasMeasurement a owl:ObjectProperty ;
+    rdfs:label "has" ;
+    rdfs:comment "An Indicator has one or more Measurements -- the observed values recorded over time. Never equated with the Indicator's Target: a Target is planned, a Measurement is observed." ;
+    rdfs:domain npo:indicator ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:measurement .
+
 nporel:hasPaymentSchedule a owl:ObjectProperty ;
     rdfs:label "has" ;
     rdfs:comment "An Award's funds are released according to a Payment Schedule." ;
     rdfs:domain npo:award ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:payment-schedule .
+
+nporel:hasTarget a owl:ObjectProperty ;
+    rdfs:label "has" ;
+    rdfs:comment "An Indicator has a Target -- the planned value expected by a defined date." ;
+    rdfs:domain npo:indicator ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:target .
+
+nporel:hasTheoryOfChange a owl:ObjectProperty ;
+    rdfs:label "has" ;
+    rdfs:comment "A Project has a Theory of Change articulating how its activities are expected to lead to desired long-term change." ;
+    rdfs:domain npo:project ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:theory-of-change .
 
 nporel:heldBy a owl:ObjectProperty ;
     rdfs:label "is held by" ;
@@ -1208,12 +1461,47 @@ nporel:heldBy a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:organization .
 
+nporel:implementsProject a owl:ObjectProperty ;
+    rdfs:label "implements" ;
+    rdfs:comment "An Organization carries out a Project -- typically the Grantee, but modeled directly on Organization rather than a specific role so any organization implementing work (e.g. a Sponsored Project's Fiscal Sponsor) can be represented the same way." ;
+    rdfs:domain npo:organization ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:project .
+
+nporel:includesActivity a owl:ObjectProperty ;
+    rdfs:label "includes" ;
+    rdfs:comment "A Logic Model includes the Activities it plans for." ;
+    rdfs:domain npo:logic-model ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:activity .
+
 nporel:includesBudget a owl:ObjectProperty ;
     rdfs:label "includes" ;
     rdfs:comment "An Application includes a proposed Budget." ;
     rdfs:domain npo:application ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:budget .
+
+nporel:includesInput a owl:ObjectProperty ;
+    rdfs:label "includes" ;
+    rdfs:comment "A Logic Model includes the Inputs it plans for." ;
+    rdfs:domain npo:logic-model ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:input .
+
+nporel:includesOutcome a owl:ObjectProperty ;
+    rdfs:label "includes" ;
+    rdfs:comment "A Logic Model includes the Outcomes it plans for." ;
+    rdfs:domain npo:logic-model ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:outcome .
+
+nporel:includesOutput a owl:ObjectProperty ;
+    rdfs:label "includes" ;
+    rdfs:comment "A Logic Model includes the Outputs it plans for." ;
+    rdfs:domain npo:logic-model ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:output .
 
 nporel:includesReportingSchedule a owl:ObjectProperty ;
     rdfs:label "includes" ;
@@ -1313,6 +1601,13 @@ nporel:maySpecifyUnrestrictedFunding a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:unrestricted-funding .
 
+nporel:measuredByIndicator a owl:ObjectProperty ;
+    rdfs:label "is measured by" ;
+    rdfs:comment "A Result (Output, Outcome, or Impact) is measured by an Indicator. Declared against the abstract Result concept rather than each subtype separately, so any Output, Outcome, or Impact instance can be measured the same way." ;
+    rdfs:domain npo:result ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:indicator .
+
 nporel:modifiesGrantAgreement a owl:ObjectProperty ;
     rdfs:label "modifies" ;
     rdfs:comment "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." ;
@@ -1326,6 +1621,20 @@ nporel:obligatesReport a owl:ObjectProperty ;
     rdfs:domain npo:reporting-schedule ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:report .
+
+nporel:observedForPopulation a owl:ObjectProperty ;
+    rdfs:label "was observed for" ;
+    rdfs:comment "A Measurement was observed for a specific Population." ;
+    rdfs:domain npo:measurement ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:population .
+
+nporel:observedIn a owl:ObjectProperty ;
+    rdfs:label "was observed in" ;
+    rdfs:comment "A Measurement was observed in a specific Geographic Area." ;
+    rdfs:domain npo:measurement ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:geographic-area .
 
 nporel:occursDuringFundingCycle a owl:ObjectProperty ;
     rdfs:label "occurs during" ;
@@ -1348,12 +1657,21 @@ nporel:participatesIn a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:philanthropic-arrangement .
 
+nporel:performsActivity a owl:ObjectProperty ;
+    rdfs:label "performs" ;
+    rdfs:comment "A Project performs one or more Activities." ;
+    rdfs:domain npo:project ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:activity .
+
 nporel:personPlaysRole a owl:ObjectProperty ;
     rdfs:label "plays" ;
+    dcterms:isReplacedBy nporel:agentPlaysRole ;
     rdfs:comment "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed." ;
     rdfs:domain npo:person ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
-    rdfs:range npo:person-role .
+    rdfs:range npo:person-role ;
+    owl:deprecated true .
 
 nporel:personRoleAppliesWithin a owl:ObjectProperty ;
     rdfs:label "applies within" ;
@@ -1364,10 +1682,12 @@ nporel:personRoleAppliesWithin a owl:ObjectProperty ;
 
 nporel:playsRole a owl:ObjectProperty ;
     rdfs:label "plays" ;
+    dcterms:isReplacedBy nporel:agentPlaysRole ;
     rdfs:comment "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait." ;
     rdfs:domain npo:organization ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
-    rdfs:range npo:organization-role .
+    rdfs:range npo:organization-role ;
+    owl:deprecated true .
 
 nporel:pools a owl:ObjectProperty ;
     rdfs:label "pools" ;
@@ -1382,6 +1702,34 @@ nporel:producesDecision a owl:ObjectProperty ;
     rdfs:domain npo:review ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:decision .
+
+nporel:producesEvidenceClaim a owl:ObjectProperty ;
+    rdfs:label "produces" ;
+    rdfs:comment "An Evaluation produces one or more Evidence Claims." ;
+    rdfs:domain npo:evaluation ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:evidence-claim .
+
+nporel:producesOutput a owl:ObjectProperty ;
+    rdfs:label "produces" ;
+    rdfs:comment "An Activity produces one or more Outputs." ;
+    rdfs:domain npo:activity ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:output .
+
+nporel:proposesProject a owl:ObjectProperty ;
+    rdfs:label "proposes" ;
+    rdfs:comment "An Application proposes the Project it is requesting funding for. The Application is the request; the Project is the work being proposed." ;
+    rdfs:domain npo:application ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:project .
+
+nporel:providesEvidence a owl:ObjectProperty ;
+    rdfs:label "provides" ;
+    rdfs:comment "A Report can itself serve as Evidence supporting an Evidence Claim (e.g. the administrative data or narrative it contains)." ;
+    rdfs:domain npo:report ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:evidence .
 
 nporel:reachesCloseout a owl:ObjectProperty ;
     rdfs:label "reaches" ;
@@ -1432,6 +1780,13 @@ nporel:resultsInAward a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:award .
 
+nporel:servesPopulation a owl:ObjectProperty ;
+    rdfs:label "serves" ;
+    rdfs:comment "A Project serves a specific Population, which may or may not be the same Population that experiences the Need it addresses (e.g. a project can serve service providers on behalf of an affected population)." ;
+    rdfs:domain npo:project ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:population .
+
 nporel:specifiesEligibilityCriteria a owl:ObjectProperty ;
     rdfs:label "specifies" ;
     rdfs:comment "A Funding Opportunity specifies the Eligibility Criteria an applicant must meet." ;
@@ -1453,6 +1808,13 @@ nporel:submitsApplication a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:application .
 
+nporel:supportedByEvidence a owl:ObjectProperty ;
+    rdfs:label "is supported by" ;
+    rdfs:comment "An Evidence Claim is supported by one or more pieces of Evidence." ;
+    rdfs:domain npo:evidence-claim ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:evidence .
+
 nporel:supports a owl:ObjectProperty ;
     rdfs:label "supports" ;
     rdfs:comment "A Fiscal Sponsorship Arrangement supports a specific Sponsored Project carried out under the fiscal sponsor's umbrella." ;
@@ -1460,12 +1822,26 @@ nporel:supports a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
     rdfs:range npo:sponsored-project .
 
+nporel:takesPlaceIn a owl:ObjectProperty ;
+    rdfs:label "takes place in" ;
+    rdfs:comment "A Project operates within a Geographic Area. Distinct from any organization's registered address -- a project's operating area is not assumed to equal its implementing organization's or grant recipient's mailing address." ;
+    rdfs:domain npo:project ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:geographic-area .
+
 nporel:undergoesReview a owl:ObjectProperty ;
     rdfs:label "undergoes" ;
     rdfs:comment "An Application undergoes Review by one or more Reviewers." ;
     rdfs:domain npo:application ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> ;
     rdfs:range npo:review .
+
+nporel:usesInput a owl:ObjectProperty ;
+    rdfs:label "uses" ;
+    rdfs:comment "A Project uses Inputs (financial, human, material, or informational resources) to carry out its Activities." ;
+    rdfs:domain npo:project ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> ;
+    rdfs:range npo:input .
 
 nporule:rule-active-role-requires-effective-from a npo:BusinessRule ;
     rdfs:label "An active role must have an effective start date" ;
@@ -1622,10 +1998,11 @@ npo:grant-lifecycle a owl:Class ;
     skos:definition "The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout." ;
     npo:category "cross-cutting" .
 
-npo:logic-model a owl:Class ;
-    rdfs:label "Logic Model" ;
+npo:impact a owl:Class ;
+    rdfs:label "Impact" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
-    skos:definition "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project." ;
+    rdfs:subClassOf npo:result ;
+    skos:definition "A broader or longer-term change to which one or more Outcomes may contribute. An Impact relationship does not itself imply that the Project has been demonstrated to cause the change." ;
     npo:category "outcomes-and-closeout" .
 
 npo:organization-type a owl:Class ;
@@ -1633,12 +2010,6 @@ npo:organization-type a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     skos:definition "The legal and tax classification of what an organization fundamentally is (e.g., a public charity, private foundation, or government entity), independent of any role it plays in a specific relationship." ;
     npo:category "organizational-entities" .
-
-npo:outcome a owl:Class ;
-    rdfs:label "Outcome" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
-    skos:definition "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output." ;
-    npo:category "outcomes-and-closeout" .
 
 npo:program-officer a owl:Class ;
     rdfs:label "Program Officer" ;
@@ -1658,7 +2029,8 @@ npo:regranting-arrangement a owl:Class ;
 npo:restricted-funding a owl:Class ;
     rdfs:label "Restricted Funding" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
-    skos:definition "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement." ;
+    owl:deprecated true ;
+    skos:definition "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility." ;
     npo:category "award-and-agreement" .
 
 npo:review-criteria a owl:Class ;
@@ -1674,16 +2046,11 @@ npo:reviewer a owl:Class ;
     skos:definition "The role a person occupies when they evaluate an application against review criteria, whether as staff, a board member, or an external peer reviewer." ;
     npo:category "organizational-entities" .
 
-npo:theory-of-change a owl:Class ;
-    rdfs:label "Theory of Change" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
-    skos:definition "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change." ;
-    npo:category "outcomes-and-closeout" .
-
 npo:unrestricted-funding a owl:Class ;
     rdfs:label "Unrestricted Funding" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
-    skos:definition "Funding a grantee may use at its discretion in support of its general mission." ;
+    owl:deprecated true ;
+    skos:definition "Funding a grantee may use at its discretion in support of its general mission. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility." ;
     npo:category "award-and-agreement" .
 
 npo:budget a owl:Class ;
@@ -1700,6 +2067,12 @@ npo:donor-advisor a owl:Class ;
     npo:category "organizational-entities" ;
     npo:legalNote "A donor advisor's privileges are non-binding as a matter of federal tax law, not just convention -- treating a recommendation as a binding instruction can jeopardize the sponsoring organization's tax-exempt status." .
 
+npo:evidence a owl:Class ;
+    rdfs:label "Evidence" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "Information used to support, weaken, qualify, or contextualize a claim about a Project, Activity, Result, or other entity (e.g., an evaluation report, survey results, administrative data, a case study)." ;
+    npo:category "outcomes-and-closeout" .
+
 npo:fiscal-sponsorship-arrangement a owl:Class ;
     rdfs:label "Fiscal Sponsorship Arrangement" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
@@ -1707,6 +2080,12 @@ npo:fiscal-sponsorship-arrangement a owl:Class ;
     skos:definition "A Philanthropic Arrangement in which a Fiscal Sponsor accepts and administers charitable funds on behalf of a Sponsored Project that lacks independent legal status to receive them directly." ;
     npo:category "funding-structure" ;
     npo:legalNote "The rights and obligations created by a fiscal sponsorship agreement depend heavily on its specific model (e.g., comprehensive vs. pre-approved grant relationship). Consult counsel and the actual governing agreement rather than this ontology." .
+
+npo:geographic-area a owl:Class ;
+    rdfs:label "Geographic Area" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A geographic entity used to describe where a Need exists, where a Project operates, where a Population is located, or where a Result is observed." ;
+    npo:category "outcomes-and-closeout" .
 
 npo:grant-administrator a owl:Class ;
     rdfs:label "Grant Administrator" ;
@@ -1721,6 +2100,12 @@ npo:indirect-cost-rate a owl:Class ;
     skos:definition "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award." ;
     npo:category "compliance-and-reporting" .
 
+npo:input a owl:Class ;
+    rdfs:label "Input" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A financial, human, material, informational, or other resource used in carrying out an Activity." ;
+    npo:category "outcomes-and-closeout" .
+
 npo:letter-of-inquiry a owl:Class ;
     rdfs:label "Letter of Inquiry" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
@@ -1728,10 +2113,10 @@ npo:letter-of-inquiry a owl:Class ;
     skos:definition "A brief, preliminary submission used by some funders to screen interest before inviting a full application." ;
     npo:category "application-and-review" .
 
-npo:output a owl:Class ;
-    rdfs:label "Output" ;
+npo:need a owl:Class ;
+    rdfs:label "Need" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
-    skos:definition "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served)." ;
+    skos:definition "A condition, problem, gap, or opportunity identified as warranting intervention or investment." ;
     npo:category "outcomes-and-closeout" .
 
 nporef:restriction-type-donor-restricted a skos:Concept ;
@@ -1740,11 +2125,36 @@ nporef:restriction-type-donor-restricted a skos:Concept ;
     skos:notation "donor-restricted" ;
     skos:prefLabel "Donor-Restricted" .
 
+nporel:agentPlaysRole a owl:ObjectProperty ;
+    rdfs:label "plays" ;
+    rdfs:comment "An Agent (Person or Organization) plays one or more Roles. The preferred predicate for new data now that Agent exists as a shared superclass, replacing the separate playsRole (Organization) and personPlaysRole (Person) predicates -- both kept and still valid on existing data, not migrated, per this project's policy of never deleting or force-migrating published predicates." ;
+    rdfs:domain npo:agent ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> ;
+    rdfs:range npo:role .
+
 npo:terms-and-conditions a owl:Class ;
     rdfs:label "Terms and Conditions" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
     skos:definition "The specific obligations, restrictions, and expectations attached to an award (e.g., allowable uses of funds, reporting requirements)." ;
     npo:category "award-and-agreement" .
+
+npo:theory-of-change a owl:Class ;
+    rdfs:label "Theory of Change" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change." ;
+    npo:category "outcomes-and-closeout" .
+
+npo:activity a owl:Class ;
+    rdfs:label "Activity" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A defined action or body of work performed by a Project to produce Outputs and contribute toward intended Outcomes." ;
+    npo:category "outcomes-and-closeout" .
+
+npo:agent a owl:Class ;
+    rdfs:label "Agent" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting> ;
+    skos:definition "An entity capable of participating in an activity, relationship, decision, transaction, or role. Person and Organization are its two subtypes." ;
+    npo:category "cross-cutting" .
 
 npo:audit a owl:Class ;
     rdfs:label "Audit" ;
@@ -1773,6 +2183,12 @@ npo:funding-cycle a owl:Class ;
     skos:definition "A recurring period (e.g., quarterly, annual) within a grant program during which applications are accepted and decided." ;
     npo:category "funding-structure" .
 
+npo:indicator a owl:Class ;
+    rdfs:label "Indicator" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A defined measure used to assess the state or change of a Result (e.g., percentage of participants employed after six months, graduation rate)." ;
+    npo:category "outcomes-and-closeout" .
+
 npo:matching-requirement a owl:Class ;
     rdfs:label "Matching Requirement" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
@@ -1794,10 +2210,17 @@ npo:payment-schedule a owl:Class ;
 npo:person a owl:Class ;
     rdfs:label "Person" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:agent ;
     skos:altLabel "Individual",
         "Natural Person" ;
     skos:definition "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships." ;
     npo:category "organizational-entities" .
+
+npo:population a owl:Class ;
+    rdfs:label "Population" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A group of people defined by demographic, geographic, institutional, experiential, or other characteristics relevant to a Need, Project, Result, or Evaluation." ;
+    npo:category "outcomes-and-closeout" .
 
 nporef:publication-status a skos:ConceptScheme ;
     skos:definition "The lifecycle state of a reference-data scheme itself -- whether it's still being drafted, actively governing one or more properties, or deprecated in favor of something else. Distinct from a single value's own `deprecated` flag: a scheme can stay published while one of its values is retired." ;
@@ -1819,6 +2242,12 @@ npo:site-visit a owl:Class ;
     skos:definition "An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision." ;
     npo:category "application-and-review" .
 
+npo:target a owl:Class ;
+    rdfs:label "Target" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A planned value for an Indicator expected to be reached by a defined point in time." ;
+    npo:category "outcomes-and-closeout" .
+
 npo:amendment a owl:Class ;
     rdfs:label "Amendment" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> ;
@@ -1832,12 +2261,6 @@ npo:closeout a owl:Class ;
     skos:definition "The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied." ;
     npo:category "outcomes-and-closeout" .
 
-npo:evaluation a owl:Class ;
-    rdfs:label "Evaluation" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
-    skos:definition "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes." ;
-    npo:category "outcomes-and-closeout" .
-
 npo:grantee a owl:Class ;
     rdfs:label "Grantee" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
@@ -1847,11 +2270,45 @@ npo:grantee a owl:Class ;
     skos:definition "The role an organization occupies when it receives and administers grant funding awarded by a funder." ;
     npo:category "organizational-entities" .
 
+npo:outcome a owl:Class ;
+    rdfs:label "Outcome" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    rdfs:subClassOf npo:result ;
+    skos:definition "A change in condition, behavior, knowledge, capacity, practice, or status that is intended or observed in association with a Project or Activity, distinct from a direct Output. A recorded Outcome does not by itself establish that the Project caused it -- see Evidence Claim for how a specific causal or contributory interpretation is represented and evidenced." ;
+    npo:category "outcomes-and-closeout" .
+
 npo:decision a owl:Class ;
     rdfs:label "Decision" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
-    skos:definition "The outcome of the review process for an application: approved, declined, or approved with conditions." ;
+    skos:definition "A recorded determination concerning an application following review or another authorized approval process. Its outcome (approved, declined, or approved with conditions) is carried by the decisionOutcome property, not by the Decision entity's identity itself." ;
     npo:category "application-and-review" .
+
+npo:evidence-claim a owl:Class ;
+    rdfs:label "Evidence Claim" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A sourced assertion about a relationship, condition, result, or causal interpretation whose evidentiary basis can be independently identified. This is where a specific interpretation of a Project's contribution to a Result -- association, contribution, attribution, or causation -- is represented, distinct from the Result itself and from the Evidence supporting the claim." ;
+    npo:category "outcomes-and-closeout" .
+
+npo:measurement a owl:Class ;
+    rdfs:label "Measurement" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "An observed value for an Indicator at a particular time and, where relevant, for a defined Population or Geographic Area. Never treated as interchangeable with a Target: a Target is planned, a Measurement is observed." ;
+    npo:category "outcomes-and-closeout" .
+
+npo:output a owl:Class ;
+    rdfs:label "Output" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    rdfs:subClassOf npo:result ;
+    skos:definition "A direct product, service, deliverable, or immediate consequence of Activities carried out by a Project (e.g., number of workshops held, people served). Does not itself imply any broader behavioral or social change." ;
+    npo:category "outcomes-and-closeout" .
+
+nporef:claim-type a skos:ConceptScheme ;
+    skos:definition "How strong an interpretation an Evidence Claim makes about a Project's relationship to a Result -- deliberately distinct, ordered from weakest to strongest evidentiary interpretation, and never treated as equivalent to one another." ;
+    skos:prefLabel "Claim Type" ;
+    npo:authorityType "internal" ;
+    npo:publicationStatus nporef:publication-status-published ;
+    npo:schemeDomain "program" ;
+    npo:version "1.0.0" .
 
 nporef:frequency a skos:ConceptScheme ;
     skos:definition "How often a recurring obligation is due. Currently used for how often Reports are due under a Reporting Schedule; generic enough to apply to other recurring obligations later without a new scheme." ;
@@ -1869,12 +2326,6 @@ nporef:organization-operating-status a skos:ConceptScheme ;
     npo:schemeDomain "organization" ;
     npo:version "1.0.0" .
 
-nporef:publication-status-published a skos:Concept ;
-    skos:definition "The scheme is stable and in active use, constraining one or more concept properties." ;
-    skos:inScheme nporef:publication-status ;
-    skos:notation "published" ;
-    skos:prefLabel "Published" .
-
 nporef:restriction-type a skos:ConceptScheme ;
     skos:definition "A Fund's accounting restriction status -- whether its use is constrained by the donor, and if so, how. `donor-restricted` is the broader designation covering both time-limited and perpetual donor restrictions; `temporarily-restricted` and `permanently-restricted` narrow it to which kind." ;
     skos:prefLabel "Restriction Type" ;
@@ -1883,12 +2334,25 @@ nporef:restriction-type a skos:ConceptScheme ;
     npo:schemeDomain "financial" ;
     npo:version "1.0.0" .
 
+npo:result a owl:Class ;
+    rdfs:label "Result" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A planned or observed state, product, change, or effect associated with an intervention. Output, Outcome, and Impact are its three subtypes, distinguished by directness and time horizon." ;
+    npo:category "outcomes-and-closeout" .
+
 npo:sponsored-project a owl:Class ;
     rdfs:label "Sponsored Project" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:project ;
     skos:definition "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization." ;
     npo:category "organizational-entities" ;
     npo:legalNote "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement." .
+
+npo:evaluation a owl:Class ;
+    rdfs:label "Evaluation" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes." ;
+    npo:category "outcomes-and-closeout" .
 
 npo:grant-program a owl:Class ;
     rdfs:label "Grant Program" ;
@@ -1901,6 +2365,20 @@ npo:installment a owl:Class ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "A single scheduled portion of an award's total funds, to be disbursed at a defined point or upon meeting a condition." ;
     npo:category "disbursement" .
+
+npo:logic-model a owl:Class ;
+    rdfs:label "Logic Model" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> ;
+    skos:definition "A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project." ;
+    npo:category "outcomes-and-closeout" .
+
+nporef:evidence-strength a skos:ConceptScheme ;
+    skos:definition "How strong the supporting Evidence is for an Evidence Claim, independent of the claim's type (association/contribution/attribution/causation) -- a causation claim and an association claim can each be backed by strong or weak evidence." ;
+    skos:prefLabel "Evidence Strength" ;
+    npo:authorityType "internal" ;
+    npo:publicationStatus nporef:publication-status-published ;
+    npo:schemeDomain "program" ;
+    npo:version "1.0.0" .
 
 nporef:role-status a skos:ConceptScheme ;
     skos:definition "Where a Role occupancy currently sits in its own lifecycle, shared by every person-role and organization-role subtype via the role concept's inherited `status` property." ;
@@ -1916,6 +2394,16 @@ npo:review a owl:Class ;
     skos:definition "The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers." ;
     npo:category "application-and-review" .
 
+npo:funding-opportunity a owl:Class ;
+    rdfs:label "Funding Opportunity" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
+    skos:altLabel "NOFO",
+        "Notice of Funding Opportunity",
+        "RFP",
+        "Request for Proposals" ;
+    skos:definition "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines." ;
+    npo:category "funding-structure" .
+
 npo:application a owl:Class ;
     rdfs:label "Application" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
@@ -1929,16 +2417,6 @@ npo:compliance-requirement a owl:Class ;
     skos:definition "An obligation attached to an award that the grantee must satisfy to remain in good standing (e.g., timely reporting, allowable use of funds, insurance)." ;
     npo:category "compliance-and-reporting" .
 
-npo:funding-opportunity a owl:Class ;
-    rdfs:label "Funding Opportunity" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> ;
-    skos:altLabel "NOFO",
-        "Notice of Funding Opportunity",
-        "RFP",
-        "Request for Proposals" ;
-    skos:definition "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines." ;
-    npo:category "funding-structure" .
-
 npo:grant-recommendation a owl:Class ;
     rdfs:label "Grant Recommendation" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> ;
@@ -1946,17 +2424,25 @@ npo:grant-recommendation a owl:Class ;
     npo:category "application-and-review" ;
     npo:legalNote "A Grant Recommendation's non-binding status is a legal requirement for donor-advised funds under federal tax law, not a design choice -- see Donor-Advised Fund and Donor Advisor." .
 
+nporef:publication-status-published a skos:Concept ;
+    skos:definition "The scheme is stable and in active use, constraining one or more concept properties." ;
+    skos:inScheme nporef:publication-status ;
+    skos:notation "published" ;
+    skos:prefLabel "Published" .
+
 npo:payment a owl:Class ;
     rdfs:label "Payment" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement> ;
     skos:definition "An actual transfer of funds from funder to grantee against an award, corresponding to one or more installments." ;
     npo:category "disbursement" .
 
-npo:report a owl:Class ;
-    rdfs:label "Report" ;
-    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
-    skos:definition "A grantee's submission to the funder describing progress, outcomes, and/or use of funds, per the reporting schedule. Narrative and financial reports are common subtypes." ;
-    npo:category "compliance-and-reporting" .
+nporef:issue-area a skos:ConceptScheme ;
+    skos:definition "The primary social or environmental issue a Project addresses. Not assumed to be a complete list of every possible issue area -- new values can be proposed as real projects need them." ;
+    skos:prefLabel "Issue Area" ;
+    npo:authorityType "internal" ;
+    npo:publicationStatus nporef:publication-status-published ;
+    npo:schemeDomain "program" ;
+    npo:version "1.0.0" .
 
 npo:fund a owl:Class ;
     rdfs:label "Fund" ;
@@ -1976,11 +2462,23 @@ npo:philanthropic-arrangement a owl:Class ;
     skos:definition "A structured relationship among organizations that channels philanthropic funding outside a direct funder-to-grantee award -- such as a fiscal sponsorship or donor-advised fund arrangement." ;
     npo:category "funding-structure" .
 
+npo:report a owl:Class ;
+    rdfs:label "Report" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> ;
+    skos:definition "A grantee's submission to the funder describing progress, outcomes, and/or use of funds, per the reporting schedule. Narrative and financial reports are common subtypes." ;
+    npo:category "compliance-and-reporting" .
+
 npo:role a owl:Class ;
     rdfs:label "Role" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
     skos:definition "A contextual capacity an agent occupies, distinct from the agent's permanent identity or classification." ;
     npo:category "organizational-entities" .
+
+npo:project a owl:Class ;
+    rdfs:label "Project" ;
+    rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting> ;
+    skos:definition "A defined body of work undertaken over a period of time to address one or more needs or objectives -- the work being performed, distinct from the Application requesting funding for it or the Award committing funding to it." ;
+    npo:category "cross-cutting" .
 
 npo:person-role a owl:Class ;
     rdfs:label "Person Role" ;
@@ -2006,5 +2504,6 @@ npo:award a owl:Class ;
 npo:organization a owl:Class ;
     rdfs:label "Organization" ;
     rdfs:isDefinedBy <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> ;
+    rdfs:subClassOf npo:agent ;
     skos:definition "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient." ;
     npo:category "organizational-entities" .

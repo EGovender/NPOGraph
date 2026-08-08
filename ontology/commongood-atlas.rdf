@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rdf:RDF xmlns:npo="https://egovender.github.io/commongood-atlas/ontology/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#">
+<rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:npo="https://egovender.github.io/commongood-atlas/ontology/" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:skos="http://www.w3.org/2004/02/skos/core#">
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology" />
     <rdfs:label>CommonGood Atlas Grantmaking Ontology</rdfs:label>
     <rdfs:comment>Generated from ontology/source/*.json. Do not hand-edit. See docs/05-data-model.md and docs/06-properties-and-rules.md.</rdfs:comment>
     <npo:version>0.3.0</npo:version>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/activity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Activity</rdfs:label>
+    <skos:definition>A defined action or body of work performed by a Project to produce Outputs and contribute toward intended Outcomes.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/agent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Agent</rdfs:label>
+    <skos:definition>An entity capable of participating in an activity, relationship, decision, transaction, or role. Person and Organization are its two subtypes.</skos:definition>
+    <npo:category>cross-cutting</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/amendment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -116,7 +130,7 @@
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/decision">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Decision</rdfs:label>
-    <skos:definition>The outcome of the review process for an application: approved, declined, or approved with conditions.</skos:definition>
+    <skos:definition>A recorded determination concerning an application following review or another authorized approval process. Its outcome (approved, declined, or approved with conditions) is carried by the decisionOutcome property, not by the Decision entity's identity itself.</skos:definition>
     <npo:category>application-and-review</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review" />
   </rdf:Description>
@@ -186,6 +200,20 @@
     <npo:category>outcomes-and-closeout</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/evidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Evidence</rdfs:label>
+    <skos:definition>Information used to support, weaken, qualify, or contextualize a claim about a Project, Activity, Result, or other entity (e.g., an evaluation report, survey results, administrative data, a case study).</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/evidence-claim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Evidence Claim</rdfs:label>
+    <skos:definition>A sourced assertion about a relationship, condition, result, or causal interpretation whose evidentiary basis can be independently identified. This is where a specific interpretation of a Project's contribution to a Result -- association, contribution, attribution, or causation -- is represented, distinct from the Result itself and from the Evidence supporting the claim.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/fiscal-sponsor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Fiscal Sponsor</rdfs:label>
@@ -246,6 +274,13 @@
     <skos:altLabel>RFP</skos:altLabel>
     <skos:altLabel>Request for Proposals</skos:altLabel>
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/geographic-area">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Geographic Area</rdfs:label>
+    <skos:definition>A geographic entity used to describe where a Need exists, where a Project operates, where a Population is located, or where a Result is observed.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/grant-administrator">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Grant Administrator</rdfs:label>
@@ -293,12 +328,34 @@
     <skos:altLabel>Subrecipient</skos:altLabel>
     <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization-role" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/impact">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Impact</rdfs:label>
+    <skos:definition>A broader or longer-term change to which one or more Outcomes may contribute. An Impact relationship does not itself imply that the Project has been demonstrated to cause the change.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/result" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/indicator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Indicator</rdfs:label>
+    <skos:definition>A defined measure used to assess the state or change of a Result (e.g., percentage of participants employed after six months, graduation rate).</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/indirect-cost-rate">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Indirect Cost Rate</rdfs:label>
     <skos:definition>The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award.</skos:definition>
     <npo:category>compliance-and-reporting</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/input">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Input</rdfs:label>
+    <skos:definition>A financial, human, material, informational, or other resource used in carrying out an Activity.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/installment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -329,12 +386,27 @@
     <npo:category>award-and-agreement</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/measurement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Measurement</rdfs:label>
+    <skos:definition>An observed value for an Indicator at a particular time and, where relevant, for a defined Population or Geographic Area. Never treated as interchangeable with a Target: a Target is planned, a Measurement is observed.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/need">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Need</rdfs:label>
+    <skos:definition>A condition, problem, gap, or opportunity identified as warranting intervention or investment.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/organization">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Organization</rdfs:label>
     <skos:definition>Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient.</skos:definition>
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/agent" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/organization-role">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -354,16 +426,18 @@
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/outcome">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Outcome</rdfs:label>
-    <skos:definition>A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output.</skos:definition>
+    <skos:definition>A change in condition, behavior, knowledge, capacity, practice, or status that is intended or observed in association with a Project or Activity, distinct from a direct Output. A recorded Outcome does not by itself establish that the Project caused it -- see Evidence Claim for how a specific causal or contributory interpretation is represented and evidenced.</skos:definition>
     <npo:category>outcomes-and-closeout</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/result" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/output">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Output</rdfs:label>
-    <skos:definition>A direct, countable product of grant-funded activity (e.g., number of workshops held, people served).</skos:definition>
+    <skos:definition>A direct product, service, deliverable, or immediate consequence of Activities carried out by a Project (e.g., number of workshops held, people served). Does not itself imply any broader behavioral or social change.</skos:definition>
     <npo:category>outcomes-and-closeout</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/result" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/partner">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -402,6 +476,7 @@
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <skos:altLabel>Individual</skos:altLabel>
     <skos:altLabel>Natural Person</skos:altLabel>
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/agent" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/person-role">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -426,6 +501,13 @@
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/population">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Population</rdfs:label>
+    <skos:definition>A group of people defined by demographic, geographic, institutional, experiential, or other characteristics relevant to a Need, Project, Result, or Evaluation.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/program-officer">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Program Officer</rdfs:label>
@@ -433,6 +515,13 @@
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/person-role" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/project">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Project</rdfs:label>
+    <skos:definition>A defined body of work undertaken over a period of time to address one or more needs or objectives -- the work being performed, distinct from the Application requesting funding for it or the Award committing funding to it.</skos:definition>
+    <npo:category>cross-cutting</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/regranting-arrangement">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -460,9 +549,17 @@
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/restricted-funding">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Restricted Funding</rdfs:label>
-    <skos:definition>Funding that must be used for a specific purpose, project, or time period defined in the grant agreement.</skos:definition>
+    <skos:definition>Funding that must be used for a specific purpose, project, or time period defined in the grant agreement. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility.</skos:definition>
     <npo:category>award-and-agreement</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement" />
+    <owl:deprecated>true</owl:deprecated>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/result">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Result</rdfs:label>
+    <skos:definition>A planned or observed state, product, change, or effect associated with an intervention. Output, Outcome, and Impact are its three subtypes, distinguished by directness and time horizon.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/review">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -514,6 +611,7 @@
     <skos:definition>A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.</skos:definition>
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
     <npo:legalNote>Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement.</npo:legalNote>
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/sponsoring-organization">
@@ -523,6 +621,13 @@
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization-role" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/target">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
+    <rdfs:label>Target</rdfs:label>
+    <skos:definition>A planned value for an Indicator expected to be reached by a defined point in time.</skos:definition>
+    <npo:category>outcomes-and-closeout</npo:category>
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/terms-and-conditions">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -541,9 +646,10 @@
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
     <rdfs:label>Unrestricted Funding</rdfs:label>
-    <skos:definition>Funding a grantee may use at its discretion in support of its general mission.</skos:definition>
+    <skos:definition>Funding a grantee may use at its discretion in support of its general mission. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility.</skos:definition>
     <npo:category>award-and-agreement</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement" />
+    <owl:deprecated>true</owl:deprecated>
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/vendor">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class" />
@@ -552,6 +658,22 @@
     <npo:category>organizational-entities</npo:category>
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities" />
     <rdfs:subClassOf rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization-role" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/producesOutput">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>produces</rdfs:label>
+    <rdfs:comment>An Activity produces one or more Outputs.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/activity" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/output" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>plays</rdfs:label>
+    <rdfs:comment>An Agent (Person or Organization) plays one or more Roles. The preferred predicate for new data now that Agent exists as a shared superclass, replacing the separate playsRole (Organization) and personPlaysRole (Person) predicates -- both kept and still valid on existing data, not migrated, per this project's policy of never deleting or force-migrating published predicates.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/agent" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/role" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/modifiesGrantAgreement">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -568,6 +690,14 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/application" />
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/budget" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/proposesProject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>proposes</rdfs:label>
+    <rdfs:comment>An Application proposes the Project it is requesting funding for. The Application is the request; the Project is the work being proposed.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/application" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/respondsToFundingOpportunity">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -625,6 +755,14 @@
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/fund" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/fundsProject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>funds</rdfs:label>
+    <rdfs:comment>An Award commits funding to a Project. The Award is the funding commitment; the Project is the work performed using it.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/award" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/hasPaymentSchedule">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>has</rdfs:label>
@@ -656,6 +794,14 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/collaborative-fund-arrangement" />
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/fund" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/appliesToAward">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>applies to</rdfs:label>
+    <rdfs:comment>A Compliance Requirement applies to a specific Award -- distinct from the Grant Agreement specifying it: the Agreement is the document that spells out the requirement, while this relationship tracks which Award it actually binds. The same organization can be in good standing on one award and delinquent on another, so the requirement must attach to the Award, not the Grantee in the abstract.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/compliance-requirement" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/award" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/includesReportingSchedule">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -720,6 +866,38 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evaluation" />
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/output" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/evaluatesProject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>evaluates</rdfs:label>
+    <rdfs:comment>An Evaluation assesses a Project.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evaluation" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/producesEvidenceClaim">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>produces</rdfs:label>
+    <rdfs:comment>An Evaluation produces one or more Evidence Claims.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evaluation" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evidence-claim" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/aboutResult">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is about</rdfs:label>
+    <rdfs:comment>An Evidence Claim is about a Result. Declared against the abstract Result concept rather than each subtype separately, so a claim can concern any Output, Outcome, or Impact instance.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evidence-claim" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/result" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/supportedByEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is supported by</rdfs:label>
+    <rdfs:comment>An Evidence Claim is supported by one or more pieces of Evidence.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evidence-claim" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evidence" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/actsOnBehalfOf">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -889,6 +1067,22 @@
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/application" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/hasMeasurement">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>has</rdfs:label>
+    <rdfs:comment>An Indicator has one or more Measurements -- the observed values recorded over time. Never equated with the Indicator's Target: a Target is planned, a Measurement is observed.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/indicator" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/measurement" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/hasTarget">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>has</rdfs:label>
+    <rdfs:comment>An Indicator has a Target -- the planned value expected by a defined date.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/indicator" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/target" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/disbursedAsPayment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>is disbursed as</rdfs:label>
@@ -905,6 +1099,62 @@
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/payment-condition" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/includesActivity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>includes</rdfs:label>
+    <rdfs:comment>A Logic Model includes the Activities it plans for.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/logic-model" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/activity" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/includesInput">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>includes</rdfs:label>
+    <rdfs:comment>A Logic Model includes the Inputs it plans for.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/logic-model" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/input" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/includesOutcome">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>includes</rdfs:label>
+    <rdfs:comment>A Logic Model includes the Outcomes it plans for.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/logic-model" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/outcome" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/includesOutput">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>includes</rdfs:label>
+    <rdfs:comment>A Logic Model includes the Outputs it plans for.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/logic-model" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/output" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/observedForPopulation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>was observed for</rdfs:label>
+    <rdfs:comment>A Measurement was observed for a specific Population.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/measurement" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/population" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/observedIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>was observed in</rdfs:label>
+    <rdfs:comment>A Measurement was observed in a specific Geographic Area.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/measurement" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/geographic-area" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/experiencedByPopulation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is experienced by</rdfs:label>
+    <rdfs:comment>A Need is experienced by a specific Population.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/need" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/population" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/hasLegalForm">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>has legal form</rdfs:label>
@@ -912,6 +1162,14 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization" />
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization-type" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/implementsProject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>implements</rdfs:label>
+    <rdfs:comment>An Organization carries out a Project -- typically the Grantee, but modeled directly on Organization rather than a specific role so any organization implementing work (e.g. a Sponsored Project's Fiscal Sponsor) can be represented the same way.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/participatesIn">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -928,6 +1186,8 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization" />
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization-role" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+    <owl:deprecated>true</owl:deprecated>
+    <dcterms:isReplacedBy rdf:resource="https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/appliesWithin">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -944,6 +1204,22 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization-role" />
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/contributesToImpact">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>contributes to</rdfs:label>
+    <rdfs:comment>An Outcome contributes to a broader or longer-term Impact. Deliberately "contributes to," not "causes" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/outcome" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/impact" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/contributesToOutcome">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>contributes to</rdfs:label>
+    <rdfs:comment>An Output contributes to an intended or observed Outcome. Deliberately "contributes to," not "causes" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/output" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/outcome" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/brokenIntoInstallment">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -968,6 +1244,8 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/person" />
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/person-role" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities" />
+    <owl:deprecated>true</owl:deprecated>
+    <dcterms:isReplacedBy rdf:resource="https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/personRoleAppliesWithin">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -993,6 +1271,62 @@
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/grant-program" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/addressesNeed">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>addresses</rdfs:label>
+    <rdfs:comment>A Project addresses one or more identified Needs.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/need" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/hasLogicModel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>has</rdfs:label>
+    <rdfs:comment>A Project has a Logic Model connecting its inputs, activities, outputs, and outcomes.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/logic-model" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/hasTheoryOfChange">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>has</rdfs:label>
+    <rdfs:comment>A Project has a Theory of Change articulating how its activities are expected to lead to desired long-term change.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/theory-of-change" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/performsActivity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>performs</rdfs:label>
+    <rdfs:comment>A Project performs one or more Activities.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/activity" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/servesPopulation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>serves</rdfs:label>
+    <rdfs:comment>A Project serves a specific Population, which may or may not be the same Population that experiences the Need it addresses (e.g. a project can serve service providers on behalf of an affected population).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/population" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/takesPlaceIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>takes place in</rdfs:label>
+    <rdfs:comment>A Project operates within a Geographic Area. Distinct from any organization's registered address -- a project's operating area is not assumed to equal its implementing organization's or grant recipient's mailing address.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/geographic-area" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/usesInput">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>uses</rdfs:label>
+    <rdfs:comment>A Project uses Inputs (financial, human, material, or informational resources) to carry out its Activities.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/input" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/regrantsTo">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>regrants to</rdfs:label>
@@ -1017,6 +1351,14 @@
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/theory-of-change" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/providesEvidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>provides</rdfs:label>
+    <rdfs:comment>A Report can itself serve as Evidence supporting an Evidence Claim (e.g. the administrative data or narrative it contains).</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/report" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evidence" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/obligatesReport">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
     <rdfs:label>obligates</rdfs:label>
@@ -1024,6 +1366,14 @@
     <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reporting-schedule" />
     <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/report" />
     <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/measuredByIndicator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:label>is measured by</rdfs:label>
+    <rdfs:comment>A Result (Output, Outcome, or Impact) is measured by an Indicator. Declared against the abstract Result concept rather than each subtype separately, so any Output, Outcome, or Impact instance can be measured the same way.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/result" />
+    <rdfs:range rdf:resource="https://egovender.github.io/commongood-atlas/ontology/indicator" />
+    <rdfs:isDefinedBy rdf:resource="https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence" />
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/relations/conductedByReviewer">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
@@ -1309,6 +1659,28 @@
     <npo:allowedValue>in-progress</npo:allowedValue>
     <npo:allowedValue>completed</npo:allowedValue>
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type">
+    <rdfs:label>Claim Type</rdfs:label>
+    <rdfs:comment>Whether this claim asserts association, contribution, attribution, or causation.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evidence-claim" />
+    <npo:group>classification</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <npo:referenceScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength">
+    <rdfs:label>Evidence Strength</rdfs:label>
+    <rdfs:comment>How strong the supporting evidence is for this claim.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/evidence-claim" />
+    <npo:group>classification</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <npo:referenceScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage">
     <rdfs:label>Fee Percentage</rdfs:label>
     <rdfs:comment>The fiscal sponsor's administrative fee, charged as a percentage of funds processed.</rdfs:comment>
@@ -1576,6 +1948,26 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date">
+    <rdfs:label>Observation Date</rdfs:label>
+    <rdfs:comment>The date the value was observed.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/measurement" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value">
+    <rdfs:label>Value</rdfs:label>
+    <rdfs:comment>The observed value for the indicator. A plain string so it can hold a numeric ("64%"), categorical ("improved"), ordinal ("high"), or textual observation without conflating these kinds of values into different fields.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/measurement" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/organization-formation-date">
     <rdfs:label>Formation Date</rdfs:label>
     <rdfs:comment>When the organization was legally formed.</rdfs:comment>
@@ -1763,6 +2155,17 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area">
+    <rdfs:label>Issue Area</rdfs:label>
+    <rdfs:comment>The primary social or environmental issue this Project addresses.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/project" />
+    <npo:group>classification</npo:group>
+    <npo:required>false</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty" />
+    <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <npo:referenceScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/report-due-date">
     <rdfs:label>Due Date</rdfs:label>
     <rdfs:comment>When the Report is due per the Reporting Schedule.</rdfs:comment>
@@ -1948,6 +2351,26 @@
     <npo:allowedValue>completed</npo:allowedValue>
     <npo:allowedValue>terminated</npo:allowedValue>
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date">
+    <rdfs:label>Target Date</rdfs:label>
+    <rdfs:comment>The date by which the target value is expected to be reached.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/target" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#date" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/target-value">
+    <rdfs:label>Value</rdfs:label>
+    <rdfs:comment>The planned value for the indicator (e.g. "70%", "500 households"). A plain string so it can hold a numeric, percentage, or other planned value without a separate typed field per kind of indicator.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://egovender.github.io/commongood-atlas/ontology/target" />
+    <npo:group>lifecycle</npo:group>
+    <npo:required>true</npo:required>
+    <npo:cardinality>one</npo:cardinality>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty" />
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string" />
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/properties/terms-and-conditions-restriction-type">
     <rdfs:label>Restriction Type</rdfs:label>
     <rdfs:comment>Whether the funding governed by these Terms and Conditions is Restricted or Unrestricted Funding.</rdfs:comment>
@@ -2062,6 +2485,87 @@
     <npo:appliesTo rdf:resource="https://egovender.github.io/commongood-atlas/ontology/person" />
     <npo:appliesTo rdf:resource="https://egovender.github.io/commongood-atlas/ontology/organization" />
   </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme" />
+    <skos:prefLabel>Claim Type</skos:prefLabel>
+    <skos:definition>How strong an interpretation an Evidence Claim makes about a Project's relationship to a Result -- deliberately distinct, ordered from weakest to strongest evidentiary interpretation, and never treated as equivalent to one another.</skos:definition>
+    <npo:schemeDomain>program</npo:schemeDomain>
+    <npo:authorityType>internal</npo:authorityType>
+    <npo:version>1.0.0</npo:version>
+    <npo:publicationStatus rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/publication-status-published" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-association">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type" />
+    <skos:notation>association</skos:notation>
+    <skos:prefLabel>Association</skos:prefLabel>
+    <skos:definition>Two phenomena are observed together, without asserting that one influenced the other.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-attribution">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type" />
+    <skos:notation>attribution</skos:notation>
+    <skos:prefLabel>Attribution</skos:prefLabel>
+    <skos:definition>The evidence assigns a defined portion or substantial responsibility for the result to the intervention.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-causation">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type" />
+    <skos:notation>causation</skos:notation>
+    <skos:prefLabel>Causation</skos:prefLabel>
+    <skos:definition>The evidence supports a causal relationship between the intervention and the result.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-contribution">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type" />
+    <skos:notation>contribution</skos:notation>
+    <skos:prefLabel>Contribution</skos:prefLabel>
+    <skos:definition>There is evidence that the intervention played some role in producing the result, alongside other factors.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme" />
+    <skos:prefLabel>Evidence Strength</skos:prefLabel>
+    <skos:definition>How strong the supporting Evidence is for an Evidence Claim, independent of the claim's type (association/contribution/attribution/causation) -- a causation claim and an association claim can each be backed by strong or weak evidence.</skos:definition>
+    <npo:schemeDomain>program</npo:schemeDomain>
+    <npo:authorityType>internal</npo:authorityType>
+    <npo:version>1.0.0</npo:version>
+    <npo:publicationStatus rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/publication-status-published" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-anecdotal">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength" />
+    <skos:notation>anecdotal</skos:notation>
+    <skos:prefLabel>Anecdotal</skos:prefLabel>
+    <skos:definition>Based on isolated stories or individual accounts, not a systematic review.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-inconclusive">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength" />
+    <skos:notation>inconclusive</skos:notation>
+    <skos:prefLabel>Inconclusive</skos:prefLabel>
+    <skos:definition>The available evidence does not clearly support or refute the claim.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-limited">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength" />
+    <skos:notation>limited</skos:notation>
+    <skos:prefLabel>Limited</skos:prefLabel>
+    <skos:definition>Based on a small or narrow body of evidence with significant gaps.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-moderate">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength" />
+    <skos:notation>moderate</skos:notation>
+    <skos:prefLabel>Moderate</skos:prefLabel>
+    <skos:definition>Based on a reasonably systematic body of evidence with some limitations.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-strong">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength" />
+    <skos:notation>strong</skos:notation>
+    <skos:prefLabel>Strong</skos:prefLabel>
+    <skos:definition>Based on a rigorous, systematic body of evidence with few limitations.</skos:definition>
+  </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/frequency">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme" />
     <skos:prefLabel>Frequency</skos:prefLabel>
@@ -2098,6 +2602,71 @@
     <skos:notation>quarterly</skos:notation>
     <skos:prefLabel>Quarterly</skos:prefLabel>
     <skos:definition>Recurs every three months.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme" />
+    <skos:prefLabel>Issue Area</skos:prefLabel>
+    <skos:definition>The primary social or environmental issue a Project addresses. Not assumed to be a complete list of every possible issue area -- new values can be proposed as real projects need them.</skos:definition>
+    <npo:schemeDomain>program</npo:schemeDomain>
+    <npo:authorityType>internal</npo:authorityType>
+    <npo:version>1.0.0</npo:version>
+    <npo:publicationStatus rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/publication-status-published" />
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-arts-and-culture">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+    <skos:notation>arts-and-culture</skos:notation>
+    <skos:prefLabel>Arts and Culture</skos:prefLabel>
+    <skos:definition>Arts, culture, and creative expression.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-economic-development">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+    <skos:notation>economic-development</skos:notation>
+    <skos:prefLabel>Economic Development</skos:prefLabel>
+    <skos:definition>Employment, income, and local economic opportunity.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-education">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+    <skos:notation>education</skos:notation>
+    <skos:prefLabel>Education</skos:prefLabel>
+    <skos:definition>Access to and quality of learning, from early childhood through adult education.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-environment">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+    <skos:notation>environment</skos:notation>
+    <skos:prefLabel>Environment</skos:prefLabel>
+    <skos:definition>Conservation, climate, and natural-resource stewardship.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-food-security">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+    <skos:notation>food-security</skos:notation>
+    <skos:prefLabel>Food Security</skos:prefLabel>
+    <skos:definition>Reliable access to sufficient, affordable, nutritious food.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-health">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+    <skos:notation>health</skos:notation>
+    <skos:prefLabel>Health</skos:prefLabel>
+    <skos:definition>Physical and behavioral health, including access to care.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-housing">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+    <skos:notation>housing</skos:notation>
+    <skos:prefLabel>Housing</skos:prefLabel>
+    <skos:definition>Access to safe, stable, and affordable housing.</skos:definition>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-human-rights">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept" />
+    <skos:inScheme rdf:resource="https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area" />
+    <skos:notation>human-rights</skos:notation>
+    <skos:prefLabel>Human Rights</skos:prefLabel>
+    <skos:definition>Civil rights, civil liberties, and human-rights advocacy.</skos:definition>
   </rdf:Description>
   <rdf:Description rdf:about="https://egovender.github.io/commongood-atlas/ontology/reference-data/organization-operating-status">
     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#ConceptScheme" />

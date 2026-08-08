@@ -111,6 +111,22 @@
       "version": "0.3.0"
     },
     {
+      "id": "npo:activity",
+      "type": "owl:Class",
+      "label": "Activity",
+      "definition": "A defined action or body of work performed by a Project to produce Outputs and contribute toward intended Outcomes.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
+      "id": "npo:agent",
+      "type": "owl:Class",
+      "label": "Agent",
+      "definition": "An entity capable of participating in an activity, relationship, decision, transaction, or role. Person and Organization are its two subtypes.",
+      "category": "cross-cutting",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting"
+    },
+    {
       "id": "npo:amendment",
       "type": "owl:Class",
       "label": "Amendment",
@@ -241,7 +257,7 @@
       "id": "npo:decision",
       "type": "owl:Class",
       "label": "Decision",
-      "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
+      "definition": "A recorded determination concerning an application following review or another authorized approval process. Its outcome (approved, declined, or approved with conditions) is carried by the decisionOutcome property, not by the Decision entity's identity itself.",
       "category": "application-and-review",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review"
     },
@@ -322,6 +338,22 @@
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
+      "id": "npo:evidence",
+      "type": "owl:Class",
+      "label": "Evidence",
+      "definition": "Information used to support, weaken, qualify, or contextualize a claim about a Project, Activity, Result, or other entity (e.g., an evaluation report, survey results, administrative data, a case study).",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
+      "id": "npo:evidence-claim",
+      "type": "owl:Class",
+      "label": "Evidence Claim",
+      "definition": "A sourced assertion about a relationship, condition, result, or causal interpretation whose evidentiary basis can be independently identified. This is where a specific interpretation of a Project's contribution to a Result -- association, contribution, attribution, or causation -- is represented, distinct from the Result itself and from the Evidence supporting the claim.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
       "id": "npo:fiscal-sponsor",
       "type": "owl:Class",
       "label": "Fiscal Sponsor",
@@ -393,6 +425,14 @@
       ]
     },
     {
+      "id": "npo:geographic-area",
+      "type": "owl:Class",
+      "label": "Geographic Area",
+      "definition": "A geographic entity used to describe where a Need exists, where a Project operates, where a Population is located, or where a Result is observed.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
       "id": "npo:grant-administrator",
       "type": "owl:Class",
       "label": "Grant Administrator",
@@ -448,12 +488,37 @@
       "subClassOf": "npo:organization-role"
     },
     {
+      "id": "npo:impact",
+      "type": "owl:Class",
+      "label": "Impact",
+      "definition": "A broader or longer-term change to which one or more Outcomes may contribute. An Impact relationship does not itself imply that the Project has been demonstrated to cause the change.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
+      "subClassOf": "npo:result"
+    },
+    {
+      "id": "npo:indicator",
+      "type": "owl:Class",
+      "label": "Indicator",
+      "definition": "A defined measure used to assess the state or change of a Result (e.g., percentage of participants employed after six months, graduation rate).",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
       "id": "npo:indirect-cost-rate",
       "type": "owl:Class",
       "label": "Indirect Cost Rate",
       "definition": "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award.",
       "category": "compliance-and-reporting",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting"
+    },
+    {
+      "id": "npo:input",
+      "type": "owl:Class",
+      "label": "Input",
+      "definition": "A financial, human, material, informational, or other resource used in carrying out an Activity.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:installment",
@@ -491,12 +556,29 @@
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement"
     },
     {
+      "id": "npo:measurement",
+      "type": "owl:Class",
+      "label": "Measurement",
+      "definition": "An observed value for an Indicator at a particular time and, where relevant, for a defined Population or Geographic Area. Never treated as interchangeable with a Target: a Target is planned, a Measurement is observed.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
+      "id": "npo:need",
+      "type": "owl:Class",
+      "label": "Need",
+      "definition": "A condition, problem, gap, or opportunity identified as warranting intervention or investment.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
       "id": "npo:organization",
       "type": "owl:Class",
       "label": "Organization",
       "definition": "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient.",
       "category": "organizational-entities",
-      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:agent"
     },
     {
       "id": "npo:organization-role",
@@ -519,17 +601,19 @@
       "id": "npo:outcome",
       "type": "owl:Class",
       "label": "Outcome",
-      "definition": "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output.",
+      "definition": "A change in condition, behavior, knowledge, capacity, practice, or status that is intended or observed in association with a Project or Activity, distinct from a direct Output. A recorded Outcome does not by itself establish that the Project caused it -- see Evidence Claim for how a specific causal or contributory interpretation is represented and evidenced.",
       "category": "outcomes-and-closeout",
-      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
+      "subClassOf": "npo:result"
     },
     {
       "id": "npo:output",
       "type": "owl:Class",
       "label": "Output",
-      "definition": "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served).",
+      "definition": "A direct product, service, deliverable, or immediate consequence of Activities carried out by a Project (e.g., number of workshops held, people served). Does not itself imply any broader behavioral or social change.",
       "category": "outcomes-and-closeout",
-      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout",
+      "subClassOf": "npo:result"
     },
     {
       "id": "npo:partner",
@@ -574,7 +658,8 @@
       "altLabel": [
         "Individual",
         "Natural Person"
-      ]
+      ],
+      "subClassOf": "npo:agent"
     },
     {
       "id": "npo:person-role",
@@ -603,6 +688,14 @@
       "subClassOf": "npo:organization"
     },
     {
+      "id": "npo:population",
+      "type": "owl:Class",
+      "label": "Population",
+      "definition": "A group of people defined by demographic, geographic, institutional, experiential, or other characteristics relevant to a Need, Project, Result, or Evaluation.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
+    },
+    {
       "id": "npo:program-officer",
       "type": "owl:Class",
       "label": "Program Officer",
@@ -610,6 +703,14 @@
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:person-role"
+    },
+    {
+      "id": "npo:project",
+      "type": "owl:Class",
+      "label": "Project",
+      "definition": "A defined body of work undertaken over a period of time to address one or more needs or objectives -- the work being performed, distinct from the Application requesting funding for it or the Award committing funding to it.",
+      "category": "cross-cutting",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting"
     },
     {
       "id": "npo:regranting-arrangement",
@@ -641,9 +742,18 @@
       "id": "npo:restricted-funding",
       "type": "owl:Class",
       "label": "Restricted Funding",
-      "definition": "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement.",
+      "definition": "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility.",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement",
+      "deprecated": true
+    },
+    {
+      "id": "npo:result",
+      "type": "owl:Class",
+      "label": "Result",
+      "definition": "A planned or observed state, product, change, or effect associated with an intervention. Output, Outcome, and Impact are its three subtypes, distinguished by directness and time horizon.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:review",
@@ -702,6 +812,7 @@
       "definition": "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.",
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "subClassOf": "npo:project",
       "legalNote": "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement."
     },
     {
@@ -712,6 +823,14 @@
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
+    },
+    {
+      "id": "npo:target",
+      "type": "owl:Class",
+      "label": "Target",
+      "definition": "A planned value for an Indicator expected to be reached by a defined point in time.",
+      "category": "outcomes-and-closeout",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout"
     },
     {
       "id": "npo:terms-and-conditions",
@@ -733,9 +852,10 @@
       "id": "npo:unrestricted-funding",
       "type": "owl:Class",
       "label": "Unrestricted Funding",
-      "definition": "Funding a grantee may use at its discretion in support of its general mission.",
+      "definition": "Funding a grantee may use at its discretion in support of its general mission. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility.",
       "category": "award-and-agreement",
-      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement",
+      "deprecated": true
     },
     {
       "id": "npo:vendor",
@@ -745,6 +865,24 @@
       "category": "organizational-entities",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
       "subClassOf": "npo:organization-role"
+    },
+    {
+      "id": "nporel:producesOutput",
+      "type": "owl:ObjectProperty",
+      "label": "produces",
+      "comment": "An Activity produces one or more Outputs.",
+      "domain": "npo:activity",
+      "range": "npo:output",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:agentPlaysRole",
+      "type": "owl:ObjectProperty",
+      "label": "plays",
+      "comment": "An Agent (Person or Organization) plays one or more Roles. The preferred predicate for new data now that Agent exists as a shared superclass, replacing the separate playsRole (Organization) and personPlaysRole (Person) predicates -- both kept and still valid on existing data, not migrated, per this project's policy of never deleting or force-migrating published predicates.",
+      "domain": "npo:agent",
+      "range": "npo:role",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
       "id": "nporel:modifiesGrantAgreement",
@@ -763,6 +901,15 @@
       "domain": "npo:application",
       "range": "npo:budget",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:proposesProject",
+      "type": "owl:ObjectProperty",
+      "label": "proposes",
+      "comment": "An Application proposes the Project it is requesting funding for. The Application is the request; the Project is the work being proposed.",
+      "domain": "npo:application",
+      "range": "npo:project",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
     },
     {
       "id": "nporel:respondsToFundingOpportunity",
@@ -828,6 +975,15 @@
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
     },
     {
+      "id": "nporel:fundsProject",
+      "type": "owl:ObjectProperty",
+      "label": "funds",
+      "comment": "An Award commits funding to a Project. The Award is the funding commitment; the Project is the work performed using it.",
+      "domain": "npo:award",
+      "range": "npo:project",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
       "id": "nporel:hasPaymentSchedule",
       "type": "owl:ObjectProperty",
       "label": "has",
@@ -862,6 +1018,15 @@
       "domain": "npo:collaborative-fund-arrangement",
       "range": "npo:fund",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
+      "id": "nporel:appliesToAward",
+      "type": "owl:ObjectProperty",
+      "label": "applies to",
+      "comment": "A Compliance Requirement applies to a specific Award -- distinct from the Grant Agreement specifying it: the Agreement is the document that spells out the requirement, while this relationship tracks which Award it actually binds. The same organization can be in good standing on one award and delinquent on another, so the requirement must attach to the Award, not the Grantee in the abstract.",
+      "domain": "npo:compliance-requirement",
+      "range": "npo:award",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
       "id": "nporel:includesReportingSchedule",
@@ -934,6 +1099,42 @@
       "domain": "npo:evaluation",
       "range": "npo:output",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:evaluatesProject",
+      "type": "owl:ObjectProperty",
+      "label": "evaluates",
+      "comment": "An Evaluation assesses a Project.",
+      "domain": "npo:evaluation",
+      "range": "npo:project",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:producesEvidenceClaim",
+      "type": "owl:ObjectProperty",
+      "label": "produces",
+      "comment": "An Evaluation produces one or more Evidence Claims.",
+      "domain": "npo:evaluation",
+      "range": "npo:evidence-claim",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:aboutResult",
+      "type": "owl:ObjectProperty",
+      "label": "is about",
+      "comment": "An Evidence Claim is about a Result. Declared against the abstract Result concept rather than each subtype separately, so a claim can concern any Output, Outcome, or Impact instance.",
+      "domain": "npo:evidence-claim",
+      "range": "npo:result",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:supportedByEvidence",
+      "type": "owl:ObjectProperty",
+      "label": "is supported by",
+      "comment": "An Evidence Claim is supported by one or more pieces of Evidence.",
+      "domain": "npo:evidence-claim",
+      "range": "npo:evidence",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
     },
     {
       "id": "nporel:actsOnBehalfOf",
@@ -1125,6 +1326,24 @@
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:hasMeasurement",
+      "type": "owl:ObjectProperty",
+      "label": "has",
+      "comment": "An Indicator has one or more Measurements -- the observed values recorded over time. Never equated with the Indicator's Target: a Target is planned, a Measurement is observed.",
+      "domain": "npo:indicator",
+      "range": "npo:measurement",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:hasTarget",
+      "type": "owl:ObjectProperty",
+      "label": "has",
+      "comment": "An Indicator has a Target -- the planned value expected by a defined date.",
+      "domain": "npo:indicator",
+      "range": "npo:target",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
       "id": "nporel:disbursedAsPayment",
       "type": "owl:ObjectProperty",
       "label": "is disbursed as",
@@ -1143,6 +1362,69 @@
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:includesActivity",
+      "type": "owl:ObjectProperty",
+      "label": "includes",
+      "comment": "A Logic Model includes the Activities it plans for.",
+      "domain": "npo:logic-model",
+      "range": "npo:activity",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:includesInput",
+      "type": "owl:ObjectProperty",
+      "label": "includes",
+      "comment": "A Logic Model includes the Inputs it plans for.",
+      "domain": "npo:logic-model",
+      "range": "npo:input",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:includesOutcome",
+      "type": "owl:ObjectProperty",
+      "label": "includes",
+      "comment": "A Logic Model includes the Outcomes it plans for.",
+      "domain": "npo:logic-model",
+      "range": "npo:outcome",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:includesOutput",
+      "type": "owl:ObjectProperty",
+      "label": "includes",
+      "comment": "A Logic Model includes the Outputs it plans for.",
+      "domain": "npo:logic-model",
+      "range": "npo:output",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:observedForPopulation",
+      "type": "owl:ObjectProperty",
+      "label": "was observed for",
+      "comment": "A Measurement was observed for a specific Population.",
+      "domain": "npo:measurement",
+      "range": "npo:population",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:observedIn",
+      "type": "owl:ObjectProperty",
+      "label": "was observed in",
+      "comment": "A Measurement was observed in a specific Geographic Area.",
+      "domain": "npo:measurement",
+      "range": "npo:geographic-area",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:experiencedByPopulation",
+      "type": "owl:ObjectProperty",
+      "label": "is experienced by",
+      "comment": "A Need is experienced by a specific Population.",
+      "domain": "npo:need",
+      "range": "npo:population",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
       "id": "nporel:hasLegalForm",
       "type": "owl:ObjectProperty",
       "label": "has legal form",
@@ -1150,6 +1432,15 @@
       "domain": "npo:organization",
       "range": "npo:organization-type",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
+      "id": "nporel:implementsProject",
+      "type": "owl:ObjectProperty",
+      "label": "implements",
+      "comment": "An Organization carries out a Project -- typically the Grantee, but modeled directly on Organization rather than a specific role so any organization implementing work (e.g. a Sponsored Project's Fiscal Sponsor) can be represented the same way.",
+      "domain": "npo:organization",
+      "range": "npo:project",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
     },
     {
       "id": "nporel:participatesIn",
@@ -1167,7 +1458,9 @@
       "comment": "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait.",
       "domain": "npo:organization",
       "range": "npo:organization-role",
-      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md",
+      "deprecated": true,
+      "isReplacedBy": "nporel:agentPlaysRole"
     },
     {
       "id": "nporel:appliesWithin",
@@ -1186,6 +1479,24 @@
       "domain": "npo:organization-role",
       "range": "npo:organization",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md"
+    },
+    {
+      "id": "nporel:contributesToImpact",
+      "type": "owl:ObjectProperty",
+      "label": "contributes to",
+      "comment": "An Outcome contributes to a broader or longer-term Impact. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.",
+      "domain": "npo:outcome",
+      "range": "npo:impact",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:contributesToOutcome",
+      "type": "owl:ObjectProperty",
+      "label": "contributes to",
+      "comment": "An Output contributes to an intended or observed Outcome. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.",
+      "domain": "npo:output",
+      "range": "npo:outcome",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
     },
     {
       "id": "nporel:brokenIntoInstallment",
@@ -1212,7 +1523,9 @@
       "comment": "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed.",
       "domain": "npo:person",
       "range": "npo:person-role",
-      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities"
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities",
+      "deprecated": true,
+      "isReplacedBy": "nporel:agentPlaysRole"
     },
     {
       "id": "nporel:personRoleAppliesWithin",
@@ -1242,6 +1555,69 @@
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships"
     },
     {
+      "id": "nporel:addressesNeed",
+      "type": "owl:ObjectProperty",
+      "label": "addresses",
+      "comment": "A Project addresses one or more identified Needs.",
+      "domain": "npo:project",
+      "range": "npo:need",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:hasLogicModel",
+      "type": "owl:ObjectProperty",
+      "label": "has",
+      "comment": "A Project has a Logic Model connecting its inputs, activities, outputs, and outcomes.",
+      "domain": "npo:project",
+      "range": "npo:logic-model",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:hasTheoryOfChange",
+      "type": "owl:ObjectProperty",
+      "label": "has",
+      "comment": "A Project has a Theory of Change articulating how its activities are expected to lead to desired long-term change.",
+      "domain": "npo:project",
+      "range": "npo:theory-of-change",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:performsActivity",
+      "type": "owl:ObjectProperty",
+      "label": "performs",
+      "comment": "A Project performs one or more Activities.",
+      "domain": "npo:project",
+      "range": "npo:activity",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:servesPopulation",
+      "type": "owl:ObjectProperty",
+      "label": "serves",
+      "comment": "A Project serves a specific Population, which may or may not be the same Population that experiences the Need it addresses (e.g. a project can serve service providers on behalf of an affected population).",
+      "domain": "npo:project",
+      "range": "npo:population",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:takesPlaceIn",
+      "type": "owl:ObjectProperty",
+      "label": "takes place in",
+      "comment": "A Project operates within a Geographic Area. Distinct from any organization's registered address -- a project's operating area is not assumed to equal its implementing organization's or grant recipient's mailing address.",
+      "domain": "npo:project",
+      "range": "npo:geographic-area",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
+      "id": "nporel:usesInput",
+      "type": "owl:ObjectProperty",
+      "label": "uses",
+      "comment": "A Project uses Inputs (financial, human, material, or informational resources) to carry out its Activities.",
+      "domain": "npo:project",
+      "range": "npo:input",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
       "id": "nporel:regrantsTo",
       "type": "owl:ObjectProperty",
       "label": "regrants to",
@@ -1269,6 +1645,15 @@
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
     },
     {
+      "id": "nporel:providesEvidence",
+      "type": "owl:ObjectProperty",
+      "label": "provides",
+      "comment": "A Report can itself serve as Evidence supporting an Evidence Claim (e.g. the administrative data or narrative it contains).",
+      "domain": "npo:report",
+      "range": "npo:evidence",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
+    },
+    {
       "id": "nporel:obligatesReport",
       "type": "owl:ObjectProperty",
       "label": "obligates",
@@ -1276,6 +1661,15 @@
       "domain": "npo:reporting-schedule",
       "range": "npo:report",
       "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+    },
+    {
+      "id": "nporel:measuredByIndicator",
+      "type": "owl:ObjectProperty",
+      "label": "is measured by",
+      "comment": "A Result (Output, Outcome, or Impact) is measured by an Indicator. Declared against the abstract Result concept rather than each subtype separately, so any Output, Outcome, or Impact instance can be measured the same way.",
+      "domain": "npo:result",
+      "range": "npo:indicator",
+      "isDefinedBy": "https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence"
     },
     {
       "id": "nporel:conductedByReviewer",
@@ -1608,6 +2002,30 @@
       ]
     },
     {
+      "id": "npoprop:evidence-claim-claim-type",
+      "label": "Claim Type",
+      "comment": "Whether this claim asserts association, contribution, attribution, or causation.",
+      "domain": "npo:evidence-claim",
+      "group": "classification",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:ObjectProperty",
+      "range": "skos:Concept",
+      "referenceScheme": "nporef:claim-type"
+    },
+    {
+      "id": "npoprop:evidence-claim-evidence-strength",
+      "label": "Evidence Strength",
+      "comment": "How strong the supporting evidence is for this claim.",
+      "domain": "npo:evidence-claim",
+      "group": "classification",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:ObjectProperty",
+      "range": "skos:Concept",
+      "referenceScheme": "nporef:evidence-strength"
+    },
+    {
       "id": "npoprop:fiscal-sponsorship-arrangement-fee-percentage",
       "label": "Fee Percentage",
       "comment": "The fiscal sponsor's administrative fee, charged as a percentage of funds processed.",
@@ -1917,6 +2335,28 @@
       "range": "xsd:string"
     },
     {
+      "id": "npoprop:measurement-observation-date",
+      "label": "Observation Date",
+      "comment": "The date the value was observed.",
+      "domain": "npo:measurement",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:measurement-value",
+      "label": "Value",
+      "comment": "The observed value for the indicator. A plain string so it can hold a numeric (\"64%\"), categorical (\"improved\"), ordinal (\"high\"), or textual observation without conflating these kinds of values into different fields.",
+      "domain": "npo:measurement",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
+    },
+    {
       "id": "npoprop:organization-formation-date",
       "label": "Formation Date",
       "comment": "When the organization was legally formed.",
@@ -2129,6 +2569,18 @@
       "cardinality": "one",
       "type": "owl:DatatypeProperty",
       "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:project-issue-area",
+      "label": "Issue Area",
+      "comment": "The primary social or environmental issue this Project addresses.",
+      "domain": "npo:project",
+      "group": "classification",
+      "required": false,
+      "cardinality": "one",
+      "type": "owl:ObjectProperty",
+      "range": "skos:Concept",
+      "referenceScheme": "nporef:issue-area"
     },
     {
       "id": "npoprop:report-due-date",
@@ -2344,6 +2796,28 @@
       ]
     },
     {
+      "id": "npoprop:target-target-date",
+      "label": "Target Date",
+      "comment": "The date by which the target value is expected to be reached.",
+      "domain": "npo:target",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:date"
+    },
+    {
+      "id": "npoprop:target-value",
+      "label": "Value",
+      "comment": "The planned value for the indicator (e.g. \"70%\", \"500 households\"). A plain string so it can hold a numeric, percentage, or other planned value without a separate typed field per kind of indicator.",
+      "domain": "npo:target",
+      "group": "lifecycle",
+      "required": true,
+      "cardinality": "one",
+      "type": "owl:DatatypeProperty",
+      "range": "xsd:string"
+    },
+    {
       "id": "npoprop:terms-and-conditions-restriction-type",
       "label": "Restriction Type",
       "comment": "Whether the funding governed by these Terms and Conditions is Restricted or Unrestricted Funding.",
@@ -2494,6 +2968,98 @@
       ]
     },
     {
+      "id": "nporef:claim-type",
+      "type": "skos:ConceptScheme",
+      "prefLabel": "Claim Type",
+      "definition": "How strong an interpretation an Evidence Claim makes about a Project's relationship to a Result -- deliberately distinct, ordered from weakest to strongest evidentiary interpretation, and never treated as equivalent to one another.",
+      "schemeDomain": "program",
+      "authorityType": "internal",
+      "version": "1.0.0",
+      "publicationStatus": "nporef:publication-status-published"
+    },
+    {
+      "id": "nporef:claim-type-association",
+      "type": "skos:Concept",
+      "inScheme": "nporef:claim-type",
+      "notation": "association",
+      "prefLabel": "Association",
+      "definition": "Two phenomena are observed together, without asserting that one influenced the other."
+    },
+    {
+      "id": "nporef:claim-type-attribution",
+      "type": "skos:Concept",
+      "inScheme": "nporef:claim-type",
+      "notation": "attribution",
+      "prefLabel": "Attribution",
+      "definition": "The evidence assigns a defined portion or substantial responsibility for the result to the intervention."
+    },
+    {
+      "id": "nporef:claim-type-causation",
+      "type": "skos:Concept",
+      "inScheme": "nporef:claim-type",
+      "notation": "causation",
+      "prefLabel": "Causation",
+      "definition": "The evidence supports a causal relationship between the intervention and the result."
+    },
+    {
+      "id": "nporef:claim-type-contribution",
+      "type": "skos:Concept",
+      "inScheme": "nporef:claim-type",
+      "notation": "contribution",
+      "prefLabel": "Contribution",
+      "definition": "There is evidence that the intervention played some role in producing the result, alongside other factors."
+    },
+    {
+      "id": "nporef:evidence-strength",
+      "type": "skos:ConceptScheme",
+      "prefLabel": "Evidence Strength",
+      "definition": "How strong the supporting Evidence is for an Evidence Claim, independent of the claim's type (association/contribution/attribution/causation) -- a causation claim and an association claim can each be backed by strong or weak evidence.",
+      "schemeDomain": "program",
+      "authorityType": "internal",
+      "version": "1.0.0",
+      "publicationStatus": "nporef:publication-status-published"
+    },
+    {
+      "id": "nporef:evidence-strength-anecdotal",
+      "type": "skos:Concept",
+      "inScheme": "nporef:evidence-strength",
+      "notation": "anecdotal",
+      "prefLabel": "Anecdotal",
+      "definition": "Based on isolated stories or individual accounts, not a systematic review."
+    },
+    {
+      "id": "nporef:evidence-strength-inconclusive",
+      "type": "skos:Concept",
+      "inScheme": "nporef:evidence-strength",
+      "notation": "inconclusive",
+      "prefLabel": "Inconclusive",
+      "definition": "The available evidence does not clearly support or refute the claim."
+    },
+    {
+      "id": "nporef:evidence-strength-limited",
+      "type": "skos:Concept",
+      "inScheme": "nporef:evidence-strength",
+      "notation": "limited",
+      "prefLabel": "Limited",
+      "definition": "Based on a small or narrow body of evidence with significant gaps."
+    },
+    {
+      "id": "nporef:evidence-strength-moderate",
+      "type": "skos:Concept",
+      "inScheme": "nporef:evidence-strength",
+      "notation": "moderate",
+      "prefLabel": "Moderate",
+      "definition": "Based on a reasonably systematic body of evidence with some limitations."
+    },
+    {
+      "id": "nporef:evidence-strength-strong",
+      "type": "skos:Concept",
+      "inScheme": "nporef:evidence-strength",
+      "notation": "strong",
+      "prefLabel": "Strong",
+      "definition": "Based on a rigorous, systematic body of evidence with few limitations."
+    },
+    {
       "id": "nporef:frequency",
       "type": "skos:ConceptScheme",
       "prefLabel": "Frequency",
@@ -2534,6 +3100,80 @@
       "notation": "quarterly",
       "prefLabel": "Quarterly",
       "definition": "Recurs every three months."
+    },
+    {
+      "id": "nporef:issue-area",
+      "type": "skos:ConceptScheme",
+      "prefLabel": "Issue Area",
+      "definition": "The primary social or environmental issue a Project addresses. Not assumed to be a complete list of every possible issue area -- new values can be proposed as real projects need them.",
+      "schemeDomain": "program",
+      "authorityType": "internal",
+      "version": "1.0.0",
+      "publicationStatus": "nporef:publication-status-published"
+    },
+    {
+      "id": "nporef:issue-area-arts-and-culture",
+      "type": "skos:Concept",
+      "inScheme": "nporef:issue-area",
+      "notation": "arts-and-culture",
+      "prefLabel": "Arts and Culture",
+      "definition": "Arts, culture, and creative expression."
+    },
+    {
+      "id": "nporef:issue-area-economic-development",
+      "type": "skos:Concept",
+      "inScheme": "nporef:issue-area",
+      "notation": "economic-development",
+      "prefLabel": "Economic Development",
+      "definition": "Employment, income, and local economic opportunity."
+    },
+    {
+      "id": "nporef:issue-area-education",
+      "type": "skos:Concept",
+      "inScheme": "nporef:issue-area",
+      "notation": "education",
+      "prefLabel": "Education",
+      "definition": "Access to and quality of learning, from early childhood through adult education."
+    },
+    {
+      "id": "nporef:issue-area-environment",
+      "type": "skos:Concept",
+      "inScheme": "nporef:issue-area",
+      "notation": "environment",
+      "prefLabel": "Environment",
+      "definition": "Conservation, climate, and natural-resource stewardship."
+    },
+    {
+      "id": "nporef:issue-area-food-security",
+      "type": "skos:Concept",
+      "inScheme": "nporef:issue-area",
+      "notation": "food-security",
+      "prefLabel": "Food Security",
+      "definition": "Reliable access to sufficient, affordable, nutritious food."
+    },
+    {
+      "id": "nporef:issue-area-health",
+      "type": "skos:Concept",
+      "inScheme": "nporef:issue-area",
+      "notation": "health",
+      "prefLabel": "Health",
+      "definition": "Physical and behavioral health, including access to care."
+    },
+    {
+      "id": "nporef:issue-area-housing",
+      "type": "skos:Concept",
+      "inScheme": "nporef:issue-area",
+      "notation": "housing",
+      "prefLabel": "Housing",
+      "definition": "Access to safe, stable, and affordable housing."
+    },
+    {
+      "id": "nporef:issue-area-human-rights",
+      "type": "skos:Concept",
+      "inScheme": "nporef:issue-area",
+      "notation": "human-rights",
+      "prefLabel": "Human Rights",
+      "definition": "Civil rights, civil liberties, and human-rights advocacy."
     },
     {
       "id": "nporef:organization-operating-status",

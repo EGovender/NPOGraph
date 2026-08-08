@@ -1,7 +1,7 @@
 {
   "id": "coastal-watch-fy26",
   "title": "Ocean Conservation Fund and the intermediary philanthropy landscape",
-  "summary": "Five connected, fictional scenarios: a direct grant followed end to end, and four ways funding can flow through intermediaries -- fiscal sponsorship, a donor-advised fund, regranting, and a collaborative fund -- showing the same core organization occupying multiple independently-dated roles at once, plus the other organizations that connect around it.",
+  "summary": "Five connected, fictional scenarios: a direct grant followed end to end -- including the project it funds, the need and population that project serves, and the results, measurement, and evidence produced along the way -- and four ways funding can flow through intermediaries -- fiscal sponsorship, a donor-advised fund, regranting, and a collaborative fund -- showing the same core organization occupying multiple independently-dated roles at once, plus the other organizations that connect around it.",
   "individuals": [
     {
       "id": "ocean-conservation-fund",
@@ -142,6 +142,83 @@
       "label": "Coastal Watch Alliance FY26 Closeout",
       "properties": { "status": "completed", "date": "2027-02-01" },
       "narrative": "With all payments disbursed and all reports accepted, the award reaches Closeout on February 1, 2027."
+    },
+    {
+      "id": "coastal-watch-restoration-project",
+      "concept": "project",
+      "label": "Half Moon Cove Habitat Restoration Project",
+      "properties": { "issueArea": "environment" },
+      "narrative": "The work the award actually funds is the Half Moon Cove Habitat Restoration Project -- distinct from the Application that proposed it and the Award that funds it."
+    },
+    {
+      "id": "coastal-habitat-degradation-need",
+      "concept": "need",
+      "label": "Degraded Coastal Habitat at Half Moon Cove",
+      "properties": {},
+      "narrative": "The project addresses a specific Need: decades of erosion and pollution have degraded the cove's tidal habitat."
+    },
+    {
+      "id": "coastal-watch-fishing-communities",
+      "concept": "population",
+      "label": "Half Moon Cove Fishing Communities",
+      "properties": {},
+      "narrative": "The Need is experienced by the small fishing communities along the cove, and they're also the Population the project directly serves."
+    },
+    {
+      "id": "half-moon-cove-area",
+      "concept": "geographic-area",
+      "label": "Half Moon Cove",
+      "properties": {},
+      "narrative": "The project takes place within Half Moon Cove -- a distinct Geographic Area from Coastal Watch Alliance's own registered address."
+    },
+    {
+      "id": "coastal-watch-restoration-activity",
+      "concept": "activity",
+      "label": "Habitat Restoration Workshops",
+      "properties": {},
+      "narrative": "The project's core Activity is running a series of habitat restoration workshops -- the work that produces the 12-workshops Output recorded above."
+    },
+    {
+      "id": "coastal-watch-regional-impact",
+      "concept": "impact",
+      "label": "Healthier Central Coast Marine Ecosystem",
+      "properties": {},
+      "narrative": "The project's intended contribution is a broader, longer-term Impact: a healthier marine ecosystem along the wider central coast, to which the project's own habitat-health Outcome is only one of several contributing factors."
+    },
+    {
+      "id": "coastal-habitat-health-indicator",
+      "concept": "indicator",
+      "label": "Percent Improvement in Coastal Habitat Health Score",
+      "properties": {},
+      "narrative": "The Outcome is measured by an Indicator: percent improvement in a standardized coastal habitat health score."
+    },
+    {
+      "id": "coastal-habitat-health-target-2027",
+      "concept": "target",
+      "label": "2027 Habitat Health Target",
+      "properties": { "value": "70% improvement", "targetDate": "2027-01-15" },
+      "narrative": "Coastal Watch's Logic Model set a Target of 70% improvement by the Year 1 evaluation date."
+    },
+    {
+      "id": "coastal-habitat-health-measurement-2027",
+      "concept": "measurement",
+      "label": "2027 Habitat Health Measurement",
+      "properties": { "value": "64% improvement", "observationDate": "2027-01-15" },
+      "narrative": "The Year 1 Evaluation's actual Measurement came in at 64% -- short of the 70% Target, and never treated as interchangeable with it."
+    },
+    {
+      "id": "coastal-watch-year1-field-survey",
+      "concept": "evidence",
+      "label": "Year 1 Habitat Health Field Survey",
+      "properties": {},
+      "narrative": "The evaluation's finding rests on Evidence: a field survey of tidal habitat conditions conducted alongside the evaluation."
+    },
+    {
+      "id": "coastal-watch-habitat-outcome-claim",
+      "concept": "evidence-claim",
+      "label": "Workshops' Contribution to Habitat Health Claim",
+      "properties": { "claimType": "contribution", "evidenceStrength": "moderate" },
+      "narrative": "The evaluation's Evidence Claim is deliberately modest: the workshops are recorded as having contributed to the observed habitat-health improvement, backed by moderate-strength evidence -- not presented as having caused it outright."
     },
     {
       "id": "ocean-conservation-fund-org",
@@ -343,6 +420,25 @@
     { "predicate": "assessesOutput", "subject": "coastal-watch-year1-evaluation", "object": "coastal-watch-workshops-output" },
     { "predicate": "assessesOutcome", "subject": "coastal-watch-year1-evaluation", "object": "coastal-watch-habitat-outcome" },
     { "predicate": "reachesCloseout", "subject": "coastal-watch-fy26-award", "object": "coastal-watch-fy26-closeout" },
+    { "predicate": "proposesProject", "subject": "coastal-watch-fy26-application", "object": "coastal-watch-restoration-project" },
+    { "predicate": "fundsProject", "subject": "coastal-watch-fy26-award", "object": "coastal-watch-restoration-project" },
+    { "predicate": "addressesNeed", "subject": "coastal-watch-restoration-project", "object": "coastal-habitat-degradation-need" },
+    { "predicate": "experiencedByPopulation", "subject": "coastal-habitat-degradation-need", "object": "coastal-watch-fishing-communities" },
+    { "predicate": "servesPopulation", "subject": "coastal-watch-restoration-project", "object": "coastal-watch-fishing-communities" },
+    { "predicate": "takesPlaceIn", "subject": "coastal-watch-restoration-project", "object": "half-moon-cove-area" },
+    { "predicate": "performsActivity", "subject": "coastal-watch-restoration-project", "object": "coastal-watch-restoration-activity" },
+    { "predicate": "producesOutput", "subject": "coastal-watch-restoration-activity", "object": "coastal-watch-workshops-output" },
+    { "predicate": "contributesToOutcome", "subject": "coastal-watch-workshops-output", "object": "coastal-watch-habitat-outcome" },
+    { "predicate": "contributesToImpact", "subject": "coastal-watch-habitat-outcome", "object": "coastal-watch-regional-impact" },
+    { "predicate": "measuredByIndicator", "subject": "coastal-watch-habitat-outcome", "object": "coastal-habitat-health-indicator" },
+    { "predicate": "hasTarget", "subject": "coastal-habitat-health-indicator", "object": "coastal-habitat-health-target-2027" },
+    { "predicate": "hasMeasurement", "subject": "coastal-habitat-health-indicator", "object": "coastal-habitat-health-measurement-2027" },
+    { "predicate": "observedForPopulation", "subject": "coastal-habitat-health-measurement-2027", "object": "coastal-watch-fishing-communities" },
+    { "predicate": "observedIn", "subject": "coastal-habitat-health-measurement-2027", "object": "half-moon-cove-area" },
+    { "predicate": "evaluatesProject", "subject": "coastal-watch-year1-evaluation", "object": "coastal-watch-restoration-project" },
+    { "predicate": "producesEvidenceClaim", "subject": "coastal-watch-year1-evaluation", "object": "coastal-watch-habitat-outcome-claim" },
+    { "predicate": "aboutResult", "subject": "coastal-watch-habitat-outcome-claim", "object": "coastal-watch-habitat-outcome" },
+    { "predicate": "supportedByEvidence", "subject": "coastal-watch-habitat-outcome-claim", "object": "coastal-watch-year1-field-survey" },
     { "predicate": "playsRole", "subject": "ocean-conservation-fund-org", "object": "ocean-conservation-fund" },
     { "predicate": "playsRole", "subject": "ocean-conservation-fund-org", "object": "ocean-conservation-fund-fiscal-sponsor-role" },
     { "predicate": "appliesWithin", "subject": "ocean-conservation-fund-fiscal-sponsor-role", "object": "tidewater-sponsorship-arrangement" },

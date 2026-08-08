@@ -1,5 +1,15 @@
 <https://egovender.github.io/commongood-atlas/ontology/BusinessRule> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2000/01/rdf-schema#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/BusinessRule> <http://www.w3.org/2000/01/rdf-schema#label> "Business Rule" .
+<https://egovender.github.io/commongood-atlas/ontology/activity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/activity> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/activity> <http://www.w3.org/2000/01/rdf-schema#label> "Activity" .
+<https://egovender.github.io/commongood-atlas/ontology/activity> <http://www.w3.org/2004/02/skos/core#definition> "A defined action or body of work performed by a Project to produce Outputs and contribute toward intended Outcomes." .
+<https://egovender.github.io/commongood-atlas/ontology/activity> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/commongood-atlas/ontology/agent> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/agent> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting> .
+<https://egovender.github.io/commongood-atlas/ontology/agent> <http://www.w3.org/2000/01/rdf-schema#label> "Agent" .
+<https://egovender.github.io/commongood-atlas/ontology/agent> <http://www.w3.org/2004/02/skos/core#definition> "An entity capable of participating in an activity, relationship, decision, transaction, or role. Person and Organization are its two subtypes." .
+<https://egovender.github.io/commongood-atlas/ontology/agent> <https://egovender.github.io/commongood-atlas/ontology/category> "cross-cutting" .
 <https://egovender.github.io/commongood-atlas/ontology/amendment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/amendment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> .
 <https://egovender.github.io/commongood-atlas/ontology/amendment> <http://www.w3.org/2000/01/rdf-schema#label> "Amendment" .
@@ -82,7 +92,7 @@
 <https://egovender.github.io/commongood-atlas/ontology/decision> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/decision> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> .
 <https://egovender.github.io/commongood-atlas/ontology/decision> <http://www.w3.org/2000/01/rdf-schema#label> "Decision" .
-<https://egovender.github.io/commongood-atlas/ontology/decision> <http://www.w3.org/2004/02/skos/core#definition> "The outcome of the review process for an application: approved, declined, or approved with conditions." .
+<https://egovender.github.io/commongood-atlas/ontology/decision> <http://www.w3.org/2004/02/skos/core#definition> "A recorded determination concerning an application following review or another authorized approval process. Its outcome (approved, declined, or approved with conditions) is carried by the decisionOutcome property, not by the Decision entity's identity itself." .
 <https://egovender.github.io/commongood-atlas/ontology/decision> <https://egovender.github.io/commongood-atlas/ontology/category> "application-and-review" .
 <https://egovender.github.io/commongood-atlas/ontology/donor-advised-fund-arrangement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/donor-advised-fund-arrangement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#funding-structure> .
@@ -134,6 +144,16 @@
 <https://egovender.github.io/commongood-atlas/ontology/evaluation> <http://www.w3.org/2000/01/rdf-schema#label> "Evaluation" .
 <https://egovender.github.io/commongood-atlas/ontology/evaluation> <http://www.w3.org/2004/02/skos/core#definition> "A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes." .
 <https://egovender.github.io/commongood-atlas/ontology/evaluation> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/commongood-atlas/ontology/evidence-claim> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/evidence-claim> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/evidence-claim> <http://www.w3.org/2000/01/rdf-schema#label> "Evidence Claim" .
+<https://egovender.github.io/commongood-atlas/ontology/evidence-claim> <http://www.w3.org/2004/02/skos/core#definition> "A sourced assertion about a relationship, condition, result, or causal interpretation whose evidentiary basis can be independently identified. This is where a specific interpretation of a Project's contribution to a Result -- association, contribution, attribution, or causation -- is represented, distinct from the Result itself and from the Evidence supporting the claim." .
+<https://egovender.github.io/commongood-atlas/ontology/evidence-claim> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/commongood-atlas/ontology/evidence> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/evidence> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/evidence> <http://www.w3.org/2000/01/rdf-schema#label> "Evidence" .
+<https://egovender.github.io/commongood-atlas/ontology/evidence> <http://www.w3.org/2004/02/skos/core#definition> "Information used to support, weaken, qualify, or contextualize a claim about a Project, Activity, Result, or other entity (e.g., an evaluation report, survey results, administrative data, a case study)." .
+<https://egovender.github.io/commongood-atlas/ontology/evidence> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/fiscal-sponsor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/fiscal-sponsor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/fiscal-sponsor> <http://www.w3.org/2000/01/rdf-schema#label> "Fiscal Sponsor" .
@@ -180,6 +200,11 @@
 <https://egovender.github.io/commongood-atlas/ontology/funding-opportunity> <http://www.w3.org/2004/02/skos/core#altLabel> "Request for Proposals" .
 <https://egovender.github.io/commongood-atlas/ontology/funding-opportunity> <http://www.w3.org/2004/02/skos/core#definition> "A specific, time-bound invitation to apply for funding under a grant program, with defined eligibility, focus area, and deadlines." .
 <https://egovender.github.io/commongood-atlas/ontology/funding-opportunity> <https://egovender.github.io/commongood-atlas/ontology/category> "funding-structure" .
+<https://egovender.github.io/commongood-atlas/ontology/geographic-area> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/geographic-area> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/geographic-area> <http://www.w3.org/2000/01/rdf-schema#label> "Geographic Area" .
+<https://egovender.github.io/commongood-atlas/ontology/geographic-area> <http://www.w3.org/2004/02/skos/core#definition> "A geographic entity used to describe where a Need exists, where a Project operates, where a Population is located, or where a Result is observed." .
+<https://egovender.github.io/commongood-atlas/ontology/geographic-area> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/grant-administrator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/grant-administrator> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/grant-administrator> <http://www.w3.org/2000/01/rdf-schema#label> "Grant Administrator" .
@@ -215,11 +240,27 @@
 <https://egovender.github.io/commongood-atlas/ontology/grantee> <http://www.w3.org/2004/02/skos/core#altLabel> "Subrecipient" .
 <https://egovender.github.io/commongood-atlas/ontology/grantee> <http://www.w3.org/2004/02/skos/core#definition> "The role an organization occupies when it receives and administers grant funding awarded by a funder." .
 <https://egovender.github.io/commongood-atlas/ontology/grantee> <https://egovender.github.io/commongood-atlas/ontology/category> "organizational-entities" .
+<https://egovender.github.io/commongood-atlas/ontology/impact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/impact> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/impact> <http://www.w3.org/2000/01/rdf-schema#label> "Impact" .
+<https://egovender.github.io/commongood-atlas/ontology/impact> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/result> .
+<https://egovender.github.io/commongood-atlas/ontology/impact> <http://www.w3.org/2004/02/skos/core#definition> "A broader or longer-term change to which one or more Outcomes may contribute. An Impact relationship does not itself imply that the Project has been demonstrated to cause the change." .
+<https://egovender.github.io/commongood-atlas/ontology/impact> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/commongood-atlas/ontology/indicator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/indicator> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/indicator> <http://www.w3.org/2000/01/rdf-schema#label> "Indicator" .
+<https://egovender.github.io/commongood-atlas/ontology/indicator> <http://www.w3.org/2004/02/skos/core#definition> "A defined measure used to assess the state or change of a Result (e.g., percentage of participants employed after six months, graduation rate)." .
+<https://egovender.github.io/commongood-atlas/ontology/indicator> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/indirect-cost-rate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/indirect-cost-rate> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> .
 <https://egovender.github.io/commongood-atlas/ontology/indirect-cost-rate> <http://www.w3.org/2000/01/rdf-schema#label> "Indirect Cost Rate" .
 <https://egovender.github.io/commongood-atlas/ontology/indirect-cost-rate> <http://www.w3.org/2004/02/skos/core#definition> "The negotiated or de minimis rate at which a grantee may charge overhead/administrative costs against an award." .
 <https://egovender.github.io/commongood-atlas/ontology/indirect-cost-rate> <https://egovender.github.io/commongood-atlas/ontology/category> "compliance-and-reporting" .
+<https://egovender.github.io/commongood-atlas/ontology/input> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/input> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/input> <http://www.w3.org/2000/01/rdf-schema#label> "Input" .
+<https://egovender.github.io/commongood-atlas/ontology/input> <http://www.w3.org/2004/02/skos/core#definition> "A financial, human, material, informational, or other resource used in carrying out an Activity." .
+<https://egovender.github.io/commongood-atlas/ontology/input> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/installment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/installment> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#disbursement> .
 <https://egovender.github.io/commongood-atlas/ontology/installment> <http://www.w3.org/2000/01/rdf-schema#label> "Installment" .
@@ -241,6 +282,16 @@
 <https://egovender.github.io/commongood-atlas/ontology/matching-requirement> <http://www.w3.org/2000/01/rdf-schema#label> "Matching Requirement" .
 <https://egovender.github.io/commongood-atlas/ontology/matching-requirement> <http://www.w3.org/2004/02/skos/core#definition> "A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match)." .
 <https://egovender.github.io/commongood-atlas/ontology/matching-requirement> <https://egovender.github.io/commongood-atlas/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/commongood-atlas/ontology/measurement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/measurement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/measurement> <http://www.w3.org/2000/01/rdf-schema#label> "Measurement" .
+<https://egovender.github.io/commongood-atlas/ontology/measurement> <http://www.w3.org/2004/02/skos/core#definition> "An observed value for an Indicator at a particular time and, where relevant, for a defined Population or Geographic Area. Never treated as interchangeable with a Target: a Target is planned, a Measurement is observed." .
+<https://egovender.github.io/commongood-atlas/ontology/measurement> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
+<https://egovender.github.io/commongood-atlas/ontology/need> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/need> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/need> <http://www.w3.org/2000/01/rdf-schema#label> "Need" .
+<https://egovender.github.io/commongood-atlas/ontology/need> <http://www.w3.org/2004/02/skos/core#definition> "A condition, problem, gap, or opportunity identified as warranting intervention or investment." .
+<https://egovender.github.io/commongood-atlas/ontology/need> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/organization-role> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/organization-role> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/organization-role> <http://www.w3.org/2000/01/rdf-schema#label> "Organization Role" .
@@ -255,17 +306,20 @@
 <https://egovender.github.io/commongood-atlas/ontology/organization> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/organization> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/organization> <http://www.w3.org/2000/01/rdf-schema#label> "Organization" .
+<https://egovender.github.io/commongood-atlas/ontology/organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/agent> .
 <https://egovender.github.io/commongood-atlas/ontology/organization> <http://www.w3.org/2004/02/skos/core#definition> "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient." .
 <https://egovender.github.io/commongood-atlas/ontology/organization> <https://egovender.github.io/commongood-atlas/ontology/category> "organizational-entities" .
 <https://egovender.github.io/commongood-atlas/ontology/outcome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/outcome> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
 <https://egovender.github.io/commongood-atlas/ontology/outcome> <http://www.w3.org/2000/01/rdf-schema#label> "Outcome" .
-<https://egovender.github.io/commongood-atlas/ontology/outcome> <http://www.w3.org/2004/02/skos/core#definition> "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output." .
+<https://egovender.github.io/commongood-atlas/ontology/outcome> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/result> .
+<https://egovender.github.io/commongood-atlas/ontology/outcome> <http://www.w3.org/2004/02/skos/core#definition> "A change in condition, behavior, knowledge, capacity, practice, or status that is intended or observed in association with a Project or Activity, distinct from a direct Output. A recorded Outcome does not by itself establish that the Project caused it -- see Evidence Claim for how a specific causal or contributory interpretation is represented and evidenced." .
 <https://egovender.github.io/commongood-atlas/ontology/outcome> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/output> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/output> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
 <https://egovender.github.io/commongood-atlas/ontology/output> <http://www.w3.org/2000/01/rdf-schema#label> "Output" .
-<https://egovender.github.io/commongood-atlas/ontology/output> <http://www.w3.org/2004/02/skos/core#definition> "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served)." .
+<https://egovender.github.io/commongood-atlas/ontology/output> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/result> .
+<https://egovender.github.io/commongood-atlas/ontology/output> <http://www.w3.org/2004/02/skos/core#definition> "A direct product, service, deliverable, or immediate consequence of Activities carried out by a Project (e.g., number of workshops held, people served). Does not itself imply any broader behavioral or social change." .
 <https://egovender.github.io/commongood-atlas/ontology/output> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/partner> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/partner> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
@@ -297,6 +351,7 @@
 <https://egovender.github.io/commongood-atlas/ontology/person> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/person> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/person> <http://www.w3.org/2000/01/rdf-schema#label> "Person" .
+<https://egovender.github.io/commongood-atlas/ontology/person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/agent> .
 <https://egovender.github.io/commongood-atlas/ontology/person> <http://www.w3.org/2004/02/skos/core#altLabel> "Individual" .
 <https://egovender.github.io/commongood-atlas/ontology/person> <http://www.w3.org/2004/02/skos/core#altLabel> "Natural Person" .
 <https://egovender.github.io/commongood-atlas/ontology/person> <http://www.w3.org/2004/02/skos/core#definition> "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships." .
@@ -312,12 +367,22 @@
 <https://egovender.github.io/commongood-atlas/ontology/philanthropic-intermediary> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/organization> .
 <https://egovender.github.io/commongood-atlas/ontology/philanthropic-intermediary> <http://www.w3.org/2004/02/skos/core#definition> "An organization commonly known for facilitating philanthropy on behalf of others -- such as by re-granting, fiscal sponsorship, or hosting donor-advised funds -- regardless of which specific role it occupies in a given arrangement." .
 <https://egovender.github.io/commongood-atlas/ontology/philanthropic-intermediary> <https://egovender.github.io/commongood-atlas/ontology/category> "organizational-entities" .
+<https://egovender.github.io/commongood-atlas/ontology/population> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/population> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/population> <http://www.w3.org/2000/01/rdf-schema#label> "Population" .
+<https://egovender.github.io/commongood-atlas/ontology/population> <http://www.w3.org/2004/02/skos/core#definition> "A group of people defined by demographic, geographic, institutional, experiential, or other characteristics relevant to a Need, Project, Result, or Evaluation." .
+<https://egovender.github.io/commongood-atlas/ontology/population> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/program-officer> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#label> "Program Officer" .
 <https://egovender.github.io/commongood-atlas/ontology/program-officer> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/person-role> .
 <https://egovender.github.io/commongood-atlas/ontology/program-officer> <http://www.w3.org/2004/02/skos/core#definition> "The role a person occupies when they manage a portfolio of grants on behalf of a funder, from soliciting or reviewing applications through monitoring active awards." .
 <https://egovender.github.io/commongood-atlas/ontology/program-officer> <https://egovender.github.io/commongood-atlas/ontology/category> "organizational-entities" .
+<https://egovender.github.io/commongood-atlas/ontology/project> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/project> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#cross-cutting> .
+<https://egovender.github.io/commongood-atlas/ontology/project> <http://www.w3.org/2000/01/rdf-schema#label> "Project" .
+<https://egovender.github.io/commongood-atlas/ontology/project> <http://www.w3.org/2004/02/skos/core#definition> "A defined body of work undertaken over a period of time to address one or more needs or objectives -- the work being performed, distinct from the Application requesting funding for it or the Award committing funding to it." .
+<https://egovender.github.io/commongood-atlas/ontology/project> <https://egovender.github.io/commongood-atlas/ontology/category> "cross-cutting" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/amendment-effective-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/amendment-effective-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Amendment's changes take effect." .
 <https://egovender.github.io/commongood-atlas/ontology/properties/amendment-effective-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/amendment> .
@@ -520,6 +585,24 @@
 <https://egovender.github.io/commongood-atlas/ontology/properties/evaluation-status> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/evaluation-status> <https://egovender.github.io/commongood-atlas/ontology/group> "lifecycle" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/evaluation-status> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether this claim asserts association, contribution, attribution, or causation." .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/evidence-claim> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <http://www.w3.org/2000/01/rdf-schema#label> "Claim Type" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <https://egovender.github.io/commongood-atlas/ontology/group> "classification" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <https://egovender.github.io/commongood-atlas/ontology/referenceScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-claim-type> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <http://www.w3.org/2000/01/rdf-schema#comment> "How strong the supporting evidence is for this claim." .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/evidence-claim> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <http://www.w3.org/2000/01/rdf-schema#label> "Evidence Strength" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <https://egovender.github.io/commongood-atlas/ontology/group> "classification" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <https://egovender.github.io/commongood-atlas/ontology/referenceScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/evidence-claim-evidence-strength> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <http://www.w3.org/2000/01/rdf-schema#comment> "The fiscal sponsor's administrative fee, charged as a percentage of funds processed." .
 <https://egovender.github.io/commongood-atlas/ontology/properties/fiscal-sponsorship-arrangement-fee-percentage> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/fiscal-sponsorship-arrangement> .
@@ -739,6 +822,22 @@
 <https://egovender.github.io/commongood-atlas/ontology/properties/matching-requirement-required-ratio> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/matching-requirement-required-ratio> <https://egovender.github.io/commongood-atlas/ontology/group> "financial" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/matching-requirement-required-ratio> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date> <http://www.w3.org/2000/01/rdf-schema#comment> "The date the value was observed." .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/measurement> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date> <http://www.w3.org/2000/01/rdf-schema#label> "Observation Date" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date> <https://egovender.github.io/commongood-atlas/ontology/group> "lifecycle" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-observation-date> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value> <http://www.w3.org/2000/01/rdf-schema#comment> "The observed value for the indicator. A plain string so it can hold a numeric (\"64%\"), categorical (\"improved\"), ordinal (\"high\"), or textual observation without conflating these kinds of values into different fields." .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/measurement> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value> <http://www.w3.org/2000/01/rdf-schema#label> "Value" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value> <https://egovender.github.io/commongood-atlas/ontology/group> "lifecycle" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/measurement-value> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/organization-formation-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/organization-formation-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the organization was legally formed." .
 <https://egovender.github.io/commongood-atlas/ontology/properties/organization-formation-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/organization> .
@@ -892,6 +991,15 @@
 <https://egovender.github.io/commongood-atlas/ontology/properties/philanthropic-arrangement-termination-date> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/philanthropic-arrangement-termination-date> <https://egovender.github.io/commongood-atlas/ontology/group> "lifecycle" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/philanthropic-arrangement-termination-date> <https://egovender.github.io/commongood-atlas/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <http://www.w3.org/2000/01/rdf-schema#comment> "The primary social or environmental issue this Project addresses." .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <http://www.w3.org/2000/01/rdf-schema#label> "Issue Area" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <https://egovender.github.io/commongood-atlas/ontology/group> "classification" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <https://egovender.github.io/commongood-atlas/ontology/referenceScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/project-issue-area> <https://egovender.github.io/commongood-atlas/ontology/required> "false"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/report-due-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/report-due-date> <http://www.w3.org/2000/01/rdf-schema#comment> "When the Report is due per the Reporting Schedule." .
 <https://egovender.github.io/commongood-atlas/ontology/properties/report-due-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/report> .
@@ -1045,6 +1153,22 @@
 <https://egovender.github.io/commongood-atlas/ontology/properties/sponsored-project-status> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/sponsored-project-status> <https://egovender.github.io/commongood-atlas/ontology/group> "lifecycle" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/sponsored-project-status> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date> <http://www.w3.org/2000/01/rdf-schema#comment> "The date by which the target value is expected to be reached." .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/target> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date> <http://www.w3.org/2000/01/rdf-schema#label> "Target Date" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#date> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date> <https://egovender.github.io/commongood-atlas/ontology/group> "lifecycle" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-target-date> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-value> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-value> <http://www.w3.org/2000/01/rdf-schema#comment> "The planned value for the indicator (e.g. \"70%\", \"500 households\"). A plain string so it can hold a numeric, percentage, or other planned value without a separate typed field per kind of indicator." .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-value> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/target> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-value> <http://www.w3.org/2000/01/rdf-schema#label> "Value" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-value> <http://www.w3.org/2000/01/rdf-schema#range> <http://www.w3.org/2001/XMLSchema#string> .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-value> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-value> <https://egovender.github.io/commongood-atlas/ontology/group> "lifecycle" .
+<https://egovender.github.io/commongood-atlas/ontology/properties/target-value> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#DatatypeProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/2000/01/rdf-schema#comment> "Whether the funding governed by these Terms and Conditions is Restricted or Unrestricted Funding." .
 <https://egovender.github.io/commongood-atlas/ontology/properties/terms-and-conditions-restriction-type> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/terms-and-conditions> .
@@ -1055,6 +1179,65 @@
 <https://egovender.github.io/commongood-atlas/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/commongood-atlas/ontology/cardinality> "one" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/commongood-atlas/ontology/group> "governance" .
 <https://egovender.github.io/commongood-atlas/ontology/properties/terms-and-conditions-restriction-type> <https://egovender.github.io/commongood-atlas/ontology/required> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-association> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-association> <http://www.w3.org/2004/02/skos/core#definition> "Two phenomena are observed together, without asserting that one influenced the other." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-association> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-association> <http://www.w3.org/2004/02/skos/core#notation> "association" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-association> <http://www.w3.org/2004/02/skos/core#prefLabel> "Association" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-attribution> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-attribution> <http://www.w3.org/2004/02/skos/core#definition> "The evidence assigns a defined portion or substantial responsibility for the result to the intervention." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-attribution> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-attribution> <http://www.w3.org/2004/02/skos/core#notation> "attribution" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-attribution> <http://www.w3.org/2004/02/skos/core#prefLabel> "Attribution" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-causation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-causation> <http://www.w3.org/2004/02/skos/core#definition> "The evidence supports a causal relationship between the intervention and the result." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-causation> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-causation> <http://www.w3.org/2004/02/skos/core#notation> "causation" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-causation> <http://www.w3.org/2004/02/skos/core#prefLabel> "Causation" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-contribution> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-contribution> <http://www.w3.org/2004/02/skos/core#definition> "There is evidence that the intervention played some role in producing the result, alongside other factors." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-contribution> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-contribution> <http://www.w3.org/2004/02/skos/core#notation> "contribution" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type-contribution> <http://www.w3.org/2004/02/skos/core#prefLabel> "Contribution" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> <http://www.w3.org/2004/02/skos/core#definition> "How strong an interpretation an Evidence Claim makes about a Project's relationship to a Result -- deliberately distinct, ordered from weakest to strongest evidentiary interpretation, and never treated as equivalent to one another." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> <http://www.w3.org/2004/02/skos/core#prefLabel> "Claim Type" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> <https://egovender.github.io/commongood-atlas/ontology/authorityType> "internal" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> <https://egovender.github.io/commongood-atlas/ontology/publicationStatus> <https://egovender.github.io/commongood-atlas/ontology/reference-data/publication-status-published> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> <https://egovender.github.io/commongood-atlas/ontology/schemeDomain> "program" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/claim-type> <https://egovender.github.io/commongood-atlas/ontology/version> "1.0.0" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-anecdotal> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-anecdotal> <http://www.w3.org/2004/02/skos/core#definition> "Based on isolated stories or individual accounts, not a systematic review." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-anecdotal> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-anecdotal> <http://www.w3.org/2004/02/skos/core#notation> "anecdotal" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-anecdotal> <http://www.w3.org/2004/02/skos/core#prefLabel> "Anecdotal" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-inconclusive> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-inconclusive> <http://www.w3.org/2004/02/skos/core#definition> "The available evidence does not clearly support or refute the claim." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-inconclusive> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-inconclusive> <http://www.w3.org/2004/02/skos/core#notation> "inconclusive" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-inconclusive> <http://www.w3.org/2004/02/skos/core#prefLabel> "Inconclusive" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-limited> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-limited> <http://www.w3.org/2004/02/skos/core#definition> "Based on a small or narrow body of evidence with significant gaps." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-limited> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-limited> <http://www.w3.org/2004/02/skos/core#notation> "limited" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-limited> <http://www.w3.org/2004/02/skos/core#prefLabel> "Limited" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-moderate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-moderate> <http://www.w3.org/2004/02/skos/core#definition> "Based on a reasonably systematic body of evidence with some limitations." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-moderate> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-moderate> <http://www.w3.org/2004/02/skos/core#notation> "moderate" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-moderate> <http://www.w3.org/2004/02/skos/core#prefLabel> "Moderate" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-strong> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-strong> <http://www.w3.org/2004/02/skos/core#definition> "Based on a rigorous, systematic body of evidence with few limitations." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-strong> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-strong> <http://www.w3.org/2004/02/skos/core#notation> "strong" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength-strong> <http://www.w3.org/2004/02/skos/core#prefLabel> "Strong" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> <http://www.w3.org/2004/02/skos/core#definition> "How strong the supporting Evidence is for an Evidence Claim, independent of the claim's type (association/contribution/attribution/causation) -- a causation claim and an association claim can each be backed by strong or weak evidence." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> <http://www.w3.org/2004/02/skos/core#prefLabel> "Evidence Strength" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> <https://egovender.github.io/commongood-atlas/ontology/authorityType> "internal" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> <https://egovender.github.io/commongood-atlas/ontology/publicationStatus> <https://egovender.github.io/commongood-atlas/ontology/reference-data/publication-status-published> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> <https://egovender.github.io/commongood-atlas/ontology/schemeDomain> "program" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/evidence-strength> <https://egovender.github.io/commongood-atlas/ontology/version> "1.0.0" .
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/frequency-annual> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/frequency-annual> <http://www.w3.org/2004/02/skos/core#definition> "Recurs once a year." .
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/frequency-annual> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/frequency> .
@@ -1082,6 +1265,53 @@
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/frequency> <https://egovender.github.io/commongood-atlas/ontology/publicationStatus> <https://egovender.github.io/commongood-atlas/ontology/reference-data/publication-status-published> .
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/frequency> <https://egovender.github.io/commongood-atlas/ontology/schemeDomain> "scheduling" .
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/frequency> <https://egovender.github.io/commongood-atlas/ontology/version> "1.0.0" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-arts-and-culture> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-arts-and-culture> <http://www.w3.org/2004/02/skos/core#definition> "Arts, culture, and creative expression." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-arts-and-culture> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-arts-and-culture> <http://www.w3.org/2004/02/skos/core#notation> "arts-and-culture" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-arts-and-culture> <http://www.w3.org/2004/02/skos/core#prefLabel> "Arts and Culture" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-economic-development> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-economic-development> <http://www.w3.org/2004/02/skos/core#definition> "Employment, income, and local economic opportunity." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-economic-development> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-economic-development> <http://www.w3.org/2004/02/skos/core#notation> "economic-development" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-economic-development> <http://www.w3.org/2004/02/skos/core#prefLabel> "Economic Development" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-education> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-education> <http://www.w3.org/2004/02/skos/core#definition> "Access to and quality of learning, from early childhood through adult education." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-education> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-education> <http://www.w3.org/2004/02/skos/core#notation> "education" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-education> <http://www.w3.org/2004/02/skos/core#prefLabel> "Education" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-environment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-environment> <http://www.w3.org/2004/02/skos/core#definition> "Conservation, climate, and natural-resource stewardship." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-environment> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-environment> <http://www.w3.org/2004/02/skos/core#notation> "environment" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-environment> <http://www.w3.org/2004/02/skos/core#prefLabel> "Environment" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-food-security> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-food-security> <http://www.w3.org/2004/02/skos/core#definition> "Reliable access to sufficient, affordable, nutritious food." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-food-security> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-food-security> <http://www.w3.org/2004/02/skos/core#notation> "food-security" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-food-security> <http://www.w3.org/2004/02/skos/core#prefLabel> "Food Security" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-health> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-health> <http://www.w3.org/2004/02/skos/core#definition> "Physical and behavioral health, including access to care." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-health> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-health> <http://www.w3.org/2004/02/skos/core#notation> "health" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-health> <http://www.w3.org/2004/02/skos/core#prefLabel> "Health" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-housing> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-housing> <http://www.w3.org/2004/02/skos/core#definition> "Access to safe, stable, and affordable housing." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-housing> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-housing> <http://www.w3.org/2004/02/skos/core#notation> "housing" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-housing> <http://www.w3.org/2004/02/skos/core#prefLabel> "Housing" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-human-rights> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-human-rights> <http://www.w3.org/2004/02/skos/core#definition> "Civil rights, civil liberties, and human-rights advocacy." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-human-rights> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-human-rights> <http://www.w3.org/2004/02/skos/core#notation> "human-rights" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area-human-rights> <http://www.w3.org/2004/02/skos/core#prefLabel> "Human Rights" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#ConceptScheme> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> <http://www.w3.org/2004/02/skos/core#definition> "The primary social or environmental issue a Project addresses. Not assumed to be a complete list of every possible issue area -- new values can be proposed as real projects need them." .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> <http://www.w3.org/2004/02/skos/core#prefLabel> "Issue Area" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> <https://egovender.github.io/commongood-atlas/ontology/authorityType> "internal" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> <https://egovender.github.io/commongood-atlas/ontology/publicationStatus> <https://egovender.github.io/commongood-atlas/ontology/reference-data/publication-status-published> .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> <https://egovender.github.io/commongood-atlas/ontology/schemeDomain> "program" .
+<https://egovender.github.io/commongood-atlas/ontology/reference-data/issue-area> <https://egovender.github.io/commongood-atlas/ontology/version> "1.0.0" .
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/organization-operating-status-active> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2004/02/skos/core#Concept> .
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/organization-operating-status-active> <http://www.w3.org/2004/02/skos/core#definition> "The organization is currently operating." .
 <https://egovender.github.io/commongood-atlas/ontology/reference-data/organization-operating-status-active> <http://www.w3.org/2004/02/skos/core#inScheme> <https://egovender.github.io/commongood-atlas/ontology/reference-data/organization-operating-status> .
@@ -1199,12 +1429,24 @@
 <https://egovender.github.io/commongood-atlas/ontology/regranting-arrangement> <http://www.w3.org/2004/02/skos/core#definition> "A Philanthropic Arrangement in which an organization receives funds and redistributes them to other organizations, acting as both a Grantee to the original source and a Funder or Funding Intermediary to the recipients." .
 <https://egovender.github.io/commongood-atlas/ontology/regranting-arrangement> <https://egovender.github.io/commongood-atlas/ontology/category> "funding-structure" .
 <https://egovender.github.io/commongood-atlas/ontology/regranting-arrangement> <https://egovender.github.io/commongood-atlas/ontology/legalNote> "Regranting to organizations without their own tax-exempt status (or across borders) can trigger expenditure-responsibility or equivalency-determination requirements under U.S. tax law. This ontology does not model those compliance steps." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/aboutResult> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/aboutResult> <http://www.w3.org/2000/01/rdf-schema#comment> "An Evidence Claim is about a Result. Declared against the abstract Result concept rather than each subtype separately, so a claim can concern any Output, Outcome, or Impact instance." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/aboutResult> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/evidence-claim> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/aboutResult> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/aboutResult> <http://www.w3.org/2000/01/rdf-schema#label> "is about" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/aboutResult> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/result> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/actsOnBehalfOf> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#comment> "A Fiscal Sponsor stands in for a Grantee that lacks independent legal status to receive an Award directly." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/fiscal-sponsor> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#organizational-relationships> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#label> "acts on behalf of" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/actsOnBehalfOf> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/grantee> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/addressesNeed> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/addressesNeed> <http://www.w3.org/2000/01/rdf-schema#comment> "A Project addresses one or more identified Needs." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/addressesNeed> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/addressesNeed> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/addressesNeed> <http://www.w3.org/2000/01/rdf-schema#label> "addresses" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/addressesNeed> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/need> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/administeredBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/administeredBy> <http://www.w3.org/2000/01/rdf-schema#comment> "A Philanthropic Arrangement is administered by an Organization, such as a fiscal sponsor or fund administrator." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/administeredBy> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/philanthropic-arrangement> .
@@ -1223,6 +1465,18 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/affiliatedWith> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/affiliatedWith> <http://www.w3.org/2000/01/rdf-schema#label> "is affiliated with" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/affiliatedWith> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/organization> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole> <http://www.w3.org/2000/01/rdf-schema#comment> "An Agent (Person or Organization) plays one or more Roles. The preferred predicate for new data now that Agent exists as a shared superclass, replacing the separate playsRole (Organization) and personPlaysRole (Person) predicates -- both kept and still valid on existing data, not migrated, per this project's policy of never deleting or force-migrating published predicates." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/agent> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole> <http://www.w3.org/2000/01/rdf-schema#label> "plays" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/role> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/appliesToAward> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/appliesToAward> <http://www.w3.org/2000/01/rdf-schema#comment> "A Compliance Requirement applies to a specific Award -- distinct from the Grant Agreement specifying it: the Agreement is the document that spells out the requirement, while this relationship tracks which Award it actually binds. The same organization can be in good standing on one award and delinquent on another, so the requirement must attach to the Award, not the Grantee in the abstract." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/appliesToAward> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/compliance-requirement> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/appliesToAward> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/appliesToAward> <http://www.w3.org/2000/01/rdf-schema#label> "applies to" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/appliesToAward> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/award> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/appliesWithin> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/appliesWithin> <http://www.w3.org/2000/01/rdf-schema#comment> "An Organization Role is scoped to the Philanthropic Arrangement it was granted within, so the same organization can hold different roles in different arrangements." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/appliesWithin> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/organization-role> .
@@ -1295,6 +1549,18 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#label> "is conducted by" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/conductedByReviewer> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/reviewer> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToImpact> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToImpact> <http://www.w3.org/2000/01/rdf-schema#comment> "An Outcome contributes to a broader or longer-term Impact. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToImpact> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/outcome> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToImpact> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToImpact> <http://www.w3.org/2000/01/rdf-schema#label> "contributes to" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToImpact> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/impact> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToOutcome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToOutcome> <http://www.w3.org/2000/01/rdf-schema#comment> "An Output contributes to an intended or observed Outcome. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToOutcome> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/output> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToOutcome> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToOutcome> <http://www.w3.org/2000/01/rdf-schema#label> "contributes to" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/contributesToOutcome> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/outcome> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/disbursedAsPayment> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/disbursedAsPayment> <http://www.w3.org/2000/01/rdf-schema#comment> "An Installment is disbursed as a Payment once any Payment Condition is satisfied." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/disbursedAsPayment> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/installment> .
@@ -1307,6 +1573,18 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#label> "is evaluated against" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/evaluatedAgainstReviewCriteria> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/review-criteria> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/evaluatesProject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/evaluatesProject> <http://www.w3.org/2000/01/rdf-schema#comment> "An Evaluation assesses a Project." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/evaluatesProject> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/evaluation> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/evaluatesProject> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/evaluatesProject> <http://www.w3.org/2000/01/rdf-schema#label> "evaluates" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/evaluatesProject> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/experiencedByPopulation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/experiencedByPopulation> <http://www.w3.org/2000/01/rdf-schema#comment> "A Need is experienced by a specific Population." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/experiencedByPopulation> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/need> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/experiencedByPopulation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/experiencedByPopulation> <http://www.w3.org/2000/01/rdf-schema#label> "is experienced by" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/experiencedByPopulation> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/population> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/2000/01/rdf-schema#comment> "A Sponsored Project is fiscally sponsored by an Organization that provides the legal and administrative infrastructure it lacks on its own." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/fiscallySponsoredBy> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/sponsored-project> .
@@ -1337,6 +1615,12 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/fundedFrom> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/fundedFrom> <http://www.w3.org/2000/01/rdf-schema#label> "is funded from" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/fundedFrom> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/fund> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/fundsProject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/fundsProject> <http://www.w3.org/2000/01/rdf-schema#comment> "An Award commits funding to a Project. The Award is the funding commitment; the Project is the work performed using it." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/fundsProject> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/award> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/fundsProject> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/fundsProject> <http://www.w3.org/2000/01/rdf-schema#label> "funds" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/fundsProject> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/project> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/governs> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/governs> <http://www.w3.org/2000/01/rdf-schema#comment> "A Donor-Advised Fund Arrangement governs the specific Donor-Advised Fund it establishes the advisory relationship for." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/governs> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/donor-advised-fund-arrangement> .
@@ -1349,24 +1633,78 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasLegalForm> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasLegalForm> <http://www.w3.org/2000/01/rdf-schema#label> "has legal form" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasLegalForm> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/organization-type> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasLogicModel> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasLogicModel> <http://www.w3.org/2000/01/rdf-schema#comment> "A Project has a Logic Model connecting its inputs, activities, outputs, and outcomes." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasLogicModel> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasLogicModel> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasLogicModel> <http://www.w3.org/2000/01/rdf-schema#label> "has" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasLogicModel> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/logic-model> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasMeasurement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasMeasurement> <http://www.w3.org/2000/01/rdf-schema#comment> "An Indicator has one or more Measurements -- the observed values recorded over time. Never equated with the Indicator's Target: a Target is planned, a Measurement is observed." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasMeasurement> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/indicator> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasMeasurement> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasMeasurement> <http://www.w3.org/2000/01/rdf-schema#label> "has" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasMeasurement> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/measurement> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasPaymentSchedule> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#comment> "An Award's funds are released according to a Payment Schedule." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/award> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#label> "has" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/hasPaymentSchedule> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/payment-schedule> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTarget> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTarget> <http://www.w3.org/2000/01/rdf-schema#comment> "An Indicator has a Target -- the planned value expected by a defined date." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTarget> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/indicator> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTarget> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTarget> <http://www.w3.org/2000/01/rdf-schema#label> "has" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTarget> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/target> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTheoryOfChange> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#comment> "A Project has a Theory of Change articulating how its activities are expected to lead to desired long-term change." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#label> "has" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/hasTheoryOfChange> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/theory-of-change> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/heldBy> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/heldBy> <http://www.w3.org/2000/01/rdf-schema#comment> "A Fund is held and administered by an Organization." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/heldBy> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/fund> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/heldBy> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/heldBy> <http://www.w3.org/2000/01/rdf-schema#label> "is held by" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/heldBy> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/organization> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/implementsProject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/implementsProject> <http://www.w3.org/2000/01/rdf-schema#comment> "An Organization carries out a Project -- typically the Grantee, but modeled directly on Organization rather than a specific role so any organization implementing work (e.g. a Sponsored Project's Fiscal Sponsor) can be represented the same way." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/implementsProject> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/organization> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/implementsProject> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/implementsProject> <http://www.w3.org/2000/01/rdf-schema#label> "implements" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/implementsProject> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesActivity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesActivity> <http://www.w3.org/2000/01/rdf-schema#comment> "A Logic Model includes the Activities it plans for." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesActivity> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/logic-model> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesActivity> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesActivity> <http://www.w3.org/2000/01/rdf-schema#label> "includes" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesActivity> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/activity> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesBudget> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#comment> "An Application includes a proposed Budget." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/application> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#label> "includes" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesBudget> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/budget> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesInput> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesInput> <http://www.w3.org/2000/01/rdf-schema#comment> "A Logic Model includes the Inputs it plans for." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesInput> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/logic-model> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesInput> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesInput> <http://www.w3.org/2000/01/rdf-schema#label> "includes" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesInput> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/input> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutcome> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutcome> <http://www.w3.org/2000/01/rdf-schema#comment> "A Logic Model includes the Outcomes it plans for." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutcome> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/logic-model> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutcome> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutcome> <http://www.w3.org/2000/01/rdf-schema#label> "includes" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutcome> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/outcome> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutput> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutput> <http://www.w3.org/2000/01/rdf-schema#comment> "A Logic Model includes the Outputs it plans for." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutput> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/logic-model> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutput> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutput> <http://www.w3.org/2000/01/rdf-schema#label> "includes" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/includesOutput> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/output> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesReportingSchedule> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesReportingSchedule> <http://www.w3.org/2000/01/rdf-schema#comment> "A Compliance Requirement includes a Reporting Schedule that obligates the Grantee to submit Reports." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/includesReportingSchedule> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/compliance-requirement> .
@@ -1451,6 +1789,12 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#label> "may specify" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/maySpecifyUnrestrictedFunding> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/measuredByIndicator> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/measuredByIndicator> <http://www.w3.org/2000/01/rdf-schema#comment> "A Result (Output, Outcome, or Impact) is measured by an Indicator. Declared against the abstract Result concept rather than each subtype separately, so any Output, Outcome, or Impact instance can be measured the same way." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/measuredByIndicator> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/result> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/measuredByIndicator> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/measuredByIndicator> <http://www.w3.org/2000/01/rdf-schema#label> "is measured by" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/measuredByIndicator> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/indicator> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#comment> "An Amendment changes the Grant Agreement going forward; it does not retroactively alter Payments or Reports already completed under the prior terms." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/modifiesGrantAgreement> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/amendment> .
@@ -1463,6 +1807,18 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/obligatesReport> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/obligatesReport> <http://www.w3.org/2000/01/rdf-schema#label> "obligates" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/obligatesReport> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/report> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedForPopulation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedForPopulation> <http://www.w3.org/2000/01/rdf-schema#comment> "A Measurement was observed for a specific Population." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedForPopulation> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/measurement> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedForPopulation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedForPopulation> <http://www.w3.org/2000/01/rdf-schema#label> "was observed for" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedForPopulation> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/population> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedIn> <http://www.w3.org/2000/01/rdf-schema#comment> "A Measurement was observed in a specific Geographic Area." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/measurement> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedIn> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedIn> <http://www.w3.org/2000/01/rdf-schema#label> "was observed in" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/observedIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/geographic-area> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/2000/01/rdf-schema#comment> "A Funding Opportunity is issued within a defined Funding Cycle." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/occursDuringFundingCycle> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/funding-opportunity> .
@@ -1481,24 +1837,34 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/participatesIn> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/participatesIn> <http://www.w3.org/2000/01/rdf-schema#label> "participates in" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/participatesIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/philanthropic-arrangement> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/performsActivity> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/performsActivity> <http://www.w3.org/2000/01/rdf-schema#comment> "A Project performs one or more Activities." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/performsActivity> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/performsActivity> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/performsActivity> <http://www.w3.org/2000/01/rdf-schema#label> "performs" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/performsActivity> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/activity> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/personPlaysRole> <http://purl.org/dc/terms/isReplacedBy> <https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personPlaysRole> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#comment> "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/person> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#label> "plays" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personPlaysRole> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/person-role> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/personPlaysRole> <http://www.w3.org/2002/07/owl#deprecated> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#comment> "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/person-role> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#label> "applies within" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/personRoleAppliesWithin> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/organization> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/playsRole> <http://purl.org/dc/terms/isReplacedBy> <https://egovender.github.io/commongood-atlas/ontology/relations/agentPlaysRole> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/playsRole> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#comment> "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/organization> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#label> "plays" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/playsRole> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/organization-role> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/playsRole> <http://www.w3.org/2002/07/owl#deprecated> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/pools> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/pools> <http://www.w3.org/2000/01/rdf-schema#comment> "A Collaborative Fund Arrangement pools multiple funders' contributions into a shared Fund." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/pools> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/collaborative-fund-arrangement> .
@@ -1511,6 +1877,30 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#label> "produces" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/producesDecision> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/decision> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesEvidenceClaim> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesEvidenceClaim> <http://www.w3.org/2000/01/rdf-schema#comment> "An Evaluation produces one or more Evidence Claims." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesEvidenceClaim> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/evaluation> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesEvidenceClaim> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesEvidenceClaim> <http://www.w3.org/2000/01/rdf-schema#label> "produces" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesEvidenceClaim> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/evidence-claim> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesOutput> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesOutput> <http://www.w3.org/2000/01/rdf-schema#comment> "An Activity produces one or more Outputs." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesOutput> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/activity> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesOutput> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesOutput> <http://www.w3.org/2000/01/rdf-schema#label> "produces" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/producesOutput> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/output> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/proposesProject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/proposesProject> <http://www.w3.org/2000/01/rdf-schema#comment> "An Application proposes the Project it is requesting funding for. The Application is the request; the Project is the work being proposed." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/proposesProject> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/application> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/proposesProject> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/proposesProject> <http://www.w3.org/2000/01/rdf-schema#label> "proposes" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/proposesProject> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/providesEvidence> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/providesEvidence> <http://www.w3.org/2000/01/rdf-schema#comment> "A Report can itself serve as Evidence supporting an Evidence Claim (e.g. the administrative data or narrative it contains)." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/providesEvidence> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/report> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/providesEvidence> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/providesEvidence> <http://www.w3.org/2000/01/rdf-schema#label> "provides" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/providesEvidence> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/evidence> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/reachesCloseout> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#comment> "Once all Payments are disbursed and all Compliance Requirements are satisfied, the Award reaches Closeout." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/reachesCloseout> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/award> .
@@ -1553,6 +1943,12 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/resultsInAward> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/resultsInAward> <http://www.w3.org/2000/01/rdf-schema#label> "results in" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/resultsInAward> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/award> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/servesPopulation> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/servesPopulation> <http://www.w3.org/2000/01/rdf-schema#comment> "A Project serves a specific Population, which may or may not be the same Population that experiences the Need it addresses (e.g. a project can serve service providers on behalf of an affected population)." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/servesPopulation> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/servesPopulation> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/servesPopulation> <http://www.w3.org/2000/01/rdf-schema#label> "serves" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/servesPopulation> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/population> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/2000/01/rdf-schema#comment> "A Funding Opportunity specifies the Eligibility Criteria an applicant must meet." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/specifiesEligibilityCriteria> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/funding-opportunity> .
@@ -1571,18 +1967,36 @@
 <https://egovender.github.io/commongood-atlas/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#label> "submits" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/submitsApplication> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/application> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/supportedByEvidence> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/supportedByEvidence> <http://www.w3.org/2000/01/rdf-schema#comment> "An Evidence Claim is supported by one or more pieces of Evidence." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/supportedByEvidence> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/evidence-claim> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/supportedByEvidence> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/supportedByEvidence> <http://www.w3.org/2000/01/rdf-schema#label> "is supported by" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/supportedByEvidence> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/evidence> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/supports> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#comment> "A Fiscal Sponsorship Arrangement supports a specific Sponsored Project carried out under the fiscal sponsor's umbrella." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/fiscal-sponsorship-arrangement> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/08-organizations-roles-and-arrangements.md> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#label> "supports" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/supports> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/sponsored-project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/takesPlaceIn> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/takesPlaceIn> <http://www.w3.org/2000/01/rdf-schema#comment> "A Project operates within a Geographic Area. Distinct from any organization's registered address -- a project's operating area is not assumed to equal its implementing organization's or grant recipient's mailing address." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/takesPlaceIn> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/takesPlaceIn> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/takesPlaceIn> <http://www.w3.org/2000/01/rdf-schema#label> "takes place in" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/takesPlaceIn> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/geographic-area> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/undergoesReview> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#comment> "An Application undergoes Review by one or more Reviewers." .
 <https://egovender.github.io/commongood-atlas/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/application> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#the-grant-lifecycle-end-to-end> .
 <https://egovender.github.io/commongood-atlas/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#label> "undergoes" .
 <https://egovender.github.io/commongood-atlas/ontology/relations/undergoesReview> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/review> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/usesInput> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#ObjectProperty> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/usesInput> <http://www.w3.org/2000/01/rdf-schema#comment> "A Project uses Inputs (financial, human, material, or informational resources) to carry out its Activities." .
+<https://egovender.github.io/commongood-atlas/ontology/relations/usesInput> <http://www.w3.org/2000/01/rdf-schema#domain> <https://egovender.github.io/commongood-atlas/ontology/project> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/usesInput> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/03-relationships.md#programs-results-and-evidence> .
+<https://egovender.github.io/commongood-atlas/ontology/relations/usesInput> <http://www.w3.org/2000/01/rdf-schema#label> "uses" .
+<https://egovender.github.io/commongood-atlas/ontology/relations/usesInput> <http://www.w3.org/2000/01/rdf-schema#range> <https://egovender.github.io/commongood-atlas/ontology/input> .
 <https://egovender.github.io/commongood-atlas/ontology/report> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/report> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#compliance-and-reporting> .
 <https://egovender.github.io/commongood-atlas/ontology/report> <http://www.w3.org/2000/01/rdf-schema#label> "Report" .
@@ -1596,8 +2010,14 @@
 <https://egovender.github.io/commongood-atlas/ontology/restricted-funding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/restricted-funding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> .
 <https://egovender.github.io/commongood-atlas/ontology/restricted-funding> <http://www.w3.org/2000/01/rdf-schema#label> "Restricted Funding" .
-<https://egovender.github.io/commongood-atlas/ontology/restricted-funding> <http://www.w3.org/2004/02/skos/core#definition> "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement." .
+<https://egovender.github.io/commongood-atlas/ontology/restricted-funding> <http://www.w3.org/2002/07/owl#deprecated> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/restricted-funding> <http://www.w3.org/2004/02/skos/core#definition> "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility." .
 <https://egovender.github.io/commongood-atlas/ontology/restricted-funding> <https://egovender.github.io/commongood-atlas/ontology/category> "award-and-agreement" .
+<https://egovender.github.io/commongood-atlas/ontology/result> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/result> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/result> <http://www.w3.org/2000/01/rdf-schema#label> "Result" .
+<https://egovender.github.io/commongood-atlas/ontology/result> <http://www.w3.org/2004/02/skos/core#definition> "A planned or observed state, product, change, or effect associated with an intervention. Output, Outcome, and Impact are its three subtypes, distinguished by directness and time horizon." .
+<https://egovender.github.io/commongood-atlas/ontology/result> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/review-criteria> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/review-criteria> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#application-and-review> .
 <https://egovender.github.io/commongood-atlas/ontology/review-criteria> <http://www.w3.org/2000/01/rdf-schema#label> "Review Criteria" .
@@ -1713,6 +2133,7 @@
 <https://egovender.github.io/commongood-atlas/ontology/sponsored-project> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/sponsored-project> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
 <https://egovender.github.io/commongood-atlas/ontology/sponsored-project> <http://www.w3.org/2000/01/rdf-schema#label> "Sponsored Project" .
+<https://egovender.github.io/commongood-atlas/ontology/sponsored-project> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/project> .
 <https://egovender.github.io/commongood-atlas/ontology/sponsored-project> <http://www.w3.org/2004/02/skos/core#definition> "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization." .
 <https://egovender.github.io/commongood-atlas/ontology/sponsored-project> <https://egovender.github.io/commongood-atlas/ontology/category> "organizational-entities" .
 <https://egovender.github.io/commongood-atlas/ontology/sponsored-project> <https://egovender.github.io/commongood-atlas/ontology/legalNote> "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement." .
@@ -1722,6 +2143,11 @@
 <https://egovender.github.io/commongood-atlas/ontology/sponsoring-organization> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <https://egovender.github.io/commongood-atlas/ontology/organization-role> .
 <https://egovender.github.io/commongood-atlas/ontology/sponsoring-organization> <http://www.w3.org/2004/02/skos/core#definition> "The role an organization occupies when it holds and administers a Fund on behalf of the fund's donor or benefactors, distinct from acting as a Fiscal Sponsor for a specific project." .
 <https://egovender.github.io/commongood-atlas/ontology/sponsoring-organization> <https://egovender.github.io/commongood-atlas/ontology/category> "organizational-entities" .
+<https://egovender.github.io/commongood-atlas/ontology/target> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
+<https://egovender.github.io/commongood-atlas/ontology/target> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#outcomes-and-closeout> .
+<https://egovender.github.io/commongood-atlas/ontology/target> <http://www.w3.org/2000/01/rdf-schema#label> "Target" .
+<https://egovender.github.io/commongood-atlas/ontology/target> <http://www.w3.org/2004/02/skos/core#definition> "A planned value for an Indicator expected to be reached by a defined point in time." .
+<https://egovender.github.io/commongood-atlas/ontology/target> <https://egovender.github.io/commongood-atlas/ontology/category> "outcomes-and-closeout" .
 <https://egovender.github.io/commongood-atlas/ontology/terms-and-conditions> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/terms-and-conditions> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> .
 <https://egovender.github.io/commongood-atlas/ontology/terms-and-conditions> <http://www.w3.org/2000/01/rdf-schema#label> "Terms and Conditions" .
@@ -1735,7 +2161,8 @@
 <https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#award-and-agreement> .
 <https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding> <http://www.w3.org/2000/01/rdf-schema#label> "Unrestricted Funding" .
-<https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding> <http://www.w3.org/2004/02/skos/core#definition> "Funding a grantee may use at its discretion in support of its general mission." .
+<https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding> <http://www.w3.org/2002/07/owl#deprecated> "true"^^<http://www.w3.org/2001/XMLSchema#boolean> .
+<https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding> <http://www.w3.org/2004/02/skos/core#definition> "Funding a grantee may use at its discretion in support of its general mission. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility." .
 <https://egovender.github.io/commongood-atlas/ontology/unrestricted-funding> <https://egovender.github.io/commongood-atlas/ontology/category> "award-and-agreement" .
 <https://egovender.github.io/commongood-atlas/ontology/vendor> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Class> .
 <https://egovender.github.io/commongood-atlas/ontology/vendor> <http://www.w3.org/2000/01/rdf-schema#isDefinedBy> <https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md#organizational-entities> .
