@@ -130,13 +130,11 @@
 }
 
 .cg-home-hero-visual {
-  display: flex;
-  justify-content: center;
-}
-
-.cg-home-hero-visual svg {
+  display: block;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto;
 }
 
 /* ---------- Light-section container ---------- */
