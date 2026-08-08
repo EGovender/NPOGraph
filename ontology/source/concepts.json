@@ -730,6 +730,36 @@
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
   },
   {
+    "id": "indicator",
+    "label": "Indicator",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "A defined measure used to assess the state or change of a Result (e.g., percentage of participants employed after six months, graduation rate).",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "target",
+    "label": "Target",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "A planned value for an Indicator expected to be reached by a defined point in time.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "measurement",
+    "label": "Measurement",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "An observed value for an Indicator at a particular time and, where relevant, for a defined Population or Geographic Area. Never treated as interchangeable with a Target: a Target is planned, a Measurement is observed.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
     "id": "evaluation",
     "label": "Evaluation",
     "aliases": [],

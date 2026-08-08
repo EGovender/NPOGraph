@@ -745,5 +745,50 @@
     "label": "includes",
     "description": "A Logic Model includes the Outcomes it plans for.",
     "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-result-measured-by-indicator",
+    "subject": "result",
+    "predicate": "measuredByIndicator",
+    "object": "indicator",
+    "label": "is measured by",
+    "description": "A Result (Output, Outcome, or Impact) is measured by an Indicator. Declared against the abstract Result concept rather than each subtype separately, so any Output, Outcome, or Impact instance can be measured the same way.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-indicator-has-target",
+    "subject": "indicator",
+    "predicate": "hasTarget",
+    "object": "target",
+    "label": "has",
+    "description": "An Indicator has a Target -- the planned value expected by a defined date.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-indicator-has-measurement",
+    "subject": "indicator",
+    "predicate": "hasMeasurement",
+    "object": "measurement",
+    "label": "has",
+    "description": "An Indicator has one or more Measurements -- the observed values recorded over time. Never equated with the Indicator's Target: a Target is planned, a Measurement is observed.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-measurement-observed-for-population",
+    "subject": "measurement",
+    "predicate": "observedForPopulation",
+    "object": "population",
+    "label": "was observed for",
+    "description": "A Measurement was observed for a specific Population.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-measurement-observed-in",
+    "subject": "measurement",
+    "predicate": "observedIn",
+    "object": "geographic-area",
+    "label": "was observed in",
+    "description": "A Measurement was observed in a specific Geographic Area.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
   }
 ]

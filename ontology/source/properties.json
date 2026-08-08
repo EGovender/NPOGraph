@@ -963,5 +963,53 @@
     "cardinality": "one",
     "allowedValues": null,
     "description": "The primary social or environmental issue this Project addresses."
+  },
+  {
+    "id": "target-value",
+    "concept": "target",
+    "name": "value",
+    "label": "Value",
+    "group": "lifecycle",
+    "datatype": "string",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "The planned value for the indicator (e.g. \"70%\", \"500 households\"). A plain string so it can hold a numeric, percentage, or other planned value without a separate typed field per kind of indicator."
+  },
+  {
+    "id": "target-target-date",
+    "concept": "target",
+    "name": "targetDate",
+    "label": "Target Date",
+    "group": "lifecycle",
+    "datatype": "date",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "The date by which the target value is expected to be reached."
+  },
+  {
+    "id": "measurement-value",
+    "concept": "measurement",
+    "name": "value",
+    "label": "Value",
+    "group": "lifecycle",
+    "datatype": "string",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "The observed value for the indicator. A plain string so it can hold a numeric (\"64%\"), categorical (\"improved\"), ordinal (\"high\"), or textual observation without conflating these kinds of values into different fields."
+  },
+  {
+    "id": "measurement-observation-date",
+    "concept": "measurement",
+    "name": "observationDate",
+    "label": "Observation Date",
+    "group": "lifecycle",
+    "datatype": "date",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "The date the value was observed."
   }
 ]
