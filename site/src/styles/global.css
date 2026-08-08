@@ -746,11 +746,16 @@ mark {
   gap: 0.75rem;
 }
 
+/* The toolbar is the primary workspace surface (Level 1) -- everything
+   inside it (view switcher, search, active filters) is core exploration;
+   the secondary Filters/Path-finder <details> sections below get the
+   quieter Level-3 treatment instead, see .graph-tool-section. */
 .graph-toolbar {
-  padding: 1rem;
+  padding: 1.1rem 1.25rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 0.9rem;
   background: var(--card-bg);
+  box-shadow: var(--shadow-md);
 }
 
 .graph-toolbar-row {
@@ -834,6 +839,7 @@ mark {
 .view-pill.active {
   background: var(--brand-navy);
   color: #ffffff;
+  box-shadow: inset 0 -3px 0 var(--brand-green);
 }
 
 /* One consistent chip style for every filter axis (Kind, Category,
@@ -908,6 +914,7 @@ mark {
      badge's text runs behind the button instead of stopping short of it. */
   padding: 1rem 2.5rem 1rem 1rem;
   border: 1px solid var(--border);
+  border-top: 4px solid var(--detail-accent, var(--brand-navy));
   border-radius: 8px;
   background: var(--card-bg);
   min-width: 0;
@@ -1007,14 +1014,36 @@ mark {
 
 .graph-canvas-wrap {
   position: relative;
+  display: flex;
+  flex-direction: column;
   flex: 1;
   min-width: 0;
   height: 100%;
 }
 
+/* Same specificity/cascade-order gotcha documented elsewhere in this file
+   (.story-stage-bar[hidden] etc.) -- adding `display: flex` above ties the
+   UA stylesheet's `[hidden] { display: none }` and loads after it, so
+   without this override the list-view/graph-view toggle (both share this
+   base class, switched via the `hidden` attribute) would stop working. */
+.graph-canvas-wrap[hidden] {
+  display: none;
+}
+
+.graph-canvas-header {
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.graph-canvas-header strong {
+  color: var(--text-primary);
+}
+
 .graph-canvas {
   width: 100%;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   border: 1px solid var(--border);
   border-radius: 8px;
   background:
@@ -1324,12 +1353,14 @@ mark {
    Kind/Category/Relationship-type, the controls people reach for most);
    Find a path stays closed but keeps its own green accent so it doesn't
    just look like a second, identical filters block. */
+/* Level 3 -- clearly secondary next to the elevated .graph-toolbar above:
+   a flat surface tint instead of a white card, no shadow. */
 .graph-tool-section {
   margin-top: 1rem;
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.1rem 1rem 0.9rem;
-  background: var(--card-bg);
+  background: var(--surface);
 }
 
 .graph-tool-section summary {

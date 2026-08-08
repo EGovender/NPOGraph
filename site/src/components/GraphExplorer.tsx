@@ -14,7 +14,7 @@ import {
 import { select, type Selection } from 'd3-selection';
 import 'd3-transition'; // augments Selection with .transition() (used for smooth pan/zoom)
 import { zoom as d3zoom, zoomIdentity, type ZoomBehavior } from 'd3-zoom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { CATEGORIES, getCategory } from '../data/categories';
 import { EXPLORER_VIEWS, resolveLifecycleView } from '../data/explorer-views';
 import { findShortestPath, seededGridPositions, type PathStep } from '../data/graph-utils';
@@ -891,6 +891,9 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   const visibleByFilterCount = concepts.filter(
     (c) => !hiddenCategories.has(c.category) && !hiddenKinds.has(conceptKind(c))
   ).length;
+  const activeViewLabel = customConceptIds
+    ? 'Custom selection'
+    : EXPLORER_VIEWS.find((v) => v.id === viewId)?.label ?? viewId;
 
   const visibleListConcepts = concepts
     .filter((c) => !hiddenCategories.has(c.category))
@@ -1247,12 +1250,23 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
         </div>
 
         <div className="graph-canvas-wrap" ref={wrapRef} hidden={showList}>
+          <p className="graph-canvas-header">
+            <strong>{activeViewLabel}</strong> &middot; {visibleByFilterCount} concepts &middot; Drag to reposition,
+            scroll to zoom
+          </p>
           <svg className="graph-canvas" ref={svgRef} role="img" aria-label="CommonGood Atlas concept relationship graph" />
           {controls}
         </div>
 
         {selectedConcept && (
-          <aside className="graph-detail graph-detail-docked">
+          <aside
+            className="graph-detail graph-detail-docked"
+            style={
+              {
+                '--detail-accent': `light-dark(${getCategory(selectedConcept.category).colorLight}, ${getCategory(selectedConcept.category).colorDark})`,
+              } as CSSProperties
+            }
+          >
             <button
               type="button"
               className="graph-detail-close"
