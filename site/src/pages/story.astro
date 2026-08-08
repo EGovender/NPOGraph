@@ -275,6 +275,19 @@ flushBucket();
     const stagePills = Array.from(document.querySelectorAll<HTMLButtonElement>('.story-stage-pill'));
     const technicalToggle = document.getElementById('story-show-technical') as HTMLInputElement | null;
 
+    // Clicking a stage pill below scrolls its step to the top of the
+    // viewport -- exactly where the sticky stage bar itself sits, so
+    // without this the step's heading ends up hidden underneath it.
+    // Recomputed on resize and whenever the visible stage bar changes
+    // (switching scenarios can change its pill count/wrapping).
+    function updateStageOffset() {
+      const bar = stageBars.find((b) => !b.hidden);
+      if (!bar) return;
+      document.documentElement.style.setProperty('--story-stage-offset', `${bar.getBoundingClientRect().height + 16}px`);
+    }
+    updateStageOffset();
+    window.addEventListener('resize', updateStageOffset);
+
     // Default to the first real scenario (Direct Grant), not "All" -- the
     // longest, most complex view shouldn't be what a first-time visitor
     // lands on. An explicit ?scenario= (including "all") still wins.
@@ -313,6 +326,7 @@ flushBucket();
       stageBars.forEach((b) => {
         b.hidden = id === 'all' || b.dataset.stageBar !== id;
       });
+      updateStageOffset();
 
       const params = new URLSearchParams();
       if (id !== 'all') params.set('scenario', id);

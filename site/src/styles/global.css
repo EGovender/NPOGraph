@@ -523,6 +523,11 @@ pre {
 
 .concept-group {
   margin-top: 2rem;
+  /* Jumping to a category (or the sticky search/filter panel changing
+     height as filters open/close) must not leave the heading tucked
+     underneath that sticky panel -- see the matching JS in
+     concepts/index.astro that keeps this custom property current. */
+  scroll-margin-top: var(--catalogue-sticky-offset, 320px);
 }
 
 .concept-group-title {
@@ -1999,6 +2004,11 @@ mark {
   display: flex;
   gap: 1rem;
   padding-bottom: 1.75rem;
+  /* A stage-pill click scrolls its step to the viewport top -- exactly
+     where the sticky stage bar sits, so without this the step's heading
+     ends up hidden underneath it. See the matching JS in story.astro
+     that keeps this custom property current. */
+  scroll-margin-top: var(--story-stage-offset, 90px);
 }
 
 /* See the matching comment on .story-stage-bar[hidden] -- same reason. */

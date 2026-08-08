@@ -222,6 +222,24 @@ const byLetter = letters.map((letter) => ({
       alphabetical: document.getElementById('view-alphabetical'),
     };
 
+    // Jumping to a category (via the "Jump to category" links) or landing on
+    // a deep link both scroll the target heading to the very top of the
+    // viewport -- exactly where the sticky search/filter panel also sits, so
+    // without this the heading ends up hidden underneath it. Recomputed
+    // whenever the panel's height can change (window resize, opening/closing
+    // the Filters disclosure, or a filter chip row appearing/disappearing).
+    const stickyPanel = document.querySelector<HTMLElement>('.catalogue-controls-sticky');
+    function updateStickyOffset() {
+      if (!stickyPanel) return;
+      document.documentElement.style.setProperty(
+        '--catalogue-sticky-offset',
+        `${stickyPanel.getBoundingClientRect().height + 16}px`
+      );
+    }
+    updateStickyOffset();
+    window.addEventListener('resize', updateStickyOffset);
+    document.querySelector('.catalogue-filters')?.addEventListener('toggle', updateStickyOffset);
+
     let activeSort: 'category' | 'alphabetical' = 'category';
     let activeDensity: 'grid' | 'compact' = 'grid';
 
@@ -366,6 +384,7 @@ const byLetter = letters.map((letter) => ({
 
       filterChipsList.innerHTML = '';
       filterChipsList.hidden = chips.length === 0;
+      updateStickyOffset();
       for (const chip of chips) {
         const li = document.createElement('li');
         const btn = document.createElement('button');
