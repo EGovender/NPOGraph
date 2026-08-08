@@ -704,6 +704,29 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMini]);
 
+  // No resize handling existed before the sidebar/inspector workspace
+  // layout -- the graph only ever re-fit on explicit user actions (the fit
+  // button, a search-result click, path-find, initial load). Now that the
+  // canvas's own container can change size without the window resizing at
+  // all (the sidebar <details> collapsing, or the inspector opening/
+  // closing), re-fit automatically whenever that happens.
+  useEffect(() => {
+    if (isMini || showList || typeof ResizeObserver === 'undefined') return;
+    const el = wrapRef.current;
+    if (!el) return;
+    let frame = 0;
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => fitToView());
+    });
+    observer.observe(el);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMini, showList]);
+
   function toggleCategory(id: string) {
     setHiddenCategories((prev) => {
       const next = new Set(prev);
@@ -955,41 +978,220 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
 
   return (
     <div className="graph-explorer">
-      <div className="graph-toolbar">
-        <div className="graph-view-switcher">
-          <span className="graph-view-switcher-label">Viewing:</span>
-          {customConceptIds ? (
-            <div className="custom-view-banner">
-              <p>
-                Showing {customConceptIds.size} concepts from a <strong>Design</strong> recommendation.
-              </p>
-              <button type="button" className="link-button" onClick={() => setCustomConceptIds(null)}>
-                Clear, show named views
+      <div className={`graph-workspace${selectedConcept ? ' has-inspector' : ''}`}>
+        <details className="graph-sidebar" open>
+          <summary className="graph-sidebar-heading">Explore</summary>
+
+          <div className="graph-sidebar-section">
+            <span className="graph-sidebar-section-label">View</span>
+            {customConceptIds ? (
+              <div className="custom-view-banner">
+                <p>
+                  Showing {customConceptIds.size} concepts from a <strong>Design</strong> recommendation.
+                </p>
+                <button type="button" className="link-button" onClick={() => setCustomConceptIds(null)}>
+                  Clear, show named views
+                </button>
+              </div>
+            ) : (
+              <div className="graph-sidebar-view-list" role="group" aria-label="Ontology view">
+                {EXPLORER_VIEWS.map((view) => (
+                  <button
+                    key={view.id}
+                    type="button"
+                    className={`graph-sidebar-view-row${viewId === view.id ? ' active' : ''}`}
+                    aria-pressed={viewId === view.id}
+                    title={view.description}
+                    onClick={() => setViewId(view.id)}
+                  >
+                    {view.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          <div className="graph-active-filters-row">
+            {activeFilterChips.length > 0 && (
+              <ul className="graph-filter-chips">
+                {activeFilterChips.map((chip) => (
+                  <li key={chip.key}>
+                    <button type="button" className="graph-filter-chip" onClick={chip.onRemove}>
+                      {chip.label} <span aria-hidden="true">&times;</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+            <button
+              type="button"
+              className="link-button graph-reset-filters"
+              disabled={activeFilterChips.length === 0}
+              onClick={resetFilters}
+            >
+              Reset view
+            </button>
+          </div>
+
+          <details className="graph-tool-section graph-filters-section" open>
+            <summary>
+              <span className="graph-tool-section-title">Filters</span>
+              <span className="graph-tool-section-hint">
+                {filtersActiveCount > 0 ? `${filtersActiveCount} active` : 'All shown'}
+              </span>
+            </summary>
+
+            <div className="filter-chip-group">
+              <span className="filter-chip-group-label">Kind</span>
+              <div className="filter-chip-row" role="group" aria-label="Kind">
+                {kindEntriesInView.map((entry) => {
+                  const hidden = hiddenKinds.has(entry.kind);
+                  const color = kindSwatchColor(entry.kind);
+                  return (
+                    <button
+                      key={entry.kind}
+                      type="button"
+                      className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
+                      aria-pressed={!hidden}
+                      onClick={() => toggleKind(entry.kind)}
+                    >
+                      <span
+                        className={`shape-swatch shape-swatch-${entry.kind}`}
+                        style={color ? { background: `light-dark(${color.light}, ${color.dark})` } : undefined}
+                      />
+                      {entry.label}
+                      <span className="filter-chip-count">{kindCounts.get(entry.kind)}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="filter-chip-group">
+              <span className="filter-chip-group-label">Category</span>
+              <div className="filter-chip-row" role="group" aria-label="Category">
+                {categoriesInView.map((cat) => {
+                  const hidden = hiddenCategories.has(cat.id);
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
+                      aria-pressed={!hidden}
+                      onClick={() => toggleCategory(cat.id)}
+                    >
+                      <span
+                        className="search-result-swatch"
+                        style={{ background: `light-dark(${cat.colorLight}, ${cat.colorDark})` }}
+                      />
+                      {cat.label}
+                      <span className="filter-chip-count">{categoryCounts.get(cat.id)}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="filter-chip-group">
+              <span className="filter-chip-group-label">Relationship type</span>
+              <div className="filter-chip-row" role="group" aria-label="Relationship type">
+                {relKindsInView.map((kind) => {
+                  const hidden = hiddenRelationshipKinds.has(kind);
+                  return (
+                    <button
+                      key={kind}
+                      type="button"
+                      className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
+                      aria-pressed={!hidden}
+                      onClick={() => toggleRelationshipKind(kind)}
+                    >
+                      {RELATIONSHIP_KIND_LABELS[kind]}
+                      <span className="filter-chip-count">{relKindCounts.get(kind)}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </details>
+
+          <details className="graph-tool-section graph-path-finder-section">
+            <summary>
+              <span className="graph-tool-section-title">Find a connection</span>
+              <span className="graph-tool-section-hint">See how two concepts connect, step by step</span>
+            </summary>
+            <div className="path-finder">
+              <label className="path-finder-label">
+                From
+                <select value={pathFromId} onChange={(e) => setPathFromId(e.target.value)}>
+                  <option value="">Select a concept&hellip;</option>
+                  {sortedForPathFinder.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="path-finder-label">
+                To
+                <select value={pathToId} onChange={(e) => setPathToId(e.target.value)}>
+                  <option value="">Select a concept&hellip;</option>
+                  {sortedForPathFinder.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <div className="path-finder-actions">
+                <button type="button" className="home-cta home-cta-primary" disabled={!pathFromId || !pathToId} onClick={runPathFind}>
+                  Find path
+                </button>
+                {pathResult !== undefined && (
+                  <button type="button" className="link-button" onClick={clearPathFind}>
+                    Clear
+                  </button>
+                )}
+              </div>
+              <div aria-live="polite">
+                {pathResult === null && <p className="muted graph-hint">No path between these concepts in this view.</p>}
+                {pathResult && pathResult.length === 0 && <p className="muted graph-hint">Select two different concepts.</p>}
+                {pathResult && pathResult.length > 0 && (
+                  <ol className="path-result">
+                    <li>{conceptsById.get(pathResult[0].fromId)?.label}</li>
+                    {pathResult.map((step, i) => (
+                      <li key={i}>
+                        <span className="muted">{step.label}</span> {conceptsById.get(step.toId)?.label}
+                      </li>
+                    ))}
+                  </ol>
+                )}
+              </div>
+            </div>
+          </details>
+        </details>
+
+        <div className="graph-center">
+          <div className="graph-center-toolbar">
+            <h2 className="graph-center-title">{activeViewLabel}</h2>
+            <p className="graph-visible-count">
+              Showing <strong>{visibleByFilterCount}</strong> of {concepts.length} concepts
+            </p>
+            <div className="graph-view-toggle" role="group" aria-label="Graph or list view">
+              <button type="button" className={!showList ? 'active' : ''} aria-pressed={!showList} onClick={() => setShowList(false)}>
+                Graph
+              </button>
+              <button
+                type="button"
+                className={showList ? 'active' : ''}
+                aria-pressed={showList}
+                title="List (keyboard-accessible)"
+                onClick={() => setShowList(true)}
+              >
+                List
               </button>
             </div>
-          ) : (
-            <div className="view-pills" role="group" aria-label="Ontology view">
-              {EXPLORER_VIEWS.map((view) => (
-                <button
-                  key={view.id}
-                  type="button"
-                  className={`view-pill${viewId === view.id ? ' active' : ''}`}
-                  aria-pressed={viewId === view.id}
-                  title={view.description}
-                  onClick={() => setViewId(view.id)}
-                >
-                  {view.label}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+          </div>
 
-        <p className="graph-visible-count">
-          Showing <strong>{visibleByFilterCount}</strong> of {concepts.length} concepts
-        </p>
-
-        <div className="graph-toolbar-row">
           <div className="search-box graph-toolbar-search">
             <input
               type="search"
@@ -1034,233 +1236,52 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
             )}
           </div>
 
-          <div className="graph-view-toggle" role="group" aria-label="Graph or list view">
-            <button type="button" className={!showList ? 'active' : ''} aria-pressed={!showList} onClick={() => setShowList(false)}>
-              Graph
-            </button>
-            <button
-              type="button"
-              className={showList ? 'active' : ''}
-              aria-pressed={showList}
-              title="List (keyboard-accessible)"
-              onClick={() => setShowList(true)}
-            >
-              List
-            </button>
-          </div>
-        </div>
-
-        <div className="graph-active-filters-row">
-          {activeFilterChips.length > 0 && (
-            <ul className="graph-filter-chips">
-              {activeFilterChips.map((chip) => (
-                <li key={chip.key}>
-                  <button type="button" className="graph-filter-chip" onClick={chip.onRemove}>
-                    {chip.label} <span aria-hidden="true">&times;</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-          <button
-            type="button"
-            className="link-button graph-reset-filters"
-            disabled={activeFilterChips.length === 0}
-            onClick={resetFilters}
-          >
-            Reset all
-          </button>
-        </div>
-
-        <details className="graph-tool-section graph-filters-section" open>
-          <summary>
-            <span className="graph-tool-section-title">Filters</span>
-            <span className="graph-tool-section-hint">
-              {filtersActiveCount > 0 ? `${filtersActiveCount} active` : 'All shown'}
-            </span>
-          </summary>
-
-          <div className="filter-chip-group">
-            <span className="filter-chip-group-label">Kind</span>
-            <div className="filter-chip-row" role="group" aria-label="Kind">
-              {kindEntriesInView.map((entry) => {
-                const hidden = hiddenKinds.has(entry.kind);
-                const color = kindSwatchColor(entry.kind);
-                return (
-                  <button
-                    key={entry.kind}
-                    type="button"
-                    className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
-                    aria-pressed={!hidden}
-                    onClick={() => toggleKind(entry.kind)}
-                  >
-                    <span
-                      className={`shape-swatch shape-swatch-${entry.kind}`}
-                      style={color ? { background: `light-dark(${color.light}, ${color.dark})` } : undefined}
-                    />
-                    {entry.label}
-                    <span className="filter-chip-count">{kindCounts.get(entry.kind)}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="filter-chip-group">
-            <span className="filter-chip-group-label">Category</span>
-            <div className="filter-chip-row" role="group" aria-label="Category">
-              {categoriesInView.map((cat) => {
-                const hidden = hiddenCategories.has(cat.id);
-                return (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
-                    aria-pressed={!hidden}
-                    onClick={() => toggleCategory(cat.id)}
-                  >
-                    <span
-                      className="search-result-swatch"
-                      style={{ background: `light-dark(${cat.colorLight}, ${cat.colorDark})` }}
-                    />
-                    {cat.label}
-                    <span className="filter-chip-count">{categoryCounts.get(cat.id)}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="filter-chip-group">
-            <span className="filter-chip-group-label">Relationship type</span>
-            <div className="filter-chip-row" role="group" aria-label="Relationship type">
-              {relKindsInView.map((kind) => {
-                const hidden = hiddenRelationshipKinds.has(kind);
-                return (
-                  <button
-                    key={kind}
-                    type="button"
-                    className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
-                    aria-pressed={!hidden}
-                    onClick={() => toggleRelationshipKind(kind)}
-                  >
-                    {RELATIONSHIP_KIND_LABELS[kind]}
-                    <span className="filter-chip-count">{relKindCounts.get(kind)}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </details>
-
-        <details className="graph-tool-section graph-path-finder-section">
-          <summary>
-            <span className="graph-tool-section-title">Find a path between two concepts</span>
-            <span className="graph-tool-section-hint">See how any two concepts connect, step by step</span>
-          </summary>
-          <div className="path-finder">
-            <label className="path-finder-label">
-              From
-              <select value={pathFromId} onChange={(e) => setPathFromId(e.target.value)}>
-                <option value="">Select a concept&hellip;</option>
-                {sortedForPathFinder.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="path-finder-label">
-              To
-              <select value={pathToId} onChange={(e) => setPathToId(e.target.value)}>
-                <option value="">Select a concept&hellip;</option>
-                {sortedForPathFinder.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <div className="path-finder-actions">
-              <button type="button" className="home-cta home-cta-primary" disabled={!pathFromId || !pathToId} onClick={runPathFind}>
-                Find path
-              </button>
-              {pathResult !== undefined && (
-                <button type="button" className="link-button" onClick={clearPathFind}>
-                  Clear
-                </button>
-              )}
-            </div>
-            <div aria-live="polite">
-              {pathResult === null && <p className="muted graph-hint">No path between these concepts in this view.</p>}
-              {pathResult && pathResult.length === 0 && <p className="muted graph-hint">Select two different concepts.</p>}
-              {pathResult && pathResult.length > 0 && (
-                <ol className="path-result">
-                  <li>{conceptsById.get(pathResult[0].fromId)?.label}</li>
-                  {pathResult.map((step, i) => (
-                    <li key={i}>
-                      <span className="muted">{step.label}</span> {conceptsById.get(step.toId)?.label}
+          <div className="graph-stage">
+            <div className="graph-canvas-wrap graph-list-view" hidden={!showList}>
+              <h2 className="graph-sidebar-title">
+                Concepts ({visibleListConcepts.length} of {concepts.length})
+              </h2>
+              <ul className="concept-card-list">
+                {visibleListConcepts.map((c) => {
+                  const cat = getCategory(c.category);
+                  return (
+                    <li key={c.id} className="card">
+                      <div className="concept-card-header">
+                        <span
+                          className="search-result-swatch"
+                          style={{ background: `light-dark(${cat.colorLight}, ${cat.colorDark})` }}
+                        />
+                        <a href={`${base}concepts/${c.id}`} className="concept-card-label">
+                          {c.label}
+                        </a>
+                      </div>
+                      <p className="secondary concept-card-def">{c.definition}</p>
                     </li>
-                  ))}
-                </ol>
-              )}
+                  );
+                })}
+              </ul>
+              <h2 className="graph-sidebar-title">Relationships ({visibleListRelationships.length})</h2>
+              <ul className="graph-list-relationships">
+                {visibleListRelationships.map((r) => (
+                  <li key={r.id}>
+                    <a href={`${base}concepts/${r.subject}`}>{conceptsById.get(r.subject)?.label}</a>{' '}
+                    <span className="muted">{r.label}</span>{' '}
+                    <a href={`${base}concepts/${r.object}`}>{conceptsById.get(r.object)?.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="graph-canvas-wrap" ref={wrapRef} hidden={showList}>
+              <svg className="graph-canvas" ref={svgRef} role="img" aria-label="CommonGood Atlas concept relationship graph" />
+              {controls}
             </div>
           </div>
-        </details>
-
-        <p className="muted graph-hint">
-          Click a node to see its details. Click the background to clear. Drag to reposition, scroll to zoom.
-        </p>
-      </div>
-
-      <div className="graph-main">
-        <div className="graph-canvas-wrap graph-list-view" hidden={!showList}>
-          <h2 className="graph-sidebar-title">
-            Concepts ({visibleListConcepts.length} of {concepts.length})
-          </h2>
-          <ul className="concept-card-list">
-            {visibleListConcepts.map((c) => {
-              const cat = getCategory(c.category);
-              return (
-                <li key={c.id} className="card">
-                  <div className="concept-card-header">
-                    <span
-                      className="search-result-swatch"
-                      style={{ background: `light-dark(${cat.colorLight}, ${cat.colorDark})` }}
-                    />
-                    <a href={`${base}concepts/${c.id}`} className="concept-card-label">
-                      {c.label}
-                    </a>
-                  </div>
-                  <p className="secondary concept-card-def">{c.definition}</p>
-                </li>
-              );
-            })}
-          </ul>
-          <h2 className="graph-sidebar-title">Relationships ({visibleListRelationships.length})</h2>
-          <ul className="graph-list-relationships">
-            {visibleListRelationships.map((r) => (
-              <li key={r.id}>
-                <a href={`${base}concepts/${r.subject}`}>{conceptsById.get(r.subject)?.label}</a>{' '}
-                <span className="muted">{r.label}</span>{' '}
-                <a href={`${base}concepts/${r.object}`}>{conceptsById.get(r.object)?.label}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="graph-canvas-wrap" ref={wrapRef} hidden={showList}>
-          <p className="graph-canvas-header">
-            <strong>{activeViewLabel}</strong> &middot; {visibleByFilterCount} concepts &middot; Drag to reposition,
-            scroll to zoom
-          </p>
-          <svg className="graph-canvas" ref={svgRef} role="img" aria-label="CommonGood Atlas concept relationship graph" />
-          {controls}
         </div>
 
         {selectedConcept && (
           <aside
-            className="graph-detail graph-detail-docked"
+            className="graph-detail graph-detail-docked graph-inspector"
             style={
               {
                 '--detail-accent': `light-dark(${getCategory(selectedConcept.category).colorLight}, ${getCategory(selectedConcept.category).colorDark})`,
@@ -1289,6 +1310,10 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
           </aside>
         )}
       </div>
+
+      <p className="muted graph-hint">
+        Click a node to see its details. Click the background to clear. Drag to reposition, scroll to zoom.
+      </p>
     </div>
   );
 }

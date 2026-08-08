@@ -726,41 +726,122 @@ mark {
   }
 }
 
-/* Filters live in a horizontal toolbar above the canvas (not a side column)
-   so the graph itself gets as much width as possible -- see .graph-main. */
+/* Graph Explorer is an application workspace -- a narrow control sidebar,
+   the canvas as the dominant center column, and a docked inspector that
+   only appears once a concept is selected -- rather than a stack of
+   horizontal control rows sitting above the graph. */
 .graph-explorer {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-/* The toolbar is the primary workspace surface (Level 1) -- everything
-   inside it (view switcher, search, active filters) is core exploration;
-   the secondary Filters/Path-finder <details> sections below get the
-   quieter Level-3 treatment instead, see .graph-tool-section. */
-.graph-toolbar {
-  padding: 1.1rem 1.25rem;
-  border: 1px solid var(--border);
-  border-radius: 0.9rem;
-  background: var(--card-bg);
-  box-shadow: var(--shadow-md);
+.graph-workspace {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
 }
 
-.graph-toolbar-row {
+.graph-workspace.has-inspector {
+  grid-template-columns: 270px minmax(0, 1fr) minmax(350px, 390px);
+}
+
+/* The sidebar is a native <details>, the same accessible disclosure
+   pattern already used for Filters/Path-finder below -- open by default,
+   collapsible everywhere (a harmless bonus on desktop, and how it
+   collapses on narrower screens with zero extra JS). */
+.graph-sidebar {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  box-shadow: var(--shadow-sm);
+  padding: 1rem;
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+}
+
+.graph-sidebar-heading {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  list-style: none;
+  margin-bottom: 0.75rem;
+}
+
+.graph-sidebar-heading::-webkit-details-marker {
+  display: none;
+}
+
+.graph-sidebar-section {
+  margin-bottom: 0.9rem;
+}
+
+.graph-sidebar-section-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.graph-sidebar-view-list {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.graph-sidebar-view-row {
+  text-align: left;
+  border: none;
+  border-left: 3px solid transparent;
+  background: none;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.graph-sidebar-view-row:hover {
+  background: var(--surface);
+}
+
+.graph-sidebar-view-row.active {
+  background: var(--brand-navy);
+  border-left-color: var(--brand-green);
+  color: #ffffff;
+}
+
+.graph-center {
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
+  min-width: 0;
+}
+
+.graph-center-toolbar {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.9rem;
+}
+
+.graph-center-title {
+  margin: 0;
+  font-size: 1.15rem;
 }
 
 .graph-toolbar-search {
-  flex: 1 1 240px;
-  min-width: 180px;
+  position: relative;
 }
 
-/* Overlay the results instead of pushing the rest of the toolbar row down --
-   this search box sits inline next to the view pills and graph/list toggle,
-   not alone in its own column like it used to. */
+/* Overlay the results instead of pushing the graph down. */
 .graph-toolbar-search .search-results,
 .graph-toolbar-search .search-no-results {
   position: absolute;
@@ -770,25 +851,8 @@ mark {
   width: max(100%, 320px);
 }
 
-/* The view switcher changes what dataset you're looking at -- top billing
-   (its own labeled row, ahead of search/Graph-List) instead of competing
-   as same-weight buttons in the same row as the Graph/List toggle. */
-.graph-view-switcher {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.6rem;
-}
-
-.graph-view-switcher-label {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-}
-
 .graph-visible-count {
-  margin: 0 0 0.75rem;
+  margin: 0;
   font-size: 0.85rem;
   color: var(--text-secondary);
 }
@@ -797,37 +861,37 @@ mark {
   color: var(--text-primary);
 }
 
-.graph-toolbar .graph-view-toggle {
-  margin: 0;
-  white-space: nowrap;
+.graph-stage {
+  flex: 1;
+  min-height: 650px;
+  display: flex;
+  align-items: stretch;
 }
 
-.view-pills {
-  display: inline-flex;
-  flex-wrap: wrap;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
+/* Medium desktop: three columns become too narrow for a useful inspector,
+   so it drops to a full-width row below the sidebar+graph instead. */
+@media (max-width: 1449px) {
+  .graph-workspace.has-inspector {
+    grid-template-columns: 270px minmax(0, 1fr);
+  }
+
+  .graph-workspace.has-inspector .graph-inspector {
+    grid-column: 1 / -1;
+  }
 }
 
-.view-pill {
-  border: none;
-  background: var(--card-bg);
-  color: var(--text-secondary);
-  padding: 0.5rem 0.8rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-}
+/* Tablet and below: single column. The sidebar's own <details> gives users
+   a way to collapse it without a bespoke mobile-only drawer. */
+@media (max-width: 1049px) {
+  .graph-workspace,
+  .graph-workspace.has-inspector {
+    grid-template-columns: 1fr;
+  }
 
-.view-pill + .view-pill {
-  border-left: 1px solid var(--border);
-}
-
-.view-pill.active {
-  background: var(--brand-navy);
-  color: #ffffff;
-  box-shadow: inset 0 -3px 0 var(--brand-green);
+  .graph-sidebar {
+    position: static;
+    max-height: none;
+  }
 }
 
 /* One consistent chip style for every filter axis (Kind, Category,
@@ -888,13 +952,6 @@ mark {
 
 /* The canvas and the docked detail panel share the row via flex -- the
    canvas shrinks to make room instead of the panel floating on top of it. */
-.graph-main {
-  display: flex;
-  gap: 0.75rem;
-  height: calc(100vh - 260px);
-  min-height: 600px;
-}
-
 .graph-detail {
   overflow-y: auto;
   /* Extra right padding clears the close button, which sits absolutely
@@ -912,9 +969,18 @@ mark {
 /* Docked, not floating -- a flex sibling of the canvas, so selecting a node
    shrinks the canvas to make room instead of covering part of it. Wide
    enough that all 4 (non-"In Practice") inspector tabs fit on one line. */
+/* Width now comes from .graph-workspace.has-inspector's third grid
+   column, not a flex-basis -- this is a grid item, not a flex sibling,
+   since the sidebar restructuring. */
 .graph-detail-docked {
-  flex: 0 0 420px;
   height: 100%;
+}
+
+@media (max-width: 1449px) {
+  .graph-detail-docked {
+    height: auto;
+    max-height: 70vh;
+  }
 }
 
 .graph-detail-close {
@@ -1006,7 +1072,8 @@ mark {
   flex-direction: column;
   flex: 1;
   min-width: 0;
-  height: 100%;
+  min-height: 0;
+  align-self: stretch;
 }
 
 /* Same specificity/cascade-order gotcha documented elsewhere in this file
@@ -1016,16 +1083,6 @@ mark {
    base class, switched via the `hidden` attribute) would stop working. */
 .graph-canvas-wrap[hidden] {
   display: none;
-}
-
-.graph-canvas-header {
-  margin: 0 0 0.5rem;
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-}
-
-.graph-canvas-header strong {
-  color: var(--text-primary);
 }
 
 .graph-canvas {
@@ -1341,8 +1398,8 @@ mark {
    Kind/Category/Relationship-type, the controls people reach for most);
    Find a path stays closed but keeps its own green accent so it doesn't
    just look like a second, identical filters block. */
-/* Level 3 -- clearly secondary next to the elevated .graph-toolbar above:
-   a flat surface tint instead of a white card, no shadow. */
+/* Level 3 -- clearly secondary within the sidebar: a flat surface tint
+   instead of a white card, no shadow. */
 .graph-tool-section {
   margin-top: 1rem;
   border: 1px solid var(--border);
@@ -1426,23 +1483,20 @@ mark {
 }
 
 @media (max-width: 900px) {
-  /* The toolbar is now compact and already sits above the graph in document
-     order (not a tall side column), so there's no more need to reorder the
-     graph ahead of it on small screens the way the old sidebar layout did. */
-  .graph-main {
-    flex-direction: column;
-    height: auto;
+  /* .graph-workspace already collapses to a single column at 1049px (see
+     above), stacking sidebar/graph/inspector in document order -- this
+     tier only needs to cap the canvas height so it doesn't dominate a
+     phone-sized viewport the way a viewport-locked height would. */
+  .graph-stage {
     min-height: 0;
   }
 
-  .graph-canvas-wrap {
-    height: 65vh;
+  .graph-canvas-wrap:not(.graph-canvas-mini) {
+    height: 60vh;
     min-height: 420px;
   }
 
   .graph-detail-docked {
-    flex: none;
-    width: auto;
     height: auto;
     max-height: 60vh;
   }
