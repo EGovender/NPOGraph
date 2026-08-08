@@ -8,9 +8,9 @@ whenever the brand mark or colors change, then commit the resulting PNG:
 
     .venv/bin/python tools/generate_og_image.py
 
-Colors match site/src/styles/global.css's :root palette and the graph mark
-in site/public/logo.svg (icon geometry duplicated here at a larger scale;
-see that file if the mark itself changes).
+Colors and mark geometry match site/public/favicon.svg and site/public/logo.svg
+(the hub-and-spoke hexagon mark) -- see those files if the mark itself changes.
+Tagline matches logo.svg's own "Shared knowledge. Stronger impact." lockup copy.
 """
 from pathlib import Path
 
@@ -23,37 +23,36 @@ WIDTH, HEIGHT = 1200, 630
 
 SVG = f"""
 <svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}">
-  <defs>
-    <linearGradient id="mark" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4EABA5" />
-      <stop offset="100%" stop-color="#79B158" />
-    </linearGradient>
-  </defs>
-  <rect width="{WIDTH}" height="{HEIGHT}" fill="#f9f9f7" />
+  <rect width="{WIDTH}" height="{HEIGHT}" fill="#f7f7f8" />
 
-  <g transform="translate(150, 195) scale(2.4)">
-    <g fill="none" stroke="url(#mark)" stroke-width="4.5" stroke-linecap="round">
-      <line x1="20" y1="22" x2="20" y2="70" />
-      <line x1="20" y1="22" x2="88" y2="80" />
-      <line x1="20" y1="70" x2="88" y2="22" />
-      <line x1="88" y1="22" x2="88" y2="80" />
+  <g transform="translate(190,200) scale(2.1)">
+    <path d="M50 4 92 27v46L50 96 8 73V27Z" fill="none" stroke="#FFCE01" stroke-width="5" stroke-linejoin="round"/>
+    <g stroke="#2E343E" stroke-width="4" stroke-linecap="round">
+      <line x1="50" y1="50" x2="50" y2="26"/>
+      <line x1="50" y1="50" x2="71" y2="38"/>
+      <line x1="50" y1="50" x2="71" y2="62"/>
+      <line x1="50" y1="50" x2="50" y2="74"/>
+      <line x1="50" y1="50" x2="29" y2="62"/>
+      <line x1="50" y1="50" x2="29" y2="38"/>
     </g>
-    <circle cx="20" cy="22" r="9" fill="#4EABA5" />
-    <circle cx="20" cy="70" r="9" fill="#4EABA5" />
-    <circle cx="51" cy="48" r="5.5" fill="#72B163" />
-    <circle cx="88" cy="22" r="8" fill="#79B158" />
-    <circle cx="88" cy="80" r="12" fill="#4FA98A" />
+    <circle cx="50" cy="50" r="9" fill="#2E343E"/>
+    <circle cx="50" cy="26" r="6" fill="#FFCE01"/>
+    <circle cx="71" cy="38" r="6" fill="#2E343E"/>
+    <circle cx="71" cy="62" r="6" fill="#FFCE01"/>
+    <circle cx="50" cy="74" r="6" fill="#2E343E"/>
+    <circle cx="29" cy="62" r="6" fill="#FFCE01"/>
+    <circle cx="29" cy="38" r="6" fill="#2E343E"/>
   </g>
 
-  <text x="430" y="335" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="100" font-weight="800">
-    <tspan fill="#565F65">NPO</tspan><tspan fill="#387866">Graph</tspan>
+  <text x="450" y="330" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="64" font-weight="700">
+    <tspan fill="#2E343E">CommonGood</tspan><tspan dx="16" fill="#8A6508">Atlas</tspan>
   </text>
 
-  <text x="150" y="470" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" fill="#52514e">
-    An open ontology for nonprofit operations, starting with grantmaking
+  <text x="600" y="485" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" fill="#55596a">
+    Shared knowledge. Stronger impact.
   </text>
 
-  <rect x="0" y="{HEIGHT - 8}" width="{WIDTH}" height="8" fill="url(#mark)" />
+  <rect x="0" y="614" width="{WIDTH}" height="16" fill="#FFCE01" />
 </svg>
 """
 
