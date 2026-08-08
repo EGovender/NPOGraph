@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SearchBox from '../components/SearchBox';
 import { concepts, relationships, ontologyVersion, ontologyLastUpdated, machineFormats } from '../data/ontology';
-import heroNetwork from '../icons/hero-network-dark.svg?raw';
 import '../styles/home.css';
 
 const base = import.meta.env.BASE_URL;
@@ -40,7 +39,14 @@ const lastUpdatedDisplay = ontologyLastUpdated
           Already work with ontologies? <a href={`${base}explore`}>Open the graph explorer &rarr;</a>
         </p>
       </div>
-      <div class="cg-home-hero-visual" aria-hidden="true" set:html={heroNetwork} />
+      <img
+        class="cg-home-hero-visual"
+        src={`${base}brand/hero-network.png`}
+        alt=""
+        aria-hidden="true"
+        width="640"
+        height="640"
+      />
     </div>
   </section>
 
