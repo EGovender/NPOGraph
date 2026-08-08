@@ -16,7 +16,7 @@
   margin: 0 auto;
   padding: 0 1.5rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(220px, 380px);
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 640px);
   gap: 2.5rem;
   align-items: center;
 }
@@ -132,7 +132,7 @@
 .cg-home-hero-visual {
   display: block;
   width: 100%;
-  max-width: 320px;
+  max-width: 640px;
   height: auto;
   margin: 0 auto;
 }

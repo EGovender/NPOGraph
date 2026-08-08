@@ -149,14 +149,20 @@ export default function DesignWizard({ base }: Props) {
   return (
     <div className="design-wizard">
       <div className="design-questions">
-        <div className="design-progress muted">
-          {answeredCount} of {visibleQuestions.length} answered ·{' '}
-          <button type="button" className="design-reset" onClick={reset}>
+        <div className="design-progress-header">
+          <div className="design-progress-label">
+            <span>Your progress</span>
+            <span className="muted">
+              {answeredCount} of {visibleQuestions.length} answered
+            </span>
+          </div>
+          <progress className="design-progress-bar" value={answeredCount} max={visibleQuestions.length} />
+          <button type="button" className="link-button design-progress-reset" onClick={reset}>
             Reset
           </button>
         </div>
 
-        {DESIGN_SECTIONS.map((section) => {
+        {DESIGN_SECTIONS.map((section, sectionIndex) => {
           const sectionQuestions = DESIGN_QUESTIONS.filter(
             (q) => q.section === section.id && isVisible(q, answers)
           );
@@ -164,16 +170,24 @@ export default function DesignWizard({ base }: Props) {
           const sectionAnswered = sectionQuestions.filter((q) => answers[q.id]).length;
           return (
             <section key={section.id} className="design-section">
-              <h2 className="design-section-title">
-                {section.label}
-                <span className="concept-group-count">
-                  {sectionAnswered}/{sectionQuestions.length}
+              <div className="page-section-header">
+                <div className="page-section-heading">
+                  <span className="page-section-kicker">{String(sectionIndex + 1).padStart(2, '0')}</span>
+                  <h2 className="page-section-title">{section.label}</h2>
+                </div>
+                <span className="page-section-count">
+                  {sectionAnswered}/{sectionQuestions.length} answered
                 </span>
-              </h2>
+              </div>
               {sectionQuestions.map((q) => (
                 <fieldset key={q.id} className="design-question">
                   <legend>{q.text}</legend>
-                  {q.help && <p className="muted design-question-help">{q.help}</p>}
+                  {q.help && (
+                    <details className="design-question-help">
+                      <summary>Why we're asking</summary>
+                      <p className="muted">{q.help}</p>
+                    </details>
+                  )}
                   {q.type === 'boolean' ? (
                     <div className="design-options">
                       {(['yes', 'no'] as const).map((v) => (
@@ -216,13 +230,19 @@ export default function DesignWizard({ base }: Props) {
       </div>
 
       <aside className="design-result">
-        <h2 className="inspector-group-title">Recommended for your program</h2>
-        <p className="muted design-result-count">
-          {recommendedIds.size} of {concepts.length} concepts
-        </p>
+        <div className="design-result-summary">
+          <h2 className="inspector-group-title">Your model</h2>
+          <p className="design-result-summary-count">{recommendedIds.size} concepts recommended</p>
+          <p className="design-result-summary-split">
+            {CORE_CONCEPTS.filter((id) => recommendedIds.has(id)).length} core concepts
+            <br />
+            {recommendedIds.size - CORE_CONCEPTS.filter((id) => recommendedIds.has(id)).length} added from your
+            answers
+          </p>
+        </div>
         <p className="secondary design-foundation-note">
-          {CORE_CONCEPTS.length} foundation concepts apply to most grantmaking programs, whether or not you've
-          answered anything below; everything else is included because of a specific answer.
+          Core concepts apply to most grantmaking programs, whether or not you've answered anything below; the
+          rest are included because of a specific answer.
         </p>
 
         <div className="design-actions">
@@ -232,7 +252,7 @@ export default function DesignWizard({ base }: Props) {
           <button type="button" className="home-cta" onClick={downloadSummary}>
             Download summary
           </button>
-          <button type="button" className="home-cta" onClick={copyLink}>
+          <button type="button" className="link-button" onClick={copyLink}>
             {copied ? 'Link copied!' : 'Copy shareable link'}
           </button>
         </div>

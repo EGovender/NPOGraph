@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import '../styles/page-shell.css';
+import '../styles/interior-pages.css';
 import { concepts, ontologyVersion, ontologyLastUpdated } from '../data/ontology';
 import SearchBox from '../components/SearchBox';
 
@@ -16,6 +18,12 @@ interface Props {
 
 const { title, description = 'CommonGood Atlas is an open knowledge foundation for nonprofit and philanthropic operations.', wide = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
+
+// A "pageHero" slot renders full-bleed above the width-capped content --
+// pages that don't fill it (the homepage manages its own full-bleed hero
+// directly) simply get an empty slot, so this is backwards compatible.
+const contentClass =
+  wide === 'full' ? 'site-content-full' : wide === 'home' ? 'site-content-home' : wide ? 'site-content-wide' : 'site-content-standard';
 
 const pageTitle = `${title} · CommonGood Atlas`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -116,8 +124,11 @@ const lastUpdatedDisplay = ontologyLastUpdated
         {!isHome && <SearchBox client:load compact concepts={concepts} base={base} />}
       </nav>
     </header>
-    <main class={wide === 'full' ? 'full-bleed' : wide === 'home' ? 'home-bleed' : wide ? 'wide' : ''}>
-      <slot />
+    <main class="site-main">
+      <slot name="pageHero" />
+      <div class={`site-content ${contentClass}`}>
+        <slot />
+      </div>
     </main>
     <footer class="site-footer">
       CommonGood Atlas is an open-source project.{' '}

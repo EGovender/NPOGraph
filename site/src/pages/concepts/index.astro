@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
 import ConceptCard from '../../components/ConceptCard.astro';
 import {
   concepts,
@@ -46,14 +47,24 @@ const byLetter = letters.map((letter) => ({
 ---
 
 <BaseLayout title="Concepts" description="All core concepts in the CommonGood Atlas grantmaking ontology." wide>
-  <h1>Core Concepts</h1>
-  <p class="secondary">
+  <PageHero
+    slot="pageHero"
+    eyebrow="Reference"
+    title="Concept Library"
+    description="Browse the shared definitions behind CommonGood Atlas, from organizations and applications to awards, payments, reporting, outcomes, and closeout."
+  >
+    <span slot="meta" class="page-hero-meta-item">{concepts.length} concepts</span>
+    <span slot="meta" class="page-hero-meta-item">{CATEGORIES.length} categories</span>
+    <span slot="meta" class="page-hero-meta-item">Open specification</span>
+  </PageHero>
+
+  <p class="secondary catalogue-status">
     <span id="visible-count">{concepts.length}</span> of {concepts.length} concepts. See{' '}
     <a href="https://github.com/EGovender/commongood-atlas/blob/main/docs/02-core-concepts.md">docs/02-core-concepts.md</a>{' '}
     for the source, or <a href={`${base}explore`}>explore them as a graph</a>.
   </p>
 
-  <div class="catalogue-controls catalogue-controls-sticky">
+  <div class="catalogue-controls catalogue-controls-sticky page-panel">
     <input
       type="search"
       id="concept-search"
@@ -108,16 +119,20 @@ const byLetter = letters.map((letter) => ({
 
     <ul id="active-filter-chips" class="graph-filter-chips" hidden></ul>
 
+    <span class="page-section-kicker category-jump-links-label">Jump to category</span>
     <nav id="category-jump-links" class="category-jump-links" aria-label="Jump to category">
       {
         CATEGORIES.map((cat) => (
-          <a href={`#category-${cat.id}`}>{cat.label}</a>
+          <a href={`#category-${cat.id}`}>
+            <span class="search-result-swatch" style={`background: light-dark(${cat.colorLight}, ${cat.colorDark});`} />
+            {cat.label}
+          </a>
         ))
       }
     </nav>
   </div>
 
-  <p id="empty-state" class="muted" hidden>
+  <p id="empty-state" class="muted page-panel" hidden>
     No concepts match your filters. <button type="button" id="empty-clear" class="link-button">Clear filters</button>
     {' '}Can't find what you're looking for?{' '}
     <a id="empty-state-suggest" href="https://github.com/EGovender/commongood-atlas/issues/new?template=new-concept.yml" target="_blank" rel="noreferrer">

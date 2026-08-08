@@ -197,30 +197,40 @@ h3 {
   }
 }
 
-main {
+/* <main> itself never carries a width cap -- a page hero (see PageHero.astro
+   / page-shell.css) needs to render genuinely full-bleed above the capped
+   content, so the cap lives on .site-content instead. See BaseLayout.astro. */
+.site-main {
+  display: block;
+}
+
+.site-content-standard {
   max-width: 960px;
   margin: 0 auto;
   padding: 2rem 1.5rem 4rem;
 }
 
-main.wide {
+.site-content-wide {
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
 }
 
 /* The graph explorer only -- canvas space is the entire point of that page,
    so it gets a much wider cap than every other page (concept catalogue,
    concept pages, design tool) instead of sharing "wide". */
-main.full-bleed {
+.site-content-full {
   max-width: 1800px;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
 }
 
 /* The homepage's full-bleed sections (hero, dark use-case panel) need to
-   reach the viewport edge; <main> itself must not add its own cap/padding,
-   so each homepage section centers its own content via home.css's
-   .cg-home-container / -inner classes instead of inheriting one here. */
-main.home-bleed {
+   reach the viewport edge; .site-content itself must not add its own
+   cap/padding, so each homepage section centers its own content via
+   home.css's .cg-home-container / -inner classes instead of inheriting one
+   here. */
+.site-content-home {
   max-width: none;
   padding: 0;
   margin: 0;
@@ -276,7 +286,7 @@ main.home-bleed {
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 0.5rem;
+  border-radius: 0.65rem;
   padding: 1.35rem;
   box-shadow: var(--shadow-sm);
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
@@ -397,19 +407,33 @@ pre {
   border-bottom: 1px solid transparent;
 }
 
+.category-jump-links-label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.4rem;
+}
+
 .category-jump-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem 0.9rem;
+  gap: 0.4rem;
   font-size: 0.82rem;
 }
 
 .category-jump-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
   text-decoration: none;
+  color: var(--text-secondary);
 }
 
 .category-jump-links a:hover {
-  text-decoration: underline;
+  border-color: var(--brand-navy);
+  color: var(--text-primary);
 }
 
 .catalogue-row {
@@ -524,6 +548,8 @@ pre {
   align-items: center;
   gap: 0.6rem;
   font-size: 1.15rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .concept-group-title-letter {
@@ -573,6 +599,13 @@ pre {
   overflow: hidden;
 }
 
+/* Restrained category-color accent -- a top border in the default grid
+   (matches the card's own top edge) and a left rail in compact mode (the
+   card is a thin horizontal row there, so a top border would barely read). */
+.concept-card {
+  border-top: 3px solid var(--concept-accent);
+}
+
 /* Compact list: one column, one-line definitions, tighter padding -- for
    scanning many concepts at once rather than reading each in full. */
 #catalogue-views.compact .concept-card-list {
@@ -582,6 +615,8 @@ pre {
 
 #catalogue-views.compact .concept-card {
   padding: 0.6rem 0.9rem;
+  border-top: none;
+  border-left: 4px solid var(--concept-accent);
 }
 
 #catalogue-views.compact .concept-card-def {
@@ -711,11 +746,16 @@ mark {
   gap: 0.75rem;
 }
 
+/* The toolbar is the primary workspace surface (Level 1) -- everything
+   inside it (view switcher, search, active filters) is core exploration;
+   the secondary Filters/Path-finder <details> sections below get the
+   quieter Level-3 treatment instead, see .graph-tool-section. */
 .graph-toolbar {
-  padding: 1rem;
+  padding: 1.1rem 1.25rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 0.9rem;
   background: var(--card-bg);
+  box-shadow: var(--shadow-md);
 }
 
 .graph-toolbar-row {
@@ -799,6 +839,7 @@ mark {
 .view-pill.active {
   background: var(--brand-navy);
   color: #ffffff;
+  box-shadow: inset 0 -3px 0 var(--brand-green);
 }
 
 /* One consistent chip style for every filter axis (Kind, Category,
@@ -873,6 +914,7 @@ mark {
      badge's text runs behind the button instead of stopping short of it. */
   padding: 1rem 2.5rem 1rem 1rem;
   border: 1px solid var(--border);
+  border-top: 4px solid var(--detail-accent, var(--brand-navy));
   border-radius: 8px;
   background: var(--card-bg);
   min-width: 0;
@@ -972,14 +1014,36 @@ mark {
 
 .graph-canvas-wrap {
   position: relative;
+  display: flex;
+  flex-direction: column;
   flex: 1;
   min-width: 0;
   height: 100%;
 }
 
+/* Same specificity/cascade-order gotcha documented elsewhere in this file
+   (.story-stage-bar[hidden] etc.) -- adding `display: flex` above ties the
+   UA stylesheet's `[hidden] { display: none }` and loads after it, so
+   without this override the list-view/graph-view toggle (both share this
+   base class, switched via the `hidden` attribute) would stop working. */
+.graph-canvas-wrap[hidden] {
+  display: none;
+}
+
+.graph-canvas-header {
+  margin: 0 0 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.graph-canvas-header strong {
+  color: var(--text-primary);
+}
+
 .graph-canvas {
   width: 100%;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
   border: 1px solid var(--border);
   border-radius: 8px;
   background:
@@ -1289,12 +1353,14 @@ mark {
    Kind/Category/Relationship-type, the controls people reach for most);
    Find a path stays closed but keeps its own green accent so it doesn't
    just look like a second, identical filters block. */
+/* Level 3 -- clearly secondary next to the elevated .graph-toolbar above:
+   a flat surface tint instead of a white card, no shadow. */
 .graph-tool-section {
   margin-top: 1rem;
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 0.1rem 1rem 0.9rem;
-  background: var(--card-bg);
+  background: var(--surface);
 }
 
 .graph-tool-section summary {
@@ -1702,21 +1768,54 @@ mark {
   gap: 1rem;
 }
 
-.design-progress {
+.design-progress-header {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.design-progress-label {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.design-progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.design-progress-bar::-webkit-progress-bar {
+  background: var(--gridline);
+  border-radius: 999px;
+}
+
+.design-progress-bar::-webkit-progress-value {
+  background: var(--brand-navy);
+  border-radius: 999px;
+  transition: width 200ms ease;
+}
+
+.design-progress-bar::-moz-progress-bar {
+  background: var(--brand-navy);
+  border-radius: 999px;
+}
+
+.design-progress-reset {
+  justify-self: start;
   font-size: 0.85rem;
 }
 
-.design-reset {
-  background: none;
-  border: none;
-  color: var(--link);
-  font: inherit;
-  font-size: 0.85rem;
-  padding: 0;
-  cursor: pointer;
+@media (prefers-reduced-motion: reduce) {
+  .design-progress-bar::-webkit-progress-value {
+    transition: none;
+  }
 }
 
 .design-question {
@@ -1752,9 +1851,10 @@ mark {
 }
 
 .design-option.selected {
-  border-color: var(--link);
-  background: color-mix(in srgb, var(--link) 12%, var(--card-bg));
-  font-weight: 600;
+  border: 2px solid var(--link);
+  padding: 0.3rem 0.8rem;
+  background: color-mix(in srgb, var(--link) 14%, var(--card-bg));
+  font-weight: 700;
 }
 
 .design-result {
@@ -1768,9 +1868,30 @@ mark {
   overflow-y: auto;
 }
 
-.design-result-count {
-  margin-top: 0;
+.design-result-summary {
+  margin: -1.25rem -1.25rem 1rem;
+  padding: 1.25rem;
+  background: var(--brand-navy);
+  color: #ffffff;
+  border-radius: 8px 8px 0 0;
+}
+
+.design-result-summary .inspector-group-title {
+  color: #ffffff;
+  margin: 0 0 0.4rem;
+}
+
+.design-result-summary-count {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.design-result-summary-split {
+  margin: 0.6rem 0 0;
   font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .design-concept-list {
@@ -1825,17 +1946,19 @@ mark {
   gap: 0.75rem;
 }
 
-.design-section-title {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1.05rem;
-  margin: 0.5rem 0 0;
+.design-question-help {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
 }
 
-.design-question-help {
-  margin: 0.35rem 0.2rem 0;
-  font-size: 0.82rem;
+.design-question-help summary {
+  cursor: pointer;
+  color: var(--link);
+  font-weight: 600;
+}
+
+.design-question-help p {
+  margin: 0.4rem 0.2rem 0;
 }
 
 .design-actions {
@@ -1927,6 +2050,12 @@ mark {
 .story-step-body {
   flex: 1;
   min-width: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--stage-color);
+  border-radius: 0.65rem;
+  box-shadow: var(--shadow-sm);
+  padding: 0.9rem 1.1rem;
 }
 
 .story-step-header {
@@ -1974,10 +2103,18 @@ mark {
 
 .story-act-title {
   margin: 0;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-secondary);
+  font-size: 1.3rem;
+  color: var(--text-primary);
+}
+
+.story-act-title::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: var(--brand-green);
+  margin-bottom: 0.6rem;
+  border-radius: 2px;
 }
 
 .story-scenario-tabs {
@@ -2004,11 +2141,25 @@ mark {
   color: #ffffff;
 }
 
+.story-scenario-panel {
+  margin-top: 1.5rem;
+}
+
 .story-scenario-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 0.75rem;
-  margin: 1.25rem 0 0;
+  margin: 1rem 0 0;
+}
+
+.story-tools-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
 }
 
 .story-scenario-card {
@@ -2024,6 +2175,7 @@ mark {
 
 .story-scenario-card.active {
   border-color: var(--brand-navy);
+  border-top: 3px solid var(--brand-green);
   box-shadow: inset 0 0 0 1px var(--brand-navy);
 }
 
@@ -2064,9 +2216,11 @@ mark {
   flex-wrap: wrap;
   gap: 0.4rem;
   margin: 1.25rem 0 0;
-  padding: 0.75rem 0;
-  background: var(--page);
-  border-bottom: 1px solid var(--gridline);
+  padding: 0.75rem 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  box-shadow: var(--shadow-sm);
   max-width: 70ch;
 }
 

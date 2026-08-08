@@ -1,15 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import GraphExplorer from '../components/GraphExplorer';
 
 const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Graph Explorer" description="Browse the CommonGood Atlas ontology as an interactive graph." wide="full">
-  <h1 style="margin-bottom: 0.25rem;">Graph Explorer</h1>
-  <p class="secondary" style="margin-top: 0;">
-    Every concept and relationship in the ontology, laid out as a graph. Click a node to see its
-    Overview, Properties, Relationships, Rules, and Technical details.
-  </p>
+  <PageHero
+    slot="pageHero"
+    eyebrow="Explore the model"
+    title="Graph Explorer"
+    description="See how grantmaking concepts connect. Start with the core grant lifecycle, search for a concept, or explore the full ontology."
+  >
+    <a slot="actions" href={`${base}concepts`}>Prefer a catalogue? Browse concepts &rarr;</a>
+  </PageHero>
   <GraphExplorer client:load base={base} />
 </BaseLayout>
