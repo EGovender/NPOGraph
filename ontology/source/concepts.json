@@ -462,7 +462,7 @@
     "aliases": [],
     "category": "application-and-review",
     "kind": "process",
-    "definition": "The outcome of the review process for an application: approved, declined, or approved with conditions.",
+    "definition": "A recorded determination concerning an application following review or another authorized approval process. Its outcome (approved, declined, or approved with conditions) is carried by the decisionOutcome property, not by the Decision entity's identity itself.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#application-and-review"
   },
@@ -513,9 +513,10 @@
     "aliases": [],
     "category": "award-and-agreement",
     "kind": "process",
-    "definition": "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement.",
+    "definition": "Funding that must be used for a specific purpose, project, or time period defined in the grant agreement. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility.",
     "subClassOf": null,
-    "docRef": "docs/02-core-concepts.md#award-and-agreement"
+    "docRef": "docs/02-core-concepts.md#award-and-agreement",
+    "deprecated": true
   },
   {
     "id": "unrestricted-funding",
@@ -523,9 +524,10 @@
     "aliases": [],
     "category": "award-and-agreement",
     "kind": "process",
-    "definition": "Funding a grantee may use at its discretion in support of its general mission.",
+    "definition": "Funding a grantee may use at its discretion in support of its general mission. Deprecated: prefer Fund's restrictionType property, backed by the restriction-type reference scheme, for new data -- retained for backward compatibility.",
     "subClassOf": null,
-    "docRef": "docs/02-core-concepts.md#award-and-agreement"
+    "docRef": "docs/02-core-concepts.md#award-and-agreement",
+    "deprecated": true
   },
   {
     "id": "matching-requirement",

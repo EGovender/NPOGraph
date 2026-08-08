@@ -440,6 +440,8 @@ def build_graph(concepts, relationships, properties, business_rules, meta, refer
             g.add((iri, RDFS.subClassOf, concept_iri(c["subClassOf"])))
         if c.get("legalNote"):
             g.add((iri, NPO.legalNote, Literal(c["legalNote"])))
+        if c.get("deprecated"):
+            g.add((iri, OWL.deprecated, Literal(True)))
 
     for r in relationships:
         iri = relation_iri(r["predicate"])
@@ -704,6 +706,8 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta, ref
                           {qname(RDF_NS, "resource"): str(concept_iri(c["subClassOf"]))})
         if c.get("legalNote"):
             ET.SubElement(desc, qname(BASE, "legalNote")).text = c["legalNote"]
+        if c.get("deprecated"):
+            ET.SubElement(desc, qname(OWL_NS, "deprecated")).text = "true"
 
     for r in relationships:
         desc = ET.SubElement(root, qname(RDF_NS, "Description"),
@@ -880,6 +884,8 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta, refe
             node["subClassOf"] = "npo:" + c["subClassOf"]
         if c.get("legalNote"):
             node["legalNote"] = c["legalNote"]
+        if c.get("deprecated"):
+            node["deprecated"] = True
         graph_nodes.append(node)
 
     for r in relationships:

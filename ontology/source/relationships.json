@@ -351,6 +351,15 @@
     "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
   },
   {
+    "id": "rel-compliance-requirement-applies-to-award",
+    "subject": "compliance-requirement",
+    "predicate": "appliesToAward",
+    "object": "award",
+    "label": "applies to",
+    "description": "A Compliance Requirement applies to a specific Award -- distinct from the Grant Agreement specifying it: the Agreement is the document that spells out the requirement, while this relationship tracks which Award it actually binds. The same organization can be in good standing on one award and delinquent on another, so the requirement must attach to the Award, not the Grantee in the abstract.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
     "id": "rel-compliance-requirement-includes-reporting-schedule",
     "subject": "compliance-requirement",
     "predicate": "includesReportingSchedule",
