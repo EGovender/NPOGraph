@@ -185,6 +185,12 @@ export default function PropertyInspector({
                 ))}
               </p>
             )}
+            {concept.deprecated && (
+              <div className="inspector-legal-note">
+                <strong>Deprecated:</strong> superseded by a newer mechanism, kept for backward
+                compatibility rather than removed.
+              </div>
+            )}
             {concept.legalNote && (
               <div className="inspector-legal-note">
                 <strong>Not legal advice:</strong> {concept.legalNote}

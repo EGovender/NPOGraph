@@ -1,9 +1,17 @@
 # Hand-authored SHACL shapes for CommonGood Atlas.
 #
-# These validate the STRUCTURE of the generated ontology
+# Most of these validate the STRUCTURE of the generated ontology
 # (ontology/commongood-atlas.ttl), not instance/business-rule data -- see
 # docs/05-data-model.md for why business rules (e.g. "closeout requires all
-# payments made") aren't encoded here.
+# payments made") aren't encoded here. The Target/Measurement/EvidenceClaim
+# shapes at the bottom are the one deliberate exception: a small, explicit set
+# of relationship-cardinality rules for the Programs, Results & Evidence
+# concepts, hand-authored here rather than generated (the property-shapes
+# generator only covers properties.json-defined literal/reference attributes,
+# not cardinality on relationships between concepts) and kept deliberately
+# small rather than generalized to every relationship in the ontology -- see
+# docs/03-relationships.md#programs-results-and-evidence for why only these
+# three needed it.
 #
 # Run with: .venv/bin/python tools/validate_ontology.py
 
@@ -12,6 +20,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix npo: <https://egovender.github.io/commongood-atlas/ontology/> .
+@prefix nporel: <https://egovender.github.io/commongood-atlas/ontology/relations/> .
 
 npo:ConceptShape
     a sh:NodeShape ;
@@ -129,4 +138,38 @@ npo:BusinessRuleShape
         sh:path npo:appliesTo ;
         sh:minCount 1 ;
         sh:message "Every npo:BusinessRule must name at least one concept it applies to via npo:appliesTo." ;
+    ] .
+
+npo:TargetShape
+    a sh:NodeShape ;
+    sh:targetClass npo:target ;
+    sh:property [
+        sh:path [ sh:inversePath nporel:hasTarget ] ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every Target must be associated with exactly one Indicator via hasTarget." ;
+    ] .
+
+npo:MeasurementShape
+    a sh:NodeShape ;
+    sh:targetClass npo:measurement ;
+    sh:property [
+        sh:path [ sh:inversePath nporel:hasMeasurement ] ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Every Measurement must be associated with exactly one Indicator via hasMeasurement." ;
+    ] .
+
+npo:EvidenceClaimShape
+    a sh:NodeShape ;
+    sh:targetClass npo:evidence-claim ;
+    sh:property [
+        sh:path nporel:aboutResult ;
+        sh:minCount 1 ;
+        sh:message "Every Evidence Claim must be about at least one Result via aboutResult." ;
+    ] ;
+    sh:property [
+        sh:path nporel:supportedByEvidence ;
+        sh:minCount 1 ;
+        sh:message "Every Evidence Claim must be supported by at least one Evidence via supportedByEvidence." ;
     ] .

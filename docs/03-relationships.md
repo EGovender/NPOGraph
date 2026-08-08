@@ -47,7 +47,7 @@ These are candidate business rules implied by the lifecycle above. They need rev
 - An `Award` cannot exist without a `Decision` that approved an `Application` (or, in funder-initiated giving, an equivalent internal approval).
 - A `Payment` cannot exist without an `Award` and, typically, a `Grant Agreement` — though some funders disburse an initial installment before a fully signed agreement is in place.
 - An `Installment`'s `Payment Condition`, if any, must be satisfied before its corresponding `Payment` is released.
-- A `Compliance Requirement` is always attached to a specific `Award`, not to the `Grantee` in the abstract — the same organization can be in good standing on one award and delinquent on another.
+- A `Compliance Requirement` is always attached to a specific `Award`, not to the `Grantee` in the abstract — the same organization can be in good standing on one award and delinquent on another. This is now explicit as its own relationship, `Compliance Requirement --appliesToAward--> Award`, distinct from `Grant Agreement --attachesComplianceRequirement--> Compliance Requirement`: the Agreement is the document that specifies the requirement, while `appliesToAward` tracks which Award it actually binds.
 - `Closeout` requires both financial conditions (all `Payment`s made or the award formally reduced) and reporting conditions (all required `Report`s accepted) to be true.
 - An `Amendment` changes the `Grant Agreement` going forward; it does not retroactively alter `Payment`s or `Report`s already completed under the prior terms.
 
@@ -65,9 +65,38 @@ These are candidate business rules implied by the lifecycle above. They need rev
 - `Donor-Advised Fund` is `subClassOf Fund`. A `Donor Advisor` `advises` a `Donor-Advised Fund` and `makesRecommendation`s (`Grant Recommendation`s) that `recommendsRecipient` an `Organization` and `concernsFund` the fund the money would come from. A `Grant Recommendation` the sponsoring organization accepts `leadsToAward` an `Award`, mirroring how `Decision --resultsInAward--> Award` works in the direct-grant path — the difference is that a recommendation is non-binding, while a `Decision` already represents the funder's own approval.
 - A `Collaborative Fund Arrangement` `pools` a shared `Fund` across multiple funders; a `Regranting Arrangement` `regrantsTo` the downstream `Organization` receiving the redistributed funds.
 
+## Programs, Results, and Evidence
+
+An `Application` `proposesProject` and an `Award` `fundsProject` a `Project` — the work being performed, distinct from the request for funding and the funding commitment itself. An `Organization` `implementsProject`. A `Project` `addressesNeed`, `servesPopulation`, and `takesPlaceIn` a `Geographic Area`; the `Need` it addresses is itself `experiencedByPopulation`. A `Project` also `hasTheoryOfChange` and `hasLogicModel`, and the `Logic Model` in turn `includesInput`/`includesActivity`/`includesOutput`/`includesOutcome` — without the Logic Model ever being treated as equivalent to the Project itself.
+
+The results chain: a `Project` `usesInput` and `performsActivity`; an `Activity` `producesOutput`; an `Output` `contributesToOutcome`; an `Outcome` `contributesToImpact`. Deliberately `contributesTo`, never `causes` — see Evidence Claim, below, for how a specific causal or contributory interpretation gets represented. `Output`, `Outcome`, and `Impact` are all `subClassOf Result`.
+
+Measurement keeps a strict planned-vs-observed distinction: a `Result` (any Output, Outcome, or Impact) `measuredByIndicator` an `Indicator`, which `hasTarget` (the planned value, by a planned date) and separately `hasMeasurement` (the observed value, as of an observation date) — a `Target` and a `Measurement` are never treated as interchangeable. A `Measurement` is further `observedForPopulation` and `observedIn` a `Geographic Area`.
+
+Evidence keeps causal claims out of the plain graph: an `Evaluation` `evaluatesProject` and `producesEvidenceClaim`. An `Evidence Claim` is `aboutResult` (again, any Output, Outcome, or Impact) and `supportedByEvidence` — never a bare `Project --caused--> Outcome` triple. A `Report` can itself `providesEvidence`. Every `Evidence Claim` carries a `claimType` (association, contribution, attribution, or causation — see [Properties & Rules](06-properties-and-rules.md#phase-37-milestone-3-reference-backed-properties-and-controlled-vocabularies)) and an `evidenceStrength`, so the ontology can distinguish a graph fact from an evaluator's assertion from the evidence backing that assertion.
+
+```mermaid
+flowchart TD
+    APP[Application] -->|proposesProject| PROJ[Project]
+    AWD[Award] -->|fundsProject| PROJ
+    PROJ -->|addressesNeed| NEED[Need]
+    PROJ -->|performsActivity| ACT[Activity]
+    ACT -->|producesOutput| OUT[Output]
+    OUT -->|contributesToOutcome| OUTC[Outcome]
+    OUTC -->|contributesToImpact| IMP[Impact]
+    OUTC -->|measuredByIndicator| IND[Indicator]
+    IND -->|hasTarget| TGT[Target]
+    IND -->|hasMeasurement| MEAS[Measurement]
+    EVAL[Evaluation] -->|evaluatesProject| PROJ
+    EVAL -->|producesEvidenceClaim| CLAIM[Evidence Claim]
+    CLAIM -->|aboutResult| OUTC
+    CLAIM -->|supportedByEvidence| EVID[Evidence]
+```
+
+Two class-hierarchy notes underpin this section: `Agent` is a new shared parent of `Person` and `Organization` (so a future relationship can target either without a duplicate predicate per entity type — the same reasoning `Result` follows for `Output`/`Outcome`/`Impact` above), and `agentPlaysRole` is now the preferred `Agent --plays--> Role` predicate, superseding the separate `playsRole` (Organization) and `personPlaysRole` (Person) predicates from the section above — both of which remain valid on existing data and are not migrated.
+
 ## Open questions
 
 - Does `Evaluation` belong strictly after `Closeout`, or can it run concurrently with an active `Award` (e.g., mid-grant evaluation informing a renewal)?
-- Should `Decision` be its own concept, or folded into `Review` as an attribute?
 
-Open an issue to discuss any of these before they're resolved in a future revision. (Re-granting — a `Grantee` that is itself a `Funder` to sub-grantees — used to be an open question here; it's resolved by the `Organization Role` pattern above: the same `Organization` simply holds two separate role occupancies, one per arrangement. Whether arrangement subtypes should be a `subClassOf` hierarchy or a shared `arrangementType` property was also an open question here; it's resolved above in favor of `subClassOf`, matching how `Funder`/`Grantee`/`Fiscal Sponsor` are modeled as subtypes of `Organization Role`.)
+Open an issue to discuss any of these before they're resolved in a future revision. (Re-granting — a `Grantee` that is itself a `Funder` to sub-grantees — used to be an open question here; it's resolved by the `Organization Role` pattern above: the same `Organization` simply holds two separate role occupancies, one per arrangement. Whether arrangement subtypes should be a `subClassOf` hierarchy or a shared `arrangementType` property was also an open question here; it's resolved above in favor of `subClassOf`, matching how `Funder`/`Grantee`/`Fiscal Sponsor` are modeled as subtypes of `Organization Role`. Whether `Decision` should be its own concept or folded into `Review` as an attribute was also an open question here; it's resolved by the Programs, Results & Evidence enhancement in favor of keeping it a separate concept, redefined as the recorded determination itself rather than its outcome — see [Core Concepts](02-core-concepts.md).)

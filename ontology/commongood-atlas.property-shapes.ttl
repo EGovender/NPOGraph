@@ -69,6 +69,12 @@ npo:evaluation-property-shape
     sh:property [ sh:path npoprop:evaluation-completed-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:evaluation-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """planned"""^^xsd:string """in-progress"""^^xsd:string """completed"""^^xsd:string ) ] .
 
+npo:evidence-claim-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:evidence-claim ;
+    sh:property [ sh:path npoprop:evidence-claim-claim-type ; sh:class skos:Concept ; sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue nporef:claim-type ] ] ; sh:minCount 1 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:evidence-claim-evidence-strength ; sh:class skos:Concept ; sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue nporef:evidence-strength ] ] ; sh:minCount 1 ; sh:maxCount 1 ] .
+
 npo:fiscal-sponsorship-arrangement-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:fiscal-sponsorship-arrangement ;
@@ -137,6 +143,12 @@ npo:matching-requirement-property-shape
     sh:property [ sh:path npoprop:matching-requirement-match-type ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """cash"""^^xsd:string """in-kind"""^^xsd:string ) ] ,
         [ sh:path npoprop:matching-requirement-required-ratio ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
 
+npo:measurement-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:measurement ;
+    sh:property [ sh:path npoprop:measurement-observation-date ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:measurement-value ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
+
 npo:organization-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:organization ;
@@ -178,6 +190,11 @@ npo:philanthropic-arrangement-property-shape
         [ sh:path npoprop:philanthropic-arrangement-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """terminated"""^^xsd:string """pending"""^^xsd:string ) ] ,
         [ sh:path npoprop:philanthropic-arrangement-termination-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] .
 
+npo:project-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:project ;
+    sh:property [ sh:path npoprop:project-issue-area ; sh:class skos:Concept ; sh:node [ sh:property [ sh:path skos:inScheme ; sh:hasValue nporef:issue-area ] ] ; sh:minCount 0 ; sh:maxCount 1 ] .
+
 npo:report-property-shape
     a sh:NodeShape ;
     sh:targetClass npo:report ;
@@ -217,6 +234,12 @@ npo:sponsored-project-property-shape
     sh:property [ sh:path npoprop:sponsored-project-end-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:sponsored-project-start-date ; sh:datatype xsd:date ; sh:minCount 0 ; sh:maxCount 1 ] ,
         [ sh:path npoprop:sponsored-project-status ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:in ( """active"""^^xsd:string """completed"""^^xsd:string """terminated"""^^xsd:string ) ] .
+
+npo:target-property-shape
+    a sh:NodeShape ;
+    sh:targetClass npo:target ;
+    sh:property [ sh:path npoprop:target-target-date ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ,
+        [ sh:path npoprop:target-value ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
 
 npo:terms-and-conditions-property-shape
     a sh:NodeShape ;

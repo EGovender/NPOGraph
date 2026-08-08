@@ -92,6 +92,69 @@
       }
     },
     {
+      "id": "ex:coastal-habitat-degradation-need",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:need"
+      ],
+      "label": "Degraded Coastal Habitat at Half Moon Cove",
+      "nporel:experiencedByPopulation": {
+        "@id": "ex:coastal-watch-fishing-communities"
+      }
+    },
+    {
+      "id": "ex:coastal-habitat-health-indicator",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:indicator"
+      ],
+      "label": "Percent Improvement in Coastal Habitat Health Score",
+      "nporel:hasMeasurement": {
+        "@id": "ex:coastal-habitat-health-measurement-2027"
+      },
+      "nporel:hasTarget": {
+        "@id": "ex:coastal-habitat-health-target-2027"
+      }
+    },
+    {
+      "id": "ex:coastal-habitat-health-measurement-2027",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:measurement"
+      ],
+      "label": "2027 Habitat Health Measurement",
+      "npoprop:measurement-value": {
+        "@value": "64% improvement",
+        "@type": "xsd:string"
+      },
+      "npoprop:measurement-observation-date": {
+        "@value": "2027-01-15",
+        "@type": "xsd:date"
+      },
+      "nporel:observedForPopulation": {
+        "@id": "ex:coastal-watch-fishing-communities"
+      },
+      "nporel:observedIn": {
+        "@id": "ex:half-moon-cove-area"
+      }
+    },
+    {
+      "id": "ex:coastal-habitat-health-target-2027",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:target"
+      ],
+      "label": "2027 Habitat Health Target",
+      "npoprop:target-value": {
+        "@value": "70% improvement",
+        "@type": "xsd:string"
+      },
+      "npoprop:target-target-date": {
+        "@value": "2027-01-15",
+        "@type": "xsd:date"
+      }
+    },
+    {
       "id": "ex:coastal-resilience-collaborative",
       "type": [
         "owl:NamedIndividual",
@@ -190,6 +253,14 @@
       }
     },
     {
+      "id": "ex:coastal-watch-fishing-communities",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:population"
+      ],
+      "label": "Half Moon Cove Fishing Communities"
+    },
+    {
       "id": "ex:coastal-watch-fy26-application",
       "type": [
         "owl:NamedIndividual",
@@ -203,6 +274,9 @@
       "npoprop:application-submitted-date": {
         "@value": "2026-02-15",
         "@type": "xsd:date"
+      },
+      "nporel:proposesProject": {
+        "@id": "ex:coastal-watch-restoration-project"
       },
       "nporel:respondsToFundingOpportunity": {
         "@id": "ex:marine-habitat-2026-opportunity"
@@ -236,6 +310,9 @@
       },
       "nporel:formalizedByGrantAgreement": {
         "@id": "ex:coastal-watch-grant-agreement"
+      },
+      "nporel:fundsProject": {
+        "@id": "ex:coastal-watch-restoration-project"
       },
       "nporel:hasPaymentSchedule": {
         "@id": "ex:coastal-watch-payment-schedule"
@@ -319,7 +396,33 @@
         "owl:NamedIndividual",
         "npo:outcome"
       ],
-      "label": "Improved Coastal Habitat Health"
+      "label": "Improved Coastal Habitat Health",
+      "nporel:contributesToImpact": {
+        "@id": "ex:coastal-watch-regional-impact"
+      },
+      "nporel:measuredByIndicator": {
+        "@id": "ex:coastal-habitat-health-indicator"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-habitat-outcome-claim",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:evidence-claim"
+      ],
+      "label": "Workshops' Contribution to Habitat Health Claim",
+      "npoprop:evidence-claim-claim-type": {
+        "@id": "nporef:claim-type-contribution"
+      },
+      "npoprop:evidence-claim-evidence-strength": {
+        "@id": "nporef:evidence-strength-moderate"
+      },
+      "nporel:aboutResult": {
+        "@id": "ex:coastal-watch-habitat-outcome"
+      },
+      "nporel:supportedByEvidence": {
+        "@id": "ex:coastal-watch-year1-field-survey"
+      }
     },
     {
       "id": "ex:coastal-watch-payment-schedule",
@@ -404,6 +507,14 @@
       }
     },
     {
+      "id": "ex:coastal-watch-regional-impact",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:impact"
+      ],
+      "label": "Healthier Central Coast Marine Ecosystem"
+    },
+    {
       "id": "ex:coastal-watch-reporting-requirement",
       "type": [
         "owl:NamedIndividual",
@@ -437,6 +548,40 @@
       }
     },
     {
+      "id": "ex:coastal-watch-restoration-activity",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:activity"
+      ],
+      "label": "Habitat Restoration Workshops",
+      "nporel:producesOutput": {
+        "@id": "ex:coastal-watch-workshops-output"
+      }
+    },
+    {
+      "id": "ex:coastal-watch-restoration-project",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:project"
+      ],
+      "label": "Half Moon Cove Habitat Restoration Project",
+      "npoprop:project-issue-area": {
+        "@id": "nporef:issue-area-environment"
+      },
+      "nporel:addressesNeed": {
+        "@id": "ex:coastal-habitat-degradation-need"
+      },
+      "nporel:performsActivity": {
+        "@id": "ex:coastal-watch-restoration-activity"
+      },
+      "nporel:servesPopulation": {
+        "@id": "ex:coastal-watch-fishing-communities"
+      },
+      "nporel:takesPlaceIn": {
+        "@id": "ex:half-moon-cove-area"
+      }
+    },
+    {
       "id": "ex:coastal-watch-workshops-output",
       "type": [
         "owl:NamedIndividual",
@@ -446,6 +591,9 @@
       "npoprop:output-unit": {
         "@value": "workshops",
         "@type": "xsd:string"
+      },
+      "nporel:contributesToOutcome": {
+        "@id": "ex:coastal-watch-habitat-outcome"
       }
     },
     {
@@ -468,7 +616,21 @@
       },
       "nporel:assessesOutput": {
         "@id": "ex:coastal-watch-workshops-output"
+      },
+      "nporel:evaluatesProject": {
+        "@id": "ex:coastal-watch-restoration-project"
+      },
+      "nporel:producesEvidenceClaim": {
+        "@id": "ex:coastal-watch-habitat-outcome-claim"
       }
+    },
+    {
+      "id": "ex:coastal-watch-year1-field-survey",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:evidence"
+      ],
+      "label": "Year 1 Habitat Health Field Survey"
     },
     {
       "id": "ex:coral-reef-defenders",
@@ -537,6 +699,14 @@
       "nporel:makesRecommendation": {
         "@id": "ex:alvarez-fund-recommendation-2026"
       }
+    },
+    {
+      "id": "ex:half-moon-cove-area",
+      "type": [
+        "owl:NamedIndividual",
+        "npo:geographic-area"
+      ],
+      "label": "Half Moon Cove"
     },
     {
       "id": "ex:kelp-forest-collective",

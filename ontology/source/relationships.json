@@ -87,7 +87,9 @@
     "object": "organization-role",
     "label": "plays",
     "description": "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait.",
-    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+    "docRef": "docs/08-organizations-roles-and-arrangements.md",
+    "deprecated": true,
+    "replacedBy": "rel-agent-plays-role"
   },
   {
     "id": "rel-organization-role-applies-within",
@@ -351,6 +353,15 @@
     "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
   },
   {
+    "id": "rel-compliance-requirement-applies-to-award",
+    "subject": "compliance-requirement",
+    "predicate": "appliesToAward",
+    "object": "award",
+    "label": "applies to",
+    "description": "A Compliance Requirement applies to a specific Award -- distinct from the Grant Agreement specifying it: the Agreement is the document that spells out the requirement, while this relationship tracks which Award it actually binds. The same organization can be in good standing on one award and delinquent on another, so the requirement must attach to the Award, not the Grantee in the abstract.",
+    "docRef": "docs/03-relationships.md#the-grant-lifecycle-end-to-end"
+  },
+  {
     "id": "rel-compliance-requirement-includes-reporting-schedule",
     "subject": "compliance-requirement",
     "predicate": "includesReportingSchedule",
@@ -555,7 +566,9 @@
     "object": "person-role",
     "label": "plays",
     "description": "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed.",
-    "docRef": "docs/02-core-concepts.md#organizational-entities"
+    "docRef": "docs/02-core-concepts.md#organizational-entities",
+    "deprecated": true,
+    "replacedBy": "rel-agent-plays-role"
   },
   {
     "id": "rel-person-affiliated-with-organization",
@@ -574,5 +587,266 @@
     "label": "applies within",
     "description": "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts.",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "rel-application-proposes-project",
+    "subject": "application",
+    "predicate": "proposesProject",
+    "object": "project",
+    "label": "proposes",
+    "description": "An Application proposes the Project it is requesting funding for. The Application is the request; the Project is the work being proposed.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-award-funds-project",
+    "subject": "award",
+    "predicate": "fundsProject",
+    "object": "project",
+    "label": "funds",
+    "description": "An Award commits funding to a Project. The Award is the funding commitment; the Project is the work performed using it.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-organization-implements-project",
+    "subject": "organization",
+    "predicate": "implementsProject",
+    "object": "project",
+    "label": "implements",
+    "description": "An Organization carries out a Project -- typically the Grantee, but modeled directly on Organization rather than a specific role so any organization implementing work (e.g. a Sponsored Project's Fiscal Sponsor) can be represented the same way.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-addresses-need",
+    "subject": "project",
+    "predicate": "addressesNeed",
+    "object": "need",
+    "label": "addresses",
+    "description": "A Project addresses one or more identified Needs.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-need-experienced-by-population",
+    "subject": "need",
+    "predicate": "experiencedByPopulation",
+    "object": "population",
+    "label": "is experienced by",
+    "description": "A Need is experienced by a specific Population.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-serves-population",
+    "subject": "project",
+    "predicate": "servesPopulation",
+    "object": "population",
+    "label": "serves",
+    "description": "A Project serves a specific Population, which may or may not be the same Population that experiences the Need it addresses (e.g. a project can serve service providers on behalf of an affected population).",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-takes-place-in",
+    "subject": "project",
+    "predicate": "takesPlaceIn",
+    "object": "geographic-area",
+    "label": "takes place in",
+    "description": "A Project operates within a Geographic Area. Distinct from any organization's registered address -- a project's operating area is not assumed to equal its implementing organization's or grant recipient's mailing address.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-uses-input",
+    "subject": "project",
+    "predicate": "usesInput",
+    "object": "input",
+    "label": "uses",
+    "description": "A Project uses Inputs (financial, human, material, or informational resources) to carry out its Activities.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-performs-activity",
+    "subject": "project",
+    "predicate": "performsActivity",
+    "object": "activity",
+    "label": "performs",
+    "description": "A Project performs one or more Activities.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-activity-produces-output",
+    "subject": "activity",
+    "predicate": "producesOutput",
+    "object": "output",
+    "label": "produces",
+    "description": "An Activity produces one or more Outputs.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-output-contributes-to-outcome",
+    "subject": "output",
+    "predicate": "contributesToOutcome",
+    "object": "outcome",
+    "label": "contributes to",
+    "description": "An Output contributes to an intended or observed Outcome. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-outcome-contributes-to-impact",
+    "subject": "outcome",
+    "predicate": "contributesToImpact",
+    "object": "impact",
+    "label": "contributes to",
+    "description": "An Outcome contributes to a broader or longer-term Impact. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-has-theory-of-change",
+    "subject": "project",
+    "predicate": "hasTheoryOfChange",
+    "object": "theory-of-change",
+    "label": "has",
+    "description": "A Project has a Theory of Change articulating how its activities are expected to lead to desired long-term change.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-has-logic-model",
+    "subject": "project",
+    "predicate": "hasLogicModel",
+    "object": "logic-model",
+    "label": "has",
+    "description": "A Project has a Logic Model connecting its inputs, activities, outputs, and outcomes.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-logic-model-includes-input",
+    "subject": "logic-model",
+    "predicate": "includesInput",
+    "object": "input",
+    "label": "includes",
+    "description": "A Logic Model includes the Inputs it plans for.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-logic-model-includes-activity",
+    "subject": "logic-model",
+    "predicate": "includesActivity",
+    "object": "activity",
+    "label": "includes",
+    "description": "A Logic Model includes the Activities it plans for.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-logic-model-includes-output",
+    "subject": "logic-model",
+    "predicate": "includesOutput",
+    "object": "output",
+    "label": "includes",
+    "description": "A Logic Model includes the Outputs it plans for.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-logic-model-includes-outcome",
+    "subject": "logic-model",
+    "predicate": "includesOutcome",
+    "object": "outcome",
+    "label": "includes",
+    "description": "A Logic Model includes the Outcomes it plans for.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-result-measured-by-indicator",
+    "subject": "result",
+    "predicate": "measuredByIndicator",
+    "object": "indicator",
+    "label": "is measured by",
+    "description": "A Result (Output, Outcome, or Impact) is measured by an Indicator. Declared against the abstract Result concept rather than each subtype separately, so any Output, Outcome, or Impact instance can be measured the same way.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-indicator-has-target",
+    "subject": "indicator",
+    "predicate": "hasTarget",
+    "object": "target",
+    "label": "has",
+    "description": "An Indicator has a Target -- the planned value expected by a defined date.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-indicator-has-measurement",
+    "subject": "indicator",
+    "predicate": "hasMeasurement",
+    "object": "measurement",
+    "label": "has",
+    "description": "An Indicator has one or more Measurements -- the observed values recorded over time. Never equated with the Indicator's Target: a Target is planned, a Measurement is observed.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-measurement-observed-for-population",
+    "subject": "measurement",
+    "predicate": "observedForPopulation",
+    "object": "population",
+    "label": "was observed for",
+    "description": "A Measurement was observed for a specific Population.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-measurement-observed-in",
+    "subject": "measurement",
+    "predicate": "observedIn",
+    "object": "geographic-area",
+    "label": "was observed in",
+    "description": "A Measurement was observed in a specific Geographic Area.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-evaluation-evaluates-project",
+    "subject": "evaluation",
+    "predicate": "evaluatesProject",
+    "object": "project",
+    "label": "evaluates",
+    "description": "An Evaluation assesses a Project.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-evaluation-produces-evidence-claim",
+    "subject": "evaluation",
+    "predicate": "producesEvidenceClaim",
+    "object": "evidence-claim",
+    "label": "produces",
+    "description": "An Evaluation produces one or more Evidence Claims.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-evidence-claim-about-result",
+    "subject": "evidence-claim",
+    "predicate": "aboutResult",
+    "object": "result",
+    "label": "is about",
+    "description": "An Evidence Claim is about a Result. Declared against the abstract Result concept rather than each subtype separately, so a claim can concern any Output, Outcome, or Impact instance.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-evidence-claim-supported-by-evidence",
+    "subject": "evidence-claim",
+    "predicate": "supportedByEvidence",
+    "object": "evidence",
+    "label": "is supported by",
+    "description": "An Evidence Claim is supported by one or more pieces of Evidence.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-report-provides-evidence",
+    "subject": "report",
+    "predicate": "providesEvidence",
+    "object": "evidence",
+    "label": "provides",
+    "description": "A Report can itself serve as Evidence supporting an Evidence Claim (e.g. the administrative data or narrative it contains).",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-agent-plays-role",
+    "subject": "agent",
+    "predicate": "agentPlaysRole",
+    "object": "role",
+    "label": "plays",
+    "description": "An Agent (Person or Organization) plays one or more Roles. The preferred predicate for new data now that Agent exists as a shared superclass, replacing the separate playsRole (Organization) and personPlaysRole (Person) predicates -- both kept and still valid on existing data, not migrated, per this project's policy of never deleting or force-migrating published predicates.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
   }
 ]

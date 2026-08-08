@@ -214,6 +214,15 @@ def load_source():
     assert len(set(rel_ids)) == len(rel_ids), "duplicate relationship id"
     predicates = [r["predicate"] for r in relationships]
     assert len(set(predicates)) == len(predicates), "duplicate relationship predicate"
+    rel_ids_set = set(rel_ids)
+    for r in relationships:
+        if r.get("replacedBy"):
+            assert r["replacedBy"] in rel_ids_set, (
+                f"relationship '{r['id']}' has replacedBy '{r['replacedBy']}', which is not a known relationship id"
+            )
+            assert r.get("deprecated"), (
+                f"relationship '{r['id']}' has replacedBy set but is not itself deprecated"
+            )
 
     reference_schemes_by_id = {s["id"]: s for s in reference_data}
     prop_ids = [p["id"] for p in properties]
@@ -440,7 +449,10 @@ def build_graph(concepts, relationships, properties, business_rules, meta, refer
             g.add((iri, RDFS.subClassOf, concept_iri(c["subClassOf"])))
         if c.get("legalNote"):
             g.add((iri, NPO.legalNote, Literal(c["legalNote"])))
+        if c.get("deprecated"):
+            g.add((iri, OWL.deprecated, Literal(True)))
 
+    relationships_by_id = {r["id"]: r for r in relationships}
     for r in relationships:
         iri = relation_iri(r["predicate"])
         g.add((iri, RDF.type, OWL.ObjectProperty))
@@ -449,6 +461,11 @@ def build_graph(concepts, relationships, properties, business_rules, meta, refer
         g.add((iri, RDFS.domain, concept_iri(r["subject"])))
         g.add((iri, RDFS.range, concept_iri(r["object"])))
         g.add((iri, RDFS.isDefinedBy, URIRef(doc_url(r["docRef"]))))
+        if r.get("deprecated"):
+            g.add((iri, OWL.deprecated, Literal(True)))
+        if r.get("replacedBy"):
+            replacement_predicate = relationships_by_id[r["replacedBy"]]["predicate"]
+            g.add((iri, DCTERMS.isReplacedBy, relation_iri(replacement_predicate)))
 
     for p in properties:
         iri = property_iri(p["id"])
@@ -704,7 +721,10 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta, ref
                           {qname(RDF_NS, "resource"): str(concept_iri(c["subClassOf"]))})
         if c.get("legalNote"):
             ET.SubElement(desc, qname(BASE, "legalNote")).text = c["legalNote"]
+        if c.get("deprecated"):
+            ET.SubElement(desc, qname(OWL_NS, "deprecated")).text = "true"
 
+    relationships_by_id = {rel["id"]: rel for rel in relationships}
     for r in relationships:
         desc = ET.SubElement(root, qname(RDF_NS, "Description"),
                               {qname(RDF_NS, "about"): str(relation_iri(r["predicate"]))})
@@ -718,6 +738,12 @@ def write_rdf_xml(concepts, relationships, properties, business_rules, meta, ref
                       {qname(RDF_NS, "resource"): str(concept_iri(r["object"]))})
         ET.SubElement(desc, qname(RDFS_NS, "isDefinedBy"),
                       {qname(RDF_NS, "resource"): doc_url(r["docRef"])})
+        if r.get("deprecated"):
+            ET.SubElement(desc, qname(OWL_NS, "deprecated")).text = "true"
+        if r.get("replacedBy"):
+            replacement_predicate = relationships_by_id[r["replacedBy"]]["predicate"]
+            ET.SubElement(desc, qname(DCTERMS_NS, "isReplacedBy"),
+                          {qname(RDF_NS, "resource"): str(relation_iri(replacement_predicate))})
 
     for p in properties:
         desc = ET.SubElement(root, qname(RDF_NS, "Description"),
@@ -880,10 +906,13 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta, refe
             node["subClassOf"] = "npo:" + c["subClassOf"]
         if c.get("legalNote"):
             node["legalNote"] = c["legalNote"]
+        if c.get("deprecated"):
+            node["deprecated"] = True
         graph_nodes.append(node)
 
+    relationships_by_id = {rel["id"]: rel for rel in relationships}
     for r in relationships:
-        graph_nodes.append({
+        node = {
             "id": "nporel:" + r["predicate"],
             "type": "owl:ObjectProperty",
             "label": r["label"],
@@ -891,7 +920,13 @@ def write_jsonld(concepts, relationships, properties, business_rules, meta, refe
             "domain": "npo:" + r["subject"],
             "range": "npo:" + r["object"],
             "isDefinedBy": doc_url(r["docRef"]),
-        })
+        }
+        if r.get("deprecated"):
+            node["deprecated"] = True
+        if r.get("replacedBy"):
+            replacement_predicate = relationships_by_id[r["replacedBy"]]["predicate"]
+            node["isReplacedBy"] = "nporel:" + replacement_predicate
+        graph_nodes.append(node)
 
     for p in properties:
         node = {

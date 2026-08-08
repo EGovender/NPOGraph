@@ -295,6 +295,13 @@ h3 {
   padding: 0.1rem 0.5rem;
 }
 
+.concept-card-deprecated-badge {
+  background: var(--gridline);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  padding: 0.1rem 0.5rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .concept-card-legal-badge {
     background: #4a3d1a;

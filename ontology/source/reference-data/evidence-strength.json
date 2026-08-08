@@ -1,0 +1,56 @@
+{
+  "id": "evidence-strength",
+  "label": "Evidence Strength",
+  "description": "How strong the supporting Evidence is for an Evidence Claim, independent of the claim's type (association/contribution/attribution/causation) -- a causation claim and an association claim can each be backed by strong or weak evidence.",
+  "domain": "program",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "evidence-strength-anecdotal",
+      "code": "anecdotal",
+      "label": "Anecdotal",
+      "definition": "Based on isolated stories or individual accounts, not a systematic review.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "evidence-strength-limited",
+      "code": "limited",
+      "label": "Limited",
+      "definition": "Based on a small or narrow body of evidence with significant gaps.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "evidence-strength-moderate",
+      "code": "moderate",
+      "label": "Moderate",
+      "definition": "Based on a reasonably systematic body of evidence with some limitations.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "evidence-strength-strong",
+      "code": "strong",
+      "label": "Strong",
+      "definition": "Based on a rigorous, systematic body of evidence with few limitations.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "evidence-strength-inconclusive",
+      "code": "inconclusive",
+      "label": "Inconclusive",
+      "definition": "The available evidence does not clearly support or refute the claim.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    }
+  ]
+}
