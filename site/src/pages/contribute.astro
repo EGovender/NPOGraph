@@ -124,15 +124,15 @@ const groups = [
     groups.map((group) => (
       <section style="margin-top: 1.5rem;">
         <h3>{group.title}</h3>
-        <div class="journey-cards">
+        <div class="contribute-grid">
           {group.cards.map((card) => (
-            <div class="card journey-card">
-              <h2 class="journey-card-title">{card.title}</h2>
-              <p class="secondary">{card.description}</p>
-              <a class="home-cta home-cta-primary" href={card.href} target="_blank" rel="noreferrer">
-                Open form &rarr;
-              </a>
-            </div>
+            <a class="contribute-item" href={card.href} target="_blank" rel="noreferrer">
+              <span class="contribute-item-title">
+                {card.title}
+                <span aria-hidden="true">&rarr;</span>
+              </span>
+              <span class="contribute-item-description">{card.description}</span>
+            </a>
           ))}
         </div>
       </section>
