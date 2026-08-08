@@ -150,37 +150,39 @@ flushBucket();
     for how it was built and validated.
   </p>
 
-  <div class="story-scenario-cards" role="tablist" aria-label="Choose a scenario">
-    {
-      scenarios.map((s, i) => {
-        const meta = SCENARIO_META[s.id] ?? DEFAULT_SCENARIO_META;
-        return (
-          <button
-            type="button"
-            class={`card story-scenario-card${i === 0 ? ' active' : ''}`}
-            data-scenario={s.id}
-            aria-pressed={i === 0 ? 'true' : 'false'}
-          >
-            <span class="story-scenario-card-label">{s.label}</span>
-            <span class="secondary story-scenario-card-desc">{meta.description}</span>
-            <span class={`badge story-scenario-complexity story-scenario-complexity-${meta.complexity.toLowerCase()}`}>
-              {meta.complexity}
-            </span>
-          </button>
-        );
-      })
-    }
+  <div class="page-panel story-scenario-panel">
+    <span class="page-section-kicker">Choose a scenario</span>
+    <div class="story-scenario-cards" role="tablist" aria-label="Choose a scenario">
+      {
+        scenarios.map((s, i) => {
+          const meta = SCENARIO_META[s.id] ?? DEFAULT_SCENARIO_META;
+          return (
+            <button
+              type="button"
+              class={`card story-scenario-card${i === 0 ? ' active' : ''}`}
+              data-scenario={s.id}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+            >
+              <span class="story-scenario-card-label">{s.label}</span>
+              <span class="secondary story-scenario-card-desc">{meta.description}</span>
+              <span class={`badge story-scenario-complexity story-scenario-complexity-${meta.complexity.toLowerCase()}`}>
+                {meta.complexity}
+              </span>
+            </button>
+          );
+        })
+      }
+    </div>
+    <div class="story-tools-row">
+      <button type="button" class="link-button story-scenario-tab" data-scenario="all" aria-pressed="false">
+        Show all scenarios combined
+      </button>
+      <label class="story-tech-toggle">
+        <input type="checkbox" id="story-show-technical" />
+        Show technical field names and raw values
+      </label>
+    </div>
   </div>
-  <p class="secondary" style="margin: 0.75rem 0 1.5rem;">
-    <button type="button" class="link-button story-scenario-tab" data-scenario="all" aria-pressed="false">
-      Show all scenarios combined
-    </button>
-  </p>
-
-  <label class="story-tech-toggle">
-    <input type="checkbox" id="story-show-technical" />
-    Show technical field names and raw values
-  </label>
 
   {
     scenarios.map((s) => (
@@ -216,7 +218,12 @@ flushBucket();
                 <h2 class="story-act-title">{individual.act}</h2>
               </li>
             )}
-            <li class="story-step" data-scenario={scenarioId} data-stage={concept.category}>
+            <li
+              class="story-step"
+              data-scenario={scenarioId}
+              data-stage={concept.category}
+              style={`--stage-color: light-dark(${category.colorLight}, ${category.colorDark})`}
+            >
               <div class="story-step-marker" style={`background: light-dark(${category.colorLight}, ${category.colorDark})`} />
               <div class="story-step-body">
                 <div class="story-step-header">
