@@ -87,7 +87,9 @@
     "object": "organization-role",
     "label": "plays",
     "description": "An Organization plays one or more Organization Roles, each a contextual, independently-scoped occupancy rather than a permanent trait.",
-    "docRef": "docs/08-organizations-roles-and-arrangements.md"
+    "docRef": "docs/08-organizations-roles-and-arrangements.md",
+    "deprecated": true,
+    "replacedBy": "rel-agent-plays-role"
   },
   {
     "id": "rel-organization-role-applies-within",
@@ -564,7 +566,9 @@
     "object": "person-role",
     "label": "plays",
     "description": "A Person plays one or more Person Roles, each a contextual, independently-scoped occupancy rather than a permanent trait -- mirroring how an Organization plays Organization Roles (rel-organization-plays-role). A distinct predicate rather than a shared `playsRole` because the generator requires every relationship predicate to be globally unique (one fixed subject/object concept pair each); broadening `playsRole` into a real Person-or-Organization union predicate is a generator change deferred to when it's actually needed.",
-    "docRef": "docs/02-core-concepts.md#organizational-entities"
+    "docRef": "docs/02-core-concepts.md#organizational-entities",
+    "deprecated": true,
+    "replacedBy": "rel-agent-plays-role"
   },
   {
     "id": "rel-person-affiliated-with-organization",
@@ -835,5 +839,14 @@
     "label": "provides",
     "description": "A Report can itself serve as Evidence supporting an Evidence Claim (e.g. the administrative data or narrative it contains).",
     "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-agent-plays-role",
+    "subject": "agent",
+    "predicate": "agentPlaysRole",
+    "object": "role",
+    "label": "plays",
+    "description": "An Agent (Person or Organization) plays one or more Roles. The preferred predicate for new data now that Agent exists as a shared superclass, replacing the separate playsRole (Organization) and personPlaysRole (Person) predicates -- both kept and still valid on existing data, not migrated, per this project's policy of never deleting or force-migrating published predicates.",
+    "docRef": "docs/08-organizations-roles-and-arrangements.md"
   }
 ]
