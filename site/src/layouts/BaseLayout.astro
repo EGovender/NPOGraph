@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import '../styles/page-shell.css';
 import '../styles/interior-pages.css';
+import '../styles/navigation.css';
 import { concepts, ontologyVersion, ontologyLastUpdated } from '../data/ontology';
 import SearchBox from '../components/SearchBox';
 
@@ -29,26 +30,57 @@ const pageTitle = `${title} · CommonGood Atlas`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(`${base}og-image.png`, Astro.site);
 
-interface NavItem {
+interface NavLink {
   label: string;
   href: string;
-  external?: boolean;
 }
 
-const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: base },
-  { label: 'Graph', href: `${base}explore` },
-  { label: 'Concepts', href: `${base}concepts` },
-  { label: 'Model Your Program', href: `${base}design` },
-  { label: 'Worked Example', href: `${base}story` },
-  { label: 'Contribute', href: `${base}contribute` },
-  { label: 'GitHub', href: 'https://github.com/EGovender/commongood-atlas', external: true },
+interface NavGroup {
+  label: string;
+  links: NavLink[];
+}
+
+const GITHUB_URL = 'https://github.com/EGovender/commongood-atlas';
+
+// Grouped nav data drives both the desktop dropdowns and the mobile grouped
+// list from one source, so the two can never drift out of sync. See
+// site/src/styles/navigation.css for how .site-nav-trigger (desktop button)
+// and .site-nav-section-label (mobile heading) present the same group.label
+// differently per breakpoint, and CONTRIBUTING.md/the site footer for the
+// same six destinations kept one click away even though they're now nested.
+const NAV_GROUPS: NavGroup[] = [
+  {
+    label: 'Explore',
+    links: [
+      { label: 'Graph Explorer', href: `${base}explore` },
+      { label: 'Concept Library', href: `${base}concepts` },
+    ],
+  },
+  {
+    label: 'Use',
+    links: [
+      { label: 'Model Your Program', href: `${base}design` },
+      { label: 'Worked Example', href: `${base}story` },
+    ],
+  },
+  {
+    label: 'About',
+    links: [{ label: 'Contribute', href: `${base}contribute` }],
+  },
 ];
 
 function trimSlash(path: string): string {
   return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path;
 }
 const currentPath = trimSlash(Astro.url.pathname);
+
+function isLinkActive(href: string): boolean {
+  const target = trimSlash(href);
+  return currentPath === target || currentPath.startsWith(`${target}/`);
+}
+function isGroupActive(group: NavGroup): boolean {
+  return group.links.some((link) => isLinkActive(link.href));
+}
 // The homepage already has its own full-size SearchBox below the hero, so
 // the header's persistent compact one is redundant there -- only render it
 // on every other page.
@@ -106,21 +138,39 @@ const lastUpdatedDisplay = ontologyLastUpdated
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
       </button>
-      <nav id="site-nav">
+      <nav id="site-nav" aria-label="Primary navigation">
         {
-          NAV_ITEMS.map((item) => {
-            const isActive = !item.external && trimSlash(item.href) === currentPath;
-            return item.external ? (
-              <a href={item.href} target="_blank" rel="noreferrer">
-                {item.label}
-              </a>
-            ) : (
-              <a href={item.href} aria-current={isActive ? 'page' : undefined} class={isActive ? 'active' : ''}>
-                {item.label}
-              </a>
+          NAV_GROUPS.map((group) => {
+            const groupId = `nav-${group.label.toLowerCase()}`;
+            const active = isGroupActive(group);
+            return (
+              <div class="site-nav-group">
+                <button
+                  type="button"
+                  class={`site-nav-trigger${active ? ' active' : ''}`}
+                  aria-expanded="false"
+                  aria-controls={groupId}
+                >
+                  {group.label}
+                  <span class="site-nav-caret" aria-hidden="true">
+                    &#9662;
+                  </span>
+                </button>
+                <span class={`site-nav-section-label${active ? ' active' : ''}`}>{group.label}</span>
+                <div id={groupId} class="site-nav-dropdown">
+                  {group.links.map((link) => (
+                    <a href={link.href} class="site-nav-link" aria-current={isLinkActive(link.href) ? 'page' : undefined}>
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
             );
           })
         }
+        <a class="site-nav-external" href={GITHUB_URL} target="_blank" rel="noreferrer">
+          GitHub <span aria-hidden="true">&#8599;</span>
+        </a>
         {!isHome && <SearchBox client:load compact concepts={concepts} base={base} />}
       </nav>
     </header>
@@ -131,12 +181,24 @@ const lastUpdatedDisplay = ontologyLastUpdated
       </div>
     </main>
     <footer class="site-footer">
-      CommonGood Atlas is an open-source project.{' '}
-      <a href="https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md">Contribute on GitHub</a>.{' '}
-      <span class="footer-version">
-        Ontology v{ontologyVersion}
-        {lastUpdatedDisplay && <>{' '}&middot; updated {lastUpdatedDisplay}</>}
-      </span>
+      <nav class="site-footer-links" aria-label="Footer">
+        <a href={`${base}explore`}>Graph Explorer</a>
+        <a href={`${base}concepts`}>Concept Library</a>
+        <a href={`${base}design`}>Model Your Program</a>
+        <a href={`${base}story`}>Worked Example</a>
+        <a href={`${base}contribute`}>Contribute</a>
+        <a href={GITHUB_URL} target="_blank" rel="noreferrer">
+          GitHub <span aria-hidden="true">&#8599;</span>
+        </a>
+      </nav>
+      <p>
+        CommonGood Atlas is an open-source project.{' '}
+        <a href="https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md">Contribute on GitHub</a>.{' '}
+        <span class="footer-version">
+          Ontology v{ontologyVersion}
+          {lastUpdatedDisplay && <>{' '}&middot; updated {lastUpdatedDisplay}</>}
+        </span>
+      </p>
     </footer>
     <script>
       const toggle = document.querySelector('.nav-toggle');
@@ -159,6 +221,49 @@ const lastUpdatedDisplay = ontologyLastUpdated
           }
         });
       }
+
+      // Desktop Explore/Use/About dropdowns -- click/keyboard only, never
+      // hover-only. Inert on mobile (the trigger button is hidden there via
+      // navigation.css and the dropdown is always statically visible), but
+      // the listeners are harmless no-ops in that state.
+      const navGroups = Array.from(document.querySelectorAll<HTMLElement>('.site-nav-group'));
+
+      function closeGroup(group: HTMLElement) {
+        group.classList.remove('open');
+        group.querySelector('.site-nav-trigger')?.setAttribute('aria-expanded', 'false');
+      }
+
+      function closeAllGroups(except?: HTMLElement) {
+        navGroups.forEach((group) => {
+          if (group !== except) closeGroup(group);
+        });
+      }
+
+      navGroups.forEach((group) => {
+        const trigger = group.querySelector('.site-nav-trigger');
+        trigger?.addEventListener('click', () => {
+          const isOpen = group.classList.contains('open');
+          closeAllGroups(group);
+          group.classList.toggle('open', !isOpen);
+          trigger.setAttribute('aria-expanded', String(!isOpen));
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!(e.target instanceof Node)) return;
+        navGroups.forEach((group) => {
+          if (group.classList.contains('open') && !group.contains(e.target as Node)) closeGroup(group);
+        });
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        const openGroup = navGroups.find((group) => group.classList.contains('open'));
+        if (openGroup) {
+          closeGroup(openGroup);
+          openGroup.querySelector<HTMLElement>('.site-nav-trigger')?.focus();
+        }
+      });
     </script>
   </body>
 </html>
