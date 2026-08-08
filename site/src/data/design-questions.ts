@@ -35,6 +35,7 @@ export const DESIGN_SECTIONS: DesignSection[] = [
   { id: 'application-review', label: 'Application & review' },
   { id: 'awards-payments', label: 'Awards & payments' },
   { id: 'compliance-outcomes', label: 'Compliance, reporting & outcomes' },
+  { id: 'programs-results', label: 'Programs, results & evidence' },
 ];
 
 export interface BooleanQuestion {
@@ -268,7 +269,54 @@ export const DESIGN_QUESTIONS: DesignQuestion[] = [
     type: 'boolean',
     section: 'compliance-outcomes',
     text: 'Do you formally evaluate outcomes or impact after the grant period?',
-    yes: ['evaluation', 'output', 'outcome', 'theory-of-change', 'logic-model'],
+    yes: ['evaluation', 'result', 'output', 'outcome', 'impact', 'theory-of-change', 'logic-model'],
+    no: [],
+  },
+
+  // --- Programs, results & evidence -------------------------------------------
+  {
+    id: 'tracks-project',
+    type: 'boolean',
+    section: 'programs-results',
+    text: 'Do you track the specific project or program a grant funds, separately from the application requesting it and the award committing to it?',
+    help: 'Application = the request, Award = the funding commitment, Project = the work actually performed -- three distinct concepts kept explicitly separate.',
+    yes: ['project'],
+    no: [],
+  },
+  {
+    id: 'tracks-need-population',
+    type: 'boolean',
+    section: 'programs-results',
+    text: "Do you track the need, population, or geographic area a project addresses?",
+    showIf: { questionId: 'tracks-project', equals: 'yes' },
+    yes: ['need', 'population', 'geographic-area'],
+    no: [],
+  },
+  {
+    id: 'tracks-activities',
+    type: 'boolean',
+    section: 'programs-results',
+    text: "Do you track the specific activities, resources, and outputs that make up a project's work?",
+    showIf: { questionId: 'tracks-project', equals: 'yes' },
+    yes: ['input', 'activity', 'result', 'output'],
+    no: [],
+  },
+  {
+    id: 'tracks-indicators',
+    type: 'boolean',
+    section: 'programs-results',
+    text: 'Do you set measurable targets for outcomes and track whether you actually hit them?',
+    help: 'Kept as two distinct concepts, never merged: a Target is what you planned for, a Measurement is what was actually observed.',
+    yes: ['indicator', 'target', 'measurement'],
+    no: [],
+  },
+  {
+    id: 'tracks-evidence',
+    type: 'boolean',
+    section: 'programs-results',
+    text: 'When you evaluate results, do you need to record how strong the evidence is and whether it shows association, contribution, attribution, or causation?',
+    help: "This is where CommonGood Atlas keeps a specific causal interpretation an explicit, sourced, gradable claim rather than a plain graph fact.",
+    yes: ['evidence', 'evidence-claim'],
     no: [],
   },
 ];

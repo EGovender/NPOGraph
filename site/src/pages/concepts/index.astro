@@ -30,6 +30,7 @@ const cards = concepts.map((c) => {
     hasRelationships: getOutgoingRelationships(c.id).length + getIncomingRelationships(c.id).length > 0,
     hasRules: getBusinessRulesForConcept(c.id).length > 0,
     hasLegalNote: !!c.legalNote,
+    isDeprecated: !!c.deprecated,
   };
 });
 

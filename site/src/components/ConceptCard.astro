@@ -18,6 +18,7 @@ interface Props {
   hasRelationships: boolean;
   hasRules: boolean;
   hasLegalNote?: boolean;
+  isDeprecated?: boolean;
   categoryColorLight: string;
   categoryColorDark: string;
   base: string;
@@ -36,6 +37,7 @@ const {
   hasRelationships,
   hasRules,
   hasLegalNote,
+  isDeprecated,
   categoryColorLight,
   categoryColorDark,
   base,
@@ -62,6 +64,11 @@ const {
     {hasLegalNote && (
       <span class="badge concept-card-legal-badge" title="Has a legal-review note">
         Legal note
+      </span>
+    )}
+    {isDeprecated && (
+      <span class="badge concept-card-deprecated-badge" title="Superseded by a newer mechanism; kept for backward compatibility">
+        Deprecated
       </span>
     )}
   </div>

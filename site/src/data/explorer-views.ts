@@ -91,6 +91,37 @@ export const EXPLORER_VIEWS: ExplorerView[] = [
       'award',
     ],
   },
+  {
+    id: 'programs-results-evidence',
+    label: 'Programs, Results & Evidence',
+    description:
+      'The work a grant funds and what it produced or changed -- Project, Need, Population, and the full Input/Activity/Output/Outcome/Impact logic-model chain, its measurement, and the evidence behind any claim about it -- plus the Application/Award/Organization/Report concepts that connect it back to the grantmaking side.',
+    conceptIds: [
+      'agent',
+      'project',
+      'need',
+      'population',
+      'geographic-area',
+      'input',
+      'activity',
+      'result',
+      'output',
+      'outcome',
+      'impact',
+      'theory-of-change',
+      'logic-model',
+      'indicator',
+      'target',
+      'measurement',
+      'evaluation',
+      'evidence',
+      'evidence-claim',
+      'application',
+      'award',
+      'organization',
+      'report',
+    ],
+  },
 ];
 
 // "Grant Lifecycle" is everything the original ~48-concept ontology had --

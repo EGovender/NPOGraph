@@ -46,6 +46,10 @@ export interface Concept {
    * ontology deliberately simplifies -- surfaced as a callout on the
    * concept's Overview tab, not a general-purpose annotation field. */
   legalNote?: string;
+  /** True for a concept superseded by a newer mechanism (e.g. a reference-
+   * data-backed property) without being deleted or having its relationships
+   * removed -- surfaced as a badge, same pattern as legalNote. */
+  deprecated?: boolean;
 }
 
 export interface Relationship {

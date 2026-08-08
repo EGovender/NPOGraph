@@ -15,7 +15,8 @@ export type RelationshipKind =
   | 'funding'
   | 'process'
   | 'compliance'
-  | 'outcomes';
+  | 'outcomes'
+  | 'programs';
 
 export const RELATIONSHIP_KIND_LABELS: Record<RelationshipKind, string> = {
   structural: 'Structural (is a)',
@@ -24,6 +25,7 @@ export const RELATIONSHIP_KIND_LABELS: Record<RelationshipKind, string> = {
   process: 'Application & decision',
   compliance: 'Award, disbursement & compliance',
   outcomes: 'Outcomes & closeout',
+  programs: 'Programs, results & evidence',
 };
 
 const PREDICATE_KIND: Record<string, RelationshipKind> = {
@@ -47,6 +49,7 @@ const PREDICATE_KIND: Record<string, RelationshipKind> = {
   supports: 'organizational',
   regrantsTo: 'organizational',
   recommendsRecipient: 'organizational',
+  agentPlaysRole: 'organizational',
 
   // Funding & program setup.
   maintainsGrantProgram: 'funding',
@@ -88,6 +91,7 @@ const PREDICATE_KIND: Record<string, RelationshipKind> = {
   includesReportingSchedule: 'compliance',
   mayIncludeAudit: 'compliance',
   obligatesReport: 'compliance',
+  appliesToAward: 'compliance',
 
   // Outcomes & closeout.
   assessedAgainstLogicModel: 'outcomes',
@@ -96,6 +100,36 @@ const PREDICATE_KIND: Record<string, RelationshipKind> = {
   assessesOutcome: 'outcomes',
   reachesCloseout: 'outcomes',
   followsGrantLifecycle: 'outcomes',
+
+  // Programs, results & evidence.
+  proposesProject: 'programs',
+  fundsProject: 'programs',
+  implementsProject: 'programs',
+  addressesNeed: 'programs',
+  experiencedByPopulation: 'programs',
+  servesPopulation: 'programs',
+  takesPlaceIn: 'programs',
+  usesInput: 'programs',
+  performsActivity: 'programs',
+  producesOutput: 'programs',
+  contributesToOutcome: 'programs',
+  contributesToImpact: 'programs',
+  hasTheoryOfChange: 'programs',
+  hasLogicModel: 'programs',
+  includesInput: 'programs',
+  includesActivity: 'programs',
+  includesOutput: 'programs',
+  includesOutcome: 'programs',
+  measuredByIndicator: 'programs',
+  hasTarget: 'programs',
+  hasMeasurement: 'programs',
+  observedForPopulation: 'programs',
+  observedIn: 'programs',
+  evaluatesProject: 'programs',
+  producesEvidenceClaim: 'programs',
+  aboutResult: 'programs',
+  supportedByEvidence: 'programs',
+  providesEvidence: 'programs',
 };
 
 export function relationshipKind(predicate: string): RelationshipKind {
