@@ -97,6 +97,12 @@ A scheme's own `publicationStatus` (draft/published/deprecated -- distinct from 
 - **Restriction Type** (`fund.restrictionType`) -- unrestricted/donor-restricted/temporarily-restricted/permanently-restricted. The one scheme with real hierarchy: `temporarily-restricted` and `permanently-restricted` each set `broader: "restriction-type-donor-restricted"`, since both are kinds of donor restriction that differ only in whether it expires. `terms-and-conditions.restrictionType` (a simpler restricted/unrestricted enum on a different concept) was deliberately **not** folded into this scheme -- the two properties aren't proven to mean the same thing yet, and conflating them to save a migration would be a modeling decision, not a mechanical one; left as its own inline enum until that's actually decided.
 - **Publication Status** (used only by reference-data schemes' own `publicationStatus` field, not by any ontology concept) -- draft/published/deprecated. The framework's self-describing bootstrap vocabulary.
 
+**Three more added by the Programs, Results & Evidence enhancement**, using the same mechanism:
+
+- **Issue Area** (`project.issueArea`) -- housing/education/health/environment/economic-development/arts-and-culture/food-security/human-rights. Flat, not assumed complete; new values can be proposed as real projects need them.
+- **Claim Type** (`evidence-claim.claimType`) -- association/contribution/attribution/causation, required on every Evidence Claim. Ordered from weakest to strongest evidentiary interpretation and never treated as equivalent to one another -- this is the mechanism that keeps a causal interpretation of a project's relationship to a result an explicit, sourced claim rather than a plain graph fact.
+- **Evidence Strength** (`evidence-claim.evidenceStrength`) -- anecdotal/limited/moderate/strong/inconclusive, required on every Evidence Claim, independent of `claimType`: a causation claim and an association claim can each be backed by strong or weak evidence.
+
 **In `properties.json`**, a reference-backed property looks like this instead of carrying `allowedValues`:
 
 ```json

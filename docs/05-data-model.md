@@ -40,9 +40,12 @@ Each concept is:
 | `label` | Display name, matching the heading used in `02-core-concepts.md`. |
 | `aliases` | Other names practitioners use for the same concept (e.g., `"NOFO"` for Funding Opportunity). |
 | `category` | Which section of `02-core-concepts.md` the concept belongs to. |
+| `kind` | A coarser structural classification (e.g. `organization`, `person-role`, `process`, `entity`) used by the explorer site to pick a node shape/legend grouping. Not emitted into the generated ontology formats — site-only metadata. |
 | `definition` | The one-to-three sentence definition, copied from the docs. |
 | `subClassOf` | Optional parent concept `id`, only set where the docs explicitly describe one concept as a specialization of another. |
 | `docRef` | Relative path/anchor into the docs for traceability. |
+| `legalNote` | Optional. A caveat that the concept's real-world legal treatment varies (e.g., by fiscal-sponsorship model) and shouldn't be inferred from the ontology alone — shown as a callout on the concept's site page. |
+| `deprecated` | Optional boolean. Marks a concept as superseded (e.g., by a newer reference-data-backed property) without deleting it or its relationships — see `restricted-funding`/`unrestricted-funding` for the first use. Emitted as `owl:deprecated`. |
 
 ### `ontology/source/relationships.json`
 
@@ -51,12 +54,14 @@ Each relationship is:
 | field | meaning |
 |---|---|
 | `id` | Stable identifier for the relationship. |
-| `subject` | Concept `id` the relationship starts from. |
-| `predicate` | camelCase property name (becomes an `owl:ObjectProperty` local name). |
-| `object` | Concept `id` the relationship points to. |
+| `subject` | Concept `id` the relationship starts from. Exactly one concept — the generator has no support for a union of subject concepts (see [Organizations, Roles & Arrangements](08-organizations-roles-and-arrangements.md) for why this is a deliberately deferred, not missing, capability). Where two entity types both need the same predicate, model a shared abstract superclass instead (see `Result` and `Agent`) if one fits, or mint a distinctly-named predicate per pair otherwise (see `playsRole`/`personPlaysRole`). |
+| `predicate` | camelCase property name (becomes an `owl:ObjectProperty` local name). Must be globally unique across every relationship. |
+| `object` | Concept `id` the relationship points to. Same one-concept constraint as `subject`. |
 | `label` | Short human-readable phrase (e.g., "is formalized by"). |
 | `description` | Fuller explanation, copied from the docs. |
 | `docRef` | Relative path/anchor into the docs for traceability. |
+| `deprecated` | Optional boolean. Marks a predicate as superseded without deleting it or migrating existing data off it — see `playsRole`/`personPlaysRole`, superseded by `agentPlaysRole`, for the first use. Emitted as `owl:deprecated`. |
+| `replacedBy` | Optional. The `id` of the relationship that supersedes this one. Required alongside `deprecated: true`; the generator asserts both hold together. Emitted as `dcterms:isReplacedBy`. |
 
 ## Namespace
 
@@ -83,4 +88,4 @@ Running `tools/generate_ontology.py` produces, all from the same in-memory graph
 
 ## What's intentionally not covered yet
 
-Business rules (the "Key relationship rules" list in `03-relationships.md`) are not yet encoded as SHACL constraints — most of them describe temporal/state conditions (e.g., "closeout requires all payments made") that don't map cleanly onto SHACL's shape-validation model without also modeling instance data and events, which is out of scope until the [event model](04-roadmap.md) work happens. The current SHACL shapes only validate the *structure* of the ontology itself (every class has a label and definition; every object property has a domain and range) — see `ontology/commongood-atlas.shapes.ttl`.
+Business rules (the "Key relationship rules" list in `03-relationships.md`) are not yet encoded as SHACL constraints — most of them describe temporal/state conditions (e.g., "closeout requires all payments made") that don't map cleanly onto SHACL's shape-validation model without also modeling instance data and events, which is out of scope until the [event model](04-roadmap.md) work happens. The SHACL shapes in `ontology/commongood-atlas.shapes.ttl` mostly validate the *structure* of the ontology itself (every class has a label and definition; every object property has a domain and range), with one deliberate, narrow exception: `Target`/`Measurement`/`Evidence Claim` each have a small relationship-cardinality shape (e.g., "every Target must have exactly one Indicator") — hand-authored rather than generated, and not generalized into a rule that every relationship in the ontology must be mandatory, since no other relationship is SHACL-enforced as required today.

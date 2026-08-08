@@ -1,6 +1,6 @@
 # Worked Example
 
-Everything before this document describes the ontology's *schema*: what a concept is, what attributes it has, how concepts relate. None of it says what an actual grant looks like. This is the worked example that does — five connected, fictional scenarios followed with concrete values filled in instead of definitions: a direct grant from a funder opening a grant program through closeout, and four ways funding can flow through intermediaries (fiscal sponsorship, a donor-advised fund, regranting, and a collaborative fund).
+Everything before this document describes the ontology's *schema*: what a concept is, what attributes it has, how concepts relate. None of it says what an actual grant looks like. This is the worked example that does — five connected, fictional scenarios followed with concrete values filled in instead of definitions: a direct grant from a funder opening a grant program through closeout (extended to the project it funds and that project's results and evidence, see below), and four ways funding can flow through intermediaries (fiscal sponsorship, a donor-advised fund, regranting, and a collaborative fund).
 
 ## Why one example file, not one per concept
 
@@ -15,6 +15,8 @@ Phase 3.5 Milestone 3 added a second thread to the same file rather than a secon
 Phase 3.6 Milestone 4 added three more: Ocean Conservation Fund also hosts a Donor-Advised Fund and picks up a third and fourth role occupancy (`Funder`, `Fiscal Sponsor`, and now `Funding Intermediary` — regranting a larger foundation's money to a smaller local group), and a fifth, independent thread follows two other organizations pooling money into a Collaborative Fund Arrangement. See [Organizations, Roles & Arrangements](08-organizations-roles-and-arrangements.md#milestone-4-the-rest-of-the-instance-data-role-change-diagrams-and-legal-review-flags) for what each thread covers and the role-change diagram.
 
 Because a concept like `Organization` or `Award` now has several individuals, `getExamplesForConcept` (site) returns an array rather than a single individual, and the Example tab renders each one as its own card. An individual's optional `act` field marks the first step of a new thread (e.g. `"A Second Engagement: Fiscal Sponsorship"`); the Story page renders a heading whenever it changes and leaves it off every other step in that thread.
+
+The Programs, Results & Evidence enhancement extended the first (direct-grant) thread rather than adding a sixth — no new `act` marker, since it's a continuation of the same engagement, not a new one. Hanging off the existing `coastal-watch-fy26-award`: the `Project` it funds, the `Need` and `Population` that project serves, the `Geographic Area` it operates in, the `Activity` that produces the already-existing habitat-restoration `Output`, that `Output`'s contribution to the already-existing habitat `Outcome`, that `Outcome`'s contribution to a new regional `Impact`, the `Indicator`/`Target`/`Measurement` tracking it (a 70% target against a 64% actual measurement — deliberately not equal), and the existing Year 1 `Evaluation`'s `Evidence Claim` about that `Outcome` (`claimType: contribution`, `evidenceStrength: moderate` — deliberately not presented as demonstrated causation), backed by a new `Evidence` individual.
 
 ## Where it lives
 

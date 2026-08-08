@@ -1,6 +1,6 @@
 # Core Concepts (v0.2)
 
-This is the working set of core grantmaking and nonprofit-knowledge-model concepts — roughly 65, grouped by where they sit in the grant lifecycle or the organizational model. Each entry is a working definition, not a final one; see [CONTRIBUTING.md](../CONTRIBUTING.md) for how to propose changes.
+This is the working set of core grantmaking and nonprofit-knowledge-model concepts — roughly 85, grouped by where they sit in the grant lifecycle or the organizational model. Each entry is a working definition, not a final one; see [CONTRIBUTING.md](../CONTRIBUTING.md) for how to propose changes.
 
 Definitions are intentionally implementation-agnostic: no field names, no database types. See [Relationships](03-relationships.md) for how these concepts connect, and the [Roadmap](04-roadmap.md) for when machine-readable versions of these will exist.
 
@@ -34,7 +34,7 @@ As of Phase 3.7 Milestone 1, this section distinguishes four related-but-differe
 19. **Fiscal Sponsor** — The role an organization occupies when it provides the legal and administrative infrastructure that lets another entity or project receive charitable funding on its behalf.
 20. **Philanthropic Intermediary** — An organization commonly known for facilitating philanthropy on behalf of others — such as by re-granting, fiscal sponsorship, or hosting donor-advised funds — regardless of which specific role it occupies in a given arrangement.
 21. **Funding Intermediary Role** — The role an organization occupies when it channels funds between an original funding source and an ultimate grantee, without itself being the original funder or the final recipient.
-22. **Sponsored Project** — A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.
+22. **Sponsored Project** — A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization. As of the Programs, Results & Evidence enhancement, a subtype of Project (below) — it's still the work being performed, just performed under someone else's legal umbrella.
 
 ## Funding structure
 
@@ -58,7 +58,7 @@ As of Phase 3.7 Milestone 1, this section distinguishes four related-but-differe
 37. **Review** — The process of evaluating an application, producing a recommendation and often a score, conducted by one or more reviewers.
 38. **Review Criteria** — The published or internal standards (e.g., alignment with mission, feasibility, budget reasonableness) against which applications are scored.
 39. **Site Visit** — An optional step where a funder representative visits or meets with an applicant to assess capacity or verify claims before a decision.
-40. **Decision** — The outcome of the review process for an application: approved, declined, or approved with conditions.
+40. **Decision** — A recorded determination concerning an application following review or another authorized approval process. Its outcome (approved, declined, or approved with conditions) is a property of the Decision, not the Decision's identity itself — see [Relationships](03-relationships.md).
 41. **Grant Recommendation** — A Donor Advisor's non-binding request that a Donor-Advised Fund make an award to a specific recipient; the fund's sponsoring organization retains final authority to accept or decline it.
 
 ## Award and agreement
@@ -66,8 +66,8 @@ As of Phase 3.7 Milestone 1, this section distinguishes four related-but-differe
 42. **Award** — A funder's formal commitment to provide a specific amount of funding to a grantee, following an approved application or decision.
 43. **Grant Agreement** — The legal document, signed by both funder and grantee, that formalizes an award's terms, conditions, and obligations.
 44. **Terms and Conditions** — The specific obligations, restrictions, and expectations attached to an award (e.g., allowable uses of funds, reporting requirements).
-45. **Restricted Funding** — Funding that must be used for a specific purpose, project, or time period defined in the grant agreement.
-46. **Unrestricted Funding** — Funding a grantee may use at its discretion in support of its general mission.
+45. **Restricted Funding** *(deprecated)* — Funding that must be used for a specific purpose, project, or time period defined in the grant agreement. Superseded for new data by Fund's `restrictionType` property, backed by the [restriction-type reference scheme](06-properties-and-rules.md#phase-37-milestone-3-reference-backed-properties-and-controlled-vocabularies) — kept for backward compatibility, not deleted.
+46. **Unrestricted Funding** *(deprecated)* — Funding a grantee may use at its discretion in support of its general mission. Superseded the same way as Restricted Funding, above.
 47. **Matching Requirement** — A condition requiring the grantee to raise or contribute additional funds alongside the award, often as a ratio (e.g., 1:1 match).
 48. **Amendment** — A formally agreed change to an existing grant agreement's terms, budget, timeline, or amount, made after the original agreement was signed.
 
@@ -89,16 +89,32 @@ As of Phase 3.7 Milestone 1, this section distinguishes four related-but-differe
 
 ## Outcomes and closeout
 
+As of the Programs, Results & Evidence enhancement, this section also covers the full Input → Activity → Output → Outcome → Impact logic-model chain, its measurement (Indicator/Target/Measurement), and the evidence supporting any claim about it — see [Relationships](03-relationships.md#programs-results-and-evidence) for how these connect to a Project and to each other, and [Organizations, Roles & Arrangements](08-organizations-roles-and-arrangements.md) for why this doesn't need its own top-level category (a 9th color would exceed the site's validated categorical palette).
+
 59. **Theory of Change** — A grantee's or funder's articulated model of how specific activities are expected to lead to desired long-term change.
 60. **Logic Model** — A structured diagram connecting a project's inputs, activities, outputs, and outcomes, used to plan and evaluate a grant-funded project.
-61. **Output** — A direct, countable product of grant-funded activity (e.g., number of workshops held, people served).
-62. **Outcome** — A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output.
-63. **Evaluation** — A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes.
-64. **Closeout** — The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied.
+61. **Result** — A planned or observed state, product, change, or effect associated with an intervention. The shared parent of Output, Outcome, and Impact, distinguished from each other by directness and time horizon.
+62. **Output** — A direct product, service, deliverable, or immediate consequence of Activities carried out by a Project (e.g., number of workshops held, people served). Does not itself imply any broader behavioral or social change. A subtype of Result.
+63. **Outcome** — A change in condition, behavior, knowledge, capacity, practice, or status that is intended or observed in association with a Project or Activity, distinct from a direct Output. A subtype of Result. A recorded Outcome does not by itself establish that the Project caused it — see Evidence Claim, below, for how a specific causal or contributory interpretation is represented and evidenced.
+64. **Impact** — A broader or longer-term change to which one or more Outcomes may contribute. A subtype of Result. Recording an Impact relationship does not itself imply the Project has been demonstrated to cause the change.
+65. **Input** — A financial, human, material, informational, or other resource used in carrying out an Activity.
+66. **Activity** — A defined action or body of work performed by a Project to produce Outputs and contribute toward intended Outcomes.
+67. **Indicator** — A defined measure used to assess the state or change of a Result (e.g., percentage of participants employed after six months, graduation rate).
+68. **Target** — A planned value for an Indicator expected to be reached by a defined point in time. Never interchangeable with a Measurement, below — a Target is planned, a Measurement is observed.
+69. **Measurement** — An observed value for an Indicator at a particular time and, where relevant, for a defined Population or Geographic Area.
+70. **Evidence** — Information used to support, weaken, qualify, or contextualize a claim about a Project, Activity, Result, or other entity (e.g., an evaluation report, survey results, administrative data, a case study).
+71. **Evidence Claim** — A sourced assertion about a relationship, condition, result, or causal interpretation whose evidentiary basis can be independently identified. This is where a specific interpretation of a Project's contribution to a Result — association, contribution, attribution, or causation, see [Properties & Rules](06-properties-and-rules.md) — gets represented, kept explicitly separate from the Result itself and from the Evidence supporting the claim. The mechanism that lets this ontology avoid ever asserting "Project caused Outcome" as a plain graph fact.
+72. **Evaluation** — A structured assessment of whether a grant-funded project achieved its intended outputs and outcomes.
+73. **Closeout** — The formal conclusion of a grant award once all funds are disbursed, all reports are submitted and accepted, and all compliance requirements are satisfied.
+74. **Need** — A condition, problem, gap, or opportunity identified as warranting intervention or investment.
+75. **Population** — A group of people defined by demographic, geographic, institutional, experiential, or other characteristics relevant to a Need, Project, Result, or Evaluation.
+76. **Geographic Area** — A geographic entity used to describe where a Need exists, where a Project operates, where a Population is located, or where a Result is observed. Not assumed to be the same as a grant recipient's registered mailing address.
 
 ## Cross-cutting
 
-65. **Grant Lifecycle** — The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout. See [Relationships](03-relationships.md) for the full sequence.
+77. **Grant Lifecycle** — The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout. See [Relationships](03-relationships.md) for the full sequence.
+78. **Agent** — An entity capable of participating in an activity, relationship, decision, transaction, or role. The shared parent of Person and Organization, added so future relationships can target either without duplicating a predicate per entity type.
+79. **Project** — A defined body of work undertaken over a period of time to address one or more needs or objectives — the work being performed, distinct from the Application requesting funding for it or the Award committing funding to it.
 
 ---
 
