@@ -691,5 +691,59 @@
     "label": "contributes to",
     "description": "An Outcome contributes to a broader or longer-term Impact. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.",
     "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-has-theory-of-change",
+    "subject": "project",
+    "predicate": "hasTheoryOfChange",
+    "object": "theory-of-change",
+    "label": "has",
+    "description": "A Project has a Theory of Change articulating how its activities are expected to lead to desired long-term change.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-has-logic-model",
+    "subject": "project",
+    "predicate": "hasLogicModel",
+    "object": "logic-model",
+    "label": "has",
+    "description": "A Project has a Logic Model connecting its inputs, activities, outputs, and outcomes.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-logic-model-includes-input",
+    "subject": "logic-model",
+    "predicate": "includesInput",
+    "object": "input",
+    "label": "includes",
+    "description": "A Logic Model includes the Inputs it plans for.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-logic-model-includes-activity",
+    "subject": "logic-model",
+    "predicate": "includesActivity",
+    "object": "activity",
+    "label": "includes",
+    "description": "A Logic Model includes the Activities it plans for.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-logic-model-includes-output",
+    "subject": "logic-model",
+    "predicate": "includesOutput",
+    "object": "output",
+    "label": "includes",
+    "description": "A Logic Model includes the Outputs it plans for.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-logic-model-includes-outcome",
+    "subject": "logic-model",
+    "predicate": "includesOutcome",
+    "object": "outcome",
+    "label": "includes",
+    "description": "A Logic Model includes the Outcomes it plans for.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
   }
 ]
