@@ -23,8 +23,12 @@ const base = import.meta.env.BASE_URL;
 // A "pageHero" slot renders full-bleed above the width-capped content --
 // pages that don't fill it (the homepage manages its own full-bleed hero
 // directly) simply get an empty slot, so this is backwards compatible.
-const contentClass =
-  wide === 'full' ? 'site-content-full' : wide === 'home' ? 'site-content-home' : wide ? 'site-content-wide' : 'site-content-standard';
+// layoutMode also lands on <main> itself so page-shell.css can make the
+// hero's own width follow whichever mode the page body is already in
+// (site-main-wide/full/standard), instead of the hero always capping at
+// 960px regardless of how wide the content below it actually is.
+const layoutMode: 'full' | 'home' | 'wide' | 'standard' = wide === 'full' ? 'full' : wide === 'home' ? 'home' : wide ? 'wide' : 'standard';
+const contentClass = `site-content-${layoutMode}`;
 
 const pageTitle = `${title} · CommonGood Atlas`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -174,7 +178,7 @@ const lastUpdatedDisplay = ontologyLastUpdated
         {!isHome && <SearchBox client:load compact concepts={concepts} base={base} />}
       </nav>
     </header>
-    <main class="site-main">
+    <main class={`site-main site-main-${layoutMode}`}>
       <slot name="pageHero" />
       <div class={`site-content ${contentClass}`}>
         <slot />
