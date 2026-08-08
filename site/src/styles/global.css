@@ -900,20 +900,46 @@ mark {
    it means (shape/color swatch) and toggles it. */
 .filter-chip-group {
   margin-top: 0.9rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
 }
 
 .filter-chip-group:first-child {
   margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
+/* Each group's label doubles as its <summary> disclosure trigger, so it
+   needs to read as a real heading (not the small muted caption it was
+   before) -- both to make the Kind/Category/Relationship grouping obvious
+   at a glance and to look clickable. */
 .filter-chip-group-label {
-  display: block;
-  font-size: 0.78rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.92rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  color: var(--text-primary);
+  margin-bottom: 0.55rem;
+}
+
+.filter-chip-group-label::-webkit-details-marker {
+  display: none;
+}
+
+.filter-chip-group-label::before {
+  content: '\25B8';
+  display: inline-block;
+  font-size: 0.7em;
   color: var(--text-muted);
-  margin-bottom: 0.4rem;
+  transition: transform 120ms ease;
+}
+
+.filter-chip-group[open] > .filter-chip-group-label::before {
+  transform: rotate(90deg);
 }
 
 .filter-chip-row {
@@ -1248,18 +1274,35 @@ mark {
   background: var(--gridline);
 }
 
-.graph-controls button.active {
+/* Self-contained (not scoped under .graph-controls) since this button now
+   lives in the visible .graph-center-toolbar for the full-page view --
+   .graph-controls only still holds it for the compact mini/neighborhood
+   widget, which has no separate toolbar to put it in. */
+.graph-labels-toggle {
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.graph-labels-toggle:hover {
+  background: var(--gridline);
+}
+
+.graph-labels-toggle.active {
   background: var(--brand-navy);
   border-color: var(--brand-navy);
   color: #ffffff;
 }
 
-.graph-controls button.graph-labels-toggle {
+.graph-controls .graph-labels-toggle {
   width: auto;
-  padding: 0 0.6rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .graph-detail-link {

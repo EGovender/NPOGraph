@@ -835,6 +835,24 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     setPathResult(undefined);
   }
 
+  // Kept as its own element (not just another button inside .graph-controls)
+  // so full mode can place it in the visible center toolbar instead of
+  // buried in the floating zoom/fit overlay on top of the canvas -- mini
+  // mode has no separate toolbar to put it in, so it stays in the overlay
+  // there.
+  const labelsToggleButton = (
+    <button
+      type="button"
+      className={`graph-labels-toggle${showEdgeLabels ? ' active' : ''}`}
+      aria-pressed={showEdgeLabels}
+      aria-label={showEdgeLabels ? 'Hide relationship labels' : 'Show relationship labels'}
+      title={showEdgeLabels ? 'Hide relationship labels' : 'Show relationship labels (or hover an edge for just its own)'}
+      onClick={() => setShowEdgeLabels((v) => !v)}
+    >
+      {showEdgeLabels ? 'Hide labels' : 'Show labels'}
+    </button>
+  );
+
   const controls = (
     <div className="graph-controls">
       <button type="button" aria-label="Zoom in" title="Zoom in" onClick={() => zoomBy(1.3)}>
@@ -846,16 +864,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       <button type="button" aria-label="Fit to view" title="Fit to view" onClick={fitToView}>
         &#x2922;
       </button>
-      <button
-        type="button"
-        className={`graph-labels-toggle${showEdgeLabels ? ' active' : ''}`}
-        aria-pressed={showEdgeLabels}
-        aria-label={showEdgeLabels ? 'Hide relationship labels' : 'Show relationship labels'}
-        title={showEdgeLabels ? 'Hide relationship labels' : 'Show relationship labels (or hover an edge for just its own)'}
-        onClick={() => setShowEdgeLabels((v) => !v)}
-      >
-        {showEdgeLabels ? 'Hide labels' : 'Show labels'}
-      </button>
+      {isMini && labelsToggleButton}
       {!isMini && (
         <>
           <button type="button" aria-label="Export graph as PNG image" title="Export as image" onClick={exportImage}>
@@ -1041,8 +1050,8 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
               </span>
             </summary>
 
-            <div className="filter-chip-group">
-              <span className="filter-chip-group-label">Kind</span>
+            <details className="filter-chip-group" open>
+              <summary className="filter-chip-group-label">Kind</summary>
               <div className="filter-chip-row" role="group" aria-label="Kind">
                 {kindEntriesInView.map((entry) => {
                   const hidden = hiddenKinds.has(entry.kind);
@@ -1065,10 +1074,10 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
                   );
                 })}
               </div>
-            </div>
+            </details>
 
-            <div className="filter-chip-group">
-              <span className="filter-chip-group-label">Category</span>
+            <details className="filter-chip-group" open>
+              <summary className="filter-chip-group-label">Category</summary>
               <div className="filter-chip-row" role="group" aria-label="Category">
                 {categoriesInView.map((cat) => {
                   const hidden = hiddenCategories.has(cat.id);
@@ -1090,10 +1099,10 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
                   );
                 })}
               </div>
-            </div>
+            </details>
 
-            <div className="filter-chip-group">
-              <span className="filter-chip-group-label">Relationship type</span>
+            <details className="filter-chip-group" open>
+              <summary className="filter-chip-group-label">Relationship type</summary>
               <div className="filter-chip-row" role="group" aria-label="Relationship type">
                 {relKindsInView.map((kind) => {
                   const hidden = hiddenRelationshipKinds.has(kind);
@@ -1111,7 +1120,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
                   );
                 })}
               </div>
-            </div>
+            </details>
           </details>
 
           <details className="graph-tool-section graph-path-finder-section">
@@ -1190,6 +1199,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
                 List
               </button>
             </div>
+            {!showList && labelsToggleButton}
           </div>
 
           <div className="search-box graph-toolbar-search">
