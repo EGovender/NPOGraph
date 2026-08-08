@@ -646,5 +646,50 @@
     "label": "takes place in",
     "description": "A Project operates within a Geographic Area. Distinct from any organization's registered address -- a project's operating area is not assumed to equal its implementing organization's or grant recipient's mailing address.",
     "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-uses-input",
+    "subject": "project",
+    "predicate": "usesInput",
+    "object": "input",
+    "label": "uses",
+    "description": "A Project uses Inputs (financial, human, material, or informational resources) to carry out its Activities.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-performs-activity",
+    "subject": "project",
+    "predicate": "performsActivity",
+    "object": "activity",
+    "label": "performs",
+    "description": "A Project performs one or more Activities.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-activity-produces-output",
+    "subject": "activity",
+    "predicate": "producesOutput",
+    "object": "output",
+    "label": "produces",
+    "description": "An Activity produces one or more Outputs.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-output-contributes-to-outcome",
+    "subject": "output",
+    "predicate": "contributesToOutcome",
+    "object": "outcome",
+    "label": "contributes to",
+    "description": "An Output contributes to an intended or observed Outcome. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-outcome-contributes-to-impact",
+    "subject": "outcome",
+    "predicate": "contributesToImpact",
+    "object": "impact",
+    "label": "contributes to",
+    "description": "An Outcome contributes to a broader or longer-term Impact. Deliberately \"contributes to,\" not \"causes\" -- see Evidence Claim for how a specific causal or contributory interpretation of that contribution is represented and evidenced.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
   }
 ]

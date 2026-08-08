@@ -188,7 +188,7 @@
     "category": "organizational-entities",
     "kind": "entity",
     "definition": "A project or group carrying out charitable activity under a Fiscal Sponsor's legal and administrative umbrella, without being itself an independent Organization.",
-    "subClassOf": null,
+    "subClassOf": "project",
     "docRef": "docs/02-core-concepts.md#organizational-entities",
     "legalNote": "Whether a sponsored project's activities, staff, and liabilities legally belong to the fiscal sponsor depends entirely on the specific fiscal sponsorship model in use. This ontology does not distinguish between models -- consult the governing agreement."
   },
@@ -675,8 +675,8 @@
     "aliases": [],
     "category": "outcomes-and-closeout",
     "kind": "process",
-    "definition": "A direct, countable product of grant-funded activity (e.g., number of workshops held, people served).",
-    "subClassOf": null,
+    "definition": "A direct product, service, deliverable, or immediate consequence of Activities carried out by a Project (e.g., number of workshops held, people served). Does not itself imply any broader behavioral or social change.",
+    "subClassOf": "result",
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
   },
   {
@@ -685,7 +685,47 @@
     "aliases": [],
     "category": "outcomes-and-closeout",
     "kind": "process",
-    "definition": "A change in condition, behavior, knowledge, or status that results from grant-funded activity, distinct from an output.",
+    "definition": "A change in condition, behavior, knowledge, capacity, practice, or status that is intended or observed in association with a Project or Activity, distinct from a direct Output. A recorded Outcome does not by itself establish that the Project caused it -- see Evidence Claim for how a specific causal or contributory interpretation is represented and evidenced.",
+    "subClassOf": "result",
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "result",
+    "label": "Result",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "process",
+    "definition": "A planned or observed state, product, change, or effect associated with an intervention. Output, Outcome, and Impact are its three subtypes, distinguished by directness and time horizon.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "impact",
+    "label": "Impact",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "process",
+    "definition": "A broader or longer-term change to which one or more Outcomes may contribute. An Impact relationship does not itself imply that the Project has been demonstrated to cause the change.",
+    "subClassOf": "result",
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "input",
+    "label": "Input",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "A financial, human, material, informational, or other resource used in carrying out an Activity.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "activity",
+    "label": "Activity",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "process",
+    "definition": "A defined action or body of work performed by a Project to produce Outputs and contribute toward intended Outcomes.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
   },
