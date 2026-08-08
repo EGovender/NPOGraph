@@ -583,5 +583,68 @@
     "label": "applies within",
     "description": "A Person Role is scoped to the Organization it was granted within. This is the minimal case needed to make Person Role usable; broadening it to Award, Application, Agreement, and other contexts (matching how Organization Role's own context is broadened) is Phase 3.7 Milestone 2's job -- which will also need to resolve the same predicate-uniqueness constraint noted on personPlaysRole above, likely by generalizing the generator to support a shared predicate across a union of object concepts.",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
+  },
+  {
+    "id": "rel-application-proposes-project",
+    "subject": "application",
+    "predicate": "proposesProject",
+    "object": "project",
+    "label": "proposes",
+    "description": "An Application proposes the Project it is requesting funding for. The Application is the request; the Project is the work being proposed.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-award-funds-project",
+    "subject": "award",
+    "predicate": "fundsProject",
+    "object": "project",
+    "label": "funds",
+    "description": "An Award commits funding to a Project. The Award is the funding commitment; the Project is the work performed using it.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-organization-implements-project",
+    "subject": "organization",
+    "predicate": "implementsProject",
+    "object": "project",
+    "label": "implements",
+    "description": "An Organization carries out a Project -- typically the Grantee, but modeled directly on Organization rather than a specific role so any organization implementing work (e.g. a Sponsored Project's Fiscal Sponsor) can be represented the same way.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-addresses-need",
+    "subject": "project",
+    "predicate": "addressesNeed",
+    "object": "need",
+    "label": "addresses",
+    "description": "A Project addresses one or more identified Needs.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-need-experienced-by-population",
+    "subject": "need",
+    "predicate": "experiencedByPopulation",
+    "object": "population",
+    "label": "is experienced by",
+    "description": "A Need is experienced by a specific Population.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-serves-population",
+    "subject": "project",
+    "predicate": "servesPopulation",
+    "object": "population",
+    "label": "serves",
+    "description": "A Project serves a specific Population, which may or may not be the same Population that experiences the Need it addresses (e.g. a project can serve service providers on behalf of an affected population).",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-project-takes-place-in",
+    "subject": "project",
+    "predicate": "takesPlaceIn",
+    "object": "geographic-area",
+    "label": "takes place in",
+    "description": "A Project operates within a Geographic Area. Distinct from any organization's registered address -- a project's operating area is not assumed to equal its implementing organization's or grant recipient's mailing address.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
   }
 ]

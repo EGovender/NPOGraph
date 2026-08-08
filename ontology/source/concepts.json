@@ -6,7 +6,7 @@
     "category": "organizational-entities",
     "kind": "organization",
     "definition": "Any legal entity participating in grantmaking or philanthropy. An organization occupies one or more contextual roles (see Organization Role) rather than being permanently classified as a funder or a recipient.",
-    "subClassOf": null,
+    "subClassOf": "agent",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -209,7 +209,7 @@
     "category": "organizational-entities",
     "kind": "person",
     "definition": "A natural person who participates in nonprofit, philanthropic, governance, employment, advisory, or service relationships.",
-    "subClassOf": null,
+    "subClassOf": "agent",
     "docRef": "docs/02-core-concepts.md#organizational-entities"
   },
   {
@@ -718,5 +718,55 @@
     "definition": "The end-to-end sequence a grant moves through, from funding opportunity through application, review, award, disbursement, reporting, and closeout.",
     "subClassOf": null,
     "docRef": "docs/02-core-concepts.md#cross-cutting"
+  },
+  {
+    "id": "agent",
+    "label": "Agent",
+    "aliases": [],
+    "category": "cross-cutting",
+    "kind": "entity",
+    "definition": "An entity capable of participating in an activity, relationship, decision, transaction, or role. Person and Organization are its two subtypes.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#cross-cutting"
+  },
+  {
+    "id": "project",
+    "label": "Project",
+    "aliases": [],
+    "category": "cross-cutting",
+    "kind": "entity",
+    "definition": "A defined body of work undertaken over a period of time to address one or more needs or objectives -- the work being performed, distinct from the Application requesting funding for it or the Award committing funding to it.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#cross-cutting"
+  },
+  {
+    "id": "need",
+    "label": "Need",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "A condition, problem, gap, or opportunity identified as warranting intervention or investment.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "population",
+    "label": "Population",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "A group of people defined by demographic, geographic, institutional, experiential, or other characteristics relevant to a Need, Project, Result, or Evaluation.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "geographic-area",
+    "label": "Geographic Area",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "A geographic entity used to describe where a Need exists, where a Project operates, where a Population is located, or where a Result is observed.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
   }
 ]

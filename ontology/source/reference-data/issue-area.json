@@ -1,0 +1,83 @@
+{
+  "id": "issue-area",
+  "label": "Issue Area",
+  "description": "The primary social or environmental issue a Project addresses. Not assumed to be a complete list of every possible issue area -- new values can be proposed as real projects need them.",
+  "domain": "program",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "issue-area-housing",
+      "code": "housing",
+      "label": "Housing",
+      "definition": "Access to safe, stable, and affordable housing.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "issue-area-education",
+      "code": "education",
+      "label": "Education",
+      "definition": "Access to and quality of learning, from early childhood through adult education.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "issue-area-health",
+      "code": "health",
+      "label": "Health",
+      "definition": "Physical and behavioral health, including access to care.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "issue-area-environment",
+      "code": "environment",
+      "label": "Environment",
+      "definition": "Conservation, climate, and natural-resource stewardship.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "issue-area-economic-development",
+      "code": "economic-development",
+      "label": "Economic Development",
+      "definition": "Employment, income, and local economic opportunity.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "issue-area-arts-and-culture",
+      "code": "arts-and-culture",
+      "label": "Arts and Culture",
+      "definition": "Arts, culture, and creative expression.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "issue-area-food-security",
+      "code": "food-security",
+      "label": "Food Security",
+      "definition": "Reliable access to sufficient, affordable, nutritious food.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "issue-area-human-rights",
+      "code": "human-rights",
+      "label": "Human Rights",
+      "definition": "Civil rights, civil liberties, and human-rights advocacy.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    }
+  ]
+}

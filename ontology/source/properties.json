@@ -950,5 +950,18 @@
     "cardinality": "one",
     "allowedValues": null,
     "description": "Free-text context about this role occupancy not captured by its other properties."
+  },
+  {
+    "id": "project-issue-area",
+    "concept": "project",
+    "name": "issueArea",
+    "label": "Issue Area",
+    "group": "classification",
+    "datatype": "reference",
+    "referenceScheme": "issue-area",
+    "required": false,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "The primary social or environmental issue this Project addresses."
   }
 ]
