@@ -1,0 +1,125 @@
+name: Suggest or Change a Relationship
+description: Two concepts should connect differently.
+title: "[Relationship] "
+labels:
+  - contribution
+  - area:ontology
+  - type:relationship
+  - status:proposed
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Thank you for helping improve CommonGood Atlas.**
+
+        You don't need to know ontology terminology to contribute. Describe how this works in
+        practice and provide a concrete example if you can.
+
+        Suggestions are reviewed and discussed before the model changes. We may ask follow-up
+        questions or propose a different way of representing the idea.
+
+        Please don't include confidential, personally identifiable, or organization-sensitive
+        information. Examples can be anonymized.
+
+  - type: dropdown
+    id: action
+    attributes:
+      label: What are you proposing?
+      options:
+        - Add a new relationship
+        - Change an existing relationship
+        - Remove a relationship
+    validations:
+      required: true
+
+  - type: input
+    id: from-concept
+    attributes:
+      label: From concept
+      placeholder: "Example: Award"
+    validations:
+      required: true
+
+  - type: input
+    id: relationship
+    attributes:
+      label: Relationship
+      placeholder: "Example: mayHavePaymentSchedule"
+    validations:
+      required: true
+
+  - type: input
+    id: to-concept
+    attributes:
+      label: To concept
+      placeholder: "Example: Payment Schedule"
+    validations:
+      required: true
+
+  - type: textarea
+    id: meaning
+    attributes:
+      label: What should the relationship mean?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-insufficient
+    attributes:
+      label: Why is the current model insufficient?
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Real-world example
+      description: You can anonymize organizations and people.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: always-true
+    attributes:
+      label: Is this relationship always true?
+      options:
+        - "Yes, always"
+        - "No, there are exceptions"
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: exceptions
+    attributes:
+      label: Known exceptions
+
+  - type: input
+    id: cardinality
+    attributes:
+      label: Cardinality
+      description: "Optional. Example: one Award to many Payment Schedules."
+
+  - type: input
+    id: inverse
+    attributes:
+      label: Inverse relationship
+      description: "Optional. Example: Payment Schedule belongsToAward Award."
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Reference / source
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Contribution agreement
+      options:
+        - label: >-
+            I understand that this submission will be publicly visible on GitHub and may be
+            incorporated into CommonGood Atlas under the project's license.
+          required: true
+        - label: I have not included confidential, personally identifiable, or organization-sensitive information.
+          required: true

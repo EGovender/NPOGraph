@@ -1,0 +1,111 @@
+name: Suggest a Business Rule
+description: There is a condition, dependency, or exception we should capture.
+title: "[Business Rule] "
+labels:
+  - contribution
+  - area:ontology
+  - type:business-rule
+  - status:proposed
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Thank you for helping improve CommonGood Atlas.**
+
+        You don't need to know ontology terminology to contribute. Describe how this works in
+        practice and provide a concrete example if you can.
+
+        Suggestions are reviewed and discussed before the model changes. We may ask follow-up
+        questions or propose a different way of representing the idea.
+
+        Please don't include confidential, personally identifiable, or organization-sensitive
+        information. Examples can be anonymized.
+
+  - type: dropdown
+    id: action
+    attributes:
+      label: Add / Change / Remove rule
+      options:
+        - Add a new rule
+        - Change an existing rule
+        - Remove a rule
+    validations:
+      required: true
+
+  - type: input
+    id: concepts
+    attributes:
+      label: Concepts affected
+      placeholder: "Example: Payment, Compliance Requirement"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-rule
+    attributes:
+      label: Proposed rule
+      placeholder: "Example: A payment cannot be released while a required compliance item is outstanding."
+    validations:
+      required: true
+
+  - type: textarea
+    id: trigger
+    attributes:
+      label: What triggers the rule?
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: exceptions
+    attributes:
+      label: Known exceptions
+
+  - type: textarea
+    id: violation
+    attributes:
+      label: What happens if the rule is violated?
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Real-world example
+      description: You can anonymize organizations and people.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: universality
+    attributes:
+      label: Is this generally a requirement, or simply how your organization operates?
+      options:
+        - Generally required
+        - Common industry practice
+        - Organization-specific
+        - System-specific
+        - Legal/regulatory
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Supporting source / policy
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Contribution agreement
+      options:
+        - label: >-
+            I understand that this submission will be publicly visible on GitHub and may be
+            incorporated into CommonGood Atlas under the project's license.
+          required: true
+        - label: I have not included confidential, personally identifiable, or organization-sensitive information.
+          required: true

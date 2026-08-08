@@ -1,0 +1,132 @@
+name: Add a Scenario or Example
+description: Show how the model behaves in an actual grantmaking situation.
+title: "[Scenario] "
+labels:
+  - contribution
+  - area:example
+  - type:scenario
+  - status:proposed
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Thank you for helping improve CommonGood Atlas.**
+
+        You don't need to know ontology terminology to contribute. Describe how this works in
+        practice - a concrete, step-by-step workflow is more useful than an abstract description.
+
+        Suggestions are reviewed and discussed before the model changes.
+
+        Please don't include confidential, personally identifiable, or organization-sensitive
+        information. Examples can be anonymized.
+
+  - type: input
+    id: scenario-name
+    attributes:
+      label: Scenario name
+      placeholder: "Example: Multi-funder collaborative grant with a payment hold"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scenario-type
+    attributes:
+      label: Scenario type
+      options:
+        - Direct grant
+        - Multi-installment grant
+        - Grant amendment
+        - Payment hold
+        - Grant cancellation
+        - Grant closeout
+        - Fiscal sponsorship
+        - Donor-advised fund
+        - Regranting
+        - Collaborative fund
+        - Restricted funding
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: demonstrates
+    attributes:
+      label: What situation does this demonstrate?
+    validations:
+      required: true
+
+  - type: textarea
+    id: parties
+    attributes:
+      label: Parties involved
+      description: You can anonymize organizations and people.
+    validations:
+      required: true
+
+  - type: textarea
+    id: starting-condition
+    attributes:
+      label: Starting condition
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Process / workflow
+      description: A numbered, step-by-step description works well.
+      placeholder: |
+        1. Funder approves an award.
+        2. Award contains four installments.
+        3. First installment is paid.
+        4. Reporting requirement becomes due.
+        5. Report isn't received.
+        6. Second installment is held.
+        7. Award remains active.
+    validations:
+      required: true
+
+  - type: textarea
+    id: concepts-involved
+    attributes:
+      label: Concepts involved
+
+  - type: textarea
+    id: decision-points
+    attributes:
+      label: Important decision points
+
+  - type: textarea
+    id: exceptions
+    attributes:
+      label: Exceptions / edge cases
+
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+
+  - type: textarea
+    id: cant-represent
+    attributes:
+      label: What can't the current model represent?
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Reference / source
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Contribution agreement
+      options:
+        - label: >-
+            I understand that this submission will be publicly visible on GitHub and may be
+            incorporated into CommonGood Atlas under the project's license.
+          required: true
+        - label: I have not included confidential, personally identifiable, or organization-sensitive information.
+          required: true

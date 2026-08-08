@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import type { Concept } from '../data/ontology';
 import { getCategory } from '../data/categories';
 import { conceptSearchScore } from '../data/search';
+import { suggestNewConceptUrl } from '../data/contribution-links';
 
 interface Props {
   concepts: Concept[];
@@ -59,7 +60,10 @@ export default function SearchBox({ concepts, base, compact = false }: Props) {
       )}
       {query.trim() && results.length === 0 && (
         <p className={compact ? 'muted search-no-results search-no-results-compact' : 'muted search-no-results'}>
-          No concepts match "{query}".
+          No concepts match "{query}". Can't find what you're looking for?{' '}
+          <a href={suggestNewConceptUrl(query.trim())} target="_blank" rel="noreferrer">
+            Suggest "{query.trim()}" as a new concept
+          </a>
         </p>
       )}
     </div>

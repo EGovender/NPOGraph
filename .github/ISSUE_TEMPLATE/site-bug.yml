@@ -1,0 +1,80 @@
+name: Report a Site Problem
+description: Something isn't working.
+title: "[Bug] "
+labels:
+  - bug
+  - area:site
+  - status:triage
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. This is about the CommonGood Atlas site itself (the
+        explorer, tools, or navigation) - for a problem with a concept's definition, use
+        "Change an Existing Concept" instead.
+
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+
+  - type: input
+    id: device
+    attributes:
+      label: Device
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does it happen?
+      options:
+        - Every time
+        - Often
+        - Sometimes
+        - Once
+        - Not sure
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot / recording
+      description: Optional. Drag and drop or paste a screenshot or recording here.
+
+  - type: textarea
+    id: console-error
+    attributes:
+      label: Console error
+      description: Optional. If you know how to open your browser's developer console, paste any red error text here.
+      render: text
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional details

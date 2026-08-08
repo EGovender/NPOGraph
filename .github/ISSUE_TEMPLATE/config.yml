@@ -1,0 +1,10 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: Explore CommonGood Atlas
+    url: https://egovender.github.io/commongood-atlas/
+    about: Check the knowledge base before proposing something new.
+
+  - name: Contribution Guidelines
+    url: https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md
+    about: Read how contributions are reviewed and incorporated.
