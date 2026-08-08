@@ -49,6 +49,11 @@ const CHARGE_STRENGTH = -170;
 // indicator below makes it obvious when something IS hidden.
 const DEFAULT_HIDDEN_KINDS: ConceptKind[] = [];
 
+// Grant Lifecycle, not Full Ontology, is the beginner-friendly landing view --
+// the homepage now routes first-time visitors straight into /explore, and
+// the full 71-concept graph is the wrong first thing to show them.
+const DEFAULT_VIEW_ID = 'lifecycle';
+
 interface SimNode extends SimulationNodeDatum {
   id: string;
   label: string;
@@ -90,12 +95,14 @@ interface Props {
 /** Reads ?view=&concept=&q=&concepts= once on mount; full-mode only. */
 function readInitialURLState() {
   if (typeof window === 'undefined') {
-    return { view: 'full', concept: null as string | null, q: '', customConcepts: null as string[] | null };
+    return { view: null as string | null, concept: null as string | null, q: '', customConcepts: null as string[] | null };
   }
   const params = new URLSearchParams(window.location.search);
   const customConcepts = params.get('concepts');
   return {
-    view: params.get('view') ?? 'full',
+    // null (no ?view= param), not a default view id, so callers can tell
+    // "not specified" apart from an explicit "?view=<the default view>".
+    view: params.get('view'),
     concept: params.get('concept'),
     q: params.get('q') ?? '',
     // An ad-hoc concept allowlist (e.g. from the Design tool's "open in
@@ -168,7 +175,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   );
   const [hiddenRelationshipKinds, setHiddenRelationshipKinds] = useState<Set<RelationshipKind>>(new Set());
   const [showEdgeLabels, setShowEdgeLabels] = useState(isMini);
-  const [viewId, setViewId] = useState<string>('full');
+  const [viewId, setViewId] = useState<string>(DEFAULT_VIEW_ID);
   const [customConceptIds, setCustomConceptIds] = useState<Set<string> | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [pathFromId, setPathFromId] = useState('');
@@ -181,7 +188,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     if (isMini) return;
     const url = readInitialURLState();
     if (url.customConcepts) setCustomConceptIds(new Set(url.customConcepts));
-    if (url.view !== 'full') setViewId(url.view);
+    if (url.view) setViewId(url.view);
     if (url.concept) setSelectedId(url.concept);
     if (url.q) setSearchQuery(url.q);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -247,7 +254,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     const params = new URLSearchParams();
     if (customConceptIds) {
       params.set('concepts', Array.from(customConceptIds).join(','));
-    } else if (viewId !== 'full') {
+    } else if (viewId !== DEFAULT_VIEW_ID) {
       params.set('view', viewId);
     }
     if (selectedId) params.set('concept', selectedId);
@@ -737,7 +744,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     setPathFromId('');
     setPathToId('');
     setPathResult(undefined);
-    if (!customConceptIds) setViewId('full');
+    if (!customConceptIds) setViewId(DEFAULT_VIEW_ID);
   }
 
   function zoomBy(factor: number) {
@@ -818,13 +825,13 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       </button>
       <button
         type="button"
-        className={showEdgeLabels ? 'active' : ''}
+        className={`graph-labels-toggle${showEdgeLabels ? ' active' : ''}`}
         aria-pressed={showEdgeLabels}
-        aria-label={showEdgeLabels ? 'Hide all relationship labels' : 'Show all relationship labels'}
-        title={showEdgeLabels ? 'Hide all relationship labels' : 'Show all relationship labels (or hover an edge for just its own)'}
+        aria-label={showEdgeLabels ? 'Hide relationship labels' : 'Show relationship labels'}
+        title={showEdgeLabels ? 'Hide relationship labels' : 'Show relationship labels (or hover an edge for just its own)'}
         onClick={() => setShowEdgeLabels((v) => !v)}
       >
-        Aa
+        {showEdgeLabels ? 'Hide labels' : 'Show labels'}
       </button>
       {!isMini && (
         <>
@@ -904,9 +911,9 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     onRemove: () => void;
   }
   const activeFilterChips: FilterChip[] = [];
-  if (!customConceptIds && viewId !== 'full') {
+  if (!customConceptIds && viewId !== DEFAULT_VIEW_ID) {
     const view = EXPLORER_VIEWS.find((v) => v.id === viewId);
-    activeFilterChips.push({ key: 'view', label: `View: ${view?.label ?? viewId}`, onRemove: () => setViewId('full') });
+    activeFilterChips.push({ key: 'view', label: `View: ${view?.label ?? viewId}`, onRemove: () => setViewId(DEFAULT_VIEW_ID) });
   }
   for (const cat of CATEGORIES) {
     if (hiddenCategories.has(cat.id)) {
