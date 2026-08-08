@@ -42,6 +42,15 @@ const ARROW_GAP = 6;
 const LINK_DISTANCE = 125;
 const CHARGE_STRENGTH = -170;
 
+// A sparse neighborhood (often just the focus concept + one or two others)
+// has a tiny point-bounds box, so the general 2.5x fit cap used elsewhere
+// zooms in far past what the fixed node/label sizes can afford -- labels
+// and even whole neighbor nodes end up rendered outside the fitted frame.
+// A much lower cap plus extra padding keeps the mini widget's zoom modest
+// regardless of how few neighbors a concept has.
+const MINI_FIT_PADDING = 50;
+const MINI_FIT_MAX_SCALE = 1.3;
+
 // Every kind starts visible (opt-out, not opt-in) -- a filter that silently
 // hides ~40% of the ontology with no visible indicator is worse than a
 // denser first view. All filtering is one click away via the Kind chips in
@@ -123,7 +132,8 @@ function fitToBounds(
   handle: GraphHandle,
   svgEl: SVGSVGElement,
   predicate?: (d: SimNode) => boolean,
-  padding = 30
+  padding = 30,
+  maxScale = 2.5
 ) {
   const nodes = Array.from(handle.nodesById.values()).filter((n) => !predicate || predicate(n));
   if (nodes.length === 0) return;
@@ -142,16 +152,40 @@ function fitToBounds(
     // first real layout pass, momentarily reporting a zero-size rect --
     // retry on the next frame rather than silently giving up the only fit
     // this graph will ever get.
-    requestAnimationFrame(() => fitToBounds(handle, svgEl, predicate, padding));
+    requestAnimationFrame(() => fitToBounds(handle, svgEl, predicate, padding, maxScale));
     return;
   }
-  const scale = Math.min((rect.width - padding * 2) / bw, (rect.height - padding * 2) / bh, 2.5);
+  const scale = Math.min((rect.width - padding * 2) / bw, (rect.height - padding * 2) / bh, maxScale);
   const cx = (minX + maxX) / 2;
   const cy = (minY + maxY) / 2;
   const transform = zoomIdentity
     .translate(rect.width / 2, rect.height / 2)
     .scale(Math.max(scale, 0.05))
     .translate(-cx, -cy);
+  select(svgEl).transition().duration(200).call(handle.zoomBehavior.transform, transform);
+}
+
+/**
+ * Mini-mode-only variant of fitToBounds: centers on the focus concept
+ * (pinned at the origin via fx/fy) instead of the neighbors' bounding-box
+ * midpoint. A neighborhood's neighbors rarely spread evenly in every
+ * direction, so centering on their bbox -- as fitToBounds does -- tends to
+ * push the focus node itself toward one edge, sometimes right behind the
+ * zoom-control overlay. Centering on the origin keeps the focus node
+ * (what this widget exists to show) dead-center every time.
+ */
+function fitMiniToFocus(handle: GraphHandle, svgEl: SVGSVGElement, padding: number, maxScale: number) {
+  const nodes = Array.from(handle.nodesById.values());
+  if (nodes.length === 0) return;
+  const halfW = Math.max(...nodes.map((n) => Math.abs(n.x ?? 0)), 1);
+  const halfH = Math.max(...nodes.map((n) => Math.abs(n.y ?? 0)), 1);
+  const rect = svgEl.getBoundingClientRect();
+  if (rect.width === 0 || rect.height === 0) {
+    requestAnimationFrame(() => fitMiniToFocus(handle, svgEl, padding, maxScale));
+    return;
+  }
+  const scale = Math.min((rect.width - padding * 2) / (halfW * 2), (rect.height - padding * 2) / (halfH * 2), maxScale);
+  const transform = zoomIdentity.translate(rect.width / 2, rect.height / 2).scale(Math.max(scale, 0.05));
   select(svgEl).transition().duration(200).call(handle.zoomBehavior.transform, transform);
 }
 
@@ -503,7 +537,11 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     // simulation's one-shot 'end' event, which fires on its own schedule
     // (and, for a small/fast-converging graph, can fire before the
     // embedding container has even completed its first layout pass).
-    fitToBounds(graphRef.current, svgEl, undefined, isMini ? 20 : 30);
+    if (isMini) {
+      fitMiniToFocus(graphRef.current, svgEl, MINI_FIT_PADDING, MINI_FIT_MAX_SCALE);
+    } else {
+      fitToBounds(graphRef.current, svgEl);
+    }
 
     // Once the layout has actually settled, fit again to the *real* result
     // -- the seeded grid start positions above are not laid out to fill the
@@ -516,7 +554,11 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     function fitToSettledLayout() {
       if (hasAutoFitted) return;
       hasAutoFitted = true;
-      fitToBounds(graphRef.current!, svgEl!, undefined, isMini ? 20 : 30);
+      if (isMini) {
+        fitMiniToFocus(graphRef.current!, svgEl!, MINI_FIT_PADDING, MINI_FIT_MAX_SCALE);
+      } else {
+        fitToBounds(graphRef.current!, svgEl!);
+      }
     }
     simulation.on('end', fitToSettledLayout);
     // Backstop: a throttled tab (e.g. backgrounded during load) can delay
@@ -781,7 +823,11 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     const handle = graphRef.current;
     const svgEl = svgRef.current;
     if (!handle || !svgEl) return;
-    fitToBounds(handle, svgEl);
+    if (isMini) {
+      fitMiniToFocus(handle, svgEl, MINI_FIT_PADDING, MINI_FIT_MAX_SCALE);
+    } else {
+      fitToBounds(handle, svgEl);
+    }
   }
 
   function fitToNeighborhood(conceptId: string) {
@@ -836,10 +882,9 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   }
 
   // Kept as its own element (not just another button inside .graph-controls)
-  // so full mode can place it in the visible center toolbar instead of
-  // buried in the floating zoom/fit overlay on top of the canvas -- mini
-  // mode has no separate toolbar to put it in, so it stays in the overlay
-  // there.
+  // so it can be placed outside the floating zoom/fit overlay that sits on
+  // top of the canvas -- full mode puts it in the visible center toolbar,
+  // mini mode puts it in a small toolbar strip below the canvas.
   const labelsToggleButton = (
     <button
       type="button"
@@ -864,7 +909,6 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       <button type="button" aria-label="Fit to view" title="Fit to view" onClick={fitToView}>
         &#x2922;
       </button>
-      {isMini && labelsToggleButton}
       {!isMini && (
         <>
           <button type="button" aria-label="Export graph as PNG image" title="Export as image" onClick={exportImage}>
@@ -885,9 +929,12 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
 
   if (isMini) {
     return (
-      <div className="graph-canvas-wrap graph-canvas-mini">
-        <svg className="graph-canvas" ref={svgRef} role="img" aria-label={`Neighborhood graph for ${focusConceptId}`} />
-        {controls}
+      <div className="graph-mini">
+        <div className="graph-canvas-wrap graph-canvas-mini">
+          <svg className="graph-canvas" ref={svgRef} role="img" aria-label={`Neighborhood graph for ${focusConceptId}`} />
+          {controls}
+        </div>
+        <div className="graph-mini-toolbar">{labelsToggleButton}</div>
       </div>
     );
   }

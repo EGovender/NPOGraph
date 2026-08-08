@@ -267,6 +267,7 @@ h3 {
 }
 
 .card {
+  position: relative;
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 0.65rem;
@@ -574,6 +575,26 @@ pre {
   text-decoration: none;
 }
 
+/* Stretched-link pattern: the pseudo-element positions against the nearest
+   positioned ancestor (.card, not this <a> itself, since the <a> stays
+   position:static), so it covers the *whole card* -- clicking anywhere,
+   not just the title text, navigates to the concept. Only one real link
+   per card stays in the tab order; this only enlarges the mouse target. */
+.concept-card-label::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/* The "Specializes X" parent link sits underneath the stretched title
+   link's overlay (a positioned pseudo-element paints above static content
+   regardless of DOM order) -- lift it back above so it stays independently
+   clickable to its own (different) concept page. */
+.concept-card-meta a {
+  position: relative;
+  z-index: 1;
+}
+
 .concept-card-meta {
   margin: 0.3rem 0 0;
   font-size: 0.85rem;
@@ -585,6 +606,26 @@ pre {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Every .concept-card-list consumer (catalogue, related-concepts, the
+   Graph Explorer's List view) has exactly one stretched title link making
+   the whole card clickable -- the hover lift signals that up front instead
+   of only becoming obvious once the cursor happens to land on the title. */
+.concept-card-list .card {
+  cursor: pointer;
+}
+
+.concept-card-list .card:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand-navy);
+  box-shadow: var(--shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .concept-card-list .card:hover {
+    transform: none;
+  }
 }
 
 /* Restrained category-color accent -- a top border in the default grid
@@ -1126,6 +1167,15 @@ mark {
 
 .graph-canvas-mini {
   height: 320px;
+}
+
+/* The mini/neighborhood widget (concept detail pages) has no toolbar of
+   its own to hold the labels toggle -- put it in a thin strip below the
+   canvas instead of leaving it floating on top of the graph. */
+.graph-mini-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.6rem;
 }
 
 /* D3-rendered graph primitives -- node/edge appearance, selection and
