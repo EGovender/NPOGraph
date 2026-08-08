@@ -1737,21 +1737,54 @@ mark {
   gap: 1rem;
 }
 
-.design-progress {
+.design-progress-header {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.design-progress-label {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.design-progress-bar {
+  width: 100%;
+  height: 0.5rem;
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.design-progress-bar::-webkit-progress-bar {
+  background: var(--gridline);
+  border-radius: 999px;
+}
+
+.design-progress-bar::-webkit-progress-value {
+  background: var(--brand-navy);
+  border-radius: 999px;
+  transition: width 200ms ease;
+}
+
+.design-progress-bar::-moz-progress-bar {
+  background: var(--brand-navy);
+  border-radius: 999px;
+}
+
+.design-progress-reset {
+  justify-self: start;
   font-size: 0.85rem;
 }
 
-.design-reset {
-  background: none;
-  border: none;
-  color: var(--link);
-  font: inherit;
-  font-size: 0.85rem;
-  padding: 0;
-  cursor: pointer;
+@media (prefers-reduced-motion: reduce) {
+  .design-progress-bar::-webkit-progress-value {
+    transition: none;
+  }
 }
 
 .design-question {
@@ -1787,9 +1820,10 @@ mark {
 }
 
 .design-option.selected {
-  border-color: var(--link);
-  background: color-mix(in srgb, var(--link) 12%, var(--card-bg));
-  font-weight: 600;
+  border: 2px solid var(--link);
+  padding: 0.3rem 0.8rem;
+  background: color-mix(in srgb, var(--link) 14%, var(--card-bg));
+  font-weight: 700;
 }
 
 .design-result {
@@ -1803,9 +1837,30 @@ mark {
   overflow-y: auto;
 }
 
-.design-result-count {
-  margin-top: 0;
+.design-result-summary {
+  margin: -1.25rem -1.25rem 1rem;
+  padding: 1.25rem;
+  background: var(--brand-navy);
+  color: #ffffff;
+  border-radius: 8px 8px 0 0;
+}
+
+.design-result-summary .inspector-group-title {
+  color: #ffffff;
+  margin: 0 0 0.4rem;
+}
+
+.design-result-summary-count {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.design-result-summary-split {
+  margin: 0.6rem 0 0;
   font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .design-concept-list {
@@ -1860,17 +1915,19 @@ mark {
   gap: 0.75rem;
 }
 
-.design-section-title {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 1.05rem;
-  margin: 0.5rem 0 0;
+.design-question-help {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
 }
 
-.design-question-help {
-  margin: 0.35rem 0.2rem 0;
-  font-size: 0.82rem;
+.design-question-help summary {
+  cursor: pointer;
+  color: var(--link);
+  font-weight: 600;
+}
+
+.design-question-help p {
+  margin: 0.4rem 0.2rem 0;
 }
 
 .design-actions {
