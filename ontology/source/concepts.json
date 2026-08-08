@@ -760,6 +760,26 @@
     "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
   },
   {
+    "id": "evidence",
+    "label": "Evidence",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "Information used to support, weaken, qualify, or contextualize a claim about a Project, Activity, Result, or other entity (e.g., an evaluation report, survey results, administrative data, a case study).",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
+    "id": "evidence-claim",
+    "label": "Evidence Claim",
+    "aliases": [],
+    "category": "outcomes-and-closeout",
+    "kind": "entity",
+    "definition": "A sourced assertion about a relationship, condition, result, or causal interpretation whose evidentiary basis can be independently identified. This is where a specific interpretation of a Project's contribution to a Result -- association, contribution, attribution, or causation -- is represented, distinct from the Result itself and from the Evidence supporting the claim.",
+    "subClassOf": null,
+    "docRef": "docs/02-core-concepts.md#outcomes-and-closeout"
+  },
+  {
     "id": "evaluation",
     "label": "Evaluation",
     "aliases": [],

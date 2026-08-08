@@ -1011,5 +1011,31 @@
     "cardinality": "one",
     "allowedValues": null,
     "description": "The date the value was observed."
+  },
+  {
+    "id": "evidence-claim-claim-type",
+    "concept": "evidence-claim",
+    "name": "claimType",
+    "label": "Claim Type",
+    "group": "classification",
+    "datatype": "reference",
+    "referenceScheme": "claim-type",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "Whether this claim asserts association, contribution, attribution, or causation."
+  },
+  {
+    "id": "evidence-claim-evidence-strength",
+    "concept": "evidence-claim",
+    "name": "evidenceStrength",
+    "label": "Evidence Strength",
+    "group": "classification",
+    "datatype": "reference",
+    "referenceScheme": "evidence-strength",
+    "required": true,
+    "cardinality": "one",
+    "allowedValues": null,
+    "description": "How strong the supporting evidence is for this claim."
   }
 ]

@@ -790,5 +790,50 @@
     "label": "was observed in",
     "description": "A Measurement was observed in a specific Geographic Area.",
     "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-evaluation-evaluates-project",
+    "subject": "evaluation",
+    "predicate": "evaluatesProject",
+    "object": "project",
+    "label": "evaluates",
+    "description": "An Evaluation assesses a Project.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-evaluation-produces-evidence-claim",
+    "subject": "evaluation",
+    "predicate": "producesEvidenceClaim",
+    "object": "evidence-claim",
+    "label": "produces",
+    "description": "An Evaluation produces one or more Evidence Claims.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-evidence-claim-about-result",
+    "subject": "evidence-claim",
+    "predicate": "aboutResult",
+    "object": "result",
+    "label": "is about",
+    "description": "An Evidence Claim is about a Result. Declared against the abstract Result concept rather than each subtype separately, so a claim can concern any Output, Outcome, or Impact instance.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-evidence-claim-supported-by-evidence",
+    "subject": "evidence-claim",
+    "predicate": "supportedByEvidence",
+    "object": "evidence",
+    "label": "is supported by",
+    "description": "An Evidence Claim is supported by one or more pieces of Evidence.",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
+  },
+  {
+    "id": "rel-report-provides-evidence",
+    "subject": "report",
+    "predicate": "providesEvidence",
+    "object": "evidence",
+    "label": "provides",
+    "description": "A Report can itself serve as Evidence supporting an Evidence Claim (e.g. the administrative data or narrative it contains).",
+    "docRef": "docs/03-relationships.md#programs-results-and-evidence"
   }
 ]

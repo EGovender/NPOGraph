@@ -1,0 +1,47 @@
+{
+  "id": "claim-type",
+  "label": "Claim Type",
+  "description": "How strong an interpretation an Evidence Claim makes about a Project's relationship to a Result -- deliberately distinct, ordered from weakest to strongest evidentiary interpretation, and never treated as equivalent to one another.",
+  "domain": "program",
+  "authorityType": "internal",
+  "version": "1.0.0",
+  "publicationStatus": "published",
+  "values": [
+    {
+      "id": "claim-type-association",
+      "code": "association",
+      "label": "Association",
+      "definition": "Two phenomena are observed together, without asserting that one influenced the other.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "claim-type-contribution",
+      "code": "contribution",
+      "label": "Contribution",
+      "definition": "There is evidence that the intervention played some role in producing the result, alongside other factors.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "claim-type-attribution",
+      "code": "attribution",
+      "label": "Attribution",
+      "definition": "The evidence assigns a defined portion or substantial responsibility for the result to the intervention.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    },
+    {
+      "id": "claim-type-causation",
+      "code": "causation",
+      "label": "Causation",
+      "definition": "The evidence supports a causal relationship between the intervention and the result.",
+      "deprecated": false,
+      "broader": null,
+      "mappings": []
+    }
+  ]
+}
