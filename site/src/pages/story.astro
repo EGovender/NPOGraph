@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import {
   workedExample,
   getConcept,
@@ -139,11 +140,12 @@ flushBucket();
 ---
 
 <BaseLayout title="Worked Example" description={workedExample.summary}>
-  <p class="eyebrow">Worked Example</p>
-  <h1 style="margin-bottom: 0.25rem;">{workedExample.title}</h1>
-  <p class="secondary" style="margin-top: 0; max-width: 65ch;">{workedExample.summary}</p>
-  <p class="muted" style="max-width: 65ch;">
-    Every name below is fictional. Each step is a real instance of a concept in the ontology - see{' '}
+  <PageHero slot="pageHero" eyebrow="Worked Example" title={workedExample.title} description={workedExample.summary}>
+    <span slot="meta" class="page-hero-meta-item">All names are fictional</span>
+    <span slot="meta" class="page-hero-meta-item">Validated against the ontology</span>
+  </PageHero>
+  <p class="muted story-intro-note" style="max-width: 65ch;">
+    Each step is a real instance of a concept in the ontology - see{' '}
     <a href="https://github.com/EGovender/commongood-atlas/blob/main/docs/07-worked-example.md">docs/07-worked-example.md</a>{' '}
     for how it was built and validated.
   </p>

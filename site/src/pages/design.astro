@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import DesignWizard from '../components/DesignWizard';
+import { DESIGN_QUESTIONS } from '../data/design-questions';
 
 const base = import.meta.env.BASE_URL;
 ---
@@ -10,11 +12,15 @@ const base = import.meta.env.BASE_URL;
   description="Answer a few questions about your grantmaking program and get a recommended subset of the CommonGood Atlas ontology."
   wide
 >
-  <h1 style="margin-bottom: 0.25rem;">Model Your Program</h1>
-  <p class="secondary" style="margin-top: 0; max-width: 65ch;">
-    Answer questions about how your program actually works. The recommended concept list on the
-    right updates as you go - a starting point for which parts of the ontology apply to you, not a
-    determination of which concepts are "real."
-  </p>
+  <PageHero
+    slot="pageHero"
+    eyebrow="Build your model"
+    title="Model Your Program"
+    description="Answer practical questions about how your grantmaking works. CommonGood Atlas will identify the concepts most relevant to your program as you go."
+  >
+    <span slot="meta" class="page-hero-meta-item">{DESIGN_QUESTIONS.length} questions</span>
+    <span slot="meta" class="page-hero-meta-item">Personalized concept set</span>
+    <span slot="meta" class="page-hero-meta-item">Shareable result</span>
+  </PageHero>
   <DesignWizard client:load base={base} />
 </BaseLayout>

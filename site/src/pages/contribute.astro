@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import {
   suggestNewConceptUrl,
   suggestConceptChangeUrl,
@@ -79,23 +80,27 @@ const siteCards: ContributionCard[] = [
   },
 ];
 
-const otherCards: ContributionCard[] = [
-  {
-    title: 'Other Feedback',
-    description: "Tell us what you've found and we'll work out where it belongs.",
-    href: otherFeedbackUrl(),
-  },
+const otherCard: ContributionCard = {
+  title: 'Other Feedback',
+  description: "Tell us what you've found and we'll work out where it belongs.",
+  href: otherFeedbackUrl(),
+};
+
+// The last group ("Not Sure?") gets a distinct full-width featured callout
+// below instead of a grid tile, so it's excluded from this list.
+const groups = [
+  { title: 'Improve the Knowledge Model', cards: knowledgeModelCards },
+  { title: 'Improve the Knowledge Base', cards: knowledgeBaseCards },
+  { title: 'Improve CommonGood Atlas', cards: siteCards },
 ];
 
-function renderGroup(title: string, cards: ContributionCard[]) {
-  return { title, cards };
-}
-
-const groups = [
-  renderGroup('Improve the Knowledge Model', knowledgeModelCards),
-  renderGroup('Improve the Knowledge Base', knowledgeBaseCards),
-  renderGroup('Improve CommonGood Atlas', siteCards),
-  renderGroup("Not Sure?", otherCards),
+// Matches CONTRIBUTING.md's actual status-label lifecycle exactly -- see
+// its "Contribution lifecycle" section for the full detail this links to.
+const lifecycleSteps = [
+  { title: 'Propose', detail: 'Describe what you see in practice.' },
+  { title: 'Review', detail: 'A maintainer evaluates it (may ask a follow-up question).' },
+  { title: 'Decide', detail: 'Accepted, with the reasoning documented, or declined.' },
+  { title: 'Publish', detail: 'An accepted change is merged and goes live.' },
 ];
 ---
 
@@ -103,27 +108,60 @@ const groups = [
   title="Contribute"
   description="Suggest a change to the CommonGood Atlas ontology or site - no GitHub or ontology experience required."
 >
-  <h1 style="margin-bottom: 0.25rem;">Contribute to CommonGood Atlas</h1>
-  <p class="secondary" style="margin-top: 0; max-width: 65ch;">
-    CommonGood Atlas is intended to reflect how nonprofit organizations actually operate. If
-    something is missing, incorrect, unclear, or doesn't match what happens in practice, we want
-    to know.
-  </p>
-  <p class="muted" style="max-width: 65ch;">
-    Each option below opens a short guided form on GitHub. You don't need a GitHub account beyond
-    signing in, and you don't need to know ontology terminology - just describe what you see in
-    practice. Submitting a form starts a discussion; it doesn't change the ontology by itself. See
-    the
-    {' '}<a href="https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md#contribution-lifecycle">contribution lifecycle</a>{' '}
-    for what happens next.
+  <PageHero
+    slot="pageHero"
+    eyebrow="Open source community"
+    title="Help improve CommonGood Atlas"
+    description="CommonGood Atlas should reflect how nonprofit and philanthropic work happens in practice. If something is missing, unclear, or incorrect, your experience can help improve the model."
+  >
+    <a slot="actions" href="https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md" target="_blank" rel="noreferrer">
+      View contribution guide &rarr;
+    </a>
+  </PageHero>
+
+  <div class="page-callout">
+    <strong>You don't need to know ontology terminology.</strong>
+    <p style="margin: 0.4rem 0 0;">
+      Describe what happens in practice. A contribution starts a discussion; it doesn't
+      automatically change the model.
+    </p>
+  </div>
+
+  <div class="contribute-lifecycle" aria-label="Contribution lifecycle">
+    {
+      lifecycleSteps.map((step, i) => (
+        <>
+          <div class="contribute-lifecycle-step">
+            <span class="contribute-lifecycle-step-number">{String(i + 1).padStart(2, '0')}</span>
+            <span>
+              <span class="contribute-lifecycle-step-title">{step.title}</span>
+              <span class="contribute-lifecycle-step-detail">{step.detail}</span>
+            </span>
+          </div>
+          {i < lifecycleSteps.length - 1 && (
+            <span class="contribute-lifecycle-arrow" aria-hidden="true">&rarr;</span>
+          )}
+        </>
+      ))
+    }
+  </div>
+  <p class="muted" style="margin-top: -0.75rem;">
+    See the full{' '}
+    <a href="https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md#contribution-lifecycle">
+      contribution lifecycle
+    </a>{' '}
+    for how status labels move through review.
   </p>
 
-  <h2 style="margin-top: 0.5rem;">What would you like to contribute?</h2>
+  <h2 style="margin-top: 1.5rem;">What would you like to contribute?</h2>
 
   {
-    groups.map((group) => (
+    groups.map((group, i) => (
       <section style="margin-top: 1.5rem;">
-        <h3>{group.title}</h3>
+        <div class="contribute-group-header">
+          <span class="contribute-group-number">{String(i + 1).padStart(2, '0')}</span>
+          <h3 style="margin: 0;">{group.title}</h3>
+        </div>
         <div class="contribute-grid">
           {group.cards.map((card) => (
             <a class="contribute-item" href={card.href} target="_blank" rel="noreferrer">
@@ -138,4 +176,14 @@ const groups = [
       </section>
     ))
   }
+
+  <div class="contribute-featured">
+    <div>
+      <h3 class="contribute-featured-title">Not sure where your feedback belongs?</h3>
+      <p class="contribute-featured-copy">Tell us what you noticed and we'll work out where it fits.</p>
+    </div>
+    <a class="home-cta contribute-featured-cta" href={otherCard.href} target="_blank" rel="noreferrer">
+      Share other feedback &rarr;
+    </a>
+  </div>
 </BaseLayout>

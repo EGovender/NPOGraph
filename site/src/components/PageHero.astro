@@ -1,0 +1,34 @@
+---
+// Shared compact charcoal hero for every interior page (/explore, /concepts,
+// /design, /story, /contribute). Renders the page's single <h1> -- consuming
+// pages must not render their own. Styled by ../styles/page-shell.css.
+// The homepage does not use this component; it has its own full-bleed hero.
+interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+}
+
+const { eyebrow, title, description } = Astro.props;
+const hasMeta = Astro.slots.has('meta');
+const hasActions = Astro.slots.has('actions');
+---
+
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-hero-eyebrow">{eyebrow}</span>
+    <span class="page-hero-eyebrow-rule" aria-hidden="true"></span>
+    <h1 class="page-hero-title">{title}</h1>
+    {description && <p class="page-hero-description">{description}</p>}
+    {hasMeta && (
+      <div class="page-hero-meta">
+        <slot name="meta" />
+      </div>
+    )}
+    {hasActions && (
+      <div class="page-hero-actions">
+        <slot name="actions" />
+      </div>
+    )}
+  </div>
+</section>

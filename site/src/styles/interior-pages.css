@@ -1,0 +1,102 @@
+/* Page-specific interior-page rules that don't belong in the shared
+   page-shell primitives (page-shell.css) but also shouldn't keep growing
+   global.css indefinitely. One file per the brief's own fallback option,
+   rather than five near-empty per-page files. Imported once from
+   BaseLayout.astro. Sectioned by page. */
+
+/* ---------- Contribute ---------- */
+
+.contribute-lifecycle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.contribute-lifecycle-step {
+  flex: 1 1 160px;
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.contribute-lifecycle-step-number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--brand-green-ink);
+}
+
+.contribute-lifecycle-step-title {
+  font-weight: 700;
+  display: block;
+}
+
+.contribute-lifecycle-step-detail {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.contribute-lifecycle-arrow {
+  align-self: center;
+  color: var(--text-muted);
+  display: inline-block;
+}
+
+@media (max-width: 640px) {
+  .contribute-lifecycle {
+    flex-direction: column;
+  }
+
+  .contribute-lifecycle-arrow {
+    display: none;
+  }
+}
+
+.contribute-group-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.contribute-group-number {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.contribute-featured {
+  background: var(--brand-navy);
+  color: #ffffff;
+  border-radius: 0.65rem;
+  padding: 1.5rem 1.75rem;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.contribute-featured-title {
+  margin: 0 0 0.3rem;
+  color: #ffffff;
+}
+
+.contribute-featured-copy {
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0;
+  max-width: 48ch;
+}
+
+.contribute-featured-cta {
+  background: var(--brand-green);
+  color: var(--brand-navy);
+  border-color: var(--brand-green);
+  flex: none;
+}
+
+.contribute-featured-cta:hover {
+  background: #ffd633;
+  border-color: #ffd633;
+}
