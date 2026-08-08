@@ -42,21 +42,12 @@ const ARROW_GAP = 6;
 const LINK_DISTANCE = 125;
 const CHARGE_STRENGTH = -170;
 
-// Hidden by default so a first-time visitor sees the core entities (Organization,
-// Person, Fund, Grant Program, Process steps, etc.) without every Organization
-// Role/Person Role occupancy and Philanthropic Arrangement subtype also on
-// screen at once -- both are one click away via the always-visible Kind key.
-const DEFAULT_HIDDEN_KINDS: ConceptKind[] = ['organization-role', 'person-role', 'arrangement'];
-
-/** Each named view gets its own default for which kinds start hidden --
- * "Organizations & Roles" and "Funds & Arrangements" are specifically ABOUT
- * the kinds DEFAULT_HIDDEN_KINDS hides everywhere else, so applying the
- * global default there would open those views nearly empty. */
-function defaultHiddenKindsForView(viewId: string): ConceptKind[] {
-  if (viewId === 'organizations') return ['arrangement'];
-  if (viewId === 'funds') return ['organization-role', 'person-role'];
-  return DEFAULT_HIDDEN_KINDS;
-}
+// Every kind starts visible (opt-out, not opt-in) -- a filter that silently
+// hides ~40% of the ontology with no visible indicator is worse than a
+// denser first view. All filtering is one click away via the Kind chips in
+// the always-open-by-default Filters panel, and the "N of M concepts shown"
+// indicator below makes it obvious when something IS hidden.
+const DEFAULT_HIDDEN_KINDS: ConceptKind[] = [];
 
 interface SimNode extends SimulationNodeDatum {
   id: string;
@@ -196,13 +187,12 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMini]);
 
-  // Each named view gets its own sensible default for which kinds start
-  // hidden, instead of one global default fighting every view's actual
-  // purpose -- "Organizations & Roles" would otherwise open nearly empty,
-  // since role kinds are hidden everywhere else by default.
+  // Switching views starts every kind visible again, same as the initial
+  // load -- a filter carried over from a different dataset would be exactly
+  // the kind of silent hiding this component now deliberately avoids.
   useEffect(() => {
     if (isMini) return;
-    setHiddenKinds(new Set(defaultHiddenKindsForView(viewId)));
+    setHiddenKinds(new Set(DEFAULT_HIDDEN_KINDS));
   }, [isMini, viewId]);
 
   const conceptsById = useMemo(() => new Map(allConcepts.map((c) => [c.id, c])), []);
@@ -382,6 +372,20 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       .attr('class', 'graph-edge-label')
       .attr('text-anchor', 'middle')
       .text((d) => d.label);
+
+    // A relationship's label only earns its keep when you're actually
+    // looking at that relationship -- showing every label at once (the old
+    // "Show all relationship labels" behavior) buries the graph in
+    // overlapping text. Hovering an edge reveals just its own label; the
+    // toolbar toggle (showEdgeLabels) is still available for an "all at
+    // once" view when that's genuinely what's wanted.
+    edgeSel
+      .on('mouseenter', function (_event, d) {
+        edgeLabelSel.filter((l) => l.id === d.id).classed('hover-visible', true);
+      })
+      .on('mouseleave', function (_event, d) {
+        edgeLabelSel.filter((l) => l.id === d.id).classed('hover-visible', false);
+      });
 
     const dragBehavior = d3drag<SVGGElement, SimNode>()
       .clickDistance(6)
@@ -727,7 +731,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
    * which isn't a filter someone is trying to back out of. */
   function resetFilters() {
     setHiddenCategories(new Set());
-    setHiddenKinds(new Set(defaultHiddenKindsForView(viewId)));
+    setHiddenKinds(new Set(DEFAULT_HIDDEN_KINDS));
     setHiddenRelationshipKinds(new Set());
     setSearchQuery('');
     setPathFromId('');
@@ -812,6 +816,16 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       <button type="button" aria-label="Fit to view" title="Fit to view" onClick={fitToView}>
         &#x2922;
       </button>
+      <button
+        type="button"
+        className={showEdgeLabels ? 'active' : ''}
+        aria-pressed={showEdgeLabels}
+        aria-label={showEdgeLabels ? 'Hide all relationship labels' : 'Show all relationship labels'}
+        title={showEdgeLabels ? 'Hide all relationship labels' : 'Show all relationship labels (or hover an edge for just its own)'}
+        onClick={() => setShowEdgeLabels((v) => !v)}
+      >
+        Aa
+      </button>
       {!isMini && (
         <>
           <button type="button" aria-label="Export graph as PNG image" title="Export as image" onClick={exportImage}>
@@ -849,6 +863,28 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   for (const c of concepts) kindCounts.set(c.kind, (kindCounts.get(c.kind) ?? 0) + 1);
   const kindEntriesInView = KIND_LEGEND.filter((entry) => (kindCounts.get(entry.kind) ?? 0) > 0);
 
+  const categoryCounts = new Map<string, number>();
+  for (const c of concepts) categoryCounts.set(c.category, (categoryCounts.get(c.category) ?? 0) + 1);
+  const categoriesInView = CATEGORIES.filter((cat) => (categoryCounts.get(cat.id) ?? 0) > 0);
+
+  const relKindCounts = new Map<RelationshipKind, number>();
+  for (const r of relationships) {
+    const k = relationshipKind(r.predicate);
+    relKindCounts.set(k, (relKindCounts.get(k) ?? 0) + 1);
+  }
+  const relKindsInView = (Object.keys(RELATIONSHIP_KIND_LABELS) as RelationshipKind[]).filter(
+    (k) => (relKindCounts.get(k) ?? 0) > 0
+  );
+
+  // How many filters are actively hiding something, for the Filters panel's
+  // summary count -- and how many concepts that leaves visible, for the
+  // "N of M concepts shown" indicator (issue: filters used to hide ~40% of
+  // the ontology with only a subtle color change as a clue).
+  const filtersActiveCount = hiddenKinds.size + hiddenCategories.size + hiddenRelationshipKinds.size;
+  const visibleByFilterCount = concepts.filter(
+    (c) => !hiddenCategories.has(c.category) && !hiddenKinds.has(conceptKind(c))
+  ).length;
+
   const visibleListConcepts = concepts
     .filter((c) => !hiddenCategories.has(c.category))
     .filter((c) => !hiddenKinds.has(conceptKind(c)))
@@ -881,8 +917,8 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       });
     }
   }
-  // Kind visibility isn't tracked as a chip here -- the always-visible Kind
-  // key below is itself the toggle/reset mechanism for that axis.
+  // Kind visibility isn't tracked as a chip here -- the Filters panel's own
+  // "N active" count and its chips are that axis's toggle/reset mechanism.
   for (const kind of Object.keys(RELATIONSHIP_KIND_LABELS) as RelationshipKind[]) {
     if (hiddenRelationshipKinds.has(kind)) {
       activeFilterChips.push({
@@ -910,6 +946,39 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   return (
     <div className="graph-explorer">
       <div className="graph-toolbar">
+        <div className="graph-view-switcher">
+          <span className="graph-view-switcher-label">Viewing:</span>
+          {customConceptIds ? (
+            <div className="custom-view-banner">
+              <p>
+                Showing {customConceptIds.size} concepts from a <strong>Design</strong> recommendation.
+              </p>
+              <button type="button" className="link-button" onClick={() => setCustomConceptIds(null)}>
+                Clear, show named views
+              </button>
+            </div>
+          ) : (
+            <div className="view-pills" role="group" aria-label="Ontology view">
+              {EXPLORER_VIEWS.map((view) => (
+                <button
+                  key={view.id}
+                  type="button"
+                  className={`view-pill${viewId === view.id ? ' active' : ''}`}
+                  aria-pressed={viewId === view.id}
+                  title={view.description}
+                  onClick={() => setViewId(view.id)}
+                >
+                  {view.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <p className="graph-visible-count">
+          Showing <strong>{visibleByFilterCount}</strong> of {concepts.length} concepts
+        </p>
+
         <div className="graph-toolbar-row">
           <div className="search-box graph-toolbar-search">
             <input
@@ -955,44 +1024,24 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
             )}
           </div>
 
-          {customConceptIds ? (
-            <div className="custom-view-banner">
-              <p>
-                Showing {customConceptIds.size} concepts from a <strong>Design</strong> recommendation.
-              </p>
-              <button type="button" className="link-button" onClick={() => setCustomConceptIds(null)}>
-                Clear, show named views
-              </button>
-            </div>
-          ) : (
-            <div className="view-pills" role="group" aria-label="View">
-              {EXPLORER_VIEWS.map((view) => (
-                <button
-                  key={view.id}
-                  type="button"
-                  className={`view-pill${viewId === view.id ? ' active' : ''}`}
-                  aria-pressed={viewId === view.id}
-                  title={view.description}
-                  onClick={() => setViewId(view.id)}
-                >
-                  {view.label}
-                </button>
-              ))}
-            </div>
-          )}
-
           <div className="graph-view-toggle" role="group" aria-label="Graph or list view">
             <button type="button" className={!showList ? 'active' : ''} aria-pressed={!showList} onClick={() => setShowList(false)}>
               Graph
             </button>
-            <button type="button" className={showList ? 'active' : ''} aria-pressed={showList} onClick={() => setShowList(true)}>
-              List (keyboard-accessible)
+            <button
+              type="button"
+              className={showList ? 'active' : ''}
+              aria-pressed={showList}
+              title="List (keyboard-accessible)"
+              onClick={() => setShowList(true)}
+            >
+              List
             </button>
           </div>
         </div>
 
-        {activeFilterChips.length > 0 && (
-          <div className="graph-active-filters-row">
+        <div className="graph-active-filters-row">
+          {activeFilterChips.length > 0 && (
             <ul className="graph-filter-chips">
               {activeFilterChips.map((chip) => (
                 <li key={chip.key}>
@@ -1002,35 +1051,97 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
                 </li>
               ))}
             </ul>
-            <button type="button" className="link-button graph-reset-filters" onClick={resetFilters}>
-              Reset all
-            </button>
-          </div>
-        )}
-
-        <div className="graph-kind-key" role="group" aria-label="Kind: legend and filter">
-          <span className="graph-kind-key-label">Kind:</span>
-          {kindEntriesInView.map((entry) => {
-            const hidden = hiddenKinds.has(entry.kind);
-            const color = kindSwatchColor(entry.kind);
-            return (
-              <button
-                key={entry.kind}
-                type="button"
-                className={`graph-kind-chip${hidden ? ' graph-kind-chip-hidden' : ''}`}
-                aria-pressed={!hidden}
-                onClick={() => toggleKind(entry.kind)}
-              >
-                <span
-                  className={`shape-swatch shape-swatch-${entry.kind}`}
-                  style={color ? { background: `light-dark(${color.light}, ${color.dark})` } : undefined}
-                />
-                {entry.label}
-                <span className="graph-kind-chip-count">{kindCounts.get(entry.kind)}</span>
-              </button>
-            );
-          })}
+          )}
+          <button
+            type="button"
+            className="link-button graph-reset-filters"
+            disabled={activeFilterChips.length === 0}
+            onClick={resetFilters}
+          >
+            Reset all
+          </button>
         </div>
+
+        <details className="graph-tool-section graph-filters-section" open>
+          <summary>
+            <span className="graph-tool-section-title">Filters</span>
+            <span className="graph-tool-section-hint">
+              {filtersActiveCount > 0 ? `${filtersActiveCount} active` : 'All shown'}
+            </span>
+          </summary>
+
+          <div className="filter-chip-group">
+            <span className="filter-chip-group-label">Kind</span>
+            <div className="filter-chip-row" role="group" aria-label="Kind">
+              {kindEntriesInView.map((entry) => {
+                const hidden = hiddenKinds.has(entry.kind);
+                const color = kindSwatchColor(entry.kind);
+                return (
+                  <button
+                    key={entry.kind}
+                    type="button"
+                    className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
+                    aria-pressed={!hidden}
+                    onClick={() => toggleKind(entry.kind)}
+                  >
+                    <span
+                      className={`shape-swatch shape-swatch-${entry.kind}`}
+                      style={color ? { background: `light-dark(${color.light}, ${color.dark})` } : undefined}
+                    />
+                    {entry.label}
+                    <span className="filter-chip-count">{kindCounts.get(entry.kind)}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="filter-chip-group">
+            <span className="filter-chip-group-label">Category</span>
+            <div className="filter-chip-row" role="group" aria-label="Category">
+              {categoriesInView.map((cat) => {
+                const hidden = hiddenCategories.has(cat.id);
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
+                    aria-pressed={!hidden}
+                    onClick={() => toggleCategory(cat.id)}
+                  >
+                    <span
+                      className="search-result-swatch"
+                      style={{ background: `light-dark(${cat.colorLight}, ${cat.colorDark})` }}
+                    />
+                    {cat.label}
+                    <span className="filter-chip-count">{categoryCounts.get(cat.id)}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="filter-chip-group">
+            <span className="filter-chip-group-label">Relationship type</span>
+            <div className="filter-chip-row" role="group" aria-label="Relationship type">
+              {relKindsInView.map((kind) => {
+                const hidden = hiddenRelationshipKinds.has(kind);
+                return (
+                  <button
+                    key={kind}
+                    type="button"
+                    className={`filter-chip${hidden ? ' filter-chip-hidden' : ''}`}
+                    aria-pressed={!hidden}
+                    onClick={() => toggleRelationshipKind(kind)}
+                  >
+                    {RELATIONSHIP_KIND_LABELS[kind]}
+                    <span className="filter-chip-count">{relKindCounts.get(kind)}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </details>
 
         <details className="graph-tool-section graph-path-finder-section">
           <summary>
@@ -1087,53 +1198,6 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
           </div>
         </details>
 
-        <details className="graph-tool-section graph-advanced-filters">
-          <summary>
-            <span className="graph-tool-section-title">Advanced filters</span>
-            <span className="graph-tool-section-hint">Categories, relationship types, and labels</span>
-          </summary>
-
-          <h3 className="graph-sidebar-title">Categories</h3>
-          <ul className="category-filter">
-            {CATEGORIES.map((cat) => (
-              <li key={cat.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={!hiddenCategories.has(cat.id)}
-                    onChange={() => toggleCategory(cat.id)}
-                  />
-                  <span
-                    className="search-result-swatch"
-                    style={{ background: `light-dark(${cat.colorLight}, ${cat.colorDark})` }}
-                  />
-                  {cat.label}
-                </label>
-              </li>
-            ))}
-          </ul>
-
-          <h3 className="graph-sidebar-title">Relationship type</h3>
-          <ul className="category-filter">
-            {(Object.keys(RELATIONSHIP_KIND_LABELS) as RelationshipKind[]).map((kind) => (
-              <li key={kind}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={!hiddenRelationshipKinds.has(kind)}
-                    onChange={() => toggleRelationshipKind(kind)}
-                  />
-                  {RELATIONSHIP_KIND_LABELS[kind]}
-                </label>
-              </li>
-            ))}
-          </ul>
-          <label className="graph-edge-label-toggle">
-            <input type="checkbox" checked={showEdgeLabels} onChange={() => setShowEdgeLabels((v) => !v)} />
-            Show all relationship labels
-          </label>
-        </details>
-
         <p className="muted graph-hint">
           Click a node to see its details. Click the background to clear. Drag to reposition, scroll to zoom.
         </p>
@@ -1181,7 +1245,7 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
         </div>
 
         {selectedConcept && (
-          <aside className="graph-detail graph-detail-overlay">
+          <aside className="graph-detail graph-detail-docked">
             <button
               type="button"
               className="graph-detail-close"
