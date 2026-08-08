@@ -1,0 +1,85 @@
+name: Add a Reference or Terminology Note
+description: Suggest an industry reference, standard, source, or alternate term.
+title: "[Reference] "
+labels:
+  - contribution
+  - area:ontology
+  - type:reference
+  - status:proposed
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Thank you for helping improve CommonGood Atlas.**
+
+        You don't need to know ontology terminology to contribute.
+
+        Please don't include confidential, personally identifiable, or organization-sensitive
+        information.
+
+  - type: input
+    id: term
+    attributes:
+      label: Term / reference name
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reference-type
+    attributes:
+      label: Type
+      options:
+        - Industry standard
+        - Government/regulatory
+        - Philanthropy organization
+        - Research/publication
+        - Software documentation
+        - Practitioner terminology
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: URL or citation
+
+  - type: input
+    id: concepts-affected
+    attributes:
+      label: Concepts affected
+
+  - type: textarea
+    id: support-or-challenge
+    attributes:
+      label: What does this source support or challenge?
+    validations:
+      required: true
+
+  - type: input
+    id: alternate-terminology
+    attributes:
+      label: Alternate terminology
+
+  - type: input
+    id: jurisdiction
+    attributes:
+      label: Industry / jurisdiction
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional notes
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Contribution agreement
+      options:
+        - label: >-
+            I understand that this submission will be publicly visible on GitHub and may be
+            incorporated into CommonGood Atlas under the project's license.
+          required: true
+        - label: I have not included confidential, personally identifiable, or organization-sensitive information.
+          required: true

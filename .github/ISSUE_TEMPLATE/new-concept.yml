@@ -1,0 +1,135 @@
+name: Suggest a New Concept
+description: Something important to grantmaking is missing from the model.
+title: "[New Concept] "
+labels:
+  - contribution
+  - area:ontology
+  - type:new-concept
+  - status:proposed
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Thank you for helping improve CommonGood Atlas.**
+
+        You don't need to know ontology terminology to contribute. Describe how this works in
+        practice and provide a concrete example if you can.
+
+        Suggestions are reviewed and discussed before the model changes. We may ask follow-up
+        questions or propose a different way of representing the idea.
+
+        Please don't include confidential, personally identifiable, or organization-sensitive
+        information. Examples can be anonymized.
+
+  - type: input
+    id: concept
+    attributes:
+      label: Proposed concept name
+      description: What would you call this concept?
+      placeholder: "Example: Grant Amendment"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Area of grantmaking
+      options:
+        - Grant lifecycle
+        - Organizations & roles
+        - Funding & finance
+        - Due diligence & compliance
+        - Payments
+        - Reporting
+        - Evaluation & outcomes
+        - Fiscal sponsorship
+        - Donor-advised funds
+        - Regranting
+        - Collaborative funding
+        - Other / Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: definition
+    attributes:
+      label: What does this represent?
+      description: Describe the concept in plain language.
+      placeholder: Explain what this thing is and when it exists.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-needed
+    attributes:
+      label: Why is this concept needed?
+      description: What can't be represented clearly with the current model?
+    validations:
+      required: true
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Real-world example
+      description: >-
+        Describe a situation where this concept exists in practice. A concrete workflow is more
+        useful than a dictionary definition. You can anonymize organizations and people.
+    validations:
+      required: true
+
+  - type: textarea
+    id: distinction
+    attributes:
+      label: How is this different from an existing concept?
+      description: If something similar already exists, explain the difference.
+
+  - type: textarea
+    id: relationships
+    attributes:
+      label: What should this connect to?
+      description: List any concepts you think this should relate to.
+
+  - type: textarea
+    id: properties
+    attributes:
+      label: Important properties
+      description: Are there important amounts, dates, statuses, identifiers, or other attributes?
+
+  - type: textarea
+    id: rules
+    attributes:
+      label: Business rules or conditions
+      description: Are there conditions that control when this concept exists or changes?
+
+  - type: input
+    id: alternate-names
+    attributes:
+      label: Alternate names / terminology
+      placeholder: "Example: Amendment, Award Modification"
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting references
+      description: Add links, publications, standards, or other sources if available.
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Attach supporting material
+      description: >-
+        Optional. Drag and drop or paste screenshots, diagrams, or documents here - GitHub will
+        upload them and insert a link automatically.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Contribution agreement
+      options:
+        - label: >-
+            I understand that this submission will be publicly visible on GitHub and may be
+            incorporated into CommonGood Atlas under the project's license.
+          required: true
+        - label: I have not included confidential, personally identifiable, or organization-sensitive information.
+          required: true

@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  suggestNewConceptUrl,
+  suggestConceptChangeUrl,
+  suggestRelationshipUrl,
+  suggestPropertyUrl,
+  suggestBusinessRuleUrl,
+  suggestScenarioUrl,
+  suggestReferenceUrl,
+  suggestDocumentationUrl,
+  reportSiteBugUrl,
+  suggestFeatureUrl,
+  otherFeedbackUrl,
+} from '../data/contribution-links';
+
+interface ContributionCard {
+  title: string;
+  description: string;
+  href: string;
+}
+
+const knowledgeModelCards: ContributionCard[] = [
+  {
+    title: 'Suggest a New Concept',
+    description: 'Something important to grantmaking is missing from the model.',
+    href: suggestNewConceptUrl(),
+  },
+  {
+    title: 'Change an Existing Concept',
+    description: "A definition or concept doesn't match how things work.",
+    href: suggestConceptChangeUrl(''),
+  },
+  {
+    title: 'Suggest a Relationship',
+    description: 'Two concepts should connect differently.',
+    href: suggestRelationshipUrl(),
+  },
+  {
+    title: 'Suggest a Property',
+    description: 'A concept is missing an important attribute.',
+    href: suggestPropertyUrl(''),
+  },
+  {
+    title: 'Suggest a Business Rule',
+    description: 'There is a condition, dependency, or exception we should capture.',
+    href: suggestBusinessRuleUrl(''),
+  },
+  {
+    title: 'Add a Scenario or Example',
+    description: 'Show how the model behaves in an actual grantmaking situation.',
+    href: suggestScenarioUrl(),
+  },
+];
+
+const knowledgeBaseCards: ContributionCard[] = [
+  {
+    title: 'Add a Reference or Terminology Note',
+    description: 'Suggest an industry reference, standard, source, or alternate term.',
+    href: suggestReferenceUrl(),
+  },
+  {
+    title: 'Documentation / Clarity',
+    description: "Something is unclear, misleading, or difficult to understand.",
+    href: suggestDocumentationUrl(),
+  },
+];
+
+const siteCards: ContributionCard[] = [
+  {
+    title: 'Report a Site Problem',
+    description: "Something isn't working.",
+    href: reportSiteBugUrl(),
+  },
+  {
+    title: 'Suggest a Feature',
+    description: 'Suggest an improvement to the explorer or site.',
+    href: suggestFeatureUrl(),
+  },
+];
+
+const otherCards: ContributionCard[] = [
+  {
+    title: 'Other Feedback',
+    description: "Tell us what you've found and we'll work out where it belongs.",
+    href: otherFeedbackUrl(),
+  },
+];
+
+function renderGroup(title: string, cards: ContributionCard[]) {
+  return { title, cards };
+}
+
+const groups = [
+  renderGroup('Improve the Knowledge Model', knowledgeModelCards),
+  renderGroup('Improve the Knowledge Base', knowledgeBaseCards),
+  renderGroup('Improve CommonGood Atlas', siteCards),
+  renderGroup("Not Sure?", otherCards),
+];
+---
+
+<BaseLayout
+  title="Contribute"
+  description="Suggest a change to the CommonGood Atlas ontology or site - no GitHub or ontology experience required."
+>
+  <h1 style="margin-bottom: 0.25rem;">Contribute to CommonGood Atlas</h1>
+  <p class="secondary" style="margin-top: 0; max-width: 65ch;">
+    CommonGood Atlas is intended to reflect how nonprofit organizations actually operate. If
+    something is missing, incorrect, unclear, or doesn't match what happens in practice, we want
+    to know.
+  </p>
+  <p class="muted" style="max-width: 65ch;">
+    Each option below opens a short guided form on GitHub. You don't need a GitHub account beyond
+    signing in, and you don't need to know ontology terminology - just describe what you see in
+    practice. Submitting a form starts a discussion; it doesn't change the ontology by itself. See
+    the
+    {' '}<a href="https://github.com/EGovender/commongood-atlas/blob/main/CONTRIBUTING.md#contribution-lifecycle">contribution lifecycle</a>{' '}
+    for what happens next.
+  </p>
+
+  <h2 style="margin-top: 0.5rem;">What would you like to contribute?</h2>
+
+  {
+    groups.map((group) => (
+      <section style="margin-top: 1.5rem;">
+        <h3>{group.title}</h3>
+        <div class="journey-cards">
+          {group.cards.map((card) => (
+            <div class="card journey-card">
+              <h2 class="journey-card-title">{card.title}</h2>
+              <p class="secondary">{card.description}</p>
+              <a class="home-cta home-cta-primary" href={card.href} target="_blank" rel="noreferrer">
+                Open form &rarr;
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+</BaseLayout>

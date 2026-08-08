@@ -1,0 +1,45 @@
+name: Documentation / Clarity
+description: Something is unclear, misleading, or difficult to understand.
+title: "[Docs] "
+labels:
+  - documentation
+  - type:clarity
+  - status:triage
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping make CommonGood Atlas clearer. Small wording fixes are easy to turn
+        into a quick pull request; changes that alter meaning go through a short discussion first.
+
+  - type: input
+    id: page
+    attributes:
+      label: Page / concept
+      placeholder: "Example: https://egovender.github.io/commongood-atlas/concepts/award"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is confusing or incorrect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested-wording
+    attributes:
+      label: Suggested wording
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would the change help?
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Optional. Drag and drop or paste a screenshot here.

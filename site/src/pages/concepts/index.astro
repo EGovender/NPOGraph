@@ -119,6 +119,10 @@ const byLetter = letters.map((letter) => ({
 
   <p id="empty-state" class="muted" hidden>
     No concepts match your filters. <button type="button" id="empty-clear" class="link-button">Clear filters</button>
+    {' '}Can't find what you're looking for?{' '}
+    <a id="empty-state-suggest" href="https://github.com/EGovender/commongood-atlas/issues/new?template=new-concept.yml" target="_blank" rel="noreferrer">
+      Suggest a new concept
+    </a>
   </p>
 
   <div id="catalogue-views">
@@ -193,6 +197,7 @@ const byLetter = letters.map((letter) => ({
     const selectAllCategoriesBtn = document.getElementById('select-all-categories');
     const clearCategoriesBtn = document.getElementById('clear-categories');
     const emptyState = document.getElementById('empty-state');
+    const emptyStateSuggestLink = document.getElementById('empty-state-suggest') as HTMLAnchorElement | null;
     const visibleCountEl = document.getElementById('visible-count');
     const catalogueViews = document.getElementById('catalogue-views');
     const jumpLinksNav = document.getElementById('category-jump-links');
@@ -404,6 +409,16 @@ const byLetter = letters.map((letter) => ({
 
       const activeViewEmpty = visibleInActiveView === 0;
       if (emptyState) emptyState.hidden = !activeViewEmpty;
+      if (emptyStateSuggestLink) {
+        const query = searchInput?.value.trim() ?? '';
+        const params = new URLSearchParams({ template: 'new-concept.yml' });
+        if (query) {
+          params.set('title', `[New Concept] ${query}`);
+          params.set('concept', query);
+        }
+        emptyStateSuggestLink.href = `https://github.com/EGovender/commongood-atlas/issues/new?${params.toString()}`;
+        emptyStateSuggestLink.textContent = query ? `Suggest "${query}" as a new concept` : 'Suggest a new concept';
+      }
       Object.entries(views).forEach(([key, el]) => {
         if (el) el.hidden = key !== activeSort || activeViewEmpty;
       });

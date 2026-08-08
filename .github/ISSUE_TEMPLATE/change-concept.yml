@@ -1,0 +1,103 @@
+name: Change an Existing Concept
+description: A definition or concept doesn't match how things work.
+title: "[Concept Change] "
+labels:
+  - contribution
+  - area:ontology
+  - type:concept-change
+  - status:proposed
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Thank you for helping improve CommonGood Atlas.**
+
+        You don't need to know ontology terminology to contribute. Describe how this works in
+        practice and provide a concrete example if you can.
+
+        Suggestions are reviewed and discussed before the model changes. We may ask follow-up
+        questions or propose a different way of representing the idea.
+
+        Please don't include confidential, personally identifiable, or organization-sensitive
+        information. Examples can be anonymized.
+
+  - type: input
+    id: concept
+    attributes:
+      label: Concept
+      description: Which existing concept is this about?
+      placeholder: "Example: Award"
+    validations:
+      required: true
+
+  - type: input
+    id: concept-url
+    attributes:
+      label: Link to concept
+      description: Optional - the concept's page on the CommonGood Atlas site, if you have it.
+      placeholder: "https://egovender.github.io/commongood-atlas/concepts/award"
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or missing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: How does this cause a problem in practice?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed change
+      description: You don't need to provide replacement wording. Explaining why the current definition doesn't work is enough.
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Real-world example
+      description: Describe how this appears in an actual workflow. You can anonymize organizations and people.
+    validations:
+      required: true
+
+  - type: input
+    id: alternate-terminology
+    attributes:
+      label: Alternate terminology
+      placeholder: "Example: also called..."
+
+  - type: textarea
+    id: where-it-occurs
+    attributes:
+      label: Organizations / processes where this occurs
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Supporting references
+
+  - type: textarea
+    id: attachments
+    attributes:
+      label: Attachments
+      description: >-
+        Optional. Drag and drop or paste screenshots or documents here - GitHub will upload them
+        and insert a link automatically.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Contribution agreement
+      options:
+        - label: >-
+            I understand that this submission will be publicly visible on GitHub and may be
+            incorporated into CommonGood Atlas under the project's license.
+          required: true
+        - label: I have not included confidential, personally identifiable, or organization-sensitive information.
+          required: true

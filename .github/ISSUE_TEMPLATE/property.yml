@@ -1,0 +1,135 @@
+name: Suggest a Property / Attribute
+description: A concept is missing an important attribute.
+title: "[Property] "
+labels:
+  - contribution
+  - area:ontology
+  - type:property
+  - status:proposed
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Thank you for helping improve CommonGood Atlas.**
+
+        You don't need to know ontology terminology to contribute. Describe how this works in
+        practice and provide a concrete example if you can.
+
+        Suggestions are reviewed and discussed before the model changes. We may ask follow-up
+        questions or propose a different way of representing the idea.
+
+        Please don't include confidential, personally identifiable, or organization-sensitive
+        information. Examples can be anonymized.
+
+  - type: dropdown
+    id: action
+    attributes:
+      label: Add / Change / Remove
+      options:
+        - Add a new property
+        - Change an existing property
+        - Remove a property
+    validations:
+      required: true
+
+  - type: input
+    id: concept
+    attributes:
+      label: Concept
+      placeholder: "Example: Award"
+    validations:
+      required: true
+
+  - type: input
+    id: property-name
+    attributes:
+      label: Property name
+      placeholder: "Example: approvalDate"
+    validations:
+      required: true
+
+  - type: textarea
+    id: definition
+    attributes:
+      label: What does the property represent?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why-needed
+    attributes:
+      label: Why is it needed?
+    validations:
+      required: true
+
+  - type: input
+    id: example-value
+    attributes:
+      label: Example value
+      placeholder: "Example: 2026-03-01"
+
+  - type: dropdown
+    id: data-type
+    attributes:
+      label: Data type
+      description: Not sure? Pick "Not sure" - we'll work it out.
+      options:
+        - Text
+        - Number
+        - Currency / amount
+        - Date
+        - Date and time
+        - Boolean
+        - Status / enumerated value
+        - Identifier
+        - Reference to another concept
+        - Other
+        - Not sure
+
+  - type: dropdown
+    id: cardinality
+    attributes:
+      label: Required / Optional / Conditional
+      options:
+        - Required
+        - Optional
+        - Conditional
+        - Not sure
+
+  - type: textarea
+    id: allowed-values
+    attributes:
+      label: Allowed values
+      description: Optional. If this is a status or enumerated field, list the possible values.
+
+  - type: textarea
+    id: conditions
+    attributes:
+      label: Business conditions
+      description: Are there conditions that control when this property applies or changes?
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Real-world example
+      description: You can anonymize organizations and people.
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Reference
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Contribution agreement
+      options:
+        - label: >-
+            I understand that this submission will be publicly visible on GitHub and may be
+            incorporated into CommonGood Atlas under the project's license.
+          required: true
+        - label: I have not included confidential, personally identifiable, or organization-sensitive information.
+          required: true

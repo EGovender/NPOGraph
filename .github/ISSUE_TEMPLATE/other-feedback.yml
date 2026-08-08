@@ -1,0 +1,41 @@
+name: Other Feedback
+description: Tell us what you've found and we'll work out where it belongs.
+title: "[Feedback] "
+labels:
+  - feedback
+  - status:triage
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Not sure which category fits? That's fine - tell us what you've found and we'll sort out
+        where it belongs.
+
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What would you like to tell us?
+    validations:
+      required: true
+
+  - type: input
+    id: where
+    attributes:
+      label: Where did you encounter this?
+
+  - type: textarea
+    id: why-it-matters
+    attributes:
+      label: Why does it matter?
+
+  - type: textarea
+    id: example
+    attributes:
+      label: Supporting example
+
+  - type: textarea
+    id: attachment
+    attributes:
+      label: Attachment
+      description: Optional. Drag and drop or paste a file or screenshot here.

@@ -11,6 +11,13 @@ import {
 } from '../data/ontology';
 import { getCategory } from '../data/categories';
 import { getActiveReferenceValues, getReferenceScheme } from '../data/reference-data';
+import {
+  suggestConceptChangeUrl,
+  suggestPropertyUrl,
+  suggestRelationshipUrl,
+  suggestBusinessRuleUrl,
+  suggestScenarioUrl,
+} from '../data/contribution-links';
 
 // Grouped by user intent (Overview/In Practice for practitioners, Connections
 // for how this concept relates to others, Data Model/Technical for
@@ -75,6 +82,7 @@ export default function PropertyInspector({
     .flatMap((g) => g.fields)
     .filter((f) => f.property);
   const exampleProps = getPropertiesForConcept(concept.id);
+  const conceptPageUrl = `https://egovender.github.io${base}concepts/${concept.id}`;
 
   // Restored after mount, not read eagerly in the initializer, to keep the
   // client's first render matching the server-rendered HTML (same reasoning
@@ -182,6 +190,12 @@ export default function PropertyInspector({
                 <strong>Not legal advice:</strong> {concept.legalNote}
               </div>
             )}
+            <p className="secondary" style={{ marginTop: '1.25rem' }}>
+              Was something wrong or missing?{' '}
+              <a href={suggestConceptChangeUrl(concept.label, conceptPageUrl)} target="_blank" rel="noreferrer">
+                Suggest a change
+              </a>
+            </p>
           </div>
         )}
 
@@ -209,6 +223,11 @@ export default function PropertyInspector({
             <p className="secondary" style={{ marginTop: '1.25rem' }}>
               From the worked example{examples.length > 1 ? 's' : ''} above - part of the ontology's{' '}
               <a href={`${base}story`}>Story mode</a> walkthrough.
+            </p>
+            <p className="secondary">
+              <a href={suggestScenarioUrl()} target="_blank" rel="noreferrer">
+                Suggest another scenario
+              </a>
             </p>
           </div>
         )}
@@ -244,6 +263,11 @@ export default function PropertyInspector({
               </section>
             )}
             {relationshipCount === 0 && <p className="muted">No relationships defined yet.</p>}
+            <p className="secondary" style={{ marginTop: '1.25rem' }}>
+              <a href={suggestRelationshipUrl({ fromLabel: concept.label })} target="_blank" rel="noreferrer">
+                Suggest a relationship
+              </a>
+            </p>
           </div>
         )}
 
@@ -335,6 +359,15 @@ export default function PropertyInspector({
                 </ul>
               </section>
             )}
+            <p className="secondary" style={{ marginTop: '1.25rem' }}>
+              <a href={suggestPropertyUrl(concept.label)} target="_blank" rel="noreferrer">
+                Suggest a property
+              </a>
+              {' · '}
+              <a href={suggestBusinessRuleUrl(concept.label)} target="_blank" rel="noreferrer">
+                Suggest a business rule
+              </a>
+            </p>
           </div>
         )}
 

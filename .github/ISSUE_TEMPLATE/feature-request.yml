@@ -1,0 +1,79 @@
+name: Suggest a Feature
+description: Suggest an improvement to the explorer or site.
+title: "[Feature] "
+labels:
+  - feature
+  - area:site
+  - status:triage
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea. Start with the problem you're running into rather than a specific
+        solution - it's easier for us to find the best fix that way.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area of CommonGood Atlas
+      options:
+        - Graph Explorer
+        - Concept Catalogue
+        - Concept Page
+        - Search
+        - Model Your Program
+        - Worked Examples / Story
+        - Navigation
+        - Contribution process
+        - Accessibility
+        - Machine-readable ontology
+        - Developer tooling
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to accomplish?
+    validations:
+      required: true
+
+  - type: textarea
+    id: difficulty
+    attributes:
+      label: What makes that difficult today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expectation
+    attributes:
+      label: What would you expect CommonGood Atlas to do?
+
+  - type: textarea
+    id: example-workflow
+    attributes:
+      label: Example workflow
+
+  - type: textarea
+    id: who-helps
+    attributes:
+      label: Who would this help?
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Current workaround
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Screenshots / mockups
+      description: Optional. Drag and drop or paste images here.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Other notes
