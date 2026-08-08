@@ -1128,6 +1128,15 @@ mark {
   height: 320px;
 }
 
+/* The mini/neighborhood widget (concept detail pages) has no toolbar of
+   its own to hold the labels toggle -- put it in a thin strip below the
+   canvas instead of leaving it floating on top of the graph. */
+.graph-mini-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.6rem;
+}
+
 /* D3-rendered graph primitives -- node/edge appearance, selection and
    filter states. Category fill color is set inline per node (it varies
    per concept, drawn from the same 8-color palette as the sidebar
