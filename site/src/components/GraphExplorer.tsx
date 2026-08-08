@@ -628,7 +628,16 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
   // the exact same connected/path/selection state.
   function applyHighlight() {
     const handle = graphRef.current;
-    if (!handle || isMini) return;
+    if (!handle) return;
+    // Mini mode has no path-find/search/selection state to reconcile (a
+    // click there navigates away instead of selecting) -- it only needs
+    // the plain labels toggle applied, which the full-mode logic below
+    // would otherwise never reach since it always returns before getting
+    // there.
+    if (isMini) {
+      handle.edgeLabelSel.classed('visible', showEdgeLabels);
+      return;
+    }
     const { nodeSel, edgeSel, edgeLabelSel } = handle;
     nodeSel.classed('selected', false).classed('connected', false).classed('faded', false);
     edgeSel.classed('connected', false).classed('faded', false).classed('path-edge', false);
