@@ -1184,9 +1184,12 @@ mark {
   color: #ffffff;
 }
 
-.graph-controls button[aria-label*="relationship labels"] {
-  font-size: 0.95rem;
+.graph-controls button.graph-labels-toggle {
+  width: auto;
+  padding: 0 0.6rem;
+  font-size: 0.8rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .graph-detail-link {

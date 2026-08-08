@@ -818,13 +818,13 @@ export default function GraphExplorer({ base, mode = 'full', focusConceptId }: P
       </button>
       <button
         type="button"
-        className={showEdgeLabels ? 'active' : ''}
+        className={`graph-labels-toggle${showEdgeLabels ? ' active' : ''}`}
         aria-pressed={showEdgeLabels}
-        aria-label={showEdgeLabels ? 'Hide all relationship labels' : 'Show all relationship labels'}
-        title={showEdgeLabels ? 'Hide all relationship labels' : 'Show all relationship labels (or hover an edge for just its own)'}
+        aria-label={showEdgeLabels ? 'Hide relationship labels' : 'Show relationship labels'}
+        title={showEdgeLabels ? 'Hide relationship labels' : 'Show relationship labels (or hover an edge for just its own)'}
         onClick={() => setShowEdgeLabels((v) => !v)}
       >
-        Aa
+        {showEdgeLabels ? 'Hide labels' : 'Show labels'}
       </button>
       {!isMini && (
         <>
