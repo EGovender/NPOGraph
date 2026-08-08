@@ -1,0 +1,170 @@
+/* Grouped primary navigation (Explore / Use / About dropdowns + GitHub) and
+   the footer's direct-link fallback row. Replaces the old flat nav-link
+   rules that used to live in global.css. Imported once from
+   BaseLayout.astro. .site-header / .brand* / .nav-toggle* (the header shell
+   and mobile hamburger) are unrelated and stay in global.css. */
+
+.site-nav-group {
+  position: relative;
+}
+
+.site-nav-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: none;
+  background: none;
+  padding: 0.3rem 0;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.site-nav-trigger:hover {
+  color: var(--text-primary);
+}
+
+.site-nav-trigger.active {
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--brand-green);
+}
+
+.site-nav-caret {
+  font-size: 0.7em;
+  transition: transform 120ms ease;
+}
+
+.site-nav-group.open .site-nav-caret {
+  transform: rotate(180deg);
+}
+
+.site-nav-section-label {
+  display: none;
+}
+
+.site-nav-dropdown {
+  display: none;
+  flex-direction: column;
+  gap: 0.15rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  min-width: 200px;
+  padding: 0.5rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  box-shadow: var(--shadow-md);
+  z-index: 30;
+}
+
+.site-nav-group.open .site-nav-dropdown {
+  display: flex;
+}
+
+.site-nav-link {
+  display: block;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.site-nav-link:hover {
+  background: var(--surface);
+}
+
+.site-nav-link[aria-current='page'] {
+  font-weight: 700;
+  color: var(--brand-green-ink);
+}
+
+.site-nav-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.site-nav-external:hover {
+  color: var(--text-primary);
+}
+
+/* ---------- Footer direct links ---------- */
+
+.site-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.site-footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.site-footer-links a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+/* ---------- Mobile: flat grouped list instead of dropdowns ---------- */
+
+@media (max-width: 640px) {
+  .site-nav-trigger {
+    display: none;
+  }
+
+  .site-nav-section-label {
+    display: block;
+    padding-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .site-nav-section-label.active {
+    color: var(--brand-green-ink);
+  }
+
+  /* Always visible on mobile -- the outer hamburger (nav.open) already
+     governs whether the whole menu shows, so the dropdown's own .open
+     state (a desktop-only concept) doesn't need to gate this too. */
+  .site-nav-dropdown {
+    display: flex;
+    position: static;
+    margin-top: 0.25rem;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: none;
+  }
+
+  .site-nav-link {
+    padding: 0.6rem 0.4rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .site-nav-external {
+    padding: 0.5rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav-caret {
+    transition: none;
+  }
+}
